@@ -1,2 +1,3 @@
 # Jikan4java
-Jikan, unoffical myanimelist api in java
+Java wrapper for Jikan api
+Website for Jikan: https://jikan.moe/
