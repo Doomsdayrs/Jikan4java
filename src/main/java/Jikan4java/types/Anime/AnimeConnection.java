@@ -1,5 +1,4 @@
-package Jikan4java.connection;
-
+package Jikan4java.types.Anime;
 /*
 This file is part of Jikan4java.
 
@@ -16,21 +15,24 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
 
-public class connect {
-    // Request client
-    private final OkHttpClient client = new OkHttpClient();
-
-    public String test(String url) throws IOException
+public class AnimeConnection {
+    private final OkHttpClient client;
+    public AnimeConnection()
     {
-
-        return response.body().string();
+        this.client = new OkHttpClient();
     }
+    public Anime search(String title) throws IOException {
+        //
+        Request request = new Request.Builder().url("https://api.jikan.moe/v3").build();
+        Response response = client.newCall(request).execute();
 
+        return null;
+    }
 }
+

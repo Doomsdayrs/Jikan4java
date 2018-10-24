@@ -9,5 +9,8 @@
         <module name="Jikan4java" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Jikan4java" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

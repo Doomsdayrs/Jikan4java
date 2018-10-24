@@ -23,7 +23,7 @@ public class TestClass {
     public static void main(String[] args) {
         connect connect = new connect();
         try {
-            System.out.println(connect.test("https://api.jikan.moe/v3"));
+            System.out.println(connect.test(""));
         } catch (IOException e) {
             e.printStackTrace();
         }

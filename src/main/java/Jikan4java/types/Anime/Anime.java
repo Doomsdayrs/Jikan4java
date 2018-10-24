@@ -1,5 +1,4 @@
-package Jikan4java.connection;
-
+package Jikan4java.types.Anime;
 /*
 This file is part of Jikan4java.
 
@@ -16,21 +15,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
+public class Anime {
+    private String title;
+    private String description;
+    private int[] seasons;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-import java.io.IOException;
-
-public class connect {
-    // Request client
-    private final OkHttpClient client = new OkHttpClient();
-
-    public String test(String url) throws IOException
+    public Anime(String title, String description, int[] seasons)
     {
-
-        return response.body().string();
+        this.title = title;
+        this.description = description;
+        this.seasons = seasons;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int[] getSeasons() {
+        return seasons;
+    }
 }
