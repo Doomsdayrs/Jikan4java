@@ -2,10 +2,11 @@
 Java api client for Jikan api
 Website for Jikan: https://jikan.moe/
 
-##Capabilities
+## Capabilities
 So far can search Anime by it's name
 
-###Basic documentation
+### Basic documentation
+
 >How to search shiz up
 ```java
 import Jikan4java.types.Anime.AnimeConnection;
