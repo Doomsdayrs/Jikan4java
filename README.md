@@ -29,3 +29,26 @@ public static void main(String[] args) throws IOException, ParseException {
 - [ ] Search and return Person
 - [ ] Search and return Character
 - [ ] Search and return Search results of all of above
+
+### Dependencies 
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>3.11.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.jsoup</groupId>
+        <artifactId>jsoup</artifactId>
+        <version>1.11.3</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.googlecode.json-simple</groupId>
+        <artifactId>json-simple</artifactId>
+        <version>1.1.1</version>
+    </dependency>
+</dependencies>
+```
