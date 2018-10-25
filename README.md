@@ -1,5 +1,5 @@
 # Jikan4java
-Java wrapper for Jikan api
+Java api client for Jikan api
 Website for Jikan: https://jikan.moe/
 
 ##Capabilities
