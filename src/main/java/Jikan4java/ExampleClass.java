@@ -24,7 +24,7 @@ import java.io.IOException;
 public class ExampleClass {
     /**
      * ExampleClass method, simply output's an Anime object in string format
-     * An example of how to use this API
+     * An example of how to use this client
      */
     public static void main(String[] args) throws IOException, ParseException {
         AnimeConnection animeConnection = new AnimeConnection();
