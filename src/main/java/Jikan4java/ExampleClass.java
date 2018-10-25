@@ -28,7 +28,7 @@ public class ExampleClass {
      */
     public static void main(String[] args) throws IOException, ParseException {
         AnimeConnection animeConnection = new AnimeConnection();
-        System.out.println(animeConnection.search("Another").toString());
+        System.out.println(animeConnection.search("boku no pico").toString());
     }
 
 }

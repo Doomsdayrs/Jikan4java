@@ -69,29 +69,186 @@ public class AnimeConnection {
                     endings.get(x).toString()
             );
         }
+
+
+        String mal_id,url,image_url,trailer_url,
+                animeTitle,title_english,title_japanese,
+                type,source,episodes,
+                status,duration,rating,
+                score,scored_by,rank,
+                members,favorites,synopsis,
+                background,premiered;
+        try {
+            mal_id = animeJSON.get("mal_id").toString();
+        }
+        catch (NullPointerException e)
+        {
+            mal_id = "";
+        }
+        try {
+            url = animeJSON.get("url").toString();
+        }
+        catch (NullPointerException e)
+        {
+            url = "";
+        }
+        try {
+            image_url = animeJSON.get("image_url").toString();
+        }
+        catch (NullPointerException e)
+        {
+            image_url = "";
+        }
+        try {
+            trailer_url = animeJSON.get("trailer_url").toString();
+        }
+        catch (NullPointerException e)
+        {
+            trailer_url = "";
+        }
+        try {
+            animeTitle = animeJSON.get("animeTitle").toString();
+        }
+        catch (NullPointerException e)
+        {
+            animeTitle = "";
+        }
+        try {
+            title_english = animeJSON.get("title_english").toString();
+        }
+        catch (NullPointerException e)
+        {
+            title_english = "";
+        }
+        try {
+            title_japanese = animeJSON.get("title_japanese").toString();
+        }
+        catch (NullPointerException e)
+        {
+            title_japanese = "";
+        }
+        try {
+            type = animeJSON.get("type").toString();
+        }
+        catch (NullPointerException e)
+        {
+            type = "";
+        }
+        try {
+            source = animeJSON.get("source").toString();
+        }
+        catch (NullPointerException e)
+        {
+            source = "";
+        }
+        try {
+            episodes = animeJSON.get("episodes").toString();
+        }
+        catch (NullPointerException e)
+        {
+            episodes = "0";
+        }
+        try {
+            status = animeJSON.get("status").toString();
+        }
+        catch (NullPointerException e)
+        {
+            status = "";
+        }
+
+        try {
+            duration = animeJSON.get("duration").toString();
+        }
+        catch (NullPointerException e)
+        {
+            duration = "";
+        }
+        try {
+            rating = animeJSON.get("rating").toString();
+        }
+        catch (NullPointerException e)
+        {
+            rating = "0";
+        }
+        try {
+            score = animeJSON.get("score").toString();
+        }
+        catch (NullPointerException e)
+        {
+            score = "0";
+        }
+        try {
+            scored_by = animeJSON.get("scored_by").toString();
+        }
+        catch (NullPointerException e)
+        {
+            scored_by = "0";
+        }
+        try {
+            rank = animeJSON.get("rank").toString();
+        }
+        catch (NullPointerException e)
+        {
+            rank = "0";
+        }
+        try {
+            members = animeJSON.get("members").toString();
+        }
+        catch (NullPointerException e)
+        {
+            members = "0";
+        }
+        try {
+            favorites = animeJSON.get("favorites").toString();
+        }
+        catch (NullPointerException e)
+        {
+            favorites = "0";
+        }
+        try {
+            synopsis = animeJSON.get("synopsis").toString();
+        }
+        catch (NullPointerException e)
+        {
+            synopsis = "";
+        }
+        try {
+            background = animeJSON.get("background").toString();
+        }
+        catch (NullPointerException e)
+        {
+            background = "";
+        }
+        try {
+            premiered = animeJSON.get("premiered").toString();
+        }
+        catch (NullPointerException e)
+        {
+            premiered = "";
+        }
+
         return new Anime(
-                animeJSON.get("mal_id").toString(),
-                animeJSON.get("url").toString(),
-                animeJSON.get("image_url").toString(),
-                animeJSON.get("trailer_url").toString(),
-                animeJSON.get("title").toString(),
-                animeJSON.get("title_english").toString(),
-                animeJSON.get("title_japanese").toString(),
-                animeJSON.get("type").toString(),
-                animeJSON.get("source").toString(),
-                Integer.parseInt(animeJSON.get("episodes").toString()),
-                animeJSON.get("status").toString(),
-                aired.get("string").toString(),
-                animeJSON.get("duration").toString(),
-                animeJSON.get("rating").toString(),
-                Double.parseDouble(animeJSON.get("score").toString()),
-                Integer.parseInt(animeJSON.get("scored_by").toString()),
-                Integer.parseInt(animeJSON.get("rank").toString()),
-                Integer.parseInt(animeJSON.get("members").toString()),
-                Integer.parseInt(animeJSON.get("favorites").toString()),
-                animeJSON.get("synopsis").toString(),
-                animeJSON.get("background").toString(),
-                animeJSON.get("premiered").toString(),
+                mal_id,
+                url,
+                image_url,
+                trailer_url,
+                animeTitle,
+                title_english,
+                title_japanese,
+                type,
+                source,
+                Integer.parseInt(episodes),
+                status,aired.get("string").toString(),
+                duration,
+                rating,
+                Double.parseDouble(score),
+                Integer.parseInt(scored_by),
+                Integer.parseInt(rank),
+                Integer.parseInt(members),
+                Integer.parseInt(favorites),
+                synopsis,
+                background,
+                premiered,
                 genreList,
                 openingList,
                 endingList
