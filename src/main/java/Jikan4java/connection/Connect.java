@@ -33,10 +33,13 @@ import java.util.Iterator;
 
 public class Connect {
     // Request client
-    private final OkHttpClient client = new OkHttpClient();
+    private final OkHttpClient client;
     private final String baseURL = "https://api.jikan.moe/v3";
     public Connect()
-    {}
+    {
+        this.client = new OkHttpClient();
+    }
+
     /*
     * Quickly tests the api
     */

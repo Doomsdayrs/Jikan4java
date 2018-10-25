@@ -20,15 +20,15 @@ public class Anime {
     private String title;
     private String iconURL;
     private String description;
-    private int[] seasons;
+    private int episodes;
 
-    public Anime(String url, String title,String iconURL, String description, int[] seasons)
+    public Anime(String url, String title,String iconURL, String description, int episodes)
     {
         this.url = url;
         this.title = title;
         this.iconURL = iconURL;
         this.description = description;
-        this.seasons = seasons;
+        this.episodes = episodes;
     }
 
     public String getTitle() {
@@ -39,16 +39,16 @@ public class Anime {
         return description;
     }
 
-    public int[] getSeasons() {
-        return seasons;
-    }
-
-    public int getNumOfSeasons(){return seasons.length;};
-    public String getIconURL() {
-        return iconURL;
+    public int getEpisodes() {
+        return episodes;
     }
 
     public String getUrl() {
         return url;
     }
+
+    public String getIconURL() {
+        return iconURL;
+    }
+
 }

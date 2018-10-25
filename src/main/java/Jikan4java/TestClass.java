@@ -23,9 +23,9 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 
 public class TestClass {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException {
         AnimeConnection animeConnection = new AnimeConnection();
-        Anime anime = null;
+        /*Anime anime = null;
         try {
             anime = animeConnection.search("Boku no pico");
         } catch (IOException e) {
@@ -34,7 +34,8 @@ public class TestClass {
             e.printStackTrace();
         }
         //Something to make it push, another thing
-        System.out.println(anime.getUrl());
+        System.out.println(anime.getUrl());*/
+        animeConnection.test();
     }
 
 }

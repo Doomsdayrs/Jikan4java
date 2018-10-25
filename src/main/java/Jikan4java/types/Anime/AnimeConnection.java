@@ -26,17 +26,21 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 
 public class AnimeConnection {
-    private final OkHttpClient client;
+    private final Connect connect;
     public AnimeConnection()
     {
-        this.client = new OkHttpClient();
+        this.connect = new Connect();
     }
-    public Anime search(String title) throws IOException, ParseException {
-        Connect connect = new Connect();
-        JSONObject animeJSON = connect.search("anime",title);
 
-        Anime anime = new Anime(animeJSON.get("url").toString(),animeJSON.get("title").toString(),animeJSON.get("image_url").toString(),animeJSON.get("synopsis").toString(), new int[Integer.parseInt(animeJSON.get("episodes").toString())]);
+    public Anime search(String title) throws IOException, ParseException {
+
+        JSONObject animeJSON = connect.search("anime",title);
+        animeJSON.get("season");
+        Anime anime = new Anime(animeJSON.get("url").toString(),animeJSON.get("title").toString(),animeJSON.get("image_url").toString(),animeJSON.get("synopsis").toString(), Integer.parseInt(animeJSON.get("episodes").toString()));
         return anime;
+    }
+    public void test() throws IOException, ParseException {
+    System.out.println(connect.search("anime","Attack on titan"));
     }
 }
 
