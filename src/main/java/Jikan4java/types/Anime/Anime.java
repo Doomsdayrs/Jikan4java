@@ -16,13 +16,17 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class Anime {
+    private String url;
     private String title;
+    private String iconURL;
     private String description;
     private int[] seasons;
 
-    public Anime(String title, String description, int[] seasons)
+    public Anime(String url, String title,String iconURL, String description, int[] seasons)
     {
+        this.url = url;
         this.title = title;
+        this.iconURL = iconURL;
         this.description = description;
         this.seasons = seasons;
     }
@@ -37,5 +41,14 @@ public class Anime {
 
     public int[] getSeasons() {
         return seasons;
+    }
+
+    public int getNumOfSeasons(){return seasons.length;};
+    public String getIconURL() {
+        return iconURL;
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

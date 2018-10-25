@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import Jikan4java.types.Anime.Anime;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -34,15 +35,23 @@ public class Connect {
     // Request client
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
-
+    public Connect()
+    {}
+    /*
+    * Quickly tests the api
+    */
     public String test() throws IOException
     {
         Request request = new Request.Builder().url(baseURL).build();
         Response response = client.newCall(request).execute();
         return response.body().string();
     }
-    public String animeSearch(String title) throws IOException, ParseException {
-        Request request = new Request.Builder().url(baseURL + "/search/manga?q="+ title +"&page=1").build();
+    /*
+    * Searches the API
+    * @return JSONObject
+    */
+    public JSONObject search(String type,String search) throws IOException, ParseException {
+        Request request = new Request.Builder().url(baseURL + "/search/"+type+"?q="+ search +"&page=1").build();
         Response response = client.newCall(request).execute();
         JSONParser parser = new JSONParser();
 
@@ -52,8 +61,8 @@ public class Connect {
         JSONArray jsonArray = (JSONArray) jsonObject.get("results");
 
         //request_hash
-        JSONObject manga =(JSONObject) jsonArray.get(0);
-        return manga.get("image_url").toString();
+        JSONObject object =(JSONObject) jsonArray.get(0);
+        return object;
     }
         //request:search:05d0a56266b3c5b1ecefb883a41235be572caed1
 }

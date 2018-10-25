@@ -15,9 +15,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
+import Jikan4java.connection.Connect;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
@@ -27,8 +31,12 @@ public class AnimeConnection {
     {
         this.client = new OkHttpClient();
     }
-    public Anime search(String title) throws IOException {
-        return null;
+    public Anime search(String title) throws IOException, ParseException {
+        Connect connect = new Connect();
+        JSONObject animeJSON = connect.search("anime",title);
+
+        Anime anime = new Anime(animeJSON.get("url").toString(),animeJSON.get("title").toString(),animeJSON.get("image_url").toString(),animeJSON.get("synopsis").toString(), new int[Integer.parseInt(animeJSON.get("episodes").toString())]);
+        return anime;
     }
 }
 
