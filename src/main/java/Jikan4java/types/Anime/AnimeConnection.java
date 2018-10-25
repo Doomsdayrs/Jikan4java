@@ -28,10 +28,6 @@ public class AnimeConnection {
         this.client = new OkHttpClient();
     }
     public Anime search(String title) throws IOException {
-        //
-        Request request = new Request.Builder().url("https://api.jikan.moe/v3").build();
-        Response response = client.newCall(request).execute();
-
         return null;
     }
 }

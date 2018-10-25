@@ -18,14 +18,21 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 import Jikan4java.connection.connect;
 
 import java.io.IOException;
-
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.MediaType;
 public class TestClass {
     public static void main(String[] args) {
         connect connect = new connect();
         try {
-            System.out.println(connect.test(""));
+            System.out.println(connect.animeSearch("Grand Blue"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
 }

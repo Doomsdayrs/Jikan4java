@@ -26,11 +26,17 @@ import java.io.IOException;
 public class connect {
     // Request client
     private final OkHttpClient client = new OkHttpClient();
-
-    public String test(String url) throws IOException
+    private final String baseURL = "https://api.jikan.moe/v3";
+    public String test() throws IOException
     {
-
+        Request request = new Request.Builder().url(baseURL).build();
+        Response response = client.newCall(request).execute();
         return response.body().string();
+    }
+    public String animeSearch(String title) throws IOException {
+        Request request = new Request.Builder().url(baseURL + "/search/manga?q="+ title +"&page=1").build();
+        Response response = client.newCall(request).execute();
+        return  response.headers("results:").toString();
     }
 
 }
