@@ -15,20 +15,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-import Jikan4java.connection.connect;
+import Jikan4java.connection.Connect;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.MediaType;
+
 public class TestClass {
     public static void main(String[] args) {
-        connect connect = new connect();
+        Connect connect = new Connect();
         try {
             System.out.println(connect.animeSearch("Grand Blue"));
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }

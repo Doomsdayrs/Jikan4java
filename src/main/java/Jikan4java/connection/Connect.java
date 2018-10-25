@@ -20,23 +20,40 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.jsoup.Jsoup;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-public class connect {
+public class Connect {
     // Request client
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
+
     public String test() throws IOException
     {
         Request request = new Request.Builder().url(baseURL).build();
         Response response = client.newCall(request).execute();
         return response.body().string();
     }
-    public String animeSearch(String title) throws IOException {
+    public String animeSearch(String title) throws IOException, ParseException {
         Request request = new Request.Builder().url(baseURL + "/search/manga?q="+ title +"&page=1").build();
         Response response = client.newCall(request).execute();
-        return  response.headers("results:").toString();
-    }
+        JSONParser parser = new JSONParser();
 
+        JSONObject jsonObject = null;
+
+        jsonObject = (JSONObject) parser.parse(response.body().string());
+        JSONArray jsonArray = (JSONArray) jsonObject.get("results");
+
+        //request_hash
+        JSONObject manga =(JSONObject) jsonArray.get(0);
+        return manga.get("image_url").toString();
+    }
+        //request:search:05d0a56266b3c5b1ecefb883a41235be572caed1
 }
