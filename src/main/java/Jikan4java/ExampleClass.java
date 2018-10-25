@@ -15,27 +15,20 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-import Jikan4java.connection.Connect;
-import Jikan4java.types.Anime.Anime;
+
 import Jikan4java.types.Anime.AnimeConnection;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
-public class TestClass {
+public class ExampleClass {
+    /**
+     * ExampleClass method, simply output's an Anime object in string format
+     * An example of how to use this API
+     */
     public static void main(String[] args) throws IOException, ParseException {
         AnimeConnection animeConnection = new AnimeConnection();
-        /*Anime anime = null;
-        try {
-            anime = animeConnection.search("Boku no pico");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        //Something to make it push, another thing
-        System.out.println(anime.getUrl());*/
-        animeConnection.test();
+        System.out.println(animeConnection.search("Another").toString());
     }
 
 }
