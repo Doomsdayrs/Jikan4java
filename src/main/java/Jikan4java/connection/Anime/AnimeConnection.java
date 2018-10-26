@@ -73,164 +73,101 @@ public class AnimeConnection {
         }
 
 
-        String mal_id,url,image_url,trailer_url,
-                animeTitle,title_english,title_japanese,
-                type,source,episodes,
-                status,duration,rating,
-                score,scored_by,rank,
-                members,favorites,synopsis,
-                background,premiered;
-        try {
+        String mal_id = "0",url = "",image_url = "",trailer_url = "",
+                animeTitle = "",title_english = "",title_japanese = "",
+                type = "",source = "",episodes = "0",
+                status = "",duration = "",rating = "",
+                score = "0",scored_by = "0",rank = "0",
+                members = "0",favorites = "0",synopsis = "",
+                background = "",premiered = "";
+
+        if(animeJSON.get("mal_id") != null){
             mal_id = animeJSON.get("mal_id").toString();
         }
-        catch (NullPointerException e)
-        {
-            mal_id = "";
-        }
-        try {
+
+        if(animeJSON.get("url") != null){
             url = animeJSON.get("url").toString();
         }
-        catch (NullPointerException e)
-        {
-            url = "";
-        }
-        try {
+
+        if(animeJSON.get("image_url") != null){
             image_url = animeJSON.get("image_url").toString();
         }
-        catch (NullPointerException e)
-        {
-            image_url = "";
-        }
-        try {
+
+        if(animeJSON.get("trailer_url") != null){
             trailer_url = animeJSON.get("trailer_url").toString();
         }
-        catch (NullPointerException e)
-        {
-            trailer_url = "";
-        }
-        try {
+
+        if(animeJSON.get("animeTitle") != null){
             animeTitle = animeJSON.get("animeTitle").toString();
         }
-        catch (NullPointerException e)
-        {
-            animeTitle = "";
-        }
-        try {
+
+        if(animeJSON.get("title_english") != null){
             title_english = animeJSON.get("title_english").toString();
         }
-        catch (NullPointerException e)
-        {
-            title_english = "";
-        }
-        try {
+
+        if(animeJSON.get("title_japanese") != null){
             title_japanese = animeJSON.get("title_japanese").toString();
         }
-        catch (NullPointerException e)
-        {
-            title_japanese = "";
-        }
-        try {
+
+        if(animeJSON.get("type") != null){
             type = animeJSON.get("type").toString();
         }
-        catch (NullPointerException e)
-        {
-            type = "";
-        }
-        try {
+
+        if(animeJSON.get("source") != null){
             source = animeJSON.get("source").toString();
         }
-        catch (NullPointerException e)
-        {
-            source = "";
-        }
-        try {
+
+        if(animeJSON.get("episodes") != null){
             episodes = animeJSON.get("episodes").toString();
         }
-        catch (NullPointerException e)
-        {
-            episodes = "0";
-        }
-        try {
+
+        if(animeJSON.get("status") != null){
             status = animeJSON.get("status").toString();
         }
-        catch (NullPointerException e)
-        {
-            status = "";
-        }
 
-        try {
+        if(animeJSON.get("duration") != null){
             duration = animeJSON.get("duration").toString();
         }
-        catch (NullPointerException e)
-        {
-            duration = "";
-        }
-        try {
+
+        if(animeJSON.get("rating") != null){
             rating = animeJSON.get("rating").toString();
         }
-        catch (NullPointerException e)
-        {
-            rating = "0";
-        }
-        try {
+
+        if(animeJSON.get("score") != null){
             score = animeJSON.get("score").toString();
         }
-        catch (NullPointerException e)
-        {
-            score = "0";
-        }
-        try {
+
+        if(animeJSON.get("scored_by") != null){
             scored_by = animeJSON.get("scored_by").toString();
         }
-        catch (NullPointerException e)
-        {
-            scored_by = "0";
-        }
-        try {
+
+        if(animeJSON.get("rank") != null){
             rank = animeJSON.get("rank").toString();
         }
-        catch (NullPointerException e)
-        {
-            rank = "0";
-        }
-        try {
+
+        if(animeJSON.get("members") != null){
             members = animeJSON.get("members").toString();
         }
-        catch (NullPointerException e)
-        {
-            members = "0";
-        }
-        try {
+
+        if(animeJSON.get("favorites") != null){
             favorites = animeJSON.get("favorites").toString();
         }
-        catch (NullPointerException e)
-        {
-            favorites = "0";
-        }
-        try {
+
+        if(animeJSON.get("synopsis") != null){
             synopsis = animeJSON.get("synopsis").toString();
         }
-        catch (NullPointerException e)
-        {
-            synopsis = "";
-        }
-        try {
+
+        if(animeJSON.get("background") != null){
             background = animeJSON.get("background").toString();
         }
-        catch (NullPointerException e)
-        {
-            background = "";
-        }
-        try {
+
+        if(animeJSON.get("premiered") != null){
             premiered = animeJSON.get("premiered").toString();
         }
-        catch (NullPointerException e)
-        {
-            premiered = "";
-        }
+
 
         return new Anime(
-                mal_id,
+                Integer.parseInt(mal_id),
                 url,
                 image_url,
                 trailer_url,

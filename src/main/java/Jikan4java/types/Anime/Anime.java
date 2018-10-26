@@ -19,7 +19,7 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class Anime {
-    private String mal_id;
+    private int mal_id;
     private String url;
     private String iconURL;
     private String trailer_url;
@@ -80,7 +80,7 @@ public class Anime {
      * @param opening_themes Openings of Anime
      * @param ending_themes  Endings of Anime
      */
-    public Anime(String mal_id, String url, String iconURL, String trailer_url, String title, String title_english, String title_japanese,
+    public Anime(int mal_id, String url, String iconURL, String trailer_url, String title, String title_english, String title_japanese,
                  String type, String source, int episodes, String status, String aired, String duration, String rating,
                  double score, int scoredBy, int rank, int members, int favorites, String synopsis, String background,
                  String premiered, ArrayList<String> genres, ArrayList<String> opening_themes, ArrayList<String> ending_themes) {
@@ -115,7 +115,7 @@ public class Anime {
     /**
      * Returns mal_id
      */
-    public String getMal_id() {
+    public int getMal_id() {
         return mal_id;
     }
 
