@@ -27,6 +27,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class MangaConnection {
     private final OkHttpClient client = new OkHttpClient();
@@ -46,214 +47,66 @@ public class MangaConnection {
      */
     public Manga search(String title) throws IOException, ParseException {
         JSONObject mangaJSON = this.searchSite(title);
-        JSONObject aired = (JSONObject) mangaJSON.get("aired");
-
         JSONArray genres = (JSONArray) mangaJSON.get("genres");
-        JSONArray openings = (JSONArray) mangaJSON.get("opening_themes");
-        JSONArray endings = (JSONArray) mangaJSON.get("ending_themes");
+        JSONArray serialization = (JSONArray) mangaJSON.get("opening_themes");
+        JSONArray title_synonym = (JSONArray) mangaJSON.get("genres");
 
+        String mal_id, url, mangaTitle,
+                title_english, title_japanese, status,
+                image_url, volumes, chapters,
+                publishing, published, rank,
+                scored_by,popularity, members,
+                favorites, synopsis, background;
+
+
+        mal_id = Optional.ofNullable(mangaJSON.get("mal_id")).map(JSONObject::toString).orElse("0");
+        url = Optional.ofNullable(mangaJSON.get("url")).map(JSONObject::toString).orElse("0");
+        mangaTitle = mangaJSON.get("animeTitle").toString();
+        title_english = mangaJSON.get("title_english").toString();
+
+        ArrayList<String> title_synonyms = new ArrayList<String>();
+        for (int x = 0; x < serialization.size(); x++) {
+            title_synonyms.add(
+                    title_synonym.get(x).toString()
+            );
+        }
+
+        title_japanese = Optional.ofNullable(mangaJSON.get("title_japanese")).map(JSONObject::toString).orElse("0");
+        status = Optional.ofNullable(mangaJSON.get("status")).map(JSONObject::toString).orElse("0");
+        image_url = Optional.ofNullable(mangaJSON.get("image_url")).map(JSONObject::toString).orElse("0");
+        volumes = Optional.ofNullable(mangaJSON.get("volumes")).map(JSONObject::toString).orElse("0");
+        chapters = Optional.ofNullable(mangaJSON.get("chapters")).map(JSONObject::toString).orElse("0");
+        publishing = Optional.ofNullable(mangaJSON.get("publishing")).map(JSONObject::toString).orElse("0");
+        published = Optional.ofNullable(mangaJSON.get("published")).map(JSONObject::toString).orElse("0");
+        rank = Optional.ofNullable(mangaJSON.get("rank")).map(JSONObject::toString).orElse("0");
+        scored_by = Optional.ofNullable(mangaJSON.get("scored_by")).map(JSONObject::toString).orElse("0");
+        popularity = Optional.ofNullable(mangaJSON.get("popularity")).map(JSONObject::toString).orElse("0");
+        members = Optional.ofNullable(mangaJSON.get("members")).map(JSONObject::toString).orElse("0");
+        favorites = Optional.ofNullable(mangaJSON.get("favorites")).map(JSONObject::toString).orElse("0");
+        synopsis = Optional.ofNullable(mangaJSON.get("synopsis")).map(JSONObject::toString).orElse("0");
+        background = Optional.ofNullable(mangaJSON.get("background")).map(JSONObject::toString).orElse("0");
         ArrayList<String> genreList = new ArrayList<String>();
+
         for (Object genre : genres) {
             genreList.add(
                     ((JSONObject) genre).get("name").toString()
             );
         }
-        ArrayList<String> openingList = new ArrayList<String>();
-        for (int x = 0; x < openings.size(); x++) {
-            openingList.add(
-                    openings.get(x).toString()
+        ArrayList<String> serializations = new ArrayList<String>();
+        for (int x = 0; x < serialization.size(); x++) {
+            serializations.add(
+                    serialization.get(x).toString()
             );
-        }
-        ArrayList<String> endingList = new ArrayList<String>();
-        for (int x = 0; x < endings.size(); x++) {
-            endingList.add(
-                    endings.get(x).toString()
-            );
-        }
-
-
-        String mal_id,url,image_url,trailer_url,
-                animeTitle,title_english,title_japanese,
-                type,source,episodes,
-                status,duration,rating,
-                score,scored_by,rank,
-                members,favorites,synopsis,
-                background,premiered;
-        try {
-            mal_id = mangaJSON.get("mal_id").toString();
-        }
-        catch (NullPointerException e)
-        {
-            mal_id = "";
-        }
-        try {
-            url = mangaJSON.get("url").toString();
-        }
-        catch (NullPointerException e)
-        {
-            url = "";
-        }
-        try {
-            image_url = mangaJSON.get("image_url").toString();
-        }
-        catch (NullPointerException e)
-        {
-            image_url = "";
-        }
-        try {
-            trailer_url = mangaJSON.get("trailer_url").toString();
-        }
-        catch (NullPointerException e)
-        {
-            trailer_url = "";
-        }
-        try {
-            animeTitle = mangaJSON.get("animeTitle").toString();
-        }
-        catch (NullPointerException e)
-        {
-            animeTitle = "";
-        }
-        try {
-            title_english = mangaJSON.get("title_english").toString();
-        }
-        catch (NullPointerException e)
-        {
-            title_english = "";
-        }
-        try {
-            title_japanese = mangaJSON.get("title_japanese").toString();
-        }
-        catch (NullPointerException e)
-        {
-            title_japanese = "";
-        }
-        try {
-            type = mangaJSON.get("type").toString();
-        }
-        catch (NullPointerException e)
-        {
-            type = "";
-        }
-        try {
-            source = mangaJSON.get("source").toString();
-        }
-        catch (NullPointerException e)
-        {
-            source = "";
-        }
-        try {
-            episodes = mangaJSON.get("episodes").toString();
-        }
-        catch (NullPointerException e)
-        {
-            episodes = "0";
-        }
-        try {
-            status = mangaJSON.get("status").toString();
-        }
-        catch (NullPointerException e)
-        {
-            status = "";
-        }
-
-        try {
-            duration = mangaJSON.get("duration").toString();
-        }
-        catch (NullPointerException e)
-        {
-            duration = "";
-        }
-        try {
-            rating = mangaJSON.get("rating").toString();
-        }
-        catch (NullPointerException e)
-        {
-            rating = "0";
-        }
-        try {
-            score = mangaJSON.get("score").toString();
-        }
-        catch (NullPointerException e)
-        {
-            score = "0";
-        }
-        try {
-            scored_by = mangaJSON.get("scored_by").toString();
-        }
-        catch (NullPointerException e)
-        {
-            scored_by = "0";
-        }
-        try {
-            rank = mangaJSON.get("rank").toString();
-        }
-        catch (NullPointerException e)
-        {
-            rank = "0";
-        }
-        try {
-            members = mangaJSON.get("members").toString();
-        }
-        catch (NullPointerException e)
-        {
-            members = "0";
-        }
-        try {
-            favorites = mangaJSON.get("favorites").toString();
-        }
-        catch (NullPointerException e)
-        {
-            favorites = "0";
-        }
-        try {
-            synopsis = mangaJSON.get("synopsis").toString();
-        }
-        catch (NullPointerException e)
-        {
-            synopsis = "";
-        }
-        try {
-            background = mangaJSON.get("background").toString();
-        }
-        catch (NullPointerException e)
-        {
-            background = "";
-        }
-        try {
-            premiered = mangaJSON.get("premiered").toString();
-        }
-        catch (NullPointerException e)
-        {
-            premiered = "";
         }
 
         return new Manga(
-                mal_id,
-                url,
-                image_url,
-                trailer_url,
-                animeTitle,
-                title_english,
-                title_japanese,
-                type,
-                source,
-                Integer.parseInt(episodes),
-                status,aired.get("string").toString(),
-                duration,
-                rating,
-                Double.parseDouble(score),
-                Integer.parseInt(scored_by),
-                Integer.parseInt(rank),
-                Integer.parseInt(members),
-                Integer.parseInt(favorites),
-                synopsis,
-                background,
-                premiered,
-                genreList,
-                openingList,
-                endingList
-        );
+                mal_id, url, mangaTitle,
+                title_english,title_synonyms.trimToSize(), title_japanese, status,
+                image_url, Integer.parseInt(volumes), Integer.parseInt(chapters),
+                publishing, published, rank,
+                scored_by,popularity, members,
+                favorites, synopsis, background,
+                genreList.toString(), serializations.toString());
     }
 
     /**

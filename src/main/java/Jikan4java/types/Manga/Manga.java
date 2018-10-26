@@ -245,17 +245,16 @@ public class Manga {
      */
     public String toString() {
         return mal_id +
-                "\n" + url + "\n" + image_url +
-                "\n" + trailer_url + "\n" + title +
+                "\n" + url + "\n" +  title +
                 "\n" + title_english + "\n" + title_synonyms +
-                "\n" + type + "\n" + source +
-                "\n" + episodes + "\n" + status +
-                "\n" + aired + "\n" + duration +
-                "\n" + rating + "\n" + score +
-                "\n" + scored_By + "\n" + rank +
-                "\n" + members + "\n" + favorites +
-                "\n" + synopsis + "\n" + background +
-                "\n" + premiered + "\n" + genres.toString() +
-                "\n" + opening_themes.toString() + "\n" + ending_themes.toString();
+                "\n" + title_synonyms + "\n" + title_japanese +
+                "\n" + status + "\n" + image_url +
+                "\n" + volumes + "\n" + chapters +
+                "\n" + publishing + "\n" + published +
+                "\n" + rank + "\n" + scored_By +
+                "\n" + popularity + "\n" + members +
+                "\n" + favorites + "\n" + synopsis +
+                "\n" + background + "\n" + "\n" + genres.toString() +
+                "\n" + serializations.toString();
     }
 }
