@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import Jikan4java.types.Manga;
+import Jikan4java.types.Manga.Manga;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
