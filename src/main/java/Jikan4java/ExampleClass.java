@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import Jikan4java.types.Anime.AnimeConnection;
+import Jikan4java.connection.Manga.MangaConnection;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -27,8 +27,8 @@ public class ExampleClass {
      * An example of how to use this client
      */
     public static void main(String[] args) throws IOException, ParseException {
-        AnimeConnection animeConnection = new AnimeConnection();
-        System.out.println(animeConnection.search("boku no pico").toString());
+        MangaConnection mangaConnection = new MangaConnection();
+       mangaConnection.test();
     }
 
 }

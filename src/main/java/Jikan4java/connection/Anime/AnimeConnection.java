@@ -1,4 +1,4 @@
-package Jikan4java.types.Anime;
+package Jikan4java.connection.Anime;
 /*
 This file is part of Jikan4java.
 
@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import Jikan4java.types.Manga;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -43,7 +44,7 @@ public class AnimeConnection {
      * @param title title to be searched
      * @return an Anime object
      */
-    public Anime search(String title) throws IOException, ParseException {
+    public Manga search(String title) throws IOException, ParseException {
         JSONObject animeJSON = this.search("anime", title);
         JSONObject aired = (JSONObject) animeJSON.get("aired");
 
@@ -227,7 +228,7 @@ public class AnimeConnection {
             premiered = "";
         }
 
-        return new Anime(
+        return new Manga(
                 mal_id,
                 url,
                 image_url,

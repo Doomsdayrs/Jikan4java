@@ -1,4 +1,4 @@
-package Jikan4java.types.Anime;
+package Jikan4java.types;
 
 import java.util.ArrayList;
 
