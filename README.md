@@ -40,12 +40,6 @@ public static void main(String[] args) throws IOException, ParseException {
     </dependency>
 
     <dependency>
-        <groupId>org.jsoup</groupId>
-        <artifactId>jsoup</artifactId>
-        <version>1.11.3</version>
-    </dependency>
-
-    <dependency>
         <groupId>com.googlecode.json-simple</groupId>
         <artifactId>json-simple</artifactId>
         <version>1.1.1</version>

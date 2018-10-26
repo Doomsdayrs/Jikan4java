@@ -14,12 +14,6 @@
             <artifactId>okhttp</artifactId>
             <version>3.11.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.11.3</version>
-        </dependency>
         <!-- Json -->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
