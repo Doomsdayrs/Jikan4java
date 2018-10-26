@@ -25,10 +25,11 @@ public static void main(String[] args) throws IOException, ParseException {
 
 ### Task list
 - [X] Search and return Anime
-- [ ] Search and return Manga
+- [X] Search and return Manga
 - [ ] Search and return Person
 - [ ] Search and return Character
 - [ ] Search and return Search results of all of above
+- [ ] Add 'related' objects
 
 ### Dependencies 
 ```xml

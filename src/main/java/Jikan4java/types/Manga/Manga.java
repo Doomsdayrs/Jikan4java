@@ -27,11 +27,13 @@ public class Manga {
     private String title_japanese;
     private String status;
     private String image_url;
+    private String type;
     private int volumes;
     private int chapters;
     private String publishing;
     private String published;
     private int rank;
+    private double score;
     private int scored_By;
     private int popularity;
     private int members;
@@ -39,6 +41,7 @@ public class Manga {
     private String synopsis;
     private String background;
     private ArrayList<String> genres;
+    private ArrayList<String> authors;
     private ArrayList<String> serializations;
 
     /**
@@ -58,6 +61,7 @@ public class Manga {
      * @param title_japanese Japanese title of the Manga
      * @param status         Current status of the Manga
      * @param image_url      Image url of Manga
+     * @param type           Type of Manga
      * @param volumes        Number of volumes in Manga
      * @param chapters       Number of chapters in Manga
      * @param publishing     Publising or not of the Manga
@@ -70,17 +74,18 @@ public class Manga {
      * @param synopsis       Synopsis of the Manga
      * @param background     Background of the Manga
      * @param genres         Genres of Manga
+     * @param authors        Authors of Manga
      * @param serializations Serializationgs(?) of the Manga
      */
     public Manga(int mal_id,
                  String url, String title, String title_english,
                  ArrayList<String> title_synonyms,
-                 String title_japanese, String status, String image_url,
+                 String title_japanese, String status, String image_url, String type,
                  int volumes, int chapters,
                  String publishing, String published,
-                 int rank, int scored_By, int popularity, int members, int favorites,
+                 int rank,double score, int scored_By, int popularity, int members, int favorites,
                  String synopsis, String background,
-                 ArrayList<String> genres, ArrayList<String> serializations) {
+                 ArrayList<String> genres, ArrayList<String> authors, ArrayList<String> serializations) {
         this.mal_id = mal_id;
         this.url = url;
         this.title = title;
@@ -89,11 +94,13 @@ public class Manga {
         this.title_japanese = title_japanese;
         this.status = status;
         this.image_url = image_url;
+        this.type = type;
         this.volumes = volumes;
         this.chapters = chapters;
         this.publishing = publishing;
         this.published = published;
         this.rank = rank;
+        this.score = score;
         this.scored_By = scored_By;
         this.popularity = popularity;
         this.members = members;
@@ -101,7 +108,8 @@ public class Manga {
         this.synopsis = synopsis;
         this.background = background;
         this.genres = genres;
-        this.serializations = genres;
+        this.authors = authors;
+        this.serializations = serializations;
     }
 
     /**
@@ -155,6 +163,10 @@ public class Manga {
         return status;
     }
 
+    public String getType() {
+        return type;
+    }
+
     /**
      * @return The image url
      */
@@ -183,6 +195,10 @@ public class Manga {
      */
     public int getRank() {
         return rank;
+    }
+
+    public double getScore() {
+        return score;
     }
 
     /**
@@ -225,19 +241,22 @@ public class Manga {
     }
 
     /**
-     * @return Serializations
-     */
-    public ArrayList<String> getSerializations() {
-        return serializations;
-    }
-
-    /**
      * Returns genres
      */
     public ArrayList<String> getGenres() {
         return genres;
     }
 
+    public ArrayList<String> getAuthors() {
+        return authors;
+    }
+
+    /**
+     * @return Serializations
+     */
+    public ArrayList<String> getSerializations() {
+        return serializations;
+    }
     /**
      * To string method
      *
@@ -246,15 +265,14 @@ public class Manga {
     public String toString() {
         return mal_id +
                 "\n" + url + "\n" +  title +
-                "\n" + title_english + "\n" + title_synonyms +
-                "\n" + title_synonyms + "\n" + title_japanese +
-                "\n" + status + "\n" + image_url +
-                "\n" + volumes + "\n" + chapters +
-                "\n" + publishing + "\n" + published +
-                "\n" + rank + "\n" + scored_By +
-                "\n" + popularity + "\n" + members +
-                "\n" + favorites + "\n" + synopsis +
-                "\n" + background + "\n" + "\n" + genres.toString() +
-                "\n" + serializations.toString();
+                "\n" + title_english + "\n" + title_synonyms+
+                "\n" + title_japanese + "\n" + status +
+                "\n" + image_url + "\n" + type+ "\n" + volumes +
+                "\n" + chapters + "\n" + publishing +
+                "\n" + published + "\n" + rank + "\n" + score +
+                "\n" + scored_By + "\n" + popularity +
+                "\n" + members + "\n" + favorites +
+                "\n" + synopsis + "\n" + background +
+                "\n" + genres.toString() + "\n" + authors.toString() + "\n" + serializations.toString();
     }
 }

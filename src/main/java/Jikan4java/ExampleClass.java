@@ -28,7 +28,7 @@ public class ExampleClass {
      * An example of how to use this client
      */
     public static void main(String[] args) throws IOException, ParseException {
-        System.out.println(new MangaConnection().search("Drawing while masturbating").toString());
+        System.out.println(new MangaConnection().search("Full Metal Alchemist").toString());
     }
 
 }

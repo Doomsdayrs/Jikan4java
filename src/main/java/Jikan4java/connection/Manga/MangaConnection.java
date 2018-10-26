@@ -48,14 +48,16 @@ public class MangaConnection {
     public Manga search(String title) throws IOException, ParseException {
         JSONObject mangaJSON = this.searchSite(title);
         JSONArray genres = (JSONArray) mangaJSON.get("genres");
-        JSONArray serialization = (JSONArray) mangaJSON.get("serialization");
+        JSONArray serialization = (JSONArray) mangaJSON.get("serializations");
         JSONArray title_synonym = (JSONArray) mangaJSON.get("title_synonyms");
+        JSONArray authors = (JSONArray) mangaJSON.get("authors");
+        /*JSONArray related = (JSONArray) mangaJSON.get("related");*/
 
         String mal_id = "0",
-                url = "", mangaTitle = "", title_english = "", title_japanese = "", status = "", image_url = "",
+                url = "", mangaTitle = "", title_english = "", title_japanese = "", status = "", image_url = "", type = "",
                 volumes = "0", chapters = "0",
                 publishing = "", published = "",
-                rank = "0", scored_by = "0", popularity = "0", members = "0", favorites = "0",
+                rank = "0", score = "0", scored_by = "0", popularity = "0", members = "0", favorites = "0",
                 synopsis = "", background = "";
 
 
@@ -68,7 +70,7 @@ public class MangaConnection {
         if (mangaJSON.get("title_english") != null) {
             title_english = mangaJSON.get("title_english").toString();
         }
-        ArrayList<String> title_synonyms = new ArrayList<String>();
+        ArrayList<String> title_synonyms = new ArrayList<>();
         for (int x = 0; x < title_synonym.size(); x++) {
             title_synonyms.add(
                     title_synonym.get(x).toString()
@@ -84,6 +86,9 @@ public class MangaConnection {
         if (mangaJSON.get("image_url") != null) {
             image_url = mangaJSON.get("image_url").toString();
         }
+        if (mangaJSON.get("type") != null) {
+            type = mangaJSON.get("type").toString();
+        }
         if (mangaJSON.get("volumes") != null) {
             volumes = mangaJSON.get("volumes").toString();
         }
@@ -94,10 +99,13 @@ public class MangaConnection {
             publishing = mangaJSON.get("publishing").toString();
         }
         if (mangaJSON.get("published") != null) {
-            published = mangaJSON.get("published").toString();
+            published = ((JSONObject) mangaJSON.get("published")).get("string").toString();
         }
         if (mangaJSON.get("rank") != null) {
             rank = mangaJSON.get("rank").toString();
+        }
+        if (mangaJSON.get("score") != null) {
+            score = mangaJSON.get("score").toString();
         }
         if (mangaJSON.get("scored_by") != null) {
             scored_by = mangaJSON.get("scored_by").toString();
@@ -115,21 +123,44 @@ public class MangaConnection {
             synopsis = mangaJSON.get("synopsis").toString();
         }
 
+        /*ArrayList<ArrayList<String>> sideStories;
+        ArrayList<String> relatedList = new ArrayList<>();
+        if (genres != null) {
+
+        }else relatedList.add("");*/
 
         ArrayList<String> genreList = new ArrayList<>();
-        if (genres != null)
-        {for (Object genre : genres) {
-                genreList.add(
-                        ((JSONObject) genre).get("name").toString()
-                );
-            }
+        if (genres != null) {
+            for (int x = 0; x < genres.size(); x++) {
+            genreList.add(
+                    ((JSONObject)genres.get(x)).get("name").toString()
+            );
+        }
         }else genreList.add("");
 
-        ArrayList<String> serializations = new ArrayList<String>();
+        ArrayList<String> authorList = new ArrayList<>();
+        if (authors != null) {
+            for (int x = 0; x < authors.size(); x++) {
+                authorList.add(
+                        ((JSONObject)authors.get(x)).get("name").toString()
+                );
+            }
+        }else authorList.add("");
+
+        /*ArrayList<String> authorList = new ArrayList<>();
+        if (genres != null) {
+            for (int x = 0; x < genres.size(); x++) {
+                authorList.add(
+                        ((JSONObject)genres.get(x)).get("name").toString()
+                );
+            }
+        }else authorList.add("");*/
+
+        ArrayList<String> serializations = new ArrayList<>();
         if (serialization != null) {
             for (int x = 0; x < serialization.size(); x++) {
                 serializations.add(
-                        serialization.get(x).toString()
+                        ((JSONObject)serialization.get(x)).get("name").toString()
                 );
             }
         }
@@ -138,12 +169,12 @@ public class MangaConnection {
         return new Manga(
                 Integer.parseInt(mal_id), url, mangaTitle,
                 title_english,title_synonyms, title_japanese, status,
-                image_url,
+                image_url, type,
                 Integer.parseInt(volumes), Integer.parseInt(chapters),
                 publishing, published,
-                Integer.parseInt(rank), Integer.parseInt(scored_by),Integer.parseInt(popularity), Integer.parseInt(members), Integer.parseInt(favorites),
+                Integer.parseInt(rank),Double.parseDouble(score), Integer.parseInt(scored_by),Integer.parseInt(popularity), Integer.parseInt(members), Integer.parseInt(favorites),
                 synopsis, background,
-                genreList, serializations);
+                genreList, authorList, serializations);
     }
 
     /**
