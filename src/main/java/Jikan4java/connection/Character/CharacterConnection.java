@@ -1,4 +1,5 @@
-package Jikan4java.connection.Anime;
+package Jikan4java.connection.Character;
+
 /*
 This file is part of Jikan4java.
 
@@ -16,8 +17,7 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import Jikan4java.types.Main.Anime.Anime;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import Jikan4java.types.Main.Character.Character;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -25,42 +25,29 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
+import com.fasterxml.jackson.databind.*;
 import java.io.IOException;
 
-public class AnimeConnection {
+public class CharacterConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
 
-    /**
-     * Constructor
-     */
-    public AnimeConnection() {
-    }
-
-    /**
-     * Searches for an anime--------
-     *
-     * @param title title to be searched
-     * @return an Anime object
-     */
-    public Anime search(String title) throws IOException, ParseException {
-        JSONObject animeJSON = this.search("anime", title);
-        System.out.println(animeJSON.toJSONString());
+    public CharacterConnection()
+    {}
+    public Character search(String name) throws IOException, ParseException {
+        JSONObject characterJSON = this.searchSite(name);
         ObjectMapper mapper = new ObjectMapper();
-        Anime anime = mapper.readValue(animeJSON.toJSONString(),Anime.class);
-        return anime;
+        Character character = mapper.readValue(characterJSON.toJSONString(),Character.class);
+        return character;
     }
-
     /**
      * searches Jikan api for anime
      *
-     * @param type   What kind of media are you looking for (anime/manga/character)
      * @param search The name of what you are searching for
      * @return Returns an JSON object of the first result
      */
-    private JSONObject search(String type, String search) throws IOException, ParseException {
-        Request request = new Request.Builder().url(baseURL + "/search/anime?q=" + search + "&page=1").build();
+    private JSONObject searchSite(String search) throws IOException, ParseException {
+        Request request = new Request.Builder().url(baseURL + "/search/character?q=" + search + "&page=1").build();
         Response response = client.newCall(request).execute();
 
         JSONParser parser = new JSONParser();
@@ -68,17 +55,9 @@ public class AnimeConnection {
         JSONArray jsonArray = (JSONArray) jsonObject.get("results");
 
         // Gets anime ID then goes to it's page
-        request = new Request.Builder().url(baseURL + "/anime/" + ((JSONObject) jsonArray.get(0)).get("mal_id").toString()).build();
+        request = new Request.Builder().url(baseURL + "/character/" + ((JSONObject) jsonArray.get(0)).get("mal_id").toString()).build();
         response = client.newCall(request).execute();
 
         return (JSONObject) parser.parse(response.body().string());
     }
-
-    /**
-     * Test method
-     */
-    public void test() throws IOException, ParseException {
-        System.out.println(this.search("anime", "Attack on titan"));
-    }
 }
-

@@ -17,6 +17,8 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import Jikan4java.connection.Anime.AnimeConnection;
+
+import Jikan4java.connection.Character.CharacterConnection;
 import Jikan4java.connection.Manga.MangaConnection;
 import org.json.simple.parser.ParseException;
 
@@ -28,7 +30,15 @@ public class ExampleClass {
      * An example of how to use this client
      */
     public static void main(String[] args) throws IOException, ParseException {
-        System.out.println(new MangaConnection().search("Full Metal Alchemist").toString());
+        AnimeConnection connection = new AnimeConnection();
+        System.out.println(connection.search("Attack on titan").toString());
+
+        CharacterConnection characterConnection = new CharacterConnection();
+        System.out.println(characterConnection.search("Caster"));
+
+        MangaConnection mangaConnection = new MangaConnection();
+        System.out.println(mangaConnection.search("attack on titan").toString());
+
     }
 
 }
