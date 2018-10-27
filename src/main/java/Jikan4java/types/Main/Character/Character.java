@@ -40,7 +40,7 @@ public class Character {
     @JsonProperty("name_kanji")
     private String name_kanji;
     @JsonProperty("nicknames")
-    private String[] nicknames;// Nickname is an array
+    private ArrayList<String> nicknames;// Nickname is an array
     @JsonProperty("about")
     private String about;
     @JsonProperty("member_favorites")
@@ -73,7 +73,7 @@ public class Character {
         return name_kanji;
     }
 
-    public String[] getNicknames() {
+    public ArrayList<String> getNicknames() {
         return nicknames;
     }
 
@@ -108,7 +108,7 @@ public class Character {
                 ",\n url='" + url + '\'' +
                 ",\n name='" + name + '\'' +
                 ",\n name_kanji='" + name_kanji + '\'' +
-                ",\n nicknames=" + Arrays.toString(nicknames) +
+                ",\n nicknames=" + nicknames.toString()+
                 ",\n about='" + about + '\'' +
                 ",\n member_favorites=" + member_favorites +
                 ",\n image_url='" + image_url + '\'' +
