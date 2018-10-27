@@ -42,4 +42,8 @@ public class Aired {
     public Prop getProp() {
         return prop;
     }
+
+    public String getString() {
+        return string;
+    }
 }
