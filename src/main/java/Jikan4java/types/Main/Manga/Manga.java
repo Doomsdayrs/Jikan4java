@@ -1,6 +1,7 @@
 package Jikan4java.types.Main.Manga;
 
 import Jikan4java.types.Main.Manga.Published.Published;
+import Jikan4java.types.Support.Genres;
 import Jikan4java.types.Support.Related.Related;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

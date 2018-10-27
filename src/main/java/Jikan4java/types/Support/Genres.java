@@ -1,4 +1,4 @@
-package Jikan4java.types.Main.Anime;
+package Jikan4java.types.Support;
 /*
 This file is part of Jikan4java.
 
