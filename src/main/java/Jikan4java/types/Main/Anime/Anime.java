@@ -1,4 +1,10 @@
 package Jikan4java.types.Main.Anime;
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 
@@ -15,119 +21,97 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
+
+import Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
 import Jikan4java.types.Support.Genres;
 import Jikan4java.types.Support.Related.Related;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Anime {
 
+    @JsonIgnore
+    private final String baseURL = "https://api.jikan.moe/v3";
     @JsonProperty("request_hash")
     private String request_hash;
-
     @JsonProperty("request_cached")
     private boolean request_cached;
-
     @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
-
     @JsonProperty("mal_id")
     private int mal_id;
-
     @JsonProperty("url")
     private String url;
-
     @JsonProperty("image_url")
     private String iconURL;
-
     @JsonProperty("trailer_url")
     private String trailer_url;
-
     @JsonProperty("title")
     private String title;
-
     @JsonProperty("title_english")
     private String title_english;
-
     @JsonProperty("title_japanese")
     private String title_japanese;
-
     @JsonProperty("title_synonyms")
     private ArrayList<String> title_synonyms;
-
     @JsonProperty("type")
     private String type;
-
     @JsonProperty("source")
     private String source;
-
     @JsonProperty("episodes")
     private int episodes;
-
     @JsonProperty("status")
     private String status;
-    
     @JsonProperty("aired")
     private Aired aired;
-
     @JsonProperty("airing")
     private boolean airing;
-
     @JsonProperty("duration")
     private String duration;
-
     @JsonProperty("rating")
     private String rating;
-
     @JsonProperty("score")
     private double score;
-
     @JsonProperty("scored_by")
     private int scored_by;
-
     @JsonProperty("rank")
     private int rank;
-
     @JsonProperty("popularity")
     private int popularirty;
-
     @JsonProperty("members")
     private int members;
-
     @JsonProperty("favorites")
     private int favorites;
-
     @JsonProperty("synopsis")
     private String synopsis;
-
     @JsonProperty("background")
     private String background;
-
     @JsonProperty("premiered")
     private String premiered;
-
     @JsonProperty("broadcast")
     private String broadcast;
-
     @JsonProperty("related")
     private Related related;
-
     @JsonProperty("producers")
     private ArrayList<Producers> producers;
-
     @JsonProperty("licensors")
     private ArrayList<Licensors> licensors;
-
     @JsonProperty("studios")
     private ArrayList<Studios> studios;
-
     @JsonProperty("genres")
     private ArrayList<Genres> genres;
-
     @JsonProperty("opening_themes")
     private ArrayList<String> opening_themes;
-
     @JsonProperty("ending_themes")
     private ArrayList<String> ending_themes;
 
@@ -279,6 +263,17 @@ public class Anime {
 
     public ArrayList<String> getEnding_themes() {
         return ending_themes;
+    }
+
+    @JsonProperty
+    public Character_Staff getCharacterStaffs() throws IOException, ParseException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/characters_staff").build();
+        Response response = client.newCall(request).execute();
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonObject.toJSONString(), Character_Staff.class);
     }
 
     @Override

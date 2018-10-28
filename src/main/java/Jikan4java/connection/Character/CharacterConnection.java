@@ -1,5 +1,10 @@
 package Jikan4java.connection.Character;
-
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 
@@ -18,6 +23,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import Jikan4java.types.Main.Character.Character;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -25,26 +31,37 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import com.fasterxml.jackson.databind.*;
+
 import java.io.IOException;
 
 public class CharacterConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
 
-    public CharacterConnection()
-    {}
+    public CharacterConnection() {
+    }
+
+    /**
+     * Searches for a character
+     *
+     * @param name The name of the character
+     * @return A character object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
     public Character search(String name) throws IOException, ParseException {
         JSONObject characterJSON = this.searchSite(name);
         ObjectMapper mapper = new ObjectMapper();
-        Character character = mapper.readValue(characterJSON.toJSONString(),Character.class);
-        return character;
+        return mapper.readValue(characterJSON.toJSONString(), Character.class);
     }
+
     /**
-     * searches Jikan api for anime
+     * Searches api for character
      *
-     * @param search The name of what you are searching for
-     * @return Returns an JSON object of the first result
+     * @param search The name of the character to search
+     * @return A json object of the first character
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
     private JSONObject searchSite(String search) throws IOException, ParseException {
         Request request = new Request.Builder().url(baseURL + "/search/character?q=" + search + "&page=1").build();
@@ -59,5 +76,15 @@ public class CharacterConnection {
         response = client.newCall(request).execute();
 
         return (JSONObject) parser.parse(response.body().string());
+    }
+
+    /**
+     * Test method
+     *
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public void test() throws IOException, ParseException {
+        System.out.println(this.searchSite("Caster").toJSONString());
     }
 }

@@ -1,4 +1,10 @@
 package Jikan4java.connection.Anime;
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 
@@ -32,34 +38,30 @@ public class AnimeConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
 
-    /**
-     * Constructor
-     */
+
     public AnimeConnection() {
     }
 
     /**
-     * Searches for an anime--------
+     * Searches for an anime
      *
      * @param title title to be searched
      * @return an Anime object
      */
     public Anime search(String title) throws IOException, ParseException {
-        JSONObject animeJSON = this.search("anime", title);
+        JSONObject animeJSON = this.searchSite(title);
         System.out.println(animeJSON.toJSONString());
         ObjectMapper mapper = new ObjectMapper();
-        Anime anime = mapper.readValue(animeJSON.toJSONString(),Anime.class);
-        return anime;
+        return mapper.readValue(animeJSON.toJSONString(), Anime.class);
     }
 
     /**
      * searches Jikan api for anime
      *
-     * @param type   What kind of media are you looking for (anime/manga/character)
      * @param search The name of what you are searching for
      * @return Returns an JSON object of the first result
      */
-    private JSONObject search(String type, String search) throws IOException, ParseException {
+    private JSONObject searchSite(String search) throws IOException, ParseException {
         Request request = new Request.Builder().url(baseURL + "/search/anime?q=" + search + "&page=1").build();
         Response response = client.newCall(request).execute();
 
@@ -76,9 +78,12 @@ public class AnimeConnection {
 
     /**
      * Test method
+     *
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
     public void test() throws IOException, ParseException {
-        System.out.println(this.search("anime", "Attack on titan"));
+        System.out.println(this.searchSite("Attack on titan").toJSONString());
     }
 }
 

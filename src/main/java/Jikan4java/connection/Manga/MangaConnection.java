@@ -1,4 +1,10 @@
 package Jikan4java.connection.Manga;
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 
@@ -32,30 +38,32 @@ public class MangaConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
 
-    /**
-     * Constructor
-     */
+
     public MangaConnection() {
     }
 
     /**
-     * Searches for an anime--------
+     * Searches for an manga
      *
      * @param title Manga to be searched
      * @return an Manga object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
     public Manga search(String title) throws IOException, ParseException {
         JSONObject mangaJSON = this.searchSite(title);
         ObjectMapper mapper = new ObjectMapper();
-        Manga manga = mapper.readValue(mangaJSON.toJSONString(),Manga.class);
-        return manga;
+        return mapper.readValue(mangaJSON.toJSONString(), Manga.class);
     }
 
+
     /**
-     * searches Jikan api for anime
+     * Searches Jikan api for manga
      *
      * @param search The name of what you are searching for
      * @return Returns an JSON object of the first result
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
     private JSONObject searchSite(String search) throws IOException, ParseException {
         Request request = new Request.Builder().url(baseURL + "/search/manga?q=" + search + "&page=1").build();
@@ -74,9 +82,12 @@ public class MangaConnection {
 
     /**
      * Test method
+     *
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
     public void test() throws IOException, ParseException {
-        System.out.println(this.searchSite("ASSASSIN DE ARU ORE NO SUTETASU GA YUUSHA YORI MO AKIRAKA NI TSUYOI NODAGA"));
+        System.out.println(this.searchSite("ASSASSIN DE ARU ORE NO SUTETASU GA YUUSHA YORI MO AKIRAKA NI TSUYOI NODAGA").toJSONString());
     }
 }
 

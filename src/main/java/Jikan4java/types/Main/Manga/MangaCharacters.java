@@ -1,11 +1,10 @@
-package Jikan4java.types.Support;
+package Jikan4java.types.Main.Manga;
 /**
  * Jikan4java
  * 28 / October / 2018
  *
  * @author github.com/doomsdayrs
  */
-
 /*
 This file is part of Jikan4java.
 
@@ -25,32 +24,22 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Genres {
-    @JsonProperty("mal_id")
-    private int mal_id;
+import java.util.ArrayList;
 
-    @JsonProperty("type")
-    private String type;
+public class MangaCharacters {
+    @JsonProperty("request_hash")
+    private String request_hash;
 
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("request_cached")
+    private boolean request_cached;
 
-    @JsonProperty("url")
-    private String url;
+    @JsonProperty("request_cache_expiry")
+    private int request_cache_expiry;
 
-    public int getMal_id() {
-        return mal_id;
-    }
+    @JsonProperty("characters")
+    private ArrayList<MangaCharacter> characterArrayList;
 
-    public String getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrl() {
-        return url;
+    public ArrayList<MangaCharacter> getCharacterArrayList() {
+        return characterArrayList;
     }
 }

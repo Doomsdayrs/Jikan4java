@@ -1,4 +1,10 @@
 package Jikan4java;
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 
@@ -17,7 +23,6 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import Jikan4java.connection.Anime.AnimeConnection;
-
 import Jikan4java.connection.Character.CharacterConnection;
 import Jikan4java.connection.Manga.MangaConnection;
 import org.json.simple.parser.ParseException;
@@ -26,8 +31,11 @@ import java.io.IOException;
 
 public class ExampleClass {
     /**
-     * ExampleClass method, simply output's an Anime object in string format
-     * An example of how to use this client
+     * Example method
+     *
+     * @param args
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
     public static void main(String[] args) throws IOException, ParseException {
         AnimeConnection connection = new AnimeConnection();
@@ -37,7 +45,7 @@ public class ExampleClass {
         System.out.println(characterConnection.search("Caster"));
 
         MangaConnection mangaConnection = new MangaConnection();
-        System.out.println(mangaConnection.search("attack on titan").toString());
+        System.out.println(mangaConnection.search("Attack on titan").toString());
 
     }
 

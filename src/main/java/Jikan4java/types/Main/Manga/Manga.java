@@ -3,10 +3,25 @@ package Jikan4java.types.Main.Manga;
 import Jikan4java.types.Main.Manga.Published.Published;
 import Jikan4java.types.Support.Genres;
 import Jikan4java.types.Support.Related.Related;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 
@@ -25,87 +40,62 @@ along with Jikan4java.  If not,\n see <https://www.gnu.org/licenses/>.
 */
 public class Manga {
 
+    @JsonIgnore
+    private final String baseURL = "https://api.jikan.moe/v3";
     @JsonProperty("request_hash")
     private String request_hash;
-
     @JsonProperty("request_cached")
     private boolean request_cached;
-
     @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
-
     @JsonProperty("mal_id")
     private int mal_id;
-
     @JsonProperty("url")
     private String url;
-
     @JsonProperty("title")
     private String title;
-
     @JsonProperty("title_english")
     private String title_english;
-
     @JsonProperty("title_synonyms")
     private ArrayList<String> title_synonyms;
-
     @JsonProperty("title_japanese")
     private String title_japanese;
-
     @JsonProperty("status")
     private String status;
-
     @JsonProperty("image_url")
     private String image_url;
-
     @JsonProperty("type")
     private String type;
-
     @JsonProperty("volumes")
     private int volumes;
-
     @JsonProperty("chapters")
     private int chapters;
-
     @JsonProperty("publishing")
     private boolean publishing;
-
     @JsonProperty("published")
     private Published published;
-
     @JsonProperty("rank")
     private int rank;
-
     @JsonProperty("score")
     private double score;
-
     @JsonProperty("scored_by")
     private int scored_by;
-
     @JsonProperty("popularity")
     private int popularity;
-
     @JsonProperty("members")
     private int members;
-
     @JsonProperty("favorites")
     private int favorites;
-
     @JsonProperty("synopsis")
     private String synopsis;
-
     @JsonProperty("background")
     private String background;
-
     @JsonProperty("related")
     private Related related;
-
     @JsonProperty("genres")
     private ArrayList<Genres> genres;
-
     @JsonProperty("authors")
     private ArrayList<Authors> authors;
-
     @JsonProperty("serializations")
     private ArrayList<Serializations> serializations;
 
@@ -226,6 +216,17 @@ public class Manga {
 
     public ArrayList<Serializations> getSerializations() {
         return serializations;
+    }
+
+    @JsonProperty
+    public MangaCharacters getCharacters() throws IOException, ParseException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(baseURL + "/manga/" + mal_id + "/characters").build();
+        Response response = client.newCall(request).execute();
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonObject.toJSONString(), MangaCharacters.class);
     }
 
     @Override

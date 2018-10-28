@@ -1,4 +1,13 @@
-package Jikan4java.types.Main.Character;
+package Jikan4java.types.Support;
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /*
 This file is part of Jikan4java.
 
@@ -16,10 +25,19 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class Voice_actors {
+    @JsonProperty("mal_id")
     private int mal_id;
+
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("url")
     private String url;
+
+    @JsonProperty("image_url")
     private String image_url;
+
+    @JsonProperty("language")
     private String language;
 
     public int getMal_id() {

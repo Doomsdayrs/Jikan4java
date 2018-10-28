@@ -1,4 +1,10 @@
 package Jikan4java.types.Main.Character;
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 
@@ -15,10 +21,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
+
+import Jikan4java.types.Support.Voice_actors;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Character {
 
@@ -108,7 +115,7 @@ public class Character {
                 ",\n url='" + url + '\'' +
                 ",\n name='" + name + '\'' +
                 ",\n name_kanji='" + name_kanji + '\'' +
-                ",\n nicknames=" + nicknames.toString()+
+                ",\n nicknames=" + nicknames.toString() +
                 ",\n about='" + about + '\'' +
                 ",\n member_favorites=" + member_favorites +
                 ",\n image_url='" + image_url + '\'' +

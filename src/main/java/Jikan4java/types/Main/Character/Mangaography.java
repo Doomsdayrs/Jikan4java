@@ -1,4 +1,11 @@
 package Jikan4java.types.Main.Character;
+
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 

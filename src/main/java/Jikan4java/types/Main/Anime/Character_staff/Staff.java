@@ -1,11 +1,10 @@
-package Jikan4java.types.Support;
+package Jikan4java.types.Main.Anime.Character_staff;
 /**
  * Jikan4java
  * 28 / October / 2018
  *
  * @author github.com/doomsdayrs
  */
-
 /*
 This file is part of Jikan4java.
 
@@ -25,32 +24,53 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Genres {
+import java.util.ArrayList;
+
+public class Staff {
     @JsonProperty("mal_id")
     private int mal_id;
-
-    @JsonProperty("type")
-    private String type;
-
-    @JsonProperty("name")
-    private String name;
-
     @JsonProperty("url")
     private String url;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("image_url")
+    private String image_url;
+    @JsonProperty("positions")
+    private ArrayList<String> positions;
 
+    /**
+     * @return myanimelist id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
-    public String getType() {
-        return type;
+    /**
+     * @return url of staff member
+     */
+    public String getUrl() {
+        return url;
     }
 
+    /**
+     * @return name of staff member
+     */
     public String getName() {
         return name;
     }
 
-    public String getUrl() {
-        return url;
+    /**
+     * @return image url of the staff member
+     */
+    public String getImage_url() {
+        return image_url;
+    }
+
+    /**
+     * @return the positions the staff member has
+     */
+    public ArrayList<String> getPositions() {
+        return positions;
     }
 }
+
