@@ -25,6 +25,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
 import com.github.Doomsdayrs.Jikan4java.connection.Character.CharacterConnection;
 import com.github.Doomsdayrs.Jikan4java.connection.Manga.MangaConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Person.PersonConnection;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class ExampleClass {
      * @throws ParseException ParseException
      */
     public static void main(String[] args) throws IOException, ParseException {
-        AnimeConnection connection = new AnimeConnection();
+        /*AnimeConnection connection = new AnimeConnection();
         System.out.println(connection.search("Attack on titan").toString());
 
         CharacterConnection characterConnection = new CharacterConnection();
@@ -46,6 +47,9 @@ public class ExampleClass {
 
         MangaConnection mangaConnection = new MangaConnection();
         System.out.println(mangaConnection.search("Attack on titan").toString());
+            */
+        PersonConnection personConnection = new PersonConnection();
+        System.out.println(personConnection.search("Hajime Isayama").toString());
 
     }
 
