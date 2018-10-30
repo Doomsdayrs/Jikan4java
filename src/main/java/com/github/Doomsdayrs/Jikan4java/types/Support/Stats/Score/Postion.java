@@ -1,13 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.Stats;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-/**
- * Jikan4java
- * 29 / October / 2018
- *
- * @author github.com/doomsdayrs
- */
+package com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Score;
 /*
 This file is part of Jikan4java.
 
@@ -24,7 +15,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-public class Score {
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * Jikan4java
+ * 30 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
+public class Postion {
     @JsonProperty("votes")
     private int votes;
     @JsonProperty("percentage")
@@ -40,7 +40,7 @@ public class Score {
 
     @Override
     public String toString() {
-        return "Scores{" +
+        return "Postion{" +
                 "votes=" + votes +
                 ", percentage=" + percentage +
                 '}';

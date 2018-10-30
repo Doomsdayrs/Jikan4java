@@ -37,7 +37,7 @@ public class ExampleClass {
      */
     public static void main(String[] args) throws IOException, ParseException {
         AnimeConnection connection = new AnimeConnection();
-        System.out.println(connection.search("Attack on titan").getEpisode().toString());
+        System.out.println(connection.search("Attack on titan").getStats().toString());
         /*
         CharacterConnection characterConnection = new CharacterConnection();
         System.out.println(characterConnection.search("Caster"));

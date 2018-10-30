@@ -287,24 +287,6 @@ public class Anime {
         return mapper.readValue(jsonObject.toJSONString(), Character_Staff.class);
     }
 
-    /**
-     * Currently broken, api array starts at 1
-     *
-     * @return Stats object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
-     */
-    @Deprecated
-    @JsonProperty
-    public Stats getStats() throws IOException, ParseException {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/stats").build();
-        Response response = client.newCall(request).execute();
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonObject.toJSONString(), Stats.class);
-    }
 
     /**
      * Gets episodes
@@ -359,6 +341,44 @@ public class Anime {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
     }
+
+    /**
+     * Gets videos related to anime
+     *
+     * @return Pictures object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    public Pictures getVideos() throws IOException, ParseException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/videos").build();
+        Response response = client.newCall(request).execute();
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
+    }
+
+    /**
+     * Gets stats about anime object
+     *
+     * @return Stats object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    public Stats getStats() throws IOException, ParseException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/stats").build();
+        Response response = client.newCall(request).execute();
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonObject.toJSONString(), Stats.class);
+    }
+
+
     @Override
     public String toString() {
         return "Anime{" +

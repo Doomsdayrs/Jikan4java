@@ -2,8 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.Stats;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
-
-import java.util.ArrayList;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Score.Score;
 
 /**
  * Jikan4java
@@ -57,7 +56,7 @@ public class Stats extends MALData {
     private int total;
 
     @JsonProperty("scores")
-    private ArrayList<Score> scores;
+    private Score scores;
 
     public String getRequest_hash() {
         return request_hash;
@@ -108,7 +107,7 @@ public class Stats extends MALData {
                 ", dropped=" + dropped +
                 ", plan_to_watch=" + plan_to_watch +
                 ", total=" + total +
-                ", scores=" + null +
+                ", scores=" + scores.toString() +
                 '}';
     }
 }
