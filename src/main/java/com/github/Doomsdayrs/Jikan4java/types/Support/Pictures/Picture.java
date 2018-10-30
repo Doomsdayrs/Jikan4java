@@ -1,4 +1,13 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Pictures;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * Jikan4java
+ * 29 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 
@@ -15,25 +24,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-import com.fasterxml.jackson.annotation.JsonProperty;
+public class Picture {
+    @JsonProperty("large")
+    private String large;
 
-public class VoiceActingRoles {
-    @JsonProperty("role")
-    private String role;
-    @JsonProperty("anime")
-    private AnimeBasic animeBasic;
-    @JsonProperty("character")
-    private CharacterBasic characterBasic;
+    @JsonProperty("small")
+    private String small;
 
-    public String getRole() {
-        return role;
+    public String getLarge() {
+        return large;
     }
 
-    public AnimeBasic getAnimeBasic() {
-        return animeBasic;
+    public String getSmall() {
+        return small;
     }
 
-    public CharacterBasic getCharacterBasic() {
-        return characterBasic;
+    @Override
+    public String toString() {
+        return "Picture{" +
+                "large='" + large + '\'' +
+                ", small='" + small + '\'' +
+                '}';
     }
 }

@@ -50,7 +50,6 @@ public class AnimeConnection {
      */
     public Anime search(String title) throws IOException, ParseException {
         JSONObject animeJSON = this.searchSite(title);
-        System.out.println(animeJSON.toJSONString());
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(animeJSON.toJSONString(), Anime.class);
     }

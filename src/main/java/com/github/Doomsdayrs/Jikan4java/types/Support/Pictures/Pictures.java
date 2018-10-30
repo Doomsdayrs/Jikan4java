@@ -1,6 +1,9 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Pictures;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
+
+import java.util.ArrayList;
 
 /**
  * Jikan4java
@@ -24,25 +27,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-public class MALData {
-    @JsonProperty("mal_id")
-    private int mal_id;
+public class Pictures extends MALData {
+    @JsonProperty("request_hash")
+    private String request_hash;
 
-    @JsonProperty("url")
-    private String url;
+    @JsonProperty("request_cached")
+    private boolean request_cached;
 
-    @JsonProperty("image_url")
-    private String image_url;
+    @JsonProperty("request_cache_expiry")
+    private int request_cache_expiry;
 
-    public int getMal_id() {
-        return mal_id;
+    @JsonProperty("pictures")
+    private ArrayList<Picture> pictures;
+
+    public ArrayList<Picture> getPictures() {
+        return pictures;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public String getImage_url() {
-        return image_url;
+    @Override
+    public String toString() {
+        return "Pictures{" +
+                "pictures=" + pictures.toString() +
+                '}';
     }
 }

@@ -53,4 +53,14 @@ public class Aired {
     public String getString() {
         return string;
     }
+
+    @Override
+    public String toString() {
+        return "Aired{" +
+                "from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", prop=" + prop +
+                ", string='" + string + '\'' +
+                '}';
+    }
 }

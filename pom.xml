@@ -3,11 +3,41 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.Doomsdayrs</groupId>
     <artifactId>Jikan4java</artifactId>
-    <version>1.3</version>
+    <version>0.3</version>
     <packaging>jar</packaging>
+
+    <name>Jikan4java</name>
+    <description>
+        Java client for Jikans api
+    </description>
+    <url>https://github.com/Doomsdayrs/Jikan4java</url>
+
+    <licenses>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE, VERSION 3</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Rahim Akhter</name>
+            <email>doomsdayrs@gmail.com</email>
+            <organization>Doomsdayrs</organization>
+            <organizationUrl>https://github.com/Doomsdayrs</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/doomsdayrs/jikan4java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:doomsdayrs/jikan4java.git</developerConnection>
+        <url>http://github.com/doomsdayrs/jikan4java/tree/master</url>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
@@ -20,13 +50,6 @@
             </plugin>
         </plugins>
     </build>
-    <licenses>
-        <license>
-            <name>GNU GENERAL PUBLIC LICENSE</name>
-            <url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
     <dependencies>
         <dependency>

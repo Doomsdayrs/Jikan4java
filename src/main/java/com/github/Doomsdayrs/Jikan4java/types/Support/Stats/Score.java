@@ -1,4 +1,13 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Stats;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * Jikan4java
+ * 29 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 /*
 This file is part of Jikan4java.
 
@@ -15,25 +24,25 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-import com.fasterxml.jackson.annotation.JsonProperty;
+public class Score {
+    @JsonProperty("votes")
+    private int votes;
+    @JsonProperty("percentage")
+    private double percentage;
 
-public class VoiceActingRoles {
-    @JsonProperty("role")
-    private String role;
-    @JsonProperty("anime")
-    private AnimeBasic animeBasic;
-    @JsonProperty("character")
-    private CharacterBasic characterBasic;
-
-    public String getRole() {
-        return role;
+    public int getVotes() {
+        return votes;
     }
 
-    public AnimeBasic getAnimeBasic() {
-        return animeBasic;
+    public double getPercentage() {
+        return percentage;
     }
 
-    public CharacterBasic getCharacterBasic() {
-        return characterBasic;
+    @Override
+    public String toString() {
+        return "Scores{" +
+                "votes=" + votes +
+                ", percentage=" + percentage +
+                '}';
     }
 }
