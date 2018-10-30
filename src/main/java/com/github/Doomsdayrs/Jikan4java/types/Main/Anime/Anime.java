@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Episodes.Episodes;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Forum.Forum;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Videos.Video;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
@@ -285,15 +286,20 @@ public class Anime extends MALData {
 
 
     /**
-     * Gets episodes
+     * Gets episodes, Please be aware that if the amount of episodes is greater than 100, the episode list will be split into two pages.
      *
      * @return Episode object
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     @JsonProperty
-    public Episodes getEpisode() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("episodes").toJSONString(), Episodes.class);
+    public Episodes getEpisode(int pageNumber) throws IOException, ParseException {
+        String category = "episodes";
+        if (pageNumber != 0)
+        {
+            category = "episodes/" + pageNumber;
+        }
+        return new ObjectMapper().readValue(this.retrieve(category).toJSONString(), Episodes.class);
     }
 
     /**
@@ -344,6 +350,25 @@ public class Anime extends MALData {
         return new ObjectMapper().readValue(this.retrieve("stats").toJSONString(), Stats.class);
     }
 
+
+    /**
+     * Returns forum object
+     * @return Forum object
+     * @throws IOException IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    public Forum getForum() throws IOException, ParseException {
+        return new ObjectMapper().readValue(this.retrieve("forum").toJSONString(), Forum.class);
+    }
+
+    /**
+     * Retrieves data from anime page
+     * @param subCategory What is needed to be retrieved, ie 'moreinfo'
+     * @return JSONObject of the page
+     * @throws IOException IOException
+     * @throws ParseException ParseException
+     */
     @JsonProperty
     private JSONObject retrieve(String subCategory) throws IOException, ParseException {
         Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/" + subCategory).build();
