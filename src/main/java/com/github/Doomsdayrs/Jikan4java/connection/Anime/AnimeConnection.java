@@ -54,6 +54,7 @@ public class AnimeConnection {
         return mapper.readValue(animeJSON.toJSONString(), Anime.class);
     }
 
+
     /**
      * searches Jikan api for anime
      *

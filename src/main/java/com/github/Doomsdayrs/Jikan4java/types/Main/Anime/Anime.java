@@ -27,7 +27,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Episodes.Episodes;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Videos.Video;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
@@ -42,7 +44,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Anime {
+public class Anime extends MALData {
 
     @JsonIgnore
     private final String baseURL = "https://api.jikan.moe/v3";
@@ -278,13 +280,7 @@ public class Anime {
      */
     @JsonProperty
     public Character_Staff getCharacterStaffs() throws IOException, ParseException {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/characters_staff").build();
-        Response response = client.newCall(request).execute();
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonObject.toJSONString(), Character_Staff.class);
+        return new ObjectMapper().readValue(this.retrieve("characters_staff").toJSONString(), Character_Staff.class);
     }
 
 
@@ -297,13 +293,7 @@ public class Anime {
      */
     @JsonProperty
     public Episodes getEpisode() throws IOException, ParseException {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/episodes").build();
-        Response response = client.newCall(request).execute();
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonObject.toJSONString(), Episodes.class);
+        return new ObjectMapper().readValue(this.retrieve("episodes").toJSONString(), Episodes.class);
     }
 
     /**
@@ -315,13 +305,7 @@ public class Anime {
      */
     @JsonProperty
     public News getNews() throws IOException, ParseException {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/news").build();
-        Response response = client.newCall(request).execute();
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonObject.toJSONString(), News.class);
+        return new ObjectMapper().readValue(this.retrieve("news").toJSONString(), News.class);
     }
 
     /**
@@ -333,13 +317,7 @@ public class Anime {
      */
     @JsonProperty
     public Pictures getPictures() throws IOException, ParseException {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/pictures").build();
-        Response response = client.newCall(request).execute();
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
+        return new ObjectMapper().readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
     }
 
     /**
@@ -350,14 +328,8 @@ public class Anime {
      * @throws ParseException ParseException
      */
     @JsonProperty
-    public Pictures getVideos() throws IOException, ParseException {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/videos").build();
-        Response response = client.newCall(request).execute();
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
+    public Video getVideos() throws IOException, ParseException {
+        return new ObjectMapper().readValue(this.retrieve("videos").toJSONString(), Video.class);
     }
 
     /**
@@ -369,15 +341,16 @@ public class Anime {
      */
     @JsonProperty
     public Stats getStats() throws IOException, ParseException {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/stats").build();
-        Response response = client.newCall(request).execute();
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonObject.toJSONString(), Stats.class);
+        return new ObjectMapper().readValue(this.retrieve("stats").toJSONString(), Stats.class);
     }
 
+    @JsonProperty
+    private JSONObject retrieve(String subCategory) throws IOException, ParseException {
+        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/" + subCategory).build();
+        Response response = new OkHttpClient().newCall(request).execute();
+        JSONParser parser = new JSONParser();
+        return  (JSONObject) parser.parse(response.body().string());
+    }
 
     @Override
     public String toString() {

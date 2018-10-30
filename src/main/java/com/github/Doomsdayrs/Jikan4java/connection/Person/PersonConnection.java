@@ -42,6 +42,7 @@ public class PersonConnection {
 
     public Person search(String title) throws IOException, org.json.simple.parser.ParseException {
         JSONObject personJSON = this.searchSite(title);
+
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(personJSON.toJSONString(), Person.class);
     }
