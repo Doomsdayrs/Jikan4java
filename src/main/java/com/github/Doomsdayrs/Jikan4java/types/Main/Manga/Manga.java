@@ -4,8 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Published.Published;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Forum;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.MoreInfo;
+import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -218,16 +223,96 @@ public class Manga {
         return serializations;
     }
 
+
+    /**
+     * Returns MangaCharacters object
+     *
+     * @return MangaCharacters
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
     @JsonProperty
     public MangaCharacters getCharacters() throws IOException, ParseException {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(baseURL + "/manga/" + mal_id + "/characters").build();
-        Response response = client.newCall(request).execute();
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonObject.toJSONString(), MangaCharacters.class);
+        return new ObjectMapper().readValue(this.retrieve("characters").toJSONString(), MangaCharacters.class);
     }
+
+    /**
+     * Gets news about Manga
+     *
+     * @return News object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    public News getNews() throws IOException, ParseException {
+        return new ObjectMapper().readValue(this.retrieve("news").toJSONString(), News.class);
+    }
+
+    /**
+     * Gets pictures related to Manga
+     *
+     * @return Pictures object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    public Pictures getPictures() throws IOException, ParseException {
+        return new ObjectMapper().readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
+    }
+
+
+    /**
+     * Gets stats about Manga object
+     *
+     * @return Stats object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    public Stats getStats() throws IOException, ParseException {
+        return new ObjectMapper().readValue(this.retrieve("stats").toJSONString(), Stats.class);
+    }
+
+    /**
+     * Returns forum object
+     *
+     * @return Forum object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    public Forum getForum() throws IOException, ParseException {
+        return new ObjectMapper().readValue(this.retrieve("forum").toJSONString(), Forum.class);
+    }
+
+    /**
+     * Returns Moreinfo object
+     *
+     * @return MoreInfo
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    public MoreInfo getMoreInfo() throws IOException, ParseException {
+        return new ObjectMapper().readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
+    }
+
+    /**
+     * Retrieves data from manga page
+     *
+     * @param subCategory What is needed to be retrieved, ie 'moreinfo'
+     * @return JSONObject of the page
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    private JSONObject retrieve(String subCategory) throws IOException, ParseException {
+        Request request = new Request.Builder().url(baseURL + "/manga/" + mal_id + "/" + subCategory).build();
+        Response response = new OkHttpClient().newCall(request).execute();
+        JSONParser parser = new JSONParser();
+        return (JSONObject) parser.parse(response.body().string());
+    }
+
 
     @Override
     public String toString() {

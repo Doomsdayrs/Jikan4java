@@ -52,4 +52,14 @@ public class Other {
     public String getUrl() {
         return url;
     }
+
+    @Override
+    public String toString() {
+        return "Other{" +
+                "mal_id=" + mal_id +
+                ", type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

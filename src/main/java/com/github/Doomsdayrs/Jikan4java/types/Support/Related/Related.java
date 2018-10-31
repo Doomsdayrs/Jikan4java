@@ -54,6 +54,9 @@ public class Related {
     @JsonProperty("Other")
     private ArrayList<Other> other;
 
+    @JsonProperty("Parent story")
+    private ArrayList<ParentStory> parentStories;
+
     public ArrayList<Prequel> getPrequel() {
         return prequel;
     }
@@ -84,5 +87,24 @@ public class Related {
 
     public ArrayList<Other> getOther() {
         return other;
+    }
+
+    public ArrayList<ParentStory> getParentStories() {
+        return parentStories;
+    }
+
+    @Override
+    public String toString() {
+        return "Related{" +
+                "prequel=" + prequel +
+                ", altVersion=" + altVersion +
+                ", spinOff=" + spinOff +
+                ", adaptation=" + adaptation +
+                ", summaries=" + summaries +
+                ", sequels=" + sequels +
+                ", sideStories=" + sideStories +
+                ", other=" + other +
+                ", parentStories=" + parentStories +
+                '}';
     }
 }

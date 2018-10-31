@@ -22,12 +22,24 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Voice_actors;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Character {
+    @JsonIgnore
+    private final String baseURL = "https://api.jikan.moe/v3";
 
     @JsonProperty("request_hash")
     private String request_hash;
@@ -106,6 +118,17 @@ public class Character {
 
     public ArrayList<Voice_actors> getVoice_actors() {
         return voice_actors;
+    }
+
+    @JsonProperty
+    public Pictures getPictures() throws IOException, ParseException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(baseURL + "/character/" + mal_id + "/pictures").build();
+        Response response = client.newCall(request).execute();
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
     }
 
     @Override

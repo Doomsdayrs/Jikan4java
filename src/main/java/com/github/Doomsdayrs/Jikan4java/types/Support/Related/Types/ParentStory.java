@@ -1,8 +1,10 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Related.Types;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Jikan4java
- * 28 / October / 2018
+ * 30 / October / 2018
  *
  * @author github.com/doomsdayrs
  */
@@ -22,10 +24,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-public class Adaptation {
+public class ParentStory {
+    @JsonProperty("mal_id")
     private int mal_id;
+
+    @JsonProperty("type")
     private String type;
+
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("url")
     private String url;
 
     public int getMal_id() {
@@ -46,7 +55,7 @@ public class Adaptation {
 
     @Override
     public String toString() {
-        return "Adaptation{" +
+        return "ParentStory{" +
                 "mal_id=" + mal_id +
                 ", type='" + type + '\'' +
                 ", name='" + name + '\'' +

@@ -23,6 +23,9 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Character.CharacterConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Manga.MangaConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Person.PersonConnection;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -36,17 +39,13 @@ public class ExampleClass {
      * @throws ParseException ParseException
      */
     public static void main(String[] args) throws IOException, ParseException {
-        AnimeConnection connection = new AnimeConnection();
-        System.out.println(connection.search("Fairy Tail").getEpisode(1).toString());
-        /*
-        CharacterConnection characterConnection = new CharacterConnection();
-        System.out.println(characterConnection.search("Caster"));
+        System.out.println(new MangaConnection().search("Attack on titan").getMoreInfo().toString());
 
-        MangaConnection mangaConnection = new MangaConnection();
-        System.out.println(mangaConnection.search("Attack on titan").toString());
-            */
-        /*PersonConnection personConnection = new PersonConnection();
-        System.out.println(personConnection.search("Hajime Isayama").getPictures().toString())*/
+        System.out.println(new AnimeConnection().search("Caster"));
+
+        System.out.println(new CharacterConnection().search("Attack on titan").toString());
+
+        System.out.println(new PersonConnection().search("Hajime Isayama").getPictures().toString());
 
     }
 

@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Forum.Topic;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic;
 
 /**
  * Jikan4java
@@ -24,8 +24,6 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Forum.Topic;
  */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
 
 public class Topic {
     @JsonProperty("topic_id")

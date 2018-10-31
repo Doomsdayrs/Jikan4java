@@ -1,7 +1,10 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Manga;
+package com.github.Doomsdayrs.Jikan4java.types.Support;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Jikan4java
- * 28 / October / 2018
+ * 30 / October / 2018
  *
  * @author github.com/doomsdayrs
  */
@@ -21,23 +24,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
-
-public class MangaCharacters {
+public class MoreInfo {
     @JsonProperty("request_hash")
     private String request_hash;
-
     @JsonProperty("request_cached")
     private boolean request_cached;
-
     @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
-
-    @JsonProperty("characters")
-    private ArrayList<MangaCharacter> characterArrayList;
+    @JsonProperty("moreinfo")
+    private String moreinfo;
 
     public String getRequest_hash() {
         return request_hash;
@@ -51,17 +46,17 @@ public class MangaCharacters {
         return request_cache_expiry;
     }
 
-    public ArrayList<MangaCharacter> getCharacterArrayList() {
-        return characterArrayList;
+    public String getMoreinfo() {
+        return moreinfo;
     }
 
     @Override
     public String toString() {
-        return "MangaCharacters{" +
+        return "MoreInfo{" +
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", characterArrayList=" + characterArrayList.toString() +
+                ", moreinfo='" + moreinfo + '\'' +
                 '}';
     }
 }

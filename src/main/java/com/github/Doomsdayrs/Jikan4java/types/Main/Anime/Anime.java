@@ -27,10 +27,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Episodes.Episodes;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Forum.Forum;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Videos.Video;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Forum;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
+import com.github.Doomsdayrs.Jikan4java.types.Support.MoreInfo;
 import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
@@ -360,6 +361,18 @@ public class Anime extends MALData {
     @JsonProperty
     public Forum getForum() throws IOException, ParseException {
         return new ObjectMapper().readValue(this.retrieve("forum").toJSONString(), Forum.class);
+    }
+
+    /**
+     * Returns Moreinfo object
+     *
+     * @return MoreInfo
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    @JsonProperty
+    public MoreInfo getMoreInfo() throws IOException, ParseException {
+        return new ObjectMapper().readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
     }
 
     /**

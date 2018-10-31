@@ -16,15 +16,13 @@ import java.io.IOException;
 public class ExampleClass {
 public static void main(String[] args) throws IOException, ParseException {
     
-        AnimeConnection connection = new AnimeConnection();
-        System.out.println(connection.search("Attack on titan").toString());
-        
-        CharacterConnection characterConnection = new CharacterConnection();
-        System.out.println(characterConnection.search("Caster"));
-        
-        MangaConnection mangaConnection = new MangaConnection();
-        System.out.println(mangaConnection.search("attack on titan").toString());
-        
+        System.out.println(new MangaConnection().search("Attack on titan").toString());
+
+        System.out.println(new AnimeConnection().search("Caster").toString());
+
+        System.out.println(new CharacterConnection().search("Attack on titan").toString());
+
+        System.out.println(new PersonConnection().search("Hajime Isayama").toString());
     }
 }
 ```
@@ -32,10 +30,10 @@ public static void main(String[] args) throws IOException, ParseException {
 ### Task list
 - [X] Search and return Anime
 - [X] Search and return Manga
-- [ ] Search and return Person
+- [X] Search and return Person
 - [X] Search and return Character
 - [ ] Search and return Search results of all of above
-- [ ] Add 'related' objects
+- [X] Add 'related' objects
 
 ### Dependencies 
 ```xml

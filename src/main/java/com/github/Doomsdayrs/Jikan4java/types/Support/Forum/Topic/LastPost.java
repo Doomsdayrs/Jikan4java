@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Forum.Topic;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic;
 /**
  * Jikan4java
  * 30 / October / 2018

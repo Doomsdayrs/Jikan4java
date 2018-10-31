@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Forum;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Forum;
 /**
  * Jikan4java
  * 30 / October / 2018
@@ -23,8 +23,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Forum;
  */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Forum.Topic.Topic;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic.Topic;
 
 import java.util.ArrayList;
 

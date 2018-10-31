@@ -17,7 +17,6 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Episodes extends MALData {
+public class Episodes {
     @JsonProperty("request_hash")
     private String request_hash;
     @JsonProperty("request_cached")
