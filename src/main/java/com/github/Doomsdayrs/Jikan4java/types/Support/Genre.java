@@ -25,7 +25,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Genres {
+public class Genre {
     @JsonProperty("mal_id")
     private int mal_id;
 

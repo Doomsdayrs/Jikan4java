@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.GenreSearch;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.GenreSearch;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -1,13 +1,13 @@
-package com.github.Doomsdayrs.Jikan4java.types.GenreSearch.Manga;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Schedule.Week;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.GenreSearch.MalURL;
+import com.github.Doomsdayrs.Jikan4java.types.Support.SubAnime;
 
 import java.util.ArrayList;
 
 /**
  * Jikan4java
- * 31 / October / 2018
+ * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
@@ -27,19 +27,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
- public class GenreSearchMangaPage {
+public class Friday extends DaySchedule {
     @JsonProperty("request_hash")
     private String request_hash;
     @JsonProperty("request_cached")
     private boolean request_cached;
     @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
-    @JsonProperty("mal_url")
-    private MalURL malURL;
-    @JsonProperty("item_count")
-    private int item_count;
-    @JsonProperty("manga")
-    private ArrayList<GenreSearchManga> mangas;
+
+    @JsonProperty("friday")
+    private ArrayList<SubAnime> friday;
 
     public String getRequest_hash() {
         return request_hash;
@@ -53,27 +50,17 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
         return request_cache_expiry;
     }
 
-    public MalURL getMalURL() {
-        return malURL;
-    }
-
-    public int getItem_count() {
-        return item_count;
-    }
-
-    public ArrayList<GenreSearchManga> getMangas() {
-        return mangas;
+    public ArrayList<SubAnime> getFriday() {
+        return friday;
     }
 
     @Override
     public String toString() {
-        return "GenreSearchMangaPage{" +
+        return "Friday{" +
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", malURL=" + malURL +
-                ", item_count=" + item_count +
-                ", mangas=" + mangas +
+                ", friday=" + friday +
                 '}';
     }
 }

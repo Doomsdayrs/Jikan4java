@@ -22,30 +22,36 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Character.CharacterConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Manga.MangaConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Person.PersonConnection;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
-
 public class ExampleClass {
     /**
      * Example method
      *
      * @param args
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public static void main(String[] args) throws IOException, ParseException {
-        System.out.println(new MangaConnection().search("Attack on titan").getMoreInfo().toString());
+    public static void main(String[] args) {
+        /*
+        System.out.println(new MangaConnection().search("Attack on titan").toString());
 
-        System.out.println(new AnimeConnection().search("Caster"));
+        System.out.println(new AnimeConnection().search("Attack on titan").toString);
 
-        System.out.println(new CharacterConnection().search("Attack on titan").toString());
+        System.out.println(new CharacterConnection().search("Caster").toString());
 
-        System.out.println(new PersonConnection().search("Hajime Isayama").getPictures().toString());
+        System.out.println(new PersonConnection().search("Hajime Isayama").toString());
+
+        System.out.println(new BasicConnection().searchAnimeGenre(1,0).toString());
+
+        System.out.println(new BasicConnection().searchMangaGenre(1,0).toString());
+
+        System.out.println(new BasicConnection().seasonSearch(2016,"winter").toString());
+
+        System.out.println(new BasicConnection().seasonArchiveSearch().toString());
+
+        System.out.println(new BasicConnection().scheduleSearch().toString());
+
+        System.out.println(new BasicConnection().scheduleSearch("monday")); //`monday` can be replaced with any other day or unknown / other
+        */
+
+
 
     }
 

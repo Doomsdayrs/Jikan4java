@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Published.Published;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Authors;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Forum;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Genres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MoreInfo;
 import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
@@ -98,7 +99,7 @@ public class Manga {
     @JsonProperty("related")
     private Related related;
     @JsonProperty("genres")
-    private ArrayList<Genres> genres;
+    private ArrayList<Genre> genres;
     @JsonProperty("authors")
     private ArrayList<Authors> authors;
     @JsonProperty("serializations")
@@ -211,7 +212,7 @@ public class Manga {
         return related;
     }
 
-    public ArrayList<Genres> getGenres() {
+    public ArrayList<Genre> getGenres() {
         return genres;
     }
 

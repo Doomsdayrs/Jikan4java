@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Manga;
+package com.github.Doomsdayrs.Jikan4java.types.Support;
 
 /**
  * Jikan4java

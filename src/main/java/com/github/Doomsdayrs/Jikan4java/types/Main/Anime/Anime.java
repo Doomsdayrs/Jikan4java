@@ -29,11 +29,12 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Charact
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Episodes.Episodes;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Videos.Video;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Forum;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Genres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MoreInfo;
 import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Producer;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
 import okhttp3.OkHttpClient;
@@ -111,13 +112,13 @@ public class Anime extends MALData {
     @JsonProperty("related")
     private Related related;
     @JsonProperty("producers")
-    private ArrayList<Producers> producers;
+    private ArrayList<Producer> producers;
     @JsonProperty("licensors")
     private ArrayList<Licensors> licensors;
     @JsonProperty("studios")
     private ArrayList<Studios> studios;
     @JsonProperty("genres")
-    private ArrayList<Genres> genres;
+    private ArrayList<Genre> genres;
     @JsonProperty("opening_themes")
     private ArrayList<String> opening_themes;
     @JsonProperty("ending_themes")
@@ -249,7 +250,7 @@ public class Anime extends MALData {
         return related;
     }
 
-    public ArrayList<Producers> getProducers() {
+    public ArrayList<Producer> getProducers() {
         return producers;
     }
 
@@ -261,7 +262,7 @@ public class Anime extends MALData {
         return studios;
     }
 
-    public ArrayList<Genres> getGenres() {
+    public ArrayList<Genre> getGenres() {
         return genres;
     }
 
@@ -296,8 +297,7 @@ public class Anime extends MALData {
     @JsonProperty
     public Episodes getEpisode(int pageNumber) throws IOException, ParseException {
         String category = "episodes";
-        if (pageNumber != 0)
-        {
+        if (pageNumber != 0) {
             category = "episodes/" + pageNumber;
         }
         return new ObjectMapper().readValue(this.retrieve(category).toJSONString(), Episodes.class);
@@ -354,8 +354,9 @@ public class Anime extends MALData {
 
     /**
      * Returns forum object
+     *
      * @return Forum object
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     @JsonProperty
@@ -377,9 +378,10 @@ public class Anime extends MALData {
 
     /**
      * Retrieves data from anime page
+     *
      * @param subCategory What is needed to be retrieved, ie 'moreinfo'
      * @return JSONObject of the page
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     @JsonProperty
@@ -387,7 +389,7 @@ public class Anime extends MALData {
         Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/" + subCategory).build();
         Response response = new OkHttpClient().newCall(request).execute();
         JSONParser parser = new JSONParser();
-        return  (JSONObject) parser.parse(response.body().string());
+        return (JSONObject) parser.parse(response.body().string());
     }
 
     @Override

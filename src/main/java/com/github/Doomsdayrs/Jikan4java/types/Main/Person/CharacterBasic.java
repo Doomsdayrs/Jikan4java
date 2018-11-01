@@ -1,4 +1,5 @@
-package /*
+package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
+/*
 This file is part of Jikan4java.
 
 Jikan4java is free software: you can redistribute it and/or modify
@@ -13,7 +14,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
-*/com.github.Doomsdayrs.Jikan4java.types.Main.Person;
+*/
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

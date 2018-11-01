@@ -17,6 +17,15 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 public class MangaBasic {
     @JsonProperty("mal_id")
@@ -45,5 +54,17 @@ public class MangaBasic {
 
     public String getName() {
         return name;
+    }
+
+
+    /**
+     * Returns the Manga object of this object
+     *
+     * @return Manga Object
+     * @throws IOException
+     * @throws ParseException
+     */
+    public Anime getAnime() throws IOException, ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
     }
 }

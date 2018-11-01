@@ -23,6 +23,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

@@ -1,20 +1,15 @@
-package com.github.Doomsdayrs.Jikan4java.types.GenreSearch.Anime;
+package com.github.Doomsdayrs.Jikan4java.types.Support;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Producer;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.net.HttpCookie;
-import java.rmi.server.RemoteRef;
 import java.util.ArrayList;
 
 /**
@@ -38,7 +33,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
-*/public class GenreSearchAnime {
+*/public class SubAnime {
     @JsonProperty("mal_id")
     private int mal_id;
     @JsonProperty("url")
@@ -71,6 +66,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
     private boolean r18;
     @JsonProperty("kids")
     private boolean kids;
+
 
     public int getMal_id() {
         return mal_id;
@@ -136,8 +132,10 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
         return kids;
     }
 
+
     /**
      * Returns the Anime object of this object
+     *
      * @return Anime Object
      * @throws IOException
      * @throws ParseException
@@ -145,6 +143,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
     public Anime getAnime() throws IOException, ParseException {
         return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
     }
+
     @Override
     public String toString() {
         return "GenreSearchAnime{" +

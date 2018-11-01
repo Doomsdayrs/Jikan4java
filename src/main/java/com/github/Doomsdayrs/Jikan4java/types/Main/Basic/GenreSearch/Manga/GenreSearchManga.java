@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.GenreSearch.Manga;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.GenreSearch.Manga;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -118,6 +118,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 
     /**
      * Returns the Manga object of this object
+     *
      * @return Manga Object
      * @throws IOException
      * @throws ParseException

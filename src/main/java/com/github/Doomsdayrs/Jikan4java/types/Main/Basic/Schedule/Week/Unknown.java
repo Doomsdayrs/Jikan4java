@@ -1,11 +1,17 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Schedule.Week;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.Doomsdayrs.Jikan4java.types.Support.SubAnime;
+
+import java.util.ArrayList;
+
 /**
  * Jikan4java
- * 28 / October / 2018
+ * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-/*
+ /*
 This file is part of Jikan4java.
 
 Jikan4java is free software: you can redistribute it and/or modify
@@ -21,35 +27,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
+public class Unknown extends DaySchedule {
+    @JsonProperty("request_hash")
+    private String request_hash;
+    @JsonProperty("request_cached")
+    private boolean request_cached;
+    @JsonProperty("request_cache_expiry")
+    private int request_cache_expiry;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class Producer {
-    @JsonProperty("mal_id")
-    private int mal_id;
-
-    @JsonProperty("type")
-    private String type;
-
-    @JsonProperty("name")
-    private String name;
-
-    @JsonProperty("url")
-    private String url;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
+    @JsonProperty("unknown")
+    private ArrayList<SubAnime> unknown;
 }

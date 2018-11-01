@@ -23,7 +23,6 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -31,10 +30,9 @@ import okhttp3.Response;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.ArrayList;
 
 public class PersonConnection {
     private final OkHttpClient client = new OkHttpClient();
@@ -56,7 +54,7 @@ public class PersonConnection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    private JSONObject searchSite(String search) throws IOException, org.json.simple.parser.ParseException {
+    private JSONObject searchSite(String search) throws IOException, ParseException {
         Request request = new Request.Builder().url(baseURL + "/search/person?q=" + search + "&page=1").build();
         Response response = client.newCall(request).execute();
 
@@ -76,7 +74,7 @@ public class PersonConnection {
      *
      * @throws IOException IOException
      */
-    public void test() throws IOException, org.json.simple.parser.ParseException {
+    public void test() throws IOException, ParseException {
         System.out.println(this.searchSite("Hajime Isayama").toJSONString());
     }
 }

@@ -1,12 +1,16 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Videos;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.SeasonArchive;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 
 /**
  * Jikan4java
- * 30 / October / 2018
+ * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-/*
+ /*
 This file is part of Jikan4java.
 
 Jikan4java is free software: you can redistribute it and/or modify
@@ -22,37 +26,25 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
+public class Archive {
+    @JsonProperty("year")
+    private int year;
+    @JsonProperty("seasons")
+    private ArrayList<String> seasons;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class Promo {
-    @JsonProperty("title")
-    private String title;
-
-    @JsonProperty("image_url")
-    private String image_url;
-
-    @JsonProperty("video_url")
-    private String video_url;
-
-    public String getTitle() {
-        return title;
+    public int getYear() {
+        return year;
     }
 
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getVideo_url() {
-        return video_url;
+    public ArrayList<String> getSeasons() {
+        return seasons;
     }
 
     @Override
     public String toString() {
-        return "Promo{" +
-                "title='" + title + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", video_url='" + video_url + '\'' +
+        return "Archive{" +
+                "year=" + year +
+                ", seasons=" + seasons +
                 '}';
     }
 }

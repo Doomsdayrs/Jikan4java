@@ -2,12 +2,14 @@
 Java api client for Jikan api
 Website for Jikan: https://jikan.moe/
 
+Currently this is in beta stages. Once I release version 1.0 it will be completely covering the Jikan api
+
 ## Capabilities
-So far can search Anime by it's name
+Look at task list for it's API coverage
 
 ### Basic documentation
 
->How to search shiz up
+>How to use things
 ```java
 import Jikan4java.types.Anime.AnimeConnection;
 import org.json.simple.parser.ParseException;
@@ -18,11 +20,23 @@ public static void main(String[] args) throws IOException, ParseException {
     
         System.out.println(new MangaConnection().search("Attack on titan").toString());
 
-        System.out.println(new AnimeConnection().search("Caster").toString());
+        System.out.println(new AnimeConnection().search("Attack on titan").toString);
 
-        System.out.println(new CharacterConnection().search("Attack on titan").toString());
+        System.out.println(new CharacterConnection().search("Caster").toString());
 
         System.out.println(new PersonConnection().search("Hajime Isayama").toString());
+
+        System.out.println(new BasicConnection().searchAnimeGenre(1,0).toString());
+
+        System.out.println(new BasicConnection().searchMangaGenre(1,0).toString());
+
+        System.out.println(new BasicConnection().seasonSearch(2016,"winter").toString());
+
+        System.out.println(new BasicConnection().seasonArchiveSearch().toString());
+
+        System.out.println(new BasicConnection().scheduleSearch().toString());
+
+        System.out.println(new BasicConnection().scheduleSearch("monday")); //`monday` can be replaced with any other day or unknown / other
     }
 }
 ```
@@ -32,6 +46,15 @@ public static void main(String[] args) throws IOException, ParseException {
 - [X] Search and return Manga
 - [X] Search and return Person
 - [X] Search and return Character
+- [X] Search and return GenreAnimeSearch
+- [X] Search and return GenreMangaSearch
+- [X] Search and return Season
+- [X] Search and return SeasonArchive
+- [ ] Search and return Top list
+- [ ] Search and return Producer
+- [ ] Search and return Magazine
+- [ ] Search and return User
+- [ ] Search and return Meta
 - [ ] Search and return Search results of all of above
 - [X] Add 'related' objects
 
