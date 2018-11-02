@@ -47,6 +47,8 @@ public class TopAnime extends TopList {
     private String image_url;
     @JsonProperty("type")
     private String type;
+    @JsonProperty("episodes")
+    private int episodes;
     @JsonProperty("start_date")
     private String start_date;
     @JsonProperty("end_date")
@@ -78,6 +80,10 @@ public class TopAnime extends TopList {
 
     public String getType() {
         return type;
+    }
+
+    public int getEpisodes() {
+        return episodes;
     }
 
     public String getStart_date() {
@@ -116,6 +122,7 @@ public class TopAnime extends TopList {
                 ", url='" + url + '\'' +
                 ", image_url='" + image_url + '\'' +
                 ", type='" + type + '\'' +
+                ", episodes=" + episodes +
                 ", start_date='" + start_date + '\'' +
                 ", end_date='" + end_date + '\'' +
                 ", members=" + members +

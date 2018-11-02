@@ -35,7 +35,7 @@ public class PersonTop extends Top {
     @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
     @JsonProperty("top")
-    private ArrayList<PersonTop> personTops;
+    private ArrayList<TopPerson> topPeople;
 
     @Override
     public String getRequest_hash() {
@@ -52,8 +52,8 @@ public class PersonTop extends Top {
         return request_cache_expiry;
     }
 
-    public ArrayList<PersonTop> getPersonTops() {
-        return personTops;
+    public ArrayList<TopPerson> getTopPeople() {
+        return topPeople;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class PersonTop extends Top {
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", personTops=" + personTops +
+                ", personTops=" + topPeople +
                 '}';
     }
 }

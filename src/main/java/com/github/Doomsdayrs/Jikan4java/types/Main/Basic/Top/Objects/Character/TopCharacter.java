@@ -3,9 +3,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.Character;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.TopList;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Animeography;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Mangaography;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.JSONObject;
@@ -49,9 +47,9 @@ public class TopCharacter extends TopList {
     @JsonProperty("name_kanji")
     private String name_kanji;
     @JsonProperty("animeography")
-    private ArrayList<Animeography> animeographies;
+    private ArrayList<TopCharacterAnime> characterAnimes;
     @JsonProperty("mangaography")
-    private ArrayList<Mangaography> mangaographies;
+    private ArrayList<TopCharacterManga> characterMangas;
     @JsonProperty("favorites")
     private int favorites;
     @JsonProperty("image_url")
@@ -77,12 +75,12 @@ public class TopCharacter extends TopList {
         return name_kanji;
     }
 
-    public ArrayList<Animeography> getAnimeographies() {
-        return animeographies;
+    public ArrayList<TopCharacterAnime> getAnimeographies() {
+        return characterAnimes;
     }
 
-    public ArrayList<Mangaography> getMangaographies() {
-        return mangaographies;
+    public ArrayList<TopCharacterManga> getMangaographies() {
+        return characterMangas;
     }
 
     public int getFavorites() {
@@ -112,8 +110,8 @@ public class TopCharacter extends TopList {
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 ", name_kanji='" + name_kanji + '\'' +
-                ", animeographies=" + animeographies +
-                ", mangaographies=" + mangaographies +
+                ", animeographies=" + characterAnimes +
+                ", mangaographies=" + characterMangas +
                 ", favorites=" + favorites +
                 ", image_url='" + image_url + '\'' +
                 '}';

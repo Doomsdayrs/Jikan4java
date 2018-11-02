@@ -9,6 +9,9 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Schedule.Week.*;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Season.SeasonSearch;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.SeasonArchive.SeasonArchive;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.Anime.AnimeTop;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.Character.CharacterTop;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.Manga.MangaTop;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.Person.PersonTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Top;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -159,15 +162,15 @@ public class BasicConnection {
         if (type.equalsIgnoreCase("anime")) {
             return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), AnimeTop.class);
         } else if (type.equalsIgnoreCase("manga")) {
-            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), AnimeTop.class);
+            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), MangaTop.class);
         } else if (type.equalsIgnoreCase("people")) {
-            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), AnimeTop.class);
+            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), PersonTop.class);
         } else if (type.equalsIgnoreCase("characters")) {
-            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), AnimeTop.class);
+            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), CharacterTop.class);
         }
 
 
-        System.out.println("ERRPR, Invalid input");
+        System.out.println("ERROR, Invalid input");
         return null;
 
     }

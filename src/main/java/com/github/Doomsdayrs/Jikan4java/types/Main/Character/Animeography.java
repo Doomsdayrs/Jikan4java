@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Character;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import okhttp3.OkHttpClient;
@@ -33,10 +34,15 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class Animeography {
+    @JsonProperty("mal_id")
     private int mal_id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("url")
     private String url;
+    @JsonProperty("image_url")
     private String image_url;
+    @JsonProperty("role")
     private String role;
 
     // Get values

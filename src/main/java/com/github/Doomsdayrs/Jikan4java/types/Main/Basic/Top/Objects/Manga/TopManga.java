@@ -1,6 +1,16 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.Manga;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.TopList;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 /**
  * Jikan4java
@@ -25,4 +35,98 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class TopManga extends TopList {
+    @JsonProperty("mal_id")
+    private int mal_id;
+    @JsonProperty("rank")
+    private int rank;
+    @JsonProperty("title")
+    private String title;
+    @JsonProperty("url")
+    private String url;
+    @JsonProperty("type")
+    private String type;
+    @JsonProperty("volumes")
+    private int volumes;
+    @JsonProperty("start_date")
+    private String start_date;
+    @JsonProperty("end_date")
+    private String end_date;
+    @JsonProperty("members")
+    private int members;
+    @JsonProperty("score")
+    private float score;
+    @JsonProperty("image_url")
+    private String image_url;
+
+    public int getMal_id() {
+        return mal_id;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getVolumes() {
+        return volumes;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public int getMembers() {
+        return members;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    /**
+     * Returns the Manga object of this object
+     *
+     * @return Manga Object
+     * @throws IOException
+     * @throws ParseException
+     */
+    public Manga getManga() throws IOException, ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+    }
+
+    @Override
+    public String toString() {
+        return "TopManga{" +
+                "mal_id=" + mal_id +
+                ", rank=" + rank +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", type='" + type + '\'' +
+                ", volumes=" + volumes +
+                ", start_date='" + start_date + '\'' +
+                ", end_date='" + end_date + '\'' +
+                ", members=" + members +
+                ", score=" + score +
+                ", image_url='" + image_url + '\'' +
+                '}';
+    }
 }

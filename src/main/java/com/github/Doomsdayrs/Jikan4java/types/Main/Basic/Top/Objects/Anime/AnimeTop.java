@@ -28,14 +28,14 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class AnimeTop extends Top {
-    @JsonProperty("top")
-    ArrayList<TopAnime> topAnimes;
     @JsonProperty("request_hash")
     private String request_hash;
     @JsonProperty("request_cached")
     private boolean request_cached;
     @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
+    @JsonProperty("top")
+    ArrayList<TopAnime> topAnimes;
 
     @Override
     public String getRequest_hash() {

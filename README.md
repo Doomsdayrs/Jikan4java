@@ -37,7 +37,12 @@ public static void main(String[] args) throws IOException, ParseException {
         System.out.println(new BasicConnection().scheduleSearch().toString());
 
         System.out.println(new BasicConnection().scheduleSearch("monday")); //`monday` can be replaced with any other day or unknown / other
-    }
+        
+        System.out.println(new BasicConnection().topSearch("anime",0,"").toString());
+        System.out.println(new BasicConnection().topSearch("manga",0,"").toString());
+        System.out.println(new BasicConnection().topSearch("people",0,"").toString());
+        System.out.println(new BasicConnection().topSearch("characters",0,"").toString());    
+}
 }
 ```
 
@@ -50,7 +55,7 @@ public static void main(String[] args) throws IOException, ParseException {
 - [X] Search and return GenreMangaSearch
 - [X] Search and return Season
 - [X] Search and return SeasonArchive
-- [ ] Search and return Top list
+- [X] Search and return Top list
 - [ ] Search and return Producer
 - [ ] Search and return Magazine
 - [ ] Search and return User
