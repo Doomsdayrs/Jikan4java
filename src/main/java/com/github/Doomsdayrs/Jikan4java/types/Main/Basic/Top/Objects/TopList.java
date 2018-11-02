@@ -1,10 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Schedule.Week;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Schedule.DaySchedule;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Schedule.SubAnime;
-
-import java.util.ArrayList;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects;
 
 /**
  * Jikan4java
@@ -28,14 +22,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-public class Unknown extends DaySchedule {
-    @JsonProperty("request_hash")
-    private String request_hash;
-    @JsonProperty("request_cached")
-    private boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
-
-    @JsonProperty("unknown")
-    private ArrayList<SubAnime> unknown;
+public class TopList {
+    //Shell object
 }

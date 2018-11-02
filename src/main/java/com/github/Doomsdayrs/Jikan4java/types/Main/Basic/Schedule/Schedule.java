@@ -1,7 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Schedule;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.SubAnime;
 
 import java.util.ArrayList;
 

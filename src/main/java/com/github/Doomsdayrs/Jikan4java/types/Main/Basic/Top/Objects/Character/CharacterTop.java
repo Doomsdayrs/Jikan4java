@@ -1,6 +1,7 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Schedule.Week;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.Character;
 
-import com.github.Doomsdayrs.Jikan4java.types.Support.SubAnime;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Top;
 
 import java.util.ArrayList;
 
@@ -26,36 +27,42 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-public class DaySchedule {
+public class CharacterTop extends Top {
+    @JsonProperty("request_hash")
     private String request_hash;
+    @JsonProperty("request_cached")
     private boolean request_cached;
+    @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
-    private ArrayList<SubAnime> day;
+    @JsonProperty("top")
+    private ArrayList<TopCharacter> topCharacters;
 
+    @Override
     public String getRequest_hash() {
         return request_hash;
     }
 
+    @Override
     public boolean isRequest_cached() {
         return request_cached;
     }
 
+    @Override
     public int getRequest_cache_expiry() {
         return request_cache_expiry;
     }
 
-    public ArrayList<SubAnime> getDay() {
-        return day;
+    public ArrayList<TopCharacter> getTopCharacters() {
+        return topCharacters;
     }
 
     @Override
     public String toString() {
-        return "DaySchedule{" +
+        return "CharacterTop{" +
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", day=" + day +
+                ", topCharacters=" + topCharacters +
                 '}';
     }
 }
-

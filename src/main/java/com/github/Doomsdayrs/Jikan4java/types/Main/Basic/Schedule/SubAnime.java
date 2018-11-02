@@ -1,10 +1,10 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.GenreSearch.Manga;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Schedule;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Authors;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Producer;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.JSONObject;
@@ -35,8 +35,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
-*/public class GenreSearchManga {
-
+*/public class SubAnime {
     @JsonProperty("mal_id")
     private int mal_id;
     @JsonProperty("url")
@@ -49,20 +48,27 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
     private String synopsis;
     @JsonProperty("type")
     private String type;
-    @JsonProperty("publishing_start")
-    private String publishing_start;
-    @JsonProperty("volumes")
-    private int volumes;
+    @JsonProperty("airing_start")
+    private String airing_start;
+    @JsonProperty("episodes")
+    private int episodes;
     @JsonProperty("members")
     private int members;
     @JsonProperty("genres")
     private ArrayList<Genre> genres;
-    @JsonProperty("authors")
-    private ArrayList<Authors> authors;
+    @JsonProperty("source")
+    private String source;
+    @JsonProperty("producers")
+    private ArrayList<Producer> producers;
     @JsonProperty("score")
     private float score;
-    @JsonProperty("serialization")
-    private ArrayList<String> serialization;
+    @JsonProperty("licensors")
+    private ArrayList<String> licensors;
+    @JsonProperty("r18")
+    private boolean r18;
+    @JsonProperty("kids")
+    private boolean kids;
+
 
     public int getMal_id() {
         return mal_id;
@@ -88,12 +94,12 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
         return type;
     }
 
-    public String getPublishing_start() {
-        return publishing_start;
+    public String getAiring_start() {
+        return airing_start;
     }
 
-    public int getVolumes() {
-        return volumes;
+    public int getEpisodes() {
+        return episodes;
     }
 
     public int getMembers() {
@@ -104,45 +110,61 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
         return genres;
     }
 
-    public ArrayList<Authors> getAuthors() {
-        return authors;
+    public String getSource() {
+        return source;
+    }
+
+    public ArrayList<Producer> getProducers() {
+        return producers;
     }
 
     public float isScore() {
         return score;
     }
 
-    public ArrayList<String> getSerialization() {
-        return serialization;
+    public ArrayList<String> getLicensors() {
+        return licensors;
     }
 
+    public boolean isR18() {
+        return r18;
+    }
+
+    public boolean isKids() {
+        return kids;
+    }
+
+
     /**
-     * Returns the Manga object of this object
+     * Returns the Anime object of this object
      *
-     * @return Manga Object
+     * @return Anime Object
      * @throws IOException
      * @throws ParseException
      */
-    public Manga getManga() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+    public Anime getAnime() throws IOException, ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
     }
 
     @Override
     public String toString() {
-        return "GenreSearchManga{" +
+        return "GenreSearchAnime{" +
                 "mal_id=" + mal_id +
                 ", url='" + url + '\'' +
                 ", title='" + title + '\'' +
                 ", image_url='" + image_url + '\'' +
                 ", synopsis='" + synopsis + '\'' +
                 ", type='" + type + '\'' +
-                ", publishing_start='" + publishing_start + '\'' +
-                ", volumes=" + volumes +
+                ", airing_start='" + airing_start + '\'' +
+                ", episodes=" + episodes +
                 ", members=" + members +
                 ", genres=" + genres +
-                ", authors=" + authors +
+                ", source='" + source + '\'' +
+                ", producers=" + producers +
                 ", score=" + score +
-                ", serialization=" + serialization +
+                ", licensors=" + licensors +
+                ", r18=" + r18 +
+                ", kids=" + kids +
                 '}';
     }
 }

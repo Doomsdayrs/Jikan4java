@@ -1,8 +1,9 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.Anime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Basic.Top.Objects.TopList;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.JSONObject;
@@ -10,11 +11,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Jikan4java
- * 31 / October / 2018
+ * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
@@ -33,112 +33,75 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
-*/public class SubAnime {
+*/
+public class TopAnime extends TopList {
     @JsonProperty("mal_id")
     private int mal_id;
-    @JsonProperty("url")
-    private String url;
+    @JsonProperty("rank")
+    private int rank;
     @JsonProperty("title")
     private String title;
+    @JsonProperty("url")
+    private String url;
     @JsonProperty("image_url")
     private String image_url;
-    @JsonProperty("synopsis")
-    private String synopsis;
     @JsonProperty("type")
     private String type;
-    @JsonProperty("airing_start")
-    private String airing_start;
-    @JsonProperty("episodes")
-    private int episodes;
+    @JsonProperty("start_date")
+    private String start_date;
+    @JsonProperty("end_date")
+    private String end_date;
     @JsonProperty("members")
     private int members;
-    @JsonProperty("genres")
-    private ArrayList<Genre> genres;
-    @JsonProperty("source")
-    private String source;
-    @JsonProperty("producers")
-    private ArrayList<Producer> producers;
     @JsonProperty("score")
     private float score;
-    @JsonProperty("licensors")
-    private ArrayList<String> licensors;
-    @JsonProperty("r18")
-    private boolean r18;
-    @JsonProperty("kids")
-    private boolean kids;
-
 
     public int getMal_id() {
         return mal_id;
     }
 
-    public String getUrl() {
-        return url;
+    public int getRank() {
+        return rank;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getUrl() {
+        return url;
     }
 
-    public String getSynopsis() {
-        return synopsis;
+    public String getImage_url() {
+        return image_url;
     }
 
     public String getType() {
         return type;
     }
 
-    public String getAiring_start() {
-        return airing_start;
+    public String getStart_date() {
+        return start_date;
     }
 
-    public int getEpisodes() {
-        return episodes;
+    public String getEnd_date() {
+        return end_date;
     }
 
     public int getMembers() {
         return members;
     }
 
-    public ArrayList<Genre> getGenres() {
-        return genres;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public ArrayList<Producer> getProducers() {
-        return producers;
-    }
-
-    public float isScore() {
+    public float getScore() {
         return score;
     }
-
-    public ArrayList<String> getLicensors() {
-        return licensors;
-    }
-
-    public boolean isR18() {
-        return r18;
-    }
-
-    public boolean isKids() {
-        return kids;
-    }
-
 
     /**
      * Returns the Anime object of this object
      *
      * @return Anime Object
-     * @throws IOException
-     * @throws ParseException
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
     public Anime getAnime() throws IOException, ParseException {
         return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
@@ -146,23 +109,17 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 
     @Override
     public String toString() {
-        return "GenreSearchAnime{" +
+        return "TopAnime{" +
                 "mal_id=" + mal_id +
-                ", url='" + url + '\'' +
+                ", rank=" + rank +
                 ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
                 ", image_url='" + image_url + '\'' +
-                ", synopsis='" + synopsis + '\'' +
                 ", type='" + type + '\'' +
-                ", airing_start='" + airing_start + '\'' +
-                ", episodes=" + episodes +
+                ", start_date='" + start_date + '\'' +
+                ", end_date='" + end_date + '\'' +
                 ", members=" + members +
-                ", genres=" + genres +
-                ", source='" + source + '\'' +
-                ", producers=" + producers +
                 ", score=" + score +
-                ", licensors=" + licensors +
-                ", r18=" + r18 +
-                ", kids=" + kids +
                 '}';
     }
 }
