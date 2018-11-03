@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-public class Postion {
+public class Position {
     @JsonProperty("votes")
     private int votes;
     @JsonProperty("percentage")
@@ -40,7 +40,7 @@ public class Postion {
 
     @Override
     public String toString() {
-        return "Postion{" +
+        return "Position{" +
                 "votes=" + votes +
                 ", percentage=" + percentage +
                 '}';

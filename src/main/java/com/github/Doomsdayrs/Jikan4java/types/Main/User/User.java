@@ -57,5 +57,4 @@ public class User {
     // Make favorites object
     @JsonProperty("about")
     private String about;
-
 }

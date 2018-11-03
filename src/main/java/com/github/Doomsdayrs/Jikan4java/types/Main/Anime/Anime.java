@@ -96,7 +96,7 @@ public class Anime extends MALData {
     @JsonProperty("rank")
     private int rank;
     @JsonProperty("popularity")
-    private int popularirty;
+    private int popularity;
     @JsonProperty("members")
     private int members;
     @JsonProperty("favorites")
@@ -218,8 +218,8 @@ public class Anime extends MALData {
         return rank;
     }
 
-    public int getPopularirty() {
-        return popularirty;
+    public int getPopularity() {
+        return popularity;
     }
 
     public int getMembers() {
@@ -417,7 +417,7 @@ public class Anime extends MALData {
                 ",\n score=" + score +
                 ",\n scored_by=" + scored_by +
                 ",\n rank=" + rank +
-                ",\n popularirty=" + popularirty +
+                ",\n popularity=" + popularity +
                 ",\n members=" + members +
                 ",\n favorites=" + favorites +
                 ",\n synopsis='" + synopsis + '\'' +

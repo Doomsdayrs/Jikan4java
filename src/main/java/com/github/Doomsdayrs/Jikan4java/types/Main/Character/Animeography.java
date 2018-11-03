@@ -71,7 +71,7 @@ public class Animeography {
      * Returns the Anime object of this object
      *
      * @return Anime Object
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     public Anime getAnime() throws IOException, ParseException {

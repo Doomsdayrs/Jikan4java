@@ -26,63 +26,63 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class Score {
     @JsonProperty("1")
-    private Postion one;
+    private Position one;
     @JsonProperty("2")
-    private Postion two;
+    private Position two;
     @JsonProperty("3")
-    private Postion three;
+    private Position three;
     @JsonProperty("4")
-    private Postion four;
+    private Position four;
     @JsonProperty("5")
-    private Postion five;
+    private Position five;
     @JsonProperty("6")
-    private Postion six;
+    private Position six;
     @JsonProperty("7")
-    private Postion seven;
+    private Position seven;
     @JsonProperty("8")
-    private Postion eight;
+    private Position eight;
     @JsonProperty("9")
-    private Postion nine;
+    private Position nine;
     @JsonProperty("10")
-    private Postion ten;
+    private Position ten;
 
-    public Postion getOne() {
+    public Position getOne() {
         return one;
     }
 
-    public Postion getTwo() {
+    public Position getTwo() {
         return two;
     }
 
-    public Postion getThree() {
+    public Position getThree() {
         return three;
     }
 
-    public Postion getFour() {
+    public Position getFour() {
         return four;
     }
 
-    public Postion getFive() {
+    public Position getFive() {
         return five;
     }
 
-    public Postion getSix() {
+    public Position getSix() {
         return six;
     }
 
-    public Postion getSeven() {
+    public Position getSeven() {
         return seven;
     }
 
-    public Postion getEight() {
+    public Position getEight() {
         return eight;
     }
 
-    public Postion getNine() {
+    public Position getNine() {
         return nine;
     }
 
-    public Postion getTen() {
+    public Position getTen() {
         return ten;
     }
 

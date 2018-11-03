@@ -72,7 +72,6 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
     private boolean continuing;
 
 
-
     public int getMal_id() {
         return mal_id;
     }

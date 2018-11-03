@@ -44,7 +44,7 @@ public class Character_Staff {
     private ArrayList<Staff> staff;
 
     /**
-     * @return Returns characterList of chracters
+     * @return Returns characterList of characters
      */
     public ArrayList<AnimeCharacter> getAnimeCharacters() {
         return animeCharacters;
