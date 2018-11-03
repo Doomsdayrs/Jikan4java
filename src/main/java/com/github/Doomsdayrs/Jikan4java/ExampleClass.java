@@ -52,7 +52,7 @@ public class ExampleClass {
         System.out.println(new BasicConnection().scheduleSearch("monday").toString()); //`monday` can be replaced with any other day or unknown / other
 
         System.out.println(new BasicConnection().topSearch("anime",0,"").toString());
-        System.out.println(new BasicConnection().topSearch("manga",0,"").toString());
+        System.out.println(new TopConnection().topSearch("manga",0,"").getTopMangas());
         System.out.println(new BasicConnection().topSearch("people",0,"").toString());
         System.out.println(new BasicConnection().topSearch("characters",0,"").toString());
         */

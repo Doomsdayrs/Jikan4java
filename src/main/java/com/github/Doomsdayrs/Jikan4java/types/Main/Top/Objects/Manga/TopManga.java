@@ -37,24 +37,34 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 public class TopManga extends TopList {
     @JsonProperty("mal_id")
     private int mal_id;
+
     @JsonProperty("rank")
     private int rank;
+
     @JsonProperty("title")
     private String title;
+
     @JsonProperty("url")
     private String url;
+
     @JsonProperty("type")
     private String type;
+
     @JsonProperty("volumes")
     private int volumes;
+
     @JsonProperty("start_date")
     private String start_date;
+
     @JsonProperty("end_date")
     private String end_date;
+
     @JsonProperty("members")
     private int members;
+
     @JsonProperty("score")
     private float score;
+
     @JsonProperty("image_url")
     private String image_url;
 

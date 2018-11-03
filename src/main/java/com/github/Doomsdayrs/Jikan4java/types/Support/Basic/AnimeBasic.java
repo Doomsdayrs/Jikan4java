@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Basic;
 /*
 This file is part of Jikan4java.
 
@@ -27,7 +27,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
-public class MangaBasic {
+public class AnimeBasic {
     @JsonProperty("mal_id")
     private int mal_id;
 
@@ -56,15 +56,14 @@ public class MangaBasic {
         return name;
     }
 
-
     /**
-     * Returns the Manga object of this object
+     * Returns the Anime object of this object
      *
-     * @return Manga Object
+     * @return Anime Object
      * @throws IOException
      * @throws ParseException
      */
     public Anime getAnime() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
     }
 }

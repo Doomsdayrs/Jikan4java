@@ -75,11 +75,11 @@ public class TopCharacter extends TopList {
         return name_kanji;
     }
 
-    public ArrayList<TopCharacterAnime> getAnimeographies() {
+    public ArrayList<TopCharacterAnime> getCharacterAnimes() {
         return characterAnimes;
     }
 
-    public ArrayList<TopCharacterManga> getMangaographies() {
+    public ArrayList<TopCharacterManga> getCharacterMangas() {
         return characterMangas;
     }
 

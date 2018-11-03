@@ -1,5 +1,23 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
-/*
+package com.github.Doomsdayrs.Jikan4java.types.Support.Basic;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+
+/**
+ * Jikan4java
+ * 03 / November / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
+ /*
 This file is part of Jikan4java.
 
 Jikan4java is free software: you can redistribute it and/or modify
@@ -15,19 +33,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
-
-public class AnimeBasic {
+public class PeopleBasic {
     @JsonProperty("mal_id")
     private int mal_id;
 
@@ -57,13 +63,13 @@ public class AnimeBasic {
     }
 
     /**
-     * Returns the Anime object of this object
+     * Returns the Person object of this object
      *
-     * @return Anime Object
+     * @return Person Object
      * @throws IOException
      * @throws ParseException
      */
-    public Anime getAnime() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
+    public Person getPerson() throws IOException, ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Person.class);
     }
 }

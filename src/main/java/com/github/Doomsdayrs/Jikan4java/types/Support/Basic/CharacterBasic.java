@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Basic;
 /*
 This file is part of Jikan4java.
 
@@ -17,28 +17,33 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Basic.AnimeBasic;
 
-public class AnimeStaffPosition {
-    @JsonProperty("position")
-    private String position;
+public class CharacterBasic {
+    @JsonProperty("mal_id")
+    private int mal_id;
 
-    @JsonProperty("anime")
-    private AnimeBasic animeBasic;
+    @JsonProperty("url")
+    private String url;
 
-    public String getPosition() {
-        return position;
+    @JsonProperty("image_url")
+    private String image_url;
+
+    @JsonProperty("name")
+    private String name;
+
+    public int getMal_id() {
+        return mal_id;
     }
 
-    public AnimeBasic getAnimeBasic() {
-        return animeBasic;
+    public String getUrl() {
+        return url;
     }
 
-    @Override
-    public String toString() {
-        return "AnimeStaffPosition{" +
-                "position='" + position + '\'' +
-                ", animeBasic=" + animeBasic +
-                '}';
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public String getName() {
+        return name;
     }
 }

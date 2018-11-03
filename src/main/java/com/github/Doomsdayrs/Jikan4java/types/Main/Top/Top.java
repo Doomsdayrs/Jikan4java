@@ -1,5 +1,12 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Top;
 
+import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime.TopAnime;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character.TopCharacter;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Manga.TopManga;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Person.TopPerson;
+
+import java.util.ArrayList;
+
 /**
  * Jikan4java
  * 01 / November / 2018
@@ -27,6 +34,18 @@ public class Top {
     private boolean request_cached;
     private int request_cache_expiry;
 
+    //Anime
+    private ArrayList<TopAnime> topAnimes;
+
+    //Character
+    private ArrayList<TopCharacter> topCharacters;
+
+    //Manga
+    private ArrayList<TopManga> topMangas;
+
+    //Person
+    private ArrayList<TopPerson> topPeople;
+
     public String getRequest_hash() {
         return request_hash;
     }
@@ -39,12 +58,52 @@ public class Top {
         return request_cache_expiry;
     }
 
+    /**
+     * Only applies to Animes
+     *
+     * @return TopAnime
+     */
+    public ArrayList<TopAnime> getTopAnimes() {
+        return topAnimes;
+    }
+
+    /**
+     * Only applies to Characters
+     *
+     * @return TopCharacter
+     */
+    public ArrayList<TopCharacter> getTopCharacters() {
+        return topCharacters;
+    }
+
+    /**
+     * Only applies to Mangas
+     *
+     * @return TopManga
+     */
+    public ArrayList<TopManga> getTopMangas() {
+        return topMangas;
+    }
+
+    /**
+     * Only applies to People
+     *
+     * @return TopPeople
+     */
+    public ArrayList<TopPerson> getTopPeople() {
+        return topPeople;
+    }
+
     @Override
     public String toString() {
         return "Top{" +
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
+                ", topAnimes=" + topAnimes +
+                ", topCharacters=" + topCharacters +
+                ", topMangas=" + topMangas +
+                ", topPeople=" + topPeople +
                 '}';
     }
 }

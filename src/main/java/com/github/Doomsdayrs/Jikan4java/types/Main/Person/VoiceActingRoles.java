@@ -17,6 +17,8 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Basic.AnimeBasic;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Basic.CharacterBasic;
 
 public class VoiceActingRoles {
     @JsonProperty("role")
@@ -36,5 +38,14 @@ public class VoiceActingRoles {
 
     public CharacterBasic getCharacterBasic() {
         return characterBasic;
+    }
+
+    @Override
+    public String toString() {
+        return "VoiceActingRoles{" +
+                "role='" + role + '\'' +
+                ", animeBasic=" + animeBasic +
+                ", characterBasic=" + characterBasic +
+                '}';
     }
 }

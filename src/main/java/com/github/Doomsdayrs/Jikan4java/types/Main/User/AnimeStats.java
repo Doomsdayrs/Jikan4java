@@ -26,9 +26,9 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class AnimeStats {
     @JsonProperty("days_watched")
-    private int days_watched;
+    private float days_watched;
     @JsonProperty("mean_score")
-    private int mean_score;
+    private float mean_score;
     @JsonProperty("watching")
     private int watching;
     @JsonProperty("completed")
@@ -46,11 +46,11 @@ public class AnimeStats {
     @JsonProperty("episodes_watched")
     private int episodes_watched;
 
-    public int getDays_watched() {
+    public float getDays_watched() {
         return days_watched;
     }
 
-    public int getMean_score() {
+    public float getMean_score() {
         return mean_score;
     }
 

@@ -66,7 +66,7 @@ public class TopCharacterManga {
      * @throws IOException
      * @throws ParseException
      */
-    public Manga getCharacter() throws IOException, ParseException {
+    public Manga getManga() throws IOException, ParseException {
         return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
     }
 

@@ -1,7 +1,16 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Main.User.Friends.Friends;
+import com.github.Doomsdayrs.Jikan4java.types.Main.User.History.History;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -54,7 +63,114 @@ public class User {
     private ArrayList<AnimeStats> animeStats;
     @JsonProperty("manga_stats")
     private ArrayList<MangaStats> mangaStats;
-    // Make favorites object
+    @JsonProperty("favorites")
+    private Favorites favorites;
     @JsonProperty("about")
     private String about;
+
+    public String getRequest_hash() {
+        return request_hash;
+    }
+
+    public boolean isRequest_cached() {
+        return request_cached;
+    }
+
+    public int getRequest_cache_expiry() {
+        return request_cache_expiry;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public String getLast_online() {
+        return last_online;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getJoined() {
+        return joined;
+    }
+
+    public ArrayList<AnimeStats> getAnimeStats() {
+        return animeStats;
+    }
+
+    public ArrayList<MangaStats> getMangaStats() {
+        return mangaStats;
+    }
+
+    public Favorites getFavorites() {
+        return favorites;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    /**
+     * Returns history of the person
+     *
+     * @param type Anime or Manga
+     * @return History object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public History getHistory(String type) throws IOException, ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/history/" + type.toLowerCase()).build()).execute().body().string())).toJSONString(), History.class);
+    }
+
+
+    /**
+     * Returns friends of the person
+     *
+     * @param page Page to call for
+     * @return Friends object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public Friends getFriends(int page) throws IOException, ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body().string())).toJSONString(), Friends.class);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
+                ", username='" + username + '\'' +
+                ", url='" + url + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", last_online='" + last_online + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", location='" + location + '\'' +
+                ", joined='" + joined + '\'' +
+                ", animeStats=" + animeStats +
+                ", mangaStats=" + mangaStats +
+                ", favorites=" + favorites +
+                ", about='" + about + '\'' +
+                '}';
+    }
 }

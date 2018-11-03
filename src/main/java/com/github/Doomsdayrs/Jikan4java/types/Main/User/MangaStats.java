@@ -26,9 +26,9 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class MangaStats {
     @JsonProperty("days_read")
-    private int days_read;
+    private float days_read;
     @JsonProperty("mean_score")
-    private int mean_score;
+    private float mean_score;
     @JsonProperty("reading")
     private int reading;
     @JsonProperty("completed")
@@ -48,11 +48,11 @@ public class MangaStats {
     @JsonProperty("volumes_read")
     private int volumes_read;
 
-    public int getDays_read() {
+    public float getDays_read() {
         return days_read;
     }
 
-    public int getMean_score() {
+    public float getMean_score() {
         return mean_score;
     }
 
