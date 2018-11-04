@@ -35,7 +35,7 @@ public class Favorites {
     private ArrayList<AnimeBasic> animes;
     @JsonProperty("manga")
     private ArrayList<MangaBasic> mangas;
-    @JsonProperty("character")
+    @JsonProperty("characters")
     private ArrayList<CharacterBasic> characters;
     @JsonProperty("people")
     private ArrayList<PeopleBasic> peoples;

@@ -1,5 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
+
 /**
  * Jikan4java
  * 03 / November / 2018
@@ -23,4 +27,12 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class AnimeList {
+    @JsonProperty("request_hash")
+    private String request_hash;
+    @JsonProperty("request_cached")
+    private boolean request_cached;
+    @JsonProperty("request_cache_expiry")
+    private int request_cache_expiry;
+    @JsonProperty("anime")
+    private ArrayList<AnimeListAnime> animes;
 }
