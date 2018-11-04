@@ -2,7 +2,7 @@
 Java api client for Jikan api
 Website for Jikan: https://jikan.moe/
 
-Currently this is in beta stages. Once I release version 1.0 it will be completely covering the Jikan api
+0.8 is the most updated version. With most functionality. 1.0 will have user objects, Complete documentation, and excessive comments.
 
 ## Capabilities
 Look at task list for it's API coverage
