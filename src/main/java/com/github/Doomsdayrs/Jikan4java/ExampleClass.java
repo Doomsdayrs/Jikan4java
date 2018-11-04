@@ -1,10 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.connection.User.UserConnection;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
-
 /**
  * Jikan4java
  * 28 / October / 2018
@@ -34,7 +29,7 @@ public class ExampleClass {
      *
      * @param args
      */
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) {
         /*
         System.out.println(new MangaConnection().search("Attack on titan").toString());
 
@@ -60,8 +55,9 @@ public class ExampleClass {
         System.out.println(new TopConnection().topSearch("manga",0,"").getTopMangas());
         System.out.println(new BasicConnection().topSearch("people",0,"").toString());
         System.out.println(new BasicConnection().topSearch("characters",0,"").toString());
+        System.out.println(new UserConnection().searchUser("kuglefang").toString);
         */
-        System.out.println(new UserConnection().searchUser("kuglefang").getAnimelist(1).toString());
+
     }
 
 }

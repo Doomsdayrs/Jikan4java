@@ -33,6 +33,14 @@ You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
 public class UserConnection {
+    /**
+     * Returns a user object
+     *
+     * @param name the name of the user to retrieve
+     * @return User
+     * @throws IOException
+     * @throws ParseException
+     */
     public User searchUser(String name) throws IOException, ParseException {
         return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/user/" + name).build()).execute().body().string())).toJSONString(), User.class);
     }
