@@ -1,5 +1,5 @@
 # Jikan4java
-Java api client for Jikan api
+Java api wrapper for Jikan api
 Website for Jikan: https://jikan.moe/
 
 0.8 is the most updated version. With most functionality. 1.0 will have user objects, Complete documentation, and excessive comments.
