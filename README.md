@@ -9,7 +9,7 @@ Look at task list for it's API coverage
 
 ### Basic documentation
 
->How to use things
+>How to use things, it's fairly basic. RN it's a find out by yourself since i haven't finished commenting
 ```java
 import Jikan4java.types.Anime.AnimeConnection;
 import org.json.simple.parser.ParseException;
