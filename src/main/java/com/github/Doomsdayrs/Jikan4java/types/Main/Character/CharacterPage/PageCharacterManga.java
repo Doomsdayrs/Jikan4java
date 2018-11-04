@@ -1,11 +1,10 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.User.History;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.BasicMeta;
 
 /**
  * Jikan4java
- * 03 / November / 2018
+ * 04 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
@@ -25,32 +24,39 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-public class History {
-    @JsonProperty("meta")
-    private BasicMeta basicMeta;
-    @JsonProperty("increment")
-    private int increment;
-    @JsonProperty("date")
-    private String date;
+public class PageCharacterManga {
+    @JsonProperty("mal_id")
+    private int mal_id;
+    @JsonProperty("type")
+    private String type;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("url")
+    private String url;
 
-    public BasicMeta getBasicMeta() {
-        return basicMeta;
+    public int getMal_id() {
+        return mal_id;
     }
 
-    public int getIncrement() {
-        return increment;
+    public String getType() {
+        return type;
     }
 
-    public String getDate() {
-        return date;
+    public String getName() {
+        return name;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     @Override
     public String toString() {
-        return "History{" +
-                "meta=" + basicMeta +
-                ", increment=" + increment +
-                ", date='" + date + '\'' +
+        return "PageCharacterManga{" +
+                "mal_id=" + mal_id +
+                ", type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

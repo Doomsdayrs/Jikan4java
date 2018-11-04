@@ -24,6 +24,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -43,23 +44,38 @@ public class AnimeConnection {
     }
 
     /**
-     * Searches for an anime
-     *
+     * Searches for an anime and retrieves first result
      * @param title title to be searched
-     * @return an Anime object
+     * @returnan Anime object
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
-    public Anime search(String title) throws IOException, ParseException {
+    public Anime searchSimple(String title) throws IOException, ParseException {
         JSONObject animeJSON = this.searchSite(title);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(animeJSON.toJSONString(), Anime.class);
     }
 
+    /**
+     * Searches and returns search result page
+     *
+     * @param title title to search for
+     * @param page  page number
+     * @return AnimePage
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public AnimePage searchPage(String title, int page) throws IOException, ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/anime?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), AnimePage.class);
+    }
 
     /**
      * searches Jikan api for anime
      *
      * @param search The name of what you are searching for
      * @return Returns an JSON object of the first result
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
     private JSONObject searchSite(String search) throws IOException, ParseException {
         Request request = new Request.Builder().url(baseURL + "/search/anime?q=" + search + "&page=1").build();

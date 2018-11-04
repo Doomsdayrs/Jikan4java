@@ -24,6 +24,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.MangaPage.MangaPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -55,6 +56,18 @@ public class MangaConnection {
         return mapper.readValue(mangaJSON.toJSONString(), Manga.class);
     }
 
+    /**
+     * Searches and returns search result page
+     *
+     * @param title title to search for
+     * @param page  page number
+     * @return MangaPage
+     * @throws IOException                           IOException
+     * @throws org.json.simple.parser.ParseException ParseException
+     */
+    public MangaPage searchPage(String title, int page) throws IOException, org.json.simple.parser.ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/manga?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), MangaPage.class);
+    }
 
     /**
      * Searches Jikan api for manga

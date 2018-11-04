@@ -1,7 +1,6 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.User.History;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 
 /**
  * Jikan4java
@@ -25,7 +24,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-public class Meta extends MALData {
+public class PageCharacterAnime {
     @JsonProperty("mal_id")
     private int mal_id;
     @JsonProperty("type")
@@ -35,7 +34,6 @@ public class Meta extends MALData {
     @JsonProperty("url")
     private String url;
 
-    @Override
     public int getMal_id() {
         return mal_id;
     }
@@ -48,14 +46,13 @@ public class Meta extends MALData {
         return name;
     }
 
-    @Override
     public String getUrl() {
         return url;
     }
 
     @Override
     public String toString() {
-        return "Meta{" +
+        return "PageCharacterAnime{" +
                 "mal_id=" + mal_id +
                 ", type='" + type + '\'' +
                 ", name='" + name + '\'' +
@@ -63,4 +60,3 @@ public class Meta extends MALData {
                 '}';
     }
 }
-

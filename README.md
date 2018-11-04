@@ -18,31 +18,38 @@ import java.io.IOException;
 public class ExampleClass {
 public static void main(String[] args) throws IOException, ParseException {
     
+        // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
-
-        System.out.println(new AnimeConnection().search("Attack on titan").toString);
-
+        System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString());
         System.out.println(new CharacterConnection().search("Caster").toString());
-
         System.out.println(new PersonConnection().search("Hajime Isayama").toString());
 
-        System.out.println(new BasicConnection().searchAnimeGenre(1,0).toString());
+        // Returns search results
+        System.out.println(new AnimeConnection().searchPage("Attack on titan",1).toString());
+        System.out.println(new MangaConnection().searchPage("Tensei",1));
+        System.out.println(new CharacterConnection().searchPage("caster",1));
+        System.out.println(new PersonConnection().searchPage("Hajime Isayama", 1));
 
-        System.out.println(new BasicConnection().searchMangaGenre(1,0).toString());
-
-        System.out.println(new BasicConnection().seasonSearch(2016,"winter").toString());
-
-        System.out.println(new BasicConnection().seasonArchiveSearch().toString());
-
-        System.out.println(new BasicConnection().scheduleSearch().toString());
-
-        System.out.println(new BasicConnection().scheduleSearch("monday")); //`monday` can be replaced with any other day or unknown / other
         
-        System.out.println(new BasicConnection().topSearch("anime",0,"").toString());
-        System.out.println(new BasicConnection().topSearch("manga",0,"").toString());
-        System.out.println(new BasicConnection().topSearch("people",0,"").toString());
-        System.out.println(new BasicConnection().topSearch("characters",0,"").toString());    
-}
+        System.out.println(new GenreConnection().searchAnimeGenre(1,0).toString());
+        System.out.println(new GenreConnection().searchMangaGenre(1,0).toString());
+
+        System.out.println(new SeasonConnection().seasonSearch(2016,"winter").toString());
+        System.out.println(new SeasonConnection().seasonArchiveSearch().toString());
+
+        System.out.println(new ScheduleConnection().scheduleSearch().toString());
+        System.out.println(new ScheduleConnection().scheduleSearch("monday").toString()); //`monday` can be replaced with any other day or unknown / other
+
+        System.out.println(new TopConnection().topSearch("anime",0,"").toString());
+        System.out.println(new TopConnection().topSearch("manga",0,"").toString());
+        System.out.println(new TopConnection().topSearch("people",0,"").toString());
+        System.out.println(new TopConnection().topSearch("characters",0,"").toString());
+        
+        System.out.println(new UserConnection().searchUser("kuglefang").toString()); 
+        
+        System.out.println(new MagazineConnection().search(11,1));
+        System.out.println(new ProducerConnection().search(135,1));
+        }
 }
 ```
 
@@ -51,16 +58,17 @@ public static void main(String[] args) throws IOException, ParseException {
 - [X] Search and return Manga
 - [X] Search and return Person
 - [X] Search and return Character
+- [X] Search and return Search results of all of above
 - [X] Search and return GenreAnimeSearch
 - [X] Search and return GenreMangaSearch
 - [X] Search and return Season
 - [X] Search and return SeasonArchive
 - [X] Search and return Top list
-- [ ] Search and return Producer
-- [ ] Search and return Magazine
-- [ ] Search and return User
-- [ ] Search and return Meta
-- [ ] Search and return Search results of all of above
+- [X] Search and return Producer
+- [X] Search and return Magazine
+- [ ] Search and return User >Critical Error preventing the completion at the current time
+- [ ] Search and return Meta >Yeah no.
+
 - [X] Add 'related' objects
 
 ### Dependencies 

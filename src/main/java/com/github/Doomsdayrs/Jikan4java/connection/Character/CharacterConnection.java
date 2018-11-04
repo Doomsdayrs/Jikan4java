@@ -24,6 +24,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage.CharacterPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -53,6 +54,19 @@ public class CharacterConnection {
         JSONObject characterJSON = this.searchSite(name);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(characterJSON.toJSONString(), Character.class);
+    }
+
+    /**
+     * Searches and returns search result page
+     *
+     * @param title title to search for
+     * @param page  page number
+     * @return CharacterPage
+     * @throws IOException                           IOException
+     * @throws org.json.simple.parser.ParseException ParseException
+     */
+    public CharacterPage searchPage(String title, int page) throws IOException, org.json.simple.parser.ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/character?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), CharacterPage.class);
     }
 
     /**
