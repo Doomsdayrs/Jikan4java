@@ -34,7 +34,7 @@ public class MangaPage {
     @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
     @JsonProperty("results")
-    private ArrayList<MangaPageManga> animes;
+    private ArrayList<MangaPageManga> mangas;
     @JsonProperty("last_page")
     private int last_page;
 
@@ -50,8 +50,8 @@ public class MangaPage {
         return request_cache_expiry;
     }
 
-    public ArrayList<MangaPageManga> getAnimes() {
-        return animes;
+    public ArrayList<MangaPageManga> getMangas() {
+        return mangas;
     }
 
     public int getLast_page() {
@@ -64,7 +64,7 @@ public class MangaPage {
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", animes=" + animes +
+                ", animes=" + mangas +
                 ", last_page=" + last_page +
                 '}';
     }
