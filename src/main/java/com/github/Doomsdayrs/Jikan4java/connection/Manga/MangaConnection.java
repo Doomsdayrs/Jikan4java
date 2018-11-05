@@ -40,6 +40,9 @@ public class MangaConnection {
     private final String baseURL = "https://api.jikan.moe/v3";
 
 
+    /**
+     * Constructor
+     */
     public MangaConnection() {
     }
 

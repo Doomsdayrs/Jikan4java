@@ -36,6 +36,11 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 public class MagazineConnection {
 
     /**
+     * Constructor
+     */
+    public MagazineConnection(){}
+
+    /**
      * Retrieves Magazines
      *
      * @param ID   ID of magazine

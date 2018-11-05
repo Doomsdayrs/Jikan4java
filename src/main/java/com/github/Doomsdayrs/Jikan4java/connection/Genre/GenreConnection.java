@@ -38,6 +38,11 @@ public class GenreConnection {
     private final String baseURL = "https://api.jikan.moe/v3";
 
     /**
+     * Constructor
+     */
+    public GenreConnection(){}
+
+    /**
      * Searches for manga by ID, There are more than one page since each page has a hundred entries max.
      *
      * @param genreID The genre ID

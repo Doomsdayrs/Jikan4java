@@ -39,6 +39,9 @@ public class CharacterConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
 
+    /**
+     * Constructor
+     */
     public CharacterConnection() {
     }
 
