@@ -1,3 +1,22 @@
+/*
+ *
+ * This file is part of Jikan4java.
+ *
+ * Jikan4java is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Foobar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
+ * /
+ */
+
 package com.github.Doomsdayrs.Jikan4java.connection.Manga;
 /**
  * Jikan4java
@@ -31,15 +50,17 @@ import okhttp3.Response;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.text.ParseException;
 
 public class MangaConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
 
-
+    /**
+     * Constructor
+     */
     public MangaConnection() {
     }
 
@@ -62,8 +83,8 @@ public class MangaConnection {
      * @param title title to search for
      * @param page  page number
      * @return MangaPage
-     * @throws IOException                           IOException
-     * @throws org.json.simple.parser.ParseException ParseException
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
     public MangaPage searchPage(String title, int page) throws IOException, org.json.simple.parser.ParseException {
         return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/manga?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), MangaPage.class);
@@ -92,13 +113,5 @@ public class MangaConnection {
         return (JSONObject) parser.parse(response.body().string());
     }
 
-    /**
-     * Test method
-     *
-     * @throws IOException IOException
-     */
-    public void test() throws IOException, org.json.simple.parser.ParseException {
-        System.out.println(this.searchSite("ASSASSIN DE ARU ORE NO SUTETASU GA YUUSHA YORI MO AKIRAKA NI TSUYOI NODAGA").toJSONString());
-    }
 }
 

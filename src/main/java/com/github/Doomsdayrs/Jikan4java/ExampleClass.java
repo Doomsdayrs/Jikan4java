@@ -1,4 +1,28 @@
+/*
+ *
+ * This file is part of Jikan4java.
+ *
+ * Jikan4java is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Foobar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
+ * /
+ */
+
 package com.github.Doomsdayrs.Jikan4java;
+
+import com.github.Doomsdayrs.Jikan4java.connection.MetaConnection.MetaConnection;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 /**
  * Jikan4java
@@ -29,7 +53,7 @@ public class ExampleClass {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException {
         /*
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
@@ -63,7 +87,7 @@ public class ExampleClass {
         System.out.println(new MagazineConnection().search(11,1));
         System.out.println(new ProducerConnection().search(135,1));
         */
-
+        System.out.println(new MetaConnection().getStatus().toString());
 
     }
 

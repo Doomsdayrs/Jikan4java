@@ -1,3 +1,22 @@
+/*
+ *
+ * This file is part of Jikan4java.
+ *
+ * Jikan4java is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Foobar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
+ * /
+ */
+
 package com.github.Doomsdayrs.Jikan4java.connection.Person;
 /**
  * Jikan4java
@@ -39,6 +58,20 @@ public class PersonConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
 
+    /**
+     * Constructor
+     */
+    public PersonConnection() {
+    }
+
+    /**
+     * Searches
+     *
+     * @param title
+     * @return
+     * @throws IOException
+     * @throws ParseException
+     */
     public Person search(String title) throws IOException, org.json.simple.parser.ParseException {
         JSONObject personJSON = this.searchSite(title);
 
@@ -52,10 +85,10 @@ public class PersonConnection {
      * @param title title to search for
      * @param page  page number
      * @return PersonPage
-     * @throws IOException                           IOException
-     * @throws org.json.simple.parser.ParseException ParseException
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
      */
-    public PersonPage searchPage(String title, int page) throws IOException, org.json.simple.parser.ParseException {
+    public PersonPage searchPage(String title, int page) throws IOException, ParseException {
         return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/person?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), PersonPage.class);
     }
 
@@ -82,12 +115,4 @@ public class PersonConnection {
         return (JSONObject) parser.parse(response.body().string());
     }
 
-    /**
-     * Test method
-     *
-     * @throws IOException IOException
-     */
-    public void test() throws IOException, ParseException {
-        System.out.println(this.searchSite("Hajime Isayama").toJSONString());
-    }
 }
