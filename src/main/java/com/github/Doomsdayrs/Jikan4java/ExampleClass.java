@@ -89,7 +89,7 @@ public class ExampleClass {
     /**
      * Example method
      *
-     * @param args
+     * @param args Args
      */
     public static void main(String[] args) throws IOException, ParseException {
         /*

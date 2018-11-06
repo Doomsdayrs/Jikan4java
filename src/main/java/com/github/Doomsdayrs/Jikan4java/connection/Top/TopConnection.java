@@ -116,7 +116,7 @@ public class TopConnection {
     public Top topSearch(String type, int pageNumber, String subtype) throws IOException, ParseException {
         boolean optionals = false;
         String optional = "";
-        if (subtype != "" || pageNumber != 0) {
+        if (!subtype.equals("") || pageNumber != 0) {
             optionals = true;
         }
         if (optionals) {
