@@ -41,7 +41,6 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.types.Support.JikanRequests;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import okhttp3.OkHttpClient;
@@ -54,9 +53,27 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Person implements JikanRequests, MALData {
+public class Person extends MALData {
     @JsonIgnore
     private final String baseURL = "https://api.jikan.moe/v3";
+
+    @JsonProperty("request_hash")
+    private String request_hash;
+
+    @JsonProperty("request_cached")
+    private boolean request_cached;
+
+    @JsonProperty("request_cache_expiry")
+    private int request_cache_expiry;
+
+    @JsonProperty("mal_id")
+    private int mal_id;
+
+    @JsonProperty("url")
+    private String url;
+
+    @JsonProperty("image_url")
+    private String image_url;
 
     @JsonProperty("website_url")
     private String website_url;
@@ -91,35 +108,6 @@ public class Person implements JikanRequests, MALData {
     @JsonProperty("published_manga")
     private ArrayList<PublishedManga> publishedMangas;
 
-    @Override
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    @Override
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    @Override
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    @Override
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    @Override
-    public String getUrl() {
-        return url;
-    }
-
-    @Override
-    public String getImage_url() {
-        return image_url;
-    }
 
     @JsonProperty
     public Pictures getPictures() throws IOException, ParseException {

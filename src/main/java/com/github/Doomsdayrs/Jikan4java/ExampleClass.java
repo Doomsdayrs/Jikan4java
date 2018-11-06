@@ -57,7 +57,7 @@
 
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.MetaConnection.MetaConnection;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -95,7 +95,7 @@ public class ExampleClass {
         /*
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
-
+        System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString());
         System.out.println(new CharacterConnection().search("Caster").toString());
         System.out.println(new PersonConnection().search("Hajime Isayama").toString());
 
@@ -124,10 +124,9 @@ public class ExampleClass {
 
         System.out.println(new MagazineConnection().search(11,1));
         System.out.println(new ProducerConnection().search(135,1));
-                System.out.println(new MetaConnection().getStatus().toString());
         */
+        System.out.println(new MetaConnection().getStatus().toString());
 
-        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getMal_id());
     }
 
 }
