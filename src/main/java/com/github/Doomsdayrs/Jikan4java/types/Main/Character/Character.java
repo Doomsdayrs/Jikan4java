@@ -1,28 +1,43 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Character;
-/**
- * Jikan4java
- * 28 / October / 2018
- *
- * @author github.com/doomsdayrs
- */
 /*
-This file is part of Jikan4java.
+ *
+ * This file is part of Jikan4java.
+ *
+ * Jikan4java is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Foobar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
+ * /
+ */
 
-Jikan4java is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+/*
+ *
+ * This file is part of Jikan4java.
+ *
+ * Jikan4java is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Foobar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
+ * /
+ */
 
-Foobar is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+package com.github.Doomsdayrs.Jikan4java.types.Main.Character;
 
-You should have received a copy of the GNU General Public License
-along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
-*/
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
@@ -37,9 +52,13 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 public class Character {
-    @JsonIgnore
-    private final String baseURL = "https://api.jikan.moe/v3";
 
     @JsonProperty("request_hash")
     private String request_hash;
@@ -123,6 +142,7 @@ public class Character {
     @JsonProperty
     public Pictures getPictures() throws IOException, ParseException {
         OkHttpClient client = new OkHttpClient();
+        String baseURL = "https://api.jikan.moe/v3";
         Request request = new Request.Builder().url(baseURL + "/character/" + mal_id + "/pictures").build();
         Response response = client.newCall(request).execute();
         JSONParser parser = new JSONParser();

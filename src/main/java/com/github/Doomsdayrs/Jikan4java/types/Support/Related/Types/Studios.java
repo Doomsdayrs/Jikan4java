@@ -17,12 +17,6 @@
  * /
  */
 
-/**
- * Jikan4java
- * 28 / October / 2018
- *
- * @author github.com/doomsdayrs
- */
 /*
  *
  * This file is part of Jikan4java.
@@ -46,6 +40,12 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.Related.Types;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Jikan4java
+ * 28 / October / 2018
+ *
+ * @author github.com/doomsdayrs
+ */
 public class Studios {
     @JsonProperty("mal_id")
     private int mal_id;
