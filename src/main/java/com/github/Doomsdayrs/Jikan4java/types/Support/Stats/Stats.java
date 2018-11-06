@@ -1,45 +1,23 @@
-/*
- *
- * This file is part of Jikan4java.
- *
- * Jikan4java is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Foobar is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * /
- */
-
-/*
- *
- * This file is part of Jikan4java.
- *
- * Jikan4java is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Foobar is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * /
- */
-
 package com.github.Doomsdayrs.Jikan4java.types.Support.Stats;
+/*
+ * This file is part of Jikan4java.
+ *
+ * Jikan4java is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Foobar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
+import com.github.Doomsdayrs.Jikan4java.types.Support.JikanRequests;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Score.Score;
 
 /**
@@ -48,32 +26,7 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Score.Score;
  *
  * @author github.com/doomsdayrs
  */
-/*
-This file is part of Jikan4java.
-
-Jikan4java is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Foobar is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
-*/
-public class Stats extends MALData {
-
-    @JsonProperty("request_hash")
-    private String request_hash;
-
-    @JsonProperty("request_cached")
-    private boolean request_cached;
-
-    @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+public class Stats implements JikanRequests {
 
     @JsonProperty("watching")
     private int watching;
@@ -96,14 +49,17 @@ public class Stats extends MALData {
     @JsonProperty("scores")
     private Score scores;
 
+    @Override
     public String getRequest_hash() {
         return request_hash;
     }
 
+    @Override
     public boolean isRequest_cached() {
         return request_cached;
     }
 
+    @Override
     public int getRequest_cache_expiry() {
         return request_cache_expiry;
     }
@@ -132,20 +88,19 @@ public class Stats extends MALData {
         return total;
     }
 
-
     @Override
     public String toString() {
         return "Stats{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", watching=" + watching +
+                "watching=" + watching +
                 ", completed=" + completed +
                 ", on_hold=" + on_hold +
                 ", dropped=" + dropped +
                 ", plan_to_watch=" + plan_to_watch +
                 ", total=" + total +
-                ", scores=" + scores.toString() +
+                ", scores=" + scores +
+                ", request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
                 '}';
     }
 }

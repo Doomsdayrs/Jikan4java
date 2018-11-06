@@ -1,42 +1,21 @@
-/*
- *
- * This file is part of Jikan4java.
- *
- * Jikan4java is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Foobar is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * /
- */
-
-/*
- *
- * This file is part of Jikan4java.
- *
- * Jikan4java is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Foobar is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * /
- */
-
 package com.github.Doomsdayrs.Jikan4java.types.Main.Anime;
+/*
+ * This file is part of Jikan4java.
+ *
+ * Jikan4java is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Foobar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,12 +23,9 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Charact
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Episodes.Episodes;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Videos.Video;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Forum;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MoreInfo;
+import com.github.Doomsdayrs.Jikan4java.types.Support.*;
 import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Producer;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
 import okhttp3.OkHttpClient;
@@ -68,20 +44,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Anime extends MALData {
-
-    @JsonProperty("request_hash")
-    private String request_hash;
-    @JsonProperty("request_cached")
-    private boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
-    @JsonProperty("mal_id")
-    private int mal_id;
-    @JsonProperty("url")
-    private String url;
-    @JsonProperty("image_url")
-    private String iconURL;
+public class Anime implements JikanRequests, MALData {
     @JsonProperty("trailer_url")
     private String trailer_url;
     @JsonProperty("title")
@@ -149,28 +112,34 @@ public class Anime extends MALData {
     public Anime() {
     }
 
+    @Override
     public String getRequest_hash() {
         return request_hash;
     }
 
+    @Override
     public boolean isRequest_cached() {
         return request_cached;
     }
 
+    @Override
     public int getRequest_cache_expiry() {
         return request_cache_expiry;
     }
 
+    @Override
     public int getMal_id() {
         return mal_id;
     }
 
+    @Override
     public String getUrl() {
         return url;
     }
 
-    public String getIconURL() {
-        return iconURL;
+    @Override
+    public String getImage_url() {
+        return image_url;
     }
 
     public String getTrailer_url() {
@@ -415,42 +384,42 @@ public class Anime extends MALData {
     @Override
     public String toString() {
         return "Anime{" +
-                "request_hash='" + request_hash + '\'' +
-                ",\n request_cached=" + request_cached +
-                ",\n request_cache_expiry=" + request_cache_expiry +
-                ",\n mal_id=" + mal_id +
-                ",\n url='" + url + '\'' +
-                ",\n iconURL='" + iconURL + '\'' +
-                ",\n trailer_url='" + trailer_url + '\'' +
-                ",\n title='" + title + '\'' +
-                ",\n title_english='" + title_english + '\'' +
-                ",\n title_japanese='" + title_japanese + '\'' +
-                ",\n title_synonyms=" + title_synonyms +
-                ",\n type='" + type + '\'' +
-                ",\n source='" + source + '\'' +
-                ",\n episodes=" + episodes +
-                ",\n status='" + status + '\'' +
-                ",\n aired=" + aired +
-                ",\n airing=" + airing +
-                ",\n duration='" + duration + '\'' +
-                ",\n rating='" + rating + '\'' +
-                ",\n score=" + score +
-                ",\n scored_by=" + scored_by +
-                ",\n rank=" + rank +
-                ",\n popularity=" + popularity +
-                ",\n members=" + members +
-                ",\n favorites=" + favorites +
-                ",\n synopsis='" + synopsis + '\'' +
-                ",\n background='" + background + '\'' +
-                ",\n premiered='" + premiered + '\'' +
-                ",\n broadcast='" + broadcast + '\'' +
-                ",\n related=" + related +
-                ",\n producers=" + producers +
-                ",\n licensors=" + licensors +
-                ",\n studios=" + studios +
-                ",\n genres=" + genres +
-                ",\n opening_themes=" + opening_themes +
-                ",\n ending_themes=" + ending_themes +
+                "trailer_url='" + trailer_url + '\'' +
+                ", title='" + title + '\'' +
+                ", title_english='" + title_english + '\'' +
+                ", title_japanese='" + title_japanese + '\'' +
+                ", title_synonyms=" + title_synonyms +
+                ", type='" + type + '\'' +
+                ", source='" + source + '\'' +
+                ", episodes=" + episodes +
+                ", status='" + status + '\'' +
+                ", aired=" + aired +
+                ", airing=" + airing +
+                ", duration='" + duration + '\'' +
+                ", rating='" + rating + '\'' +
+                ", score=" + score +
+                ", scored_by=" + scored_by +
+                ", rank=" + rank +
+                ", popularity=" + popularity +
+                ", members=" + members +
+                ", favorites=" + favorites +
+                ", synopsis='" + synopsis + '\'' +
+                ", background='" + background + '\'' +
+                ", premiered='" + premiered + '\'' +
+                ", broadcast='" + broadcast + '\'' +
+                ", related=" + related +
+                ", producers=" + producers +
+                ", licensors=" + licensors +
+                ", studios=" + studios +
+                ", genres=" + genres +
+                ", opening_themes=" + opening_themes +
+                ", ending_themes=" + ending_themes +
+                ", request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
+                ", mal_id=" + mal_id +
+                ", url='" + url + '\'' +
+                ", image_url='" + image_url + '\'' +
                 '}';
     }
 }

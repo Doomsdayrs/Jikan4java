@@ -62,7 +62,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 */
-public class BasicMeta extends MALData {
+public class BasicMeta {
     @JsonProperty("mal_id")
     private int mal_id;
     @JsonProperty("type")
@@ -72,7 +72,6 @@ public class BasicMeta extends MALData {
     @JsonProperty("url")
     private String url;
 
-    @Override
     public int getMal_id() {
         return mal_id;
     }
@@ -85,7 +84,6 @@ public class BasicMeta extends MALData {
         return name;
     }
 
-    @Override
     public String getUrl() {
         return url;
     }
