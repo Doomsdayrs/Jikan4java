@@ -9,8 +9,6 @@ description = """Jikan4java, Java wrapper for the Jikan api"""
 sourceCompatibility = 8
 targetCompatibility = 8
 
-
-
 repositories {
         
      maven { url "http://repo.maven.apache.org/maven2" }

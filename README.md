@@ -70,37 +70,45 @@ public static void main(String[] args) throws IOException, ParseException {
 }
 ```
 
-## Dependencies 
-```xml
-<dependencies>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>3.11.0</version>
-        </dependency>
-        <!-- Json -->
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-
-        <dependency>
-            <!-- Note: core-annotations version x.y.0 is generally compatible with
-                 (identical to) version x.y.1, x.y.2, etc. -->
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-</dependencies>
-```
+## What it relies on 
+- Maven
+    ```xml
+    <dependencies>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>3.11.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.json-simple</groupId>
+                <artifactId>json-simple</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+          
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.9.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.9.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.6</version>
+            </dependency>
+    </dependencies>
+    ```
+- Gradle
+    ```groovy
+      dependencies {
+          compile group: 'com.squareup.okhttp3', name: 'okhttp', version:'3.11.0'
+          compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version:'2.9.7'
+          compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version:'2.9.7'
+          compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.9.7'
+          compile group: 'com.googlecode.json-simple', name: 'json-simple', version:'1.1.1'
+      }
+    ```
