@@ -53,23 +53,24 @@ public static void main(String[] args) throws IOException, ParseException {
 }
 ```
 
-### Task list
-- [X] Search and return Anime
-- [X] Search and return Manga
-- [X] Search and return Person
-- [X] Search and return Character
-- [X] Search and return Search results of all of above
-- [X] Search and return GenreAnimeSearch
-- [X] Search and return GenreMangaSearch
-- [X] Search and return Season
-- [X] Search and return SeasonArchive
-- [X] Search and return Top list
-- [X] Search and return Producer
-- [X] Search and return Magazine
-- [ ] Search and return User >Critical Error preventing the completion at the current time
-- [ ] Search and return Meta >Yeah no.
-
-- [X] Add 'related' objects
+### Functionality
+- Basic
+  - [X] Search and return Anime
+  - [X] Search and return Manga
+  - [X] Search and return Person
+  - [X] Search and return Character
+- Search
+  - [X] Search and return Search results of all of above
+  - [X] Search and return GenreAnimeSearch
+  - [X] Search and return GenreMangaSearch
+  - [X] Search and return Season
+  - [X] Search and return SeasonArchive
+  - [X] Search and return Top list
+  - [X] Search and return Producer
+  - [X] Search and return Magazine
+  - [ ] Search and return User >Critical Error preventing the completion at the current time
+- Other 
+  - [ ] Search and return Meta >Not till its formatted.
 
 ### Dependencies 
 ```xml

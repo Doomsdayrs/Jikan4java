@@ -19,6 +19,7 @@ package com.github.Doomsdayrs.Jikan4java;
  * @author github.com/doomsdayrs
  */
 public class ExampleClass {
+
     /**
      * Example method
      *
