@@ -20,7 +20,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Schedule;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.DaySchedule;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Day;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Schedule;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
 import okhttp3.OkHttpClient;
@@ -82,7 +82,7 @@ public class ScheduleConnection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public DaySchedule scheduleSearch(String day) throws IOException, ParseException {
+    public Day scheduleSearch(String day) throws IOException, ParseException {
         if (day.equalsIgnoreCase("monday")) {
             return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body().string())).toJSONString(), Monday.class);
         } else if (day.equalsIgnoreCase("tuesday")) {
