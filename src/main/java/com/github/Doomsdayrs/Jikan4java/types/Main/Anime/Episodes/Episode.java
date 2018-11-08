@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Episodes;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Aired;
 
@@ -21,6 +22,7 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Aired;
  *
  * @author github.com/doomsdayrs
  */
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Episode {
     @JsonProperty("episode_id")
     private int episode_id;
