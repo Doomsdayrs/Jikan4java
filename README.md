@@ -5,9 +5,26 @@ Website for Jikan: https://jikan.moe/
 0.8 is the most updated version. With most functionality. 1.0 will have user objects, Complete documentation, and excessive comments.
 
 ## Capabilities
-Look at task list for it's API coverage
+- Basic
+  - [X] Search and return Anime
+  - [X] Search and return Manga
+  - [X] Search and return Person
+  - [X] Search and return Character
+- Search
+  - [X] Search and return Search results of all of above
+  - [X] Search and return GenreAnimeSearch
+  - [X] Search and return GenreMangaSearch
+  - [X] Search and return Season
+  - [X] Search and return SeasonArchive
+  - [X] Search and return Top list
+  - [X] Search and return Producer
+  - [X] Search and return Magazine
+  - [ ] Search and return User >Critical Error preventing the completion at the current time
+- Other 
+  - [ ] Search and return Meta >Not till its formatted.
 
-### Basic documentation
+
+## Basic documentation
 
 >How to use things, it's fairly basic. RN it's a find out by yourself since i haven't finished commenting
 ```java
@@ -53,55 +70,45 @@ public static void main(String[] args) throws IOException, ParseException {
 }
 ```
 
-### Task list
-- [X] Search and return Anime
-- [X] Search and return Manga
-- [X] Search and return Person
-- [X] Search and return Character
-- [X] Search and return Search results of all of above
-- [X] Search and return GenreAnimeSearch
-- [X] Search and return GenreMangaSearch
-- [X] Search and return Season
-- [X] Search and return SeasonArchive
-- [X] Search and return Top list
-- [X] Search and return Producer
-- [X] Search and return Magazine
-- [ ] Search and return User >Critical Error preventing the completion at the current time
-- [ ] Search and return Meta >Yeah no.
-
-- [X] Add 'related' objects
-
-### Dependencies 
-```xml
-<dependencies>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>3.11.0</version>
-        </dependency>
-        <!-- Json -->
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-
-        <dependency>
-            <!-- Note: core-annotations version x.y.0 is generally compatible with
-                 (identical to) version x.y.1, x.y.2, etc. -->
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-</dependencies>
-```
+## What it relies on 
+- Maven
+    ```xml
+    <dependencies>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>3.11.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.json-simple</groupId>
+                <artifactId>json-simple</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+          
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.9.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.9.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.6</version>
+            </dependency>
+    </dependencies>
+    ```
+- Gradle
+    ```groovy
+      dependencies {
+          compile group: 'com.squareup.okhttp3', name: 'okhttp', version:'3.11.0'
+          compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version:'2.9.7'
+          compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version:'2.9.7'
+          compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.9.7'
+          compile group: 'com.googlecode.json-simple', name: 'json-simple', version:'1.1.1'
+      }
+    ```
