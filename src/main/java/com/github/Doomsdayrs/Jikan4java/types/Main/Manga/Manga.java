@@ -40,7 +40,6 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class Manga {
-
     @JsonProperty("request_hash")
     private String request_hash;
     @JsonProperty("request_cached")
