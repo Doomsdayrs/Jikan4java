@@ -89,7 +89,7 @@ public class Manga {
     @JsonProperty("background")
     private String background;
     @JsonProperty("related")
-    private Related related;
+    private ArrayList<Related> related;
     @JsonProperty("genres")
     private ArrayList<Genre> genres;
     @JsonProperty("authors")
@@ -200,7 +200,7 @@ public class Manga {
         return background;
     }
 
-    public Related getRelated() {
+    public ArrayList<Related> getRelated() {
         return related;
     }
 
