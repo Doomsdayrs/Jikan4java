@@ -70,7 +70,7 @@ public static void main(String[] args) throws IOException, ParseException {
 }
 ```
 ## Known issues
-- Related objects that are empty will crash the search result. This is due to an api issue. 
+- API issue of user object being returned as an array list when empty. Future update of api will let me return Related feilds back to normal
 - User objects will not be working due to critical error in deserialization.
 ## What it relies on 
 - Maven
