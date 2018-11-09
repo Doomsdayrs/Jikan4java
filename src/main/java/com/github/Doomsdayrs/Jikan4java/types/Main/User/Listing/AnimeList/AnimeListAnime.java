@@ -25,7 +25,6 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-@Deprecated
 public class AnimeListAnime extends MALData {
 
     @JsonProperty("mal_id")
@@ -114,6 +113,125 @@ public class AnimeListAnime extends MALData {
 
     @JsonProperty("licensors")
     private ArrayList<Licensors> licensors;
+
+    @Override
+    public int getMal_id() {
+        return mal_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getVideo_url() {
+        return video_url;
+    }
+
+    @Override
+    public String getUrl() {
+        return url;
+    }
+
+    @Override
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getWatching_status() {
+        return watching_status;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getWatched_episodes() {
+        return watched_episodes;
+    }
+
+    public int getTotal_episodes() {
+        return total_episodes;
+    }
+
+    public int getAiring_status() {
+        return airing_status;
+    }
+
+    public String getSeason_name() {
+        return season_name;
+    }
+
+    public String getSeason_year() {
+        return season_year;
+    }
+
+    public boolean isHas_episode_video() {
+        return has_episode_video;
+    }
+
+    public boolean isHas_promo_video() {
+        return has_promo_video;
+    }
+
+    public boolean isHas_video() {
+        return has_video;
+    }
+
+    public boolean isIs_rewatching() {
+        return is_rewatching;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public String getWatch_start_date() {
+        return watch_start_date;
+    }
+
+    public String getWatch_end_date() {
+        return watch_end_date;
+    }
+
+    public String getDays() {
+        return days;
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public boolean isAdded_to_list() {
+        return added_to_list;
+    }
+
+    public ArrayList<Studios> getStudios() {
+        return studios;
+    }
+
+    public ArrayList<Licensors> getLicensors() {
+        return licensors;
+    }
 
     @Override
     public String toString() {

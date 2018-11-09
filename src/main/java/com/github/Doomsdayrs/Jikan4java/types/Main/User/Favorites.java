@@ -26,7 +26,6 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-@Deprecated
 public class Favorites {
     @JsonProperty("anime")
     private ArrayList<AnimeBasic> animes;

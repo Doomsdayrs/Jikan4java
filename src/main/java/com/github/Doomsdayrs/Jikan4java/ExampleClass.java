@@ -1,5 +1,10 @@
 package com.github.Doomsdayrs.Jikan4java;
 
+import com.github.Doomsdayrs.Jikan4java.connection.User.UserConnection;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -25,7 +30,7 @@ public class ExampleClass {
      *
      * @param args Args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException {
         /*
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
@@ -54,12 +59,13 @@ public class ExampleClass {
         System.out.println(new TopConnection().topSearch("people",0,"").toString());
         System.out.println(new TopConnection().topSearch("characters",0,"").toString());
 
-        System.out.println(new UserConnection().searchUser("kuglefang").toString());
+
 
         System.out.println(new MagazineConnection().search(11,1));
         System.out.println(new ProducerConnection().search(135,1));
                 System.out.println(new MetaConnection().getStatus().toString());
         */
+        System.out.println(new UserConnection().searchUser("Aerchan").toString());
     }
 
 }

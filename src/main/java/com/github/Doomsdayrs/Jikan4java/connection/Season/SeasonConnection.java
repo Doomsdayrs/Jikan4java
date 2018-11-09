@@ -1,60 +1,3 @@
-/*
- *
- * This file is part of Jikan4java.
- *
- * Jikan4java is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Foobar is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * /
- */
-
-/*
- *
- * This file is part of Jikan4java.
- *
- * Jikan4java is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Foobar is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * /
- */
-
-/*
- *
- * This file is part of Jikan4java.
- *
- * Jikan4java is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Foobar is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * /
- */
-
 package com.github.Doomsdayrs.Jikan4java.connection.Season;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -68,29 +11,26 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
+ * This file is part of Jikan4java.
+ * Jikan4java is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * Foobar is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
+ * ====================================================================
  * Jikan4java
  * 02 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
- /*
-This file is part of Jikan4java.
-
-Jikan4java is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Foobar is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
-*/
 public class SeasonConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
@@ -112,7 +52,7 @@ public class SeasonConnection {
      * @throws ParseException ParseException
      */
     public SeasonSearch seasonSearch(int year, String season) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/" + year + "/" + season).build()).execute().body().string())).toJSONString(), SeasonSearch.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/" + year + "/" + season).build()).execute().body()).string())).toJSONString(), SeasonSearch.class);
     }
 
     /**
@@ -123,7 +63,7 @@ public class SeasonConnection {
      * @throws ParseException ParseException
      */
     public SeasonArchive seasonArchiveSearch() throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/archive").build()).execute().body().string())).toJSONString(), SeasonArchive.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/archive").build()).execute().body()).string())).toJSONString(), SeasonArchive.class);
     }
 
 }

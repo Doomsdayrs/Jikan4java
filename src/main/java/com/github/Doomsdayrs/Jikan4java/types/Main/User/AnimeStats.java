@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-@Deprecated
 public class AnimeStats {
     @JsonProperty("days_watched")
     private float days_watched;

@@ -19,7 +19,7 @@ Website for Jikan: https://jikan.moe/
   - [X] Search and return Top list
   - [X] Search and return Producer
   - [X] Search and return Magazine
-  - [ ] Search and return User
+  - [X] Search and return User
 - Other 
   - [ ] Search and return Meta >Not till its formatted.
 
@@ -62,7 +62,7 @@ public static void main(String[] args) throws IOException, ParseException {
         System.out.println(new TopConnection().topSearch("people",0,"").toString());
         System.out.println(new TopConnection().topSearch("characters",0,"").toString());
         
-        System.out.println(new UserConnection().searchUser("kuglefang").toString()); 
+        System.out.println(new UserConnection().searchUser("AreChan").toString()); 
         
         System.out.println(new MagazineConnection().search(11,1));
         System.out.println(new ProducerConnection().search(135,1));

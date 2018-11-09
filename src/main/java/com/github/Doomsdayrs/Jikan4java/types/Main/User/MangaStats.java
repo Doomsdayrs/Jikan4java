@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-@Deprecated
 public class MangaStats {
     @JsonProperty("days_read")
     private float days_read;

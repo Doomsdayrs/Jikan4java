@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * This file is part of Jikan4java.
@@ -62,10 +63,20 @@ public class PeopleBasic {
      * Returns the Person object of this object
      *
      * @return Person Object
-     * @throws IOException
-     * @throws ParseException
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
     public Person getPerson() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Person.class);
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body()).string())).toJSONString(), Person.class);
+    }
+
+    @Override
+    public String toString() {
+        return "PeopleBasic{" +
+                "mal_id=" + mal_id +
+                ", url='" + url + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
