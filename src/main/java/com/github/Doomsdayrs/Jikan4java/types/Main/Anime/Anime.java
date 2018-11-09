@@ -104,7 +104,7 @@ public class Anime extends MALData {
     @JsonProperty("broadcast")
     private String broadcast;
     @JsonProperty("related")
-    private Related related;
+    private ArrayList<Related> related;
     @JsonProperty("producers")
     private ArrayList<Producer> producers;
     @JsonProperty("licensors")
@@ -240,7 +240,7 @@ public class Anime extends MALData {
         return broadcast;
     }
 
-    public Related getRelated() {
+    public ArrayList<Related> getRelated() {
         return related;
     }
 
