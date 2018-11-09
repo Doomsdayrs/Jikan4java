@@ -2,7 +2,7 @@
 Java api wrapper for Jikan api
 Website for Jikan: https://jikan.moe/
 
-0.8 is the most updated version. With most functionality. 1.0 will have user objects, Complete documentation, and excessive comments.
+0.9 is the most updated version. With most functionality. 1.0 Complete documentation, and excessive comments.
 
 ## Capabilities
 - Basic
