@@ -19,7 +19,7 @@ Website for Jikan: https://jikan.moe/
   - [X] Search and return Top list
   - [X] Search and return Producer
   - [X] Search and return Magazine
-  - [ ] Search and return User >Critical Error preventing the completion at the current time
+  - [ ] Search and return User
 - Other 
   - [ ] Search and return Meta >Not till its formatted.
 
@@ -69,7 +69,9 @@ public static void main(String[] args) throws IOException, ParseException {
         }
 }
 ```
-
+## Known issues
+- Related objects that are empty will crash the search result. This is due to an api issue. 
+- User objects will not be working due to critical error in deserialization.
 ## What it relies on 
 - Maven
     ```xml

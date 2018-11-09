@@ -49,9 +49,7 @@ public class MangaConnection {
      * @throws IOException IOException
      */
     public Manga search(String title) throws IOException, org.json.simple.parser.ParseException {
-        JSONObject mangaJSON = this.searchSite(title);
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(mangaJSON.toJSONString(), Manga.class);
+        return new ObjectMapper().readValue(this.searchSite(title).toJSONString(), Manga.class);
     }
 
     /**
