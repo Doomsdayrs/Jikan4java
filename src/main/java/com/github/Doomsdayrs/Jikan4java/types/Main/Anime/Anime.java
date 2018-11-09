@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Anime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
@@ -103,7 +104,7 @@ public class Anime extends MALData {
     @JsonProperty("broadcast")
     private String broadcast;
     @JsonProperty("related")
-    private Related related;
+    private ArrayList<Related> related;
     @JsonProperty("producers")
     private ArrayList<Producer> producers;
     @JsonProperty("licensors")
@@ -239,7 +240,7 @@ public class Anime extends MALData {
         return broadcast;
     }
 
-    public Related getRelated() {
+    public ArrayList<Related> getRelated() {
         return related;
     }
 

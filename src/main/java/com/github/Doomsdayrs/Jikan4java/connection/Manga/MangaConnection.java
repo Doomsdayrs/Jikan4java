@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Manga;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.MangaPage.MangaPage;
@@ -34,6 +35,7 @@ import java.io.IOException;
 public class MangaConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Constructor
@@ -50,8 +52,7 @@ public class MangaConnection {
      */
     public Manga search(String title) throws IOException, org.json.simple.parser.ParseException {
         JSONObject mangaJSON = this.searchSite(title);
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(mangaJSON.toJSONString(), Manga.class);
+        return objectMapper.readValue(mangaJSON.toJSONString(), Manga.class);
     }
 
     /**
@@ -64,7 +65,7 @@ public class MangaConnection {
      * @throws ParseException ParseException
      */
     public MangaPage searchPage(String title, int page) throws IOException, org.json.simple.parser.ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/manga?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), MangaPage.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/manga?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), MangaPage.class);
     }
 
     /**

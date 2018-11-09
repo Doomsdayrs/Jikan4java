@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Manga;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Published.Published;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Manga {
     @JsonProperty("request_hash")
     private String request_hash;
@@ -89,7 +91,7 @@ public class Manga {
     @JsonProperty("background")
     private String background;
     @JsonProperty("related")
-    private Related related;
+    private ArrayList<Related> related;
     @JsonProperty("genres")
     private ArrayList<Genre> genres;
     @JsonProperty("authors")
@@ -200,7 +202,7 @@ public class Manga {
         return background;
     }
 
-    public Related getRelated() {
+    public ArrayList<Related> getRelated() {
         return related;
     }
 
