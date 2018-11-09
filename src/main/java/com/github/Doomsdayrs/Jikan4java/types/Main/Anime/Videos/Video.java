@@ -36,14 +36,28 @@ public class Video {
     @JsonProperty("episodes")
     private ArrayList<Episode> episodes;
 
+    /**
+     * Gets request hash
+     *
+     * @return Request hash
+     */
     public String getRequest_hash() {
         return request_hash;
     }
 
+    /**
+     * Is the request cached?
+     *
+     * @return is it cached?
+     */
     public boolean isRequest_cached() {
         return request_cached;
     }
 
+    /**
+     * Gets expiry
+     * @return int date or something
+     */
     public int getRequest_cache_expiry() {
         return request_cache_expiry;
     }

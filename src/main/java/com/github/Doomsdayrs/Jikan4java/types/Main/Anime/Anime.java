@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Anime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
@@ -55,8 +55,8 @@ public class Anime extends MALData {
     private int mal_id;
     @JsonProperty("url")
     private String url;
-    @JsonProperty("image_url")
-    private String iconURL;
+    @JsonIgnore
+    private final ObjectMapper mapper = new ObjectMapper();
     @JsonProperty("trailer_url")
     private String trailer_url;
     @JsonProperty("title")
@@ -117,153 +117,301 @@ public class Anime extends MALData {
     private ArrayList<String> opening_themes;
     @JsonProperty("ending_themes")
     private ArrayList<String> ending_themes;
-
+    @JsonProperty("image_url")
+    private String imageURL;
     /**
      * Anime object constructor without variables
      */
     public Anime() {
     }
 
+    /**
+     * Gets request hash
+     *
+     * @return Request hash
+     */
     public String getRequest_hash() {
         return request_hash;
     }
 
+    /**
+     * Is the request cached?
+     *
+     * @return is it cached?
+     */
     public boolean isRequest_cached() {
         return request_cached;
     }
 
+    /**
+     * Gets expiry
+     * @return int date or something
+     */
     public int getRequest_cache_expiry() {
         return request_cache_expiry;
     }
 
+    /**
+     * Gets mal id
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+    /**
+     * Gets url
+     * @return url
+     */
     public String getUrl() {
         return url;
     }
 
-    public String getIconURL() {
-        return iconURL;
+    /**
+     * Gets image url
+     *
+     * @return
+     */
+    public String getImageUrl() {
+        return imageURL;
     }
 
+    /**
+     * Gets trailer url
+     * @return trailer url
+     */
     public String getTrailer_url() {
         return trailer_url;
     }
 
+    /**
+     * Gets title
+     * @return title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Gets title in english
+     * @return title english
+     */
     public String getTitle_english() {
         return title_english;
     }
 
+    /**
+     * Gets title in japanese
+     * @return japanese title
+     */
     public String getTitle_japanese() {
         return title_japanese;
     }
 
+    /**
+     * Gets title synonyms
+     * @return title synonyms
+     */
     public ArrayList<String> getTitle_synonyms() {
         return title_synonyms;
     }
 
+    /**
+     * Gets type
+     * @return type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Gets source
+     * @return source
+     */
     public String getSource() {
         return source;
     }
 
+    /**
+     * Gets episodes
+     * @return episodes
+     */
     public int getEpisodes() {
         return episodes;
     }
 
+    /**
+     * Gets status
+     * @return status
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Gets aired
+     * @return aired
+     */
     public Aired getAired() {
         return aired;
     }
 
+    /**
+     * Is anime airing?
+     * @return airing?
+     */
     public boolean isAiring() {
         return airing;
     }
 
+    /**
+     * Gets duration
+     * @return duration
+     */
     public String getDuration() {
         return duration;
     }
 
+    /**
+     * Gets rating
+     * @return rating
+     */
     public String getRating() {
         return rating;
     }
 
+    /**
+     * Gets score
+     * @return score
+     */
     public double getScore() {
         return score;
     }
 
+    /**
+     * Gets amount of people who scored
+     * @return # of scorers
+     */
     public int getScored_by() {
         return scored_by;
     }
 
+    /**
+     * Gets ranking
+     * @return ranking
+     */
     public int getRank() {
         return rank;
     }
 
+    /**
+     * Gets popularity
+     * @return popularity
+     */
     public int getPopularity() {
         return popularity;
     }
 
+    /**
+     * Gets count of members
+     * @return member count
+     */
     public int getMembers() {
         return members;
     }
 
+    /**
+     * Gets favored count
+     * @return favored count
+     */
     public int getFavorites() {
         return favorites;
     }
 
+    /**
+     * Gets synopsis
+     * @return synopsis
+     */
     public String getSynopsis() {
         return synopsis;
     }
 
+    /**
+     * Gets background
+     * @return background
+     */
     public String getBackground() {
         return background;
     }
 
+    /**
+     * Gets premiered
+     * @return premiered
+     */
     public String getPremiered() {
         return premiered;
     }
 
+    /**
+     * Gets broadcast
+     * @return broadcast
+     */
     public String getBroadcast() {
         return broadcast;
     }
 
+    /**
+     * Gets related
+     * @return related
+     */
     public ArrayList<Related> getRelated() {
         return related;
     }
 
+    /**
+     * Gets producers
+     * @return producers
+     */
     public ArrayList<Producer> getProducers() {
         return producers;
     }
 
+    /**
+     * Gets licensors
+     * @return licensors
+     */
     public ArrayList<Licensors> getLicensors() {
         return licensors;
     }
 
+    /**
+     * Gets studios
+     * @return studios
+     */
     public ArrayList<Studios> getStudios() {
         return studios;
     }
 
+    /**
+     * Gets genres
+     * @return genres
+     */
     public ArrayList<Genre> getGenres() {
         return genres;
     }
 
+    /**
+     * Gets opening themes
+     * @return opening themes
+     */
     public ArrayList<String> getOpening_themes() {
         return opening_themes;
     }
 
+    /**
+     * Gets ending themes
+     * @return ending themes
+     */
     public ArrayList<String> getEnding_themes() {
         return ending_themes;
     }
@@ -277,7 +425,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Character_Staff getCharacterStaffs() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("characters_staff").toJSONString(), Character_Staff.class);
+        return mapper.readValue(this.retrieve("characters_staff").toJSONString(), Character_Staff.class);
     }
 
 
@@ -294,7 +442,7 @@ public class Anime extends MALData {
         if (pageNumber != 0) {
             category = "episodes/" + pageNumber;
         }
-        return new ObjectMapper().readValue(this.retrieve(category).toJSONString(), Episodes.class);
+        return mapper.readValue(this.retrieve(category).toJSONString(), Episodes.class);
     }
 
     /**
@@ -306,7 +454,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public News getNews() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("news").toJSONString(), News.class);
+        return mapper.readValue(this.retrieve("news").toJSONString(), News.class);
     }
 
     /**
@@ -318,7 +466,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Pictures getPictures() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
+        return mapper.readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
     }
 
     /**
@@ -330,7 +478,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Video getVideos() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("videos").toJSONString(), Video.class);
+        return mapper.readValue(this.retrieve("videos").toJSONString(), Video.class);
     }
 
     /**
@@ -342,7 +490,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Stats getStats() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("stats").toJSONString(), Stats.class);
+        return mapper.readValue(this.retrieve("stats").toJSONString(), Stats.class);
     }
 
 
@@ -355,7 +503,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Forum getForum() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("forum").toJSONString(), Forum.class);
+        return mapper.readValue(this.retrieve("forum").toJSONString(), Forum.class);
     }
 
     /**
@@ -367,7 +515,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public MoreInfo getMoreInfo() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
+        return mapper.readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
     }
 
     /**
@@ -395,7 +543,7 @@ public class Anime extends MALData {
                 ",\n request_cache_expiry=" + request_cache_expiry +
                 ",\n mal_id=" + mal_id +
                 ",\n url='" + url + '\'' +
-                ",\n iconURL='" + iconURL + '\'' +
+                ",\n iconURL='" + imageURL + '\'' +
                 ",\n trailer_url='" + trailer_url + '\'' +
                 ",\n title='" + title + '\'' +
                 ",\n title_english='" + title_english + '\'' +

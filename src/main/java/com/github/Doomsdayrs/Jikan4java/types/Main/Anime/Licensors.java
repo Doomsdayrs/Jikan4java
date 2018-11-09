@@ -35,19 +35,47 @@ public class Licensors {
     @JsonProperty("url")
     private String url;
 
+    /**
+     * Gets mal id
+     *
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+    /**
+     * Gets type
+     *
+     * @return type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Gets name
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets URL
+     * @return url
+     */
     public String getUrl() {
         return url;
+    }
+
+    @Override
+    public String toString() {
+        return "Licensors{" +
+                "mal_id=" + mal_id +
+                ", type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

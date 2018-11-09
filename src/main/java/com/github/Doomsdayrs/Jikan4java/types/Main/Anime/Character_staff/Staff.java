@@ -38,6 +38,7 @@ public class Staff {
     private ArrayList<String> positions;
 
     /**
+     * Gets MAL ID
      * @return myanimelist id
      */
     public int getMal_id() {
@@ -45,6 +46,7 @@ public class Staff {
     }
 
     /**
+     * Gets URL of staff member
      * @return url of staff member
      */
     public String getUrl() {
@@ -52,6 +54,7 @@ public class Staff {
     }
 
     /**
+     * Gets name of member
      * @return name of staff member
      */
     public String getName() {
@@ -59,6 +62,7 @@ public class Staff {
     }
 
     /**
+     * Gets image of member
      * @return image url of the staff member
      */
     public String getImage_url() {
@@ -66,10 +70,22 @@ public class Staff {
     }
 
     /**
+     * Gets Positions member
      * @return the positions the staff member has
      */
     public ArrayList<String> getPositions() {
         return positions;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "mal_id=" + mal_id +
+                ", url='" + url + '\'' +
+                ", name='" + name + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", positions=" + positions +
+                '}';
     }
 }
 

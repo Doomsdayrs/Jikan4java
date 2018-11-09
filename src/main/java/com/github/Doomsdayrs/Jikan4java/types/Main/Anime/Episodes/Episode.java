@@ -51,38 +51,76 @@ public class Episode {
     @JsonProperty("forum_url")
     private String forum_url;
 
+    /**
+     * Gets ID of episode
+     *
+     * @return ID
+     */
     public int getEpisode_id() {
         return episode_id;
     }
 
+    /**
+     * Gets title
+     *
+     * @return Title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Gets japanese title
+     * @return japanese title
+     */
     public String getTitle_japanese() {
         return title_japanese;
     }
 
+    /**
+     * Gets title in romanji
+     * @return romanji title
+     */
     public String getTitle_romanji() {
         return title_romanji;
     }
 
+    /**
+     * Get aired date
+     * @return aired date
+     */
     public Aired getAired() {
         return aired;
     }
 
+    /**
+     * Is this a filler episode
+     * @return filler?
+     */
     public boolean isFiller() {
         return filler;
     }
 
+    /**
+     * Is this episode a recap?
+     * @return recap?
+     */
     public boolean isRecap() {
         return recap;
     }
 
+    /**
+     * Gets video url
+     * @return video url
+     */
     public String getVideo_url() {
         return video_url;
     }
 
+    /**
+     * Gets forum url
+     * @return forum url
+     */
     public String getForum_url() {
         return forum_url;
     }

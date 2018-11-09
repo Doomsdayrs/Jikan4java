@@ -32,13 +32,14 @@ import java.util.Objects;
  */
 
 public class UserConnection {
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Constructor
      */
     public UserConnection() {
     }
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+
 
     /**
      * Returns a user object

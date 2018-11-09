@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.connection.User.UserConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -58,14 +58,15 @@ public class ExampleClass {
         System.out.println(new TopConnection().topSearch("manga",0,"").toString());
         System.out.println(new TopConnection().topSearch("people",0,"").toString());
         System.out.println(new TopConnection().topSearch("characters",0,"").toString());
-
+        System.out.println(new UserConnection().searchUser("Aerchan").toString());
 
 
         System.out.println(new MagazineConnection().search(11,1));
         System.out.println(new ProducerConnection().search(135,1));
                 System.out.println(new MetaConnection().getStatus().toString());
         */
-        System.out.println(new UserConnection().searchUser("Aerchan").toString());
+
+        System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString());
     }
 
 }
