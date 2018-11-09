@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Staff {
     @JsonProperty("mal_id")
     private int mal_id;

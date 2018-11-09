@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Magazine;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Magazine.MagazinePage;
 import okhttp3.OkHttpClient;
@@ -29,6 +30,7 @@ import java.io.IOException;
  * @author github.com/doomsdayrs
  */
 public class MagazineConnection {
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Constructor
@@ -46,6 +48,6 @@ public class MagazineConnection {
      * @throws ParseException ParseException
      */
     public MagazinePage search(int ID, int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/magazine/" + ID + "/" + page).build()).execute().body().string())).toJSONString(), MagazinePage.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/magazine/" + ID + "/" + page).build()).execute().body().string())).toJSONString(), MagazinePage.class);
     }
 }

@@ -57,6 +57,7 @@
 
 package com.github.Doomsdayrs.Jikan4java.connection.Top;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime.AnimeTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character.CharacterTop;
@@ -96,6 +97,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 public class TopConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Constructor
@@ -123,13 +125,13 @@ public class TopConnection {
             optional = "/" + pageNumber + "/" + subtype;
         }
         if (type.equalsIgnoreCase("anime")) {
-            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), AnimeTop.class);
+            return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), AnimeTop.class);
         } else if (type.equalsIgnoreCase("manga")) {
-            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), MangaTop.class);
+            return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), MangaTop.class);
         } else if (type.equalsIgnoreCase("people")) {
-            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), PersonTop.class);
+            return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), PersonTop.class);
         } else if (type.equalsIgnoreCase("characters")) {
-            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), CharacterTop.class);
+            return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body().string())).toJSONString(), CharacterTop.class);
         }
 
 

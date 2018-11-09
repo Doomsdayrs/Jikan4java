@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class GenreSearchManga {
 
     @JsonProperty("mal_id")
