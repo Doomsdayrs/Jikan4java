@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Person;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.PersonPage.PersonPage;
@@ -34,6 +35,7 @@ import java.io.IOException;
 public class PersonConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Constructor
@@ -52,8 +54,7 @@ public class PersonConnection {
     public Person search(String title) throws IOException, org.json.simple.parser.ParseException {
         JSONObject personJSON = this.searchSite(title);
 
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(personJSON.toJSONString(), Person.class);
+        return objectMapper.readValue(personJSON.toJSONString(), Person.class);
     }
 
     /**
@@ -66,7 +67,7 @@ public class PersonConnection {
      * @throws ParseException ParseException
      */
     public PersonPage searchPage(String title, int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/person?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), PersonPage.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/person?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), PersonPage.class);
     }
 
     /**

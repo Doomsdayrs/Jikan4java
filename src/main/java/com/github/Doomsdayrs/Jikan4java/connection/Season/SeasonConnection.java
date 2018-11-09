@@ -57,6 +57,7 @@
 
 package com.github.Doomsdayrs.Jikan4java.connection.Season;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonArchive.SeasonArchive;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonSearch;
@@ -93,6 +94,7 @@ along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
 public class SeasonConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Constructor
@@ -110,7 +112,7 @@ public class SeasonConnection {
      * @throws ParseException ParseException
      */
     public SeasonSearch seasonSearch(int year, String season) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/" + year + "/" + season).build()).execute().body().string())).toJSONString(), SeasonSearch.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/" + year + "/" + season).build()).execute().body().string())).toJSONString(), SeasonSearch.class);
     }
 
     /**
@@ -121,7 +123,7 @@ public class SeasonConnection {
      * @throws ParseException ParseException
      */
     public SeasonArchive seasonArchiveSearch() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/archive").build()).execute().body().string())).toJSONString(), SeasonArchive.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/archive").build()).execute().body().string())).toJSONString(), SeasonArchive.class);
     }
 
 }

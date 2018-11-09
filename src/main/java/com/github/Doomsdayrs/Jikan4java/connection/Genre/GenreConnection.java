@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Genre;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
@@ -32,6 +33,7 @@ import java.io.IOException;
 public class GenreConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Constructor
@@ -49,7 +51,7 @@ public class GenreConnection {
      * @throws ParseException ParseException
      */
     public GenreSearchAnimePage searchMangaGenre(int genreID, int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/genre/anime/" + genreID + "/" + page).build()).execute().body().string())).toJSONString(), GenreSearchAnimePage.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/genre/anime/" + genreID + "/" + page).build()).execute().body().string())).toJSONString(), GenreSearchAnimePage.class);
     }
 
     /**
@@ -62,7 +64,7 @@ public class GenreConnection {
      * @throws ParseException ParseException
      */
     public GenreSearchMangaPage searchAnimeGenre(int genreID, int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/genre/manga/" + genreID + "/" + page).build()).execute().body().string())).toJSONString(), GenreSearchMangaPage.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/genre/manga/" + genreID + "/" + page).build()).execute().body().string())).toJSONString(), GenreSearchMangaPage.class);
     }
 
 }

@@ -43,7 +43,6 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Anime extends MALData {
 
     @JsonProperty("request_hash")
