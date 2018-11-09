@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Magazine;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Authors;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Magazine {
     @JsonProperty("mal_id")
     private int mal_id;

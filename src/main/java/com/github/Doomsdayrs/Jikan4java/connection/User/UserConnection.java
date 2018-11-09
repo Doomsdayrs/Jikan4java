@@ -57,6 +57,7 @@
 
 package com.github.Doomsdayrs.Jikan4java.connection.User;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.User;
 import okhttp3.OkHttpClient;
@@ -96,6 +97,7 @@ public class UserConnection {
      */
     public UserConnection() {
     }
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Returns a user object
@@ -106,6 +108,6 @@ public class UserConnection {
      * @throws ParseException ParseException
      */
     public User searchUser(String name) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/user/" + name).build()).execute().body().string())).toJSONString(), User.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/user/" + name).build()).execute().body().string())).toJSONString(), User.class);
     }
 }

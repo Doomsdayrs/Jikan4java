@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class CharacterPageCharacter {
     @JsonProperty("mal_id")
     private int mal_id;

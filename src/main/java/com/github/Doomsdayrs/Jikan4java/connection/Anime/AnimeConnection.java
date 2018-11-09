@@ -1,5 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Anime;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
@@ -12,6 +14,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * This file is part of Jikan4java.
@@ -34,7 +38,7 @@ import java.io.IOException;
 public class AnimeConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
-
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
     /**
      * Constructor
      */
@@ -51,8 +55,7 @@ public class AnimeConnection {
      */
     public Anime searchSimple(String title) throws IOException, ParseException {
         JSONObject animeJSON = this.searchSite(title);
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(animeJSON.toJSONString(), Anime.class);
+        return objectMapper.readValue(animeJSON.toJSONString(), Anime.class);
     }
 
     /**
@@ -65,7 +68,7 @@ public class AnimeConnection {
      * @throws ParseException ParseException
      */
     public AnimePage searchPage(String title, int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/anime?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), AnimePage.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/anime?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), new TypeReference<Collection<AnimePage>>(){});
     }
 
     /**

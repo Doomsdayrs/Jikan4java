@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Character;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
@@ -29,6 +30,7 @@ import java.io.IOException;
  *
  * @author github.com/doomsdayrs
  */
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Mangaography {
     @JsonProperty("mal_id")
     private int mal_id;
