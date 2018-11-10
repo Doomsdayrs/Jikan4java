@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Manga;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Published.Published;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Authors;
@@ -229,7 +230,7 @@ public class Manga {
      */
     @JsonProperty
     public MangaCharacters getCharacters() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("characters").toJSONString(), MangaCharacters.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("characters").toJSONString(), MangaCharacters.class);
     }
 
     /**
@@ -241,7 +242,7 @@ public class Manga {
      */
     @JsonProperty
     public News getNews() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("news").toJSONString(), News.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("news").toJSONString(), News.class);
     }
 
     /**
@@ -253,7 +254,7 @@ public class Manga {
      */
     @JsonProperty
     public Pictures getPictures() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
     }
 
 
@@ -266,7 +267,7 @@ public class Manga {
      */
     @JsonProperty
     public Stats getStats() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("stats").toJSONString(), Stats.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("stats").toJSONString(), Stats.class);
     }
 
     /**
@@ -278,7 +279,7 @@ public class Manga {
      */
     @JsonProperty
     public Forum getForum() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("forum").toJSONString(), Forum.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("forum").toJSONString(), Forum.class);
     }
 
     /**
@@ -290,7 +291,7 @@ public class Manga {
      */
     @JsonProperty
     public MoreInfo getMoreInfo() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
     }
 
     /**

@@ -38,7 +38,7 @@ import java.util.Collection;
 public class AnimeConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
     /**
      * Constructor
      */

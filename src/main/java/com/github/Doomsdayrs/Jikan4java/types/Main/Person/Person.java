@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
@@ -96,7 +97,7 @@ public class Person extends MALData {
         Response response = client.newCall(request).execute();
         JSONParser parser = new JSONParser();
         JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
     }
 

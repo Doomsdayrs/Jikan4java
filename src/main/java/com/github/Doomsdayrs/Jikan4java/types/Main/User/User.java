@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Friends.Friends;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.History.HistoryPage;
@@ -135,7 +136,7 @@ public class User {
      * @throws ParseException ParseException
      */
     public HistoryPage getHistory(String type) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/history/" + type.toLowerCase()).build()).execute().body().string())).toJSONString(), HistoryPage.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/history/" + type.toLowerCase()).build()).execute().body().string())).toJSONString(), HistoryPage.class);
     }
 
 
@@ -148,12 +149,12 @@ public class User {
      * @throws ParseException ParseException
      */
     public Friends getFriends(int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body().string())).toJSONString(), Friends.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body().string())).toJSONString(), Friends.class);
     }
 
 
     public AnimeList getAnimelist(int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body().string())).toJSONString(), AnimeList.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body().string())).toJSONString(), AnimeList.class);
     }
 
     @Override

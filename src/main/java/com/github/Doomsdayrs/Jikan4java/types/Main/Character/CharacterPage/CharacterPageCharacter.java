@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
 import okhttp3.OkHttpClient;
@@ -84,7 +85,7 @@ public class CharacterPageCharacter {
      * @throws ParseException
      */
     public Character getCharacter() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Character.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Character.class);
     }
 
     @Override

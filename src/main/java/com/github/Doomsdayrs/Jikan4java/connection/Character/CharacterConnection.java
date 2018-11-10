@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Character;
 
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage.CharacterPage;
@@ -52,7 +53,7 @@ public class CharacterConnection {
      */
     public Character search(String name) throws IOException, ParseException {
         JSONObject characterJSON = this.searchSite(name);
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return mapper.readValue(characterJSON.toJSONString(), Character.class);
     }
 
@@ -66,7 +67,7 @@ public class CharacterConnection {
      * @throws ParseException ParseException
      */
     public CharacterPage searchPage(String title, int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/character?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), CharacterPage.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/character?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), CharacterPage.class);
     }
 
     /**

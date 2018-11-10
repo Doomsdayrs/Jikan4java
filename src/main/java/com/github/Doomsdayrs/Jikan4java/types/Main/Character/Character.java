@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Character;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Voice_actors;
@@ -123,7 +124,7 @@ public class Character {
         Response response = client.newCall(request).execute();
         JSONParser parser = new JSONParser();
         JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
     }
 

@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Anime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Episodes.Episodes;
@@ -277,7 +278,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Character_Staff getCharacterStaffs() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("characters_staff").toJSONString(), Character_Staff.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("characters_staff").toJSONString(), Character_Staff.class);
     }
 
 
@@ -294,7 +295,7 @@ public class Anime extends MALData {
         if (pageNumber != 0) {
             category = "episodes/" + pageNumber;
         }
-        return new ObjectMapper().readValue(this.retrieve(category).toJSONString(), Episodes.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve(category).toJSONString(), Episodes.class);
     }
 
     /**
@@ -306,7 +307,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public News getNews() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("news").toJSONString(), News.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("news").toJSONString(), News.class);
     }
 
     /**
@@ -318,7 +319,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Pictures getPictures() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
     }
 
     /**
@@ -330,7 +331,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Video getVideos() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("videos").toJSONString(), Video.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("videos").toJSONString(), Video.class);
     }
 
     /**
@@ -342,7 +343,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Stats getStats() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("stats").toJSONString(), Stats.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("stats").toJSONString(), Stats.class);
     }
 
 
@@ -355,7 +356,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public Forum getForum() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("forum").toJSONString(), Forum.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("forum").toJSONString(), Forum.class);
     }
 
     /**
@@ -367,7 +368,7 @@ public class Anime extends MALData {
      */
     @JsonProperty
     public MoreInfo getMoreInfo() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
     }
 
     /**

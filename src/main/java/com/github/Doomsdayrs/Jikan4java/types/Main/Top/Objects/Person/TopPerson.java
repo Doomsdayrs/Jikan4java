@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Person;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.TopList;
@@ -88,7 +89,7 @@ public class TopPerson extends TopList {
      * @throws ParseException
      */
     public Person getPerson() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Person.class);
+        return new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Person.class);
     }
 
     @Override
