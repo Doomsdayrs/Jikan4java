@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class Related {
 
-    @JsonProperty("prequel")
+    @JsonProperty("Prequel")
     private ArrayList<Prequel> prequel;
 
     @JsonProperty("Alternative version")
