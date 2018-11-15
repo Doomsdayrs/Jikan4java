@@ -170,9 +170,9 @@ public class Anime extends MALData {
     /**
      * Gets image url
      *
-     * @return
+     * @return image url
      */
-    public String getImageUrl() {
+    public String getImageURL() {
         return imageURL;
     }
 

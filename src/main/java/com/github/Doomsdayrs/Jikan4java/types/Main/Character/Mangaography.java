@@ -43,25 +43,51 @@ public class Mangaography {
     @JsonProperty("role")
     private String role;
 
+    /**
+     * Gets mal id
+     *
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public String getUrl() {
-        return url;
-    }
-
+    /**
+     * Gets image url
+     *
+     * @return image url
+     */
     public String getImage_url() {
         return image_url;
     }
 
+    /**
+     * Name of character
+     *
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Gets url
+     * @return url
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * Gets role
+     * @return role
+     */
     public String getRole() {
         return role;
     }
+
+
 
 
     /**

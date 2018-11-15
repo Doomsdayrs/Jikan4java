@@ -2,6 +2,15 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 /**
  * This file is part of Jikan4java.
@@ -32,20 +41,50 @@ public class PageCharacterManga {
     @JsonProperty("url")
     private String url;
 
+    /**
+     * Gets mal id
+     *
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+
+    /**
+     * Gets type
+     *
+     * @return type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Name of character
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets url
+     * @return url
+     */
     public String getUrl() {
         return url;
+    }
+
+    /**
+     * Returns the Manga object of this object
+     *
+     * @return Manga Object
+     * @throws IOException
+     * @throws ParseException
+     */
+    public Manga getManga() throws IOException, ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
     }
 
     @Override
