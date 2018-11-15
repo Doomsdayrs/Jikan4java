@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.Related.Types;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Related;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,12 +16,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 28 / October / 2018
+ * 15 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class Sequel {
 
+public class RelatedType {
     @JsonProperty("mal_id")
     private int mal_id;
 
@@ -52,7 +52,7 @@ public class Sequel {
 
     @Override
     public String toString() {
-        return "Sequel{" +
+        return "Related{" +
                 "mal_id=" + mal_id +
                 ", type='" + type + '\'' +
                 ", name='" + name + '\'' +

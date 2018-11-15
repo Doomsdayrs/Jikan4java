@@ -1,7 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Related;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Types.*;
 
 import java.util.ArrayList;
 
@@ -26,66 +25,51 @@ import java.util.ArrayList;
 public class Related {
 
     @JsonProperty("Prequel")
-    private ArrayList<Prequel> prequel;
+    private ArrayList<RelatedType> prequel;
 
     @JsonProperty("Alternative version")
-    private ArrayList<AltVersion> altVersion;
+    private ArrayList<RelatedType> altVersion;
 
     @JsonProperty("Spin-off")
-    private ArrayList<SpinOff> spinOff;
+    private ArrayList<RelatedType> spinOff;
 
     @JsonProperty("Adaptation")
-    private ArrayList<Adaptation> adaptation;
+    private ArrayList<RelatedType> adaptation;
 
     @JsonProperty("Summary")
-    private ArrayList<Summary> summaries;
+    private ArrayList<RelatedType> summaries;
 
     @JsonProperty("Sequel")
-    private ArrayList<Sequel> sequels;
+    private ArrayList<RelatedType> sequels;
 
     @JsonProperty("Side story")
-    private ArrayList<SideStory> sideStories;
+    private ArrayList<RelatedType> sideStories;
 
     @JsonProperty("Other")
-    private ArrayList<Other> other;
+    private ArrayList<RelatedType> other;
 
     @JsonProperty("Parent story")
-    private ArrayList<ParentStory> parentStories;
+    private ArrayList<RelatedType> parentStories;
 
-    public ArrayList<Prequel> getPrequel() {
-        return prequel;
-    }
 
-    public ArrayList<AltVersion> getAltVersion() {
-        return altVersion;
-    }
-
-    public ArrayList<SpinOff> getSpinOff() {
-        return spinOff;
-    }
-
-    public ArrayList<Adaptation> getAdaptation() {
-        return adaptation;
-    }
-
-    public ArrayList<Summary> getSummaries() {
-        return summaries;
-    }
-
-    public ArrayList<Sequel> getSequels() {
-        return sequels;
-    }
-
-    public ArrayList<SideStory> getSideStories() {
-        return sideStories;
-    }
-
-    public ArrayList<Other> getOther() {
-        return other;
-    }
-
-    public ArrayList<ParentStory> getParentStories() {
-        return parentStories;
+    public ArrayList<RelatedType> get(int type) {
+        if (type == 0) {
+            return prequel;
+        } else if (type == 1) {
+            return altVersion;
+        } else if (type == 2) {
+            return spinOff;
+        } else if (type == 3) {
+            return adaptation;
+        } else if (type == 4) {
+            return summaries;
+        } else if (type == 5) {
+            return sequels;
+        } else if (type == 6) {
+            return sideStories;
+        } else if (type == 7) {
+            return parentStories;
+        } else return new ArrayList<RelatedType>();
     }
 
     @Override

@@ -1,10 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
-
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -30,10 +25,12 @@ public class ExampleClass {
      *
      * @param args Args
      */
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) {
         /*
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
+        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getRelated().get(0).get(Relates.SIDE_STORIES));
+
         System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString());
         System.out.println(new CharacterConnection().search("Caster").toString());
         System.out.println(new PersonConnection().search("Hajime Isayama").toString());
@@ -63,10 +60,9 @@ public class ExampleClass {
 
         System.out.println(new MagazineConnection().search(11,1));
         System.out.println(new ProducerConnection().search(135,1));
-                System.out.println(new MetaConnection().getStatus().toString());
+        System.out.println(new MetaConnection().getStatus().toString());
         */
 
-        System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString());
     }
 
 }

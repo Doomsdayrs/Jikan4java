@@ -34,39 +34,42 @@ import java.io.IOException;
 
 public class ExampleClass {
 public static void main(String[] args) throws IOException, ParseException {
-    
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
+        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getRelated().get(0).get(Relates.SIDE_STORIES));
+        
         System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString());
         System.out.println(new CharacterConnection().search("Caster").toString());
         System.out.println(new PersonConnection().search("Hajime Isayama").toString());
-
+        
         // Returns search results
         System.out.println(new AnimeConnection().searchPage("Attack on titan",1).toString());
         System.out.println(new MangaConnection().searchPage("Tensei",1));
         System.out.println(new CharacterConnection().searchPage("caster",1));
         System.out.println(new PersonConnection().searchPage("Hajime Isayama", 1));
-
+        
         
         System.out.println(new GenreConnection().searchAnimeGenre(1,0).toString());
         System.out.println(new GenreConnection().searchMangaGenre(1,0).toString());
-
+        
         System.out.println(new SeasonConnection().seasonSearch(2016,"winter").toString());
         System.out.println(new SeasonConnection().seasonArchiveSearch().toString());
-
+        
         System.out.println(new ScheduleConnection().scheduleSearch().toString());
         System.out.println(new ScheduleConnection().scheduleSearch("monday").toString()); //`monday` can be replaced with any other day or unknown / other
-
+        
         System.out.println(new TopConnection().topSearch("anime",0,"").toString());
         System.out.println(new TopConnection().topSearch("manga",0,"").toString());
         System.out.println(new TopConnection().topSearch("people",0,"").toString());
         System.out.println(new TopConnection().topSearch("characters",0,"").toString());
+        System.out.println(new UserConnection().searchUser("Aerchan").toString());
         
-        System.out.println(new UserConnection().searchUser("AreChan").toString()); 
         
         System.out.println(new MagazineConnection().search(11,1));
         System.out.println(new ProducerConnection().search(135,1));
-        }
+        System.out.println(new MetaConnection().getStatus().toString());
+               
+    }
 }
 ```
 ## Known issues
