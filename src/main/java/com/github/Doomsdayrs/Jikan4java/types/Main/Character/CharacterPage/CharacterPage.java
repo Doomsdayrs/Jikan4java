@@ -36,22 +36,46 @@ public class CharacterPage {
     @JsonProperty("last_page")
     private int last_page;
 
+    /**
+     * Gets request hash
+     *
+     * @return Request hash
+     */
     public String getRequest_hash() {
         return request_hash;
     }
 
+    /**
+     * Is the request cached?
+     *
+     * @return is it cached?
+     */
     public boolean isRequest_cached() {
         return request_cached;
     }
 
+    /**
+     * Gets expiry
+     *
+     * @return int date or something
+     */
     public int getRequest_cache_expiry() {
         return request_cache_expiry;
     }
 
+    /**
+     * Gets characters
+     *
+     * @return characters
+     */
     public ArrayList<CharacterPageCharacter> getCharacters() {
         return characters;
     }
 
+    /**
+     * Get last page possible
+     * @return last page
+     */
     public int getLast_page() {
         return last_page;
     }

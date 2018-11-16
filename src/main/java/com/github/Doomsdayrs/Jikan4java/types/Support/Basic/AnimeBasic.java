@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * This file is part of Jikan4java.
@@ -62,10 +63,20 @@ public class AnimeBasic {
      * Returns the Anime object of this object
      *
      * @return Anime Object
-     * @throws IOException
-     * @throws ParseException
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
     public Anime getAnime() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body()).string())).toJSONString(), Anime.class);
+    }
+
+    @Override
+    public String toString() {
+        return "AnimeBasic{" +
+                "mal_id=" + mal_id +
+                ", url='" + url + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * This file is part of Jikan4java.
@@ -63,10 +64,20 @@ public class MangaBasic {
      * Returns the Manga object of this object
      *
      * @return Manga Object
-     * @throws IOException
-     * @throws ParseException
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
     public Manga getManga() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body()).string())).toJSONString(), Manga.class);
+    }
+
+    @Override
+    public String toString() {
+        return "MangaBasic{" +
+                "mal_id=" + mal_id +
+                ", url='" + url + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -61,58 +61,116 @@ public class AnimePageAnime {
     @JsonProperty("rated")
     private String rated;
 
+    /**
+     * Get MAL id
+     *
+     * @return MAL ID int
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+    /**
+     * Gets url
+     *
+     * @return url string
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * Gets icon url
+     * @return url string
+     */
     public String getIconURL() {
         return iconURL;
     }
 
+    /**
+     * Gets title
+     * @return title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Is the anime airing?
+     * @return airing?
+     */
     public boolean isAiring() {
         return airing;
     }
 
+    /**
+     * Synopsis of the anime
+     * @return synopsis string
+     */
     public String getSynopsis() {
         return synopsis;
     }
 
+    /**
+     * Type of anime
+     * @return type of anime
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Episode count
+     * @return # of episodes
+     */
     public int getEpisodes() {
         return episodes;
     }
 
+    /**
+     * Score of anime
+     * @return score
+     */
     public double getScore() {
         return score;
     }
 
+    /**
+     * Source of anime
+     * @return source
+     */
     public String getSource() {
         return source;
     }
 
+    /**
+     * Gets start date
+     * @return start date
+     */
     public String getStart_date() {
         return start_date;
     }
 
+    /**
+     * Gets end date
+     * @return end date
+     */
     public String getEnd_date() {
         return end_date;
     }
 
+    /**
+     * Gets members
+     * @return # of members
+     */
     public int getMembers() {
         return members;
     }
 
+    /**
+     * Rating of anime
+     * @return rating
+     */
     public String getRated() {
         return rated;
     }

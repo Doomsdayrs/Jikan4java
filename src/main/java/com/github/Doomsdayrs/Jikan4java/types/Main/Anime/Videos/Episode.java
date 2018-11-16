@@ -35,18 +35,36 @@ public class Episode {
     @JsonProperty("image_url")
     private String image_url;
 
+    /**
+     * Gets title of episode
+     *
+     * @return episode title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Gets episode
+     *
+     * @return episode
+     */
     public String getEpisode() {
         return episode;
     }
 
+    /**
+     * Gets URL
+     * @return url
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * Gets image url
+     * @return url
+     */
     public String getImage_url() {
         return image_url;
     }

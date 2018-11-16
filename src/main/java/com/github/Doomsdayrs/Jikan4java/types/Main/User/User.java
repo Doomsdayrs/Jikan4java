@@ -13,6 +13,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * This file is part of Jikan4java.
@@ -32,7 +33,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-@Deprecated
+
 public class User {
 
     @JsonProperty("request_hash")
@@ -135,7 +136,7 @@ public class User {
      * @throws ParseException ParseException
      */
     public HistoryPage getHistory(String type) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/history/" + type.toLowerCase()).build()).execute().body().string())).toJSONString(), HistoryPage.class);
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/history/" + type.toLowerCase()).build()).execute().body()).string())).toJSONString(), HistoryPage.class);
     }
 
 
@@ -148,12 +149,12 @@ public class User {
      * @throws ParseException ParseException
      */
     public Friends getFriends(int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body().string())).toJSONString(), Friends.class);
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body()).string())).toJSONString(), Friends.class);
     }
 
 
     public AnimeList getAnimelist(int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body().string())).toJSONString(), AnimeList.class);
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body()).string())).toJSONString(), AnimeList.class);
     }
 
     @Override

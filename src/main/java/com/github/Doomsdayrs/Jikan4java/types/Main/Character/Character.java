@@ -71,50 +71,130 @@ public class Character {
     @JsonProperty("voice_actors")
     private ArrayList<Voice_actors> voice_actors;
 
+    /**
+     * Gets request hash
+     *
+     * @return Request hash
+     */
+    public String getRequest_hash() {
+        return request_hash;
+    }
+
+    /**
+     * Is the request cached?
+     *
+     * @return is it cached?
+     */
+    public boolean isRequest_cached() {
+        return request_cached;
+    }
+
+    /**
+     * Gets expiry
+     *
+     * @return int date or something
+     */
+    public int getRequest_cache_expiry() {
+        return request_cache_expiry;
+    }
+
+    /**
+     * Gets mal id
+     *
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+    /**
+     * Gets url
+     *
+     * @return url
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * Get name
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Get name of kanji
+     * @return kanji
+     */
     public String getName_kanji() {
         return name_kanji;
     }
 
+    /**
+     * Get nicknames
+     * @return nicknames
+     */
     public ArrayList<String> getNicknames() {
         return nicknames;
     }
 
+    /**
+     * Get about
+     * @return about
+     */
     public String getAbout() {
         return about;
     }
 
+    /**
+     * Get members whom favoured this character
+     * @return count
+     */
     public int getMember_favorites() {
         return member_favorites;
     }
 
+    /**
+     * Gets image url
+     *
+     * @return image url
+     */
     public String getImage_url() {
         return image_url;
     }
 
+    /**
+     * Gets animes in
+     * @return animeography
+     */
     public ArrayList<Animeography> getAnimeography() {
         return animeography;
     }
 
+    /**
+     * Gets managas in
+     * @return mangaography
+     */
     public ArrayList<Mangaography> getMangaography() {
         return mangaography;
     }
 
+    /**
+     * Gets voice actors
+     * @return voice actors
+     */
     public ArrayList<Voice_actors> getVoice_actors() {
         return voice_actors;
     }
 
+    /**
+     * Gets pictures
+     * @return pictures
+     * @throws IOException IOException
+     * @throws ParseException ParseException
+     */
     @JsonProperty
     public Pictures getPictures() throws IOException, ParseException {
         OkHttpClient client = new OkHttpClient();

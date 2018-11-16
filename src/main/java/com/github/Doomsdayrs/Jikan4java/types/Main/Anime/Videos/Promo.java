@@ -32,14 +32,28 @@ public class Promo {
     @JsonProperty("video_url")
     private String video_url;
 
+    /**
+     * Gets video title
+     *
+     * @return title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Gets image url
+     *
+     * @return image url
+     */
     public String getImage_url() {
         return image_url;
     }
 
+    /**
+     * Gets video url
+     * @return video url
+     */
     public String getVideo_url() {
         return video_url;
     }

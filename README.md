@@ -2,7 +2,7 @@
 Java api wrapper for Jikan api
 Website for Jikan: https://jikan.moe/
 
-0.8 is the most updated version. With most functionality. 1.0 will have user objects, Complete documentation, and excessive comments.
+0.9 is the most updated version. With most functionality. 1.0 Complete documentation, and excessive comments.
 
 ## Capabilities
 - Basic
@@ -19,7 +19,7 @@ Website for Jikan: https://jikan.moe/
   - [X] Search and return Top list
   - [X] Search and return Producer
   - [X] Search and return Magazine
-  - [ ] Search and return User
+  - [X] Search and return User
 - Other 
   - [ ] Search and return Meta >Not till its formatted.
 
@@ -34,44 +34,46 @@ import java.io.IOException;
 
 public class ExampleClass {
 public static void main(String[] args) throws IOException, ParseException {
-    
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
+        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getRelated().get(0).get(Relates.SIDE_STORIES));
+        
         System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString());
         System.out.println(new CharacterConnection().search("Caster").toString());
         System.out.println(new PersonConnection().search("Hajime Isayama").toString());
-
+        
         // Returns search results
         System.out.println(new AnimeConnection().searchPage("Attack on titan",1).toString());
         System.out.println(new MangaConnection().searchPage("Tensei",1));
         System.out.println(new CharacterConnection().searchPage("caster",1));
         System.out.println(new PersonConnection().searchPage("Hajime Isayama", 1));
-
+        
         
         System.out.println(new GenreConnection().searchAnimeGenre(1,0).toString());
         System.out.println(new GenreConnection().searchMangaGenre(1,0).toString());
-
+        
         System.out.println(new SeasonConnection().seasonSearch(2016,"winter").toString());
         System.out.println(new SeasonConnection().seasonArchiveSearch().toString());
-
+        
         System.out.println(new ScheduleConnection().scheduleSearch().toString());
         System.out.println(new ScheduleConnection().scheduleSearch("monday").toString()); //`monday` can be replaced with any other day or unknown / other
-
+        
         System.out.println(new TopConnection().topSearch("anime",0,"").toString());
         System.out.println(new TopConnection().topSearch("manga",0,"").toString());
         System.out.println(new TopConnection().topSearch("people",0,"").toString());
         System.out.println(new TopConnection().topSearch("characters",0,"").toString());
+        System.out.println(new UserConnection().searchUser("Aerchan").toString());
         
-        System.out.println(new UserConnection().searchUser("kuglefang").toString()); 
         
         System.out.println(new MagazineConnection().search(11,1));
         System.out.println(new ProducerConnection().search(135,1));
-        }
+        System.out.println(new MetaConnection().getStatus().toString());
+               
+    }
 }
 ```
 ## Known issues
-- API issue of user object being returned as an array list when empty. Future update of api will let me return Related feilds back to normal
-- User objects will not be working due to critical error in deserialization.
+- API issue of user object being returned as an array list when empty. Future update of api will let me return Related fields back to normal
 ## What it relies on 
 - Maven
     ```xml

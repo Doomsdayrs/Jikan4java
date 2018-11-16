@@ -36,18 +36,36 @@ public class Aired {
     @JsonProperty("string")
     private String string;
 
+    /**
+     * Gets from
+     *
+     * @return from
+     */
     public String getFrom() {
         return from;
     }
 
+    /**
+     * Gets to
+     *
+     * @return to
+     */
     public String getTo() {
         return to;
     }
 
+    /**
+     * Gets prop
+     * @return prop
+     */
     public Prop getProp() {
         return prop;
     }
 
+    /**
+     * Gets a string
+     * @return string
+     */
     public String getString() {
         return string;
     }

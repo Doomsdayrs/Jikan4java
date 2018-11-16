@@ -38,7 +38,7 @@ public class CharacterPageCharacter {
     @JsonProperty("url")
     private String url;
     @JsonProperty("image_url")
-    private String iconURL;
+    private String image_url;
     @JsonProperty("name")
     private String name;
     @JsonProperty("alternative_names")
@@ -48,30 +48,61 @@ public class CharacterPageCharacter {
     @JsonProperty("manga")
     private ArrayList<PageCharacterManga> mangas;
 
+    /**
+     * Gets mal id
+     *
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+    /**
+     * Gets url
+     *
+     * @return url
+     */
     public String getUrl() {
         return url;
     }
 
-    public String getIconURL() {
-        return iconURL;
+    /**
+     * Gets image url
+     *
+     * @return image url
+     */
+    public String getImage_url() {
+        return image_url;
     }
 
+    /**
+     * Name of character
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Alternative names
+     * @return array list of alt names
+     */
     public ArrayList<String> getAlternative_names() {
         return alternative_names;
     }
 
+    /**
+     * Animes in
+     * @return array list of animes
+     */
     public ArrayList<PageCharacterAnime> getAnimes() {
         return animes;
     }
 
+    /**
+     * Mangas in
+     * @return array list of mangas
+     */
     public ArrayList<PageCharacterManga> getMangas() {
         return mangas;
     }
@@ -80,8 +111,8 @@ public class CharacterPageCharacter {
      * Returns the Character object of this object
      *
      * @return Character Object
-     * @throws IOException
-     * @throws ParseException
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
     public Character getCharacter() throws IOException, ParseException {
         return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Character.class);
@@ -92,7 +123,7 @@ public class CharacterPageCharacter {
         return "CharacterPageCharacter{" +
                 "mal_id=" + mal_id +
                 ", url='" + url + '\'' +
-                ", iconURL='" + iconURL + '\'' +
+                ", image_url='" + image_url + '\'' +
                 ", name='" + name + '\'' +
                 ", alternative_names=" + alternative_names +
                 ", animes=" + animes +

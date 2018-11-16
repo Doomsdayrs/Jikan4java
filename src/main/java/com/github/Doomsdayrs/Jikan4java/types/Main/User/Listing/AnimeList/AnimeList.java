@@ -22,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-@Deprecated
+
 public class AnimeList {
     @JsonProperty("request_hash")
     private String request_hash;
@@ -32,4 +32,30 @@ public class AnimeList {
     private int request_cache_expiry;
     @JsonProperty("anime")
     private ArrayList<AnimeListAnime> animes;
+
+    public String getRequest_hash() {
+        return request_hash;
+    }
+
+    public boolean isRequest_cached() {
+        return request_cached;
+    }
+
+    public int getRequest_cache_expiry() {
+        return request_cache_expiry;
+    }
+
+    public ArrayList<AnimeListAnime> getAnimes() {
+        return animes;
+    }
+
+    @Override
+    public String toString() {
+        return "AnimeList{" +
+                "request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
+                ", animes=" + animes +
+                '}';
+    }
 }
