@@ -1,11 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
-
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -31,7 +25,7 @@ public class ExampleClass {
      *
      * @param args Args
      */
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) {
         /*
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
