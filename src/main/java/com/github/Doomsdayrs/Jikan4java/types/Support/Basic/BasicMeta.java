@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Basic;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

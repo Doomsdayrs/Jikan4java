@@ -1,6 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -22,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author github.com/doomsdayrs
  */
 
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class MalURL {
     @JsonProperty("mal_id")
     private int mal_id;
@@ -33,18 +31,35 @@ public class MalURL {
     @JsonProperty("url")
     private String url;
 
+    /**
+     * Gets mal id
+     *
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+    /**
+     * Get type
+     * @return type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Get name
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets url
+     * @return url
+     */
     public String getUrl() {
         return url;
     }

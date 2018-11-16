@@ -39,26 +39,51 @@ public class GenreSearchMangaPage {
     @JsonProperty("manga")
     private ArrayList<GenreSearchManga> mangas;
 
+    /**
+     * Gets request hash
+     *
+     * @return Request hash
+     */
     public String getRequest_hash() {
         return request_hash;
     }
 
+    /**
+     * Is the request cached?
+     * @return is it cached?
+     */
     public boolean isRequest_cached() {
         return request_cached;
     }
 
+    /**
+     * Gets expiry
+     * @return int date or something
+     */
     public int getRequest_cache_expiry() {
         return request_cache_expiry;
     }
 
+    /**
+     * Gets a malURL
+     * @return malURl
+     */
     public MalURL getMalURL() {
         return malURL;
     }
 
+    /**
+     * Get item count
+     * @return item count
+     */
     public int getItem_count() {
         return item_count;
     }
 
+    /**
+     * Array list of mangas
+     * @return mangas
+     */
     public ArrayList<GenreSearchManga> getMangas() {
         return mangas;
     }

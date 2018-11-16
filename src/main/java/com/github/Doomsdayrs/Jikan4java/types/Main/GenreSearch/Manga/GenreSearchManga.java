@@ -63,54 +63,108 @@ public class GenreSearchManga {
     @JsonProperty("serialization")
     private ArrayList<String> serialization;
 
+    /**
+     * Gets mal id
+     *
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+    /**
+     * Gets url
+     * @return url
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * Get title
+     * @return title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Gets image url
+     * @return image url
+     */
     public String getImage_url() {
         return image_url;
     }
 
+    /**
+     * Get synopsis
+     * @return synopsis
+     */
     public String getSynopsis() {
         return synopsis;
     }
 
+    /**
+     * Get type
+     * @return type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Start date
+     * @return date
+     */
     public String getPublishing_start() {
         return publishing_start;
     }
 
+    /**
+     * Get volumes
+     * @return volumes
+     */
     public int getVolumes() {
         return volumes;
     }
 
+    /**
+     * Get member count
+     * @return count of member
+     */
     public int getMembers() {
         return members;
     }
 
+    /**
+     * Get genres
+     * @return genres
+     */
     public ArrayList<Genre> getGenres() {
         return genres;
     }
 
+    /**
+     * Get authors
+     * @return authors
+     */
     public ArrayList<Authors> getAuthors() {
         return authors;
     }
 
-    public float isScore() {
+    /**
+     * Get score
+     *
+     * @return score
+     */
+    public float getScore() {
         return score;
     }
 
+    /**
+     * Get serialization
+     * @return serialization
+     */
     public ArrayList<String> getSerialization() {
         return serialization;
     }

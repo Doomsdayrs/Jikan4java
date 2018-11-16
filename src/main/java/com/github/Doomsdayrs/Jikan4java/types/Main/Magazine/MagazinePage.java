@@ -1,8 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Magazine;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.BasicMeta;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Basic.BasicMeta;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+
 public class MagazinePage {
     @JsonProperty("request_hash")
     private String request_hash;
@@ -37,22 +36,43 @@ public class MagazinePage {
     @JsonProperty("manga")
     private ArrayList<Magazine> magazines;
 
+    /**
+     * Gets request hash
+     *
+     * @return Request hash
+     */
     public String getRequest_hash() {
         return request_hash;
     }
 
+    /**
+     * Is the request cached?
+     * @return is it cached?
+     */
     public boolean isRequest_cached() {
         return request_cached;
     }
 
+    /**
+     * Gets expiry
+     * @return int date or something
+     */
     public int getRequest_cache_expiry() {
         return request_cache_expiry;
     }
 
+    /**
+     * Get meta
+     * @return meta
+     */
     public BasicMeta getMeta() {
         return meta;
     }
 
+    /**
+     * Get magazines
+     * @return magazines
+     */
     public ArrayList<Magazine> getMagazines() {
         return magazines;
     }

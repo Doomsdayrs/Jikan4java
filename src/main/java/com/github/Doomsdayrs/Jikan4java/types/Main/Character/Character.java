@@ -73,7 +73,6 @@ public class Character {
 
     /**
      * Gets request hash
-     *
      * @return Request hash
      */
     public String getRequest_hash() {
@@ -82,7 +81,6 @@ public class Character {
 
     /**
      * Is the request cached?
-     *
      * @return is it cached?
      */
     public boolean isRequest_cached() {
@@ -91,7 +89,6 @@ public class Character {
 
     /**
      * Gets expiry
-     *
      * @return int date or something
      */
     public int getRequest_cache_expiry() {
@@ -100,7 +97,6 @@ public class Character {
 
     /**
      * Gets mal id
-     *
      * @return mal id
      */
     public int getMal_id() {
@@ -109,7 +105,6 @@ public class Character {
 
     /**
      * Gets url
-     *
      * @return url
      */
     public String getUrl() {
@@ -158,7 +153,6 @@ public class Character {
 
     /**
      * Gets image url
-     *
      * @return image url
      */
     public String getImage_url() {

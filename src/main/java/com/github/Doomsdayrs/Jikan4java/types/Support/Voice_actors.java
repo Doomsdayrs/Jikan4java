@@ -36,22 +36,45 @@ public class Voice_actors {
     @JsonProperty("language")
     private String language;
 
+    /**
+     * Gets mal id
+     *
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+    /**
+     * Get name
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets url
+     * @return url
+     */
     public String getUrl() {
         return url;
     }
 
+
+    /**
+     * Gets image url
+     * @return image url
+     */
     public String getImage_url() {
         return image_url;
     }
 
+    /**
+     * Gets their language
+     * @return what language
+     */
     public String getLanguage() {
         return language;
     }

@@ -43,18 +43,38 @@ public class AnimeBasic {
     @JsonProperty("name")
     private String name;
 
+    /**
+     * Gets mal id
+     *
+     * @return mal id
+     */
     public int getMal_id() {
         return mal_id;
     }
 
+    /**
+     * Gets url
+     *
+     * @return url
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * Gets image url
+     *
+     * @return image url
+     */
     public String getImage_url() {
         return image_url;
     }
 
+    /**
+     * Get name
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }

@@ -1,7 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.User.History;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.BasicMeta;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Basic.BasicMeta;
 
 /**
  * This file is part of Jikan4java.
