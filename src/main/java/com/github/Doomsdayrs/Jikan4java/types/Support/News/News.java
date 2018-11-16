@@ -1,7 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.News;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class News extends MALData {
+public class News {
     @JsonProperty("articles")
     private ArrayList<Article> articles;
     @JsonProperty("request_hash")

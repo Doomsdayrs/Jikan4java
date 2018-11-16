@@ -1,5 +1,11 @@
 package com.github.Doomsdayrs.Jikan4java;
 
+import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -25,11 +31,11 @@ public class ExampleClass {
      *
      * @param args Args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException {
         /*
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
-        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getRelated().get(0).get(Relates.SIDE_STORIES));
+        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getRelated().get(0).get(Related.SIDE_STORIES));
 
         System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString());
         System.out.println(new CharacterConnection().search("Caster").toString());
@@ -62,7 +68,6 @@ public class ExampleClass {
         System.out.println(new ProducerConnection().search(135,1));
         System.out.println(new MetaConnection().getStatus().toString());
         */
-
     }
 
 }

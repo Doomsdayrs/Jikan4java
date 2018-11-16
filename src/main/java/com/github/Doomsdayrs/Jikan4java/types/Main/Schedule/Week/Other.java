@@ -34,4 +34,33 @@ public class Other extends Day {
 
     @JsonProperty("other")
     private ArrayList<SubAnime> other;
+
+    @Override
+    public String getRequest_hash() {
+        return request_hash;
+    }
+
+    @Override
+    public boolean isRequest_cached() {
+        return request_cached;
+    }
+
+    @Override
+    public int getRequest_cache_expiry() {
+        return request_cache_expiry;
+    }
+
+    public ArrayList<SubAnime> getOther() {
+        return other;
+    }
+
+    @Override
+    public String toString() {
+        return "Other{" +
+                "request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
+                ", other=" + other +
+                '}';
+    }
 }

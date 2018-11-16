@@ -67,7 +67,7 @@ public class PeopleBasic {
      * @throws ParseException ParseException
      */
     public Person getPerson() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body()).string())).toJSONString(), Person.class);
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/person/" + mal_id).build()).execute().body()).string())).toJSONString(), Person.class);
     }
 
     @Override

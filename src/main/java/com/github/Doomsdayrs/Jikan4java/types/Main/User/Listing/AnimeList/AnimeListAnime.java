@@ -3,7 +3,6 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Licensors;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Studios;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class AnimeListAnime extends MALData {
+public class AnimeListAnime{
 
     @JsonProperty("mal_id")
     private int mal_id;
@@ -114,7 +113,6 @@ public class AnimeListAnime extends MALData {
     @JsonProperty("licensors")
     private ArrayList<Licensors> licensors;
 
-    @Override
     public int getMal_id() {
         return mal_id;
     }
@@ -127,12 +125,10 @@ public class AnimeListAnime extends MALData {
         return video_url;
     }
 
-    @Override
     public String getUrl() {
         return url;
     }
 
-    @Override
     public String getImage_url() {
         return image_url;
     }

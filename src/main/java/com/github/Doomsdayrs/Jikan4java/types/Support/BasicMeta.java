@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-public class BasicMeta extends MALData {
+public class BasicMeta {
     @JsonProperty("mal_id")
     private int mal_id;
     @JsonProperty("type")
@@ -30,7 +30,6 @@ public class BasicMeta extends MALData {
     @JsonProperty("url")
     private String url;
 
-    @Override
     public int getMal_id() {
         return mal_id;
     }
@@ -43,7 +42,6 @@ public class BasicMeta extends MALData {
         return name;
     }
 
-    @Override
     public String getUrl() {
         return url;
     }

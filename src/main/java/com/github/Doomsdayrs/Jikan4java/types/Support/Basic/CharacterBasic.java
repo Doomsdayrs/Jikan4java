@@ -1,6 +1,17 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Basic;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+import java.util.Objects;
 
 /**
  * This file is part of Jikan4java.
@@ -47,6 +58,17 @@ public class CharacterBasic {
 
     public String getName() {
         return name;
+    }
+
+    /**
+     * Returns the Character object of this object
+     *
+     * @return Character Object
+     * @throws IOException IOException
+     * @throws ParseException ParseException
+     */
+    public Character getCharacter() throws IOException, ParseException {
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body()).string())).toJSONString(), Character.class);
     }
 
     @Override

@@ -8,7 +8,6 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Episodes.Episodes;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Videos.Video;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Forum;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MoreInfo;
 import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
@@ -43,7 +42,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Anime extends MALData {
+public class Anime  {
 
     @JsonProperty("request_hash")
     private String request_hash;
@@ -122,8 +121,7 @@ public class Anime extends MALData {
     /**
      * Anime object constructor without variables
      */
-    public Anime() {
-    }
+    public Anime(){}
 
     /**
      * Gets request hash

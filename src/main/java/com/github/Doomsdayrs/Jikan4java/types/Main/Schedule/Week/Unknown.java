@@ -34,4 +34,33 @@ public class Unknown extends Day {
 
     @JsonProperty("unknown")
     private ArrayList<SubAnime> unknown;
+
+    @Override
+    public String getRequest_hash() {
+        return request_hash;
+    }
+
+    @Override
+    public boolean isRequest_cached() {
+        return request_cached;
+    }
+
+    @Override
+    public int getRequest_cache_expiry() {
+        return request_cache_expiry;
+    }
+
+    public ArrayList<SubAnime> getUnknown() {
+        return unknown;
+    }
+
+    @Override
+    public String toString() {
+        return "Unknown{" +
+                "request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
+                ", unknown=" + unknown +
+                '}';
+    }
 }

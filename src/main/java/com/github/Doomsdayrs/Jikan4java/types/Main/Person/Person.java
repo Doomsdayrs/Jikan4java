@@ -3,7 +3,6 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.types.Support.MALData;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -33,7 +32,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Person extends MALData {
+public class Person{
     @JsonIgnore
     private final String baseURL = "https://api.jikan.moe/v3";
 

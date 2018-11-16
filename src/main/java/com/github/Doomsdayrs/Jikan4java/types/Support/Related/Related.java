@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Related;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
@@ -23,6 +24,22 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class Related {
+    @JsonIgnore
+    public static final int PREQUEL = 0;
+    @JsonIgnore
+    public static final int ALT_VERSION = 1;
+    @JsonIgnore
+    public static final int SPIN_OFF = 2;
+    @JsonIgnore
+    public static final int SUMMARIES = 3;
+    @JsonIgnore
+    public static final int SEQUELS = 4;
+    @JsonIgnore
+    public static final int SIDE_STORIES = 5;
+    @JsonIgnore
+    public static final int OTHER = 6;
+    @JsonIgnore
+    public static final int PARENT_STORIE = 7;
 
     @JsonProperty("Prequel")
     private ArrayList<RelatedType> prequel;
