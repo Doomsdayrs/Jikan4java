@@ -47,6 +47,7 @@ public class MagazinePage {
 
     /**
      * Is the request cached?
+     *
      * @return is it cached?
      */
     public boolean isRequest_cached() {
@@ -55,6 +56,7 @@ public class MagazinePage {
 
     /**
      * Gets expiry
+     *
      * @return int date or something
      */
     public int getRequest_cache_expiry() {
@@ -63,6 +65,7 @@ public class MagazinePage {
 
     /**
      * Get meta
+     *
      * @return meta
      */
     public BasicMeta getMeta() {
@@ -71,6 +74,7 @@ public class MagazinePage {
 
     /**
      * Get magazines
+     *
      * @return magazines
      */
     public ArrayList<Magazine> getMagazines() {

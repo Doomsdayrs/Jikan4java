@@ -50,6 +50,7 @@ public class GenreSearchMangaPage {
 
     /**
      * Is the request cached?
+     *
      * @return is it cached?
      */
     public boolean isRequest_cached() {
@@ -58,6 +59,7 @@ public class GenreSearchMangaPage {
 
     /**
      * Gets expiry
+     *
      * @return int date or something
      */
     public int getRequest_cache_expiry() {
@@ -66,6 +68,7 @@ public class GenreSearchMangaPage {
 
     /**
      * Gets a malURL
+     *
      * @return malURl
      */
     public MalURL getMalURL() {
@@ -74,6 +77,7 @@ public class GenreSearchMangaPage {
 
     /**
      * Get item count
+     *
      * @return item count
      */
     public int getItem_count() {
@@ -82,6 +86,7 @@ public class GenreSearchMangaPage {
 
     /**
      * Array list of mangas
+     *
      * @return mangas
      */
     public ArrayList<GenreSearchManga> getMangas() {

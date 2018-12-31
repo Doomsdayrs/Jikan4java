@@ -56,6 +56,7 @@ public class AnimePage {
 
     /**
      * Gets expiry
+     *
      * @return int date or something
      */
     public int getRequest_cache_expiry() {
@@ -64,6 +65,7 @@ public class AnimePage {
 
     /**
      * Returns a list of animes present
+     *
      * @return Array list of animes
      */
     public ArrayList<AnimePageAnime> getAnimes() {
@@ -72,6 +74,7 @@ public class AnimePage {
 
     /**
      * The last page in the query
+     *
      * @return page number
      */
     public int getLast_page() {

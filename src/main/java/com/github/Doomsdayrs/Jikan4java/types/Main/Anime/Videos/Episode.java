@@ -55,6 +55,7 @@ public class Episode {
 
     /**
      * Gets URL
+     *
      * @return url
      */
     public String getUrl() {
@@ -63,6 +64,7 @@ public class Episode {
 
     /**
      * Gets image url
+     *
      * @return url
      */
     public String getImage_url() {

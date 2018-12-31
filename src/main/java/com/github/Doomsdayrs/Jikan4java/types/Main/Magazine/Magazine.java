@@ -78,6 +78,7 @@ public class Magazine {
 
     /**
      * Gets url
+     *
      * @return url
      */
     public String getUrl() {
@@ -86,6 +87,7 @@ public class Magazine {
 
     /**
      * Get title
+     *
      * @return title
      */
     public String getTitle() {
@@ -94,6 +96,7 @@ public class Magazine {
 
     /**
      * Gets image url
+     *
      * @return image url
      */
     public String getImage_url() {
@@ -102,6 +105,7 @@ public class Magazine {
 
     /**
      * Get synopsis
+     *
      * @return synopsis
      */
     public String getSynopsis() {
@@ -110,6 +114,7 @@ public class Magazine {
 
     /**
      * Get type
+     *
      * @return type
      */
     public String getType() {
@@ -118,6 +123,7 @@ public class Magazine {
 
     /**
      * Get start date
+     *
      * @return date
      */
     public String getPublishing_start() {
@@ -126,6 +132,7 @@ public class Magazine {
 
     /**
      * Get count of volumes
+     *
      * @return count
      */
     public int getVolumes() {
@@ -134,6 +141,7 @@ public class Magazine {
 
     /**
      * Get count of members
+     *
      * @return count
      */
     public int getMembers() {
@@ -142,6 +150,7 @@ public class Magazine {
 
     /**
      * Get genres
+     *
      * @return genres
      */
     public ArrayList<Genre> getGenres() {
@@ -150,6 +159,7 @@ public class Magazine {
 
     /**
      * Get authors
+     *
      * @return authors
      */
     public ArrayList<Authors> getAuthors() {
@@ -158,6 +168,7 @@ public class Magazine {
 
     /**
      * Get score
+     *
      * @return scores
      */
     public float getScore() {
@@ -166,6 +177,7 @@ public class Magazine {
 
     /**
      * Get serializations
+     *
      * @return serializations
      */
     public ArrayList<String> getSerializations() {

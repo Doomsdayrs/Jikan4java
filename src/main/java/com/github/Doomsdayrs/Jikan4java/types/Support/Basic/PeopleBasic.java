@@ -63,7 +63,7 @@ public class PeopleBasic {
      * Returns the Person object of this object
      *
      * @return Person Object
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     public Person getPerson() throws IOException, ParseException {

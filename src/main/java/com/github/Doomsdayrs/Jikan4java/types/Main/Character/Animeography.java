@@ -73,6 +73,7 @@ public class Animeography {
 
     /**
      * Gets url
+     *
      * @return url
      */
     public String getUrl() {
@@ -81,6 +82,7 @@ public class Animeography {
 
     /**
      * Gets role
+     *
      * @return role
      */
     public String getRole() {

@@ -14,7 +14,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -39,6 +38,7 @@ public class AnimeConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
     private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+
     /**
      * Constructor
      */
@@ -68,7 +68,8 @@ public class AnimeConnection {
      * @throws ParseException ParseException
      */
     public AnimePage searchPage(String title, int page) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/anime?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), new TypeReference<Collection<AnimePage>>(){});
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/anime?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), new TypeReference<Collection<AnimePage>>() {
+        });
     }
 
     /**

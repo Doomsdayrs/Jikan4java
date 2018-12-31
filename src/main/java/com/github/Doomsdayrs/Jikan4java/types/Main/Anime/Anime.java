@@ -13,6 +13,7 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Producer;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Anime.AnimeReviewPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -42,7 +43,10 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Anime  {
+public class Anime {
+
+    @JsonIgnore
+    private final ObjectMapper mapper = new ObjectMapper();
 
     @JsonProperty("request_hash")
     private String request_hash;
@@ -54,8 +58,6 @@ public class Anime  {
     private int mal_id;
     @JsonProperty("url")
     private String url;
-    @JsonIgnore
-    private final ObjectMapper mapper = new ObjectMapper();
     @JsonProperty("trailer_url")
     private String trailer_url;
     @JsonProperty("title")
@@ -118,10 +120,12 @@ public class Anime  {
     private ArrayList<String> ending_themes;
     @JsonProperty("image_url")
     private String imageURL;
+
     /**
      * Anime object constructor without variables
      */
-    public Anime(){}
+    public Anime() {
+    }
 
     /**
      * Gets request hash
@@ -143,6 +147,7 @@ public class Anime  {
 
     /**
      * Gets expiry
+     *
      * @return int date or something
      */
     public int getRequest_cache_expiry() {
@@ -151,6 +156,7 @@ public class Anime  {
 
     /**
      * Gets mal id
+     *
      * @return mal id
      */
     public int getMal_id() {
@@ -159,6 +165,7 @@ public class Anime  {
 
     /**
      * Gets url
+     *
      * @return url
      */
     public String getUrl() {
@@ -176,6 +183,7 @@ public class Anime  {
 
     /**
      * Gets trailer url
+     *
      * @return trailer url
      */
     public String getTrailer_url() {
@@ -184,6 +192,7 @@ public class Anime  {
 
     /**
      * Gets title
+     *
      * @return title
      */
     public String getTitle() {
@@ -192,6 +201,7 @@ public class Anime  {
 
     /**
      * Gets title in english
+     *
      * @return title english
      */
     public String getTitle_english() {
@@ -200,6 +210,7 @@ public class Anime  {
 
     /**
      * Gets title in japanese
+     *
      * @return japanese title
      */
     public String getTitle_japanese() {
@@ -208,6 +219,7 @@ public class Anime  {
 
     /**
      * Gets title synonyms
+     *
      * @return title synonyms
      */
     public ArrayList<String> getTitle_synonyms() {
@@ -216,6 +228,7 @@ public class Anime  {
 
     /**
      * Gets type
+     *
      * @return type
      */
     public String getType() {
@@ -224,6 +237,7 @@ public class Anime  {
 
     /**
      * Gets source
+     *
      * @return source
      */
     public String getSource() {
@@ -232,6 +246,7 @@ public class Anime  {
 
     /**
      * Gets episodes
+     *
      * @return episodes
      */
     public int getEpisodes() {
@@ -240,6 +255,7 @@ public class Anime  {
 
     /**
      * Gets status
+     *
      * @return status
      */
     public String getStatus() {
@@ -248,6 +264,7 @@ public class Anime  {
 
     /**
      * Gets aired
+     *
      * @return aired
      */
     public Aired getAired() {
@@ -256,6 +273,7 @@ public class Anime  {
 
     /**
      * Is anime airing?
+     *
      * @return airing?
      */
     public boolean isAiring() {
@@ -264,6 +282,7 @@ public class Anime  {
 
     /**
      * Gets duration
+     *
      * @return duration
      */
     public String getDuration() {
@@ -272,6 +291,7 @@ public class Anime  {
 
     /**
      * Gets rating
+     *
      * @return rating
      */
     public String getRating() {
@@ -280,6 +300,7 @@ public class Anime  {
 
     /**
      * Gets score
+     *
      * @return score
      */
     public double getScore() {
@@ -288,6 +309,7 @@ public class Anime  {
 
     /**
      * Gets amount of people who scored
+     *
      * @return # of scorers
      */
     public int getScored_by() {
@@ -296,6 +318,7 @@ public class Anime  {
 
     /**
      * Gets ranking
+     *
      * @return ranking
      */
     public int getRank() {
@@ -304,6 +327,7 @@ public class Anime  {
 
     /**
      * Gets popularity
+     *
      * @return popularity
      */
     public int getPopularity() {
@@ -312,6 +336,7 @@ public class Anime  {
 
     /**
      * Gets count of members
+     *
      * @return member count
      */
     public int getMembers() {
@@ -320,6 +345,7 @@ public class Anime  {
 
     /**
      * Gets favored count
+     *
      * @return favored count
      */
     public int getFavorites() {
@@ -328,6 +354,7 @@ public class Anime  {
 
     /**
      * Gets synopsis
+     *
      * @return synopsis
      */
     public String getSynopsis() {
@@ -336,6 +363,7 @@ public class Anime  {
 
     /**
      * Gets background
+     *
      * @return background
      */
     public String getBackground() {
@@ -344,6 +372,7 @@ public class Anime  {
 
     /**
      * Gets premiered
+     *
      * @return premiered
      */
     public String getPremiered() {
@@ -352,6 +381,7 @@ public class Anime  {
 
     /**
      * Gets broadcast
+     *
      * @return broadcast
      */
     public String getBroadcast() {
@@ -360,6 +390,7 @@ public class Anime  {
 
     /**
      * Gets related
+     *
      * @return related
      */
     public ArrayList<Related> getRelated() {
@@ -368,6 +399,7 @@ public class Anime  {
 
     /**
      * Gets producers
+     *
      * @return producers
      */
     public ArrayList<Producer> getProducers() {
@@ -376,6 +408,7 @@ public class Anime  {
 
     /**
      * Gets licensors
+     *
      * @return licensors
      */
     public ArrayList<Licensors> getLicensors() {
@@ -384,6 +417,7 @@ public class Anime  {
 
     /**
      * Gets studios
+     *
      * @return studios
      */
     public ArrayList<Studios> getStudios() {
@@ -392,6 +426,7 @@ public class Anime  {
 
     /**
      * Gets genres
+     *
      * @return genres
      */
     public ArrayList<Genre> getGenres() {
@@ -400,6 +435,7 @@ public class Anime  {
 
     /**
      * Gets opening themes
+     *
      * @return opening themes
      */
     public ArrayList<String> getOpening_themes() {
@@ -408,6 +444,7 @@ public class Anime  {
 
     /**
      * Gets ending themes
+     *
      * @return ending themes
      */
     public ArrayList<String> getEnding_themes() {
@@ -516,6 +553,17 @@ public class Anime  {
         return mapper.readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
     }
 
+    @JsonProperty
+    public AnimeReviewPage getReviews(int pageNumber) throws IOException, ParseException {
+        return mapper.readValue(this.retrieve("reviews/" + pageNumber).toJSONString(), AnimeReviewPage.class);
+    }
+
+
+    @JsonProperty
+    public AnimeReviewPage getReviews() throws IOException, ParseException {
+        return mapper.readValue(this.retrieve("reviews").toJSONString(), AnimeReviewPage.class);
+    }
+
     /**
      * Retrieves data from anime page
      *
@@ -530,7 +578,10 @@ public class Anime  {
         Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/" + subCategory).build();
         Response response = new OkHttpClient().newCall(request).execute();
         JSONParser parser = new JSONParser();
-        return (JSONObject) parser.parse(response.body().string());
+        String responseString = response.body().string();
+        if (!responseString.equals(null))
+            return (JSONObject) parser.parse(responseString);
+        else return null;
     }
 
     @Override

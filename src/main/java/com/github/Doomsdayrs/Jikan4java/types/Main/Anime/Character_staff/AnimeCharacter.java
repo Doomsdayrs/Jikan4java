@@ -46,6 +46,7 @@ public class AnimeCharacter {
 
     /**
      * Gets MAL id
+     *
      * @return returns myanimelist id
      */
     public int getMal_id() {
@@ -54,6 +55,7 @@ public class AnimeCharacter {
 
     /**
      * Gets URL
+     *
      * @return returns url of character
      */
     public String getUrl() {
@@ -62,6 +64,7 @@ public class AnimeCharacter {
 
     /**
      * Gets image URL
+     *
      * @return returns image of character
      */
     public String getImage_url() {
@@ -70,6 +73,7 @@ public class AnimeCharacter {
 
     /**
      * Gets name
+     *
      * @return Name of character
      */
     public String getName() {
@@ -78,6 +82,7 @@ public class AnimeCharacter {
 
     /**
      * Gets role of character
+     *
      * @return role of character
      */
     public String getRole() {
@@ -86,6 +91,7 @@ public class AnimeCharacter {
 
     /**
      * Gets voice actors of anime
+     *
      * @return voice actors of character
      */
     public ArrayList<Voice_actors> getVoice_actors() {

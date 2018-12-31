@@ -73,6 +73,7 @@ public class Character {
 
     /**
      * Gets request hash
+     *
      * @return Request hash
      */
     public String getRequest_hash() {
@@ -81,6 +82,7 @@ public class Character {
 
     /**
      * Is the request cached?
+     *
      * @return is it cached?
      */
     public boolean isRequest_cached() {
@@ -89,6 +91,7 @@ public class Character {
 
     /**
      * Gets expiry
+     *
      * @return int date or something
      */
     public int getRequest_cache_expiry() {
@@ -97,6 +100,7 @@ public class Character {
 
     /**
      * Gets mal id
+     *
      * @return mal id
      */
     public int getMal_id() {
@@ -105,6 +109,7 @@ public class Character {
 
     /**
      * Gets url
+     *
      * @return url
      */
     public String getUrl() {
@@ -113,6 +118,7 @@ public class Character {
 
     /**
      * Get name
+     *
      * @return name
      */
     public String getName() {
@@ -121,6 +127,7 @@ public class Character {
 
     /**
      * Get name of kanji
+     *
      * @return kanji
      */
     public String getName_kanji() {
@@ -129,6 +136,7 @@ public class Character {
 
     /**
      * Get nicknames
+     *
      * @return nicknames
      */
     public ArrayList<String> getNicknames() {
@@ -137,6 +145,7 @@ public class Character {
 
     /**
      * Get about
+     *
      * @return about
      */
     public String getAbout() {
@@ -145,6 +154,7 @@ public class Character {
 
     /**
      * Get members whom favoured this character
+     *
      * @return count
      */
     public int getMember_favorites() {
@@ -153,6 +163,7 @@ public class Character {
 
     /**
      * Gets image url
+     *
      * @return image url
      */
     public String getImage_url() {
@@ -161,6 +172,7 @@ public class Character {
 
     /**
      * Gets animes in
+     *
      * @return animeography
      */
     public ArrayList<Animeography> getAnimeography() {
@@ -169,6 +181,7 @@ public class Character {
 
     /**
      * Gets managas in
+     *
      * @return mangaography
      */
     public ArrayList<Mangaography> getMangaography() {
@@ -177,6 +190,7 @@ public class Character {
 
     /**
      * Gets voice actors
+     *
      * @return voice actors
      */
     public ArrayList<Voice_actors> getVoice_actors() {
@@ -185,8 +199,9 @@ public class Character {
 
     /**
      * Gets pictures
+     *
      * @return pictures
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     @JsonProperty

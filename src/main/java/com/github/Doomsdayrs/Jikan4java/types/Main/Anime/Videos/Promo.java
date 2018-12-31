@@ -52,6 +52,7 @@ public class Promo {
 
     /**
      * Gets video url
+     *
      * @return video url
      */
     public String getVideo_url() {

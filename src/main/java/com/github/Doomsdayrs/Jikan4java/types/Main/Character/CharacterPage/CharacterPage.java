@@ -74,6 +74,7 @@ public class CharacterPage {
 
     /**
      * Get last page possible
+     *
      * @return last page
      */
     public int getLast_page() {

@@ -1,9 +1,6 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Anime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.MalURL;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.SubAnime;
 
 import java.util.ArrayList;
 
@@ -21,88 +18,47 @@ import java.util.ArrayList;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 31 / October / 2018
+ * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class GenreSearchAnimePage {
+public class AnimeReviewPage {
+
     @JsonProperty("request_hash")
     private String request_hash;
+
     @JsonProperty("request_cached")
     private boolean request_cached;
+
     @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
-    @JsonProperty("mal_url")
-    private MalURL malURL;
-    @JsonProperty("item_count")
-    private int item_count;
-    @JsonProperty("anime")
-    private ArrayList<SubAnime> animes;
 
-    /**
-     * Gets request hash
-     *
-     * @return Request hash
-     */
+    @JsonProperty("reviews")
+    private ArrayList<AnimeReview> animeReviews;
+
     public String getRequest_hash() {
         return request_hash;
     }
 
-    /**
-     * Is the request cached?
-     *
-     * @return is it cached?
-     */
     public boolean isRequest_cached() {
         return request_cached;
     }
 
-    /**
-     * Gets expiry
-     *
-     * @return int date or something
-     */
     public int getRequest_cache_expiry() {
         return request_cache_expiry;
     }
 
-    /**
-     * Gets a malURL
-     *
-     * @return malURl
-     */
-    public MalURL getMalURL() {
-        return malURL;
-    }
-
-    /**
-     * Get item count
-     *
-     * @return item count
-     */
-    public int getItem_count() {
-        return item_count;
-    }
-
-    /**
-     * Array list of animes
-     *
-     * @return animes
-     */
-    public ArrayList<SubAnime> getAnimes() {
-        return animes;
+    public ArrayList<AnimeReview> getAnimeReviews() {
+        return animeReviews;
     }
 
     @Override
     public String toString() {
-        return "GenreSearchAnimePage{" +
+        return "AnimeReviewPage{" +
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", malURL=" + malURL +
-                ", item_count=" + item_count +
-                ", animes=" + animes +
+                ", animeReviews=" + animeReviews +
                 '}';
     }
 }

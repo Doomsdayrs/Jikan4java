@@ -1,10 +1,7 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Manga;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Review;
 
 /**
  * This file is part of Jikan4java.
@@ -20,77 +17,68 @@ import java.util.ArrayList;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 28 / October / 2018
+ * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class Staff {
+public class MangaReview extends Review {
     @JsonProperty("mal_id")
     private int mal_id;
+
     @JsonProperty("url")
     private String url;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("image_url")
-    private String image_url;
-    @JsonProperty("positions")
-    private ArrayList<String> positions;
 
-    /**
-     * Gets MAL ID
-     *
-     * @return myanimelist id
-     */
+    @JsonProperty("helpful_count")
+    private int helpful_count;
+
+    @JsonProperty("date")
+    private String date;
+
+    @JsonProperty("reviewer")
+    private MangaReviewer reviewer;
+
+    @JsonProperty("content")
+    private String content;
+
+    @Override
     public int getMal_id() {
         return mal_id;
     }
 
-    /**
-     * Gets URL of staff member
-     *
-     * @return url of staff member
-     */
+    @Override
     public String getUrl() {
         return url;
     }
 
-    /**
-     * Gets name of member
-     *
-     * @return name of staff member
-     */
-    public String getName() {
-        return name;
+    @Override
+    public int getHelpful_count() {
+        return helpful_count;
     }
 
-    /**
-     * Gets image of member
-     *
-     * @return image url of the staff member
-     */
-    public String getImage_url() {
-        return image_url;
+    @Override
+    public String getDate() {
+        return date;
     }
 
-    /**
-     * Gets Positions member
-     *
-     * @return the positions the staff member has
-     */
-    public ArrayList<String> getPositions() {
-        return positions;
+    @Override
+    public MangaReviewer getReviewer() {
+        return reviewer;
+    }
+
+    @Override
+    public String getContent() {
+        return content;
     }
 
     @Override
     public String toString() {
-        return "Staff{" +
+        return "MangaReview{" +
                 "mal_id=" + mal_id +
                 ", url='" + url + '\'' +
-                ", name='" + name + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", positions=" + positions +
+                ", helpful_count=" + helpful_count +
+                ", date='" + date + '\'' +
+                ", reviewer=" + reviewer +
+                ", content='" + content + '\'' +
                 '}';
     }
 }
-

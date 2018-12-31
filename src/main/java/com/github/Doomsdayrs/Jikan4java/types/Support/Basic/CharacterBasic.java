@@ -3,7 +3,6 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.Basic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.JSONObject;
@@ -64,7 +63,7 @@ public class CharacterBasic {
      * Returns the Character object of this object
      *
      * @return Character Object
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     public Character getCharacter() throws IOException, ParseException {

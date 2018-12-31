@@ -55,6 +55,7 @@ public class Licensors {
 
     /**
      * Gets name
+     *
      * @return name
      */
     public String getName() {
@@ -63,6 +64,7 @@ public class Licensors {
 
     /**
      * Gets URL
+     *
      * @return url
      */
     public String getUrl() {

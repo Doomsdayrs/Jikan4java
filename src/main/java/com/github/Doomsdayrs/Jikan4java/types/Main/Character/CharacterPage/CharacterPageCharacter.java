@@ -77,6 +77,7 @@ public class CharacterPageCharacter {
 
     /**
      * Name of character
+     *
      * @return name
      */
     public String getName() {
@@ -85,6 +86,7 @@ public class CharacterPageCharacter {
 
     /**
      * Alternative names
+     *
      * @return array list of alt names
      */
     public ArrayList<String> getAlternative_names() {
@@ -93,6 +95,7 @@ public class CharacterPageCharacter {
 
     /**
      * Animes in
+     *
      * @return array list of animes
      */
     public ArrayList<PageCharacterAnime> getAnimes() {
@@ -101,6 +104,7 @@ public class CharacterPageCharacter {
 
     /**
      * Mangas in
+     *
      * @return array list of mangas
      */
     public ArrayList<PageCharacterManga> getMangas() {
@@ -111,7 +115,7 @@ public class CharacterPageCharacter {
      * Returns the Character object of this object
      *
      * @return Character Object
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     public Character getCharacter() throws IOException, ParseException {

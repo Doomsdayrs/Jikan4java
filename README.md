@@ -2,7 +2,8 @@
 Java api wrapper for Jikan api
 Website for Jikan: https://jikan.moe/
 
-0.9 is the most updated version. With most functionality. 1.0 Complete documentation, and excessive comments.
+0.9.B is the most updated version. With most functionality. 1.0 Complete documentation, and excessive comments.
+Currently working on v3.2 api updates
 
 ## Capabilities
 - Basic
@@ -22,7 +23,12 @@ Website for Jikan: https://jikan.moe/
   - [X] Search and return User
 - Other 
   - [ ] Search and return Meta >Not till its formatted.
-
+  - [X] Retrieve Reviews
+  - [ ] Retrieve Recommendations
+  - [ ] User updates
+  - [ ] Clubs
+  - [ ] Season later
+  - [ ] User updates
 
 ## Basic documentation
 

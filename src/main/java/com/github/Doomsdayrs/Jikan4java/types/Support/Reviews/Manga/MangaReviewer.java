@@ -1,4 +1,7 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Manga;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Reviewer;
 
 /**
  * This file is part of Jikan4java.
@@ -14,46 +17,60 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 30 / October / 2018
+ * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
+public class MangaReviewer extends Reviewer {
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class LastPost {
     @JsonProperty("url")
     private String url;
-    @JsonProperty("author_name")
-    private String author_name;
-    @JsonProperty("author_url")
-    private String author_url;
-    @JsonProperty("date_posted")
-    private String date_posted;
 
+    @JsonProperty("image_url")
+    private String image_url;
+
+    @JsonProperty("username")
+    private String username;
+
+    @JsonProperty("chapters_read")
+    private int seen;
+
+    @JsonProperty("scores")
+    private MangaScore scores;
+
+    @Override
     public String getUrl() {
         return url;
     }
 
-    public String getAuthor_name() {
-        return author_name;
+    @Override
+    public String getImage_url() {
+        return image_url;
     }
 
-    public String getAuthor_url() {
-        return author_url;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
-    public String getDate_posted() {
-        return date_posted;
+    @Override
+    public int getSeen() {
+        return seen;
+    }
+
+    @Override
+    public MangaScore getScores() {
+        return scores;
     }
 
     @Override
     public String toString() {
-        return "LastPost{" +
+        return "MangaReviewer{" +
                 "url='" + url + '\'' +
-                ", author_name='" + author_name + '\'' +
-                ", author_url='" + author_url + '\'' +
-                ", date_posted='" + date_posted + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", username='" + username + '\'' +
+                ", seen=" + seen +
+                ", scores=" + scores +
                 '}';
     }
 }

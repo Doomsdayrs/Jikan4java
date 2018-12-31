@@ -42,6 +42,7 @@ public class MalURL {
 
     /**
      * Get type
+     *
      * @return type
      */
     public String getType() {
@@ -50,6 +51,7 @@ public class MalURL {
 
     /**
      * Get name
+     *
      * @return name
      */
     public String getName() {
@@ -58,6 +60,7 @@ public class MalURL {
 
     /**
      * Gets url
+     *
      * @return url
      */
     public String getUrl() {

@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Manga;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Published.Published;
@@ -11,6 +12,7 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.MoreInfo;
 import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Manga.MangaReviewPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -42,6 +44,9 @@ import java.util.ArrayList;
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Manga {
+    @JsonIgnore
+    private final ObjectMapper mapper = new ObjectMapper();
+
     @JsonProperty("request_hash")
     private String request_hash;
     @JsonProperty("request_cached")
@@ -228,7 +233,7 @@ public class Manga {
      */
     @JsonProperty
     public MangaCharacters getCharacters() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("characters").toJSONString(), MangaCharacters.class);
+        return mapper.readValue(this.retrieve("characters").toJSONString(), MangaCharacters.class);
     }
 
     /**
@@ -240,7 +245,7 @@ public class Manga {
      */
     @JsonProperty
     public News getNews() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("news").toJSONString(), News.class);
+        return mapper.readValue(this.retrieve("news").toJSONString(), News.class);
     }
 
     /**
@@ -252,7 +257,7 @@ public class Manga {
      */
     @JsonProperty
     public Pictures getPictures() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
+        return mapper.readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
     }
 
 
@@ -265,7 +270,7 @@ public class Manga {
      */
     @JsonProperty
     public Stats getStats() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("stats").toJSONString(), Stats.class);
+        return mapper.readValue(this.retrieve("stats").toJSONString(), Stats.class);
     }
 
     /**
@@ -277,7 +282,7 @@ public class Manga {
      */
     @JsonProperty
     public Forum getForum() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("forum").toJSONString(), Forum.class);
+        return mapper.readValue(this.retrieve("forum").toJSONString(), Forum.class);
     }
 
     /**
@@ -289,7 +294,18 @@ public class Manga {
      */
     @JsonProperty
     public MoreInfo getMoreInfo() throws IOException, ParseException {
-        return new ObjectMapper().readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
+        return mapper.readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
+    }
+
+    @JsonProperty
+    public MangaReviewPage getReviews(int pageNumber) throws IOException, ParseException {
+        return mapper.readValue(this.retrieve("reviews/" + pageNumber).toJSONString(), MangaReviewPage.class);
+    }
+
+
+    @JsonProperty
+    public MangaReviewPage getReviews() throws IOException, ParseException {
+        return mapper.readValue(this.retrieve("reviews").toJSONString(), MangaReviewPage.class);
     }
 
     /**
@@ -306,7 +322,10 @@ public class Manga {
         Request request = new Request.Builder().url(baseURL + "/manga/" + mal_id + "/" + subCategory).build();
         Response response = new OkHttpClient().newCall(request).execute();
         JSONParser parser = new JSONParser();
-        return (JSONObject) parser.parse(response.body().string());
+        String responseString = response.body().string();
+        if (!responseString.equals(null))
+            return (JSONObject) parser.parse(responseString);
+        else return null;
     }
 
 

@@ -24,7 +24,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class AnimeListAnime{
+public class AnimeListAnime {
 
     @JsonProperty("mal_id")
     private int mal_id;

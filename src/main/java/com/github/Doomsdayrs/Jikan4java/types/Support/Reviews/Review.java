@@ -1,10 +1,6 @@
-package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Reviews;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
 
 /**
  * This file is part of Jikan4java.
@@ -20,77 +16,62 @@ import java.util.ArrayList;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 28 / October / 2018
+ * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class Staff {
+public class Review {
     @JsonProperty("mal_id")
     private int mal_id;
+
     @JsonProperty("url")
     private String url;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("image_url")
-    private String image_url;
-    @JsonProperty("positions")
-    private ArrayList<String> positions;
 
-    /**
-     * Gets MAL ID
-     *
-     * @return myanimelist id
-     */
+    @JsonProperty("helpful_count")
+    private int helpful_count;
+
+    @JsonProperty("date")
+    private String date;
+
+    @JsonProperty("reviewer")
+    private Reviewer reviewer;
+
+    @JsonProperty("content")
+    private String content;
+
     public int getMal_id() {
         return mal_id;
     }
 
-    /**
-     * Gets URL of staff member
-     *
-     * @return url of staff member
-     */
     public String getUrl() {
         return url;
     }
 
-    /**
-     * Gets name of member
-     *
-     * @return name of staff member
-     */
-    public String getName() {
-        return name;
+    public int getHelpful_count() {
+        return helpful_count;
     }
 
-    /**
-     * Gets image of member
-     *
-     * @return image url of the staff member
-     */
-    public String getImage_url() {
-        return image_url;
+    public String getDate() {
+        return date;
     }
 
-    /**
-     * Gets Positions member
-     *
-     * @return the positions the staff member has
-     */
-    public ArrayList<String> getPositions() {
-        return positions;
+    public Reviewer getReviewer() {
+        return reviewer;
+    }
+
+    public String getContent() {
+        return content;
     }
 
     @Override
     public String toString() {
-        return "Staff{" +
+        return "Review{" +
                 "mal_id=" + mal_id +
                 ", url='" + url + '\'' +
-                ", name='" + name + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", positions=" + positions +
+                ", helpful_count=" + helpful_count +
+                ", date='" + date + '\'' +
+                ", reviewer=" + reviewer +
+                ", content='" + content + '\'' +
                 '}';
     }
 }
-

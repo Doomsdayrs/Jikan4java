@@ -55,6 +55,7 @@ public class Studios {
 
     /**
      * Gets name
+     *
      * @return name
      */
     public String getName() {
@@ -63,6 +64,7 @@ public class Studios {
 
     /**
      * Gets URL
+     *
      * @return url
      */
     public String getUrl() {

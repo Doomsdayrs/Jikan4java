@@ -71,6 +71,7 @@ public class Episode {
 
     /**
      * Gets japanese title
+     *
      * @return japanese title
      */
     public String getTitle_japanese() {
@@ -79,6 +80,7 @@ public class Episode {
 
     /**
      * Gets title in romanji
+     *
      * @return romanji title
      */
     public String getTitle_romanji() {
@@ -87,6 +89,7 @@ public class Episode {
 
     /**
      * Get aired date
+     *
      * @return aired date
      */
     public Aired getAired() {
@@ -95,6 +98,7 @@ public class Episode {
 
     /**
      * Is this a filler episode
+     *
      * @return filler?
      */
     public boolean isFiller() {
@@ -103,6 +107,7 @@ public class Episode {
 
     /**
      * Is this episode a recap?
+     *
      * @return recap?
      */
     public boolean isRecap() {
@@ -111,6 +116,7 @@ public class Episode {
 
     /**
      * Gets video url
+     *
      * @return video url
      */
     public String getVideo_url() {
@@ -119,6 +125,7 @@ public class Episode {
 
     /**
      * Gets forum url
+     *
      * @return forum url
      */
     public String getForum_url() {

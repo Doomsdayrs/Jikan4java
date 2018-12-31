@@ -31,12 +31,13 @@ import java.io.IOException;
  */
 public class ProducerConnection {
 
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+
     /**
      * Constructor
      */
     public ProducerConnection() {
     }
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Retrieves Producer

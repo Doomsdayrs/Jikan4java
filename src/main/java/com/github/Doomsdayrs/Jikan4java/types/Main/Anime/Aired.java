@@ -56,6 +56,7 @@ public class Aired {
 
     /**
      * Gets prop
+     *
      * @return prop
      */
     public Prop getProp() {
@@ -64,6 +65,7 @@ public class Aired {
 
     /**
      * Gets a string
+     *
      * @return string
      */
     public String getString() {

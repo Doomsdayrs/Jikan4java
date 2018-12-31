@@ -56,6 +56,7 @@ public class Voice_actors {
 
     /**
      * Gets url
+     *
      * @return url
      */
     public String getUrl() {
@@ -65,6 +66,7 @@ public class Voice_actors {
 
     /**
      * Gets image url
+     *
      * @return image url
      */
     public String getImage_url() {
@@ -73,6 +75,7 @@ public class Voice_actors {
 
     /**
      * Gets their language
+     *
      * @return what language
      */
     public String getLanguage() {

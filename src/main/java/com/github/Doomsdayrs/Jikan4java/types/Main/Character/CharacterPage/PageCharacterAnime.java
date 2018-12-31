@@ -62,6 +62,7 @@ public class PageCharacterAnime {
 
     /**
      * Name of character
+     *
      * @return name
      */
     public String getName() {
@@ -70,6 +71,7 @@ public class PageCharacterAnime {
 
     /**
      * Gets url
+     *
      * @return url
      */
     public String getUrl() {

@@ -1,4 +1,6 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic;
+package com.github.Doomsdayrs.Jikan4java.types.Support.Reviews;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * This file is part of Jikan4java.
@@ -14,46 +16,48 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 30 / October / 2018
+ * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
+public class Scores {
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+    @JsonProperty("overall")
+    private int overall;
 
-public class LastPost {
-    @JsonProperty("url")
-    private String url;
-    @JsonProperty("author_name")
-    private String author_name;
-    @JsonProperty("author_url")
-    private String author_url;
-    @JsonProperty("date_posted")
-    private String date_posted;
+    @JsonProperty("story")
+    private int story;
 
-    public String getUrl() {
-        return url;
+    @JsonProperty("character")
+    private int character;
+
+    @JsonProperty("enjoyment")
+    private int enjoyment;
+
+
+    public int getOverall() {
+        return overall;
     }
 
-    public String getAuthor_name() {
-        return author_name;
+    public int getStory() {
+        return story;
     }
 
-    public String getAuthor_url() {
-        return author_url;
+    public int getCharacter() {
+        return character;
     }
 
-    public String getDate_posted() {
-        return date_posted;
+    public int getEnjoyment() {
+        return enjoyment;
     }
 
     @Override
     public String toString() {
-        return "LastPost{" +
-                "url='" + url + '\'' +
-                ", author_name='" + author_name + '\'' +
-                ", author_url='" + author_url + '\'' +
-                ", date_posted='" + date_posted + '\'' +
+        return "Scores{" +
+                "overall=" + overall +
+                ", story=" + story +
+                ", character=" + character +
+                ", enjoyment=" + enjoyment +
                 '}';
     }
 }

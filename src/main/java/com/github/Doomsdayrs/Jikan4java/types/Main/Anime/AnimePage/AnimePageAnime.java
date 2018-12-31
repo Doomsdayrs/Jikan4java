@@ -81,6 +81,7 @@ public class AnimePageAnime {
 
     /**
      * Gets icon url
+     *
      * @return url string
      */
     public String getIconURL() {
@@ -89,6 +90,7 @@ public class AnimePageAnime {
 
     /**
      * Gets title
+     *
      * @return title
      */
     public String getTitle() {
@@ -97,6 +99,7 @@ public class AnimePageAnime {
 
     /**
      * Is the anime airing?
+     *
      * @return airing?
      */
     public boolean isAiring() {
@@ -105,6 +108,7 @@ public class AnimePageAnime {
 
     /**
      * Synopsis of the anime
+     *
      * @return synopsis string
      */
     public String getSynopsis() {
@@ -113,6 +117,7 @@ public class AnimePageAnime {
 
     /**
      * Type of anime
+     *
      * @return type of anime
      */
     public String getType() {
@@ -121,6 +126,7 @@ public class AnimePageAnime {
 
     /**
      * Episode count
+     *
      * @return # of episodes
      */
     public int getEpisodes() {
@@ -129,6 +135,7 @@ public class AnimePageAnime {
 
     /**
      * Score of anime
+     *
      * @return score
      */
     public double getScore() {
@@ -137,6 +144,7 @@ public class AnimePageAnime {
 
     /**
      * Source of anime
+     *
      * @return source
      */
     public String getSource() {
@@ -145,6 +153,7 @@ public class AnimePageAnime {
 
     /**
      * Gets start date
+     *
      * @return start date
      */
     public String getStart_date() {
@@ -153,6 +162,7 @@ public class AnimePageAnime {
 
     /**
      * Gets end date
+     *
      * @return end date
      */
     public String getEnd_date() {
@@ -161,6 +171,7 @@ public class AnimePageAnime {
 
     /**
      * Gets members
+     *
      * @return # of members
      */
     public int getMembers() {
@@ -169,6 +180,7 @@ public class AnimePageAnime {
 
     /**
      * Rating of anime
+     *
      * @return rating
      */
     public String getRated() {

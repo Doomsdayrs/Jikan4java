@@ -74,6 +74,7 @@ public class GenreSearchManga {
 
     /**
      * Gets url
+     *
      * @return url
      */
     public String getUrl() {
@@ -82,6 +83,7 @@ public class GenreSearchManga {
 
     /**
      * Get title
+     *
      * @return title
      */
     public String getTitle() {
@@ -90,6 +92,7 @@ public class GenreSearchManga {
 
     /**
      * Gets image url
+     *
      * @return image url
      */
     public String getImage_url() {
@@ -98,6 +101,7 @@ public class GenreSearchManga {
 
     /**
      * Get synopsis
+     *
      * @return synopsis
      */
     public String getSynopsis() {
@@ -106,6 +110,7 @@ public class GenreSearchManga {
 
     /**
      * Get type
+     *
      * @return type
      */
     public String getType() {
@@ -114,6 +119,7 @@ public class GenreSearchManga {
 
     /**
      * Start date
+     *
      * @return date
      */
     public String getPublishing_start() {
@@ -122,6 +128,7 @@ public class GenreSearchManga {
 
     /**
      * Get volumes
+     *
      * @return volumes
      */
     public int getVolumes() {
@@ -130,6 +137,7 @@ public class GenreSearchManga {
 
     /**
      * Get member count
+     *
      * @return count of member
      */
     public int getMembers() {
@@ -138,6 +146,7 @@ public class GenreSearchManga {
 
     /**
      * Get genres
+     *
      * @return genres
      */
     public ArrayList<Genre> getGenres() {
@@ -146,6 +155,7 @@ public class GenreSearchManga {
 
     /**
      * Get authors
+     *
      * @return authors
      */
     public ArrayList<Authors> getAuthors() {
@@ -163,6 +173,7 @@ public class GenreSearchManga {
 
     /**
      * Get serialization
+     *
      * @return serialization
      */
     public ArrayList<String> getSerialization() {

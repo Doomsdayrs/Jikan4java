@@ -32,7 +32,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Person{
+public class Person {
     @JsonIgnore
     private final String baseURL = "https://api.jikan.moe/v3";
 

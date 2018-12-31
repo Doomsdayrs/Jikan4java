@@ -73,6 +73,7 @@ public class Mangaography {
 
     /**
      * Gets url
+     *
      * @return url
      */
     public String getUrl() {
@@ -81,13 +82,12 @@ public class Mangaography {
 
     /**
      * Gets role
+     *
      * @return role
      */
     public String getRole() {
         return role;
     }
-
-
 
 
     /**

@@ -30,13 +30,13 @@ import java.io.IOException;
  * @author github.com/doomsdayrs
  */
 public class MetaConnection {
+    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+
     /**
      * Constructor
      */
     public MetaConnection() {
     }
-
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
     /**
      * Gets status of Jikans api

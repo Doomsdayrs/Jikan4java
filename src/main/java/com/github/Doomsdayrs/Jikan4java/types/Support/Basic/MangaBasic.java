@@ -64,7 +64,7 @@ public class MangaBasic {
      * Returns the Manga object of this object
      *
      * @return Manga Object
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     public Manga getManga() throws IOException, ParseException {
