@@ -4,6 +4,7 @@ Website for Jikan: https://jikan.moe/
 
 0.9.B is the most updated version. With most functionality. 1.0 Complete documentation, and excessive comments.
 Currently working on v3.2 api updates
+To use, just download the latest jar from the Jar folder and add it to your project. I ain't got the time or inteligence to figure out how to make a repo
 
 ## Capabilities
 - Basic
