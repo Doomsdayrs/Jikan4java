@@ -11,6 +11,8 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MoreInfo;
 import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
+
+import com.github.Doomsdayrs.Jikan4java.types.Support.Recommendations.RecommendationPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Manga.MangaReviewPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
@@ -297,15 +299,15 @@ public class Manga {
         return mapper.readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
     }
 
-    @JsonProperty
-    public MangaReviewPage getReviews(int pageNumber) throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("reviews/" + pageNumber).toJSONString(), MangaReviewPage.class);
-    }
-
 
     @JsonProperty
     public MangaReviewPage getReviews() throws IOException, ParseException {
         return mapper.readValue(this.retrieve("reviews").toJSONString(), MangaReviewPage.class);
+    }
+
+    @JsonProperty
+    public RecommendationPage getRecommendationPage() throws IOException, ParseException {
+        return mapper.readValue(this.retrieve("recommendations").toJSONString(), RecommendationPage.class);
     }
 
     /**

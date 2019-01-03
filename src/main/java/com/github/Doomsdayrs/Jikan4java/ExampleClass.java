@@ -66,8 +66,7 @@ public class ExampleClass {
         System.out.println(new MetaConnection().getStatus().toString());
         */
 
-        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getReviews().toString());
-        System.out.println(new MangaConnection().search("Attack on titan").getReviews().toString());
+        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getRecommendationPage().toString());
     }
 
 }
