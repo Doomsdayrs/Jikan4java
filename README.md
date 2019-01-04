@@ -118,9 +118,9 @@ public static void main(String[] args) throws IOException, ParseException {
     ```groovy
       dependencies {
           compile group: 'com.squareup.okhttp3', name: 'okhttp', version:'3.11.0'
-          compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version:'2.9.7'
-          compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version:'2.9.7'
-          compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.9.7'
+          compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version:'2.9.8'
+          compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version:'2.9.8'
+          compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.9.8'
           compile group: 'com.googlecode.json-simple', name: 'json-simple', version:'1.1.1'
       }
     ```
