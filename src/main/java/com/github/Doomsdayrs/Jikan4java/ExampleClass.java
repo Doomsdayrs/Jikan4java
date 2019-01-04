@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java;
 
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
 import com.github.Doomsdayrs.Jikan4java.connection.Manga.MangaConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.User.UserConnection;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -66,7 +67,7 @@ public class ExampleClass {
         System.out.println(new MetaConnection().getStatus().toString());
         */
 
-        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getRecommendationPage().toString());
+        System.out.println(new UserConnection().searchUser("Doomsdayrs").getAnimelist(1));
     }
 
 }

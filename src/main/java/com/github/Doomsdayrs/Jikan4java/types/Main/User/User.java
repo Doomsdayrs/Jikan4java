@@ -36,6 +36,10 @@ import java.util.Objects;
 
 public class User {
 
+    private final OkHttpClient client = new OkHttpClient();
+    private final String baseURL = "https://api.jikan.moe/v3/user/";
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    
     @JsonProperty("request_hash")
     private String request_hash;
     @JsonProperty("request_cached")
@@ -136,7 +140,7 @@ public class User {
      * @throws ParseException ParseException
      */
     public HistoryPage getHistory(String type) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/history/" + type.toLowerCase()).build()).execute().body()).string())).toJSONString(), HistoryPage.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/history/" + type.toLowerCase()).build()).execute().body()).string())).toJSONString(), HistoryPage.class);
     }
 
 
@@ -149,12 +153,15 @@ public class User {
      * @throws ParseException ParseException
      */
     public Friends getFriends(int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body()).string())).toJSONString(), Friends.class);
+        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/friends/" + page).build()).execute().body()).string())).toJSONString(), Friends.class);
     }
 
 
     public AnimeList getAnimelist(int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/" + username + "/friends/" + page).build()).execute().body()).string())).toJSONString(), AnimeList.class);
+        System.out.println(baseURL+username+"/animelist");
+        if (page == 0) {
+            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all").build()).execute().body()).string())).toJSONString(), AnimeList.class);
+        }else return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all/"+page).build()).execute().body()).string())).toJSONString(), AnimeList.class);
     }
 
     @Override
