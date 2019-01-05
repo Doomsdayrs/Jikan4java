@@ -67,7 +67,9 @@ public class ExampleClass {
         System.out.println(new MetaConnection().getStatus().toString());
         */
 
-        System.out.println(new UserConnection().searchUser("Doomsdayrs").getAnimelist(1));
+        System.out.println(new MangaConnection().search("Bleach").getUserUpdatesPage());
+        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getUserUpdatesPage());
+
     }
 
 }

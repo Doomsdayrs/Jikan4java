@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group = 'com.github.Doomsdayrs'
-version = '0.9.C'
+version = '0.9.D'
 
 description = """Jikan4java, Java wrapper for the Jikan api"""
 

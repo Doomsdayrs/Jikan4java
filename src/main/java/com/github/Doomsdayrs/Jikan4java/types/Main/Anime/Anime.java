@@ -16,6 +16,7 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Recommendations.Recommenda
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Anime.AnimeReviewPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Userupdate.Anime.AnimeUserUpdatesPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -563,6 +564,16 @@ public class Anime {
     @JsonProperty
     public RecommendationPage getRecommendationPage() throws IOException, ParseException {
         return mapper.readValue(this.retrieve("recommendations").toJSONString(), RecommendationPage.class);
+    }
+
+    @JsonProperty
+    public AnimeUserUpdatesPage getUserUpdatesPage() throws IOException, ParseException {
+        return mapper.readValue(this.retrieve("userupdates").toJSONString(), AnimeUserUpdatesPage.class);
+    }
+
+    @JsonProperty
+    public AnimeUserUpdatesPage getUserUpdatesPage(int page) throws IOException, ParseException {
+        return mapper.readValue(this.retrieve("userupdates/"+page).toJSONString(), AnimeUserUpdatesPage.class);
     }
 
     /**

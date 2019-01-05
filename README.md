@@ -27,7 +27,7 @@ To use, just download the latest jar from the Jar folder and add it to your proj
   - [ ] Search and return Meta >Not till its formatted.
   - [X] Retrieve Reviews
   - [X] Retrieve Recommendations
-  - [ ] User updates
+  - [X] User updates
   - [ ] Clubs
   - [ ] Season later
   - [ ] User updates

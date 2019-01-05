@@ -16,6 +16,8 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Recommendations.Recommenda
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Manga.MangaReviewPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Userupdate.Anime.AnimeUserUpdatesPage;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Userupdate.Manga.MangaUserUpdatesPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -309,6 +311,17 @@ public class Manga {
     public RecommendationPage getRecommendationPage() throws IOException, ParseException {
         return mapper.readValue(this.retrieve("recommendations").toJSONString(), RecommendationPage.class);
     }
+
+    @JsonProperty
+    public MangaUserUpdatesPage getUserUpdatesPage() throws IOException, ParseException {
+        return mapper.readValue(this.retrieve("userupdates").toJSONString(), MangaUserUpdatesPage.class);
+    }
+
+    @JsonProperty
+    public MangaUserUpdatesPage getUserUpdatesPage(int page) throws IOException, ParseException {
+        return mapper.readValue(this.retrieve("userupdates/"+page).toJSONString(), MangaUserUpdatesPage.class);
+    }
+
 
     /**
      * Retrieves data from manga page
