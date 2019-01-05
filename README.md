@@ -30,7 +30,6 @@ To use, just download the latest jar from the Jar folder and add it to your proj
   - [X] User updates
   - [ ] Clubs
   - [ ] Season later
-  - [ ] User updates
 
 ## Basic documentation
 
