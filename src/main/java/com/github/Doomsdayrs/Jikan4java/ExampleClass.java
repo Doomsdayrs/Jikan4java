@@ -70,7 +70,7 @@ public class ExampleClass {
         System.out.println(new MangaConnection().search("Bleach").getUserUpdatesPage());
         System.out.println(new AnimeConnection().searchSimple("Attack on titan").getUserUpdatesPage());
         System.out.println(new AnimeConnection().searchSimple("Code Geass: Hangyaku no Lelouch").getRelated());
-
+        System.out.println(new AnimeConnection().searchSimple("ONE PIECE").getRelated());
     }
 
 }

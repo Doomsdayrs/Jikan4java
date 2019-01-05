@@ -42,6 +42,8 @@ public class Related {
     public static final int PARENT_STORIES = 7;
     @JsonIgnore
     public static final int ALT_SETTING = 8;
+    @JsonIgnore
+    public static final int CHARACTER = 9;
 
     @JsonProperty("Prequel")
     private ArrayList<RelatedType> prequel;
@@ -73,6 +75,10 @@ public class Related {
     @JsonProperty("Alternative setting")
     private ArrayList<RelatedType> alternativeSettings;
 
+    @JsonProperty("Character")
+    private ArrayList<RelatedType> character;
+
+
 
     public ArrayList<RelatedType> get(int type) {
         if (type == 0) {
@@ -93,6 +99,8 @@ public class Related {
             return parentStories;
         }   else if (type == 8) {
                 return alternativeSettings;
+        }   else if (type == 9) {
+            return character;
         } else return new ArrayList<RelatedType>();
     }
 

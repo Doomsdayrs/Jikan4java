@@ -32,4 +32,5 @@ public class Relates {
     public static final int OTHER = 6;
     public static final int PARENT_STORIES = 7;
     public static final int ALT_SETTING = 8;
+    public static final int CHARACTER = 9;
 }
