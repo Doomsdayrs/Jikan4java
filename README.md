@@ -2,8 +2,8 @@
 Java api wrapper for Jikan api
 Website for Jikan: https://jikan.moe/
 
-0.9.D is the most updated version. With most functionality. 1.0 Complete documentation, and excessive comments.
-Currently working on v3.2 api updates
+0.9.E is the most updated version. With most functionality. 1.0 Complete documentation, and excessive comments.
+Completed v3.2 update
 
 To use, just download the latest jar from the Jar folder and add it to your project. I ain't got the time or inteligence to figure out how to make a repo
 
@@ -25,11 +25,7 @@ To use, just download the latest jar from the Jar folder and add it to your proj
   - [X] Search and return User
 - Other 
   - [ ] Search and return Meta >Not till its formatted.
-  - [X] Retrieve Reviews
-  - [X] Retrieve Recommendations
-  - [X] User updates
   - [X] Clubs
-  - [X] Season later
 
 ## Basic documentation
 
@@ -99,17 +95,17 @@ public static void main(String[] args) throws IOException, ParseException {
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
-                <version>2.9.6</version>
+                <version>2.9.8</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
-                <version>2.9.6</version>
+                <version>2.9.8</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.9.6</version>
+                <version>2.9.8</version>
             </dependency>
     </dependencies>
     ```
