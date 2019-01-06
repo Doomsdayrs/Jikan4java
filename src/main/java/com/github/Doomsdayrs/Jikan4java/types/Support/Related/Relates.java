@@ -1,5 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Related;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -19,18 +21,53 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.Related;
  * @author github.com/doomsdayrs
  */
 
-public class Relates {
-    /*
-     * Identifiers
-     */
-    public static final int PREQUEL = 0;
-    public static final int ALT_VERSION = 1;
-    public static final int SPIN_OFF = 2;
-    public static final int SUMMARIES = 3;
-    public static final int SEQUELS = 4;
-    public static final int SIDE_STORIES = 5;
-    public static final int OTHER = 6;
-    public static final int PARENT_STORIES = 7;
-    public static final int ALT_SETTING = 8;
-    public static final int CHARACTER = 9;
+public enum  Relates {
+ PREQUEL(0),
+ ALT_VERSION(1),
+ SPIN_OFF(2),
+ ADAPTATION(3),
+ SEQUELS(4),
+ SIDE_STORIES(5),
+ OTHER (6),
+ PARENT_STORIES(7),
+ ALT_SETTING(8),
+ CHARACTER(9);
+
+ private final int id;
+
+ Relates(int id) {
+  this.id = id;
+ }
+
+ public int getId() {
+  return this.id;
+ }
+
+ public static Relates getId(int id) {
+  switch(id) {
+   case 0:
+    return PREQUEL;
+   case 1:
+    return ALT_VERSION;
+   case 2:
+    return SPIN_OFF;
+   case 3:
+    return ADAPTATION;
+   case 4:
+    return SEQUELS;
+   case 5:
+    return SIDE_STORIES;
+   case 6:
+    return OTHER;
+   case 7:
+    return PARENT_STORIES;
+   case 8:
+    return ALT_SETTING;
+   case 9:
+    return CHARACTER;
+   default:
+    return null;
+  }
+ }
+
 }
