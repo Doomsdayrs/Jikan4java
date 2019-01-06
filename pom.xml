@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.Doomsdayrs</groupId>
     <artifactId>Jikan4java</artifactId>
-    <version>0.9</version>
+    <version>0.9.E</version>
     <packaging>jar</packaging>
 
     <name>Jikan4java</name>

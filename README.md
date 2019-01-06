@@ -28,8 +28,8 @@ To use, just download the latest jar from the Jar folder and add it to your proj
   - [X] Retrieve Reviews
   - [X] Retrieve Recommendations
   - [X] User updates
-  - [ ] Clubs
-  - [ ] Season later
+  - [X] Clubs
+  - [X] Season later
 
 ## Basic documentation
 

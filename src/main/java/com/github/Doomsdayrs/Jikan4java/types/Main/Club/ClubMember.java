@@ -1,7 +1,6 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.Userupdate.Anime;
+package com.github.Doomsdayrs.Jikan4java.types.Main.Club;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Scores;
 
 /**
  * This file is part of Jikan4java.
@@ -17,35 +16,17 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Scores;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 04 / January / 2019
+ * 05 / January / 2019
  *
  * @author github.com/doomsdayrs
  */
-public class AnimeUserUpdate {
-
+public class ClubMember {
 	@JsonProperty("username")
 	private String username;
-
 	@JsonProperty("url")
 	private String url;
-
 	@JsonProperty("image_url")
 	private String image_url;
-
-	@JsonProperty("score")
-	private int scores;
-
-	@JsonProperty("status")
-	private String status;
-
-	@JsonProperty("episodes_seen")
-	private int episodes_seen;
-
-	@JsonProperty("episodes_total")
-	private int episodes_total;
-
-	@JsonProperty("date")
-	private String date;
 
 	public String getUsername() {
 		return username;
@@ -59,32 +40,12 @@ public class AnimeUserUpdate {
 		return image_url;
 	}
 
-	public int getScores() {
-		return scores;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public int getEpisodes_seen() {
-		return episodes_seen;
-	}
-
-	public int getEpisodes_total() {
-		return episodes_total;
-	}
-
 	@Override
 	public String toString() {
-		return "AnimeUserUpdate{" +
+		return "ClubMember{" +
 				"username='" + username + '\'' +
 				", url='" + url + '\'' +
 				", image_url='" + image_url + '\'' +
-				", scores=" + scores +
-				", status='" + status + '\'' +
-				", episodes_seen=" + episodes_seen +
-				", episodes_total=" + episodes_total +
 				'}';
 	}
 }
