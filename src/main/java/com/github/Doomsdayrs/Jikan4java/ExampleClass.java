@@ -68,8 +68,6 @@ public class ExampleClass {
         System.out.println(new MetaConnection().getStatus().toString());
         */
 
-        System.out.println(new ClubConnection().clubRetrieve(1).getMembers().toString());
-
     }
 
 }
