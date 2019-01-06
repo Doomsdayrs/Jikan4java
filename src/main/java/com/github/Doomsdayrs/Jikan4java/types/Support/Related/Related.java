@@ -24,26 +24,6 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class Related {
-    @JsonIgnore
-    public static final int PREQUEL = 0;
-    @JsonIgnore
-    public static final int ALT_VERSION = 1;
-    @JsonIgnore
-    public static final int SPIN_OFF = 2;
-    @JsonIgnore
-    public static final int SUMMARIES = 3;
-    @JsonIgnore
-    public static final int SEQUELS = 4;
-    @JsonIgnore
-    public static final int SIDE_STORIES = 5;
-    @JsonIgnore
-    public static final int OTHER = 6;
-    @JsonIgnore
-    public static final int PARENT_STORIES = 7;
-    @JsonIgnore
-    public static final int ALT_SETTING = 8;
-    @JsonIgnore
-    public static final int CHARACTER = 9;
 
     @JsonProperty("Prequel")
     private ArrayList<RelatedType> prequel;
@@ -80,28 +60,28 @@ public class Related {
 
 
 
-    public ArrayList<RelatedType> get(int type) {
-        if (type == 0) {
+    public ArrayList<RelatedType> get(Relates type) {
+        if (type.getId() == 0) {
             return prequel;
-        } else if (type == 1) {
+        } else if (type.getId() == 1) {
             return altVersion;
-        } else if (type == 2) {
+        } else if (type.getId() == 2) {
             return spinOff;
-        } else if (type == 3) {
+        } else if (type.getId() == 3) {
             return adaptation;
-        } else if (type == 4) {
+        } else if (type.getId() == 4) {
             return summaries;
-        } else if (type == 5) {
+        } else if (type.getId() == 5) {
             return sequels;
-        } else if (type == 6) {
+        } else if (type.getId() == 6) {
             return sideStories;
-        } else if (type == 7) {
+        } else if (type.getId() == 7) {
             return parentStories;
-        }   else if (type == 8) {
+        }   else if (type.getId() == 8) {
                 return alternativeSettings;
-        }   else if (type == 9) {
+        }   else if (type.getId() == 9) {
             return character;
-        } else return new ArrayList<RelatedType>();
+        } else return new ArrayList<>();
     }
 
     @Override
