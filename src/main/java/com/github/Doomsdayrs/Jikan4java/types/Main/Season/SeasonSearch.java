@@ -25,14 +25,19 @@ import java.util.ArrayList;
 public class SeasonSearch {
     @JsonProperty("request_hash")
     private String request_hash;
+
     @JsonProperty("request_cached")
     private boolean request_cached;
+
     @JsonProperty("request_cache_expiry")
     private int request_cache_expiry;
+
     @JsonProperty("season_name")
     private String season_name;
+
     @JsonProperty("season_year")
     private int season_year;
+
     @JsonProperty("anime")
     private ArrayList<SeasonSearchAnime> animes;
 

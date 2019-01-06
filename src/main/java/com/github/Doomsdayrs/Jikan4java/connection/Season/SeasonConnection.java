@@ -56,13 +56,24 @@ public class SeasonConnection {
     }
 
     /**
+     * Returns next season of anime
+     *
+     * @return SeasonSearchObject
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public SeasonSearch seasonLater() throws IOException, ParseException {
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/later").build()).execute().body()).string())).toJSONString(), SeasonSearch.class);
+    }
+
+    /**
      * Returns archive of all possible seasons and years
      *
      * @return SeasonArchive
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public SeasonArchive seasonArchiveSearch() throws IOException, ParseException {
+    public SeasonArchive seasonArchive() throws IOException, ParseException {
         return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/season/archive").build()).execute().body()).string())).toJSONString(), SeasonArchive.class);
     }
 
