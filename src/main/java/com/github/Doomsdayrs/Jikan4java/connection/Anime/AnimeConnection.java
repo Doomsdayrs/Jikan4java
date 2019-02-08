@@ -74,8 +74,7 @@ public class AnimeConnection {
     /**
      * Searches for Anime by ID
      *
-     * @param title title to search for
-     * @param page  page number
+     * @param id anime id to search for
      * @return AnimePage
      * @throws IOException    IOException
      * @throws ParseException ParseException

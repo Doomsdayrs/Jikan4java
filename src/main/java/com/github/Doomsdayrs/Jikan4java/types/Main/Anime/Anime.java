@@ -107,7 +107,7 @@ public class Anime {
     @JsonProperty("broadcast")
     private String broadcast;
     @JsonProperty("related")
-    private ArrayList<Related> related;
+    private Related related;
     @JsonProperty("producers")
     private ArrayList<Producer> producers;
     @JsonProperty("licensors")
@@ -395,7 +395,7 @@ public class Anime {
      *
      * @return related
      */
-    public ArrayList<Related> getRelated() {
+    public Related getRelated() {
         return related;
     }
 

@@ -1,6 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Related;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
@@ -57,8 +56,6 @@ public class Related {
 
     @JsonProperty("Character")
     private ArrayList<RelatedType> character;
-
-
 
     public ArrayList<RelatedType> get(Relates type) {
         if (type.getId() == 0) {
