@@ -68,8 +68,20 @@ public class AnimeConnection {
      * @throws ParseException ParseException
      */
     public AnimePage searchPage(String title, int page) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/anime?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), new TypeReference<Collection<AnimePage>>() {
-        });
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/anime?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), AnimePage.class);
+    }
+
+    /**
+     * Searches for Anime by ID
+     *
+     * @param title title to search for
+     * @param page  page number
+     * @return AnimePage
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public Anime searchAnimeById(int id) throws IOException, ParseException {
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/anime/" + id).build()).execute().body().string())).toJSONString(), Anime.class);
     }
 
     /**

@@ -68,7 +68,7 @@ public class ExampleClass {
         System.out.println(new ProducerConnection().search(135,1));
         System.out.println(new MetaConnection().getStatus().toString());
         */
-
+        System.out.println(new AnimeConnection().searchPage("Quin", 1).toString());
         System.out.println(new AnimeConnection().searchSimple("Attack on Titan").getRelated().get(0).get(Relates.ADAPTATION));
     }
 
