@@ -55,30 +55,29 @@ public class Related {
     private ArrayList<RelatedType> alternativeSettings;
 
     @JsonProperty("Character")
-    private ArrayList<RelatedType> character;
+    private ArrayList<RelatedType> characters;
+
+    @JsonProperty("Full story")
+    private ArrayList<RelatedType> fullStories;
 
     public ArrayList<RelatedType> get(Relates type) {
-        if (type.getId() == 0) {
-            return prequel;
-        } else if (type.getId() == 1) {
-            return altVersion;
-        } else if (type.getId() == 2) {
-            return spinOff;
-        } else if (type.getId() == 3) {
-            return adaptation;
-        } else if (type.getId() == 4) {
-            return summaries;
-        } else if (type.getId() == 5) {
-            return sequels;
-        } else if (type.getId() == 6) {
-            return sideStories;
-        } else if (type.getId() == 7) {
-            return parentStories;
-        }   else if (type.getId() == 8) {
-                return alternativeSettings;
-        }   else if (type.getId() == 9) {
-            return character;
-        } else return new ArrayList<>();
+        switch (type.getId())
+        {
+            default: return new ArrayList<>();
+            case 0:  return prequel;
+            case 1:  return altVersion;
+            case 2:  return spinOff;
+            case 3:  return adaptation;
+            case 4:  return sequels;
+            case 5:  return sideStories;
+            case 6:  return other;
+            case 7:  return parentStories;
+            case 8:  return alternativeSettings;
+            case 9:  return characters;
+            case 10: return summaries;
+            case 11: return fullStories;
+        }
+
     }
 
     @Override
@@ -93,7 +92,9 @@ public class Related {
                 ", sideStories=" + sideStories +
                 ", other=" + other +
                 ", parentStories=" + parentStories +
-                ", parentStories=" + alternativeSettings +
+                ", alternativeSettings=" + alternativeSettings +
+                ", characters=" + characters +
+                ", fullStories=" + fullStories +
                 '}';
     }
 }

@@ -1,7 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Related;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -31,7 +29,9 @@ public enum  Relates {
  OTHER (6),
  PARENT_STORIES(7),
  ALT_SETTING(8),
- CHARACTER(9);
+ CHARACTER(9),
+ SUMMARY(10),
+ FULL_STORIES(11);
 
  private final int id;
 
@@ -45,28 +45,19 @@ public enum  Relates {
 
  public static Relates getId(int id) {
   switch(id) {
-   case 0:
-    return PREQUEL;
-   case 1:
-    return ALT_VERSION;
-   case 2:
-    return SPIN_OFF;
-   case 3:
-    return ADAPTATION;
-   case 4:
-    return SEQUELS;
-   case 5:
-    return SIDE_STORIES;
-   case 6:
-    return OTHER;
-   case 7:
-    return PARENT_STORIES;
-   case 8:
-    return ALT_SETTING;
-   case 9:
-    return CHARACTER;
-   default:
-    return null;
+   case 0:  return PREQUEL;
+   case 1:  return ALT_VERSION;
+   case 2:  return SPIN_OFF;
+   case 3:  return ADAPTATION;
+   case 4:  return SEQUELS;
+   case 5:  return SIDE_STORIES;
+   case 6:  return OTHER;
+   case 7:  return PARENT_STORIES;
+   case 8:  return ALT_SETTING;
+   case 9:  return CHARACTER;
+   case 10: return SUMMARY;
+   case 11: return FULL_STORIES;
+   default: return null;
   }
  }
 
