@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Related;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Relates;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class Related {
+
 
     @JsonProperty("Prequel")
     private ArrayList<RelatedType> prequel;
@@ -60,22 +62,36 @@ public class Related {
     @JsonProperty("Full story")
     private ArrayList<RelatedType> fullStories;
 
+
+
     public ArrayList<RelatedType> get(Relates type) {
-        switch (type.getId())
-        {
-            default: return new ArrayList<>();
-            case 0:  return prequel;
-            case 1:  return altVersion;
-            case 2:  return spinOff;
-            case 3:  return adaptation;
-            case 4:  return sequels;
-            case 5:  return sideStories;
-            case 6:  return other;
-            case 7:  return parentStories;
-            case 8:  return alternativeSettings;
-            case 9:  return characters;
-            case 10: return summaries;
-            case 11: return fullStories;
+        switch (type) {
+            default:
+                return null;
+            case PREQUEL:
+                return prequel;
+            case ALT_VERSION:
+                return altVersion;
+            case SPIN_OFF:
+                return spinOff;
+            case ADAPTATION:
+                return adaptation;
+            case SEQUELS:
+                return sequels;
+            case SIDE_STORIES:
+                return sideStories;
+            case OTHER:
+                return other;
+            case PARENT_STORIES:
+                return parentStories;
+            case ALT_SETTING:
+                return alternativeSettings;
+            case CHARACTER:
+                return characters;
+            case SUMMARY:
+                return summaries;
+            case FULL_STORIES:
+                return fullStories;
         }
 
     }

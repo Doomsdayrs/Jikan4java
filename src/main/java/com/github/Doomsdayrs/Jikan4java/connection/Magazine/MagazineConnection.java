@@ -30,7 +30,7 @@ import java.io.IOException;
  * @author github.com/doomsdayrs
  */
 public class MagazineConnection {
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * Constructor

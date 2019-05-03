@@ -31,7 +31,7 @@ import java.io.IOException;
  */
 public class ProducerConnection {
 
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * Constructor

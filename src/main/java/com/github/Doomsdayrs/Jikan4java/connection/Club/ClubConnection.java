@@ -1,8 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Club;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,7 +9,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.Collection;
 
 /**
  * Jikan4java

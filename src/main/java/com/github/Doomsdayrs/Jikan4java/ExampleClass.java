@@ -1,10 +1,8 @@
 package com.github.Doomsdayrs.Jikan4java;
 
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Club.ClubConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Manga.MangaConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.User.UserConnection;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Relates;
+import com.github.Doomsdayrs.Jikan4java.connection.Top.TopConnection;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Tops;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -68,8 +66,7 @@ public class ExampleClass {
         System.out.println(new ProducerConnection().search(135,1));
         System.out.println(new MetaConnection().getStatus().toString());
         */
-
-        System.out.println(new AnimeConnection().searchPage("attack on titan",1).getAnimes().get(0).getAnime().toString());
+        System.out.println(new TopConnection().topSearch(TopConnection.Tops.ANIME));
     }
 
 }

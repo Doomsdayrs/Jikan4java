@@ -1,6 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Top;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime.AnimeTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character.CharacterTop;
@@ -37,7 +36,14 @@ import java.util.Objects;
 public class TopConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    public enum Tops {
+        ANIME(),
+        MANGA,
+        PEOPLE(),
+        CHARACTERS()
+    }
+
 
     /**
      * Constructor
@@ -48,36 +54,63 @@ public class TopConnection {
     /**
      * Searches the top charts of MAL
      *
-     * @param type       What type of media: anime, manga, people, characters
+     * @param tops       What type of media: anime, manga, people, characters
      * @param pageNumber Should be 0 by default, Each page has 50 entries; Page 1 would be the next page, so 50 - 100
      * @param subtype    The sub category to search for. One at a time only.
      * @return Top object
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Top topSearch(String type, int pageNumber, String subtype) throws IOException, ParseException {
+    public Top topSearch(Tops tops, int pageNumber, String subtype) throws IOException, ParseException {
+        if (tops == null) throw new EnumConstantNotPresentException(Tops.class, "Tops type not present!");
+        if (subtype == null) subtype = "";
+
         boolean optionals = false;
         String optional = "";
         if (!subtype.equals("") || pageNumber != 0) {
             optionals = true;
         }
+
         if (optionals) {
             optional = "/" + pageNumber + "/" + subtype;
         }
-        if (type.equalsIgnoreCase("anime")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body()).string())).toJSONString(), AnimeTop.class);
-        } else if (type.equalsIgnoreCase("manga")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body()).string())).toJSONString(), MangaTop.class);
-        } else if (type.equalsIgnoreCase("people")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body()).string())).toJSONString(), PersonTop.class);
-        } else if (type.equalsIgnoreCase("characters")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/top/" + type + optional).build()).execute().body()).string())).toJSONString(), CharacterTop.class);
+        switch (tops) {
+            case ANIME:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/anime" + optional).build()).execute().body()).string())).toJSONString(), AnimeTop.class);
+            case MANGA:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/manga" + optional).build()).execute().body()).string())).toJSONString(), MangaTop.class);
+            case PEOPLE:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/people" + optional).build()).execute().body()).string())).toJSONString(), PersonTop.class);
+            case CHARACTERS:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/characters" + optional).build()).execute().body()).string())).toJSONString(), CharacterTop.class);
+            default:
+                return null;
         }
-
-
-        System.out.println("ERROR, Invalid input");
-        return null;
-
     }
 
+    /**
+     * Searches the top charts of MAL, with all default cases
+     *
+     * @param tops What type of media: anime, manga, people, characters
+     * @return Top object
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public Top topSearch(Tops tops) throws IOException, ParseException {
+        switch (tops) {
+            case ANIME:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/anime").build()).execute().body()).string())).toJSONString(), AnimeTop.class);
+            case MANGA:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/manga").build()).execute().body()).string())).toJSONString(), MangaTop.class);
+            case PEOPLE:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/people").build()).execute().body()).string())).toJSONString(), PersonTop.class);
+            case CHARACTERS:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/characters").build()).execute().body()).string())).toJSONString(), CharacterTop.class);
+            default:
+                return null;
+        }
+    }
+
+
 }
+

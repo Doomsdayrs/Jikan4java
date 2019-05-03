@@ -1,10 +1,10 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Schedule;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Day;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Schedule;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Days;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.JSONObject;
@@ -35,7 +35,8 @@ import java.util.Objects;
 public class ScheduleConnection {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3";
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
 
     /**
      * Constructor
@@ -51,8 +52,11 @@ public class ScheduleConnection {
      * @throws ParseException ParseException
      */
     public Schedule scheduleSearch() throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/").build()).execute().body()).string())).toJSONString(), Schedule.class);
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/").build()).execute().body()).string())).toJSONString(), Schedule.class);
     }
+
+
+
 
     /**
      * Returns all anime's schedule on a certain day
@@ -62,28 +66,30 @@ public class ScheduleConnection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Day scheduleSearch(String day) throws IOException, ParseException {
-        if (day.equalsIgnoreCase("monday")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body()).string())).toJSONString(), Monday.class);
-        } else if (day.equalsIgnoreCase("tuesday")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body()).string())).toJSONString(), Tuesday.class);
-        } else if (day.equalsIgnoreCase("wednesday")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body()).string())).toJSONString(), Wednesday.class);
-        } else if (day.equalsIgnoreCase("thursday")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body()).string())).toJSONString(), Thursday.class);
-        } else if (day.equalsIgnoreCase("friday")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body()).string())).toJSONString(), Friday.class);
-        } else if (day.equalsIgnoreCase("saturday")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body()).string())).toJSONString(), Saturday.class);
-        } else if (day.equalsIgnoreCase("sunday")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body()).string())).toJSONString(), Sunday.class);
-        } else if (day.equalsIgnoreCase("other")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body()).string())).toJSONString(), Other.class);
-        } else if (day.equalsIgnoreCase("unknown")) {
-            return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/schedule/" + day).build()).execute().body()).string())).toJSONString(), Unknown.class);
+    public Day scheduleSearch(Days day) throws IOException, ParseException {
+        switch (day) {
+            case MONDAY:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/monday").build()).execute().body()).string())).toJSONString(), Monday.class);
+            case TUESDAY:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/tuesday").build()).execute().body()).string())).toJSONString(), Tuesday.class);
+            case WEDNESDAY:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/wednesday").build()).execute().body()).string())).toJSONString(), Wednesday.class);
+            case THURSDAY:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/thursday").build()).execute().body()).string())).toJSONString(), Thursday.class);
+            case FRIDAY:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/friday").build()).execute().body()).string())).toJSONString(), Friday.class);
+            case SATURDAY:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/saturday").build()).execute().body()).string())).toJSONString(), Saturday.class);
+            case SUNDAY:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/sunday").build()).execute().body()).string())).toJSONString(), Sunday.class);
+            case OTHER:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/other").build()).execute().body()).string())).toJSONString(), Other.class);
+            case UNKNOWN:
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/unknown").build()).execute().body()).string())).toJSONString(), Unknown.class);
+            default:
+                return null;
         }
-        System.out.println("ERROR, Invalid input");
-        return null;
     }
 
 }
+
