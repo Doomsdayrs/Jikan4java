@@ -1,12 +1,12 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Top;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime.AnimeTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character.CharacterTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Manga.MangaTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Person.PersonTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Top;
-import okhttp3.OkHttpClient;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Tops;
 import okhttp3.Request;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -33,22 +33,14 @@ import java.util.Objects;
  *
  * @author github.com/doomsdayrs
  */
-public class TopConnection {
-    private final OkHttpClient client = new OkHttpClient();
-    private final String baseURL = "https://api.jikan.moe/v3";
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    public enum Tops {
-        ANIME(),
-        MANGA,
-        PEOPLE(),
-        CHARACTERS()
-    }
+public class TopConnection extends Connection {
 
 
     /**
      * Constructor
      */
     public TopConnection() {
+        super();
     }
 
     /**
@@ -61,9 +53,10 @@ public class TopConnection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Top topSearch(Tops tops, int pageNumber, String subtype) throws IOException, ParseException {
+    public Top search(Tops tops, int pageNumber, String subtype) throws IOException, ParseException {
         if (tops == null) throw new EnumConstantNotPresentException(Tops.class, "Tops type not present!");
         if (subtype == null) subtype = "";
+
 
         boolean optionals = false;
         String optional = "";
@@ -88,6 +81,7 @@ public class TopConnection {
         }
     }
 
+
     /**
      * Searches the top charts of MAL, with all default cases
      *
@@ -96,7 +90,7 @@ public class TopConnection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Top topSearch(Tops tops) throws IOException, ParseException {
+    public Top search(Tops tops) throws IOException, ParseException {
         switch (tops) {
             case ANIME:
                 return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/anime").build()).execute().body()).string())).toJSONString(), AnimeTop.class);

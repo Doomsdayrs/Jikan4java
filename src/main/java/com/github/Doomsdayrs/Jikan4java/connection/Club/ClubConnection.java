@@ -1,11 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Club;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -16,14 +14,11 @@ import java.io.IOException;
  *
  * @author github.com/doomsdayrs
  */
-public class ClubConnection {
-	private final JSONParser jsonParser = new JSONParser();
-	private final OkHttpClient client = new OkHttpClient();
-	private final String baseURL = "https://api.jikan.moe/v3";
-	private final ObjectMapper objectMapper = new ObjectMapper();
+public class ClubConnection extends Connection {
 
-	public ClubConnection()
-	{}
+	public ClubConnection() {
+		super();
+	}
 
 	/**
 	 * retreives a club

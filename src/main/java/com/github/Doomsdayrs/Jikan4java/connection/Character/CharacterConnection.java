@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.connection.Character;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage.CharacterPage;
 import okhttp3.OkHttpClient;
@@ -32,14 +33,14 @@ import java.io.IOException;
  *
  * @author github.com/doomsdayrs
  */
-public class CharacterConnection {
-    private final OkHttpClient client = new OkHttpClient();
-    private final String baseURL = "https://api.jikan.moe/v3";
+public class CharacterConnection extends Connection {
+
 
     /**
      * Constructor
      */
     public CharacterConnection() {
+        super();
     }
 
     /**

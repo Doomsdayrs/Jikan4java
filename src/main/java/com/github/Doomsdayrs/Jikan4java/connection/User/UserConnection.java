@@ -1,12 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java.connection.User;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.User;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -31,13 +28,12 @@ import java.util.Objects;
  * @author github.com/doomsdayrs
  */
 
-public class UserConnection {
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
+public class UserConnection extends Connection {
     /**
      * Constructor
      */
     public UserConnection() {
+        super();
     }
 
 
@@ -50,6 +46,6 @@ public class UserConnection {
      * @throws ParseException ParseException
      */
     public User searchUser(String name) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/user/" + name).build()).execute().body()).string())).toJSONString(), User.class);
+        return objectMapper.readValue(((JSONObject) jsonParser.parse(Objects.requireNonNull(client.newCall(new Request.Builder().url("https://api.jikan.moe/v3/user/" + name).build()).execute().body()).string())).toJSONString(), User.class);
     }
 }
