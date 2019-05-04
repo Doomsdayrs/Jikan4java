@@ -23,38 +23,38 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class ClubMemberPage {
-	@JsonProperty("request_hash")
-	private String request_hash;
-	@JsonProperty("request_cached")
-	private boolean request_cached;
-	@JsonProperty("request_cache_expiry")
-	private int request_cache_expiry;
-	@JsonProperty("members")
-	private ArrayList<ClubMember> clubMembers;
+    @JsonProperty("request_hash")
+    private String request_hash;
+    @JsonProperty("request_cached")
+    private boolean request_cached;
+    @JsonProperty("request_cache_expiry")
+    private int request_cache_expiry;
+    @JsonProperty("members")
+    private ArrayList<ClubMember> clubMembers;
 
-	public String getRequest_hash() {
-		return request_hash;
-	}
+    public String getRequest_hash() {
+        return request_hash;
+    }
 
-	public boolean isRequest_cached() {
-		return request_cached;
-	}
+    public boolean isRequest_cached() {
+        return request_cached;
+    }
 
-	public int getRequest_cache_expiry() {
-		return request_cache_expiry;
-	}
+    public int getRequest_cache_expiry() {
+        return request_cache_expiry;
+    }
 
-	public ArrayList<ClubMember> getClubMembers() {
-		return clubMembers;
-	}
+    public ArrayList<ClubMember> getClubMembers() {
+        return clubMembers;
+    }
 
-	@Override
-	public String toString() {
-		return "ClubMemberPage{" +
-				"request_hash='" + request_hash + '\'' +
-				", request_cached=" + request_cached +
-				", request_cache_expiry=" + request_cache_expiry +
-				", clubMembers=" + clubMembers +
-				'}';
-	}
+    @Override
+    public String toString() {
+        return "ClubMemberPage{" +
+                "request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
+                ", clubMembers=" + clubMembers +
+                '}';
+    }
 }

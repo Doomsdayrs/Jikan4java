@@ -1,19 +1,17 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Person;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.PersonPage.PersonPage;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -47,11 +45,18 @@ public class PersonConnection extends Connection {
      *
      * @param title Name of person
      * @return Person object
-     * @throws IOException IOException
+     * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Person search(String title) throws IOException, ParseException {
-        return objectMapper.readValue( this.searchSite(title).toJSONString(), Person.class);
+    public CompletableFuture<Person> search(String title) throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return objectMapper.readValue(this.searchSite(title).toJSONString(), Person.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
     /**
@@ -63,8 +68,8 @@ public class PersonConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public PersonPage searchPage(String title, int page) throws IOException, ParseException {
-        return (PersonPage) retrieve(PersonPage.class,baseURL + "/search/person?q=" + title + "&page=" + page);
+    public CompletableFuture<PersonPage> searchPage(String title, int page) throws IOException, ParseException {
+        return retrieve(PersonPage.class, baseURL + "/search/person?q=" + title + "&page=" + page);
     }
 
     /**

@@ -2,12 +2,10 @@ package com.github.Doomsdayrs.Jikan4java.connection.User;
 
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.User;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -45,7 +43,7 @@ public class UserConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public User search(String name) throws IOException, ParseException {
-        return (User) retrieve(User.class,baseURL+"/user/" + name);
+    public CompletableFuture<User> search(String name) throws IOException, ParseException {
+        return retrieve(User.class, baseURL + "/user/" + name);
     }
 }

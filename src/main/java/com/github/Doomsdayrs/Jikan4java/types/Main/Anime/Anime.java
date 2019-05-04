@@ -573,7 +573,7 @@ public class Anime {
 
     @JsonProperty
     public AnimeUserUpdatesPage getUserUpdatesPage(int page) throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("userupdates/"+page).toJSONString(), AnimeUserUpdatesPage.class);
+        return mapper.readValue(this.retrieve("userupdates/" + page).toJSONString(), AnimeUserUpdatesPage.class);
     }
 
     /**

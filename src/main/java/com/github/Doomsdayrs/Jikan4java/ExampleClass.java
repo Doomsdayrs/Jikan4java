@@ -1,13 +1,12 @@
 package com.github.Doomsdayrs.Jikan4java;
 
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Season.SeasonConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Top.TopConnection;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Season;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Tops;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 /**
  * This file is part of Jikan4java.
@@ -34,7 +33,7 @@ public class ExampleClass {
      *
      * @param args Args
      */
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException, ParseException, ExecutionException, InterruptedException {
         /*
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
@@ -68,7 +67,16 @@ public class ExampleClass {
         System.out.println(new ProducerConnection().search(135,1));
         System.out.println(new MetaConnection().getStatus().toString());
         */
-        System.out.println(new SeasonConnection().seasonSearch(2016, Season.WINTER).toString());
+        AnimeConnection connection = new AnimeConnection();
+        CompletableFuture<Anime> animeCompletableFuture = connection.searchAnimeById(111);
+        int a = 0;
+        while (!animeCompletableFuture.isDone()) a++;
+        System.out.println(animeCompletableFuture.get());
+
+        animeCompletableFuture = connection.searchAnimeById(124);
+        a = 0;
+        while (!animeCompletableFuture.isDone()) a++;
+        System.out.println(animeCompletableFuture.get());
     }
 
 }

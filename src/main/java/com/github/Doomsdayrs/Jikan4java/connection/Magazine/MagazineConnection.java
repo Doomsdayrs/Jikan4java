@@ -1,16 +1,12 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Magazine;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Magazine.MagazinePage;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -49,7 +45,7 @@ public class MagazineConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public MagazinePage searchPage(String ID, int page) throws IOException, ParseException {
-        return (MagazinePage) retrieve(MagazinePage.class,baseURL+"/v3/magazine/" + ID + "/" + page);
+    public CompletableFuture<MagazinePage> searchPage(String ID, int page) throws IOException, ParseException {
+        return retrieve(MagazinePage.class, baseURL + "/v3/magazine/" + ID + "/" + page);
     }
 }

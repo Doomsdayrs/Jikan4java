@@ -7,7 +7,7 @@ public enum Relates {
     ADAPTATION,
     SEQUELS,
     SIDE_STORIES,
-    OTHER ,
+    OTHER,
     PARENT_STORIES,
     ALT_SETTING,
     CHARACTER,

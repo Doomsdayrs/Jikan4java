@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Anime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Review;
+
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify

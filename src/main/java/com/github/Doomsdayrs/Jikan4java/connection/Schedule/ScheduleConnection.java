@@ -1,19 +1,14 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Schedule;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Day;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Schedule;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Days;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -50,8 +45,8 @@ public class ScheduleConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Schedule scheduleSearch() throws IOException, ParseException {
-        return (Schedule) retrieve(Schedule.class, baseURL + "/schedule/");
+    public CompletableFuture<Schedule> scheduleSearch() throws IOException, ParseException {
+        return retrieve(Schedule.class, baseURL + "/schedule/");
     }
 
 
@@ -63,26 +58,26 @@ public class ScheduleConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Day scheduleSearch(Days day) throws IOException, ParseException {
+    public CompletableFuture<Day> scheduleSearch(Days day) throws IOException, ParseException {
         switch (day) {
             case MONDAY:
-                return (Day) retrieve(Monday.class, baseURL + "/schedule/monday");
+                return retrieve(Monday.class, baseURL + "/schedule/monday");
             case TUESDAY:
-                return (Day) retrieve(Tuesday.class, baseURL + "/schedule/tuesday");
+                return retrieve(Tuesday.class, baseURL + "/schedule/tuesday");
             case WEDNESDAY:
-                return (Day) retrieve(Wednesday.class, baseURL + "/schedule/wednesday");
+                return retrieve(Wednesday.class, baseURL + "/schedule/wednesday");
             case THURSDAY:
-                return (Day) retrieve(Thursday.class, baseURL + "/schedule/thursday");
+                return retrieve(Thursday.class, baseURL + "/schedule/thursday");
             case FRIDAY:
-                return (Day) retrieve(Friday.class, baseURL + "/schedule/friday");
+                return retrieve(Friday.class, baseURL + "/schedule/friday");
             case SATURDAY:
-                return (Day) retrieve(Saturday.class, baseURL + "/schedule/saturday");
+                return retrieve(Saturday.class, baseURL + "/schedule/saturday");
             case SUNDAY:
-                return (Day) retrieve(Sunday.class, baseURL + "/schedule/sunday");
+                return retrieve(Sunday.class, baseURL + "/schedule/sunday");
             case OTHER:
-                return (Day) retrieve(Other.class, baseURL + "/schedule/other");
+                return retrieve(Other.class, baseURL + "/schedule/other");
             case UNKNOWN:
-                return (Day) retrieve(Unknown.class, baseURL + "/schedule/unknown");
+                return retrieve(Unknown.class, baseURL + "/schedule/unknown");
             default:
                 return null;
         }

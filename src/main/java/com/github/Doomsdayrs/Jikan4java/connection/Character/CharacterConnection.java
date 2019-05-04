@@ -1,19 +1,18 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Character;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage.CharacterPage;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -51,8 +50,14 @@ public class CharacterConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Character search(String name) throws IOException, ParseException {
-        return objectMapper.readValue(this.searchSite(name).toJSONString(), Character.class);
+    public CompletableFuture<Character> search(String name) throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return objectMapper.readValue(this.searchSite(name).toJSONString(), Character.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     /**
@@ -64,8 +69,8 @@ public class CharacterConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CharacterPage searchPage(String title, int page) throws IOException, ParseException {
-        return (CharacterPage) retrieve(CharacterPage.class,baseURL + "/search/character?q=" + title + "&page=" + page);
+    public CompletableFuture<CharacterPage> searchPage(String title, int page) throws IOException, ParseException {
+        return retrieve(CharacterPage.class, baseURL + "/search/character?q=" + title + "&page=" + page);
     }
 
     /**

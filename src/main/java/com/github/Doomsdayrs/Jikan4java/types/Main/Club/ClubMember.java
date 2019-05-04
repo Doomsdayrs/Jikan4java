@@ -21,31 +21,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author github.com/doomsdayrs
  */
 public class ClubMember {
-	@JsonProperty("username")
-	private String username;
-	@JsonProperty("url")
-	private String url;
-	@JsonProperty("image_url")
-	private String image_url;
+    @JsonProperty("username")
+    private String username;
+    @JsonProperty("url")
+    private String url;
+    @JsonProperty("image_url")
+    private String image_url;
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public String getImage_url() {
-		return image_url;
-	}
+    public String getImage_url() {
+        return image_url;
+    }
 
-	@Override
-	public String toString() {
-		return "ClubMember{" +
-				"username='" + username + '\'' +
-				", url='" + url + '\'' +
-				", image_url='" + image_url + '\'' +
-				'}';
-	}
+    @Override
+    public String toString() {
+        return "ClubMember{" +
+                "username='" + username + '\'' +
+                ", url='" + url + '\'' +
+                ", image_url='" + image_url + '\'' +
+                '}';
+    }
 }

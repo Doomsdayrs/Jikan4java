@@ -3,7 +3,6 @@ package com.github.Doomsdayrs.Jikan4java.connection.Anime;
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.simple.JSONArray;
@@ -12,6 +11,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -44,13 +45,18 @@ public class AnimeConnection extends Connection {
      * Searches for an anime and retrieves first result
      *
      * @param title title to be searched
+     * @return an Anime object
      * @throws IOException    IOException
      * @throws ParseException ParseException
-     * @return an Anime object
      */
-    public Anime search(String title) throws IOException, ParseException {
-        JSONObject animeJSON = this.searchSite(title);
-        return objectMapper.readValue(animeJSON.toJSONString(), Anime.class);
+    public CompletableFuture<Anime> search(String title) throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return objectMapper.readValue(this.searchSite(title).toJSONString(), Anime.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     /**
@@ -62,8 +68,8 @@ public class AnimeConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public AnimePage searchPage(String title, int page) throws IOException, ParseException {
-        return (AnimePage) retrieve(AnimePage.class, baseURL + "/search/anime?q=" + title + "&page=" + page);
+    public CompletableFuture<AnimePage> searchPage(String title, int page) throws IOException, ParseException {
+        return retrieve(AnimePage.class, baseURL + "/search/anime?q=" + title + "&page=" + page);
     }
 
     /**
@@ -71,11 +77,9 @@ public class AnimeConnection extends Connection {
      *
      * @param id anime id to search for
      * @return AnimePage
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public Anime searchAnimeById(int id) throws IOException, ParseException {
-        return (Anime) retrieve(Anime.class,baseURL + "/anime/" + id);
+    public CompletableFuture<Anime> searchAnimeById(int id) {
+        return retrieve(Anime.class, baseURL + "/anime/" + id);
     }
 
     /**

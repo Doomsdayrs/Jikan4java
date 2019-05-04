@@ -11,12 +11,10 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
 import com.github.Doomsdayrs.Jikan4java.types.Support.MoreInfo;
 import com.github.Doomsdayrs.Jikan4java.types.Support.News.News;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
-
 import com.github.Doomsdayrs.Jikan4java.types.Support.Recommendations.RecommendationPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Manga.MangaReviewPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Userupdate.Anime.AnimeUserUpdatesPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Userupdate.Manga.MangaUserUpdatesPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -319,7 +317,7 @@ public class Manga {
 
     @JsonProperty
     public MangaUserUpdatesPage getUserUpdatesPage(int page) throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("userupdates/"+page).toJSONString(), MangaUserUpdatesPage.class);
+        return mapper.readValue(this.retrieve("userupdates/" + page).toJSONString(), MangaUserUpdatesPage.class);
     }
 
 

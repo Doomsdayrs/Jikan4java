@@ -63,7 +63,6 @@ public class Related {
     private ArrayList<RelatedType> fullStories;
 
 
-
     public ArrayList<RelatedType> get(Relates type) {
         switch (type) {
             default:

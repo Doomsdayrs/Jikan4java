@@ -1,19 +1,17 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Manga;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.MangaPage.MangaPage;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -48,11 +46,15 @@ public class MangaConnection extends Connection {
      *
      * @param title Manga to be searched
      * @return an Manga object
-     * @throws IOException IOException
      */
-    public Manga search(String title) throws IOException, org.json.simple.parser.ParseException {
-        JSONObject mangaJSON = this.searchSite(title);
-        return objectMapper.readValue(mangaJSON.toJSONString(), Manga.class);
+    public CompletableFuture<Manga> search(String title) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return objectMapper.readValue(this.searchSite(title).toJSONString(), Manga.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     /**
@@ -61,11 +63,9 @@ public class MangaConnection extends Connection {
      * @param title title to search for
      * @param page  page number
      * @return MangaPage
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public MangaPage searchPage(String title, int page) throws IOException, org.json.simple.parser.ParseException {
-        return (MangaPage) retrieve(MangaPage.class,baseURL + "/search/manga?q=" + title + "&page=" + page);
+    public CompletableFuture<MangaPage> searchPage(String title, int page) {
+        return retrieve(MangaPage.class, baseURL + "/search/manga?q=" + title + "&page=" + page);
     }
 
     /**
@@ -76,7 +76,7 @@ public class MangaConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    private JSONObject searchSite(String search) throws IOException, org.json.simple.parser.ParseException {
+    private JSONObject searchSite(String search) throws IOException, ParseException {
         Request request = new Request.Builder().url(baseURL + "/search/manga?q=" + search + "&page=1").build();
         Response response = client.newCall(request).execute();
 

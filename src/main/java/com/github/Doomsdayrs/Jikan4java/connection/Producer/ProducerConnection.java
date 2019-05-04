@@ -1,16 +1,11 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Producer;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Producer.ProducerPage;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -48,7 +43,7 @@ public class ProducerConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public ProducerPage search(int ID, int page) throws IOException, ParseException {
-        return (ProducerPage) retrieve(ProducerPage.class,baseURL+"/producer/" + ID + "/" + page);
+    public CompletableFuture<ProducerPage> search(int ID, int page) throws IOException, ParseException {
+        return retrieve(ProducerPage.class, baseURL + "/producer/" + ID + "/" + page);
     }
 }

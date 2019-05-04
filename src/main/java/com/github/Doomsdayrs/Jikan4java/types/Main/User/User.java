@@ -39,7 +39,7 @@ public class User {
     private final OkHttpClient client = new OkHttpClient();
     private final String baseURL = "https://api.jikan.moe/v3/user/";
     private final ObjectMapper objectMapper = new ObjectMapper();
-    
+
     @JsonProperty("request_hash")
     private String request_hash;
     @JsonProperty("request_cached")
@@ -158,10 +158,11 @@ public class User {
 
 
     public AnimeList getAnimelist(int page) throws IOException, ParseException {
-        System.out.println(baseURL+username+"/animelist");
+        System.out.println(baseURL + username + "/animelist");
         if (page == 0) {
             return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all").build()).execute().body()).string())).toJSONString(), AnimeList.class);
-        }else return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all/"+page).build()).execute().body()).string())).toJSONString(), AnimeList.class);
+        } else
+            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all/" + page).build()).execute().body()).string())).toJSONString(), AnimeList.class);
     }
 
     @Override

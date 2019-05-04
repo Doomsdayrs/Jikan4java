@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Recommendations;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify

@@ -7,13 +7,10 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Manga.MangaTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Person.PersonTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Top;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Tops;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -53,7 +50,7 @@ public class TopConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Top search(Tops tops, int pageNumber, String subtype) throws IOException, ParseException {
+    public CompletableFuture<Top> search(Tops tops, int pageNumber, String subtype) throws IOException, ParseException {
         if (tops == null) throw new EnumConstantNotPresentException(Tops.class, "Tops type not present!");
         if (subtype == null) subtype = "";
 
@@ -69,13 +66,13 @@ public class TopConnection extends Connection {
         }
         switch (tops) {
             case ANIME:
-                return (Top) retrieve(AnimeTop.class,baseURL + "/top/anime" + optional);
+                return retrieve(AnimeTop.class, baseURL + "/top/anime" + optional);
             case MANGA:
-                return (Top) retrieve(MangaTop.class,baseURL + "/top/manga" + optional);
+                return retrieve(MangaTop.class, baseURL + "/top/manga" + optional);
             case PEOPLE:
-                return (Top) retrieve(PersonTop.class,baseURL + "/top/people" + optional);
+                return retrieve(PersonTop.class, baseURL + "/top/people" + optional);
             case CHARACTERS:
-                return (Top) retrieve(CharacterTop.class,baseURL + "/top/characters" + optional);
+                return retrieve(CharacterTop.class, baseURL + "/top/characters" + optional);
             default:
                 return null;
         }
@@ -90,8 +87,8 @@ public class TopConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Top search(Tops tops) throws IOException, ParseException {
-        return search(tops,0,null);
+    public CompletableFuture<Top> search(Tops tops) throws IOException, ParseException {
+        return search(tops, 0, null);
     }
 }
 

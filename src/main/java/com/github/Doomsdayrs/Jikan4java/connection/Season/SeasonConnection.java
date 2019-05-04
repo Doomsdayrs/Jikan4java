@@ -1,19 +1,13 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Season;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonArchive.SeasonArchive;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonSearch;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Season;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -51,16 +45,16 @@ public class SeasonConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public SeasonSearch seasonSearch(int year, Season season) throws IOException, ParseException {
+    public CompletableFuture<SeasonSearch> seasonSearch(int year, Season season) throws IOException, ParseException {
         switch (season) {
             case FALL:
-                return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/" + year + "/fall");
+                return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/fall");
             case SPRING:
-                return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/" + year + "/spring");
+                return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/spring");
             case SUMMER:
-                return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/" + year + "/summer");
+                return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/summer");
             case WINTER:
-                return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/" + year + "/winter");
+                return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/winter");
             default:
                 return null;
         }
@@ -73,8 +67,8 @@ public class SeasonConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public SeasonSearch seasonLater() throws IOException, ParseException {
-        return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/later");
+    public CompletableFuture<SeasonSearch> seasonLater() throws IOException, ParseException {
+        return retrieve(SeasonSearch.class, baseURL + "/season/later");
     }
 
     /**
@@ -84,8 +78,8 @@ public class SeasonConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public SeasonArchive seasonArchive() throws IOException, ParseException {
-        return (SeasonArchive) retrieve(SeasonArchive.class, baseURL+"/season/archive");
+    public CompletableFuture<SeasonArchive> seasonArchive() throws IOException, ParseException {
+        return retrieve(SeasonArchive.class, baseURL + "/season/archive");
     }
 }
 
