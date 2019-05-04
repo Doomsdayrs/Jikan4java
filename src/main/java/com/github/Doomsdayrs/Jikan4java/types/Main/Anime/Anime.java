@@ -26,6 +26,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -51,406 +53,82 @@ public class Anime {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("trailer_url")
-    private String trailer_url;
+    public String trailer_url;
     @JsonProperty("title")
-    private String title;
+    public String title;
     @JsonProperty("title_english")
-    private String title_english;
+    public String title_english;
     @JsonProperty("title_japanese")
-    private String title_japanese;
+    public String title_japanese;
     @JsonProperty("title_synonyms")
-    private ArrayList<String> title_synonyms;
+    public ArrayList<String> title_synonyms;
     @JsonProperty("type")
-    private String type;
+    public String type;
     @JsonProperty("source")
-    private String source;
+    public String source;
     @JsonProperty("episodes")
-    private int episodes;
+    public int episodes;
     @JsonProperty("status")
-    private String status;
+    public String status;
     @JsonProperty("aired")
-    private Aired aired;
+    public Aired aired;
     @JsonProperty("airing")
-    private boolean airing;
+    public boolean airing;
     @JsonProperty("duration")
-    private String duration;
+    public String duration;
     @JsonProperty("rating")
-    private String rating;
+    public String rating;
     @JsonProperty("score")
-    private double score;
+    public double score;
     @JsonProperty("scored_by")
-    private int scored_by;
+    public int scored_by;
     @JsonProperty("rank")
-    private int rank;
+    public int rank;
     @JsonProperty("popularity")
-    private int popularity;
+    public int popularity;
     @JsonProperty("members")
-    private int members;
+    public int members;
     @JsonProperty("favorites")
-    private int favorites;
+    public int favorites;
     @JsonProperty("synopsis")
-    private String synopsis;
+    public String synopsis;
     @JsonProperty("background")
-    private String background;
+    public String background;
     @JsonProperty("premiered")
-    private String premiered;
+    public String premiered;
     @JsonProperty("broadcast")
-    private String broadcast;
+    public String broadcast;
     @JsonProperty("related")
-    private Related related;
+    public Related related;
     @JsonProperty("producers")
-    private ArrayList<Producer> producers;
+    public ArrayList<Producer> producers;
     @JsonProperty("licensors")
-    private ArrayList<Licensors> licensors;
+    public ArrayList<Licensors> licensors;
     @JsonProperty("studios")
-    private ArrayList<Studios> studios;
+    public ArrayList<Studios> studios;
     @JsonProperty("genres")
-    private ArrayList<Genre> genres;
+    public ArrayList<Genre> genres;
     @JsonProperty("opening_themes")
-    private ArrayList<String> opening_themes;
+    public ArrayList<String> opening_themes;
     @JsonProperty("ending_themes")
-    private ArrayList<String> ending_themes;
+    public ArrayList<String> ending_themes;
     @JsonProperty("image_url")
-    private String imageURL;
+    public String imageURL;
 
     /**
      * Anime object constructor without variables
      */
     public Anime() {
-    }
-
-    /**
-     * Gets request hash
-     *
-     * @return Request hash
-     */
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    /**
-     * Is the request cached?
-     *
-     * @return is it cached?
-     */
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    /**
-     * Gets expiry
-     *
-     * @return int date or something
-     */
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    /**
-     * Gets mal id
-     *
-     * @return mal id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Gets image url
-     *
-     * @return image url
-     */
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    /**
-     * Gets trailer url
-     *
-     * @return trailer url
-     */
-    public String getTrailer_url() {
-        return trailer_url;
-    }
-
-    /**
-     * Gets title
-     *
-     * @return title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Gets title in english
-     *
-     * @return title english
-     */
-    public String getTitle_english() {
-        return title_english;
-    }
-
-    /**
-     * Gets title in japanese
-     *
-     * @return japanese title
-     */
-    public String getTitle_japanese() {
-        return title_japanese;
-    }
-
-    /**
-     * Gets title synonyms
-     *
-     * @return title synonyms
-     */
-    public ArrayList<String> getTitle_synonyms() {
-        return title_synonyms;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Gets source
-     *
-     * @return source
-     */
-    public String getSource() {
-        return source;
-    }
-
-    /**
-     * Gets episodes
-     *
-     * @return episodes
-     */
-    public int getEpisodes() {
-        return episodes;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return status
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * Gets aired
-     *
-     * @return aired
-     */
-    public Aired getAired() {
-        return aired;
-    }
-
-    /**
-     * Is anime airing?
-     *
-     * @return airing?
-     */
-    public boolean isAiring() {
-        return airing;
-    }
-
-    /**
-     * Gets duration
-     *
-     * @return duration
-     */
-    public String getDuration() {
-        return duration;
-    }
-
-    /**
-     * Gets rating
-     *
-     * @return rating
-     */
-    public String getRating() {
-        return rating;
-    }
-
-    /**
-     * Gets score
-     *
-     * @return score
-     */
-    public double getScore() {
-        return score;
-    }
-
-    /**
-     * Gets amount of people who scored
-     *
-     * @return # of scorers
-     */
-    public int getScored_by() {
-        return scored_by;
-    }
-
-    /**
-     * Gets ranking
-     *
-     * @return ranking
-     */
-    public int getRank() {
-        return rank;
-    }
-
-    /**
-     * Gets popularity
-     *
-     * @return popularity
-     */
-    public int getPopularity() {
-        return popularity;
-    }
-
-    /**
-     * Gets count of members
-     *
-     * @return member count
-     */
-    public int getMembers() {
-        return members;
-    }
-
-    /**
-     * Gets favored count
-     *
-     * @return favored count
-     */
-    public int getFavorites() {
-        return favorites;
-    }
-
-    /**
-     * Gets synopsis
-     *
-     * @return synopsis
-     */
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    /**
-     * Gets background
-     *
-     * @return background
-     */
-    public String getBackground() {
-        return background;
-    }
-
-    /**
-     * Gets premiered
-     *
-     * @return premiered
-     */
-    public String getPremiered() {
-        return premiered;
-    }
-
-    /**
-     * Gets broadcast
-     *
-     * @return broadcast
-     */
-    public String getBroadcast() {
-        return broadcast;
-    }
-
-    /**
-     * Gets related
-     *
-     * @return related
-     */
-    public Related getRelated() {
-        return related;
-    }
-
-    /**
-     * Gets producers
-     *
-     * @return producers
-     */
-    public ArrayList<Producer> getProducers() {
-        return producers;
-    }
-
-    /**
-     * Gets licensors
-     *
-     * @return licensors
-     */
-    public ArrayList<Licensors> getLicensors() {
-        return licensors;
-    }
-
-    /**
-     * Gets studios
-     *
-     * @return studios
-     */
-    public ArrayList<Studios> getStudios() {
-        return studios;
-    }
-
-    /**
-     * Gets genres
-     *
-     * @return genres
-     */
-    public ArrayList<Genre> getGenres() {
-        return genres;
-    }
-
-    /**
-     * Gets opening themes
-     *
-     * @return opening themes
-     */
-    public ArrayList<String> getOpening_themes() {
-        return opening_themes;
-    }
-
-    /**
-     * Gets ending themes
-     *
-     * @return ending themes
-     */
-    public ArrayList<String> getEnding_themes() {
-        return ending_themes;
     }
 
     /**
@@ -461,8 +139,14 @@ public class Anime {
      * @throws ParseException ParseException
      */
     @JsonProperty
-    public Character_Staff getCharacterStaffs() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("characters_staff").toJSONString(), Character_Staff.class);
+    public CompletableFuture<Character_Staff> getCharacterStaffs() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("characters_staff").toJSONString(), Character_Staff.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
 
@@ -474,13 +158,26 @@ public class Anime {
      * @throws ParseException ParseException
      */
     @JsonProperty
-    public Episodes getEpisode(int pageNumber) throws IOException, ParseException {
+    public CompletableFuture<Episodes> getEpisode(int pageNumber) throws IOException, ParseException {
         String category = "episodes";
         if (pageNumber != 0) {
             category = "episodes/" + pageNumber;
         }
-        return mapper.readValue(this.retrieve(category).toJSONString(), Episodes.class);
+        String finalCategory = category;
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve(finalCategory).toJSONString(), Episodes.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
+
+    @JsonProperty
+    public CompletableFuture<Episodes> getEpisode() throws IOException, ParseException {
+        return getEpisode(0);
+    }
+
 
     /**
      * Gets news about anime
@@ -490,8 +187,14 @@ public class Anime {
      * @throws ParseException ParseException
      */
     @JsonProperty
-    public News getNews() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("news").toJSONString(), News.class);
+    public CompletableFuture<News> getNews() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("news").toJSONString(), News.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     /**
