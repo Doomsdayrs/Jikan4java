@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Schedule;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Day;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Schedule;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
@@ -32,16 +33,14 @@ import java.util.Objects;
  *
  * @author github.com/doomsdayrs
  */
-public class ScheduleConnection {
-    private final OkHttpClient client = new OkHttpClient();
-    private final String baseURL = "https://api.jikan.moe/v3";
-    private final ObjectMapper objectMapper = new ObjectMapper();
+public class ScheduleConnection extends Connection {
 
 
     /**
      * Constructor
      */
     public ScheduleConnection() {
+        super();
     }
 
     /**
@@ -52,10 +51,8 @@ public class ScheduleConnection {
      * @throws ParseException ParseException
      */
     public Schedule scheduleSearch() throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/").build()).execute().body()).string())).toJSONString(), Schedule.class);
+        return (Schedule) retrieve(Schedule.class, baseURL + "/schedule/");
     }
-
-
 
 
     /**
@@ -69,23 +66,23 @@ public class ScheduleConnection {
     public Day scheduleSearch(Days day) throws IOException, ParseException {
         switch (day) {
             case MONDAY:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/monday").build()).execute().body()).string())).toJSONString(), Monday.class);
+                return (Day) retrieve(Monday.class, baseURL + "/schedule/monday");
             case TUESDAY:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/tuesday").build()).execute().body()).string())).toJSONString(), Tuesday.class);
+                return (Day) retrieve(Tuesday.class, baseURL + "/schedule/tuesday");
             case WEDNESDAY:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/wednesday").build()).execute().body()).string())).toJSONString(), Wednesday.class);
+                return (Day) retrieve(Wednesday.class, baseURL + "/schedule/wednesday");
             case THURSDAY:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/thursday").build()).execute().body()).string())).toJSONString(), Thursday.class);
+                return (Day) retrieve(Thursday.class, baseURL + "/schedule/thursday");
             case FRIDAY:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/friday").build()).execute().body()).string())).toJSONString(), Friday.class);
+                return (Day) retrieve(Friday.class, baseURL + "/schedule/friday");
             case SATURDAY:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/saturday").build()).execute().body()).string())).toJSONString(), Saturday.class);
+                return (Day) retrieve(Saturday.class, baseURL + "/schedule/saturday");
             case SUNDAY:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/sunday").build()).execute().body()).string())).toJSONString(), Sunday.class);
+                return (Day) retrieve(Sunday.class, baseURL + "/schedule/sunday");
             case OTHER:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/other").build()).execute().body()).string())).toJSONString(), Other.class);
+                return (Day) retrieve(Other.class, baseURL + "/schedule/other");
             case UNKNOWN:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/schedule/unknown").build()).execute().body()).string())).toJSONString(), Unknown.class);
+                return (Day) retrieve(Unknown.class, baseURL + "/schedule/unknown");
             default:
                 return null;
         }

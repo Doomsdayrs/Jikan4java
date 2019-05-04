@@ -1,7 +1,11 @@
 package com.github.Doomsdayrs.Jikan4java.connection;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Meta.Status;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -25,11 +29,11 @@ import java.io.IOException;
  *
  * @author github.com/doomsdayrs
  */
-public abstract class Connection {
-    public final OkHttpClient client;
+public class Connection {
+    protected final OkHttpClient client;
     public final String baseURL = "https://api.jikan.moe/v3";
-    public final ObjectMapper objectMapper;
-    public final JSONParser jsonParser;
+    protected final ObjectMapper objectMapper;
+    protected final JSONParser jsonParser;
 
     public Connection() {
         client = new OkHttpClient();
@@ -37,12 +41,12 @@ public abstract class Connection {
         jsonParser = new JSONParser();
     }
 
-    public Object search(String string) throws IOException, ParseException {
-        return null;
-    }
+    public Object search(String string) throws IOException, ParseException{return null;}
 
-    public Object searchPage(String title, int page) throws IOException, ParseException {
-        return null;
+    public Object searchPage(String title, int page) throws IOException, ParseException{return null;}
+
+    public Object retrieve(Class target, String url) throws IOException, ParseException {
+        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(url).build()).execute().body().string())).toJSONString(), target);
     }
 
 }

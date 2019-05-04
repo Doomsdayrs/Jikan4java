@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.connection.Producer;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Producer.ProducerPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -29,14 +30,13 @@ import java.io.IOException;
  *
  * @author github.com/doomsdayrs
  */
-public class ProducerConnection {
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
+public class ProducerConnection extends Connection {
 
     /**
      * Constructor
      */
     public ProducerConnection() {
+        super();
     }
 
     /**
@@ -49,6 +49,6 @@ public class ProducerConnection {
      * @throws ParseException ParseException
      */
     public ProducerPage search(int ID, int page) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/producer/" + ID + "/" + page).build()).execute().body().string())).toJSONString(), ProducerPage.class);
+        return (ProducerPage) retrieve(ProducerPage.class,baseURL+"/producer/" + ID + "/" + page);
     }
 }

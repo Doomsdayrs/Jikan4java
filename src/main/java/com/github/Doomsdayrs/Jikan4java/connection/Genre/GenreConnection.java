@@ -2,7 +2,9 @@ package com.github.Doomsdayrs.Jikan4java.connection.Genre;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchManga;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -30,15 +32,12 @@ import java.io.IOException;
  *
  * @author github.com/doomsdayrs
  */
-public class GenreConnection {
-    private final OkHttpClient client = new OkHttpClient();
-    private final String baseURL = "https://api.jikan.moe/v3";
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
+public class GenreConnection extends Connection {
     /**
      * Constructor
      */
     public GenreConnection() {
+        super();
     }
 
     /**
@@ -51,7 +50,7 @@ public class GenreConnection {
      * @throws ParseException ParseException
      */
     public GenreSearchAnimePage searchMangaGenre(int genreID, int page) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/genre/anime/" + genreID + "/" + page).build()).execute().body().string())).toJSONString(), GenreSearchAnimePage.class);
+        return (GenreSearchAnimePage) retrieve(GenreSearchAnimePage.class,baseURL+"/genre/anime/" + genreID + "/" + page);
     }
 
     /**
@@ -64,7 +63,7 @@ public class GenreConnection {
      * @throws ParseException ParseException
      */
     public GenreSearchMangaPage searchAnimeGenre(int genreID, int page) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/genre/manga/" + genreID + "/" + page).build()).execute().body().string())).toJSONString(), GenreSearchMangaPage.class);
+        return (GenreSearchMangaPage) retrieve(GenreSearchMangaPage.class,baseURL+"/genre/manga/" + genreID + "/" + page);
     }
 
 }

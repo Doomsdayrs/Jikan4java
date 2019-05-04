@@ -1,5 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java;
 
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
+
+import java.util.ArrayList;
+
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -22,6 +26,7 @@ public class TestingClass {
 
 
     public static void main(String[] args) {
+        ArrayList<Connection> arrayList = new ArrayList();
 
     }
 }

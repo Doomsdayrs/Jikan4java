@@ -28,7 +28,7 @@ public class ClubConnection extends Connection {
 	 * @throws IOException    IOException
 	 * @throws ParseException ParseException
 	 */
-	public Club clubRetrieve(int ID) throws IOException, ParseException {
-		return objectMapper.readValue(((JSONObject) jsonParser.parse(client.newCall(new Request.Builder().url(baseURL + "/club/"+ID).build()).execute().body().string())).toJSONString(), Club.class);
+	public Club search(String ID) throws IOException, ParseException {
+		return (Club) retrieve(Club.class,baseURL + "/club/"+ID);
 	}
 }

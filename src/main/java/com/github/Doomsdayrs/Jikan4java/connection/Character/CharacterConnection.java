@@ -44,7 +44,7 @@ public class CharacterConnection extends Connection {
     }
 
     /**
-     * Searches for a character
+     * Searches for a character, gets first result from first page
      *
      * @param name The name of the character
      * @return A character object
@@ -52,9 +52,7 @@ public class CharacterConnection extends Connection {
      * @throws ParseException ParseException
      */
     public Character search(String name) throws IOException, ParseException {
-        JSONObject characterJSON = this.searchSite(name);
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(characterJSON.toJSONString(), Character.class);
+        return objectMapper.readValue(this.searchSite(name).toJSONString(), Character.class);
     }
 
     /**
@@ -67,7 +65,7 @@ public class CharacterConnection extends Connection {
      * @throws ParseException ParseException
      */
     public CharacterPage searchPage(String title, int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/character?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), CharacterPage.class);
+        return (CharacterPage) retrieve(CharacterPage.class,baseURL + "/search/character?q=" + title + "&page=" + page);
     }
 
     /**
@@ -82,15 +80,14 @@ public class CharacterConnection extends Connection {
         Request request = new Request.Builder().url(baseURL + "/search/character?q=" + search + "&page=1").build();
         Response response = client.newCall(request).execute();
 
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(response.body().string());
         JSONArray jsonArray = (JSONArray) jsonObject.get("results");
 
         // Gets anime ID then goes to it's page
         request = new Request.Builder().url(baseURL + "/character/" + ((JSONObject) jsonArray.get(0)).get("mal_id").toString()).build();
         response = client.newCall(request).execute();
 
-        return (JSONObject) parser.parse(response.body().string());
+        return (JSONObject) jsonParser.parse(response.body().string());
     }
 
 }

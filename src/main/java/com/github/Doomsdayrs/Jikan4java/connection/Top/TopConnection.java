@@ -69,13 +69,13 @@ public class TopConnection extends Connection {
         }
         switch (tops) {
             case ANIME:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/anime" + optional).build()).execute().body()).string())).toJSONString(), AnimeTop.class);
+                return (Top) retrieve(AnimeTop.class,baseURL + "/top/anime" + optional);
             case MANGA:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/manga" + optional).build()).execute().body()).string())).toJSONString(), MangaTop.class);
+                return (Top) retrieve(MangaTop.class,baseURL + "/top/manga" + optional);
             case PEOPLE:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/people" + optional).build()).execute().body()).string())).toJSONString(), PersonTop.class);
+                return (Top) retrieve(PersonTop.class,baseURL + "/top/people" + optional);
             case CHARACTERS:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/characters" + optional).build()).execute().body()).string())).toJSONString(), CharacterTop.class);
+                return (Top) retrieve(CharacterTop.class,baseURL + "/top/characters" + optional);
             default:
                 return null;
         }
@@ -91,20 +91,7 @@ public class TopConnection extends Connection {
      * @throws ParseException ParseException
      */
     public Top search(Tops tops) throws IOException, ParseException {
-        switch (tops) {
-            case ANIME:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/anime").build()).execute().body()).string())).toJSONString(), AnimeTop.class);
-            case MANGA:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/manga").build()).execute().body()).string())).toJSONString(), MangaTop.class);
-            case PEOPLE:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/people").build()).execute().body()).string())).toJSONString(), PersonTop.class);
-            case CHARACTERS:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + "/top/characters").build()).execute().body()).string())).toJSONString(), CharacterTop.class);
-            default:
-                return null;
-        }
+        return search(tops,0,null);
     }
-
-
 }
 

@@ -1,7 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java;
 
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Season.SeasonConnection;
 import com.github.Doomsdayrs.Jikan4java.connection.Top.TopConnection;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Season;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Tops;
 import org.json.simple.parser.ParseException;
 
@@ -49,7 +51,7 @@ public class ExampleClass {
         System.out.println(new GenreConnection().searchAnimeGenre(1,0).toString());
         System.out.println(new GenreConnection().searchMangaGenre(1,0).toString());
 
-        System.out.println(new SeasonConnection().seasonSearch(2016,"winter").toString());
+
         System.out.println(new SeasonConnection().seasonArchiveSearch().toString());
 
         System.out.println(new ScheduleConnection().scheduleSearch().toString());
@@ -66,7 +68,7 @@ public class ExampleClass {
         System.out.println(new ProducerConnection().search(135,1));
         System.out.println(new MetaConnection().getStatus().toString());
         */
-        System.out.println(new TopConnection().topSearch(TopConnection.Tops.ANIME));
+        System.out.println(new SeasonConnection().seasonSearch(2016, Season.WINTER).toString());
     }
 
 }

@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.connection.MetaConnection;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Meta.Status;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -29,14 +30,15 @@ import java.io.IOException;
  *
  * @author github.com/doomsdayrs
  */
-public class MetaConnection {
-    private final ObjectMapper objectMapper = new ObjectMapper();
+public class MetaConnection extends Connection {
 
     /**
      * Constructor
      */
     public MetaConnection() {
+        super();
     }
+
 
     /**
      * Gets status of Jikans api
@@ -46,6 +48,7 @@ public class MetaConnection {
      * @throws ParseException ParseException
      */
     public Status getStatus() throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/meta/status").build()).execute().body().string())).toJSONString(), Status.class);
+        return (Status) retrieve(Status.class,baseURL+"/meta/status");
     }
+
 }

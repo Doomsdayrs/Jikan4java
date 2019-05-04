@@ -45,7 +45,7 @@ public class UserConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public User searchUser(String name) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) jsonParser.parse(Objects.requireNonNull(client.newCall(new Request.Builder().url("https://api.jikan.moe/v3/user/" + name).build()).execute().body()).string())).toJSONString(), User.class);
+    public User search(String name) throws IOException, ParseException {
+        return (User) retrieve(User.class,baseURL+"/user/" + name);
     }
 }

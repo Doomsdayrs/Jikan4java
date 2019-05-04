@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.connection.Person;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.PersonPage.PersonPage;
 import okhttp3.OkHttpClient;
@@ -32,29 +33,25 @@ import java.io.IOException;
  *
  * @author github.com/doomsdayrs
  */
-public class PersonConnection {
-    private final OkHttpClient client = new OkHttpClient();
-    private final String baseURL = "https://api.jikan.moe/v3";
-    private final ObjectMapper objectMapper = new ObjectMapper();
+public class PersonConnection extends Connection {
 
     /**
      * Constructor
      */
     public PersonConnection() {
+        super();
     }
 
     /**
      * Searches
      *
-     * @param title
-     * @return
-     * @throws IOException
-     * @throws ParseException
+     * @param title Name of person
+     * @return Person object
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
-    public Person search(String title) throws IOException, org.json.simple.parser.ParseException {
-        JSONObject personJSON = this.searchSite(title);
-
-        return objectMapper.readValue(personJSON.toJSONString(), Person.class);
+    public Person search(String title) throws IOException, ParseException {
+        return objectMapper.readValue( this.searchSite(title).toJSONString(), Person.class);
     }
 
     /**
@@ -67,7 +64,7 @@ public class PersonConnection {
      * @throws ParseException ParseException
      */
     public PersonPage searchPage(String title, int page) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url(baseURL + "/search/person?q=" + title + "&page=" + page).build()).execute().body().string())).toJSONString(), PersonPage.class);
+        return (PersonPage) retrieve(PersonPage.class,baseURL + "/search/person?q=" + title + "&page=" + page);
     }
 
     /**
@@ -82,15 +79,14 @@ public class PersonConnection {
         Request request = new Request.Builder().url(baseURL + "/search/person?q=" + search + "&page=1").build();
         Response response = client.newCall(request).execute();
 
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(response.body().string());
         JSONArray jsonArray = (JSONArray) jsonObject.get("results");
 
         // Gets anime ID then goes to it's page
         request = new Request.Builder().url(baseURL + "/person/" + ((JSONObject) jsonArray.get(0)).get("mal_id").toString()).build();
         response = client.newCall(request).execute();
 
-        return (JSONObject) parser.parse(response.body().string());
+        return (JSONObject) jsonParser.parse(response.body().string());
     }
 
 }

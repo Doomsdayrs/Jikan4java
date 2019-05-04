@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.connection.Season;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonArchive.SeasonArchive;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonSearch;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Season;
@@ -32,16 +33,13 @@ import java.util.Objects;
  *
  * @author github.com/doomsdayrs
  */
-public class SeasonConnection {
-    private final OkHttpClient client = new OkHttpClient();
-    private final String baseURL = "https://api.jikan.moe/v3";
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
+public class SeasonConnection extends Connection {
 
     /**
      * Constructor
      */
     public SeasonConnection() {
+        super();
     }
 
     /**
@@ -56,17 +54,13 @@ public class SeasonConnection {
     public SeasonSearch seasonSearch(int year, Season season) throws IOException, ParseException {
         switch (season) {
             case FALL:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/season/" + year + "/fall").build()).execute().body()).string())).toJSONString(), SeasonSearch.class);
-
+                return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/" + year + "/fall");
             case SPRING:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/season/" + year + "/spring").build()).execute().body()).string())).toJSONString(), SeasonSearch.class);
-
+                return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/" + year + "/spring");
             case SUMMER:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/season/" + year + "/summer").build()).execute().body()).string())).toJSONString(), SeasonSearch.class);
-
+                return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/" + year + "/summer");
             case WINTER:
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/season/" + year + "/winter").build()).execute().body()).string())).toJSONString(), SeasonSearch.class);
-
+                return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/" + year + "/winter");
             default:
                 return null;
         }
@@ -80,7 +74,7 @@ public class SeasonConnection {
      * @throws ParseException ParseException
      */
     public SeasonSearch seasonLater() throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/season/later").build()).execute().body()).string())).toJSONString(), SeasonSearch.class);
+        return (SeasonSearch) retrieve(SeasonSearch.class,baseURL+"/season/later");
     }
 
     /**
@@ -91,7 +85,7 @@ public class SeasonConnection {
      * @throws ParseException ParseException
      */
     public SeasonArchive seasonArchive() throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL+"/season/archive").build()).execute().body()).string())).toJSONString(), SeasonArchive.class);
+        return (SeasonArchive) retrieve(SeasonArchive.class, baseURL+"/season/archive");
     }
 }
 
