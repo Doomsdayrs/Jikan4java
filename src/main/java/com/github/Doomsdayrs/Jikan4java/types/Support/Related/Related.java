@@ -1,7 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Related;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Relates;
 
 import java.util.ArrayList;
 
@@ -27,73 +26,40 @@ public class Related {
 
 
     @JsonProperty("Prequel")
-    private ArrayList<RelatedType> prequel;
+    public ArrayList<RelatedType> prequel;
 
     @JsonProperty("Alternative version")
-    private ArrayList<RelatedType> altVersion;
+    public ArrayList<RelatedType> altVersion;
 
     @JsonProperty("Spin-off")
-    private ArrayList<RelatedType> spinOff;
+    public ArrayList<RelatedType> spinOff;
 
     @JsonProperty("Adaptation")
-    private ArrayList<RelatedType> adaptation;
+    public ArrayList<RelatedType> adaptation;
 
     @JsonProperty("Summary")
-    private ArrayList<RelatedType> summaries;
+    public ArrayList<RelatedType> summaries;
 
     @JsonProperty("Sequel")
-    private ArrayList<RelatedType> sequels;
+    public ArrayList<RelatedType> sequels;
 
     @JsonProperty("Side story")
-    private ArrayList<RelatedType> sideStories;
+    public ArrayList<RelatedType> sideStories;
 
     @JsonProperty("Other")
-    private ArrayList<RelatedType> other;
+    public ArrayList<RelatedType> other;
 
     @JsonProperty("Parent story")
-    private ArrayList<RelatedType> parentStories;
+    public ArrayList<RelatedType> parentStories;
 
     @JsonProperty("Alternative setting")
-    private ArrayList<RelatedType> alternativeSettings;
+    public ArrayList<RelatedType> alternativeSettings;
 
     @JsonProperty("Character")
-    private ArrayList<RelatedType> characters;
+    public ArrayList<RelatedType> characters;
 
     @JsonProperty("Full story")
-    private ArrayList<RelatedType> fullStories;
-
-
-    public ArrayList<RelatedType> get(Relates type) {
-        switch (type) {
-            default:
-                return null;
-            case PREQUEL:
-                return prequel;
-            case ALT_VERSION:
-                return altVersion;
-            case SPIN_OFF:
-                return spinOff;
-            case ADAPTATION:
-                return adaptation;
-            case SEQUELS:
-                return sequels;
-            case SIDE_STORIES:
-                return sideStories;
-            case OTHER:
-                return other;
-            case PARENT_STORIES:
-                return parentStories;
-            case ALT_SETTING:
-                return alternativeSettings;
-            case CHARACTER:
-                return characters;
-            case SUMMARY:
-                return summaries;
-            case FULL_STORIES:
-                return fullStories;
-        }
-
-    }
+    public ArrayList<RelatedType> fullStories;
 
     @Override
     public String toString() {

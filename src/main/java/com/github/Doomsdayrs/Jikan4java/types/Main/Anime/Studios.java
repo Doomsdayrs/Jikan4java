@@ -1,6 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Anime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -21,55 +20,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+
 public class Studios {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("type")
-    private String type;
+    public String type;
 
     @JsonProperty("name")
-    private String name;
+    public String name;
 
     @JsonProperty("url")
-    private String url;
-
-    /**
-     * Gets mal id
-     *
-     * @return mal id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets URL
-     *
-     * @return url
-     */
-    public String getUrl() {
-        return url;
-    }
+    public String url;
 
     @Override
     public String toString() {

@@ -47,6 +47,7 @@ import java.util.concurrent.CompletionException;
  *
  * @author github.com/doomsdayrs
  */
+
 public class Anime {
 
     @JsonIgnore
@@ -108,6 +109,7 @@ public class Anime {
     public String premiered;
     @JsonProperty("broadcast")
     public String broadcast;
+
     @JsonProperty("related")
     public Related related;
     @JsonProperty("producers")
@@ -205,8 +207,15 @@ public class Anime {
      * @throws ParseException ParseException
      */
     @JsonProperty
-    public Pictures getPictures() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
+    public CompletableFuture<Pictures> getPictures() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
     /**
@@ -217,20 +226,32 @@ public class Anime {
      * @throws ParseException ParseException
      */
     @JsonProperty
-    public Video getVideos() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("videos").toJSONString(), Video.class);
+    public CompletableFuture<Video> getVideos() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("videos").toJSONString(), Video.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
     /**
      * Gets stats about anime object
      *
      * @return Stats object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
-    public Stats getStats() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("stats").toJSONString(), Stats.class);
+    public CompletableFuture<Stats> getStats() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("stats").toJSONString(), Stats.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
 
@@ -242,8 +263,15 @@ public class Anime {
      * @throws ParseException ParseException
      */
     @JsonProperty
-    public Forum getForum() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("forum").toJSONString(), Forum.class);
+    public CompletableFuture<Forum> getForum() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("forum").toJSONString(), Forum.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
     /**
@@ -254,29 +282,64 @@ public class Anime {
      * @throws ParseException ParseException
      */
     @JsonProperty
-    public MoreInfo getMoreInfo() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
+    public CompletableFuture<MoreInfo> getMoreInfo() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
 
     @JsonProperty
-    public AnimeReviewPage getReviewPage() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("reviews").toJSONString(), AnimeReviewPage.class);
+    public CompletableFuture<AnimeReviewPage> getReviewPage() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("reviews").toJSONString(), AnimeReviewPage.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
     @JsonProperty
-    public RecommendationPage getRecommendationPage() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("recommendations").toJSONString(), RecommendationPage.class);
+    public CompletableFuture<RecommendationPage> getRecommendationPage() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("recommendations").toJSONString(), RecommendationPage.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
     @JsonProperty
-    public AnimeUserUpdatesPage getUserUpdatesPage() throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("userupdates").toJSONString(), AnimeUserUpdatesPage.class);
+    public CompletableFuture<AnimeUserUpdatesPage> getUserUpdatesPage() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("userupdates").toJSONString(), AnimeUserUpdatesPage.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
     @JsonProperty
-    public AnimeUserUpdatesPage getUserUpdatesPage(int page) throws IOException, ParseException {
-        return mapper.readValue(this.retrieve("userupdates/" + page).toJSONString(), AnimeUserUpdatesPage.class);
+    public CompletableFuture<AnimeUserUpdatesPage> getUserUpdatesPage(int page) throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return mapper.readValue(this.retrieve("userupdates/" + page).toJSONString(), AnimeUserUpdatesPage.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
+
     }
 
     /**

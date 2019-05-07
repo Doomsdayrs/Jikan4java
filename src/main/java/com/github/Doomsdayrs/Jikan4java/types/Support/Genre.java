@@ -22,32 +22,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Genre {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("type")
-    private String type;
+    public String type;
 
     @JsonProperty("name")
-    private String name;
+    public String name;
 
     @JsonProperty("url")
-    private String url;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
+    public String url;
 
     @Override
     public String toString() {
