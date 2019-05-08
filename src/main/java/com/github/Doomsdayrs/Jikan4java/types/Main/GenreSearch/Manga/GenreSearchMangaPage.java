@@ -1,6 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.MalURL;
 
@@ -24,75 +23,20 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class GenreSearchMangaPage {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("mal_url")
-    private MalURL malURL;
+    public MalURL malURL;
     @JsonProperty("item_count")
-    private int item_count;
+    public int item_count;
     @JsonProperty("manga")
-    private ArrayList<GenreSearchManga> mangas;
-
-    /**
-     * Gets request hash
-     *
-     * @return Request hash
-     */
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    /**
-     * Is the request cached?
-     *
-     * @return is it cached?
-     */
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    /**
-     * Gets expiry
-     *
-     * @return int date or something
-     */
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    /**
-     * Gets a malURL
-     *
-     * @return malURl
-     */
-    public MalURL getMalURL() {
-        return malURL;
-    }
-
-    /**
-     * Get item count
-     *
-     * @return item count
-     */
-    public int getItem_count() {
-        return item_count;
-    }
-
-    /**
-     * Array list of mangas
-     *
-     * @return mangas
-     */
-    public ArrayList<GenreSearchManga> getMangas() {
-        return mangas;
-    }
-
+    public ArrayList<GenreSearchManga> mangas;
+    
     @Override
     public String toString() {
         return "GenreSearchMangaPage{" +

@@ -24,41 +24,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Promo {
     @JsonProperty("title")
-    private String title;
+    public String title;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("video_url")
-    private String video_url;
-
-    /**
-     * Gets video title
-     *
-     * @return title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Gets image url
-     *
-     * @return image url
-     */
-    public String getImage_url() {
-        return image_url;
-    }
-
-    /**
-     * Gets video url
-     *
-     * @return video url
-     */
-    public String getVideo_url() {
-        return video_url;
-    }
-
+    public String video_url;
+    
     @Override
     public String toString() {
         return "Promo{" +

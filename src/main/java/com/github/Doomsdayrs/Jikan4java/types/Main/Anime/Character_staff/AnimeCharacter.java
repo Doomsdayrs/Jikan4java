@@ -27,76 +27,22 @@ import java.util.ArrayList;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class AnimeCharacter {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("name")
-    private String name;
+    public String name;
 
     @JsonProperty("role")
-    private String role;
+    public String role;
 
     @JsonProperty("voice_actors")
-    private ArrayList<Voice_actors> voice_actors;
-
-    /**
-     * Gets MAL id
-     *
-     * @return returns myanimelist id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Gets URL
-     *
-     * @return returns url of character
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Gets image URL
-     *
-     * @return returns image of character
-     */
-    public String getImage_url() {
-        return image_url;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return Name of character
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets role of character
-     *
-     * @return role of character
-     */
-    public String getRole() {
-        return role;
-    }
-
-    /**
-     * Gets voice actors of anime
-     *
-     * @return voice actors of character
-     */
-    public ArrayList<Voice_actors> getVoice_actors() {
-        return voice_actors;
-    }
+    public ArrayList<Voice_actors> voice_actors;
 
     @Override
     public String toString() {

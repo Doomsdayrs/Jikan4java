@@ -26,31 +26,15 @@ import java.util.ArrayList;
  */
 public class Friday extends Day {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
-
+    public int request_cache_expiry;
     @JsonProperty("friday")
-    private ArrayList<SubAnime> friday;
+    public ArrayList<SubAnime> friday;
 
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public ArrayList<SubAnime> getFriday() {
-        return friday;
-    }
-
+   
     @Override
     public String toString() {
         return "Friday{" +

@@ -27,60 +27,16 @@ import java.util.ArrayList;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Staff {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("name")
-    private String name;
+    public String name;
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
     @JsonProperty("positions")
-    private ArrayList<String> positions;
+    public ArrayList<String> positions;
 
-    /**
-     * Gets MAL ID
-     *
-     * @return myanimelist id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Gets URL of staff member
-     *
-     * @return url of staff member
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Gets name of member
-     *
-     * @return name of staff member
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets image of member
-     *
-     * @return image url of the staff member
-     */
-    public String getImage_url() {
-        return image_url;
-    }
-
-    /**
-     * Gets Positions member
-     *
-     * @return the positions the staff member has
-     */
-    public ArrayList<String> getPositions() {
-        return positions;
-    }
 
     @Override
     public String toString() {

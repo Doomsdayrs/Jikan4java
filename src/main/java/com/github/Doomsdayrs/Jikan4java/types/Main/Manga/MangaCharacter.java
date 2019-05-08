@@ -1,6 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Manga;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -21,42 +20,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+
 public class MangaCharacter {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("name")
-    private String name;
+    public String name;
 
     @JsonProperty("role")
-    private String role;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getRole() {
-        return role;
-    }
+    public String role;
 
     @Override
     public String toString() {

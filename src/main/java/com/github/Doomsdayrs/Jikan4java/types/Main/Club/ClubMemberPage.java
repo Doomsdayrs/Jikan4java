@@ -24,29 +24,13 @@ import java.util.ArrayList;
  */
 public class ClubMemberPage {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("members")
-    private ArrayList<ClubMember> clubMembers;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public ArrayList<ClubMember> getClubMembers() {
-        return clubMembers;
-    }
+    public ArrayList<ClubMember> clubMembers;
 
     @Override
     public String toString() {

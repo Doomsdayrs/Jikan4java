@@ -11,6 +11,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -32,54 +34,22 @@ import java.io.IOException;
  */
 public class TopPerson extends TopList {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("rank")
-    private int rank;
+    public int rank;
     @JsonProperty("title")
-    private String title;
+    public String title;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("name_kanji")
-    private String name_kanji;
+    public String name_kanji;
     @JsonProperty("favorites")
-    private int favorites;
+    public int favorites;
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
     @JsonProperty("birthday")
-    private String birthday;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getName_kanji() {
-        return name_kanji;
-    }
-
-    public int getFavorites() {
-        return favorites;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
+    public String birthday;
+    
     /**
      * Returns the Person object of this object
      *
@@ -87,8 +57,14 @@ public class TopPerson extends TopList {
      * @throws IOException
      * @throws ParseException
      */
-    public Person getPerson() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Person.class);
+    public CompletableFuture<Person> getPerson() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Person.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

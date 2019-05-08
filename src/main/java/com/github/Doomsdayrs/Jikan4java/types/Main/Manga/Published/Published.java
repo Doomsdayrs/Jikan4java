@@ -25,31 +25,24 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Prop.Prop;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Published {
     @JsonProperty("from")
-    private String from;
+    public String from;
 
     @JsonProperty("to")
-    private String to;
+    public String to;
 
     @JsonProperty("prop")
-    private Prop prop;
+    public Prop prop;
 
     @JsonProperty("string")
-    private String string;
+    public String string;
 
-    public String getFrom() {
-        return from;
+    @Override
+    public String toString() {
+        return "Published{" +
+                "from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", prop=" + prop +
+                ", string='" + string + '\'' +
+                '}';
     }
-
-    public String getTo() {
-        return to;
-    }
-
-    public Prop getProp() {
-        return prop;
-    }
-
-    public String getString() {
-        return string;
-    }
-
 }

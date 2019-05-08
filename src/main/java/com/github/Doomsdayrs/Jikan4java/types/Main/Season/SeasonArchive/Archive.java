@@ -24,18 +24,10 @@ import java.util.ArrayList;
  */
 public class Archive {
     @JsonProperty("year")
-    private int year;
+    public int year;
     @JsonProperty("seasons")
-    private ArrayList<String> seasons;
-
-    public int getYear() {
-        return year;
-    }
-
-    public ArrayList<String> getSeasons() {
-        return seasons;
-    }
-
+    public ArrayList<String> seasons;
+    
     @Override
     public String toString() {
         return "Archive{" +

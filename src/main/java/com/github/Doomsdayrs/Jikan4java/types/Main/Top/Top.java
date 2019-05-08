@@ -26,69 +26,21 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class Top {
-    private String request_hash;
-    private boolean request_cached;
-    private int request_cache_expiry;
+    public String request_hash;
+    public boolean request_cached;
+    public int request_cache_expiry;
 
     //Anime
-    private ArrayList<TopAnime> topAnimes;
+    public ArrayList<TopAnime> topAnimes;
 
     //Character
-    private ArrayList<TopCharacter> topCharacters;
+    public ArrayList<TopCharacter> topCharacters;
 
     //Manga
-    private ArrayList<TopManga> topMangas;
+    public ArrayList<TopManga> topMangas;
 
     //Person
-    private ArrayList<TopPerson> topPeople;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    /**
-     * Only applies to Animes
-     *
-     * @return TopAnime
-     */
-    public ArrayList<TopAnime> getTopAnimes() {
-        return topAnimes;
-    }
-
-    /**
-     * Only applies to Characters
-     *
-     * @return TopCharacter
-     */
-    public ArrayList<TopCharacter> getTopCharacters() {
-        return topCharacters;
-    }
-
-    /**
-     * Only applies to Mangas
-     *
-     * @return TopManga
-     */
-    public ArrayList<TopManga> getTopMangas() {
-        return topMangas;
-    }
-
-    /**
-     * Only applies to People
-     *
-     * @return TopPeople
-     */
-    public ArrayList<TopPerson> getTopPeople() {
-        return topPeople;
-    }
+    public ArrayList<TopPerson> topPeople;
 
     @Override
     public String toString() {

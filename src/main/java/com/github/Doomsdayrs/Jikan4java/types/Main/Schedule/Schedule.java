@@ -24,78 +24,31 @@ import java.util.ArrayList;
  */
 public class Schedule {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
-
+    public int request_cache_expiry;
     @JsonProperty("monday")
-    private ArrayList<SubAnime> monday;
+    public ArrayList<SubAnime> monday;
     @JsonProperty("tuesday")
-    private ArrayList<SubAnime> tuesday;
+    public ArrayList<SubAnime> tuesday;
     @JsonProperty("wednesday")
-    private ArrayList<SubAnime> wednesday;
+    public ArrayList<SubAnime> wednesday;
     @JsonProperty("thursday")
-    private ArrayList<SubAnime> thursday;
+    public ArrayList<SubAnime> thursday;
     @JsonProperty("friday")
-    private ArrayList<SubAnime> friday;
+    public ArrayList<SubAnime> friday;
     @JsonProperty("saturday")
-    private ArrayList<SubAnime> saturday;
+    public ArrayList<SubAnime> saturday;
     @JsonProperty("sunday")
-    private ArrayList<SubAnime> sunday;
+    public ArrayList<SubAnime> sunday;
     @JsonProperty("other")
-    private ArrayList<SubAnime> others;
+    public ArrayList<SubAnime> others;
     @JsonProperty("unknown")
-    private ArrayList<SubAnime> unknown;
+    public ArrayList<SubAnime> unknown;
 
-    public String getRequest_hash() {
-        return request_hash;
-    }
 
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public ArrayList<SubAnime> getMonday() {
-        return monday;
-    }
-
-    public ArrayList<SubAnime> getTuesday() {
-        return tuesday;
-    }
-
-    public ArrayList<SubAnime> getWednesday() {
-        return wednesday;
-    }
-
-    public ArrayList<SubAnime> getThursday() {
-        return thursday;
-    }
-
-    public ArrayList<SubAnime> getFriday() {
-        return friday;
-    }
-
-    public ArrayList<SubAnime> getSaturday() {
-        return saturday;
-    }
-
-    public ArrayList<SubAnime> getSunday() {
-        return sunday;
-    }
-
-    public ArrayList<SubAnime> getOthers() {
-        return others;
-    }
-
-    public ArrayList<SubAnime> getUnknown() {
-        return unknown;
-    }
 
     @Override
     public String toString() {

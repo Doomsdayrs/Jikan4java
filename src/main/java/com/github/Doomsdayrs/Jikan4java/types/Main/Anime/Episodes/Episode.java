@@ -25,112 +25,32 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Aired;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Episode {
     @JsonProperty("episode_id")
-    private int episode_id;
+    public int episode_id;
 
     @JsonProperty("title")
-    private String title;
+    public String title;
 
     @JsonProperty("title_japanese")
-    private String title_japanese;
+    public String title_japanese;
 
     @JsonProperty("title_romanji")
-    private String title_romanji;
+    public String title_romanji;
 
     @JsonProperty("aired")
-    private Aired aired;
+    public Aired aired;
 
     @JsonProperty("filler")
-    private boolean filler;
+    public boolean filler;
 
     @JsonProperty("recap")
-    private boolean recap;
+    public boolean recap;
 
     @JsonProperty("video_url")
-    private String video_url;
+    public String video_url;
 
     @JsonProperty("forum_url")
-    private String forum_url;
-
-    /**
-     * Gets ID of episode
-     *
-     * @return ID
-     */
-    public int getEpisode_id() {
-        return episode_id;
-    }
-
-    /**
-     * Gets title
-     *
-     * @return Title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Gets japanese title
-     *
-     * @return japanese title
-     */
-    public String getTitle_japanese() {
-        return title_japanese;
-    }
-
-    /**
-     * Gets title in romanji
-     *
-     * @return romanji title
-     */
-    public String getTitle_romanji() {
-        return title_romanji;
-    }
-
-    /**
-     * Get aired date
-     *
-     * @return aired date
-     */
-    public Aired getAired() {
-        return aired;
-    }
-
-    /**
-     * Is this a filler episode
-     *
-     * @return filler?
-     */
-    public boolean isFiller() {
-        return filler;
-    }
-
-    /**
-     * Is this episode a recap?
-     *
-     * @return recap?
-     */
-    public boolean isRecap() {
-        return recap;
-    }
-
-    /**
-     * Gets video url
-     *
-     * @return video url
-     */
-    public String getVideo_url() {
-        return video_url;
-    }
-
-    /**
-     * Gets forum url
-     *
-     * @return forum url
-     */
-    public String getForum_url() {
-        return forum_url;
-    }
+    public String forum_url;
+    
 
     @Override
     public String toString() {

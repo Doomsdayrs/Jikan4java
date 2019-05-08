@@ -11,6 +11,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -32,81 +34,38 @@ import java.io.IOException;
  */
 public class TopManga extends TopList {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("rank")
-    private int rank;
+    public int rank;
 
     @JsonProperty("title")
-    private String title;
+    public String title;
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("type")
-    private String type;
+    public String type;
 
     @JsonProperty("volumes")
-    private int volumes;
+    public int volumes;
 
     @JsonProperty("start_date")
-    private String start_date;
+    public String start_date;
 
     @JsonProperty("end_date")
-    private String end_date;
+    public String end_date;
 
     @JsonProperty("members")
-    private int members;
+    public int members;
 
     @JsonProperty("score")
-    private float score;
+    public float score;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getVolumes() {
-        return volumes;
-    }
-
-    public String getStart_date() {
-        return start_date;
-    }
-
-    public String getEnd_date() {
-        return end_date;
-    }
-
-    public int getMembers() {
-        return members;
-    }
-
-    public float getScore() {
-        return score;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
 
     /**
      * Returns the Manga object of this object
@@ -115,8 +74,14 @@ public class TopManga extends TopList {
      * @throws IOException
      * @throws ParseException
      */
-    public Manga getManga() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+    public CompletableFuture<Manga> getManga() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

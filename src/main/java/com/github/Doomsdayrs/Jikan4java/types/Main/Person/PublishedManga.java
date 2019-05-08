@@ -23,16 +23,16 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Basic.MangaBasic;
  */
 public class PublishedManga {
     @JsonProperty("position")
-    private String position;
+    public String position;
 
     @JsonProperty("manga")
-    private MangaBasic mangaBasic;
+    public MangaBasic mangaBasic;
 
-    public String getPosition() {
-        return position;
-    }
-
-    public MangaBasic getMangaBasic() {
-        return mangaBasic;
+    @Override
+    public String toString() {
+        return "PublishedManga{" +
+                "position='" + position + '\'' +
+                ", mangaBasic=" + mangaBasic +
+                '}';
     }
 }

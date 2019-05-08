@@ -22,41 +22,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Status {
     @JsonProperty("cached_requests")
-    private int cached_requests;
+    public int cached_requests;
     @JsonProperty("requests_today")
-    private int requests_today;
+    public int requests_today;
     @JsonProperty("requests_this_week")
-    private int requests_this_week;
+    public int requests_this_week;
     @JsonProperty("requests_this_month")
-    private int requests_this_month;
+    public int requests_this_month;
     @JsonProperty("connected_clients")
-    private String connected_clients;
+    public String connected_clients;
     @JsonProperty("total_connections_received")
-    private String total_connections_received;
-
-    public int getCached_requests() {
-        return cached_requests;
-    }
-
-    public int getRequests_today() {
-        return requests_today;
-    }
-
-    public int getRequests_this_week() {
-        return requests_this_week;
-    }
-
-    public int getRequests_this_month() {
-        return requests_this_month;
-    }
-
-    public String getConnected_clients() {
-        return connected_clients;
-    }
-
-    public String getTotal_connections_received() {
-        return total_connections_received;
-    }
+    public String total_connections_received;
 
     @Override
     public String toString() {

@@ -13,6 +13,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -34,102 +36,37 @@ import java.util.ArrayList;
  */
 public class SubAnime {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("title")
-    private String title;
+    public String title;
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
     @JsonProperty("synopsis")
-    private String synopsis;
+    public String synopsis;
     @JsonProperty("type")
-    private String type;
+    public String type;
     @JsonProperty("airing_start")
-    private String airing_start;
+    public String airing_start;
     @JsonProperty("episodes")
-    private int episodes;
+    public int episodes;
     @JsonProperty("members")
-    private int members;
+    public int members;
     @JsonProperty("genres")
-    private ArrayList<Genre> genres;
+    public ArrayList<Genre> genres;
     @JsonProperty("source")
-    private String source;
+    public String source;
     @JsonProperty("producers")
-    private ArrayList<Producer> producers;
+    public ArrayList<Producer> producers;
     @JsonProperty("score")
-    private float score;
+    public float score;
     @JsonProperty("licensors")
-    private ArrayList<String> licensors;
+    public ArrayList<String> licensors;
     @JsonProperty("r18")
-    private boolean r18;
+    public boolean r18;
     @JsonProperty("kids")
-    private boolean kids;
-
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getAiring_start() {
-        return airing_start;
-    }
-
-    public int getEpisodes() {
-        return episodes;
-    }
-
-    public int getMembers() {
-        return members;
-    }
-
-    public ArrayList<Genre> getGenres() {
-        return genres;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public ArrayList<Producer> getProducers() {
-        return producers;
-    }
-
-    public float isScore() {
-        return score;
-    }
-
-    public ArrayList<String> getLicensors() {
-        return licensors;
-    }
-
-    public boolean isR18() {
-        return r18;
-    }
-
-    public boolean isKids() {
-        return kids;
-    }
+    public boolean kids;
 
 
     /**
@@ -139,8 +76,14 @@ public class SubAnime {
      * @throws IOException
      * @throws ParseException
      */
-    public Anime getAnime() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
+    public CompletableFuture<Anime> getAnime() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

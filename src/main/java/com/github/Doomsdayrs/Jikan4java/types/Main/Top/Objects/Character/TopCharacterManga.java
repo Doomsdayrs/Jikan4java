@@ -10,6 +10,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -31,30 +33,14 @@ import java.io.IOException;
  */
 public class TopCharacterManga {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("type")
-    private String type;
+    public String type;
     @JsonProperty("name")
-    private String name;
+    public String name;
     @JsonProperty("url")
-    private String url;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
+    public String url;
+    
     /**
      * Returns the Manga object of this object
      *
@@ -62,8 +48,14 @@ public class TopCharacterManga {
      * @throws IOException
      * @throws ParseException
      */
-    public Manga getManga() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+    public CompletableFuture<Manga> getManga() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

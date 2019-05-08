@@ -22,23 +22,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class ClubMember {
     @JsonProperty("username")
-    private String username;
+    public String username;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("image_url")
-    private String image_url;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
+    public String image_url;
 
     @Override
     public String toString() {

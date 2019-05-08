@@ -26,35 +26,15 @@ import java.util.ArrayList;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class MangaPage {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("results")
-    private ArrayList<MangaPageManga> mangas;
+    public ArrayList<MangaPageManga> mangas;
     @JsonProperty("last_page")
-    private int last_page;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public ArrayList<MangaPageManga> getMangas() {
-        return mangas;
-    }
-
-    public int getLast_page() {
-        return last_page;
-    }
+    public int last_page;
 
     @Override
     public String toString() {

@@ -50,9 +50,6 @@ import java.util.concurrent.CompletionException;
 
 public class Anime {
 
-    @JsonIgnore
-    private final ObjectMapper mapper = new ObjectMapper();
-
     @JsonProperty("request_hash")
     public String request_hash;
     @JsonProperty("request_cached")
@@ -330,8 +327,15 @@ public class Anime {
 
     }
 
+    @JsonIgnore
+    private final ObjectMapper mapper = new ObjectMapper();
+    @JsonIgnore
+    private final String baseURL = "https://api.jikan.moe/v3";
+    @JsonIgnore
+    private final JSONParser parser = new JSONParser();
+
     @JsonProperty
-    public CompletableFuture<AnimeUserUpdatesPage> getUserUpdatesPage(int page) throws IOException, ParseException {
+    public CompletableFuture<AnimeUserUpdatesPage> getUserUpdatesPage(int page) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 return mapper.readValue(this.retrieve("userupdates/" + page).toJSONString(), AnimeUserUpdatesPage.class);
@@ -339,8 +343,15 @@ public class Anime {
                 throw new CompletionException(e);
             }
         });
-
     }
+    /**
+     * Retrieves data from manga page
+     *
+     * @param subCategory What is needed to be retrieved, ie 'moreinfo'
+     * @return JSONObject of the page
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
 
     /**
      * Retrieves data from anime page
@@ -352,10 +363,8 @@ public class Anime {
      */
     @JsonProperty
     private JSONObject retrieve(String subCategory) throws IOException, ParseException {
-        String baseURL = "https://api.jikan.moe/v3";
         Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/" + subCategory).build();
         Response response = new OkHttpClient().newCall(request).execute();
-        JSONParser parser = new JSONParser();
         String responseString = response.body().string();
         if (!responseString.equals(null))
             return (JSONObject) parser.parse(responseString);

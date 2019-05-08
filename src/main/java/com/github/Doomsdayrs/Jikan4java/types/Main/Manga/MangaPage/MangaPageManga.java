@@ -11,6 +11,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -33,84 +35,32 @@ import java.io.IOException;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class MangaPageManga {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("image_url")
-    private String iconURL;
+    public String iconURL;
     @JsonProperty("title")
-    private String title;
+    public String title;
     @JsonProperty("publishing")
-    private boolean publishing;
+    public boolean publishing;
     @JsonProperty("synopsis")
-    private String synopsis;
+    public String synopsis;
     @JsonProperty("type")
-    private String type;
+    public String type;
     @JsonProperty("chapters")
-    private int chapters;
+    public int chapters;
     @JsonProperty("volumes")
-    private int volumes;
+    public int volumes;
     @JsonProperty("score")
-    private double score;
+    public double score;
     @JsonProperty("start_date")
-    private String start_date;
+    public String start_date;
     @JsonProperty("end_date")
-    private String end_date;
+    public String end_date;
     @JsonProperty("members")
-    private int members;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getIconURL() {
-        return iconURL;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public boolean isPublishing() {
-        return publishing;
-    }
-
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getChapters() {
-        return chapters;
-    }
-
-    public int getVolumes() {
-        return volumes;
-    }
-
-    public double getScore() {
-        return score;
-    }
-
-    public String getStart_date() {
-        return start_date;
-    }
-
-    public String getEnd_date() {
-        return end_date;
-    }
-
-    public int getMembers() {
-        return members;
-    }
-
+    public int members;
+    
     /**
      * Returns the Manga object of this object
      *
@@ -118,8 +68,14 @@ public class MangaPageManga {
      * @throws IOException
      * @throws ParseException
      */
-    public Manga getManga() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+    public CompletableFuture<Manga> getManga() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

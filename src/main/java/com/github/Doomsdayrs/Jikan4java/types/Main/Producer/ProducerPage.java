@@ -26,37 +26,15 @@ import java.util.ArrayList;
  */
 public class ProducerPage {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
-
+    public int request_cache_expiry;
     @JsonProperty("meta")
-    private BasicMeta meta;
-
+    public BasicMeta meta;
     @JsonProperty("anime")
-    private ArrayList<SubAnime> subAnimes;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public BasicMeta getMeta() {
-        return meta;
-    }
-
-    public ArrayList<SubAnime> getSubAnimes() {
-        return subAnimes;
-    }
+    public ArrayList<SubAnime> subAnimes;
 
     @Override
     public String toString() {

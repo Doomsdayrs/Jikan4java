@@ -19,24 +19,18 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Manga;
  * @author github.com/doomsdayrs
  */
 public class Serializations {
-    private int mal_id;
-    private String type;
-    private String name;
-    private String url;
+    public int mal_id;
+    public String type;
+    public String name;
+    public String url;
 
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrl() {
-        return url;
+    @Override
+    public String toString() {
+        return "Serializations{" +
+                "mal_id=" + mal_id +
+                ", type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

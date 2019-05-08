@@ -11,6 +11,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -33,169 +35,48 @@ import java.io.IOException;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class AnimePageAnime {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("image_url")
-    private String iconURL;
+    public String iconURL;
     @JsonProperty("title")
-    private String title;
+    public String title;
     @JsonProperty("airing")
-    private boolean airing;
+    public boolean airing;
     @JsonProperty("synopsis")
-    private String synopsis;
+    public String synopsis;
     @JsonProperty("type")
-    private String type;
+    public String type;
     @JsonProperty("episodes")
-    private int episodes;
+    public int episodes;
     @JsonProperty("score")
-    private double score;
+    public double score;
     @JsonProperty("source")
-    private String source;
+    public String source;
     @JsonProperty("start_date")
-    private String start_date;
+    public String start_date;
     @JsonProperty("end_date")
-    private String end_date;
+    public String end_date;
     @JsonProperty("members")
-    private int members;
+    public int members;
     @JsonProperty("rated")
-    private String rated;
+    public String rated;
 
-    /**
-     * Get MAL id
-     *
-     * @return MAL ID int
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return url string
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Gets icon url
-     *
-     * @return url string
-     */
-    public String getIconURL() {
-        return iconURL;
-    }
-
-    /**
-     * Gets title
-     *
-     * @return title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Is the anime airing?
-     *
-     * @return airing?
-     */
-    public boolean isAiring() {
-        return airing;
-    }
-
-    /**
-     * Synopsis of the anime
-     *
-     * @return synopsis string
-     */
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    /**
-     * Type of anime
-     *
-     * @return type of anime
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Episode count
-     *
-     * @return # of episodes
-     */
-    public int getEpisodes() {
-        return episodes;
-    }
-
-    /**
-     * Score of anime
-     *
-     * @return score
-     */
-    public double getScore() {
-        return score;
-    }
-
-    /**
-     * Source of anime
-     *
-     * @return source
-     */
-    public String getSource() {
-        return source;
-    }
-
-    /**
-     * Gets start date
-     *
-     * @return start date
-     */
-    public String getStart_date() {
-        return start_date;
-    }
-
-    /**
-     * Gets end date
-     *
-     * @return end date
-     */
-    public String getEnd_date() {
-        return end_date;
-    }
-
-    /**
-     * Gets members
-     *
-     * @return # of members
-     */
-    public int getMembers() {
-        return members;
-    }
-
-    /**
-     * Rating of anime
-     *
-     * @return rating
-     */
-    public String getRated() {
-        return rated;
-    }
-
+    
     /**
      * Returns the Anime object of this object
      *
      * @return Anime Object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public Anime getAnime() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
+    public CompletableFuture<Anime> getAnime() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
 

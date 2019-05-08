@@ -25,52 +25,16 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Prop.Prop;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Aired {
     @JsonProperty("from")
-    private String from;
+    public String from;
 
     @JsonProperty("to")
-    private String to;
+    public String to;
 
     @JsonProperty("prop")
-    private Prop prop;
+    public Prop prop;
 
     @JsonProperty("string")
-    private String string;
-
-    /**
-     * Gets from
-     *
-     * @return from
-     */
-    public String getFrom() {
-        return from;
-    }
-
-    /**
-     * Gets to
-     *
-     * @return to
-     */
-    public String getTo() {
-        return to;
-    }
-
-    /**
-     * Gets prop
-     *
-     * @return prop
-     */
-    public Prop getProp() {
-        return prop;
-    }
-
-    /**
-     * Gets a string
-     *
-     * @return string
-     */
-    public String getString() {
-        return string;
-    }
+    public String string;
 
     @Override
     public String toString() {

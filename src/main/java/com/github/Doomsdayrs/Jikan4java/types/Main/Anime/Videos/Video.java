@@ -26,50 +26,15 @@ import java.util.ArrayList;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Video {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("promo")
-    private ArrayList<Promo> promos;
+    public ArrayList<Promo> promos;
     @JsonProperty("episodes")
-    private ArrayList<Episode> episodes;
-
-    /**
-     * Gets request hash
-     *
-     * @return Request hash
-     */
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    /**
-     * Is the request cached?
-     *
-     * @return is it cached?
-     */
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    /**
-     * Gets expiry
-     *
-     * @return int date or something
-     */
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public ArrayList<Promo> getPromos() {
-        return promos;
-    }
-
-    public ArrayList<Episode> getEpisodes() {
-        return episodes;
-    }
+    public ArrayList<Episode> episodes;
 
     @Override
     public String toString() {

@@ -1,6 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
@@ -14,6 +13,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -33,152 +34,34 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class GenreSearchManga {
 
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("title")
-    private String title;
+    public String title;
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
     @JsonProperty("synopsis")
-    private String synopsis;
+    public String synopsis;
     @JsonProperty("type")
-    private String type;
+    public String type;
     @JsonProperty("publishing_start")
-    private String publishing_start;
+    public String publishing_start;
     @JsonProperty("volumes")
-    private int volumes;
+    public int volumes;
     @JsonProperty("members")
-    private int members;
+    public int members;
     @JsonProperty("genres")
-    private ArrayList<Genre> genres;
+    public ArrayList<Genre> genres;
     @JsonProperty("authors")
-    private ArrayList<Authors> authors;
+    public ArrayList<Authors> authors;
     @JsonProperty("score")
-    private float score;
+    public float score;
     @JsonProperty("serialization")
-    private ArrayList<String> serialization;
-
-    /**
-     * Gets mal id
-     *
-     * @return mal id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Get title
-     *
-     * @return title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Gets image url
-     *
-     * @return image url
-     */
-    public String getImage_url() {
-        return image_url;
-    }
-
-    /**
-     * Get synopsis
-     *
-     * @return synopsis
-     */
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    /**
-     * Get type
-     *
-     * @return type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Start date
-     *
-     * @return date
-     */
-    public String getPublishing_start() {
-        return publishing_start;
-    }
-
-    /**
-     * Get volumes
-     *
-     * @return volumes
-     */
-    public int getVolumes() {
-        return volumes;
-    }
-
-    /**
-     * Get member count
-     *
-     * @return count of member
-     */
-    public int getMembers() {
-        return members;
-    }
-
-    /**
-     * Get genres
-     *
-     * @return genres
-     */
-    public ArrayList<Genre> getGenres() {
-        return genres;
-    }
-
-    /**
-     * Get authors
-     *
-     * @return authors
-     */
-    public ArrayList<Authors> getAuthors() {
-        return authors;
-    }
-
-    /**
-     * Get score
-     *
-     * @return score
-     */
-    public float getScore() {
-        return score;
-    }
-
-    /**
-     * Get serialization
-     *
-     * @return serialization
-     */
-    public ArrayList<String> getSerialization() {
-        return serialization;
-    }
+    public ArrayList<String> serialization;
 
     /**
      * Returns the Manga object of this object
@@ -187,8 +70,14 @@ public class GenreSearchManga {
      * @throws IOException
      * @throws ParseException
      */
-    public Manga getManga() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+    public CompletableFuture<Manga> getManga() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

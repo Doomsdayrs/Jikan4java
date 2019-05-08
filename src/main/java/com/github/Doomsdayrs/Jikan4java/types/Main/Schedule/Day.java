@@ -21,26 +21,10 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class Day {
-    private String request_hash;
-    private boolean request_cached;
-    private int request_cache_expiry;
-    private ArrayList<SubAnime> day;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public ArrayList<SubAnime> getDay() {
-        return day;
-    }
+    public String request_hash;
+    public boolean request_cached;
+    public int request_cache_expiry;
+    public ArrayList<SubAnime> day;
 
     @Override
     public String toString() {

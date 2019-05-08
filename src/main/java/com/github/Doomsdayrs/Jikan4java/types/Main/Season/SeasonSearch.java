@@ -24,46 +24,17 @@ import java.util.ArrayList;
  */
 public class SeasonSearch {
     @JsonProperty("request_hash")
-    private String request_hash;
-
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
-
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
-
+    public int request_cache_expiry;
     @JsonProperty("season_name")
-    private String season_name;
-
+    public String season_name;
     @JsonProperty("season_year")
-    private int season_year;
-
+    public int season_year;
     @JsonProperty("anime")
-    private ArrayList<SeasonSearchAnime> animes;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public String getSeason_name() {
-        return season_name;
-    }
-
-    public int getSeason_year() {
-        return season_year;
-    }
-
-    public ArrayList<SeasonSearchAnime> getAnimes() {
-        return animes;
-    }
+    public ArrayList<SeasonSearchAnime> animes;
 
     @Override
     public String toString() {

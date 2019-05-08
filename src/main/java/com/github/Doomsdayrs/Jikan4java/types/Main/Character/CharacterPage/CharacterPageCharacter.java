@@ -12,6 +12,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -34,82 +36,19 @@ import java.util.ArrayList;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class CharacterPageCharacter {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
     @JsonProperty("name")
-    private String name;
+    public String name;
     @JsonProperty("alternative_names")
-    private ArrayList<String> alternative_names;
+    public ArrayList<String> alternative_names;
     @JsonProperty("anime")
-    private ArrayList<PageCharacterAnime> animes;
+    public ArrayList<PageCharacterAnime> animes;
     @JsonProperty("manga")
-    private ArrayList<PageCharacterManga> mangas;
-
-    /**
-     * Gets mal id
-     *
-     * @return mal id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Gets image url
-     *
-     * @return image url
-     */
-    public String getImage_url() {
-        return image_url;
-    }
-
-    /**
-     * Name of character
-     *
-     * @return name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Alternative names
-     *
-     * @return array list of alt names
-     */
-    public ArrayList<String> getAlternative_names() {
-        return alternative_names;
-    }
-
-    /**
-     * Animes in
-     *
-     * @return array list of animes
-     */
-    public ArrayList<PageCharacterAnime> getAnimes() {
-        return animes;
-    }
-
-    /**
-     * Mangas in
-     *
-     * @return array list of mangas
-     */
-    public ArrayList<PageCharacterManga> getMangas() {
-        return mangas;
-    }
+    public ArrayList<PageCharacterManga> mangas;
 
     /**
      * Returns the Character object of this object
@@ -118,8 +57,14 @@ public class CharacterPageCharacter {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Character getCharacter() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Character.class);
+    public CompletableFuture<Character> getCharacter() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Character.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

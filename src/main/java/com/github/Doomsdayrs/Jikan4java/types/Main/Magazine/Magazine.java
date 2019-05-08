@@ -1,6 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Magazine;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Authors;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
@@ -26,163 +25,45 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Magazine {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("title")
-    private String title;
+    public String title;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("synopsis")
-    private String synopsis;
+    public String synopsis;
 
     @JsonProperty("type")
-    private String type;
+    public String type;
 
     @JsonProperty("publishing_start")
-    private String publishing_start;
+    public String publishing_start;
 
     @JsonProperty("volumes")
-    private int volumes;
+    public int volumes;
 
     @JsonProperty("members")
-    private int members;
+    public int members;
 
     @JsonProperty("genres")
-    private ArrayList<Genre> genres;
+    public ArrayList<Genre> genres;
 
     @JsonProperty("authors")
-    private ArrayList<Authors> authors;
+    public ArrayList<Authors> authors;
 
     @JsonProperty("score")
-    private float score;
+    public float score;
 
     @JsonProperty("serialization")
-    private ArrayList<String> serializations;
-
-    /**
-     * Gets mal id
-     *
-     * @return mal id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Get title
-     *
-     * @return title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Gets image url
-     *
-     * @return image url
-     */
-    public String getImage_url() {
-        return image_url;
-    }
-
-    /**
-     * Get synopsis
-     *
-     * @return synopsis
-     */
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    /**
-     * Get type
-     *
-     * @return type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Get start date
-     *
-     * @return date
-     */
-    public String getPublishing_start() {
-        return publishing_start;
-    }
-
-    /**
-     * Get count of volumes
-     *
-     * @return count
-     */
-    public int getVolumes() {
-        return volumes;
-    }
-
-    /**
-     * Get count of members
-     *
-     * @return count
-     */
-    public int getMembers() {
-        return members;
-    }
-
-    /**
-     * Get genres
-     *
-     * @return genres
-     */
-    public ArrayList<Genre> getGenres() {
-        return genres;
-    }
-
-    /**
-     * Get authors
-     *
-     * @return authors
-     */
-    public ArrayList<Authors> getAuthors() {
-        return authors;
-    }
-
-    /**
-     * Get score
-     *
-     * @return scores
-     */
-    public float getScore() {
-        return score;
-    }
-
-    /**
-     * Get serializations
-     *
-     * @return serializations
-     */
-    public ArrayList<String> getSerializations() {
-        return serializations;
-    }
+    public ArrayList<String> serializations;
 
     @Override
     public String toString() {

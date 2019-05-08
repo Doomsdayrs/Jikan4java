@@ -24,23 +24,13 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Basic.CharacterBasic;
  */
 public class VoiceActingRoles {
     @JsonProperty("role")
-    private String role;
+    public String role;
+
     @JsonProperty("anime")
-    private AnimeBasic animeBasic;
+    public AnimeBasic animeBasic;
+
     @JsonProperty("character")
-    private CharacterBasic characterBasic;
-
-    public String getRole() {
-        return role;
-    }
-
-    public AnimeBasic getAnimeBasic() {
-        return animeBasic;
-    }
-
-    public CharacterBasic getCharacterBasic() {
-        return characterBasic;
-    }
+    public CharacterBasic characterBasic;
 
     @Override
     public String toString() {

@@ -27,35 +27,28 @@ import java.util.ArrayList;
 public class Character_Staff {
 
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
 
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
 
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
 
     @JsonProperty("characters")
-    private ArrayList<AnimeCharacter> animeCharacters;
+    public ArrayList<AnimeCharacter> animeCharacters;
 
     @JsonProperty("staff")
-    private ArrayList<Staff> staff;
+    public ArrayList<Staff> staff;
 
-    /**
-     * Gets the character list of the anime
-     *
-     * @return Returns characterList of characters
-     */
-    public ArrayList<AnimeCharacter> getAnimeCharacters() {
-        return animeCharacters;
-    }
-
-    /**
-     * Returns the staff list
-     *
-     * @return Returns staff list
-     */
-    public ArrayList<Staff> getStaff() {
-        return staff;
+    @Override
+    public String toString() {
+        return "Character_Staff{" +
+                "request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
+                ", animeCharacters=" + animeCharacters +
+                ", staff=" + staff +
+                '}';
     }
 }

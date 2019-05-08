@@ -26,60 +26,15 @@ import java.util.ArrayList;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class AnimePage {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("results")
-    private ArrayList<AnimePageAnime> animes;
+    public ArrayList<AnimePageAnime> animes;
     @JsonProperty("last_page")
-    private int last_page;
-
-    /**
-     * Gets request hash
-     *
-     * @return Request hash
-     */
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    /**
-     * Is the request cached?
-     *
-     * @return is it cached?
-     */
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    /**
-     * Gets expiry
-     *
-     * @return int date or something
-     */
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    /**
-     * Returns a list of animes present
-     *
-     * @return Array list of animes
-     */
-    public ArrayList<AnimePageAnime> getAnimes() {
-        return animes;
-    }
-
-    /**
-     * The last page in the query
-     *
-     * @return page number
-     */
-    public int getLast_page() {
-        return last_page;
-    }
+    public int last_page;
 
     @Override
     public String toString() {

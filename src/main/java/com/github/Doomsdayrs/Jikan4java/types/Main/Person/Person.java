@@ -33,70 +33,59 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class Person {
+
     @JsonIgnore
     private final String baseURL = "https://api.jikan.moe/v3";
-
+    @JsonIgnore
+    private final OkHttpClient client = new OkHttpClient();
+    @JsonIgnore
+    private final JSONParser parser = new JSONParser();
+    @JsonIgnore
+    private final ObjectMapper mapper = new ObjectMapper();
     @JsonProperty("request_hash")
-    private String request_hash;
-
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
-
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
-
+    public int request_cache_expiry;
     @JsonProperty("mal_id")
-    private int mal_id;
-
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
-
+    public String url;
     @JsonProperty("image_url")
-    private String image_url;
-
+    public String image_url;
     @JsonProperty("website_url")
-    private String website_url;
-
+    public String website_url;
     @JsonProperty("name")
-    private String name;
-
+    public String name;
     @JsonProperty("given_name")
-    private String given_name;
-
+    public String given_name;
     @JsonProperty("family_name")
-    private String family_name;
-
+    public String family_name;
     @JsonProperty("alternate_names")
-    private ArrayList<String> alternate_names;
-
+    public ArrayList<String> alternate_names;
     @JsonProperty("birthday")
-    private String birthday;
-
+    public String birthday;
     @JsonProperty("member_favorites")
-    private int member_favorites;
-
+    public int member_favorites;
     @JsonProperty("about")
-    private String about;
-
+    public String about;
     @JsonProperty("voice_acting_roles")
-    private ArrayList<VoiceActingRoles> voiceActingRoles;
-
+    public ArrayList<VoiceActingRoles> voiceActingRoles;
     @JsonProperty("anime_staff_positions")
-    private ArrayList<AnimeStaffPosition> animeStaffPositions;
-
+    public ArrayList<AnimeStaffPosition> animeStaffPositions;
     @JsonProperty("published_manga")
-    private ArrayList<PublishedManga> publishedMangas;
+    public ArrayList<PublishedManga> publishedMangas;
 
-
-    @JsonProperty
+    @JsonIgnore
     public Pictures getPictures() throws IOException, ParseException {
-        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(baseURL + "/person/" + mal_id + "/pictures").build();
         Response response = client.newCall(request).execute();
-        JSONParser parser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) parser.parse(response.body().string());
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
+        String string = response.body().string();
+        if (string != null) {
+            JSONObject jsonObject = (JSONObject) parser.parse(string);
+            return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
+        } else return null;
     }
 
     @Override

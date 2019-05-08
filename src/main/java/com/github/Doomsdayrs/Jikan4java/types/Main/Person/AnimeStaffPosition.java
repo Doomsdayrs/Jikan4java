@@ -23,18 +23,10 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Basic.AnimeBasic;
  */
 public class AnimeStaffPosition {
     @JsonProperty("position")
-    private String position;
+    public String position;
 
     @JsonProperty("anime")
-    private AnimeBasic animeBasic;
-
-    public String getPosition() {
-        return position;
-    }
-
-    public AnimeBasic getAnimeBasic() {
-        return animeBasic;
-    }
+    public AnimeBasic animeBasic;
 
     @Override
     public String toString() {

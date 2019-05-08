@@ -11,6 +11,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -32,45 +34,31 @@ import java.util.ArrayList;
  */
 public class PersonPagePerson {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("image_url")
-    private String iconURL;
+    public String iconURL;
     @JsonProperty("name")
-    private String name;
+    public String name;
     @JsonProperty("alternative_names")
-    private ArrayList<String> alternative_names;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getIconURL() {
-        return iconURL;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public ArrayList<String> getAlternative_names() {
-        return alternative_names;
-    }
-
+    public ArrayList<String> alternative_names;
+    
     /**
      * Returns the Person object of this object
      *
      * @return Person Object
-     * @throws IOException
-     * @throws ParseException
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
-    public Person getPerson() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Person.class);
+    public CompletableFuture<Person> getPerson() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Person.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

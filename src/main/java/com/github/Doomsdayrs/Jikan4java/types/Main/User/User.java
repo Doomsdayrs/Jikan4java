@@ -41,96 +41,36 @@ public class User {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("username")
-    private String username;
+    public String username;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
     @JsonProperty("last_online")
-    private String last_online;
+    public String last_online;
     @JsonProperty("gender")
-    private String gender;
+    public String gender;
     @JsonProperty("birthday")
-    private String birthday;
+    public String birthday;
     @JsonProperty("location")
-    private String location;
+    public String location;
     @JsonProperty("joined")
-    private String joined;
+    public String joined;
     @JsonProperty("anime_stats")
-    private ArrayList<AnimeStats> animeStats;
+    public ArrayList<AnimeStats> animeStats;
     @JsonProperty("manga_stats")
-    private ArrayList<MangaStats> mangaStats;
+    public ArrayList<MangaStats> mangaStats;
     @JsonProperty("favorites")
-    private Favorites favorites;
+    public Favorites favorites;
     @JsonProperty("about")
-    private String about;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getLast_online() {
-        return last_online;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getJoined() {
-        return joined;
-    }
-
-    public ArrayList<AnimeStats> getAnimeStats() {
-        return animeStats;
-    }
-
-    public ArrayList<MangaStats> getMangaStats() {
-        return mangaStats;
-    }
-
-    public Favorites getFavorites() {
-        return favorites;
-    }
-
-    public String getAbout() {
-        return about;
-    }
-
+    public String about;
+    
     /**
      * Returns history of the person
      *

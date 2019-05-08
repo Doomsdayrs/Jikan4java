@@ -12,6 +12,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -33,59 +35,23 @@ import java.util.ArrayList;
  */
 public class TopCharacter extends TopList {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("rank")
-    private int rank;
+    public int rank;
     @JsonProperty("title")
-    private String title;
+    public String title;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("name_kanji")
-    private String name_kanji;
+    public String name_kanji;
     @JsonProperty("animeography")
-    private ArrayList<TopCharacterAnime> characterAnimes;
+    public ArrayList<TopCharacterAnime> characterAnimes;
     @JsonProperty("mangaography")
-    private ArrayList<TopCharacterManga> characterMangas;
+    public ArrayList<TopCharacterManga> characterMangas;
     @JsonProperty("favorites")
-    private int favorites;
+    public int favorites;
     @JsonProperty("image_url")
-    private String image_url;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getName_kanji() {
-        return name_kanji;
-    }
-
-    public ArrayList<TopCharacterAnime> getCharacterAnimes() {
-        return characterAnimes;
-    }
-
-    public ArrayList<TopCharacterManga> getCharacterMangas() {
-        return characterMangas;
-    }
-
-    public int getFavorites() {
-        return favorites;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
+    public String image_url;
 
     /**
      * Returns the Character object of this object
@@ -94,8 +60,14 @@ public class TopCharacter extends TopList {
      * @throws IOException
      * @throws ParseException
      */
-    public Character getCharacter() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Character.class);
+    public CompletableFuture<Character> getCharacter() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Character.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

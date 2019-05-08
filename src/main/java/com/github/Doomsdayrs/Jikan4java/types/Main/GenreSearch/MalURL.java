@@ -23,50 +23,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MalURL {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("type")
-    private String type;
+    public String type;
     @JsonProperty("name")
-    private String name;
+    public String name;
     @JsonProperty("url")
-    private String url;
-
-    /**
-     * Gets mal id
-     *
-     * @return mal id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Get type
-     *
-     * @return type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Get name
-     *
-     * @return name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return url
-     */
-    public String getUrl() {
-        return url;
-    }
-
+    public String url;
+    
     @Override
     public String toString() {
         return "MalURL{" +
