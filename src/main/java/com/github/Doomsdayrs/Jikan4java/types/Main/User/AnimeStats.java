@@ -22,65 +22,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class AnimeStats {
     @JsonProperty("days_watched")
-    private float days_watched;
+    public float days_watched;
     @JsonProperty("mean_score")
-    private float mean_score;
+    public float mean_score;
     @JsonProperty("watching")
-    private int watching;
+    public int watching;
     @JsonProperty("completed")
-    private int completed;
+    public int completed;
     @JsonProperty("on_hold")
-    private int on_hold;
+    public int on_hold;
     @JsonProperty("dropped")
-    private int dropped;
+    public int dropped;
     @JsonProperty("plan_to_watch")
-    private int plan_to_watch;
+    public int plan_to_watch;
     @JsonProperty("total_entries")
-    private int total_entries;
+    public int total_entries;
     @JsonProperty("rewatched")
-    private int rewatched;
+    public int rewatched;
     @JsonProperty("episodes_watched")
-    private int episodes_watched;
-
-    public float getDays_watched() {
-        return days_watched;
-    }
-
-    public float getMean_score() {
-        return mean_score;
-    }
-
-    public int getWatching() {
-        return watching;
-    }
-
-    public int getCompleted() {
-        return completed;
-    }
-
-    public int getOn_hold() {
-        return on_hold;
-    }
-
-    public int getDropped() {
-        return dropped;
-    }
-
-    public int getPlan_to_watch() {
-        return plan_to_watch;
-    }
-
-    public int getTotal_entries() {
-        return total_entries;
-    }
-
-    public int getRewatched() {
-        return rewatched;
-    }
-
-    public int getEpisodes_watched() {
-        return episodes_watched;
-    }
+    public int episodes_watched;
 
     @Override
     public String toString() {

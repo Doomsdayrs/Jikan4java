@@ -1,10 +1,20 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Licensors;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Studios;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -27,206 +37,77 @@ import java.util.ArrayList;
 public class AnimeListAnime {
 
     @JsonProperty("mal_id")
-    private int mal_id;
-
+    public int mal_id;
     @JsonProperty("title")
-    private String title;
-
+    public String title;
     @JsonProperty("video_url")
-    private String video_url;
-
+    public String video_url;
     @JsonProperty("url")
-    private String url;
-
+    public String url;
     @JsonProperty("image_url")
-    private String image_url;
-
+    public String image_url;
     @JsonProperty("type")
-    private String type;
-
+    public String type;
     @JsonProperty("watching_status")
-    private int watching_status;
-
+    public int watching_status;
     @JsonProperty("score")
-    private int score;
-
+    public int score;
     @JsonProperty("watched_episodes")
-    private int watched_episodes;
-
+    public int watched_episodes;
     @JsonProperty("total_episodes")
-    private int total_episodes;
-
+    public int total_episodes;
     @JsonProperty("airing_status")
-    private int airing_status;
-
+    public int airing_status;
     @JsonProperty("season_name")
-    private String season_name;
-
+    public String season_name;
     @JsonProperty("season_year")
-    private String season_year;
-
+    public String season_year;
     @JsonProperty("has_episode_video")
-    private boolean has_episode_video;
-
+    public boolean has_episode_video;
     @JsonProperty("has_promo_video")
-    private boolean has_promo_video;
-
+    public boolean has_promo_video;
     @JsonProperty("has_video")
-    private boolean has_video;
-
+    public boolean has_video;
     @JsonProperty("is_rewatching")
-    private boolean is_rewatching;
-
+    public boolean is_rewatching;
     @JsonProperty("tags")
-    private String tags;
-
+    public String tags;
     @JsonProperty("rating")
-    private String rating;
-
+    public String rating;
     @JsonProperty("start_date")
-    private String start_date;
-
+    public String start_date;
     @JsonProperty("end_date")
-    private String end_date;
-
+    public String end_date;
     @JsonProperty("watch_start_date")
-    private String watch_start_date;
-
+    public String watch_start_date;
     @JsonProperty("watch_end_date")
-    private String watch_end_date;
-
+    public String watch_end_date;
     @JsonProperty("days")
-    private String days;
-
+    public String days;
     @JsonProperty("storage")
-    private String storage;
-
+    public String storage;
     @JsonProperty("priority")
-    private String priority;
-
+    public String priority;
     @JsonProperty("added_to_list")
-    private boolean added_to_list;
-
+    public boolean added_to_list;
     @JsonProperty("studios")
-    private ArrayList<Studios> studios;
-
+    public ArrayList<Studios> studios;
     @JsonProperty("licensors")
-    private ArrayList<Licensors> licensors;
+    public ArrayList<Licensors> licensors;
 
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getVideo_url() {
-        return video_url;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getWatching_status() {
-        return watching_status;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public int getWatched_episodes() {
-        return watched_episodes;
-    }
-
-    public int getTotal_episodes() {
-        return total_episodes;
-    }
-
-    public int getAiring_status() {
-        return airing_status;
-    }
-
-    public String getSeason_name() {
-        return season_name;
-    }
-
-    public String getSeason_year() {
-        return season_year;
-    }
-
-    public boolean isHas_episode_video() {
-        return has_episode_video;
-    }
-
-    public boolean isHas_promo_video() {
-        return has_promo_video;
-    }
-
-    public boolean isHas_video() {
-        return has_video;
-    }
-
-    public boolean isIs_rewatching() {
-        return is_rewatching;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public String getStart_date() {
-        return start_date;
-    }
-
-    public String getEnd_date() {
-        return end_date;
-    }
-
-    public String getWatch_start_date() {
-        return watch_start_date;
-    }
-
-    public String getWatch_end_date() {
-        return watch_end_date;
-    }
-
-    public String getDays() {
-        return days;
-    }
-
-    public String getStorage() {
-        return storage;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public boolean isAdded_to_list() {
-        return added_to_list;
-    }
-
-    public ArrayList<Studios> getStudios() {
-        return studios;
-    }
-
-    public ArrayList<Licensors> getLicensors() {
-        return licensors;
+    /**
+     * Returns the Anime object of this object
+     *
+     * @return Anime Object
+     */
+    public CompletableFuture<Anime> getAnime() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

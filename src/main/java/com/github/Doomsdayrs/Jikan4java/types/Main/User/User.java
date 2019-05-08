@@ -14,6 +14,8 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -70,7 +72,7 @@ public class User {
     public Favorites favorites;
     @JsonProperty("about")
     public String about;
-    
+
     /**
      * Returns history of the person
      *
@@ -79,8 +81,14 @@ public class User {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public HistoryPage getHistory(String type) throws IOException, ParseException {
-        return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/history/" + type.toLowerCase()).build()).execute().body()).string())).toJSONString(), HistoryPage.class);
+    public CompletableFuture<HistoryPage> getHistory(String type) throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/history/" + type.toLowerCase()).build()).execute().body()).string())).toJSONString(), HistoryPage.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
 
@@ -92,17 +100,30 @@ public class User {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Friends getFriends(int page) throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/friends/" + page).build()).execute().body()).string())).toJSONString(), Friends.class);
+    public CompletableFuture<Friends> getFriends(int page) throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/friends/" + page).build()).execute().body()).string())).toJSONString(), Friends.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
 
-    public AnimeList getAnimelist(int page) throws IOException, ParseException {
-        System.out.println(baseURL + username + "/animelist");
-        if (page == 0) {
-            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all").build()).execute().body()).string())).toJSONString(), AnimeList.class);
-        } else
-            return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all/" + page).build()).execute().body()).string())).toJSONString(), AnimeList.class);
+    public CompletableFuture<AnimeList> getAnimelist(int page) throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                if (page == 0) {
+                    return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all").build()).execute().body()).string())).toJSONString(), AnimeList.class);
+                } else
+                    return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all/" + page).build()).execute().body()).string())).toJSONString(), AnimeList.class);
+
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+
+        });
     }
 
     @Override

@@ -12,6 +12,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -33,53 +35,14 @@ import java.util.Objects;
  */
 public class AnimeBasic {
     @JsonProperty("mal_id")
-    private int mal_id;
-
+    public int mal_id;
     @JsonProperty("url")
-    private String url;
-
+    public String url;
     @JsonProperty("image_url")
-    private String image_url;
-
+    public String image_url;
     @JsonProperty("name")
-    private String name;
-
-    /**
-     * Gets mal id
-     *
-     * @return mal id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Gets image url
-     *
-     * @return image url
-     */
-    public String getImage_url() {
-        return image_url;
-    }
-
-    /**
-     * Get name
-     *
-     * @return name
-     */
-    public String getName() {
-        return name;
-    }
-
+    public String name;
+    
     /**
      * Returns the Anime object of this object
      *
@@ -87,8 +50,14 @@ public class AnimeBasic {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public Anime getAnime() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body()).string())).toJSONString(), Anime.class);
+    public CompletableFuture<Anime> getAnime() throws IOException, ParseException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body()).string())).toJSONString(), Anime.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

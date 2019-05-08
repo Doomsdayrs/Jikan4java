@@ -28,29 +28,14 @@ import java.util.ArrayList;
  */
 public class Favorites {
     @JsonProperty("anime")
-    private ArrayList<AnimeBasic> animes;
+    public ArrayList<AnimeBasic> animes;
     @JsonProperty("manga")
-    private ArrayList<MangaBasic> mangas;
+    public ArrayList<MangaBasic> mangas;
     @JsonProperty("characters")
-    private ArrayList<CharacterBasic> characters;
+    public ArrayList<CharacterBasic> characters;
     @JsonProperty("people")
-    private ArrayList<PeopleBasic> peoples;
-
-    public ArrayList<AnimeBasic> getAnimes() {
-        return animes;
-    }
-
-    public ArrayList<MangaBasic> getMangas() {
-        return mangas;
-    }
-
-    public ArrayList<CharacterBasic> getCharacters() {
-        return characters;
-    }
-
-    public ArrayList<PeopleBasic> getPeoples() {
-        return peoples;
-    }
+    public ArrayList<PeopleBasic> peoples;
+    
 
     @Override
     public String toString() {

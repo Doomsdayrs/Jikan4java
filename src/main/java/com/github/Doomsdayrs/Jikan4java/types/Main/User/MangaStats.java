@@ -22,71 +22,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class MangaStats {
     @JsonProperty("days_read")
-    private float days_read;
+    public float days_read;
     @JsonProperty("mean_score")
-    private float mean_score;
+    public float mean_score;
     @JsonProperty("reading")
-    private int reading;
+    public int reading;
     @JsonProperty("completed")
-    private int completed;
+    public int completed;
     @JsonProperty("on_hold")
-    private int on_hold;
+    public int on_hold;
     @JsonProperty("dropped")
-    private int dropped;
+    public int dropped;
     @JsonProperty("plan_to_read")
-    private int plan_to_read;
+    public int plan_to_read;
     @JsonProperty("total_entries")
-    private int total_entries;
+    public int total_entries;
     @JsonProperty("reread")
-    private int reread;
+    public int reread;
     @JsonProperty("chapters_read")
-    private int chapters_read;
+    public int chapters_read;
     @JsonProperty("volumes_read")
-    private int volumes_read;
-
-    public float getDays_read() {
-        return days_read;
-    }
-
-    public float getMean_score() {
-        return mean_score;
-    }
-
-    public int getReading() {
-        return reading;
-    }
-
-    public int getCompleted() {
-        return completed;
-    }
-
-    public int getOn_hold() {
-        return on_hold;
-    }
-
-    public int getDropped() {
-        return dropped;
-    }
-
-    public int getPlan_to_read() {
-        return plan_to_read;
-    }
-
-    public int getTotal_entries() {
-        return total_entries;
-    }
-
-    public int getReread() {
-        return reread;
-    }
-
-    public int getChapters_read() {
-        return chapters_read;
-    }
-
-    public int getVolumes_read() {
-        return volumes_read;
-    }
+    public int volumes_read;
+    
 
     @Override
     public String toString() {
