@@ -19,11 +19,19 @@ And have no built in method to prevent overloading the API. So that's on you to 
 
 They all should run fairly the same. For example, AnimeConnection. 
 ```java
-import Jikan4java.*;
+import com.github.Doomsdayrs.Jikan4java.*;
 class Example
 {
 	public static void main(String[] args){
-	  System.out.println(new AnimeConnection().searchSimple("Boku no pico").toString());
+	  AnimeConnection animeConnection = new AnimeConnection();
+	  animeConnection.searchAnimeById(1).thenAccept(System.out::println);
+	  //Then accept means, once the anime object is done. Do this action, in this case. It is to print it out. Below is a way to print out something else
+	  TimeUnit.SECONDS.sleep(1);
+	  
+	  animeConnection.searchAnimeById(1).thenAccept(anime -> {
+	      System.out.println(anime.name);
+	      // then the rest of your junk ya wanna do with this
+	  });
 	}
 }
 ```

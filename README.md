@@ -47,56 +47,46 @@ public static void main(String[] args) {
         TopConnection topConnection = new TopConnection();
         UserConnection userConnection = new UserConnection();
 
-        int a = 0;
+        animeConnection.searchAnimeById(1).thenAccept(System.out::println);
+        TimeUnit.SECONDS.sleep(1);
+        
+        characterConnection.searchPage("re", 1).thenAccept(System.out::println);
+        TimeUnit.SECONDS.sleep(1);
 
-        CompletableFuture<Anime> animeCompletableFuture = animeConnection.searchAnimeById(1);
-        if (animeCompletableFuture != null) {
-            while (!animeCompletableFuture.isDone()) a++;
-            System.out.println(animeCompletableFuture.get());
-        }
+        clubConnection.search(12).thenAccept(System.out::println);
+        TimeUnit.SECONDS.sleep(1);
 
+        genreConnection.searchAnimeGenre(AnimeGenres.ACTION).thenAccept(System.out::println);
         TimeUnit.SECONDS.sleep(1);
-        CompletableFuture<CharacterPage> characterCompletableFuture = characterConnection.searchPage("re", 1);
-        if (characterCompletableFuture != null) {
-            while (!characterCompletableFuture.isDone()) a++;
-            System.out.println(characterCompletableFuture.get());
-        }
+
+        genreConnection.searchMangaGenre(MangaGenres.ACTION).thenAccept(System.out::println);
         TimeUnit.SECONDS.sleep(1);
-        CompletableFuture<Club> clubCompletableFuture = clubConnection.search(12);
-        if (clubCompletableFuture != null) {
-            while (!clubCompletableFuture.isDone()) a++;
-            System.out.println(clubCompletableFuture.get());
-        }
+
+        magazineConnection.searchPage(1, 1).thenAccept(System.out::println);
         TimeUnit.SECONDS.sleep(1);
-        CompletableFuture<GenreSearchAnimePage> searchAnimeGenre = genreConnection.searchAnimeGenre(AnimeGenres.ACTION);
-        if (searchAnimeGenre != null) {
-            while (!searchAnimeGenre.isDone()) a++;
-            System.out.println(searchAnimeGenre.get());
-        }
+
+        mangaConnection.search("Ajin").thenAccept(System.out::println);
         TimeUnit.SECONDS.sleep(1);
-        CompletableFuture<GenreSearchMangaPage> searchMangaGenre = genreConnection.searchMangaGenre(MangaGenres.ACTION);
-        if (searchMangaGenre != null) {
-            while (!searchMangaGenre.isDone()) a++;
-            System.out.println(searchMangaGenre.get());
-        }
+
+        metaConnection.getStatus().thenAccept(System.out::println);
         TimeUnit.SECONDS.sleep(1);
-        CompletableFuture<MagazinePage> magazinePageCompletableFuture = magazineConnection.searchPage(1, 1);
-        if (magazinePageCompletableFuture != null) {
-            while (!magazinePageCompletableFuture.isDone()) a++;
-            System.out.println(magazinePageCompletableFuture.get());
-        }
+
+        personConnection.search("re").thenAccept(System.out::println);
         TimeUnit.SECONDS.sleep(1);
-        CompletableFuture<Manga> mangaCompletableFuture = mangaConnection.search("Ajin");
-        if (mangaCompletableFuture != null) {
-            while (!mangaCompletableFuture.isDone()) a++;
-            System.out.println(mangaCompletableFuture.get());
-        }
+
+        producerConnection.search(16,2).thenAccept(System.out::println);
         TimeUnit.SECONDS.sleep(1);
-        CompletableFuture<Status> statusCompletableFuture = metaConnection.getStatus();
-        if (statusCompletableFuture != null) {
-            while (!statusCompletableFuture.isDone()) a++;
-            System.out.println(statusCompletableFuture.get());
-        }
+
+        scheduleConnection.scheduleSearch(Days.MONDAY).thenAccept(System.out::println);
+        TimeUnit.SECONDS.sleep(1);
+
+        seasonConnection.seasonSearch(2018, Season.FALL).thenAccept(System.out::println);
+        TimeUnit.SECONDS.sleep(1);
+
+        topConnection.search(Tops.ANIME).thenAccept(System.out::println);
+        TimeUnit.SECONDS.sleep(1);
+
+        userConnection.search("doomsdayrs").thenAccept(System.out::println);
 
         // Well, after this point you should get an idea, use code completion or decompile the classes to see what are methods available;
                
