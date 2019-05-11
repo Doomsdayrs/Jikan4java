@@ -24,45 +24,20 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Reviewer;
 public class AnimeReviewer extends Reviewer {
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("username")
-    private String username;
+    public String username;
 
     @JsonProperty("episodes_seen")
-    private int seen;
+    public int seen;
 
     @JsonProperty("scores")
-    private AnimeScore scores;
-
-    @Override
-    public String getUrl() {
-        return url;
-    }
-
-    @Override
-    public String getImage_url() {
-        return image_url;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public int getSeen() {
-        return seen;
-    }
-
-    @Override
-    public AnimeScore getScores() {
-        return scores;
-    }
-
+    public AnimeScore scores;
+    
     @Override
     public String toString() {
         return "AnimeReviewer{" +

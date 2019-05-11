@@ -22,29 +22,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class MoreInfo {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("moreinfo")
-    private String moreinfo;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public String getMoreinfo() {
-        return moreinfo;
-    }
+    public String moreinfo;
+    
 
     @Override
     public String toString() {

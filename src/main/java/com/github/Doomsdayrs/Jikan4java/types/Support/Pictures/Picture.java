@@ -22,24 +22,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Picture {
     @JsonProperty("large")
-    private String large;
+    public String LARGE;
 
     @JsonProperty("small")
-    private String small;
-
-    public String getLarge() {
-        return large;
-    }
-
-    public String getSmall() {
-        return small;
-    }
+    public String SMALL;
 
     @Override
     public String toString() {
         return "Picture{" +
-                "large='" + large + '\'' +
-                ", small='" + small + '\'' +
+                "large='" + LARGE + '\'' +
+                ", small='" + SMALL + '\'' +
                 '}';
     }
 }

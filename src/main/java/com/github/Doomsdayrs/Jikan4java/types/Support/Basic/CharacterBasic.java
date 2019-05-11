@@ -11,6 +11,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -32,42 +34,31 @@ import java.util.Objects;
  */
 public class CharacterBasic {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("name")
-    private String name;
+    public String name;
 
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getName() {
-        return name;
-    }
 
     /**
      * Returns the Character object of this object
      *
      * @return Character Object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public Character getCharacter() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body()).string())).toJSONString(), Character.class);
+    public CompletableFuture<Character> getCharacter() {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body()).string())).toJSONString(), Character.class);
+            } catch (IOException | ParseException e) {
+                throw new CompletionException(e);
+            }
+        });
     }
 
     @Override

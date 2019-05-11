@@ -23,33 +23,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Scores {
 
     @JsonProperty("overall")
-    private int overall;
+    public int overall;
 
     @JsonProperty("story")
-    private int story;
+    public int story;
 
     @JsonProperty("character")
-    private int character;
+    public int character;
 
     @JsonProperty("enjoyment")
-    private int enjoyment;
-
-
-    public int getOverall() {
-        return overall;
-    }
-
-    public int getStory() {
-        return story;
-    }
-
-    public int getCharacter() {
-        return character;
-    }
-
-    public int getEnjoyment() {
-        return enjoyment;
-    }
+    public int enjoyment;
 
     @Override
     public String toString() {

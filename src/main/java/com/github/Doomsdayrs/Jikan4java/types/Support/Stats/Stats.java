@@ -22,74 +22,36 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Score.Score;
  * @author github.com/doomsdayrs
  */
 public class Stats {
-
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
 
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
 
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
 
     @JsonProperty("watching")
-    private int watching;
+    public int watching;
 
     @JsonProperty("completed")
-    private int completed;
+    public int completed;
 
     @JsonProperty("on_hold")
-    private int on_hold;
+    public int on_hold;
 
     @JsonProperty("dropped")
-    private int dropped;
+    public int dropped;
 
     @JsonProperty("plan_to_watch")
-    private int plan_to_watch;
+    public int plan_to_watch;
 
     @JsonProperty("total")
-    private int total;
+    public int total;
 
     @JsonProperty("scores")
-    private Score scores;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public int getWatching() {
-        return watching;
-    }
-
-    public int getCompleted() {
-        return completed;
-    }
-
-    public int getOn_hold() {
-        return on_hold;
-    }
-
-    public int getDropped() {
-        return dropped;
-    }
-
-    public int getPlan_to_watch() {
-        return plan_to_watch;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-
+    public Score scores;
+    
     @Override
     public String toString() {
         return "Stats{" +

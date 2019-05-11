@@ -24,33 +24,17 @@ import java.util.ArrayList;
  */
 public class AnimeUserUpdatesPage {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
 
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
 
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
 
     @JsonProperty("users")
-    private ArrayList<AnimeUserUpdate> userUpdates;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public ArrayList<AnimeUserUpdate> getUserUpdates() {
-        return userUpdates;
-    }
-
+    public ArrayList<AnimeUserUpdate> userUpdates;
+    
     @Override
     public String toString() {
         return "UserUpdatesPage{" +

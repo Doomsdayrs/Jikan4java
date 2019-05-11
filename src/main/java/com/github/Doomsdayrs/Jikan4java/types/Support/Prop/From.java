@@ -22,24 +22,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class From {
     @JsonProperty("day")
-    private int day;
+    public int day;
     @JsonProperty("month")
-    private int month;
+    public int month;
     @JsonProperty("year")
-    private int year;
-
-    public int getDay() {
-        return day;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
+    public int year;
+    
     @Override
     public String toString() {
         return "From{" +

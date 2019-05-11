@@ -22,47 +22,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Review {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("helpful_count")
-    private int helpful_count;
+    public int helpful_count;
 
     @JsonProperty("date")
-    private String date;
+    public String date;
 
     @JsonProperty("reviewer")
-    private Reviewer reviewer;
+    public Reviewer reviewer;
 
     @JsonProperty("content")
-    private String content;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public int getHelpful_count() {
-        return helpful_count;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public Reviewer getReviewer() {
-        return reviewer;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
+    public String content;
+    
     @Override
     public String toString() {
         return "Review{" +

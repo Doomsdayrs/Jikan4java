@@ -22,66 +22,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Score {
     @JsonProperty("1")
-    private Position one;
+    public Position one;
     @JsonProperty("2")
-    private Position two;
+    public Position two;
     @JsonProperty("3")
-    private Position three;
+    public Position three;
     @JsonProperty("4")
-    private Position four;
+    public Position four;
     @JsonProperty("5")
-    private Position five;
+    public Position five;
     @JsonProperty("6")
-    private Position six;
+    public Position six;
     @JsonProperty("7")
-    private Position seven;
+    public Position seven;
     @JsonProperty("8")
-    private Position eight;
+    public Position eight;
     @JsonProperty("9")
-    private Position nine;
+    public Position nine;
     @JsonProperty("10")
-    private Position ten;
-
-    public Position getOne() {
-        return one;
-    }
-
-    public Position getTwo() {
-        return two;
-    }
-
-    public Position getThree() {
-        return three;
-    }
-
-    public Position getFour() {
-        return four;
-    }
-
-    public Position getFive() {
-        return five;
-    }
-
-    public Position getSix() {
-        return six;
-    }
-
-    public Position getSeven() {
-        return seven;
-    }
-
-    public Position getEight() {
-        return eight;
-    }
-
-    public Position getNine() {
-        return nine;
-    }
-
-    public Position getTen() {
-        return ten;
-    }
-
+    public Position ten;
+    
     @Override
     public String toString() {
         return "Score{" +

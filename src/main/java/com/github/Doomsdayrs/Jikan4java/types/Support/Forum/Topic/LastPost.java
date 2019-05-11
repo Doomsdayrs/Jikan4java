@@ -1,5 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -19,33 +21,15 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic;
  * @author github.com/doomsdayrs
  */
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class LastPost {
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("author_name")
-    private String author_name;
+    public String author_name;
     @JsonProperty("author_url")
-    private String author_url;
+    public String author_url;
     @JsonProperty("date_posted")
-    private String date_posted;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getAuthor_name() {
-        return author_name;
-    }
-
-    public String getAuthor_url() {
-        return author_url;
-    }
-
-    public String getDate_posted() {
-        return date_posted;
-    }
+    public String date_posted;
 
     @Override
     public String toString() {

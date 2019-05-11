@@ -24,29 +24,13 @@ import java.util.ArrayList;
  */
 public class News {
     @JsonProperty("articles")
-    private ArrayList<Article> articles;
+    public ArrayList<Article> articles;
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public ArrayList<Article> getArticles() {
-        return articles;
-    }
+    public int request_cache_expiry;
 
     @Override
     public String toString() {

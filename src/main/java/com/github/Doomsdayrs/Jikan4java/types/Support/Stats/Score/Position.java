@@ -22,17 +22,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Position {
     @JsonProperty("votes")
-    private int votes;
+    public int votes;
     @JsonProperty("percentage")
-    private double percentage;
+    public double percentage;
 
-    public int getVotes() {
-        return votes;
-    }
-
-    public double getPercentage() {
-        return percentage;
-    }
 
     @Override
     public String toString() {

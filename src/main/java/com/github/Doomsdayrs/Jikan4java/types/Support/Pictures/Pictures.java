@@ -24,25 +24,24 @@ import java.util.ArrayList;
  */
 public class Pictures {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
 
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
 
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
 
     @JsonProperty("pictures")
-    private ArrayList<Picture> pictures;
-
-    public ArrayList<Picture> getPictures() {
-        return pictures;
-    }
+    public ArrayList<Picture> pictures;
 
     @Override
     public String toString() {
         return "Pictures{" +
-                "pictures=" + pictures.toString() +
+                "request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
+                ", pictures=" + pictures +
                 '}';
     }
 }

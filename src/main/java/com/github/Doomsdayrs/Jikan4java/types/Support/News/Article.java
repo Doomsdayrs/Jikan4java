@@ -22,67 +22,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Article {
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("title")
-    private String title;
+    public String title;
 
     @JsonProperty("date")
-    private String date;
+    public String date;
 
     @JsonProperty("author_name")
-    private String author_name;
+    public String author_name;
 
     @JsonProperty("author_url")
-    private String author_url;
+    public String author_url;
 
     @JsonProperty("forum_url")
-    private String forum_url;
+    public String forum_url;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("comments")
-    private int comments;
+    public int comments;
 
     @JsonProperty("intro")
-    private String intro;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getAuthor_name() {
-        return author_name;
-    }
-
-    public String getAuthor_url() {
-        return author_url;
-    }
-
-    public String getForum_url() {
-        return forum_url;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public int getComments() {
-        return comments;
-    }
-
-    public String getIntro() {
-        return intro;
-    }
+    public String intro;
 
     @Override
     public String toString() {

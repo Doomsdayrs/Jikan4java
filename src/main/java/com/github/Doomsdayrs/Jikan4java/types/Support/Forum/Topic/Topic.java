@@ -22,53 +22,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Topic {
     @JsonProperty("topic_id")
-    private int topic_id;
+    public int topic_id;
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("title")
-    private String title;
+    public String title;
     @JsonProperty("date_posted")
-    private String date_posted;
+    public String date_posted;
     @JsonProperty("author_name")
-    private String author_name;
+    public String author_name;
     @JsonProperty("author_url")
-    private String author_url;
+    public String author_url;
     @JsonProperty("replies")
-    private int replies;
+    public int replies;
     @JsonProperty("last_post")
-    private LastPost lastPost;
-
-    public int getTopic_id() {
-        return topic_id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDate_posted() {
-        return date_posted;
-    }
-
-    public String getAuthor_name() {
-        return author_name;
-    }
-
-    public String getAuthor_url() {
-        return author_url;
-    }
-
-    public int getReplies() {
-        return replies;
-    }
-
-    public LastPost getLastPost() {
-        return lastPost;
-    }
+    public LastPost lastPost;
 
     @Override
     public String toString() {

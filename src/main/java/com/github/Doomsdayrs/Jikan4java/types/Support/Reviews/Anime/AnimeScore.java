@@ -23,52 +23,23 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Scores;
  */
 public class AnimeScore extends Scores {
     @JsonProperty("overall")
-    private int overall;
+    public int overall;
 
     @JsonProperty("story")
-    private int story;
+    public int story;
 
     @JsonProperty("animation")
-    private int animation;
+    public int animation;
 
     @JsonProperty("sound")
-    private int sound;
+    public int sound;
 
     @JsonProperty("character")
-    private int character;
+    public int character;
 
     @JsonProperty("enjoyment")
-    private int enjoyment;
-
-
-    @Override
-    public int getOverall() {
-        return overall;
-    }
-
-    @Override
-    public int getStory() {
-        return story;
-    }
-
-    public int getAnimation() {
-        return animation;
-    }
-
-    public int getSound() {
-        return sound;
-    }
-
-    @Override
-    public int getCharacter() {
-        return character;
-    }
-
-    @Override
-    public int getEnjoyment() {
-        return enjoyment;
-    }
-
+    public int enjoyment;
+    
     @Override
     public String toString() {
         return "AnimeScore{" +

@@ -2,9 +2,7 @@ package com.github.Doomsdayrs.Jikan4java;
 
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -33,7 +31,7 @@ public class ExampleClass {
      *
      * @param args Args
      */
-    public static void main(String[] args) throws IOException, ParseException, ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         /*
         // Gets first search result
         System.out.println(new MangaConnection().search("Attack on titan").toString());
@@ -70,11 +68,6 @@ public class ExampleClass {
         AnimeConnection connection = new AnimeConnection();
         CompletableFuture<Anime> animeCompletableFuture = connection.searchAnimeById(111);
         int a = 0;
-        while (!animeCompletableFuture.isDone()) a++;
-        System.out.println(animeCompletableFuture.get());
-
-        animeCompletableFuture = connection.searchAnimeById(124);
-        a = 0;
         while (!animeCompletableFuture.isDone()) a++;
         System.out.println(animeCompletableFuture.get());
     }

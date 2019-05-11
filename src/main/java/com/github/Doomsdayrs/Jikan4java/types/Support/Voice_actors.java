@@ -22,66 +22,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Voice_actors {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("name")
-    private String name;
+    public String name;
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("language")
-    private String language;
-
-    /**
-     * Gets mal id
-     *
-     * @return mal id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    /**
-     * Get name
-     *
-     * @return name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-
-    /**
-     * Gets image url
-     *
-     * @return image url
-     */
-    public String getImage_url() {
-        return image_url;
-    }
-
-    /**
-     * Gets their language
-     *
-     * @return what language
-     */
-    public String getLanguage() {
-        return language;
-    }
-
+    public String language;
+    
     @Override
     public String toString() {
         return "Voice_actors{" +

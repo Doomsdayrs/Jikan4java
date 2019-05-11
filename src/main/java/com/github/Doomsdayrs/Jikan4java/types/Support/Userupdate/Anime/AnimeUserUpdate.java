@@ -23,56 +23,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AnimeUserUpdate {
 
     @JsonProperty("username")
-    private String username;
+    public String username;
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("score")
-    private int scores;
+    public int scores;
 
     @JsonProperty("status")
-    private String status;
+    public String status;
 
     @JsonProperty("episodes_seen")
-    private int episodes_seen;
+    public int episodes_seen;
 
     @JsonProperty("episodes_total")
-    private int episodes_total;
+    public int episodes_total;
 
     @JsonProperty("date")
-    private String date;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public int getScores() {
-        return scores;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public int getEpisodes_seen() {
-        return episodes_seen;
-    }
-
-    public int getEpisodes_total() {
-        return episodes_total;
-    }
+    public String date;
+    
 
     @Override
     public String toString() {

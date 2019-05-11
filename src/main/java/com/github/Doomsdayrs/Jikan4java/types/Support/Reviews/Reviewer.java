@@ -23,40 +23,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Reviewer {
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("username")
-    private String username;
+    public String username;
 
     @JsonProperty()
-    private int seen;
+    public int seen;
 
     @JsonProperty("scores")
-    private Scores scores;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public int getSeen() {
-        return seen;
-    }
-
-    public Scores getScores() {
-        return scores;
-    }
-
+    public Scores scores;
+    
     @Override
     public String toString() {
         return "Reviewer{" +

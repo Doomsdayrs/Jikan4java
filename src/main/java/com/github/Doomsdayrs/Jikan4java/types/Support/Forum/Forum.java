@@ -25,30 +25,14 @@ import java.util.ArrayList;
  */
 public class Forum {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("topics")
-    private ArrayList<Topic> topics;
-
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    public ArrayList<Topic> getTopics() {
-        return topics;
-    }
-
+    public ArrayList<Topic> topics;
+    
     @Override
     public String toString() {
         return "Forum{" +
