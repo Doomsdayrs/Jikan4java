@@ -2,17 +2,13 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Person;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -32,16 +28,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Person {
-
-    @JsonIgnore
-    private final String baseURL = "https://api.jikan.moe/v3";
-    @JsonIgnore
-    private final OkHttpClient client = new OkHttpClient();
-    @JsonIgnore
-    private final JSONParser parser = new JSONParser();
-    @JsonIgnore
-    private final ObjectMapper mapper = new ObjectMapper();
+public class Person extends Retriever {
     @JsonProperty("request_hash")
     public String request_hash;
     @JsonProperty("request_cached")
@@ -78,14 +65,8 @@ public class Person {
     public ArrayList<PublishedManga> publishedMangas;
 
     @JsonIgnore
-    public Pictures getPictures() throws IOException, ParseException {
-        Request request = new Request.Builder().url(baseURL + "/person/" + mal_id + "/pictures").build();
-        Response response = client.newCall(request).execute();
-        String string = response.body().string();
-        if (string != null) {
-            JSONObject jsonObject = (JSONObject) parser.parse(string);
-            return mapper.readValue(jsonObject.toJSONString(), Pictures.class);
-        } else return null;
+    public CompletableFuture<Pictures> getPictures() throws IOException, ParseException {
+        return retrieve(Pictures.class, baseURL + "/person/" + mal_id + "/pictures");
     }
 
     @Override

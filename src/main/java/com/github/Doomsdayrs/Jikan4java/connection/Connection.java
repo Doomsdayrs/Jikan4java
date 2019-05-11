@@ -1,14 +1,8 @@
 package com.github.Doomsdayrs.Jikan4java.connection;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -28,18 +22,10 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class Connection {
-    public final String baseURL = "https://api.jikan.moe/v3";
-    protected final OkHttpClient client;
-    protected final ObjectMapper objectMapper;
-    protected final JSONParser jsonParser;
-    protected final Request.Builder builder;
+public class Connection extends Retriever {
 
     public Connection() {
-        client = new OkHttpClient();
-        objectMapper = new ObjectMapper();
-        jsonParser = new JSONParser();
-        builder = new Request.Builder();
+        super();
     }
 
     public Object search(String string) throws IOException, ParseException {
@@ -48,17 +34,6 @@ public class Connection {
 
     public Object searchPage(String title, int page) throws IOException, ParseException {
         return null;
-    }
-
-    public CompletableFuture retrieve(Class target, String url) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return objectMapper.readValue(((JSONObject) jsonParser.parse(client.newCall(builder.url(url).build()).execute().body().string())).toJSONString(), target);
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
     }
 
 }

@@ -1,21 +1,15 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Friends.Friends;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.History.HistoryPage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeList;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -36,12 +30,7 @@ import java.util.concurrent.CompletionException;
  * @author github.com/doomsdayrs
  */
 
-public class User {
-
-    private final OkHttpClient client = new OkHttpClient();
-    private final String baseURL = "https://api.jikan.moe/v3/user/";
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
+public class User extends Retriever {
     @JsonProperty("request_hash")
     public String request_hash;
     @JsonProperty("request_cached")
@@ -82,13 +71,7 @@ public class User {
      * @throws ParseException ParseException
      */
     public CompletableFuture<HistoryPage> getHistory(String type) throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return objectMapper.readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/history/" + type.toLowerCase()).build()).execute().body()).string())).toJSONString(), HistoryPage.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(HistoryPage.class, baseURL + "/user/" + username + "/history" + type.toLowerCase());
     }
 
 
@@ -101,29 +84,14 @@ public class User {
      * @throws ParseException ParseException
      */
     public CompletableFuture<Friends> getFriends(int page) throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/friends/" + page).build()).execute().body()).string())).toJSONString(), Friends.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(Friends.class, baseURL + "/user/" + username + "/friends/" + page);
     }
 
 
     public CompletableFuture<AnimeList> getAnimelist(int page) throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                if (page == 0) {
-                    return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all").build()).execute().body()).string())).toJSONString(), AnimeList.class);
-                } else
-                    return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(Objects.requireNonNull(client.newCall(new Request.Builder().url(baseURL + username + "/animelist/all/" + page).build()).execute().body()).string())).toJSONString(), AnimeList.class);
-
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-
-        });
+        if (page == 0)
+            return retrieve(AnimeList.class, baseURL + "/user/" + username + "/animelist/all");
+        else return retrieve(AnimeList.class, baseURL + "/user/" + username + "/animelist/all/" + page);
     }
 
     @Override

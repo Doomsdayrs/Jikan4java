@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Top;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime.TopAnime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character.TopCharacter;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Manga.TopManga;
@@ -26,8 +27,11 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class Top {
+    @JsonProperty("request_hash")
     public String request_hash;
+    @JsonProperty("request_cached")
     public boolean request_cached;
+    @JsonProperty("request_cache_expiry")
     public int request_cache_expiry;
 
     //Anime

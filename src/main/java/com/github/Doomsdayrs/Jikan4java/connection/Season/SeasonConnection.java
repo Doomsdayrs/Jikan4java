@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Season;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Connection;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonArchive.SeasonArchive;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonSearch;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Season;
@@ -27,7 +27,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class SeasonConnection extends Connection {
+public class SeasonConnection extends Retriever {
 
     /**
      * Constructor

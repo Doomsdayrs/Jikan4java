@@ -1,8 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Manga;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Published.Published;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Authors;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Forum;
@@ -15,17 +14,11 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Manga.MangaReviewPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Userupdate.Manga.MangaUserUpdatesPage;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -45,13 +38,7 @@ import java.util.concurrent.CompletionException;
  *
  * @author github.com/doomsdayrs
  */
-public class Manga {
-    @JsonIgnore
-    private final ObjectMapper mapper = new ObjectMapper();
-    @JsonIgnore
-    private final String baseURL = "https://api.jikan.moe/v3";
-    @JsonIgnore
-    private final JSONParser parser = new JSONParser();
+public class Manga extends Retriever {
     @JsonProperty("request_hash")
     public String request_hash;
     @JsonProperty("request_cached")
@@ -118,13 +105,7 @@ public class Manga {
      */
     @JsonProperty
     public CompletableFuture<MangaCharacters> getCharacters() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("characters").toJSONString(), MangaCharacters.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/characters");
     }
 
     /**
@@ -136,13 +117,7 @@ public class Manga {
      */
     @JsonProperty
     public CompletableFuture<News> getNews() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("news").toJSONString(), News.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/news");
     }
 
     /**
@@ -154,13 +129,7 @@ public class Manga {
      */
     @JsonProperty
     public CompletableFuture<Pictures> getPictures() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/pictures");
     }
 
     /**
@@ -172,13 +141,7 @@ public class Manga {
      */
     @JsonProperty
     public CompletableFuture<Stats> getStats() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("stats").toJSONString(), Stats.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/stats");
     }
 
     /**
@@ -190,13 +153,7 @@ public class Manga {
      */
     @JsonProperty
     public CompletableFuture<Forum> getForum() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("forum").toJSONString(), Forum.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/forum");
     }
 
     /**
@@ -208,77 +165,54 @@ public class Manga {
      */
     @JsonProperty
     public CompletableFuture<MoreInfo> getMoreInfo() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-    }
-
-    @JsonProperty
-    public CompletableFuture<MangaReviewPage> getReviews() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("reviews").toJSONString(), MangaReviewPage.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-    }
-
-    @JsonProperty
-    public CompletableFuture<RecommendationPage> getRecommendationPage() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("recommendations").toJSONString(), RecommendationPage.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-    }
-
-    @JsonProperty
-    public CompletableFuture<MangaUserUpdatesPage> getUserUpdatesPage() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("userupdates").toJSONString(), MangaUserUpdatesPage.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-    }
-
-    @JsonProperty
-    public CompletableFuture<MangaUserUpdatesPage> getUserUpdatesPage(int page) throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("userupdates/" + page).toJSONString(), MangaUserUpdatesPage.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/moreinfo");
     }
 
     /**
-     * Retrieves data from manga page
+     * Gets manga reviews
      *
-     * @param subCategory What is needed to be retrieved, ie 'moreinfo'
-     * @return JSONObject of the page
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
+     * @return MangaReviewPage
+     * @throws IOException
+     * @throws ParseException
      */
-    @JsonIgnore
-    private JSONObject retrieve(String subCategory) throws IOException, ParseException {
-        Request request = new Request.Builder().url(baseURL + "/manga/" + mal_id + "/" + subCategory).build();
-        Response response = new OkHttpClient().newCall(request).execute();
-        String responseString = response.body().string();
-        if (!responseString.equals(null))
-            return (JSONObject) parser.parse(responseString);
-        else return null;
+    @JsonProperty
+    public CompletableFuture<MangaReviewPage> getReviews() throws IOException, ParseException {
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/reviews");
     }
 
+    /**
+     * Gets recommendations for this manga
+     * @return RecommendationPage
+     * @throws IOException
+     * @throws ParseException
+     */
+    @JsonProperty
+    public CompletableFuture<RecommendationPage> getRecommendationPage() throws IOException, ParseException {
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/recommendations");
+    }
+
+    /**
+     * Gets first page of user updates
+     * @return MangaUserUpdatesPage
+     * @throws IOException
+     * @throws ParseException
+     */
+    @JsonProperty
+    public CompletableFuture<MangaUserUpdatesPage> getUserUpdatesPage() throws IOException, ParseException {
+        return getUserUpdatesPage(1);
+    }
+
+    /**
+     * Gets a page of userUpdates
+     * @param page
+     * @return MangaUserUpdatesPage
+     * @throws IOException
+     * @throws ParseException
+     */
+    @JsonProperty
+    public CompletableFuture<MangaUserUpdatesPage> getUserUpdatesPage(int page) throws IOException, ParseException {
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/userupdates/"+page);
+    }
 
     @Override
     public String toString() {

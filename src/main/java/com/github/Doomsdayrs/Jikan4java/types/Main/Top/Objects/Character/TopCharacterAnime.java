@@ -1,17 +1,12 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -31,7 +26,7 @@ import java.util.concurrent.CompletionException;
  *
  * @author github.com/doomsdayrs
  */
-public class TopCharacterAnime {
+public class TopCharacterAnime extends Retriever {
     @JsonProperty("mal_id")
     public int mal_id;
     @JsonProperty("type")
@@ -49,13 +44,7 @@ public class TopCharacterAnime {
      * @throws ParseException
      */
     public CompletableFuture<Anime> getAnime() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/character/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(Anime.class, baseURL + "/anime/" + mal_id);
     }
 
     @Override

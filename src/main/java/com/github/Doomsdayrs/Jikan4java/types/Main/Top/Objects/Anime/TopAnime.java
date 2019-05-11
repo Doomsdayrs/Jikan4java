@@ -1,18 +1,12 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.TopList;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -32,83 +26,39 @@ import java.util.concurrent.CompletionException;
  *
  * @author github.com/doomsdayrs
  */
-public class TopAnime extends TopList {
+public class TopAnime extends Retriever {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
 
     @JsonProperty("rank")
-    private int rank;
+    public int rank;
 
     @JsonProperty("title")
-    private String title;
+    public String title;
 
     @JsonProperty("url")
-    private String url;
+    public String url;
 
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
 
     @JsonProperty("type")
-    private String type;
+    public String type;
 
     @JsonProperty("episodes")
-    private int episodes;
+    public int episodes;
 
     @JsonProperty("start_date")
-    private String start_date;
+    public String start_date;
 
     @JsonProperty("end_date")
-    private String end_date;
+    public String end_date;
 
     @JsonProperty("members")
-    private int members;
+    public int members;
 
     @JsonProperty("score")
-    private float score;
-
-    public int getMal_id() {
-        return mal_id;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getEpisodes() {
-        return episodes;
-    }
-
-    public String getStart_date() {
-        return start_date;
-    }
-
-    public String getEnd_date() {
-        return end_date;
-    }
-
-    public int getMembers() {
-        return members;
-    }
-
-    public float getScore() {
-        return score;
-    }
+    public float score;
 
     /**
      * Returns the Anime object of this object
@@ -118,13 +68,7 @@ public class TopAnime extends TopList {
      * @throws ParseException ParseException
      */
     public CompletableFuture<Anime> getAnime() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/anime/" + mal_id).build()).execute().body().string())).toJSONString(), Anime.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(Anime.class, baseURL + "/anime/" + mal_id);
     }
 
     @Override

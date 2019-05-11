@@ -2,15 +2,12 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -31,53 +28,16 @@ import java.io.IOException;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class PageCharacterManga {
+public class PageCharacterManga extends Retriever {
     @JsonProperty("mal_id")
-    private int mal_id;
+    public int mal_id;
     @JsonProperty("type")
-    private String type;
+    public String type;
     @JsonProperty("name")
-    private String name;
+    public String name;
     @JsonProperty("url")
-    private String url;
-
-    /**
-     * Gets mal id
-     *
-     * @return mal id
-     */
-    public int getMal_id() {
-        return mal_id;
-    }
-
-
-    /**
-     * Gets type
-     *
-     * @return type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Name of character
-     *
-     * @return name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return url
-     */
-    public String getUrl() {
-        return url;
-    }
-
+    public String url;
+    
     /**
      * Returns the Manga object of this object
      *
@@ -85,8 +45,8 @@ public class PageCharacterManga {
      * @throws IOException
      * @throws ParseException
      */
-    public Manga getManga() throws IOException, ParseException {
-        return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
+    public CompletableFuture<Manga> getManga() throws IOException, ParseException {
+        return retrieve(Manga.class, baseURL + "/manga/" + mal_id);
     }
 
     @Override

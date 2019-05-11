@@ -2,9 +2,12 @@ package com.github.Doomsdayrs.Jikan4java;
 
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
+import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This file is part of Jikan4java.
@@ -65,11 +68,27 @@ public class ExampleClass {
         System.out.println(new ProducerConnection().search(135,1));
         System.out.println(new MetaConnection().getStatus().toString());
         */
-        AnimeConnection connection = new AnimeConnection();
-        CompletableFuture<Anime> animeCompletableFuture = connection.searchAnimeById(111);
+        AnimeConnection animeConnection = new AnimeConnection();
+        CompletableFuture<Anime> animeCompletableFuture = animeConnection.searchAnimeById(1);
         int a = 0;
         while (!animeCompletableFuture.isDone()) a++;
-        System.out.println(animeCompletableFuture.get());
+        Anime anime = animeCompletableFuture.get();
+
+        TimeUnit.SECONDS.sleep(1);
+
+        CompletableFuture<Character_Staff> character_staffCompletableFuture = anime.getCharacterStaffs();
+        while (!character_staffCompletableFuture.isDone()) a++;
+        Character_Staff character_staff = character_staffCompletableFuture.get();
+
+        System.out.println(character_staff);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        CompletableFuture<Pictures> picturesCompletableFuture = anime.getPictures();
+        while (!picturesCompletableFuture.isDone()) a++;
+        Pictures pictures = picturesCompletableFuture.get();
+
+        System.out.println(pictures);
     }
 
 }

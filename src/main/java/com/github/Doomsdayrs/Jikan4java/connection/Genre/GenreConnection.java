@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Genre;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Connection;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
 import org.json.simple.parser.ParseException;
@@ -26,7 +26,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class GenreConnection extends Connection {
+public class GenreConnection extends Retriever {
     /**
      * Constructor
      */

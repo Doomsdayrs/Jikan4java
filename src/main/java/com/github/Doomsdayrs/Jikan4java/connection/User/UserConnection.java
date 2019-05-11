@@ -34,7 +34,7 @@ public class UserConnection extends Connection {
         super();
     }
 
-
+    //TODO Figure out if this causes an error with jumbled input;
     /**
      * Returns a user object
      *

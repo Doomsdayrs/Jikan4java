@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Producer;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Connection;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Producer.ProducerPage;
 import org.json.simple.parser.ParseException;
 
@@ -25,7 +25,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class ProducerConnection extends Connection {
+public class ProducerConnection extends Retriever {
 
     /**
      * Constructor
@@ -43,7 +43,7 @@ public class ProducerConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<ProducerPage> search(int ID, int page) throws IOException, ParseException {
+    public CompletableFuture<ProducerPage> search(int ID, int page) {
         return retrieve(ProducerPage.class, baseURL + "/producer/" + ID + "/" + page);
     }
 }

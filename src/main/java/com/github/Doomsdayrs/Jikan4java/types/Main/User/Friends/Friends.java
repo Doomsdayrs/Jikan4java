@@ -22,35 +22,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Friends {
     @JsonProperty("url")
-    private String url;
+    public String url;
     @JsonProperty("username")
-    private String username;
+    public String username;
     @JsonProperty("image_url")
-    private String image_url;
+    public String image_url;
     @JsonProperty("last_online")
-    private String last_online;
+    public String last_online;
     @JsonProperty("friends_since")
-    private String friends_since;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public String getLast_online() {
-        return last_online;
-    }
-
-    public String getFriends_since() {
-        return friends_since;
-    }
+    public String friends_since;
+    
 
     @Override
     public String toString() {

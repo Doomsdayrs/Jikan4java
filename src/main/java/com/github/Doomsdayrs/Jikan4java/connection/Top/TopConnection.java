@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Top;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Connection;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime.AnimeTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character.CharacterTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Manga.MangaTop;
@@ -30,7 +30,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class TopConnection extends Connection {
+public class TopConnection extends Retriever {
 
 
     /**

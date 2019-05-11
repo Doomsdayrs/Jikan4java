@@ -23,23 +23,12 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Basic.BasicMeta;
  */
 public class History {
     @JsonProperty("meta")
-    private BasicMeta basicMeta;
+    public BasicMeta basicMeta;
     @JsonProperty("increment")
-    private int increment;
+    public int increment;
     @JsonProperty("date")
-    private String date;
-
-    public BasicMeta getBasicMeta() {
-        return basicMeta;
-    }
-
-    public int getIncrement() {
-        return increment;
-    }
-
-    public String getDate() {
-        return date;
-    }
+    public String date;
+    
 
     @Override
     public String toString() {

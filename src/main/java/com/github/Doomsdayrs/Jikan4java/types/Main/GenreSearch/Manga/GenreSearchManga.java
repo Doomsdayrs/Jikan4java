@@ -1,20 +1,15 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Authors;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -34,7 +29,7 @@ import java.util.concurrent.CompletionException;
  *
  * @author github.com/doomsdayrs
  */
-public class GenreSearchManga {
+public class GenreSearchManga extends Retriever {
 
     @JsonProperty("mal_id")
     public int mal_id;
@@ -71,13 +66,7 @@ public class GenreSearchManga {
      * @throws ParseException
      */
     public CompletableFuture<Manga> getManga() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("api.jikan.moe/v3/manga/" + mal_id).build()).execute().body().string())).toJSONString(), Manga.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(Manga.class, baseURL + "/manga/" + mal_id);
     }
 
     @Override

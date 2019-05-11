@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Club;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Connection;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
 
 import java.util.concurrent.CompletableFuture;
@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class ClubConnection extends Connection {
+public class ClubConnection extends Retriever {
 
     public ClubConnection() {
         super();

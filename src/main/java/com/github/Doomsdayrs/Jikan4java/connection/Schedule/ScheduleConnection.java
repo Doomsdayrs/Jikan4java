@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Schedule;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Connection;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Day;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Schedule;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
@@ -28,7 +28,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class ScheduleConnection extends Connection {
+public class ScheduleConnection extends Retriever {
 
 
     /**
@@ -45,7 +45,7 @@ public class ScheduleConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<Schedule> scheduleSearch() throws IOException, ParseException {
+    public CompletableFuture<Schedule> getCurrentSchedule() throws IOException, ParseException {
         return retrieve(Schedule.class, baseURL + "/schedule/");
     }
 

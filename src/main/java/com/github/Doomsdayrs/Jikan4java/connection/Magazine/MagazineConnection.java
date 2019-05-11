@@ -1,7 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Magazine;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.connection.Connection;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Magazine.MagazinePage;
 import org.json.simple.parser.ParseException;
 
@@ -26,7 +26,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class MagazineConnection extends Connection {
+public class MagazineConnection extends Retriever {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**

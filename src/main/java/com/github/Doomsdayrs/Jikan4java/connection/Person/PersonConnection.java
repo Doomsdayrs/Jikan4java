@@ -41,14 +41,14 @@ public class PersonConnection extends Connection {
     }
 
     /**
-     * Searches
+     * Searches for a person, and returns first result
      *
      * @param title Name of person
      * @return Person object
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<Person> search(String title) throws IOException, ParseException {
+    public CompletableFuture<Person> search(String title) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 return objectMapper.readValue(this.searchSite(title).toJSONString(), Person.class);
@@ -73,7 +73,7 @@ public class PersonConnection extends Connection {
     }
 
     /**
-     * Searches Jikan api for manga
+     * Searches Jikan api for a person
      *
      * @param search The name of what you are searching for
      * @return Returns an JSON object of the first result

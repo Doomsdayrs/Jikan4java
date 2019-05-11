@@ -1,8 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Anime;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Episodes.Episodes;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Videos.Video;
@@ -17,17 +16,11 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.Related.Related;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Reviews.Anime.AnimeReviewPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Stats.Stats;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Userupdate.Anime.AnimeUserUpdatesPage;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -48,8 +41,7 @@ import java.util.concurrent.CompletionException;
  * @author github.com/doomsdayrs
  */
 
-public class Anime {
-
+public class Anime extends Retriever {
     @JsonProperty("request_hash")
     public String request_hash;
     @JsonProperty("request_cached")
@@ -138,13 +130,7 @@ public class Anime {
      */
     @JsonProperty
     public CompletableFuture<Character_Staff> getCharacterStaffs() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("characters_staff").toJSONString(), Character_Staff.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(Character_Staff.class, baseURL + "/anime/" + mal_id + "/characters_staff");
     }
 
 
@@ -155,18 +141,12 @@ public class Anime {
      */
     @JsonProperty
     public CompletableFuture<Episodes> getEpisode(int pageNumber) {
-        String category = "episodes";
+        String category = "/episodes";
         if (pageNumber != 0) {
-            category = "episodes/" + pageNumber;
+            category = "/episodes/" + pageNumber;
         }
         String finalCategory = category;
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve(finalCategory).toJSONString(), Episodes.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(Episodes.class, baseURL + "/anime/" + mal_id + finalCategory);
     }
 
     @JsonProperty
@@ -184,13 +164,7 @@ public class Anime {
      */
     @JsonProperty
     public CompletableFuture<News> getNews() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("news").toJSONString(), News.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(News.class, baseURL + "/anime/" + mal_id + "/news");
     }
 
     /**
@@ -202,14 +176,7 @@ public class Anime {
      */
     @JsonProperty
     public CompletableFuture<Pictures> getPictures() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("pictures").toJSONString(), Pictures.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-
+        return retrieve(Pictures.class, baseURL + "/anime/" + mal_id + "/pictures");
     }
 
     /**
@@ -221,14 +188,7 @@ public class Anime {
      */
     @JsonProperty
     public CompletableFuture<Video> getVideos() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("videos").toJSONString(), Video.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-
+        return retrieve(Video.class, baseURL + "/anime/" + mal_id + "/videos");
     }
 
     /**
@@ -238,14 +198,7 @@ public class Anime {
      */
     @JsonProperty
     public CompletableFuture<Stats> getStats() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("stats").toJSONString(), Stats.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-
+        return retrieve(Stats.class, baseURL + "/anime/" + mal_id + "/stats");
     }
 
 
@@ -258,14 +211,7 @@ public class Anime {
      */
     @JsonProperty
     public CompletableFuture<Forum> getForum() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("forum").toJSONString(), Forum.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-
+        return retrieve(Forum.class, baseURL + "/anime/" + mal_id + "/forum");
     }
 
     /**
@@ -277,95 +223,30 @@ public class Anime {
      */
     @JsonProperty
     public CompletableFuture<MoreInfo> getMoreInfo() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("moreinfo").toJSONString(), MoreInfo.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-
+        return retrieve(MoreInfo.class, baseURL + "/anime/" + mal_id + "/moreinfo");
     }
 
 
     @JsonProperty
     public CompletableFuture<AnimeReviewPage> getReviewPage() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("reviews").toJSONString(), AnimeReviewPage.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-
+        return retrieve(AnimeReviewPage.class, baseURL + "/anime/" + mal_id + "/reviews");
     }
 
     @JsonProperty
     public CompletableFuture<RecommendationPage> getRecommendationPage() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("recommendations").toJSONString(), RecommendationPage.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-
+        return retrieve(RecommendationPage.class, baseURL + "/anime/" + mal_id + "/recommendations");
     }
 
     @JsonProperty
     public CompletableFuture<AnimeUserUpdatesPage> getUserUpdatesPage() {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("userupdates").toJSONString(), AnimeUserUpdatesPage.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-
+        return getUserUpdatesPage(0);
     }
 
-    @JsonIgnore
-    private final ObjectMapper mapper = new ObjectMapper();
-    @JsonIgnore
-    private final String baseURL = "https://api.jikan.moe/v3";
-    @JsonIgnore
-    private final JSONParser parser = new JSONParser();
+
 
     @JsonProperty
     public CompletableFuture<AnimeUserUpdatesPage> getUserUpdatesPage(int page) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return mapper.readValue(this.retrieve("userupdates/" + page).toJSONString(), AnimeUserUpdatesPage.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
-    }
-    /**
-     * Retrieves data from manga page
-     *
-     * @param subCategory What is needed to be retrieved, ie 'moreinfo'
-     * @return JSONObject of the page
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
-     */
-
-    /**
-     * Retrieves data from anime page
-     *
-     * @param subCategory What is needed to be retrieved, ie 'moreinfo'
-     * @return JSONObject of the page
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
-     */
-    @JsonProperty
-    private JSONObject retrieve(String subCategory) throws IOException, ParseException {
-        Request request = new Request.Builder().url(baseURL + "/anime/" + mal_id + "/" + subCategory).build();
-        Response response = new OkHttpClient().newCall(request).execute();
-        String responseString = response.body().string();
-        if (!responseString.equals(null))
-            return (JSONObject) parser.parse(responseString);
-        else return null;
+        return retrieve(AnimeUserUpdatesPage.class, baseURL + "/anime/" + mal_id + "/userupdates/" + page);
     }
 
     @Override

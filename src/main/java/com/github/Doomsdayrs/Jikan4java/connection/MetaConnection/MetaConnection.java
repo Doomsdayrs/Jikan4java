@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.MetaConnection;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Connection;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Meta.Status;
 import org.json.simple.parser.ParseException;
 
@@ -25,7 +25,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class MetaConnection extends Connection {
+public class MetaConnection extends Retriever {
 
     /**
      * Constructor

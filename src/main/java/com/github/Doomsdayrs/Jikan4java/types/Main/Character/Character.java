@@ -2,19 +2,14 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Character;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Voice_actors;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 
 /**
  * This file is part of Jikan4java.
@@ -35,17 +30,13 @@ import java.util.concurrent.CompletionException;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class Character {
-
+public class Character extends Retriever {
     @JsonProperty("request_hash")
     public String request_hash;
-
     @JsonProperty("request_cached")
     public boolean request_cached;
-
     @JsonProperty("request_cache_expiry")
     public int request_cache_expiry;
-
     @JsonProperty("mal_id")
     public int mal_id;
     @JsonProperty("url")
@@ -78,13 +69,7 @@ public class Character {
      */
     @JsonProperty
     public CompletableFuture<Pictures> getPictures() throws IOException, ParseException {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return new ObjectMapper().readValue(((JSONObject) new JSONParser().parse(new OkHttpClient().newCall(new Request.Builder().url("https://api.jikan.moe/v3/character/" + mal_id + "/pictures").build()).execute().body().string())).toJSONString(), Pictures.class);
-            } catch (IOException | ParseException e) {
-                throw new CompletionException(e);
-            }
-        });
+        return retrieve(Pictures.class, baseURL + "/character/" + mal_id + "/pictures");
     }
 
     @Override

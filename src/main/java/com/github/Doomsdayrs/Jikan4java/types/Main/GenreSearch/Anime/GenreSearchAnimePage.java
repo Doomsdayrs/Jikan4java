@@ -28,72 +28,18 @@ import java.util.ArrayList;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class GenreSearchAnimePage {
     @JsonProperty("request_hash")
-    private String request_hash;
+    public String request_hash;
     @JsonProperty("request_cached")
-    private boolean request_cached;
+    public boolean request_cached;
     @JsonProperty("request_cache_expiry")
-    private int request_cache_expiry;
+    public int request_cache_expiry;
     @JsonProperty("mal_url")
-    private MalURL malURL;
+    public MalURL malURL;
     @JsonProperty("item_count")
-    private int item_count;
+    public int item_count;
     @JsonProperty("anime")
-    private ArrayList<SubAnime> animes;
-
-    /**
-     * Gets request hash
-     *
-     * @return Request hash
-     */
-    public String getRequest_hash() {
-        return request_hash;
-    }
-
-    /**
-     * Is the request cached?
-     *
-     * @return is it cached?
-     */
-    public boolean isRequest_cached() {
-        return request_cached;
-    }
-
-    /**
-     * Gets expiry
-     *
-     * @return int date or something
-     */
-    public int getRequest_cache_expiry() {
-        return request_cache_expiry;
-    }
-
-    /**
-     * Gets a malURL
-     *
-     * @return malURl
-     */
-    public MalURL getMalURL() {
-        return malURL;
-    }
-
-    /**
-     * Get item count
-     *
-     * @return item count
-     */
-    public int getItem_count() {
-        return item_count;
-    }
-
-    /**
-     * Array list of animes
-     *
-     * @return animes
-     */
-    public ArrayList<SubAnime> getAnimes() {
-        return animes;
-    }
-
+    public ArrayList<SubAnime> animes;
+    
     @Override
     public String toString() {
         return "GenreSearchAnimePage{" +
