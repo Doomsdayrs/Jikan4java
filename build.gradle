@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group = 'com.github.Doomsdayrs'
-version = '0.9.G'
+version = '1.0.0'
 
 description = """Jikan4java, Java wrapper for the Jikan api"""
 
@@ -10,7 +10,6 @@ sourceCompatibility = 8
 targetCompatibility = 8
 
 repositories {
-        
      maven { url "http://repo.maven.apache.org/maven2" }
 }
 dependencies {
