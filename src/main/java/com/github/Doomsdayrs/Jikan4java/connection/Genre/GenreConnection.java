@@ -3,6 +3,8 @@ package com.github.Doomsdayrs.Jikan4java.connection.Genre;
 import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.AnimeGenres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.MangaGenres;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -35,6 +37,32 @@ public class GenreConnection extends Retriever {
     }
 
     /**
+     * Searches for manga by ID, Returns first page
+     *
+     * @param genreID The genre ID
+     * @return GenreSearchAnimePage
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public CompletableFuture<GenreSearchMangaPage> searchMangaGenre(MangaGenres genreID) {
+        return searchMangaGenre(genreID, 1);
+    }
+
+    /**
+     * Searches for anime by ID, Returns first page
+     *
+     * @param genreID The genre ID
+     * @return GenreSearchMangaPage
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public CompletableFuture<GenreSearchAnimePage> searchAnimeGenre(AnimeGenres genreID) {
+        return searchAnimeGenre(genreID, 1);
+    }
+
+
+
+    /**
      * Searches for manga by ID, There are more than one page since each page has a hundred entries max.
      *
      * @param genreID The genre ID
@@ -43,8 +71,8 @@ public class GenreConnection extends Retriever {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<GenreSearchAnimePage> searchMangaGenre(int genreID, int page) throws IOException, ParseException {
-        return retrieve(GenreSearchAnimePage.class, baseURL + "/genre/anime/" + genreID + "/" + page);
+    public CompletableFuture<GenreSearchMangaPage> searchMangaGenre(MangaGenres genreID, int page) {
+        return retrieve(GenreSearchAnimePage.class, baseURL + "/genre/anime/" + genreID.getId() + "/" + page);
     }
 
     /**
@@ -56,8 +84,8 @@ public class GenreConnection extends Retriever {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<GenreSearchMangaPage> searchAnimeGenre(int genreID, int page) throws IOException, ParseException {
-        return retrieve(GenreSearchMangaPage.class, baseURL + "/genre/manga/" + genreID + "/" + page);
+    public CompletableFuture<GenreSearchAnimePage> searchAnimeGenre(AnimeGenres genreID, int page) {
+        return retrieve(GenreSearchMangaPage.class, baseURL + "/genre/manga/" + genreID.getId() + "/" + page);
     }
 
 }

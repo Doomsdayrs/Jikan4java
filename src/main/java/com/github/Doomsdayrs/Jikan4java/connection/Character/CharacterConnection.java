@@ -50,7 +50,7 @@ public class CharacterConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<Character> search(String name) throws IOException, ParseException {
+    public CompletableFuture<Character> search(String name) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 return objectMapper.readValue(this.searchSite(name).toJSONString(), Character.class);
@@ -69,7 +69,7 @@ public class CharacterConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<CharacterPage> searchPage(String title, int page) throws IOException, ParseException {
+    public CompletableFuture<CharacterPage> searchPage(String title, int page) {
         return retrieve(CharacterPage.class, baseURL + "/search/character?q=" + title + "&page=" + page);
     }
 

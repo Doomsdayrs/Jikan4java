@@ -23,7 +23,7 @@ public class ClubConnection extends Retriever {
      * @param ID id of the club
      * @return AnimePage
      */
-    public CompletableFuture<Club> search(String ID) {
+    public CompletableFuture<Club> search(int ID) {
         return retrieve(Club.class, baseURL + "/club/" + ID);
     }
 }

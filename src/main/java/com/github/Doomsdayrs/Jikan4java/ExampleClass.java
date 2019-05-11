@@ -1,13 +1,28 @@
 package com.github.Doomsdayrs.Jikan4java;
 
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Character.CharacterConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Club.ClubConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Genre.GenreConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Magazine.MagazineConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Manga.MangaConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.MetaConnection.MetaConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Person.PersonConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Producer.ProducerConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Schedule.ScheduleConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Season.SeasonConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.Top.TopConnection;
+import com.github.Doomsdayrs.Jikan4java.connection.User.UserConnection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Character_staff.Character_Staff;
-import com.github.Doomsdayrs.Jikan4java.types.Support.Pictures.Pictures;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
+import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.AnimeGenres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.MangaGenres;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * This file is part of Jikan4java.
@@ -35,60 +50,68 @@ public class ExampleClass {
      * @param args Args
      */
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        /*
-        // Gets first search result
-        System.out.println(new MangaConnection().search("Attack on titan").toString());
-        System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString;
-        System.out.println(new CharacterConnection().search("Caster").toString());
-        System.out.println(new PersonConnection().search("Hajime Isayama").toString());
-
-        // Returns search results
-        System.out.println(new AnimeConnection().searchPage("Attack on titan",1).toString());
-        System.out.println(new MangaConnection().searchPage("Tensei",1));
-        System.out.println(new CharacterConnection().searchPage("caster",1));
-        System.out.println(new PersonConnection().searchPage("Hajime Isayama", 1));
-
-        System.out.println(new GenreConnection().searchAnimeGenre(1,0).toString());
-        System.out.println(new GenreConnection().searchMangaGenre(1,0).toString());
-
-
-        System.out.println(new SeasonConnection().seasonArchiveSearch().toString());
-
-        System.out.println(new ScheduleConnection().scheduleSearch().toString());
-        System.out.println(new ScheduleConnection().scheduleSearch("monday").toString()); //`monday` can be replaced with any other day or unknown / other
-
-        System.out.println(new TopConnection().topSearch("anime",0,"").toString());
-        System.out.println(new TopConnection().topSearch("manga",0,"").toString());
-        System.out.println(new TopConnection().topSearch("people",0,"").toString());
-        System.out.println(new TopConnection().topSearch("characters",0,"").toString());
-        System.out.println(new UserConnection().searchUser("Aerchan").toString());
-
-
-        System.out.println(new MagazineConnection().search(11,1));
-        System.out.println(new ProducerConnection().search(135,1));
-        System.out.println(new MetaConnection().getStatus().toString());
-        */
         AnimeConnection animeConnection = new AnimeConnection();
-        CompletableFuture<Anime> animeCompletableFuture = animeConnection.searchAnimeById(1);
+        CharacterConnection characterConnection = new CharacterConnection();
+        ClubConnection clubConnection = new ClubConnection();
+        GenreConnection genreConnection = new GenreConnection();
+        MagazineConnection magazineConnection = new MagazineConnection();
+        MangaConnection mangaConnection = new MangaConnection();
+        MetaConnection metaConnection = new MetaConnection();
+        PersonConnection personConnection = new PersonConnection();
+        ProducerConnection producerConnection = new ProducerConnection();
+        ScheduleConnection scheduleConnection = new ScheduleConnection();
+        SeasonConnection seasonConnection = new SeasonConnection();
+        TopConnection topConnection = new TopConnection();
+        UserConnection userConnection = new UserConnection();
+
         int a = 0;
-        while (!animeCompletableFuture.isDone()) a++;
-        Anime anime = animeCompletableFuture.get();
 
-        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<Anime> animeCompletableFuture = animeConnection.searchAnimeById(1);
+        if (animeCompletableFuture != null) {
+            while (!animeCompletableFuture.isDone()) a++;
+            System.out.println(animeCompletableFuture.get());
+        }
 
-        CompletableFuture<Character_Staff> character_staffCompletableFuture = anime.getCharacterStaffs();
-        while (!character_staffCompletableFuture.isDone()) a++;
-        Character_Staff character_staff = character_staffCompletableFuture.get();
 
-        System.out.println(character_staff);
+        CompletableFuture<Character> characterCompletableFuture = characterConnection.search("re");
+        if (characterCompletableFuture != null) {
+            while (!characterCompletableFuture.isDone()) a++;
+            System.out.println(characterCompletableFuture.get());
+        }
 
-        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<Club> clubCompletableFuture = clubConnection.search(12);
+        if (clubCompletableFuture != null) {
+            while (!clubCompletableFuture.isDone()) a++;
+            System.out.println(clubCompletableFuture.get());
+        }
 
-        CompletableFuture<Pictures> picturesCompletableFuture = anime.getPictures();
-        while (!picturesCompletableFuture.isDone()) a++;
-        Pictures pictures = picturesCompletableFuture.get();
+        CompletableFuture<GenreSearchAnimePage> searchAnimeGenre = genreConnection.searchAnimeGenre(AnimeGenres.ACTION);
+        if (searchAnimeGenre != null) {
+            while (!searchAnimeGenre.isDone()) a++;
+            System.out.println(searchAnimeGenre.get());
+        }
 
-        System.out.println(pictures);
+        CompletableFuture<GenreSearchMangaPage> searchMangaGenre = genreConnection.searchMangaGenre(MangaGenres.ACTION);
+        if (searchMangaGenre != null) {
+            while (!searchMangaGenre.isDone()) a++;
+            System.out.println(searchMangaGenre.get());
+        }
+
+
+        CompletableFuture<Club> clubCompletableFuture = clubConnection.search(12);
+        if (clubCompletableFuture != null) {
+            while (!clubCompletableFuture.isDone()) a++;
+            System.out.println(clubCompletableFuture.get());
+        }
+
+        CompletableFuture<Club> clubCompletableFuture = clubConnection.search(12);
+        if (clubCompletableFuture != null) {
+            while (!clubCompletableFuture.isDone()) a++;
+            System.out.println(clubCompletableFuture.get());
+        }
+
+
+
     }
 
 }
