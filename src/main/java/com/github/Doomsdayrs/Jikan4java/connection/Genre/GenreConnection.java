@@ -1,5 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Genre;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
@@ -33,7 +35,7 @@ public class GenreConnection extends Retriever {
      * Constructor
      */
     public GenreConnection() {
-        super();
+        super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
     }
 
     /**

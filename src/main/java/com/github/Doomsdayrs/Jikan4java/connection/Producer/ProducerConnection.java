@@ -1,5 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Producer;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Producer.ProducerPage;
 import org.json.simple.parser.ParseException;
@@ -31,7 +33,7 @@ public class ProducerConnection extends Retriever {
      * Constructor
      */
     public ProducerConnection() {
-        super();
+        super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
     }
 
     /**

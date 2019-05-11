@@ -45,7 +45,14 @@ public class Retriever {
         builder = new Request.Builder();
     }
 
-    public CompletableFuture retrieve(Class target, String url) {
+    public Retriever(ObjectMapper objectMapper) {
+        client = new OkHttpClient();
+        this.objectMapper = objectMapper;
+        jsonParser = new JSONParser();
+        builder = new Request.Builder();
+    }
+
+    protected CompletableFuture retrieve(Class target, String url) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 ResponseBody responseBody = client.newCall(builder.url(url).build()).execute().body();

@@ -1,5 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Schedule;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Day;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Schedule;
@@ -35,7 +37,7 @@ public class ScheduleConnection extends Retriever {
      * Constructor
      */
     public ScheduleConnection() {
-        super();
+        super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
     }
 
     /**

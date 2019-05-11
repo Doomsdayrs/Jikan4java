@@ -1,5 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Top;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime.AnimeTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character.CharacterTop;
@@ -37,7 +39,7 @@ public class TopConnection extends Retriever {
      * Constructor
      */
     public TopConnection() {
-        super();
+        super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
     }
 
     /**

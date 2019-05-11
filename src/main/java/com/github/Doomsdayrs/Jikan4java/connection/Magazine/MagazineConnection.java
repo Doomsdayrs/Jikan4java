@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Magazine;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Magazine.MagazinePage;
@@ -27,13 +28,11 @@ import java.util.concurrent.CompletableFuture;
  * @author github.com/doomsdayrs
  */
 public class MagazineConnection extends Retriever {
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
     /**
      * Constructor
      */
     public MagazineConnection() {
-        super();
+        super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
     }
 
     /**
@@ -45,7 +44,7 @@ public class MagazineConnection extends Retriever {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<MagazinePage> searchPage(String ID, int page) throws IOException, ParseException {
-        return retrieve(MagazinePage.class, baseURL + "/v3/magazine/" + ID + "/" + page);
+    public CompletableFuture<MagazinePage> searchPage(int ID, int page) {
+        return retrieve(MagazinePage.class, baseURL + "/magazine/" + ID + "/" + page);
     }
 }

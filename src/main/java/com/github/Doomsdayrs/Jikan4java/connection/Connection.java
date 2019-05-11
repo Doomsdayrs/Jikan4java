@@ -1,5 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -26,6 +27,10 @@ public class Connection extends Retriever {
 
     public Connection() {
         super();
+    }
+
+    public Connection(ObjectMapper objectMapper) {
+        super(objectMapper);
     }
 
     public Object search(String string) throws IOException, ParseException {

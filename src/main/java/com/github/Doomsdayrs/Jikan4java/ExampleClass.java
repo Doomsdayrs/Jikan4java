@@ -14,15 +14,19 @@ import com.github.Doomsdayrs.Jikan4java.connection.Season.SeasonConnection;
 import com.github.Doomsdayrs.Jikan4java.connection.Top.TopConnection;
 import com.github.Doomsdayrs.Jikan4java.connection.User.UserConnection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage.CharacterPage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Magazine.MagazinePage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Meta.Status;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.AnimeGenres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.MangaGenres;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This file is part of Jikan4java.
@@ -72,45 +76,50 @@ public class ExampleClass {
             System.out.println(animeCompletableFuture.get());
         }
 
-
-        CompletableFuture<Character> characterCompletableFuture = characterConnection.search("re");
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<CharacterPage> characterCompletableFuture = characterConnection.searchPage("re", 1);
         if (characterCompletableFuture != null) {
             while (!characterCompletableFuture.isDone()) a++;
             System.out.println(characterCompletableFuture.get());
         }
-
+        TimeUnit.SECONDS.sleep(1);
         CompletableFuture<Club> clubCompletableFuture = clubConnection.search(12);
         if (clubCompletableFuture != null) {
             while (!clubCompletableFuture.isDone()) a++;
             System.out.println(clubCompletableFuture.get());
         }
-
+        TimeUnit.SECONDS.sleep(1);
         CompletableFuture<GenreSearchAnimePage> searchAnimeGenre = genreConnection.searchAnimeGenre(AnimeGenres.ACTION);
         if (searchAnimeGenre != null) {
             while (!searchAnimeGenre.isDone()) a++;
             System.out.println(searchAnimeGenre.get());
         }
-
+        TimeUnit.SECONDS.sleep(1);
         CompletableFuture<GenreSearchMangaPage> searchMangaGenre = genreConnection.searchMangaGenre(MangaGenres.ACTION);
         if (searchMangaGenre != null) {
             while (!searchMangaGenre.isDone()) a++;
             System.out.println(searchMangaGenre.get());
         }
-
-
-        CompletableFuture<Club> clubCompletableFuture = clubConnection.search(12);
-        if (clubCompletableFuture != null) {
-            while (!clubCompletableFuture.isDone()) a++;
-            System.out.println(clubCompletableFuture.get());
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<MagazinePage> magazinePageCompletableFuture = magazineConnection.searchPage(1, 1);
+        if (magazinePageCompletableFuture != null) {
+            while (!magazinePageCompletableFuture.isDone()) a++;
+            System.out.println(magazinePageCompletableFuture.get());
+        }
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<Manga> mangaCompletableFuture = mangaConnection.search("Ajin");
+        if (mangaCompletableFuture != null) {
+            while (!mangaCompletableFuture.isDone()) a++;
+            System.out.println(mangaCompletableFuture.get());
+        }
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<Status> statusCompletableFuture = metaConnection.getStatus();
+        if (statusCompletableFuture != null) {
+            while (!statusCompletableFuture.isDone()) a++;
+            System.out.println(statusCompletableFuture.get());
         }
 
-        CompletableFuture<Club> clubCompletableFuture = clubConnection.search(12);
-        if (clubCompletableFuture != null) {
-            while (!clubCompletableFuture.isDone()) a++;
-            System.out.println(clubCompletableFuture.get());
-        }
-
-
+        // Well, after this point you should get an idea, use code completion or decompile the classes to see what are methods available;
 
     }
 

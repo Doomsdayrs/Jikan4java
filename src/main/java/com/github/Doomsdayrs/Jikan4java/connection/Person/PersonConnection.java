@@ -1,5 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Person;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Connection;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.PersonPage.PersonPage;
@@ -37,7 +39,7 @@ public class PersonConnection extends Connection {
      * Constructor
      */
     public PersonConnection() {
-        super();
+        super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
     }
 
     /**
@@ -68,7 +70,7 @@ public class PersonConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<PersonPage> searchPage(String title, int page) throws IOException, ParseException {
+    public CompletableFuture<PersonPage> searchPage(String title, int page) {
         return retrieve(PersonPage.class, baseURL + "/search/person?q=" + title + "&page=" + page);
     }
 
