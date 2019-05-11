@@ -45,7 +45,7 @@ public class UserConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<User> search(String name) throws IOException, ParseException {
+    public CompletableFuture<User> search(String name) {
         return retrieve(User.class, baseURL + "/user/" + name);
     }
 }
