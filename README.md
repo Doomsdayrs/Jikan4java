@@ -2,11 +2,7 @@
 Java api wrapper for Jikan api
 Website for Jikan: https://jikan.moe/
 
-0.9.E is the most updated version. With most functionality. 1.0 Complete documentation, and excessive comments.
-Completed v3.2 update
-
-To use, just download the latest jar from the Jar folder and add it to your project. I ain't got the time or inteligence to figure out how to make a repo
-
+To add to your project, head over to https://jitpack.io/#Doomsdayrs/Jikan4java and select the method you need to use!
 ## Capabilities
 - Basic
   - [X] Search and return Anime
@@ -36,41 +32,73 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 
 public class ExampleClass {
-public static void main(String[] args) throws IOException, ParseException {
-        // Gets first search result
-        System.out.println(new MangaConnection().search("Attack on titan").toString());
-        System.out.println(new AnimeConnection().searchSimple("Attack on titan").getRelated().get(0).get(Relates.SIDE_STORIES));
-        
-        System.out.println(new AnimeConnection().searchSimple("Attack on titan").toString());
-        System.out.println(new CharacterConnection().search("Caster").toString());
-        System.out.println(new PersonConnection().search("Hajime Isayama").toString());
-        
-        // Returns search results
-        System.out.println(new AnimeConnection().searchPage("Attack on titan",1).toString());
-        System.out.println(new MangaConnection().searchPage("Tensei",1));
-        System.out.println(new CharacterConnection().searchPage("caster",1));
-        System.out.println(new PersonConnection().searchPage("Hajime Isayama", 1));
-        
-        
-        System.out.println(new GenreConnection().searchAnimeGenre(1,0).toString());
-        System.out.println(new GenreConnection().searchMangaGenre(1,0).toString());
-        
-        System.out.println(new SeasonConnection().seasonSearch(2016,"winter").toString());
-        System.out.println(new SeasonConnection().seasonArchiveSearch().toString());
-        
-        System.out.println(new ScheduleConnection().scheduleSearch().toString());
-        System.out.println(new ScheduleConnection().scheduleSearch("monday").toString()); //`monday` can be replaced with any other day or unknown / other
-        
-        System.out.println(new TopConnection().topSearch("anime",0,"").toString());
-        System.out.println(new TopConnection().topSearch("manga",0,"").toString());
-        System.out.println(new TopConnection().topSearch("people",0,"").toString());
-        System.out.println(new TopConnection().topSearch("characters",0,"").toString());
-        System.out.println(new UserConnection().searchUser("Aerchan").toString());
-        
-        
-        System.out.println(new MagazineConnection().search(11,1));
-        System.out.println(new ProducerConnection().search(135,1));
-        System.out.println(new MetaConnection().getStatus().toString());
+public static void main(String[] args) {
+  AnimeConnection animeConnection = new AnimeConnection();
+        CharacterConnection characterConnection = new CharacterConnection();
+        ClubConnection clubConnection = new ClubConnection();
+        GenreConnection genreConnection = new GenreConnection();
+        MagazineConnection magazineConnection = new MagazineConnection();
+        MangaConnection mangaConnection = new MangaConnection();
+        MetaConnection metaConnection = new MetaConnection();
+        PersonConnection personConnection = new PersonConnection();
+        ProducerConnection producerConnection = new ProducerConnection();
+        ScheduleConnection scheduleConnection = new ScheduleConnection();
+        SeasonConnection seasonConnection = new SeasonConnection();
+        TopConnection topConnection = new TopConnection();
+        UserConnection userConnection = new UserConnection();
+
+        int a = 0;
+
+        CompletableFuture<Anime> animeCompletableFuture = animeConnection.searchAnimeById(1);
+        if (animeCompletableFuture != null) {
+            while (!animeCompletableFuture.isDone()) a++;
+            System.out.println(animeCompletableFuture.get());
+        }
+
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<CharacterPage> characterCompletableFuture = characterConnection.searchPage("re", 1);
+        if (characterCompletableFuture != null) {
+            while (!characterCompletableFuture.isDone()) a++;
+            System.out.println(characterCompletableFuture.get());
+        }
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<Club> clubCompletableFuture = clubConnection.search(12);
+        if (clubCompletableFuture != null) {
+            while (!clubCompletableFuture.isDone()) a++;
+            System.out.println(clubCompletableFuture.get());
+        }
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<GenreSearchAnimePage> searchAnimeGenre = genreConnection.searchAnimeGenre(AnimeGenres.ACTION);
+        if (searchAnimeGenre != null) {
+            while (!searchAnimeGenre.isDone()) a++;
+            System.out.println(searchAnimeGenre.get());
+        }
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<GenreSearchMangaPage> searchMangaGenre = genreConnection.searchMangaGenre(MangaGenres.ACTION);
+        if (searchMangaGenre != null) {
+            while (!searchMangaGenre.isDone()) a++;
+            System.out.println(searchMangaGenre.get());
+        }
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<MagazinePage> magazinePageCompletableFuture = magazineConnection.searchPage(1, 1);
+        if (magazinePageCompletableFuture != null) {
+            while (!magazinePageCompletableFuture.isDone()) a++;
+            System.out.println(magazinePageCompletableFuture.get());
+        }
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<Manga> mangaCompletableFuture = mangaConnection.search("Ajin");
+        if (mangaCompletableFuture != null) {
+            while (!mangaCompletableFuture.isDone()) a++;
+            System.out.println(mangaCompletableFuture.get());
+        }
+        TimeUnit.SECONDS.sleep(1);
+        CompletableFuture<Status> statusCompletableFuture = metaConnection.getStatus();
+        if (statusCompletableFuture != null) {
+            while (!statusCompletableFuture.isDone()) a++;
+            System.out.println(statusCompletableFuture.get());
+        }
+
+        // Well, after this point you should get an idea, use code completion or decompile the classes to see what are methods available;
                
     }
 }
