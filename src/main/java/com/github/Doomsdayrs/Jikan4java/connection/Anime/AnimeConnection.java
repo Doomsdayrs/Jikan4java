@@ -51,7 +51,7 @@ public class AnimeConnection extends Connection {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<Anime> search(String title) throws IOException, ParseException {
+    public CompletableFuture<Anime> search(String title) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 return objectMapper.readValue(this.searchSite(title).toJSONString(), Anime.class);

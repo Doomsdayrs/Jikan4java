@@ -1,6 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.connection;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
 
 /**
  * This file is part of Jikan4java.
@@ -16,19 +14,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 03 / May / 2019
+ * 13 / May / 2019
  *
  * @author github.com/doomsdayrs
  */
-public abstract class Connection extends Retriever {
+public enum Types {
+    TV("tv"),
+    OVA("ova"),
+    MOVIE("movie"),
+    SPECIAL("special"),
+    ONA("ona"),
+    MUSIC("music"),
+    MANGA("manga"),
+    NOVEL("novel"),
+    ONESHOT("oneshot"),
+    DOUJIN("doujin"),
+    MANHWA("manhwa"),
+    MANHUA("manhua");
 
-    public Connection() {
-        super();
+    private final String type;
+
+    Types(String type) {
+        this.type = type;
     }
 
-    public Connection(ObjectMapper objectMapper) {
-        super(objectMapper);
+    @Override
+    public String toString() {
+        return type;
     }
-
-    public abstract Object search(String string);
 }

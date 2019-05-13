@@ -1,6 +1,8 @@
 package com.github.Doomsdayrs.Jikan4java.connection;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Stati;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Types;
 
 /**
  * This file is part of Jikan4java.
@@ -16,19 +18,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 03 / May / 2019
+ * 13 / May / 2019
  *
  * @author github.com/doomsdayrs
  */
-public abstract class Connection extends Retriever {
+public class Search extends Retriever {
+    private final Types type;
+    private String query = null;
+    private int pages;
+    private Stati status;
 
-    public Connection() {
+    Search(Types type) {
         super();
+        this.type = type;
     }
 
-    public Connection(ObjectMapper objectMapper) {
-        super(objectMapper);
+    Search(Types type, ObjectMapper mapper) {
+        super(mapper);
+        this.type = type;
     }
 
-    public abstract Object search(String string);
+    public String createURL(){
+        return baseURL+"/"+type+"q="+query;
+    }
+
+    public void setPages(int pages){
+        this.pages=pages;
+    }
+
+    public Object query(String title) {
+        return null;
+    }
+
+    public void setStatus(Stati status) {
+        this.status = status;
+    }
 }
