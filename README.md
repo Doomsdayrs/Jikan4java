@@ -4,7 +4,7 @@ Website for Jikan: https://jikan.moe/
 
 To add to your project, head over to https://jitpack.io/#Doomsdayrs/Jikan4java and select the method you need to use!
 
-Currently working on 1.1.0
+Currently working on 1.1.0, the rise of treeeesss
 ## Capabilities
 - Basic
   - [X] Search and return Anime
