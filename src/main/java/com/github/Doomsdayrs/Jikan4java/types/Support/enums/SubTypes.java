@@ -1,10 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
 
-import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
-
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -23,19 +18,28 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
  *
  * @author github.com/doomsdayrs
  */
-public enum  Types {
-    ANIME("anime",Anime.class),
-    MANGA("manga", Manga.class),
-    PERSON("person", Person.class),
-    CHARACTER("character", Character.class);
+public enum SubTypes {
+    TV("tv"),
+    OVA("ova"),
+    MOVIE("movie"),
+    SPECIAL("special"),
+    ONA("ona"),
+    MUSIC("music"),
+    MANGA("manga"),
+    NOVEL("novel"),
+    ONESHOT("oneshot"),
+    DOUJIN("doujin"),
+    MANHWA("manhwa"),
+    MANHUA("manhua");
+
     private final String type;
-    private final Class c;
-    Types(String type, Class c){
+
+    SubTypes(String type) {
         this.type = type;
-        this.c = c;
     }
 
-    public Class getC() {
-        return c;
+    @Override
+    public String toString() {
+        return type;
     }
 }

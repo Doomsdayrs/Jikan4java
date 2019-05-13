@@ -33,6 +33,7 @@ import java.util.concurrent.CompletionException;
  *
  * @author github.com/doomsdayrs
  */
+@Deprecated
 public class PersonConnection extends Connection {
 
     /**

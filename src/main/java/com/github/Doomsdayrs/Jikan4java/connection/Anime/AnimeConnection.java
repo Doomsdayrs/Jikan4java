@@ -34,6 +34,7 @@ import java.util.concurrent.CompletionException;
  *
  * @author github.com/doomsdayrs
  */
+@Deprecated
 public class AnimeConnection extends Connection {
 
     /**

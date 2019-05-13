@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Stati;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Types;
 
+import java.util.concurrent.CompletableFuture;
+
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -22,11 +24,11 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Types;
  *
  * @author github.com/doomsdayrs
  */
-public class Search extends Retriever {
+public class Search<T> extends Retriever {
     private final Types type;
     private String query = null;
-    private int pages;
-    private Stati status;
+    private int pages = 0;
+    private Stati status = null;
 
     Search(Types type) {
         super();
@@ -38,19 +40,33 @@ public class Search extends Retriever {
         this.type = type;
     }
 
-    public String createURL(){
-        return baseURL+"/"+type+"q="+query;
+    private String createURL(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(baseURL+"/");
+        builder.append(type);
+        builder.append("?q="+query);
+        if (pages !=0)
+            builder.append("&limit="+pages);
+        System.out.println();
+        return builder.toString();
     }
 
-    public void setPages(int pages){
+    public void setPages(int pages) {
         this.pages=pages;
     }
 
-    public Object query(String title) {
-        return null;
+    public Search setQuery(String title) {
+        this.query = title;
+        return this;
     }
 
-    public void setStatus(Stati status) {
-        this.status = status;
+    public Search setStatus(Stati status) {
+        if (type == Types.MANGA || type == Types.ANIME)
+            this.status = status;
+        return this;
+    }
+
+    public CompletableFuture<T> get(){
+        return retrieve(type.getC(),createURL());
     }
 }
