@@ -1,22 +1,13 @@
 package com.github.Doomsdayrs.Jikan4java;
 
 import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Character.CharacterConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Club.ClubConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Genre.GenreConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Magazine.MagazineConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Manga.MangaConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.MetaConnection.MetaConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Person.PersonConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Producer.ProducerConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Schedule.ScheduleConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Season.SeasonConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.Top.TopConnection;
-import com.github.Doomsdayrs.Jikan4java.connection.User.UserConnection;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.*;
+import com.github.Doomsdayrs.Jikan4java.connection.Search;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Types;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -45,6 +36,7 @@ public class ExampleClass {
      * @param args Args
      */
     public static void main(String[] args) throws InterruptedException, IOException, ParseException {
+        /*
         AnimeConnection animeConnection = new AnimeConnection();
         CharacterConnection characterConnection = new CharacterConnection();
         ClubConnection clubConnection = new ClubConnection();
@@ -114,9 +106,17 @@ public class ExampleClass {
         userConnection.search("doomsdayrs").thenAccept(System.out::println);
 
 
-
+*/
         // Well, after this point you should get an idea, use code completion or decompile the classes to see what are methods available;
 
+        System.out.println(new Date().toString());
+        new AnimeConnection().searchAnimeById(1).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        Search<AnimePage> search = new Search(Types.ANIME);
+        search = search.setQuery("boku no");
+        search.get().thenAccept(System.out::println);
     }
 
 }

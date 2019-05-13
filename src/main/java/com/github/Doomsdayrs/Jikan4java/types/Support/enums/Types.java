@@ -38,4 +38,9 @@ public enum  Types {
     public Class getC() {
         return c;
     }
+
+    @Override
+    public String toString() {
+        return type;
+    }
 }

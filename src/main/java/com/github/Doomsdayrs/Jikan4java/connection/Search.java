@@ -25,48 +25,53 @@ import java.util.concurrent.CompletableFuture;
  * @author github.com/doomsdayrs
  */
 public class Search<T> extends Retriever {
+    private T t;
     private final Types type;
+    private final Class aClass;
+
     private String query = null;
     private int pages = 0;
     private Stati status = null;
 
-    Search(Types type) {
+    public Search(Types type) {
         super();
         this.type = type;
+        this.aClass = type.getC();
     }
 
     Search(Types type, ObjectMapper mapper) {
         super(mapper);
         this.type = type;
+        this.aClass = type.getC();
     }
 
     private String createURL(){
         StringBuilder builder = new StringBuilder();
-        builder.append(baseURL+"/");
+        builder.append(baseURL+"/search/");
         builder.append(type);
-        builder.append("?q="+query);
+        builder.append("?q="+query.replaceAll(" ","%20"));
         if (pages !=0)
             builder.append("&limit="+pages);
-        System.out.println();
         return builder.toString();
     }
+
 
     public void setPages(int pages) {
         this.pages=pages;
     }
 
-    public Search setQuery(String title) {
+    public Search<T> setQuery(String title) {
         this.query = title;
         return this;
     }
 
-    public Search setStatus(Stati status) {
+    public Search<T> setStatus(Stati status) {
         if (type == Types.MANGA || type == Types.ANIME)
             this.status = status;
         return this;
     }
 
     public CompletableFuture<T> get(){
-        return retrieve(type.getC(),createURL());
+        return retrieve(aClass,createURL());
     }
 }

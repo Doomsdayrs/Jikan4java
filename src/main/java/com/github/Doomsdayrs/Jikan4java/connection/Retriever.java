@@ -55,7 +55,8 @@ public class Retriever {
     protected CompletableFuture retrieve(Class target, String url) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                ResponseBody responseBody = client.newCall(builder.url(url).build()).execute().body();
+                Request request = builder.url(url).build();
+                ResponseBody responseBody = client.newCall(request).execute().body();
                 if (responseBody != null) {
                     JSONObject object = ((JSONObject) jsonParser.parse(responseBody.string()));
                     if (!object.containsKey("error"))
