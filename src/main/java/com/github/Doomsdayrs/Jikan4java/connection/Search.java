@@ -52,6 +52,7 @@ public class Search<T> extends Retriever {
         builder.append("?q="+query.replaceAll(" ","%20"));
         if (pages !=0)
             builder.append("&limit="+pages);
+        System.out.println(builder.toString());
         return builder.toString();
     }
 

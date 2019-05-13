@@ -1,9 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
 
-import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Character.Character;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage.CharacterPage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.MangaPage.MangaPage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Person.PersonPage.PersonPage;
 
 /**
  * This file is part of Jikan4java.
@@ -24,10 +24,10 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
  * @author github.com/doomsdayrs
  */
 public enum  Types {
-    ANIME("anime",Anime.class),
-    MANGA("manga", Manga.class),
-    PERSON("person", Person.class),
-    CHARACTER("character", Character.class);
+    ANIME("anime", AnimePage.class),
+    MANGA("manga", MangaPage.class),
+    PERSON("person", PersonPage.class),
+    CHARACTER("character", CharacterPage.class);
     private final String type;
     private final Class c;
     Types(String type, Class c){
