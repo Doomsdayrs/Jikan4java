@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres;
 
 /**
  * This file is part of Jikan4java.
@@ -18,7 +18,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaGenres {
+public enum AnimeGenres {
     ACTION(1),
     ADVENTURE(2),
     CARS(3),
@@ -59,15 +59,13 @@ public enum MangaGenres {
     MILITARY(38),
     POLICE(39),
     PSYCHOLOGICAL(40),
-    SEINEN(41),
-    JOSEI(42),
-    DOUJINSHI(43),
-    GENDER_BENDER(44),
-    THRILLER(45);
+    THRILLER(41),
+    SEINEN(42),
+    JOSEI(43);
 
     final int id;
 
-    MangaGenres(int id) {
+    AnimeGenres(int id) {
         this.id = id;
     }
 

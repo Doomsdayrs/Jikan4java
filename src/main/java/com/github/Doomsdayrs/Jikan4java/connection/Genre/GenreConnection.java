@@ -5,11 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.AnimeGenres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.MangaGenres;
-import org.json.simple.parser.ParseException;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -43,8 +41,6 @@ public class GenreConnection extends Retriever {
      *
      * @param genreID The genre ID
      * @return GenreSearchAnimePage
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<GenreSearchMangaPage> searchMangaGenre(MangaGenres genreID) {
         return searchMangaGenre(genreID, 1);
@@ -55,8 +51,6 @@ public class GenreConnection extends Retriever {
      *
      * @param genreID The genre ID
      * @return GenreSearchMangaPage
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<GenreSearchAnimePage> searchAnimeGenre(AnimeGenres genreID) {
         return searchAnimeGenre(genreID, 1);
@@ -70,8 +64,6 @@ public class GenreConnection extends Retriever {
      * @param genreID The genre ID
      * @param page    The page number to go to, 0 should be the default unless you know else wise
      * @return GenreSearchAnimePage
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<GenreSearchMangaPage> searchMangaGenre(MangaGenres genreID, int page) {
         return retrieve(GenreSearchAnimePage.class, baseURL + "/genre/anime/" + genreID.getId() + "/" + page);
@@ -83,8 +75,6 @@ public class GenreConnection extends Retriever {
      * @param genreID The genre ID
      * @param page    the page number to go to, 0 should be the default unless you know else wise
      * @return GenreSearchMangaPage
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<GenreSearchAnimePage> searchAnimeGenre(AnimeGenres genreID, int page) {
         return retrieve(GenreSearchMangaPage.class, baseURL + "/genre/manga/" + genreID.getId() + "/" + page);

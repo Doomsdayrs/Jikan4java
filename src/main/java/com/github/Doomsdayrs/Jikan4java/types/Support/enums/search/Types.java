@@ -1,8 +1,11 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.search;
 
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Character.CharacterPage.CharacterPage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.MangaPage.MangaPage;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.PersonPage.PersonPage;
 
 /**
@@ -23,20 +26,27 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Person.PersonPage.PersonPage;
  *
  * @author github.com/doomsdayrs
  */
-public enum  Types {
-    ANIME("anime", AnimePage.class),
-    MANGA("manga", MangaPage.class),
-    PERSON("person", PersonPage.class),
-    CHARACTER("character", CharacterPage.class);
+public enum Types {
+    ANIME("anime", AnimePage.class, Anime.class),
+    MANGA("manga", MangaPage.class, Manga.class),
+    PERSON("person", PersonPage.class, Person.class),
+    CHARACTER("character", CharacterPage.class, Character.class);
     private final String type;
-    private final Class c;
-    Types(String type, Class c){
+    private final Class a;
+    private final Class b;
+
+    Types(String type, Class a, Class b) {
         this.type = type;
-        this.c = c;
+        this.a = a;
+        this.b = b;
     }
 
-    public Class getC() {
-        return c;
+    public Class getA() {
+        return a;
+    }
+
+    public Class getB() {
+        return b;
     }
 
     @Override

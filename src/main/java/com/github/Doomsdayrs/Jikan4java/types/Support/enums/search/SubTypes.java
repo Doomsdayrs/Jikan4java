@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.search;
 
 /**
  * This file is part of Jikan4java.
@@ -18,20 +18,28 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
  *
  * @author github.com/doomsdayrs
  */
-public enum Stati {
-    AIRING("airing"),
-    COMPLETED("completed"),
-    COMPLETE("complete"),
-    TBA("tba"),
-    UPCOMING("upcoming");
+public enum SubTypes {
+    TV("tv"),
+    OVA("ova"),
+    MOVIE("movie"),
+    SPECIAL("special"),
+    ONA("ona"),
+    MUSIC("music"),
+    MANGA("manga"),
+    NOVEL("novel"),
+    ONESHOT("oneshot"),
+    DOUJIN("doujin"),
+    MANHWA("manhwa"),
+    MANHUA("manhua");
 
-    private final String status;
-    Stati(String status){
-        this.status = status;
+    private final String type;
+
+    SubTypes(String type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
-        return status;
+        return type;
     }
 }

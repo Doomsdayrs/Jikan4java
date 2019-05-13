@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
+package com.github.Doomsdayrs.Jikan4java.exceptions;
 
 /**
  * This file is part of Jikan4java.
@@ -14,32 +14,24 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 13 / May / 2019
+ * 13 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum SubTypes {
-    TV("tv"),
-    OVA("ova"),
-    MOVIE("movie"),
-    SPECIAL("special"),
-    ONA("ona"),
-    MUSIC("music"),
-    MANGA("manga"),
-    NOVEL("novel"),
-    ONESHOT("oneshot"),
-    DOUJIN("doujin"),
-    MANHWA("manhwa"),
-    MANHUA("manhua");
-
-    private final String type;
-
-    SubTypes(String type) {
-        this.type = type;
+public class IncompatibleSetException extends Exception {
+    public IncompatibleSetException() {
+        super();
     }
 
-    @Override
-    public String toString() {
-        return type;
+    public IncompatibleSetException(String message) {
+        super(message);
+    }
+
+    public IncompatibleSetException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public IncompatibleSetException(Throwable cause) {
+        super(cause);
     }
 }

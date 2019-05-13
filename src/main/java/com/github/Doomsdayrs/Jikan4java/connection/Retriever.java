@@ -52,11 +52,15 @@ public class Retriever {
         builder = new Request.Builder();
     }
 
+    protected ResponseBody request(String url) throws IOException {
+        Request request = builder.url(url).build();
+        return client.newCall(request).execute().body();
+    }
+
     protected CompletableFuture retrieve(Class target, String url) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                Request request = builder.url(url).build();
-                ResponseBody responseBody = client.newCall(request).execute().body();
+                ResponseBody responseBody = request(url);
                 if (responseBody != null) {
                     JSONObject object = ((JSONObject) jsonParser.parse(responseBody.string()));
                     if (!object.containsKey("error"))

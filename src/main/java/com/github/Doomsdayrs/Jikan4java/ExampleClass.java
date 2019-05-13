@@ -1,11 +1,12 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Search;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Types;
-import org.json.simple.parser.ParseException;
+import com.github.Doomsdayrs.Jikan4java.connection.search.animeManga.MangaSearch;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Stati;
 
-import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This file is part of Jikan4java.
@@ -32,7 +33,7 @@ public class ExampleClass {
      *
      * @param args Args
      */
-    public static void main(String[] args) throws InterruptedException, IOException, ParseException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
         /*
         AnimeConnection animeConnection = new AnimeConnection();
         CharacterConnection characterConnection = new CharacterConnection();
@@ -105,12 +106,25 @@ public class ExampleClass {
 
 */
         // Well, after this point you should get an idea, use code completion or decompile the classes to see what are methods available;
+        int a = 0;
+        MangaSearch search = new MangaSearch().setQuery("boku");
+        search.setLimit(2);
+        search.addGenre(MangaGenres.ACTION);
+        search.setStatus(Stati.COMPLETE);
 
-        Search<AnimePage> search = new Search(Types.ANIME);
-        search = search.setQuery("boku no");
-        search.get().whenCompleteAsync((animePage, throwable) -> {
-            System.out.println(animePage);
-        });
+        CompletableFuture completableFuture = search.get();
+        while (!completableFuture.isDone()) {
+            a++;
+        }
+        System.out.println(completableFuture.get());
+
+        TimeUnit.SECONDS.sleep(1);
+
+        completableFuture = search.getFirst();
+        while (!completableFuture.isDone()) {
+            a++;
+        }
+        System.out.println(completableFuture.get());
 
     }
 
