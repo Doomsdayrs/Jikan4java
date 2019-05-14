@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  * @author github.com/doomsdayrs
  */
+@Deprecated
 public abstract class Connection extends Retriever {
 
     public Connection() {

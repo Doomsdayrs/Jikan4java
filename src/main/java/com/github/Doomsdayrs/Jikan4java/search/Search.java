@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.connection.search;
+package com.github.Doomsdayrs.Jikan4java.search;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

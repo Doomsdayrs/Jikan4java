@@ -9,9 +9,7 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Manga.MangaTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Person.PersonTop;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Top;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Tops;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -49,10 +47,8 @@ public class TopConnection extends Retriever {
      * @param pageNumber Should be 0 by default, Each page has 50 entries; Page 1 would be the next page, so 50 - 100
      * @param subtype    The sub category to search for. One at a time only.
      * @return Top object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public CompletableFuture<Top> search(Tops tops, int pageNumber, String subtype) throws IOException, ParseException {
+    public CompletableFuture<Top> search(Tops tops, int pageNumber, String subtype) {
         if (tops == null) throw new EnumConstantNotPresentException(Tops.class, "Tops type not present!");
         if (subtype == null) subtype = "";
 
@@ -86,10 +82,8 @@ public class TopConnection extends Retriever {
      *
      * @param tops What type of media: anime, manga, people, characters
      * @return Top object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public CompletableFuture<Top> search(Tops tops) throws IOException, ParseException {
+    public CompletableFuture<Top> search(Tops tops) {
         return search(tops, 0, null);
     }
 }

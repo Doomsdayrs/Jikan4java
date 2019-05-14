@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres;
 
 /**
  * This file is part of Jikan4java.
@@ -14,23 +14,12 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 11 / May / 2019
+ * 14 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum Season {
-    SUMMER("summer"),
-    SPRING("spring"),
-    FALL("fall"),
-    WINTER("winter");
-    private final String season;
+public interface Genres {
+    public int getId();
 
-    Season(String season) {
-        this.season = season;
-    }
-
-    @Override
-    public String toString() {
-        return season;
-    }
+    public String getType();
 }

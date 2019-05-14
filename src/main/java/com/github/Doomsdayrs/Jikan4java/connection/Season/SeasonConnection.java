@@ -47,19 +47,9 @@ public class SeasonConnection extends Retriever {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<SeasonSearch> seasonSearch(int year, Season season) throws IOException, ParseException {
-        switch (season) {
-            case FALL:
-                return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/fall");
-            case SPRING:
-                return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/spring");
-            case SUMMER:
-                return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/summer");
-            case WINTER:
-                return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/winter");
-            default:
-                return null;
-        }
+    public CompletableFuture<SeasonSearch> seasonSearch(int year, Season season) {
+        return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/" + season);
+
     }
 
     /**
@@ -69,7 +59,7 @@ public class SeasonConnection extends Retriever {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<SeasonSearch> seasonLater() throws IOException, ParseException {
+    public CompletableFuture<SeasonSearch> seasonLater() {
         return retrieve(SeasonSearch.class, baseURL + "/season/later");
     }
 
@@ -80,7 +70,7 @@ public class SeasonConnection extends Retriever {
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
-    public CompletableFuture<SeasonArchive> seasonArchive() throws IOException, ParseException {
+    public CompletableFuture<SeasonArchive> seasonArchive() {
         return retrieve(SeasonArchive.class, baseURL + "/season/archive");
     }
 }

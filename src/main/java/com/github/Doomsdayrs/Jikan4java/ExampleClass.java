@@ -1,12 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.connection.search.animeManga.MangaSearch;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Stati;
+import com.github.Doomsdayrs.Jikan4java.connection.Genre.GenreConnection;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * This file is part of Jikan4java.
@@ -106,7 +103,7 @@ public class ExampleClass {
 
 */
         // Well, after this point you should get an idea, use code completion or decompile the classes to see what are methods available;
-        int a = 0;
+ /*       int a = 0;
         MangaSearch search = new MangaSearch().setQuery("boku");
         search.setLimit(2);
         search.addGenre(MangaGenres.ACTION);
@@ -125,7 +122,8 @@ public class ExampleClass {
             a++;
         }
         System.out.println(completableFuture.get());
-
+*/
+        new GenreConnection().searchGenre(AnimeGenres.ACTION).thenAccept(System.out::println);
     }
 
 }

@@ -6,6 +6,7 @@ import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.Genres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
 
 import java.util.concurrent.CompletableFuture;
@@ -28,13 +29,73 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class GenreConnection extends Retriever {
+public class GenreConnection<T> extends Retriever {
+
+
     /**
-     * Constructor
+     * Constructor, Use GenreSearchMangaPage or GenreSearchAnimePage as type parameters
      */
     public GenreConnection() {
         super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
     }
+
+
+    /**
+     * Searches for Anime/manga by genre, Returns first page
+     *
+     * @param genreID The genre ID
+     * @return GenreSearchMangaPage
+     */
+    public CompletableFuture<GenreSearchAnimePage> searchGenre(AnimeGenres genreID) {
+        return (CompletableFuture<GenreSearchAnimePage>) searchGenrePage(genreID, 1);
+    }
+
+    /**
+     * Searches for Anime/manga by genre, Returns first page
+     *
+     * @param genreID The genre ID
+     * @return GenreSearchMangaPage
+     */
+    public CompletableFuture<GenreSearchMangaPage> searchGenre(MangaGenres genreID) {
+        return (CompletableFuture<GenreSearchMangaPage>) searchGenrePage(genreID, 1);
+    }
+
+    /**
+     * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
+     *
+     * @param genreID The genre ID
+     * @param page    The page number to go to, 0 should be the default unless you know else wise
+     * @return GenreSearchAnimePage
+     */
+    public CompletableFuture<GenreSearchAnimePage> searchGenre(AnimeGenres genreID, int page) {
+        return (CompletableFuture<GenreSearchAnimePage>) searchGenrePage(genreID, page);
+    }
+
+    /**
+     * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
+     *
+     * @param genreID The genre ID
+     * @param page    The page number to go to, 0 should be the default unless you know else wise
+     * @return GenreSearchAnimePage
+     */
+    public CompletableFuture<GenreSearchMangaPage> searchGenre(MangaGenres genreID, int page) {
+        return (CompletableFuture<GenreSearchMangaPage>) searchGenrePage(genreID, page);
+
+    }
+
+    /**
+     * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
+     *
+     * @param genreID The genre ID
+     * @param page    The page number to go to, 0 should be the default unless you know else wise
+     * @return GenreSearchAnimePage
+     */
+    public CompletableFuture<T> searchGenrePage(Genres genreID, int page) {
+        return retrieve(GenreSearchAnimePage.class, baseURL + "/genre/" + genreID.getType() + "/" + genreID.getId() + "/" + page);
+    }
+
+
+
 
     /**
      * Searches for manga by ID, Returns first page
@@ -42,6 +103,7 @@ public class GenreConnection extends Retriever {
      * @param genreID The genre ID
      * @return GenreSearchAnimePage
      */
+    @Deprecated
     public CompletableFuture<GenreSearchMangaPage> searchMangaGenre(MangaGenres genreID) {
         return searchMangaGenre(genreID, 1);
     }
@@ -52,10 +114,10 @@ public class GenreConnection extends Retriever {
      * @param genreID The genre ID
      * @return GenreSearchMangaPage
      */
+    @Deprecated
     public CompletableFuture<GenreSearchAnimePage> searchAnimeGenre(AnimeGenres genreID) {
         return searchAnimeGenre(genreID, 1);
     }
-
 
 
     /**
@@ -65,6 +127,7 @@ public class GenreConnection extends Retriever {
      * @param page    The page number to go to, 0 should be the default unless you know else wise
      * @return GenreSearchAnimePage
      */
+    @Deprecated
     public CompletableFuture<GenreSearchMangaPage> searchMangaGenre(MangaGenres genreID, int page) {
         return retrieve(GenreSearchAnimePage.class, baseURL + "/genre/anime/" + genreID.getId() + "/" + page);
     }
@@ -76,6 +139,7 @@ public class GenreConnection extends Retriever {
      * @param page    the page number to go to, 0 should be the default unless you know else wise
      * @return GenreSearchMangaPage
      */
+    @Deprecated
     public CompletableFuture<GenreSearchAnimePage> searchAnimeGenre(AnimeGenres genreID, int page) {
         return retrieve(GenreSearchMangaPage.class, baseURL + "/genre/manga/" + genreID.getId() + "/" + page);
     }

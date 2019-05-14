@@ -1,4 +1,7 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.connector;
+
+import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonArchive.SeasonArchive;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonSearch;
 
 /**
  * This file is part of Jikan4java.
@@ -14,23 +17,33 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 11 / May / 2019
+ * 14 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum Season {
-    SUMMER("summer"),
-    SPRING("spring"),
-    FALL("fall"),
-    WINTER("winter");
-    private final String season;
+public enum Type {
+    SEASON("season", SeasonSearch.class, SeasonArchive.class);
 
-    Season(String season) {
-        this.season = season;
+    private final String type;
+    private final Class a;
+    private final Class b;
+
+    Type(String type, Class a, Class b) {
+        this.type = type;
+        this.a = a;
+        this.b = b;
+    }
+
+    public Class getA() {
+        return a;
+    }
+
+    public Class getB() {
+        return b;
     }
 
     @Override
     public String toString() {
-        return season;
+        return type;
     }
 }

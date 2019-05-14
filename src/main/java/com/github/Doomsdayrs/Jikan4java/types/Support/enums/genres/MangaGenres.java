@@ -18,7 +18,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres;
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaGenres {
+public enum MangaGenres implements Genres {
     ACTION(1),
     ADVENTURE(2),
     CARS(3),
@@ -66,6 +66,7 @@ public enum MangaGenres {
     THRILLER(45);
 
     final int id;
+    final String type = "manga";
 
     MangaGenres(int id) {
         this.id = id;
@@ -73,6 +74,11 @@ public enum MangaGenres {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 
     @Override

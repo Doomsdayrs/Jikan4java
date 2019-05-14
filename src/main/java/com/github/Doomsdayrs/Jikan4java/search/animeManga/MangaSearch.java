@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.connection.search.animeManga;
+package com.github.Doomsdayrs.Jikan4java.search.animeManga;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.MangaPage.MangaPage;

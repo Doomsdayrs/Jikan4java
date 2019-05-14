@@ -1,4 +1,8 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
+package com.github.Doomsdayrs.Jikan4java.connection;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.connector.Type;
 
 /**
  * This file is part of Jikan4java.
@@ -14,23 +18,17 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 11 / May / 2019
+ * 14 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum Season {
-    SUMMER("summer"),
-    SPRING("spring"),
-    FALL("fall"),
-    WINTER("winter");
-    private final String season;
+public class Connector extends Retriever {
+    private Type type;
+    private Class aClass;
 
-    Season(String season) {
-        this.season = season;
-    }
-
-    @Override
-    public String toString() {
-        return season;
+    public Connector(Type type) {
+        super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
+        this.aClass = type.getA();
+        this.type = type;
     }
 }
