@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.connection.Genre;
+package com.github.Doomsdayrs.Jikan4java.connection.types;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

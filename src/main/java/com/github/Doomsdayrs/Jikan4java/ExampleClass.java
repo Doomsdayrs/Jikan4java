@@ -1,7 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Genre.GenreConnection;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.top.AnimeTops;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.top.Tops;
 
 import java.util.concurrent.ExecutionException;
 
@@ -123,7 +123,7 @@ public class ExampleClass {
         }
         System.out.println(completableFuture.get());
 */
-        new GenreConnection().searchGenre(AnimeGenres.ACTION).thenAccept(System.out::println);
+        System.out.println(Tops.ANIME.compatible(AnimeTops.OVA));
     }
 
 }

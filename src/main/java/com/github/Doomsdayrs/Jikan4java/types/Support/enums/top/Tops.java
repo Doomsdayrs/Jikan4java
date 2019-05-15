@@ -1,6 +1,9 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.top;
 
-import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime.AnimeTop;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character.CharacterTop;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Manga.MangaTop;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Person.PersonTop;
 
 /**
  * This file is part of Jikan4java.
@@ -20,23 +23,29 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
  *
  * @author github.com/doomsdayrs
  */
-public enum Days {
-    MONDAY("monday", Monday.class),
-    TUESDAY("tuesday", Tuesday.class),
-    WEDNESDAY("wednesday", Wednesday.class),
-    THURSDAY("thursday", Thursday.class),
-    FRIDAY("friday", Friday.class),
-    SATURDAY("saturday", Saturday.class),
-    SUNDAY("sunday", Sunday.class),
-    OTHER("other", Other.class),
-    UNKNOWN("unknown", Unknown.class);
-
+public enum Tops {
+    ANIME("anime", AnimeTop.class),
+    MANGA("manga", MangaTop.class),
+    PEOPLE("people", PersonTop.class),
+    CHARACTERS("characters", CharacterTop.class);
     private final String type;
     private final Class aClass;
 
-    Days(String type, Class aClass) {
+    Tops(String type, Class aClass) {
         this.type = type;
         this.aClass = aClass;
+    }
+
+    public boolean compatible(TopSubType topSubType) {
+        if (this.equals(PEOPLE) || this.equals(CHARACTERS))
+            return false;
+        if (topSubType != null) {
+            if (this.equals(ANIME))
+                return topSubType.getClass().equals(AnimeTops.class);
+            if (this.equals(MANGA))
+                return topSubType.getClass().equals(MangaTops.class);
+        }
+        return false;
     }
 
     public Class getaClass() {

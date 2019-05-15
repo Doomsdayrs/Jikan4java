@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.top;
 
 /**
  * This file is part of Jikan4java.
@@ -14,13 +14,9 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 11 / May / 2019
+ * 15 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum Tops {
-    ANIME(),
-    MANGA,
-    PEOPLE(),
-    CHARACTERS()
+public interface TopSubType {
 }

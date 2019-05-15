@@ -1,6 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
-
-import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
+package com.github.Doomsdayrs.Jikan4java.exceptions;
 
 /**
  * This file is part of Jikan4java.
@@ -16,35 +14,24 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 11 / May / 2019
+ * 15 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum Days {
-    MONDAY("monday", Monday.class),
-    TUESDAY("tuesday", Tuesday.class),
-    WEDNESDAY("wednesday", Wednesday.class),
-    THURSDAY("thursday", Thursday.class),
-    FRIDAY("friday", Friday.class),
-    SATURDAY("saturday", Saturday.class),
-    SUNDAY("sunday", Sunday.class),
-    OTHER("other", Other.class),
-    UNKNOWN("unknown", Unknown.class);
-
-    private final String type;
-    private final Class aClass;
-
-    Days(String type, Class aClass) {
-        this.type = type;
-        this.aClass = aClass;
+public class IncompatibleEnumException extends Exception {
+    public IncompatibleEnumException() {
+        super();
     }
 
-    public Class getaClass() {
-        return aClass;
+    public IncompatibleEnumException(String message) {
+        super(message);
     }
 
-    @Override
-    public String toString() {
-        return type;
+    public IncompatibleEnumException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public IncompatibleEnumException(Throwable cause) {
+        super(cause);
     }
 }

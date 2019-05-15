@@ -6,9 +6,7 @@ import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonArchive.SeasonArchive;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonSearch;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Season;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -44,8 +42,6 @@ public class SeasonConnection extends Retriever {
      * @param year   Year
      * @param season Season
      * @return SeasonSearchObject
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<SeasonSearch> seasonSearch(int year, Season season) {
         return retrieve(SeasonSearch.class, baseURL + "/season/" + year + "/" + season);
@@ -56,8 +52,6 @@ public class SeasonConnection extends Retriever {
      * Returns next season of anime
      *
      * @return SeasonSearchObject
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<SeasonSearch> seasonLater() {
         return retrieve(SeasonSearch.class, baseURL + "/season/later");
@@ -67,8 +61,6 @@ public class SeasonConnection extends Retriever {
      * Returns archive of all possible seasons and years
      *
      * @return SeasonArchive
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<SeasonArchive> seasonArchive() {
         return retrieve(SeasonArchive.class, baseURL + "/season/archive");

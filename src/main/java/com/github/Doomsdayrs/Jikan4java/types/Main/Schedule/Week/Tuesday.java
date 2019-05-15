@@ -24,7 +24,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Tuesday extends Day {
+public class Tuesday implements Day {
     @JsonProperty("request_hash")
     public String request_hash;
     @JsonProperty("request_cached")

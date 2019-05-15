@@ -3,12 +3,9 @@ package com.github.Doomsdayrs.Jikan4java.connection.Top;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Anime.AnimeTop;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Character.CharacterTop;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Manga.MangaTop;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Objects.Person.PersonTop;
+import com.github.Doomsdayrs.Jikan4java.exceptions.IncompatibleEnumException;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Top;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Tops;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.top.*;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -32,7 +29,6 @@ import java.util.concurrent.CompletableFuture;
  */
 public class TopConnection extends Retriever {
 
-
     /**
      * Constructor
      */
@@ -41,50 +37,129 @@ public class TopConnection extends Retriever {
     }
 
     /**
-     * Searches the top charts of MAL
-     *
-     * @param tops       What type of media: anime, manga, people, characters
-     * @param pageNumber Should be 0 by default, Each page has 50 entries; Page 1 would be the next page, so 50 - 100
-     * @param subtype    The sub category to search for. One at a time only.
-     * @return Top object
-     */
-    public CompletableFuture<Top> search(Tops tops, int pageNumber, String subtype) {
-        if (tops == null) throw new EnumConstantNotPresentException(Tops.class, "Tops type not present!");
-        if (subtype == null) subtype = "";
-
-
-        boolean optionals = false;
-        String optional = "";
-        if (!subtype.equals("") || pageNumber != 0) {
-            optionals = true;
-        }
-
-        if (optionals) {
-            optional = "/" + pageNumber + "/" + subtype;
-        }
-        switch (tops) {
-            case ANIME:
-                return retrieve(AnimeTop.class, baseURL + "/top/anime" + optional);
-            case MANGA:
-                return retrieve(MangaTop.class, baseURL + "/top/manga" + optional);
-            case PEOPLE:
-                return retrieve(PersonTop.class, baseURL + "/top/people" + optional);
-            case CHARACTERS:
-                return retrieve(CharacterTop.class, baseURL + "/top/characters" + optional);
-            default:
-                return null;
-        }
-    }
-
-
-    /**
      * Searches the top charts of MAL, with all default cases
      *
      * @param tops What type of media: anime, manga, people, characters
      * @return Top object
      */
-    public CompletableFuture<Top> search(Tops tops) {
-        return search(tops, 0, null);
+    public CompletableFuture<Top> search(Tops tops) throws IncompatibleEnumException {
+        return searchCore(tops, 0, null);
+    }
+
+    /**
+     * Searches the top charts of MAL, with subtype defaulted
+     *
+     * @param tops       What type of media: anime, manga, people, characters
+     * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
+     * @return Top object
+     */
+    public CompletableFuture<Top> search(Tops tops, int pageNumber) throws IncompatibleEnumException {
+        return searchCore(tops, pageNumber, null);
+    }
+
+
+    /**
+     * Searches the top charts of MAL, page defaulted
+     *
+     * @param tops    What type of media: anime, manga, people, characters
+     * @param subtype Shared subcategory to search for.
+     * @return Top object
+     */
+    public CompletableFuture<Top> search(Tops tops, SharedTops subtype) throws IncompatibleEnumException {
+        return searchSub(tops, subtype);
+    }
+
+    /**
+     * Searches the top charts of MAL, page defaulted
+     *
+     * @param tops    What type of media: anime, manga, people, characters
+     * @param subtype The Anime subcategory to search for.
+     * @return Top object
+     */
+    public CompletableFuture<Top> search(Tops tops, AnimeTops subtype) throws IncompatibleEnumException {
+        return searchSub(tops, subtype);
+    }
+
+    /**
+     * Searches the top charts of MAL, page defaulted
+     *
+     * @param tops    What type of media: anime, manga, people, characters
+     * @param subtype The Manga subcategory to search for.
+     * @return Top object
+     */
+    public CompletableFuture<Top> search(Tops tops, MangaTops subtype) throws IncompatibleEnumException {
+        return searchSub(tops, subtype);
+    }
+
+    /**
+     * Searches the top charts of MAL, with subtype defaulted
+     *
+     * @param tops    What type of media: anime, manga, people, characters
+     * @param subtype The sub category to search for.
+     * @return Top object
+     */
+    public CompletableFuture<Top> searchSub(Tops tops, TopSubType subtype) throws IncompatibleEnumException {
+        return searchCore(tops, 0, subtype);
+    }
+
+
+    /**
+     * Searches the top charts of MAL
+     *
+     * @param tops       What type of media: anime, manga, people, characters
+     * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
+     * @param subtype    The sub category to search for.
+     * @return Top object
+     */
+    public CompletableFuture<Top> search(Tops tops, int pageNumber, AnimeTops subtype) throws IncompatibleEnumException {
+        return searchCore(tops, pageNumber, subtype);
+    }
+
+    /**
+     * Searches the top charts of MAL
+     *
+     * @param tops       What type of media: anime, manga, people, characters
+     * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
+     * @param subtype    The sub category to search for.
+     * @return Top object
+     */
+    public CompletableFuture<Top> search(Tops tops, int pageNumber, MangaTops subtype) throws IncompatibleEnumException {
+        return searchCore(tops, pageNumber, subtype);
+    }
+
+    /**
+     * Searches the top charts of MAL
+     *
+     * @param tops       What type of media: anime, manga, people, characters
+     * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
+     * @param subtype    The sub category to search for.
+     * @return Top object
+     */
+    public CompletableFuture<Top> search(Tops tops, int pageNumber, SharedTops subtype) throws IncompatibleEnumException {
+        return searchCore(tops, pageNumber, subtype);
+    }
+
+
+    /**
+     * Searches the top charts of MAL
+     *
+     * @param tops       What type of media: anime, manga, people, characters
+     * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
+     * @param subtype    The sub category to search for.
+     * @return Top object
+     */
+    public CompletableFuture<Top> searchCore(Tops tops, int pageNumber, TopSubType subtype) throws IncompatibleEnumException {
+        if (tops == null) throw new EnumConstantNotPresentException(Tops.class, "Tops type not present!");
+        StringBuilder options = new StringBuilder();
+        if (pageNumber == 0) pageNumber = 1;
+        options.append("/");
+        options.append(pageNumber);
+        if (subtype != null) {
+            if (tops.compatible(subtype))
+                options.append("/").append(subtype);
+            else throw new IncompatibleEnumException(tops + " is not compatible with " + subtype);
+        }
+        return retrieve(tops.getaClass(), baseURL + "/top/" + tops + options.toString());
     }
 }
 

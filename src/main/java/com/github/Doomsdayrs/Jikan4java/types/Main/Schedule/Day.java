@@ -1,7 +1,5 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.Schedule;
 
-import java.util.ArrayList;
-
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -20,20 +18,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Day {
-    public String request_hash;
-    public boolean request_cached;
-    public int request_cache_expiry;
-    public ArrayList<SubAnime> day;
+public interface Day {
 
-    @Override
-    public String toString() {
-        return "DaySchedule{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", day=" + day +
-                '}';
-    }
 }
 

@@ -1,6 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums;
-
-import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.top;
 
 /**
  * This file is part of Jikan4java.
@@ -16,31 +14,22 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 11 / May / 2019
+ * 15 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum Days {
-    MONDAY("monday", Monday.class),
-    TUESDAY("tuesday", Tuesday.class),
-    WEDNESDAY("wednesday", Wednesday.class),
-    THURSDAY("thursday", Thursday.class),
-    FRIDAY("friday", Friday.class),
-    SATURDAY("saturday", Saturday.class),
-    SUNDAY("sunday", Sunday.class),
-    OTHER("other", Other.class),
-    UNKNOWN("unknown", Unknown.class);
+public enum MangaTops implements TopSubType {
+    MANGA("manga"),
+    NOVELS("novels"),
+    ONESHOTS("oneshots"),
+    DOUJIN("doujin"),
+    MANHWA("manhwa"),
+    MANHUA("manhua");
 
     private final String type;
-    private final Class aClass;
 
-    Days(String type, Class aClass) {
+    MangaTops(String type) {
         this.type = type;
-        this.aClass = aClass;
-    }
-
-    public Class getaClass() {
-        return aClass;
     }
 
     @Override

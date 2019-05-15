@@ -5,11 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Day;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Schedule;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Week.*;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Days;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -32,7 +29,6 @@ import java.util.concurrent.CompletableFuture;
  */
 public class ScheduleConnection extends Retriever {
 
-
     /**
      * Constructor
      */
@@ -44,45 +40,22 @@ public class ScheduleConnection extends Retriever {
      * Returns current schedule for all anime
      *
      * @return Schedule
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public CompletableFuture<Schedule> getCurrentSchedule() throws IOException, ParseException {
-        return retrieve(Schedule.class, baseURL + "/schedule/");
+    public CompletableFuture<Schedule> getCurrentSchedule() {
+        return retrieve(Schedule.class, baseURL + "/schedule");
     }
 
 
     /**
-     * Returns all anime's schedule on a certain day
+     * Returns all anime schedule on a certain day
      *
      * @param day Day to retrieve, Can also be other or unknown
      * @return DaySchedule object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public CompletableFuture<Day> scheduleSearch(Days day) throws IOException, ParseException {
-        switch (day) {
-            case MONDAY:
-                return retrieve(Monday.class, baseURL + "/schedule/monday");
-            case TUESDAY:
-                return retrieve(Tuesday.class, baseURL + "/schedule/tuesday");
-            case WEDNESDAY:
-                return retrieve(Wednesday.class, baseURL + "/schedule/wednesday");
-            case THURSDAY:
-                return retrieve(Thursday.class, baseURL + "/schedule/thursday");
-            case FRIDAY:
-                return retrieve(Friday.class, baseURL + "/schedule/friday");
-            case SATURDAY:
-                return retrieve(Saturday.class, baseURL + "/schedule/saturday");
-            case SUNDAY:
-                return retrieve(Sunday.class, baseURL + "/schedule/sunday");
-            case OTHER:
-                return retrieve(Other.class, baseURL + "/schedule/other");
-            case UNKNOWN:
-                return retrieve(Unknown.class, baseURL + "/schedule/unknown");
-            default:
-                return null;
-        }
+    public CompletableFuture<Day> scheduleSearch(Days day) {
+        if (day != null)
+            return retrieve(day.getaClass(), baseURL + "/schedule/" + day);
+        return null;
     }
 
 }
