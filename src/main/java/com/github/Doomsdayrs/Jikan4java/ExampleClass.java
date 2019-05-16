@@ -1,9 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Connector;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
+import com.github.Doomsdayrs.Jikan4java.search.Search;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.MangaPage.MangaPage;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -124,10 +124,8 @@ public class ExampleClass {
         }
         System.out.println(completableFuture.get());
 */
-        CompletableFuture<Club> a = new Connector().clubSearch(1);
-        int b = 0;
-        while (!a.isDone()) b++;
-        System.out.println(a.get());
+        Search<MangaPage> search = new Search(Types.ANIME);
+
     }
 
 }
