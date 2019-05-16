@@ -23,6 +23,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
+@Deprecated
 public class ClubConnection extends Retriever {
 
     public ClubConnection() {

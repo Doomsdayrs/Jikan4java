@@ -29,6 +29,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
+@Deprecated
 public class GenreConnection<T> extends Retriever {
 
 

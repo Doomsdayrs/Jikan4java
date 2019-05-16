@@ -27,6 +27,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
+@Deprecated
 public class TopConnection extends Retriever {
 
     /**
@@ -42,7 +43,7 @@ public class TopConnection extends Retriever {
      * @param tops What type of media: anime, manga, people, characters
      * @return Top object
      */
-    public CompletableFuture<Top> search(Tops tops) throws IncompatibleEnumException {
+    public CompletableFuture<Top> searchTop(Tops tops) throws IncompatibleEnumException {
         return searchCore(tops, 0, null);
     }
 
@@ -53,7 +54,7 @@ public class TopConnection extends Retriever {
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
      * @return Top object
      */
-    public CompletableFuture<Top> search(Tops tops, int pageNumber) throws IncompatibleEnumException {
+    public CompletableFuture<Top> searchTop(Tops tops, int pageNumber) throws IncompatibleEnumException {
         return searchCore(tops, pageNumber, null);
     }
 
@@ -65,7 +66,7 @@ public class TopConnection extends Retriever {
      * @param subtype Shared subcategory to search for.
      * @return Top object
      */
-    public CompletableFuture<Top> search(Tops tops, SharedTops subtype) throws IncompatibleEnumException {
+    public CompletableFuture<Top> searchTop(Tops tops, SharedTops subtype) throws IncompatibleEnumException {
         return searchSub(tops, subtype);
     }
 
@@ -76,7 +77,7 @@ public class TopConnection extends Retriever {
      * @param subtype The Anime subcategory to search for.
      * @return Top object
      */
-    public CompletableFuture<Top> search(Tops tops, AnimeTops subtype) throws IncompatibleEnumException {
+    public CompletableFuture<Top> searchTop(Tops tops, AnimeTops subtype) throws IncompatibleEnumException {
         return searchSub(tops, subtype);
     }
 
@@ -87,7 +88,7 @@ public class TopConnection extends Retriever {
      * @param subtype The Manga subcategory to search for.
      * @return Top object
      */
-    public CompletableFuture<Top> search(Tops tops, MangaTops subtype) throws IncompatibleEnumException {
+    public CompletableFuture<Top> searchTop(Tops tops, MangaTops subtype) throws IncompatibleEnumException {
         return searchSub(tops, subtype);
     }
 
@@ -111,7 +112,7 @@ public class TopConnection extends Retriever {
      * @param subtype    The sub category to search for.
      * @return Top object
      */
-    public CompletableFuture<Top> search(Tops tops, int pageNumber, AnimeTops subtype) throws IncompatibleEnumException {
+    public CompletableFuture<Top> searchTop(Tops tops, int pageNumber, AnimeTops subtype) throws IncompatibleEnumException {
         return searchCore(tops, pageNumber, subtype);
     }
 
@@ -123,7 +124,7 @@ public class TopConnection extends Retriever {
      * @param subtype    The sub category to search for.
      * @return Top object
      */
-    public CompletableFuture<Top> search(Tops tops, int pageNumber, MangaTops subtype) throws IncompatibleEnumException {
+    public CompletableFuture<Top> searchTop(Tops tops, int pageNumber, MangaTops subtype) throws IncompatibleEnumException {
         return searchCore(tops, pageNumber, subtype);
     }
 
@@ -135,7 +136,7 @@ public class TopConnection extends Retriever {
      * @param subtype    The sub category to search for.
      * @return Top object
      */
-    public CompletableFuture<Top> search(Tops tops, int pageNumber, SharedTops subtype) throws IncompatibleEnumException {
+    public CompletableFuture<Top> searchTop(Tops tops, int pageNumber, SharedTops subtype) throws IncompatibleEnumException {
         return searchCore(tops, pageNumber, subtype);
     }
 

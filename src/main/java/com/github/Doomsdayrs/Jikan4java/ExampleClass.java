@@ -1,8 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.top.AnimeTops;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.top.Tops;
+import com.github.Doomsdayrs.Jikan4java.connection.Connector;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -123,7 +124,10 @@ public class ExampleClass {
         }
         System.out.println(completableFuture.get());
 */
-        System.out.println(Tops.ANIME.compatible(AnimeTops.OVA));
+        CompletableFuture<Club> a = new Connector().clubSearch(1);
+        int b = 0;
+        while (!a.isDone()) b++;
+        System.out.println(a.get());
     }
 
 }

@@ -27,7 +27,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-
+@Deprecated
 public class UserConnection extends Connection {
     /**
      * Constructor
