@@ -55,7 +55,7 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
 
     @Override
     public CompletableFuture<Anime> getFirst() {
-        return (CompletableFuture<Anime>) super.getFirst();
+        return super.getFirst();
     }
 
     @Override
