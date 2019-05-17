@@ -123,7 +123,7 @@ public class ExampleClass {
         System.out.println(completableFuture.get());
 */
 
-        new AnimeSearch().setQuery("boku").getFirst().thenAccept(System.out::println);
+        System.out.println(new AnimeSearch().setQuery("boku").getFirst().get());
     }
 
 }
