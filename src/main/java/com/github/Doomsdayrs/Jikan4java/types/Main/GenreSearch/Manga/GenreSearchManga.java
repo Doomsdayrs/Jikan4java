@@ -1,7 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
+import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Authors;
 import com.github.Doomsdayrs.Jikan4java.types.Support.Genre;

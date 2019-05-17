@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java.connection.Club;
 
-import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
+import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
 
 import java.util.concurrent.CompletableFuture;

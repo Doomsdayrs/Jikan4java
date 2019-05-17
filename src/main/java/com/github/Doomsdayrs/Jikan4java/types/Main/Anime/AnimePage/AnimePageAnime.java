@@ -2,7 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
+import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 
 import java.util.concurrent.CompletableFuture;

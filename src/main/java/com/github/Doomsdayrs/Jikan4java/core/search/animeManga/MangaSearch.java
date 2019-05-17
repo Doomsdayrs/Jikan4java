@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.search.animeManga;
+package com.github.Doomsdayrs.Jikan4java.core.search.animeManga;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.MangaPage.MangaPage;
@@ -6,6 +6,9 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Ratings;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Stati;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.parser.JSONParser;
 
 /**
  * This file is part of Jikan4java.
@@ -33,6 +36,18 @@ public class MangaSearch extends AnimeMangaSearch<MangaPage> {
 
     public MangaSearch(ObjectMapper mapper) {
         super(Types.MANGA, mapper);
+    }
+
+    public MangaSearch(Types type, OkHttpClient client) {
+        super(type, client);
+    }
+
+    public MangaSearch(Types type, JSONParser jsonParser) {
+        super(type, jsonParser);
+    }
+
+    public MangaSearch(Types type, Request.Builder builder) {
+        super(type, builder);
     }
 
     public MangaSearch addGenre(MangaGenres mangaGenres) {

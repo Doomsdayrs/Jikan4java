@@ -26,75 +26,9 @@ Currently working on 1.1.0, the rise of treeeesss
   - [X] Clubs
 
 ## Basic documentation
+[Here](https://github.com/Doomsdayrs/Jikan4java/blob/master/Documentation.md)
 
->How to use things, it's fairly basic. RN it's a find out by yourself since i haven't finished commenting
-```java
-import Jikan4java.types.Anime.AnimeConnection;
-import org.json.simple.parser.ParseException;
-import java.io.IOException;
 
-public class ExampleClass {
-public static void main(String[] args) {
-  AnimeConnection animeConnection = new AnimeConnection();
-        CharacterConnection characterConnection = new CharacterConnection();
-        ClubConnection clubConnection = new ClubConnection();
-        GenreConnection genreConnection = new GenreConnection();
-        MagazineConnection magazineConnection = new MagazineConnection();
-        MangaConnection mangaConnection = new MangaConnection();
-        MetaConnection metaConnection = new MetaConnection();
-        PersonConnection personConnection = new PersonConnection();
-        ProducerConnection producerConnection = new ProducerConnection();
-        ScheduleConnection scheduleConnection = new ScheduleConnection();
-        SeasonConnection seasonConnection = new SeasonConnection();
-        TopConnection topConnection = new TopConnection();
-        UserConnection userConnection = new UserConnection();
-
-        animeConnection.searchAnimeById(1).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-        
-        characterConnection.searchPage("re", 1).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        clubConnection.search(12).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        genreConnection.searchAnimeGenre(AnimeGenres.ACTION).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        genreConnection.searchMangaGenre(MangaGenres.ACTION).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        magazineConnection.searchPage(1, 1).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        mangaConnection.search("Ajin").thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        metaConnection.getStatus().thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        personConnection.search("re").thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        producerConnection.search(16,2).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        scheduleConnection.scheduleSearch(Days.MONDAY).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        seasonConnection.seasonSearch(2018, Season.FALL).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        topConnection.search(Tops.ANIME).thenAccept(System.out::println);
-        TimeUnit.SECONDS.sleep(1);
-
-        userConnection.search("doomsdayrs").thenAccept(System.out::println);
-
-        // Well, after this point you should get an idea, use code completion or decompile the classes to see what are methods available;
-               
-    }
-}
-```
 ## Known issues
 - API issue of user object being returned as an array list when empty. Future update of api will let me return Related fields back to normal
 ## What it relies on 

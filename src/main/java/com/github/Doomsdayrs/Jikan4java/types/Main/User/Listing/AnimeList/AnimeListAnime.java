@@ -1,7 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
+import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Licensors;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Studios;

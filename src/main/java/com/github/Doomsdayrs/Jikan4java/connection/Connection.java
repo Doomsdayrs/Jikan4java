@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.connection;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 
 /**
  * This file is part of Jikan4java.

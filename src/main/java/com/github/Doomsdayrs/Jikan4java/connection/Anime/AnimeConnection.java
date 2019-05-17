@@ -63,22 +63,22 @@ public class AnimeConnection extends Connection {
     }
 
     /**
-     * Searches and returns search result page
+     * Searches and returns core result page
      *
-     * @param title title to search for
+     * @param title title to core for
      * @param page  page number
      * @return AnimePage
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     public CompletableFuture<AnimePage> searchPage(String title, int page) throws IOException, ParseException {
-        return retrieve(AnimePage.class, baseURL + "/search/anime?q=" + title + "&page=" + page);
+        return retrieve(AnimePage.class, baseURL + "/core/anime?q=" + title + "&page=" + page);
     }
 
     /**
      * Searches for Anime by ID
      *
-     * @param id anime id to search for
+     * @param id anime id to core for
      * @return AnimePage
      */
     public CompletableFuture<Anime> searchAnimeById(int id) {
@@ -94,7 +94,7 @@ public class AnimeConnection extends Connection {
      * @throws ParseException ParseException
      */
     private JSONObject searchSite(String search) throws IOException, ParseException {
-        Request request = new Request.Builder().url(baseURL + "/search/anime?q=" + search + "&page=1").build();
+        Request request = new Request.Builder().url(baseURL + "/core/anime?q=" + search + "&page=1").build();
         Response response = client.newCall(request).execute();
 
         JSONParser parser = new JSONParser();

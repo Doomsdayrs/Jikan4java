@@ -1,14 +1,16 @@
-package com.github.Doomsdayrs.Jikan4java.search;
+package com.github.Doomsdayrs.Jikan4java.core.search;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
+import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -41,7 +43,7 @@ public class Search<T> extends Retriever {
     private int limit = 0;
 
     /**
-     * Constructor of search object
+     * Constructor of core object
      *
      * @param type type of object that should be searched for
      */
@@ -52,7 +54,7 @@ public class Search<T> extends Retriever {
     }
 
     /**
-     * Constructor of search object, with ability to have custom mapper
+     * Constructor of core object, with ability to have custom mapper
      *
      * @param type   Type of object that should be searched for
      * @param mapper CustomMapper to be used
@@ -63,6 +65,22 @@ public class Search<T> extends Retriever {
         this.aClass = type.getA();
     }
 
+    public Search(Types type, OkHttpClient client) {
+        super(client);
+        this.type = type;
+    }
+
+    public Search(Types type, JSONParser jsonParser) {
+        super(jsonParser);
+        this.type = type;
+    }
+
+    public Search(Types type, Request.Builder builder) {
+        super(builder);
+        this.type = type;
+    }
+
+
     /**
      * Creates the URL to be used to retrieve the Object
      *
@@ -70,11 +88,10 @@ public class Search<T> extends Retriever {
      */
     protected StringBuilder createURL() {
         StringBuilder builder = new StringBuilder();
-        builder.append(baseURL + "/search/");
+        builder.append(baseURL + "/core/");
         builder.append(type);
         builder.append("?q=").append(query.replaceAll(" ", "%20"));
         if (limit != 0) builder.append("&limit=").append(limit);
-        System.out.println(builder.toString());
         return builder;
     }
 

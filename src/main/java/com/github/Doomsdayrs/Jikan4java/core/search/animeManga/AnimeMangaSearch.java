@@ -1,15 +1,17 @@
-package com.github.Doomsdayrs.Jikan4java.search.animeManga;
+package com.github.Doomsdayrs.Jikan4java.core.search.animeManga;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.search.Search;
+import com.github.Doomsdayrs.Jikan4java.core.search.Search;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Ratings;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Stati;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -51,6 +53,18 @@ class AnimeMangaSearch<T> extends Search<T> {
         super(type, mapper);
     }
 
+    public AnimeMangaSearch(Types type, OkHttpClient client) {
+        super(type, client);
+    }
+
+    public AnimeMangaSearch(Types type, JSONParser jsonParser) {
+        super(type, jsonParser);
+    }
+
+    public AnimeMangaSearch(Types type, Request.Builder builder) {
+        super(type, builder);
+    }
+
     /**
      * Creates the URL, but with addons respective of this class
      *
@@ -64,7 +78,6 @@ class AnimeMangaSearch<T> extends Search<T> {
         if (genres != null) for (Integer integer : genres) builder.append("&genre[]=").append(integer.intValue());
         if (!genreToggle) builder.append("&genre_exclude=").append(0);
         if (score != 0) builder.append("&score=").append(score);
-        System.out.println(builder.toString());
         return builder;
     }
 
@@ -114,7 +127,7 @@ class AnimeMangaSearch<T> extends Search<T> {
     }
 
     /**
-     * Set page to search through
+     * Set page to core through
      *
      * @param page page number
      * @return this

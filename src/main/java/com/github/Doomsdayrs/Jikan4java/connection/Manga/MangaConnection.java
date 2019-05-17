@@ -61,14 +61,14 @@ public class MangaConnection extends Connection {
     }
 
     /**
-     * Searches and returns search result page
+     * Searches and returns core result page
      *
-     * @param title title to search for
+     * @param title title to core for
      * @param page  page number
      * @return MangaPage
      */
     public CompletableFuture<MangaPage> searchPage(String title, int page) {
-        return retrieve(MangaPage.class, baseURL + "/search/manga?q=" + title + "&page=" + page);
+        return retrieve(MangaPage.class, baseURL + "/core/manga?q=" + title + "&page=" + page);
     }
 
     /**
@@ -80,7 +80,7 @@ public class MangaConnection extends Connection {
      * @throws ParseException ParseException
      */
     private JSONObject searchSite(String search) throws IOException, ParseException {
-        Request request = new Request.Builder().url(baseURL + "/search/manga?q=" + search + "&page=1").build();
+        Request request = new Request.Builder().url(baseURL + "/core/manga?q=" + search + "&page=1").build();
         Response response = client.newCall(request).execute();
 
         JSONObject jsonObject = (JSONObject) jsonParser.parse(response.body().string());

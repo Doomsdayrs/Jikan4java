@@ -2,7 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.connection.Producer;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.connection.Retriever;
+import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Producer.ProducerPage;
 import org.json.simple.parser.ParseException;
 
@@ -41,7 +41,7 @@ public class ProducerConnection extends Retriever {
      * Retrieves Producer
      *
      * @param ID   ID of magazine
-     * @param page page to search for
+     * @param page page to core for
      * @return Producer object
      * @throws IOException    IOException
      * @throws ParseException ParseException

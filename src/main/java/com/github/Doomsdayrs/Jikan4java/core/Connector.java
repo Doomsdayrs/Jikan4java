@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.connection;
+package com.github.Doomsdayrs.Jikan4java.core;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +21,9 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.Genres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.top.*;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -46,12 +49,25 @@ import java.util.concurrent.CompletableFuture;
  * @author github.com/doomsdayrs
  */
 public class Connector extends Retriever {
+
     public Connector() {
         super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
     }
 
+    public Connector(OkHttpClient client) {
+        super(client);
+    }
+
     public Connector(ObjectMapper objectMapper) {
         super(objectMapper);
+    }
+
+    public Connector(JSONParser jsonParser) {
+        super(jsonParser);
+    }
+
+    public Connector(Request.Builder builder) {
+        super(builder);
     }
 
     /**
@@ -68,7 +84,7 @@ public class Connector extends Retriever {
      * Retrieves Magazines
      *
      * @param ID   ID of magazine
-     * @param page page to search for
+     * @param page page to core for
      * @return MagazinePage object
      * @throws IOException    IOException
      * @throws ParseException ParseException
@@ -92,7 +108,7 @@ public class Connector extends Retriever {
      * Retrieves Producer
      *
      * @param ID   ID of magazine
-     * @param page page to search for
+     * @param page page to core for
      * @return Producer object
      * @throws IOException    IOException
      * @throws ParseException ParseException
@@ -193,7 +209,7 @@ public class Connector extends Retriever {
      * Searches the top charts of MAL, page defaulted
      *
      * @param tops    What type of media: anime, manga, people, characters
-     * @param subtype Shared subcategory to search for.
+     * @param subtype Shared subcategory to core for.
      * @return Top object
      */
     public CompletableFuture<Top> searchTop(Tops tops, SharedTops subtype) throws IncompatibleEnumException {
@@ -204,7 +220,7 @@ public class Connector extends Retriever {
      * Searches the top charts of MAL, page defaulted
      *
      * @param tops    What type of media: anime, manga, people, characters
-     * @param subtype The Anime subcategory to search for.
+     * @param subtype The Anime subcategory to core for.
      * @return Top object
      */
     public CompletableFuture<Top> searchTop(Tops tops, AnimeTops subtype) throws IncompatibleEnumException {
@@ -215,7 +231,7 @@ public class Connector extends Retriever {
      * Searches the top charts of MAL, page defaulted
      *
      * @param tops    What type of media: anime, manga, people, characters
-     * @param subtype The Manga subcategory to search for.
+     * @param subtype The Manga subcategory to core for.
      * @return Top object
      */
     public CompletableFuture<Top> searchTop(Tops tops, MangaTops subtype) throws IncompatibleEnumException {
@@ -226,7 +242,7 @@ public class Connector extends Retriever {
      * Searches the top charts of MAL, with subtype defaulted
      *
      * @param tops    What type of media: anime, manga, people, characters
-     * @param subtype The sub category to search for.
+     * @param subtype The sub category to core for.
      * @return Top object
      */
     public CompletableFuture<Top> searchTopSub(Tops tops, TopSubType subtype) throws IncompatibleEnumException {
@@ -239,7 +255,7 @@ public class Connector extends Retriever {
      *
      * @param tops       What type of media: anime, manga, people, characters
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
-     * @param subtype    The sub category to search for.
+     * @param subtype    The sub category to core for.
      * @return Top object
      */
     public CompletableFuture<Top> searchTop(Tops tops, int pageNumber, AnimeTops subtype) throws IncompatibleEnumException {
@@ -251,7 +267,7 @@ public class Connector extends Retriever {
      *
      * @param tops       What type of media: anime, manga, people, characters
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
-     * @param subtype    The sub category to search for.
+     * @param subtype    The sub category to core for.
      * @return Top object
      */
     public CompletableFuture<Top> searchTop(Tops tops, int pageNumber, MangaTops subtype) throws IncompatibleEnumException {
@@ -263,7 +279,7 @@ public class Connector extends Retriever {
      *
      * @param tops       What type of media: anime, manga, people, characters
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
-     * @param subtype    The sub category to search for.
+     * @param subtype    The sub category to core for.
      * @return Top object
      */
     public CompletableFuture<Top> searchTop(Tops tops, int pageNumber, SharedTops subtype) throws IncompatibleEnumException {
@@ -276,7 +292,7 @@ public class Connector extends Retriever {
      *
      * @param tops       What type of media: anime, manga, people, characters
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
-     * @param subtype    The sub category to search for.
+     * @param subtype    The sub category to core for.
      * @return Top object
      */
     public CompletableFuture<Top> searchCore(Tops tops, int pageNumber, TopSubType subtype) throws IncompatibleEnumException {

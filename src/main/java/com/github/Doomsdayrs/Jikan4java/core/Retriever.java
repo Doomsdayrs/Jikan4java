@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.connection;
+package com.github.Doomsdayrs.Jikan4java.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.exceptions.RequestError;
@@ -33,6 +33,7 @@ import java.util.concurrent.CompletionException;
  */
 public class Retriever {
     protected final String baseURL = "https://api.jikan.moe/v3";
+
     protected final OkHttpClient client;
     protected final ObjectMapper objectMapper;
     protected final JSONParser jsonParser;
@@ -45,6 +46,23 @@ public class Retriever {
         builder = new Request.Builder();
     }
 
+    /**
+     * Retriever constructor with custom OkHttpClient
+     *
+     * @param client Custom client
+     */
+    public Retriever(OkHttpClient client) {
+        this.client = client;
+        objectMapper = new ObjectMapper();
+        jsonParser = new JSONParser();
+        builder = new Request.Builder();
+    }
+
+    /**
+     * Retriever constructor with custom objectMapper
+     *
+     * @param objectMapper customObject mapper
+     */
     public Retriever(ObjectMapper objectMapper) {
         client = new OkHttpClient();
         this.objectMapper = objectMapper;
@@ -52,12 +70,51 @@ public class Retriever {
         builder = new Request.Builder();
     }
 
+    /**
+     * Retriever constructor with custom jsonParser for whatever reason
+     *
+     * @param jsonParser custom jsonParser
+     */
+    public Retriever(JSONParser jsonParser) {
+        client = new OkHttpClient();
+        objectMapper = new ObjectMapper();
+        this.jsonParser = jsonParser;
+        builder = new Request.Builder();
+    }
+
+    /**
+     * Retriever constructor with custom Request.Builder
+     *
+     * @param builder Custom Request.Builder
+     */
+    public Retriever(Request.Builder builder) {
+        client = new OkHttpClient();
+        objectMapper = new ObjectMapper();
+        jsonParser = new JSONParser();
+        this.builder = builder;
+    }
+
+
+    /**
+     * Request builder
+     *
+     * @param url data to request
+     * @return response from jikan
+     * @throws IOException something went wrong
+     */
     protected ResponseBody request(String url) throws IOException {
         Request request = builder.url(url).build();
         return client.newCall(request).execute().body();
     }
 
-    protected CompletableFuture retrieve(Class target, String url) {
+    /**
+     * Connects to the jikan API and parses incoming data
+     *
+     * @param target what to parse into
+     * @param url    apiURL
+     * @return A completable future of the parsed response
+     */
+    public CompletableFuture retrieve(Class target, String url) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 ResponseBody responseBody = request(url);
@@ -71,8 +128,8 @@ public class Retriever {
                 } else return null;
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
+                return null;
             }
-            return null;
         });
     }
 }

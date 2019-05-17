@@ -62,28 +62,28 @@ public class CharacterConnection extends Connection {
     }
 
     /**
-     * Searches and returns search result page
+     * Searches and returns core result page
      *
-     * @param title title to search for
+     * @param title title to core for
      * @param page  page number
      * @return CharacterPage
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     public CompletableFuture<CharacterPage> searchPage(String title, int page) {
-        return retrieve(CharacterPage.class, baseURL + "/search/character?q=" + title + "&page=" + page);
+        return retrieve(CharacterPage.class, baseURL + "/core/character?q=" + title + "&page=" + page);
     }
 
     /**
      * Searches api for character
      *
-     * @param search The name of the character to search
+     * @param search The name of the character to core
      * @return A json object of the first character
      * @throws IOException    IOException
      * @throws ParseException ParseException
      */
     private JSONObject searchSite(String search) throws IOException, ParseException {
-        Request request = new Request.Builder().url(baseURL + "/search/character?q=" + search + "&page=1").build();
+        Request request = new Request.Builder().url(baseURL + "/core/character?q=" + search + "&page=1").build();
         Response response = client.newCall(request).execute();
 
         JSONObject jsonObject = (JSONObject) jsonParser.parse(response.body().string());
