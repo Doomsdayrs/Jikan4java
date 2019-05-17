@@ -40,7 +40,7 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL, with all default cases
      *
-     * @param tops What type of media: anime, manga, people, characters
+     * @param tops What subType of media: anime, manga, people, characters
      * @return Top object
      */
     public CompletableFuture<Top> searchTop(Tops tops) throws IncompatibleEnumException {
@@ -50,7 +50,7 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL, with subtype defaulted
      *
-     * @param tops       What type of media: anime, manga, people, characters
+     * @param tops       What subType of media: anime, manga, people, characters
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
      * @return Top object
      */
@@ -62,7 +62,7 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL, page defaulted
      *
-     * @param tops    What type of media: anime, manga, people, characters
+     * @param tops    What subType of media: anime, manga, people, characters
      * @param subtype Shared subcategory to core for.
      * @return Top object
      */
@@ -73,7 +73,7 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL, page defaulted
      *
-     * @param tops    What type of media: anime, manga, people, characters
+     * @param tops    What subType of media: anime, manga, people, characters
      * @param subtype The Anime subcategory to core for.
      * @return Top object
      */
@@ -84,7 +84,7 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL, page defaulted
      *
-     * @param tops    What type of media: anime, manga, people, characters
+     * @param tops    What subType of media: anime, manga, people, characters
      * @param subtype The Manga subcategory to core for.
      * @return Top object
      */
@@ -95,7 +95,7 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL, with subtype defaulted
      *
-     * @param tops    What type of media: anime, manga, people, characters
+     * @param tops    What subType of media: anime, manga, people, characters
      * @param subtype The sub category to core for.
      * @return Top object
      */
@@ -107,7 +107,7 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL
      *
-     * @param tops       What type of media: anime, manga, people, characters
+     * @param tops       What subType of media: anime, manga, people, characters
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
      * @param subtype    The sub category to core for.
      * @return Top object
@@ -119,7 +119,7 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL
      *
-     * @param tops       What type of media: anime, manga, people, characters
+     * @param tops       What subType of media: anime, manga, people, characters
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
      * @param subtype    The sub category to core for.
      * @return Top object
@@ -131,7 +131,7 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL
      *
-     * @param tops       What type of media: anime, manga, people, characters
+     * @param tops       What subType of media: anime, manga, people, characters
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
      * @param subtype    The sub category to core for.
      * @return Top object
@@ -144,13 +144,13 @@ public class TopConnection extends Retriever {
     /**
      * Searches the top charts of MAL
      *
-     * @param tops       What type of media: anime, manga, people, characters
+     * @param tops       What subType of media: anime, manga, people, characters
      * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
      * @param subtype    The sub category to core for.
      * @return Top object
      */
     public CompletableFuture<Top> searchCore(Tops tops, int pageNumber, TopSubType subtype) throws IncompatibleEnumException {
-        if (tops == null) throw new EnumConstantNotPresentException(Tops.class, "Tops type not present!");
+        if (tops == null) throw new EnumConstantNotPresentException(Tops.class, "Tops subType not present!");
         StringBuilder options = new StringBuilder();
         if (pageNumber == 0) pageNumber = 1;
         options.append("/");

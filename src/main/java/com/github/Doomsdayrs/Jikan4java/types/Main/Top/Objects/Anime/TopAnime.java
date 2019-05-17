@@ -79,7 +79,7 @@ public class TopAnime extends Retriever {
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 ", image_url='" + image_url + '\'' +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", episodes=" + episodes +
                 ", start_date='" + start_date + '\'' +
                 ", end_date='" + end_date + '\'' +

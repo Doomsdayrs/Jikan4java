@@ -34,7 +34,7 @@ public class GenreConnection<T> extends Retriever {
 
 
     /**
-     * Constructor, Use GenreSearchMangaPage or GenreSearchAnimePage as type parameters
+     * Constructor, Use GenreSearchMangaPage or GenreSearchAnimePage as subType parameters
      */
     public GenreConnection() {
         super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));

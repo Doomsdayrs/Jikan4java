@@ -28,7 +28,7 @@ public class Serializations {
     public String toString() {
         return "Serializations{" +
                 "mal_id=" + mal_id +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

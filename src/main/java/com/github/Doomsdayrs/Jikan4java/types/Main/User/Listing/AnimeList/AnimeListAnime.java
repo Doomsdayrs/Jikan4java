@@ -105,7 +105,7 @@ public class AnimeListAnime extends Retriever {
                 ", video_url='" + video_url + '\'' +
                 ", url='" + url + '\'' +
                 ", image_url='" + image_url + '\'' +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", watching_status=" + watching_status +
                 ", score=" + score +
                 ", watched_episodes=" + watched_episodes +

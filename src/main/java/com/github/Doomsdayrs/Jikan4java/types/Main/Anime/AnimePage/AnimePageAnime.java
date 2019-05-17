@@ -76,7 +76,7 @@ public class AnimePageAnime extends Retriever {
                 ", title='" + title + '\'' +
                 ", airing=" + airing +
                 ", synopsis='" + synopsis + '\'' +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", episodes=" + episodes +
                 ", score=" + score +
                 ", source='" + source + '\'' +

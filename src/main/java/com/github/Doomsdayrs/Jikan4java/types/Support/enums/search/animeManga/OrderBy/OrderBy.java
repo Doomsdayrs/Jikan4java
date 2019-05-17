@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums.search;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.OrderBy;
 
 /**
  * This file is part of Jikan4java.
@@ -11,28 +11,14 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums.search;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
- * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
+ * along with Jikan4java.  If not, see https://www.gnu.org/licenses/.
  * ====================================================================
  * Jikan4java
- * 13 / May / 2019
+ * 17 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum Stati {
-    AIRING("airing"),
-    COMPLETED("completed"),
-    COMPLETE("complete"),
-    TBA("tba"),
-    UPCOMING("upcoming");
-
-    private final String status;
-
-    Stati(String status) {
-        this.status = status;
-    }
-
+public interface OrderBy {
     @Override
-    public String toString() {
-        return status;
-    }
+    public String toString();
 }

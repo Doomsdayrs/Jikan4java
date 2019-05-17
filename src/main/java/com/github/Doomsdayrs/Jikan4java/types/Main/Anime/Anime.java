@@ -263,7 +263,7 @@ public class Anime extends Retriever {
                 ",\n title_english='" + title_english + '\'' +
                 ",\n title_japanese='" + title_japanese + '\'' +
                 ",\n title_synonyms=" + title_synonyms +
-                ",\n type='" + type + '\'' +
+                ",\n subType='" + type + '\'' +
                 ",\n source='" + source + '\'' +
                 ",\n episodes=" + episodes +
                 ",\n status='" + status + '\'' +

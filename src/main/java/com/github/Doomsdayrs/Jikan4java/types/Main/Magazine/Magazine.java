@@ -73,7 +73,7 @@ public class Magazine {
                 ", title='" + title + '\'' +
                 ", image_url='" + image_url + '\'' +
                 ", synopsis='" + synopsis + '\'' +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", publishing_start='" + publishing_start + '\'' +
                 ", volumes=" + volumes +
                 ", members=" + members +

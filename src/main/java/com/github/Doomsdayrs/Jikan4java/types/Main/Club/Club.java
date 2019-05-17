@@ -83,7 +83,7 @@ public class Club extends Retriever {
                 ", pictures_count=" + pictures_count +
                 ", category='" + category + '\'' +
                 ", created='" + created + '\'' +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", staff=" + staff +
                 ", anime_relations=" + anime_relations +
                 ", manga_relations=" + manga_relations +

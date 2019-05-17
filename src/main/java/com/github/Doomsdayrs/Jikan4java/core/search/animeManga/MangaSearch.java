@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.MangaPage.MangaPage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Ratings;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Stati;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Ratings;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Stati;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
@@ -104,10 +104,5 @@ public class MangaSearch extends AnimeMangaSearch<MangaPage> {
     public MangaSearch setLimit(int pages) {
         super.setLimit(pages);
         return this;
-    }
-
-    @Override
-    public boolean isGenreToggle() {
-        return super.isGenreToggle();
     }
 }

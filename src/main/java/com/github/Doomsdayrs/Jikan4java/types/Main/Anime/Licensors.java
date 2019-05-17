@@ -38,7 +38,7 @@ public class Licensors {
     public String toString() {
         return "Licensors{" +
                 "mal_id=" + mal_id +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

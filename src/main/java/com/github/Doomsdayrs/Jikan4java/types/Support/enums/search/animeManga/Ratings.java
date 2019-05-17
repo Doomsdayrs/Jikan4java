@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.types.Support.enums.search;
+package com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga;
 
 /**
  * This file is part of Jikan4java.
@@ -14,32 +14,26 @@ package com.github.Doomsdayrs.Jikan4java.types.Support.enums.search;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 13 / May / 2019
+ * 13 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum SubTypes {
-    TV("tv"),
-    OVA("ova"),
-    MOVIE("movie"),
-    SPECIAL("special"),
-    ONA("ona"),
-    MUSIC("music"),
-    MANGA("manga"),
-    NOVEL("novel"),
-    ONESHOT("oneshot"),
-    DOUJIN("doujin"),
-    MANHWA("manhwa"),
-    MANHUA("manhua");
+public enum Ratings {
+    G("g"),
+    PG("pg"),
+    PG13("pg13"),
+    R17("r17"),
+    R("r"),
+    RX("rx");
 
-    private final String type;
+    private final String rating;
 
-    SubTypes(String type) {
-        this.type = type;
+    Ratings(String rating) {
+        this.rating = rating;
     }
 
     @Override
     public String toString() {
-        return type;
+        return rating;
     }
 }

@@ -225,7 +225,7 @@ public class Manga extends Retriever {
                 ",\n title_japanese='" + title_japanese + '\'' +
                 ",\n status='" + status + '\'' +
                 ",\n image_url='" + image_url + '\'' +
-                ",\n type='" + type + '\'' +
+                ",\n subType='" + type + '\'' +
                 ",\n volumes=" + volumes +
                 ",\n chapters=" + chapters +
                 ",\n publishing=" + publishing +

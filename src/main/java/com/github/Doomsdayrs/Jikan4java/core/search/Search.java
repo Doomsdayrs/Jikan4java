@@ -46,7 +46,7 @@ public class Search<T> extends Retriever {
     /**
      * Constructor of core object
      *
-     * @param type type of object that should be searched for
+     * @param type subType of object that should be searched for
      */
     public Search(Types type) {
         super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));

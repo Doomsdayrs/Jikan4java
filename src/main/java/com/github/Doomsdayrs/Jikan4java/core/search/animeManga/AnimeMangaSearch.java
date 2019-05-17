@@ -3,9 +3,12 @@ package com.github.Doomsdayrs.Jikan4java.core.search.animeManga;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.search.Search;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.Genres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Ratings;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Stati;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.OrderBy.OrderBy;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.OrderBy.SortBy;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Ratings;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Stati;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.subType.SubTypes;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -40,11 +43,16 @@ import java.util.concurrent.CompletionException;
  */
 class AnimeMangaSearch<T> extends Search<T> {
     protected int page = 0;
+    protected SubTypes subTypes = null;
     protected Stati status = null;
+    protected int[] startDate = null;
     protected ArrayList<Integer> genres = null;
     protected float score = 0;
+    protected int[] endDate = null;
     private Ratings rating = null;
     private boolean genreToggle = true;
+    private OrderBy orderBy = null;
+    private SortBy sortBy = null;
 
     AnimeMangaSearch(Types type) {
         super(type);
@@ -74,11 +82,20 @@ class AnimeMangaSearch<T> extends Search<T> {
     protected StringBuilder createURL() {
         StringBuilder builder = super.createURL();
         if (page != 0) builder.append("&page=").append(page);
+        if (subTypes != null) builder.append("&type=").append(subTypes);
         if (status != null) builder.append("&status=").append(status);
         if (rating != null) builder.append("&rated=").append(rating);
-        if (genres != null) for (Integer integer : genres) builder.append("&genre[]=").append(integer.intValue());
+        if (genres != null) {
+            builder.append("&genre[]=");
+            for (Integer integer : genres)
+                builder.append(integer.intValue()).append(",");
+            builder.replace(builder.lastIndexOf(","), builder.lastIndexOf(",") + 1, "");
+            System.out.println(builder.toString());
+        }
         if (!genreToggle) builder.append("&genre_exclude=").append(0);
         if (score != 0) builder.append("&score=").append(score);
+        if (orderBy != null) builder.append("&order_by=").append(orderBy);
+        if (sortBy != null) builder.append("&sort=").append(sortBy);
         return builder;
     }
 
@@ -128,15 +145,22 @@ class AnimeMangaSearch<T> extends Search<T> {
     }
 
     /**
-     * Set page to core through
+     * Current state of genre
      *
-     * @param page page number
-     * @return this
+     * @return genre inclusion state
      */
-    public AnimeMangaSearch<T> setPage(int page) {
-        this.page = page;
-        return this;
+    public boolean isGenreToggle() {
+        return genreToggle;
     }
+
+    public void removeStartDate() {
+        this.startDate = null;
+    }
+
+    public void removeEndDate() {
+        this.endDate = null;
+    }
+
 
     /**
      * Sets query
@@ -147,6 +171,22 @@ class AnimeMangaSearch<T> extends Search<T> {
     @Override
     public AnimeMangaSearch<T> setQuery(String title) {
         super.setQuery(title);
+        return this;
+    }
+
+    /**
+     * Set page to core through
+     *
+     * @param page page number
+     * @return this
+     */
+    public AnimeMangaSearch<T> setPage(int page) {
+        this.page = page;
+        return this;
+    }
+
+    public AnimeMangaSearch<T> setType(SubTypes subTypes) {
+        this.subTypes = subTypes;
         return this;
     }
 
@@ -196,6 +236,16 @@ class AnimeMangaSearch<T> extends Search<T> {
         return this;
     }
 
+    public AnimeMangaSearch<T> setStartDate(int yyyy, int mm, int dd) {
+        this.startDate = new int[]{yyyy, mm, dd};
+        return this;
+    }
+
+    public AnimeMangaSearch<T> setEndDate(int yyyy, int mm, int dd) {
+        this.endDate = new int[]{yyyy, mm, dd};
+        return this;
+    }
+
     /**
      * Toggles if the genres should be included or excluded. Default is included
      *
@@ -218,12 +268,15 @@ class AnimeMangaSearch<T> extends Search<T> {
         return this;
     }
 
-    /**
-     * Current state of genre
-     *
-     * @return genre inclusion state
-     */
-    public boolean isGenreToggle() {
-        return genreToggle;
+    public AnimeMangaSearch<T> orderBy(OrderBy orderBy) {
+        this.orderBy = orderBy;
+        return this;
     }
+
+    public AnimeMangaSearch<T> sortBy(SortBy sortBy) {
+        this.sortBy = sortBy;
+        return this;
+    }
+
+
 }

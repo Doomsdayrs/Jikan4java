@@ -53,7 +53,7 @@ public class PageCharacterAnime extends Retriever {
     public String toString() {
         return "PageCharacterAnime{" +
                 "mal_id=" + mal_id +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

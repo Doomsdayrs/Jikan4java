@@ -38,7 +38,7 @@ public class Studios {
     public String toString() {
         return "Studios{" +
                 "mal_id=" + mal_id +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

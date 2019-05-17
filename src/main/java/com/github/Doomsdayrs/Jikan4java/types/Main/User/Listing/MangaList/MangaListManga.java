@@ -115,7 +115,7 @@ public class MangaListManga extends Retriever {
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 ", image_url='" + image_url + '\'' +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", reading_status=" + reading_status +
                 ", score=" + score +
                 ", read_chapters=" + read_chapters +

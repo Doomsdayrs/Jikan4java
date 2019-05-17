@@ -51,7 +51,7 @@ public class TopCharacterAnime extends Retriever {
     public String toString() {
         return "TopCharacterAnime{" +
                 "mal_id=" + mal_id +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

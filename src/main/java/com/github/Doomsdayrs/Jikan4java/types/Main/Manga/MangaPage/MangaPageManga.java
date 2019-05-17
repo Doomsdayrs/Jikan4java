@@ -76,7 +76,7 @@ public class MangaPageManga extends Retriever {
                 ", title='" + title + '\'' +
                 ", publishing=" + publishing +
                 ", synopsis='" + synopsis + '\'' +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", chapters=" + chapters +
                 ", volumes=" + volumes +
                 ", score=" + score +

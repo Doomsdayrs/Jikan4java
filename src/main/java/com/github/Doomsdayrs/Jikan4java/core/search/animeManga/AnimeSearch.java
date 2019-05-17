@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Ratings;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Stati;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Ratings;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Stati;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
@@ -58,15 +58,16 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
         return super.getFirst();
     }
 
-    @Override
-    public AnimeSearch setPage(int page) {
-        super.setPage(page);
-        return this;
-    }
 
     @Override
     public AnimeSearch setQuery(String title) {
         super.setQuery(title);
+        return this;
+    }
+
+    @Override
+    public AnimeSearch setPage(int page) {
+        super.setPage(page);
         return this;
     }
 

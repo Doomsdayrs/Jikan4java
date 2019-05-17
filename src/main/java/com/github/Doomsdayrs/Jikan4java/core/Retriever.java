@@ -104,7 +104,7 @@ public class Retriever {
      * @throws IOException something went wrong
      */
     protected ResponseBody request(String url) throws IOException {
-        URL u = new URL(url);
+        URL u = new URL("asdasd");
         Request request = builder.url(u).build();
         return client.newCall(request).execute().body();
     }

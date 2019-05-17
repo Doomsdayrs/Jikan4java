@@ -38,7 +38,7 @@ public class RelatedType {
     public String toString() {
         return "Related{" +
                 "mal_id=" + mal_id +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

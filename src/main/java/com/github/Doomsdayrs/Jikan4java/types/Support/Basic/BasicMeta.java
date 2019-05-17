@@ -34,7 +34,7 @@ public class BasicMeta {
     public String toString() {
         return "Meta{" +
                 "mal_id=" + mal_id +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

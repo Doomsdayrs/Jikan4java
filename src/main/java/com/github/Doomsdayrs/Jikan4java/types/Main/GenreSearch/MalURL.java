@@ -35,7 +35,7 @@ public class MalURL {
     public String toString() {
         return "MalURL{" +
                 "mal_id=" + mal_id +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

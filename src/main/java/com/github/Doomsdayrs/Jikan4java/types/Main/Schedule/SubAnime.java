@@ -83,7 +83,7 @@ public class SubAnime extends Retriever {
                 ", title='" + title + '\'' +
                 ", image_url='" + image_url + '\'' +
                 ", synopsis='" + synopsis + '\'' +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", airing_start='" + airing_start + '\'' +
                 ", episodes=" + episodes +
                 ", members=" + members +

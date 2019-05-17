@@ -79,7 +79,7 @@ public class TopManga extends Retriever {
                 ", rank=" + rank +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
-                ", type='" + type + '\'' +
+                ", subType='" + type + '\'' +
                 ", volumes=" + volumes +
                 ", start_date='" + start_date + '\'' +
                 ", end_date='" + end_date + '\'' +
