@@ -1,6 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.core.search.animeManga.AnimeSearch;
+import com.github.Doomsdayrs.Jikan4java.connection.Anime.AnimeConnection;
 
 import java.util.concurrent.ExecutionException;
 
@@ -123,7 +123,7 @@ public class ExampleClass {
         System.out.println(completableFuture.get());
 */
 
-        new AnimeSearch().setQuery("boku").getFirst().thenAccept(System.out::println);
+        new AnimeConnection().searchAnimeById(1).thenAccept(System.out::println);
     }
 
 }

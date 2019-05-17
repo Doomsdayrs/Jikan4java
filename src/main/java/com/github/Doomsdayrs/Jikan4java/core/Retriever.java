@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
@@ -103,7 +104,8 @@ public class Retriever {
      * @throws IOException something went wrong
      */
     protected ResponseBody request(String url) throws IOException {
-        Request request = builder.url(url).build();
+        URL u = new URL(url);
+        Request request = builder.url(u).build();
         return client.newCall(request).execute().body();
     }
 
