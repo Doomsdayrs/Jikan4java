@@ -4,7 +4,8 @@ Website for Jikan: https://jikan.moe/
 
 To add to your project, head over to https://jitpack.io/#Doomsdayrs/Jikan4java and select the method you need to use!
 
-Currently working on 1.1.0, the rise of treeeesss
+**ALERT**: Connection classes are now obsolete, do not use them.
+
 ## Capabilities
 - Basic
   - [X] Search and return Anime
@@ -28,6 +29,7 @@ Currently working on 1.1.0, the rise of treeeesss
 ## Basic documentation
 [Here](https://github.com/Doomsdayrs/Jikan4java/blob/master/Documentation.md)
 
+oh and remember i rarely test the methods~ 
 
 ## Known issues
 - API issue of user object being returned as an array list when empty. Future update of api will let me return Related fields back to normal
