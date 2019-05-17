@@ -2,6 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.core.search.animeManga;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.search.Search;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.Genres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Ratings;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Stati;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
@@ -177,10 +178,10 @@ class AnimeMangaSearch<T> extends Search<T> {
      * @param genre Genre ID
      * @return this
      */
-    public AnimeMangaSearch<T> addGenre(int genre) {
+    public AnimeMangaSearch<T> addGenre(Genres genre) {
         if (genres == null)
             genres = new ArrayList<>();
-        genres.add(genre);
+        genres.add(genre.getId());
         return this;
     }
 

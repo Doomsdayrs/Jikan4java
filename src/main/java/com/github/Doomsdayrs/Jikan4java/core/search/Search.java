@@ -130,9 +130,9 @@ public class Search<T> extends Retriever {
      *
      * @return Completable future of the process
      */
-    public CompletableFuture<T> getFirst() {
+    public CompletableFuture getFirst() {
         if (limit > 0)
-            return (CompletableFuture) CompletableFuture.supplyAsync(() -> {
+            return CompletableFuture.supplyAsync(() -> {
                 try {
                     ResponseBody responseBody = super.request(createURL().toString());
                     JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody.string());

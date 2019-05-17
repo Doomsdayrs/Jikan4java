@@ -1,11 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.core.search.Search;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Person.PersonPage.PersonPage;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
+import com.github.Doomsdayrs.Jikan4java.core.search.animeManga.AnimeSearch;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -126,20 +122,8 @@ public class ExampleClass {
         }
         System.out.println(completableFuture.get());
 */
-        Search<PersonPage> personPageSearch = new Search<>(Types.PERSON);
-        personPageSearch.setQuery("shim").setLimit(5);
-        CompletableFuture<PersonPage> completableFuture = personPageSearch.get();
-        int a = 0;
-        while (!completableFuture.isDone()) a++;
-        System.out.println(completableFuture.get());
 
-        completableFuture = personPageSearch.getFirst();
-        while (!completableFuture.isDone()) a++;
-        System.out.println(completableFuture.get());
-
-        CompletableFuture<Person> personCompletableFuture = personPageSearch.getByID(1);
-        while (!personCompletableFuture.isDone()) a++;
-        System.out.println(personCompletableFuture.get());
+        new AnimeSearch().setQuery("boku").getFirst().thenAccept(System.out::println);
     }
 
 }

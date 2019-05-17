@@ -123,7 +123,7 @@ public class Retriever {
                     if (!object.containsKey("error"))
                         return objectMapper.readValue(object.toJSONString(), target);
                     else {
-                        throw new CompletionException(new RequestError(object.toString() + " (URL:" + url + ")"));
+                        throw new CompletionException(new RequestError(object.get("error").toString()));
                     }
                 } else return null;
             } catch (IOException | ParseException e) {

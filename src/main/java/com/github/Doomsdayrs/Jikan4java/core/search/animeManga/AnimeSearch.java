@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.core.search.animeManga;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Ratings;
@@ -9,6 +10,8 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -51,6 +54,11 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
     }
 
     @Override
+    public CompletableFuture<Anime> getFirst() {
+        return (CompletableFuture<Anime>) super.getFirst();
+    }
+
+    @Override
     public AnimeSearch setPage(int page) {
         super.setPage(page);
         return this;
@@ -75,12 +83,6 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
     }
 
     @Override
-    public AnimeSearch addGenre(int genre) {
-        super.addGenre(genre);
-        return this;
-    }
-
-    @Override
     public AnimeSearch setScore(float score) {
         super.setScore(score);
         return this;
@@ -99,7 +101,7 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
     }
 
     public AnimeSearch addGenre(AnimeGenres animeGenres) {
-        super.addGenre(animeGenres.getId());
+        super.addGenre(animeGenres);
         return this;
     }
 }
