@@ -3,6 +3,7 @@ package com.github.Doomsdayrs.Jikan4java.core.search;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -88,7 +89,7 @@ public class Search<T> extends Retriever {
      */
     protected StringBuilder createURL() {
         StringBuilder builder = new StringBuilder();
-        builder.append(baseURL + "/core/");
+        builder.append(baseURL + "/search/");
         builder.append(type);
         builder.append("?q=").append(query.replaceAll(" ", "%20"));
         if (limit != 0) builder.append("&limit=").append(limit);
@@ -129,9 +130,9 @@ public class Search<T> extends Retriever {
      *
      * @return Completable future of the process
      */
-    public CompletableFuture getFirst() {
+    public CompletableFuture<T> getFirst() {
         if (limit > 0)
-            return CompletableFuture.supplyAsync(() -> {
+            return (CompletableFuture) CompletableFuture.supplyAsync(() -> {
                 try {
                     ResponseBody responseBody = super.request(createURL().toString());
                     JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody.string());
@@ -156,5 +157,9 @@ public class Search<T> extends Retriever {
      */
     public CompletableFuture<T> get() {
         return retrieve(aClass, createURL().toString());
+    }
+
+    public CompletableFuture<Person> getByID(int id) {
+        return retrieve(type.getB(), baseURL + "/" + type + "/" + id);
     }
 }

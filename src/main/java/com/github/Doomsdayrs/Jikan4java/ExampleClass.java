@@ -1,5 +1,13 @@
 package com.github.Doomsdayrs.Jikan4java;
 
+import com.github.Doomsdayrs.Jikan4java.core.search.Search;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Person.PersonPage.PersonPage;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
 /**
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -25,8 +33,113 @@ public class ExampleClass {
      *
      * @param args Args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        /*
+        AnimeConnection animeConnection = new AnimeConnection();
+        CharacterConnection characterConnection = new CharacterConnection();
+        ClubConnection clubConnection = new ClubConnection();
+        GenreConnection genreConnection = new GenreConnection();
+        MagazineConnection magazineConnection = new MagazineConnection();
+        MangaConnection mangaConnection = new MangaConnection();
+        MetaConnection metaConnection = new MetaConnection();
+        PersonConnection personConnection = new PersonConnection();
+        ProducerConnection producerConnection = new ProducerConnection();
+        ScheduleConnection scheduleConnection = new ScheduleConnection();
+        SeasonConnection seasonConnection = new SeasonConnection();
+        TopConnection topConnection = new TopConnection();
+        UserConnection userConnection = new UserConnection();
 
+        animeConnection.searchAnimeById(1).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        characterConnection.searchPage("re", 1).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        clubConnection.core(12).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        genreConnection.searchAnimeGenre(AnimeGenres.ACTION).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        genreConnection.searchMangaGenre(MangaGenres.ACTION).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        magazineConnection.searchPage(1, 1).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        mangaConnection.core("Ajin").thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        metaConnection.getStatus().thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        personConnection.core("re").thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        producerConnection.core(16, 2).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        scheduleConnection.scheduleSearch(Days.MONDAY).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        seasonConnection.seasonSearch(2018, Season.FALL).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        topConnection.core(Tops.ANIME).thenAccept(System.out::println);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        userConnection.core("doomsdayrs").thenAccept(System.out::println);
+
+
+*/
+        // Well, after this point you should get an idea, use code completion or decompile the classes to see what are methods available;
+ /*       int a = 0;
+        MangaSearch core = new MangaSearch().setQuery("boku");
+        core.setLimit(2);
+        core.addGenre(MangaGenres.ACTION);
+        core.setStatus(Stati.COMPLETE);
+
+        CompletableFuture completableFuture = core.get();
+        while (!completableFuture.isDone()) {
+            a++;
+        }
+        System.out.println(completableFuture.get());
+
+        TimeUnit.SECONDS.sleep(1);
+
+        completableFuture = core.getFirst();
+        while (!completableFuture.isDone()) {
+            a++;
+        }
+        System.out.println(completableFuture.get());
+*/
+        Search<PersonPage> personPageSearch = new Search<>(Types.PERSON);
+        personPageSearch.setQuery("shim").setLimit(5);
+        CompletableFuture<PersonPage> completableFuture = personPageSearch.get();
+        int a = 0;
+        while (!completableFuture.isDone()) a++;
+        System.out.println(completableFuture.get());
+
+        completableFuture = personPageSearch.getFirst();
+        while (!completableFuture.isDone()) a++;
+        System.out.println(completableFuture.get());
+
+        CompletableFuture<Person> personCompletableFuture = personPageSearch.getByID(1);
+        while (!personCompletableFuture.isDone()) a++;
+        System.out.println(personCompletableFuture.get());
     }
 
 }

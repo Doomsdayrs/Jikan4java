@@ -5,9 +5,10 @@ import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Friends.Friends;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.History.HistoryPage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeList;
-import org.json.simple.parser.ParseException;
+import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList.MangaList;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.userListings.AnimeListTypes;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.userListings.UserListTypes;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
@@ -37,6 +38,7 @@ public class User extends Retriever {
     public boolean request_cached;
     @JsonProperty("request_cache_expiry")
     public int request_cache_expiry;
+
     @JsonProperty("username")
     public String username;
     @JsonProperty("url")
@@ -67,31 +69,63 @@ public class User extends Retriever {
      *
      * @param type Anime or Manga
      * @return History object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public CompletableFuture<HistoryPage> getHistory(String type) throws IOException, ParseException {
+    public CompletableFuture<HistoryPage> getHistory(String type) {
         return retrieve(HistoryPage.class, baseURL + "/user/" + username + "/history" + type.toLowerCase());
     }
-
 
     /**
      * Returns friends of the person
      *
      * @param page Page to call for
      * @return Friends object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public CompletableFuture<Friends> getFriends(int page) throws IOException, ParseException {
+    public CompletableFuture<Friends> getFriends(int page) {
         return retrieve(Friends.class, baseURL + "/user/" + username + "/friends/" + page);
     }
 
 
-    public CompletableFuture<AnimeList> getAnimelist(int page) throws IOException, ParseException {
-        if (page == 0)
-            return retrieve(AnimeList.class, baseURL + "/user/" + username + "/animelist/all");
-        else return retrieve(AnimeList.class, baseURL + "/user/" + username + "/animelist/all/" + page);
+    //Lists
+    //TODO oneday document this, im not in the mood rn
+    public CompletableFuture<MangaList> getMangaList(int page) {
+        return getList(page, null);
+    }
+
+    public CompletableFuture<MangaList> getMangaList(int page, AnimeListTypes types) {
+        return getList(page, types);
+    }
+
+    public CompletableFuture<MangaList> getMangaList(AnimeListTypes types) {
+        return getList(0, types);
+    }
+
+    public CompletableFuture<AnimeList> getAnimeList(int page) {
+        return getList(page, null);
+    }
+
+    public CompletableFuture<AnimeList> getAnimeList(int page, AnimeListTypes types) {
+        return getList(page, types);
+    }
+
+    public CompletableFuture<AnimeList> getAnimeList(AnimeListTypes types) {
+        return getList(0, types);
+    }
+
+    /**
+     * Gets an Anime/Manga list from user
+     *
+     * @param page if 0, returns all. if 1, returns 300 per page
+     * @return CompletableFuture
+     */
+    private CompletableFuture getList(int page, UserListTypes userListTypes) {
+        StringBuilder options = new StringBuilder();
+
+        if (userListTypes != null)
+            options.append("/").append(userListTypes.getForm()).append("/").append(userListTypes);
+        if (page != 0)
+            options.append("/").append(page);
+
+        return retrieve(userListTypes.getaClass(), baseURL + "/user/" + username + options);
     }
 
     @Override

@@ -3,11 +3,13 @@ package com.github.Doomsdayrs.Jikan4java.core;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.exceptions.IncompatibleEnumException;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Magazine.MagazinePage;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Meta.Status;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Manga.Manga;
+import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Producer.ProducerPage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Day;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Schedule.Schedule;
@@ -20,6 +22,9 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Season;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.Genres;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.meta.MetaPeriod;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.meta.MetaRequest;
+import com.github.Doomsdayrs.Jikan4java.types.Support.enums.meta.MetaType;
 import com.github.Doomsdayrs.Jikan4java.types.Support.enums.top.*;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -71,14 +76,68 @@ public class Connector extends Retriever {
     }
 
     /**
-     * retreives a club
+     * gets an club
      *
      * @param ID id of the club
-     * @return AnimePage
+     * @return Club
      */
-    public CompletableFuture<Club> clubSearch(int ID) {
+    public CompletableFuture<Club> retrieveClub(int ID) {
         return retrieve(Club.class, baseURL + "/club/" + ID);
     }
+
+    /**
+     * retreives an anime
+     *
+     * @param ID id of the anime
+     * @return Anime
+     */
+    public CompletableFuture<Anime> retrieveAnime(int ID) {
+        return retrieve(Anime.class, baseURL + "/anime/" + ID);
+    }
+
+    /**
+     * retreives an manga
+     *
+     * @param ID id of the manga
+     * @return Manga
+     */
+    public CompletableFuture<Manga> retrieveManga(int ID) {
+        return retrieve(Manga.class, baseURL + "/manga/" + ID);
+    }
+
+    /**
+     * retreives an person
+     *
+     * @param ID id of the person
+     * @return Person
+     */
+    public CompletableFuture<Person> retrievePerson(int ID) {
+        return retrieve(Person.class, baseURL + "/manga/" + ID);
+    }
+
+    /**
+     * retreives an character
+     *
+     * @param ID id of the character
+     * @return Character
+     */
+    public CompletableFuture<Character> retrieveCharacter(int ID) {
+        return retrieve(Character.class, baseURL + "/manga/" + ID);
+    }
+
+
+    /**
+     * Returns a user object
+     *
+     * @param name the name of the user to retrieve
+     * @return User
+     * @throws IOException    IOException
+     * @throws ParseException ParseException
+     */
+    public CompletableFuture<User> userSearch(String name) {
+        return retrieve(User.class, baseURL + "/user/" + name);
+    }
+
 
     /**
      * Retrieves Magazines
@@ -93,15 +152,28 @@ public class Connector extends Retriever {
         return retrieve(MagazinePage.class, baseURL + "/magazine/" + ID + "/" + page);
     }
 
+
     /**
-     * Gets status of Jikans api
-     *
-     * @return Status object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
+     * Gets meta data from API. WARNING USING MAY CAUSE ERRORS BEYOND IMAGINATION FOR ANYTHING BUT STATUS
+     * @param metaRequest
+     * @param metaType
+     * @param metaPeriod
+     * @return
      */
-    public CompletableFuture<Status> getStatus() {
-        return retrieve(Status.class, baseURL + "/meta/status");
+    public CompletableFuture getMeta(MetaRequest metaRequest, MetaType metaType, MetaPeriod metaPeriod) {
+        if (metaRequest == null) return null;
+
+        StringBuilder option = new StringBuilder();
+        option.append(metaRequest);
+        if (metaRequest.equals(MetaRequest.REQUEST)) {
+            if (metaType != null) {
+                option.append("/").append(metaType);
+                if (metaPeriod != null) {
+                    option.append("/").append(metaPeriod);
+                } else return null;
+            } else return null;
+        }
+        return retrieve(metaRequest.getaClass(), baseURL + "/meta/" + option.toString());
     }
 
     /**
@@ -169,17 +241,6 @@ public class Connector extends Retriever {
         return retrieve(SeasonArchive.class, baseURL + "/season/archive");
     }
 
-    /**
-     * Returns a user object
-     *
-     * @param name the name of the user to retrieve
-     * @return User
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
-     */
-    public CompletableFuture<User> userSearch(String name) {
-        return retrieve(User.class, baseURL + "/user/" + name);
-    }
 
     //Top Searching
 
