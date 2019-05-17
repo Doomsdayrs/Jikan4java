@@ -103,10 +103,14 @@ public class Retriever {
      * @return response from jikan
      * @throws IOException something went wrong
      */
-    protected ResponseBody request(String url) throws IOException {
+    protected String request(String url) throws IOException {
+        System.out.println(url);
         URL u = new URL(url);
+        System.out.println(u.toString());
         Request request = builder.url(u).build();
-        return client.newCall(request).execute().body();
+        System.out.println(request.toString());
+        ResponseBody responseBody = client.newCall(request).execute().body();
+        return responseBody.string();
     }
 
     /**
@@ -119,15 +123,19 @@ public class Retriever {
     public CompletableFuture retrieve(Class target, String url) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                ResponseBody responseBody = request(url);
+                String responseBody = request(url);
+                System.out.println("Here");
                 if (responseBody != null) {
-                    JSONObject object = ((JSONObject) jsonParser.parse(responseBody.string()));
+                    JSONObject object = ((JSONObject) jsonParser.parse(responseBody));
                     if (!object.containsKey("error"))
                         return objectMapper.readValue(object.toJSONString(), target);
                     else {
                         throw new CompletionException(new RequestError(object.get("error").toString()));
                     }
-                } else return null;
+                } else {
+                    System.out.println("NullPointer");
+                    return null;
+                }
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
                 return null;

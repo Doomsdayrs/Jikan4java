@@ -9,7 +9,6 @@ import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -93,8 +92,8 @@ class AnimeMangaSearch<T> extends Search<T> {
     public CompletableFuture getFirst() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                ResponseBody responseBody = super.request(createURL().toString());
-                JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody.string());
+                String responseBody = super.request(createURL().toString());
+                JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
                 JSONArray jsonArray = (JSONArray) jsonObject.get("results");
                 // Gets anime ID then goes to it's page
                 Request request = new Request.Builder().url(baseURL + "/" + type + "/" + ((JSONObject) jsonArray.get(0)).get("mal_id").toString()).build();
