@@ -3,9 +3,9 @@ package com.github.Doomsdayrs.Jikan4java.connection.Top;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
+import com.github.Doomsdayrs.Jikan4java.enums.top.*;
 import com.github.Doomsdayrs.Jikan4java.exceptions.IncompatibleEnumException;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Top;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.top.*;
 
 import java.util.concurrent.CompletableFuture;
 

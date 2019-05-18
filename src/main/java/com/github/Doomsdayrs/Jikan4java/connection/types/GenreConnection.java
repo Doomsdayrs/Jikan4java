@@ -3,11 +3,11 @@ package com.github.Doomsdayrs.Jikan4java.connection.types;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
+import com.github.Doomsdayrs.Jikan4java.enums.genres.AnimeGenres;
+import com.github.Doomsdayrs.Jikan4java.enums.genres.Genres;
+import com.github.Doomsdayrs.Jikan4java.enums.genres.MangaGenres;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Anime.GenreSearchAnimePage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.GenreSearch.Manga.GenreSearchMangaPage;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.Genres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -34,7 +34,7 @@ public class GenreConnection<T> extends Retriever {
 
 
     /**
-     * Constructor, Use GenreSearchMangaPage or GenreSearchAnimePage as subType parameters
+     * Constructor, Use GenreSearchMangaPage or GenreSearchAnimePage as subType orderBy
      */
     public GenreConnection() {
         super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));

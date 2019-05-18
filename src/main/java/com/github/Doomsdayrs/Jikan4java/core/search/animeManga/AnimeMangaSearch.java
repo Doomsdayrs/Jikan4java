@@ -2,16 +2,17 @@ package com.github.Doomsdayrs.Jikan4java.core.search.animeManga;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.search.Search;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.Genres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.OrderBy.OrderBy;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.OrderBy.SortBy;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Ratings;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Stati;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.subType.SubTypes;
+import com.github.Doomsdayrs.Jikan4java.enums.SortBy;
+import com.github.Doomsdayrs.Jikan4java.enums.genres.Genres;
+import com.github.Doomsdayrs.Jikan4java.enums.search.Types;
+import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.Ratings;
+import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.orderBy.OrderBy;
+import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.status.AnimeStati;
+import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.subType.SubTypes;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -43,7 +44,7 @@ import java.util.concurrent.CompletionException;
 class AnimeMangaSearch<T> extends Search<T> {
     protected int page = 0;
     protected SubTypes subTypes = null;
-    protected Stati status = null;
+    protected AnimeStati status = null;
     protected int[] startDate = null;
     protected ArrayList<Integer> genres = null;
     protected float score = 0;
@@ -85,7 +86,7 @@ class AnimeMangaSearch<T> extends Search<T> {
         if (status != null) builder.append("&status=").append(status);
         if (rating != null) builder.append("&rated=").append(rating);
         if (genres != null) {
-            builder.append("&genre[]=");
+            builder.append("&genre=");
             for (Integer integer : genres)
                 builder.append(integer.intValue()).append(",");
             builder.replace(builder.lastIndexOf(","), builder.lastIndexOf(",") + 1, "");
@@ -109,8 +110,8 @@ class AnimeMangaSearch<T> extends Search<T> {
     public CompletableFuture getFirst() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                String responseBody = super.request(createURL().toString());
-                JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
+                ResponseBody responseBody = super.request(createURL().toString());
+                JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody.string());
                 JSONArray jsonArray = (JSONArray) jsonObject.get("results");
                 // Gets anime ID then goes to it's page
                 Request request = new Request.Builder().url(baseURL + "/" + type + "/" + ((JSONObject) jsonArray.get(0)).get("mal_id").toString()).build();
@@ -195,7 +196,7 @@ class AnimeMangaSearch<T> extends Search<T> {
      * @param status Status
      * @return this
      */
-    public AnimeMangaSearch<T> setStatus(Stati status) {
+    public AnimeMangaSearch<T> setStatus(AnimeStati status) {
         this.status = status;
         return this;
     }
@@ -217,7 +218,7 @@ class AnimeMangaSearch<T> extends Search<T> {
      * @param genre Genre ID
      * @return this
      */
-    public AnimeMangaSearch<T> addGenre(Genres genre) {
+    protected AnimeMangaSearch<T> addGenre(Genres genre) {
         if (genres == null)
             genres = new ArrayList<>();
         genres.add(genre.getId());

@@ -3,8 +3,8 @@ package com.github.Doomsdayrs.Jikan4java.core.search;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
+import com.github.Doomsdayrs.Jikan4java.enums.search.Types;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -134,8 +134,8 @@ public class Search<T> extends Retriever {
         if (limit > 0)
             return CompletableFuture.supplyAsync(() -> {
                 try {
-                    String responseBody = super.request(createURL().toString());
-                    JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
+                    ResponseBody responseBody = super.request(createURL().toString());
+                    JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody.string());
                     JSONArray jsonArray = (JSONArray) jsonObject.get("results");
                     // Gets anime ID then goes to it's page
                     Request request = new Request.Builder().url(baseURL + "/" + type + "/" + ((JSONObject) jsonArray.get(0)).get("mal_id").toString()).build();

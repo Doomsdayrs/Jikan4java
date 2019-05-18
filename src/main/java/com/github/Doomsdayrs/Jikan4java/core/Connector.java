@@ -2,6 +2,15 @@ package com.github.Doomsdayrs.Jikan4java.core;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.enums.Days;
+import com.github.Doomsdayrs.Jikan4java.enums.Season;
+import com.github.Doomsdayrs.Jikan4java.enums.genres.AnimeGenres;
+import com.github.Doomsdayrs.Jikan4java.enums.genres.Genres;
+import com.github.Doomsdayrs.Jikan4java.enums.genres.MangaGenres;
+import com.github.Doomsdayrs.Jikan4java.enums.meta.MetaPeriod;
+import com.github.Doomsdayrs.Jikan4java.enums.meta.MetaRequest;
+import com.github.Doomsdayrs.Jikan4java.enums.meta.MetaType;
+import com.github.Doomsdayrs.Jikan4java.enums.top.*;
 import com.github.Doomsdayrs.Jikan4java.exceptions.IncompatibleEnumException;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Club.Club;
@@ -17,15 +26,6 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonArchive.SeasonAr
 import com.github.Doomsdayrs.Jikan4java.types.Main.Season.SeasonSearch;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Top;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.User;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Days;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.Season;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.Genres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.MangaGenres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.meta.MetaPeriod;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.meta.MetaRequest;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.meta.MetaType;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.top.*;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
@@ -137,7 +137,6 @@ public class Connector extends Retriever {
     public CompletableFuture<User> userSearch(String name) {
         return retrieve(User.class, baseURL + "/user/" + name);
     }
-
 
     /**
      * Retrieves Magazines

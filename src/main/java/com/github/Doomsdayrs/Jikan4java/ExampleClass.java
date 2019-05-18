@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java;
 
 import com.github.Doomsdayrs.Jikan4java.core.search.animeManga.AnimeSearch;
+import com.github.Doomsdayrs.Jikan4java.enums.genres.AnimeGenres;
 
 import java.util.concurrent.ExecutionException;
 
@@ -106,7 +107,7 @@ public class ExampleClass {
         MangaSearch core = new MangaSearch().setQuery("boku");
         core.setLimit(2);
         core.addGenre(MangaGenres.ACTION);
-        core.setStatus(Stati.COMPLETE);
+        core.setStatus(AnimeStati.COMPLETE);
 
         CompletableFuture completableFuture = core.get();
         while (!completableFuture.isDone()) {
@@ -122,8 +123,11 @@ public class ExampleClass {
         }
         System.out.println(completableFuture.get());
 */
-
-        System.out.println(new AnimeSearch().setQuery("boku").getFirst().get());
+        AnimeSearch animeSearch = new AnimeSearch();
+        animeSearch.addGenre(AnimeGenres.ACTION);
+        animeSearch.setQuery("boku");
+        animeSearch.addGenre(AnimeGenres.ADVENTURE);
+        System.out.println(animeSearch.get().get());
     }
 
 }

@@ -2,12 +2,12 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
+import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.AnimeListFilters;
+import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.UserListFilters;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Friends.Friends;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.History.HistoryPage;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeList;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList.MangaList;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.userListings.AnimeListTypes;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.userListings.UserListTypes;
 
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
@@ -91,11 +91,11 @@ public class User extends Retriever {
         return getList(page, null);
     }
 
-    public CompletableFuture<MangaList> getMangaList(int page, AnimeListTypes types) {
+    public CompletableFuture<MangaList> getMangaList(int page, AnimeListFilters types) {
         return getList(page, types);
     }
 
-    public CompletableFuture<MangaList> getMangaList(AnimeListTypes types) {
+    public CompletableFuture<MangaList> getMangaList(AnimeListFilters types) {
         return getList(0, types);
     }
 
@@ -103,11 +103,11 @@ public class User extends Retriever {
         return getList(page, null);
     }
 
-    public CompletableFuture<AnimeList> getAnimeList(int page, AnimeListTypes types) {
+    public CompletableFuture<AnimeList> getAnimeList(int page, AnimeListFilters types) {
         return getList(page, types);
     }
 
-    public CompletableFuture<AnimeList> getAnimeList(AnimeListTypes types) {
+    public CompletableFuture<AnimeList> getAnimeList(AnimeListFilters types) {
         return getList(0, types);
     }
 
@@ -117,15 +117,15 @@ public class User extends Retriever {
      * @param page if 0, returns all. if 1, returns 300 per page
      * @return CompletableFuture
      */
-    private CompletableFuture getList(int page, UserListTypes userListTypes) {
+    private CompletableFuture getList(int page, UserListFilters userListFilters) {
         StringBuilder options = new StringBuilder();
 
-        if (userListTypes != null)
-            options.append("/").append(userListTypes.getForm()).append("/").append(userListTypes);
+        if (userListFilters != null)
+            options.append("/").append(userListFilters.getForm()).append("/").append(userListFilters);
         if (page != 0)
             options.append("/").append(page);
 
-        return retrieve(userListTypes.getaClass(), baseURL + "/user/" + username + options);
+        return retrieve(userListFilters.getaClass(), baseURL + "/user/" + username + options);
     }
 
     @Override

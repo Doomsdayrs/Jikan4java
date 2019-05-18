@@ -1,12 +1,15 @@
 package com.github.Doomsdayrs.Jikan4java.core.search.animeManga;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.enums.SortBy;
+import com.github.Doomsdayrs.Jikan4java.enums.genres.AnimeGenres;
+import com.github.Doomsdayrs.Jikan4java.enums.search.Types;
+import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.Ratings;
+import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.orderBy.AnimeOrderBy;
+import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.status.AnimeStati;
+import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.subType.SubTypes;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.genres.AnimeGenres;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.Types;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Ratings;
-import com.github.Doomsdayrs.Jikan4java.types.Support.enums.search.animeManga.Stati;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
@@ -58,7 +61,6 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
         return super.getFirst();
     }
 
-
     @Override
     public AnimeSearch setQuery(String title) {
         super.setQuery(title);
@@ -72,7 +74,7 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
     }
 
     @Override
-    public AnimeSearch setStatus(Stati status) {
+    public AnimeSearch setStatus(AnimeStati status) {
         super.setStatus(status);
         return this;
     }
@@ -103,6 +105,36 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
 
     public AnimeSearch addGenre(AnimeGenres animeGenres) {
         super.addGenre(animeGenres);
+        return this;
+    }
+
+    @Override
+    public AnimeSearch setStartDate(int yyyy, int mm, int dd) {
+        super.setStartDate(yyyy, mm, dd);
+        return this;
+    }
+
+    @Override
+    public AnimeSearch setEndDate(int yyyy, int mm, int dd) {
+        super.setEndDate(yyyy, mm, dd);
+        return this;
+    }
+
+
+    public AnimeSearch orderBy(AnimeOrderBy orderBy) {
+        super.orderBy(orderBy);
+        return this;
+    }
+
+    @Override
+    public AnimeSearch sortBy(SortBy sortBy) {
+        super.sortBy(sortBy);
+        return this;
+    }
+
+    @Override
+    public AnimeSearch setType(SubTypes subTypes) {
+        super.setType(subTypes);
         return this;
     }
 }

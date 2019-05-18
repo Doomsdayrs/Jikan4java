@@ -48,7 +48,7 @@ com.github.Doomsdayrs.Jikan4java.types.Main.User.History
 com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList
 com.github.Doomsdayrs.Jikan4java.types.Support
 com.github.Doomsdayrs.Jikan4java.types.Support.Basic
-com.github.Doomsdayrs.Jikan4java.types.Support.enums
+com.github.Doomsdayrs.Jikan4java.enums
 com.github.Doomsdayrs.Jikan4java.types.Support.Forum
 com.github.Doomsdayrs.Jikan4java.types.Support.Forum.Topic
 com.github.Doomsdayrs.Jikan4java.types.Support.News
