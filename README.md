@@ -4,7 +4,7 @@ Website for Jikan: https://jikan.moe/
 
 To add to your project, head over to https://jitpack.io/#Doomsdayrs/Jikan4java and select the method you need to use!
 
-**ALERT**: Connection classes are now obsolete, do not use them.
+**ALERT**: Connection classes are obsolete in the next version, do not use them.
 
 ## Capabilities
 - Basic
