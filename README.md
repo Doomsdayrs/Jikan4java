@@ -8,7 +8,7 @@ To add to your project, head over to https://jitpack.io/#Doomsdayrs/Jikan4java a
 
 ## Capabilities
 - Everything except the below
-  -New things from v3.3
+  - New things from v3.3
 
 ## Basic documentation
 For the next version
