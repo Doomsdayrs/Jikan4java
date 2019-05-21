@@ -43,7 +43,7 @@ public enum MangaListFilters implements UserListFilters {
 
     @Override
     public String getForm() {
-        return aClass.getName().toLowerCase();
+        return "mangalist";
     }
 
     @Override

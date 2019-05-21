@@ -1,7 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.core.search.animeManga.AnimeSearch;
-import com.github.Doomsdayrs.Jikan4java.enums.genres.AnimeGenres;
+import com.github.Doomsdayrs.Jikan4java.core.Connector;
+import com.github.Doomsdayrs.Jikan4java.core.UserListingSearch;
+import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.MangaListFilters;
+import com.github.Doomsdayrs.Jikan4java.types.Main.User.User;
 
 import java.util.concurrent.ExecutionException;
 
@@ -123,11 +125,9 @@ public class ExampleClass {
         }
         System.out.println(completableFuture.get());
 */
-        AnimeSearch animeSearch = new AnimeSearch();
-        animeSearch.addGenre(AnimeGenres.ACTION);
-        animeSearch.setQuery("boku");
-        animeSearch.addGenre(AnimeGenres.ADVENTURE);
-        System.out.println(animeSearch.get().get());
+        User user = new Connector().userSearch("doomsdayrs").get();
+        UserListingSearch userListingSearch = user.getListingSearch();
+        System.out.println(userListingSearch.getMangaList(MangaListFilters.DROPPED).get());
     }
 
 }

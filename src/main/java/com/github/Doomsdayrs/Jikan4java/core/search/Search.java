@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.enums.search.Types;
-import com.github.Doomsdayrs.Jikan4java.types.Main.Person.Person;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -159,7 +158,7 @@ public class Search<T> extends Retriever {
         return retrieve(aClass, createURL().toString());
     }
 
-    public CompletableFuture<Person> getByID(int id) {
+    public CompletableFuture getByID(int id) {
         return retrieve(type.getB(), baseURL + "/" + type + "/" + id);
     }
 }

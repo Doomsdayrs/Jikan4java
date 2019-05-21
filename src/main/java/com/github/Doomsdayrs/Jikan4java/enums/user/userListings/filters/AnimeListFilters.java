@@ -43,7 +43,7 @@ public enum AnimeListFilters implements UserListFilters {
 
     @Override
     public String getForm() {
-        return aClass.getName().toLowerCase();
+        return "animelist";
     }
 
     @Override

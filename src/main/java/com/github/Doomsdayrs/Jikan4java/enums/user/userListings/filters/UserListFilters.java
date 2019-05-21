@@ -22,4 +22,7 @@ public interface UserListFilters {
     public String getForm();
 
     public Class getaClass();
+
+    @Override
+    public String toString();
 }

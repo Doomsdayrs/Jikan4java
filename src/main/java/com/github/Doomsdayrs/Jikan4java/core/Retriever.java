@@ -119,9 +119,11 @@ public class Retriever {
     public CompletableFuture retrieve(Class target, String url) {
         return CompletableFuture.supplyAsync(() -> {
             try {
+                System.out.println("Retrieving: " + url);
                 ResponseBody responseBody = request(url);
                 if (responseBody != null) {
-                    JSONObject object = ((JSONObject) jsonParser.parse(responseBody.string()));
+                    String response = responseBody.string();
+                    JSONObject object = ((JSONObject) jsonParser.parse(response));
                     if (!object.containsKey("error"))
                         return objectMapper.readValue(object.toJSONString(), target);
                     else {

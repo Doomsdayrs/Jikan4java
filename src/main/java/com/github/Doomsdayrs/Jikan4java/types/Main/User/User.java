@@ -2,12 +2,9 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
-import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.AnimeListFilters;
-import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.UserListFilters;
+import com.github.Doomsdayrs.Jikan4java.core.UserListingSearch;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Friends.Friends;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.History.HistoryPage;
-import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeList;
-import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList.MangaList;
 
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
@@ -84,48 +81,8 @@ public class User extends Retriever {
         return retrieve(Friends.class, baseURL + "/user/" + username + "/friends/" + page);
     }
 
-
-    //Lists
-    //TODO oneday document this, im not in the mood rn
-    public CompletableFuture<MangaList> getMangaList(int page) {
-        return getList(page, null);
-    }
-
-    public CompletableFuture<MangaList> getMangaList(int page, AnimeListFilters types) {
-        return getList(page, types);
-    }
-
-    public CompletableFuture<MangaList> getMangaList(AnimeListFilters types) {
-        return getList(0, types);
-    }
-
-    public CompletableFuture<AnimeList> getAnimeList(int page) {
-        return getList(page, null);
-    }
-
-    public CompletableFuture<AnimeList> getAnimeList(int page, AnimeListFilters types) {
-        return getList(page, types);
-    }
-
-    public CompletableFuture<AnimeList> getAnimeList(AnimeListFilters types) {
-        return getList(0, types);
-    }
-
-    /**
-     * Gets an Anime/Manga list from user
-     *
-     * @param page if 0, returns all. if 1, returns 300 per page
-     * @return CompletableFuture
-     */
-    private CompletableFuture getList(int page, UserListFilters userListFilters) {
-        StringBuilder options = new StringBuilder();
-
-        if (userListFilters != null)
-            options.append("/").append(userListFilters.getForm()).append("/").append(userListFilters);
-        if (page != 0)
-            options.append("/").append(page);
-
-        return retrieve(userListFilters.getaClass(), baseURL + "/user/" + username + options);
+    public UserListingSearch getListingSearch() {
+        return new UserListingSearch(username);
     }
 
     @Override
