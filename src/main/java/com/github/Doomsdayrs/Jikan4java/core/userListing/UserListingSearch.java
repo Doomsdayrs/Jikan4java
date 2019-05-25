@@ -1,18 +1,15 @@
 package com.github.Doomsdayrs.Jikan4java.core.userListing;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.enums.SortBy;
-import com.github.Doomsdayrs.Jikan4java.enums.status.Stati;
-import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.UserListFilters;
-import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.orderBy.ListOrderBy;
-import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeList;
-import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList.MangaList;
+import com.github.Doomsdayrs.Jikan4java.enums.userListings.filters.UserListFilters;
+import com.github.Doomsdayrs.Jikan4java.enums.userListings.orderBy.ListOrderBy;
+import com.github.Doomsdayrs.Jikan4java.enums.userListings.status.ListingStati;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
-
-import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -32,75 +29,92 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class UserListingSearch extends Retriever {
-    private String username;
+class UserListingSearch<T> extends Retriever {
+    protected String username;
+    protected String query = null;
+    protected int page = 0;
+    protected ListOrderBy orderBy = null;
+    private UserListFilters userListFilters = null;
+    private SortBy sortBy = null;
+    private ListOrderBy orderBy2 = null;
+    private ListingStati listingStati = null;
 
-    public UserListingSearch(String username) {
+    UserListingSearch(String username) {
+        super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
         this.username = username;
     }
 
-    public UserListingSearch(OkHttpClient client, String username) {
+    UserListingSearch(OkHttpClient client, String username) {
         super(client);
         this.username = username;
     }
 
-    public UserListingSearch(ObjectMapper objectMapper, String username) {
+    UserListingSearch(ObjectMapper objectMapper, String username) {
         super(objectMapper);
         this.username = username;
     }
 
-    public UserListingSearch(JSONParser jsonParser, String username) {
+    UserListingSearch(JSONParser jsonParser, String username) {
         super(jsonParser);
         this.username = username;
     }
 
-    public UserListingSearch(Request.Builder builder, String username) {
+    UserListingSearch(Request.Builder builder, String username) {
         super(builder);
         this.username = username;
     }
-
-
-    protected UserListFilters userListFilters = null;
-
-    protected String query = null;
-    protected int page = 0;
-    protected SortBy sortBy = null;
-
-    protected ListOrderBy orderBy = null;
-    protected ListOrderBy orderBy2 = null;
-
     protected int[] from = null;
     protected int[] to = null;
 
-    protected Stati stati = null;
-    //AnimeValues
-
-
-    public UserListingSearch setQuery(String query) {
+    public UserListingSearch<T> setQuery(String query) {
         this.query = query;
         return this;
     }
 
-    public UserListingSearch setPage(int page) {
+    public UserListingSearch<T> setPage(int page) {
         this.page = page;
         return this;
     }
 
-    public UserListingSearch setSortBy(SortBy sortBy) {
+    public UserListingSearch<T> setSortBy(SortBy sortBy) {
         this.sortBy = sortBy;
         return this;
     }
 
-    public UserListingSearch setOrderBy(ListOrderBy orderBy) {
+    public UserListingSearch<T> setOrderBy(ListOrderBy orderBy) {
         this.orderBy = orderBy;
         return this;
     }
 
-    public UserListingSearch setOrderBy2(ListOrderBy orderBy2) {
+    public UserListingSearch<T> setOrderBy2(ListOrderBy orderBy2) {
         this.orderBy2 = orderBy2;
         return this;
     }
 
+    public UserListingSearch<T> setFrom(int yyyy, int mm, int dd) {
+        this.from = new int[]{yyyy, mm, dd};
+        return this;
+    }
+
+    public UserListingSearch<T> setTo(int yyyy, int mm, int dd) {
+        this.to = new int[]{yyyy, mm, dd};
+        return this;
+    }
+
+    public UserListingSearch<T> setFrom(int[] from) {
+        this.from = from;
+        return this;
+    }
+
+    public UserListingSearch<T> setTo(int[] to) {
+        this.to = to;
+        return this;
+    }
+
+    UserListingSearch<T> setListingStati(ListingStati listingStati) {
+        this.listingStati = listingStati;
+        return this;
+    }
 
     /**
      * This must be set, or will return null on getList
@@ -108,36 +122,19 @@ public class UserListingSearch extends Retriever {
      * @param userListFilters The type of list you wish, and what filtering. Default with all
      * @return this
      */
-    public UserListingSearch setUserListFilters(UserListFilters userListFilters) {
+    public UserListingSearch<T> setUserListFilters(UserListFilters userListFilters) {
         this.userListFilters = userListFilters;
         return this;
     }
 
 
-    public UserListingSearch setUsername(String username) {
+    public UserListingSearch<T> setUsername(String username) {
         this.username = username;
         return this;
     }
 
-    public CompletableFuture<AnimeList> getAnimeList() {
-        if (userListFilters.getaClass().equals(AnimeList.class))
-            return getList();
-        else return null;
-    }
 
-    public CompletableFuture<MangaList> getMangaList() {
-        if (userListFilters.getaClass().equals(MangaList.class))
-            return getList();
-        return null;
-    }
-
-
-    /**
-     * Gets an Anime/Manga list from user
-     *
-     * @return CompletableFuture
-     */
-    private CompletableFuture getList() {
+    protected StringBuilder createURL() {
         StringBuilder options = new StringBuilder();
 
         if (userListFilters != null)
@@ -160,9 +157,6 @@ public class UserListingSearch extends Retriever {
         if (ordering)
             if (sortBy != null)
                 options.append("&sort=").append(sortBy);
-
-
-        return retrieve(userListFilters.getaClass(), baseURL + "/user/" + username + options);
+        return options;
     }
 }
-

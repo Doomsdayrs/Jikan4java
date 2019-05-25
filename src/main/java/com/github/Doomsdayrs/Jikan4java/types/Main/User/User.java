@@ -2,7 +2,8 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
-import com.github.Doomsdayrs.Jikan4java.core.userListing.UserListingSearch;
+import com.github.Doomsdayrs.Jikan4java.core.userListing.AnimeUserListingSearch;
+import com.github.Doomsdayrs.Jikan4java.core.userListing.MangaUserListingSearch;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Friends.Friends;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.History.HistoryPage;
 
@@ -81,8 +82,12 @@ public class User extends Retriever {
         return retrieve(Friends.class, baseURL + "/user/" + username + "/friends/" + page);
     }
 
-    public UserListingSearch getListingSearch() {
-        return new UserListingSearch(username);
+    public AnimeUserListingSearch getAnimeListSearch() {
+        return new AnimeUserListingSearch(username);
+    }
+
+    public MangaUserListingSearch getMangaListSearch() {
+        return new MangaUserListingSearch(username);
     }
 
     @Override

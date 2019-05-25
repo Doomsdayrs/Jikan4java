@@ -1,6 +1,6 @@
-package com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters;
+package com.github.Doomsdayrs.Jikan4java.enums.userListings.filters;
 
-import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList.MangaList;
+import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeList;
 
 /**
  * This file is part of Jikan4java.
@@ -20,19 +20,19 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList.MangaL
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaListFilters implements UserListFilters {
-    ALL("all"),
-    READING("reading"),
+public enum AnimeListFilters implements UserListFilters {
+    ALL("all"), //Default is all anyways
+    WATCHING("watching"),
     COMPLETED("completed"),
     ONHOLD("onhold"),
     DROPPED("dropped"),
-    PLANTOREAD("plantoread"),
-    PTR(PLANTOREAD.type);
+    PLANTOWATCH("plantowatch"),
+    PTW(PLANTOWATCH.type);
 
     private final String type;
-    private final Class aClass = MangaList.class;
+    private final Class aClass = AnimeList.class;
 
-    MangaListFilters(String type) {
+    AnimeListFilters(String type) {
         this.type = type;
     }
 
@@ -43,7 +43,7 @@ public enum MangaListFilters implements UserListFilters {
 
     @Override
     public String getForm() {
-        return "mangalist";
+        return "animelist";
     }
 
     @Override

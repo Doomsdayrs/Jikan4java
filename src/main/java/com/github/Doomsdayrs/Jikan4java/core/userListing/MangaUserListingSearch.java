@@ -1,9 +1,16 @@
 package com.github.Doomsdayrs.Jikan4java.core.userListing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.Doomsdayrs.Jikan4java.enums.SortBy;
+import com.github.Doomsdayrs.Jikan4java.enums.userListings.filters.UserListFilters;
+import com.github.Doomsdayrs.Jikan4java.enums.userListings.orderBy.ListOrderBy;
+import com.github.Doomsdayrs.Jikan4java.enums.userListings.status.MangaListingStati;
+import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList.MangaList;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This file is part of Jikan4java.
@@ -23,7 +30,7 @@ import org.json.simple.parser.JSONParser;
  *
  * @author github.com/doomsdayrs
  */
-public class MangaUserListingSearch extends UserListingSearch {
+public class MangaUserListingSearch extends UserListingSearch<MangaList> {
     private int magazine = 0;
 
     public MangaUserListingSearch(String username) {
@@ -44,5 +51,93 @@ public class MangaUserListingSearch extends UserListingSearch {
 
     public MangaUserListingSearch(Request.Builder builder, String username) {
         super(builder, username);
+    }
+
+    public MangaUserListingSearch setMagazine(int magazine) {
+        this.magazine = magazine;
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setQuery(String query) {
+        super.setQuery(query);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setPage(int page) {
+        super.setPage(page);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setSortBy(SortBy sortBy) {
+        super.setSortBy(sortBy);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setOrderBy(ListOrderBy orderBy) {
+        super.setOrderBy(orderBy);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setOrderBy2(ListOrderBy orderBy2) {
+        super.setOrderBy2(orderBy2);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setFrom(int yyyy, int mm, int dd) {
+        super.setFrom(yyyy, mm, dd);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setTo(int yyyy, int mm, int dd) {
+        super.setTo(yyyy, mm, dd);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setFrom(int[] from) {
+        super.setFrom(from);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setTo(int[] to) {
+        super.setTo(to);
+        return this;
+    }
+
+    public MangaUserListingSearch setListingStati(MangaListingStati listingStati) {
+        super.setListingStati(listingStati);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setUserListFilters(UserListFilters userListFilters) {
+        super.setUserListFilters(userListFilters);
+        return this;
+    }
+
+    @Override
+    public MangaUserListingSearch setUsername(String username) {
+        super.setUsername(username);
+        return this;
+    }
+
+    @Override
+    protected StringBuilder createURL() {
+        StringBuilder stringBuilder = super.createURL();
+        if (magazine != 0)
+            stringBuilder.append("&magazine=").append(magazine);
+        return stringBuilder;
+    }
+
+    protected CompletableFuture<MangaList> getList() {
+        return retrieve(MangaList.class, baseURL + "/user/" + username + this.createURL());
     }
 }

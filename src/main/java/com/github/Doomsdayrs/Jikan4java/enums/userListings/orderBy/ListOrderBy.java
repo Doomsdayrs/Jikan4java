@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters;
+package com.github.Doomsdayrs.Jikan4java.enums.userListings.orderBy;
 
 /**
  * This file is part of Jikan4java.
@@ -14,15 +14,9 @@ package com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters;
  * along with Jikan4java.  If not, see https://www.gnu.org/licenses/.
  * ====================================================================
  * Jikan4java
- * 16 / 05 / 2019
+ * 25 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public interface UserListFilters {
-    public String getForm();
-
-    public Class getaClass();
-
-    @Override
-    public String toString();
+public interface ListOrderBy {
 }

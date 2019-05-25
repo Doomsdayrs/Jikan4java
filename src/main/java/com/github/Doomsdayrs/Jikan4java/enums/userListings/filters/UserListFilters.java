@@ -1,6 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters;
-
-import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeList;
+package com.github.Doomsdayrs.Jikan4java.enums.userListings.filters;
 
 /**
  * This file is part of Jikan4java.
@@ -20,34 +18,11 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeL
  *
  * @author github.com/doomsdayrs
  */
-public enum AnimeListFilters implements UserListFilters {
-    ALL("all"), //Default is all anyways
-    WATCHING("watching"),
-    COMPLETED("completed"),
-    ONHOLD("onhold"),
-    DROPPED("dropped"),
-    PLANTOWATCH("plantowatch"),
-    PTW(PLANTOWATCH.type);
+public interface UserListFilters {
+    String getForm();
 
-    private final String type;
-    private final Class aClass = AnimeList.class;
-
-    AnimeListFilters(String type) {
-        this.type = type;
-    }
+    Class getaClass();
 
     @Override
-    public String toString() {
-        return type;
-    }
-
-    @Override
-    public String getForm() {
-        return "animelist";
-    }
-
-    @Override
-    public Class getaClass() {
-        return aClass;
-    }
+    String toString();
 }

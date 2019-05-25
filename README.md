@@ -4,19 +4,16 @@ Website for Jikan: https://jikan.moe/
 
 To add to your project, head over to https://jitpack.io/#Doomsdayrs/Jikan4java and select the method you need to use!
 
-**ALERT**: Connection classes are obsolete in the next version, do not use them.
+**ALERT**: Connection classes are obsolete do not use them.
 
 ## Capabilities
-- Everything except the below
-  - New things from v3.3
-
+- Everything as detailed from [Here](https://jikan.docs.apiary.io/#)
 ## Basic documentation
-For the next version
 [Here](https://github.com/Doomsdayrs/Jikan4java/blob/master/Documentation.md)
 
 Previous versions do not have such documentation
 
-oh and remember i rarely test the methods~ 
+oh and remember i rarely test the methods~ So ill just pump out new versions for the smallest error
 
 ## Known issues
 - API issue of user object being returned as an array list when empty. Future update of api will let me return Related fields back to normal

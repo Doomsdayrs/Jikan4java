@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.enums.user.userListings.orderBy;
+package com.github.Doomsdayrs.Jikan4java.enums.userListings.orderBy;
 
 /**
  * This file is part of Jikan4java.
@@ -18,20 +18,27 @@ package com.github.Doomsdayrs.Jikan4java.enums.user.userListings.orderBy;
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaListOrderBy {
+public enum AnimeListOrderBy implements ListOrderBy {
     TITLE("title"),
+    FINISH_DATE("finish_date"),
     START_DATE("start_date"),
-    END_DATE("end_date"),
     SCORE("score"),
+    LAST_UPDATED("last_updated"),
     TYPE("type"),
-    MEMBERS("members"),
-    ID("id"),
-    CHAPTERS("chapters"),
-    VOLUMES("volumes");
+    RATED("rated"),
+    REWATCH("rewatch"),
+    REWATCHED_VALUE(REWATCH.type),
+    PRIORITY("priority"),
+    PROGRESS("progress"),
+    EPISODES_WATCHED(PROGRESS.type),
+    STORAGE("storage"),
+    AIR_START("air_start"),
+    AIR_END("air_end"),
+    STATUS("status");
 
     private final String type;
 
-    MangaListOrderBy(String type) {
+    AnimeListOrderBy(String type) {
         this.type = type;
     }
 

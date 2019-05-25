@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.enums.user.userListings.orderBy;
+package com.github.Doomsdayrs.Jikan4java.enums.userListings.status;
 
 /**
  * This file is part of Jikan4java.
@@ -18,5 +18,23 @@ package com.github.Doomsdayrs.Jikan4java.enums.user.userListings.orderBy;
  *
  * @author github.com/doomsdayrs
  */
-public interface ListOrderBy {
+public enum AnimeListingStati implements ListingStati {
+    AIRING("airing"),
+    FINISHED("finished"),
+    COMPLETE(FINISHED.type),
+    TO_BE_AIRED("to_be_aired"),
+    NOT_YET_AIRED(TO_BE_AIRED.type),
+    TBA(NOT_YET_AIRED.type),
+    NYA(TBA.type);
+
+    private final String type;
+
+    AnimeListingStati(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return type;
+    }
 }
