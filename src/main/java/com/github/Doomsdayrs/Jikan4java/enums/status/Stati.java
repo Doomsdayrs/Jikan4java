@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.status;
+package com.github.Doomsdayrs.Jikan4java.enums.status;
 
 /**
  * This file is part of Jikan4java.

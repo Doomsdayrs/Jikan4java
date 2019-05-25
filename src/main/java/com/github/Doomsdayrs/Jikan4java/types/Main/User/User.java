@@ -2,7 +2,7 @@ package com.github.Doomsdayrs.Jikan4java.types.Main.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
-import com.github.Doomsdayrs.Jikan4java.core.UserListingSearch;
+import com.github.Doomsdayrs.Jikan4java.core.userListing.UserListingSearch;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Friends.Friends;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.History.HistoryPage;
 

@@ -1,6 +1,7 @@
 package com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.UserListing;
 
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class MangaList {
+public class MangaList implements UserListing {
 
     @JsonProperty("request_hash")
     public String request_hash;

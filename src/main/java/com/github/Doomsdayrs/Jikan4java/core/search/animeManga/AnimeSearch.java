@@ -6,8 +6,8 @@ import com.github.Doomsdayrs.Jikan4java.enums.genres.AnimeGenres;
 import com.github.Doomsdayrs.Jikan4java.enums.search.Types;
 import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.Ratings;
 import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.orderBy.AnimeOrderBy;
-import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.status.AnimeStati;
 import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.subType.SubTypes;
+import com.github.Doomsdayrs.Jikan4java.enums.status.AnimeStati;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.Anime;
 import com.github.Doomsdayrs.Jikan4java.types.Main.Anime.AnimePage.AnimePage;
 import okhttp3.OkHttpClient;
@@ -73,7 +73,6 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
         return this;
     }
 
-    @Override
     public AnimeSearch setStatus(AnimeStati status) {
         super.setStatus(status);
         return this;
@@ -136,5 +135,10 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
     public AnimeSearch setType(SubTypes subTypes) {
         super.setType(subTypes);
         return this;
+    }
+
+    @Override
+    public CompletableFuture<Anime> getByID(int id) {
+        return super.getByID(id);
     }
 }

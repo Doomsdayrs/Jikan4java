@@ -7,8 +7,8 @@ import com.github.Doomsdayrs.Jikan4java.enums.genres.Genres;
 import com.github.Doomsdayrs.Jikan4java.enums.search.Types;
 import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.Ratings;
 import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.orderBy.OrderBy;
-import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.status.AnimeStati;
 import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.subType.SubTypes;
+import com.github.Doomsdayrs.Jikan4java.enums.status.Stati;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -44,7 +44,7 @@ import java.util.concurrent.CompletionException;
 class AnimeMangaSearch<T> extends Search<T> {
     protected int page = 0;
     protected SubTypes subTypes = null;
-    protected AnimeStati status = null;
+    protected Stati status = null;
     protected int[] startDate = null;
     protected ArrayList<Integer> genres = null;
     protected float score = 0;
@@ -196,7 +196,7 @@ class AnimeMangaSearch<T> extends Search<T> {
      * @param status Status
      * @return this
      */
-    public AnimeMangaSearch<T> setStatus(AnimeStati status) {
+    public AnimeMangaSearch<T> setStatus(Stati status) {
         this.status = status;
         return this;
     }

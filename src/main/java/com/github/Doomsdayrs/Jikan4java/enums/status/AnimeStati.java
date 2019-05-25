@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.status;
+package com.github.Doomsdayrs.Jikan4java.enums.status;
 
 /**
  * This file is part of Jikan4java.
@@ -18,7 +18,7 @@ package com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.status;
  *
  * @author github.com/doomsdayrs
  */
-public enum AnimeStati {
+public enum AnimeStati implements Stati {
     AIRING("airing"),
     COMPLETED("completed"),
     COMPLETE("complete"),

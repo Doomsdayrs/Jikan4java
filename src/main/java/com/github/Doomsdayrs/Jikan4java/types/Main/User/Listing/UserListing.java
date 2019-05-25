@@ -1,4 +1,4 @@
-package com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.status;
+package com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing;
 
 /**
  * This file is part of Jikan4java.
@@ -14,9 +14,9 @@ package com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.status;
  * along with Jikan4java.  If not, see https://www.gnu.org/licenses/.
  * ====================================================================
  * Jikan4java
- * 18 / 05 / 2019
+ * 25 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public class MangaStati {
+public interface UserListing {
 }
