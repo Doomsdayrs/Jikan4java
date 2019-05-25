@@ -1,11 +1,9 @@
 package com.github.Doomsdayrs.Jikan4java.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.AnimeListFilters;
-import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.MangaListFilters;
+import com.github.Doomsdayrs.Jikan4java.enums.SortBy;
+import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.orderBy.OrderBy;
 import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.UserListFilters;
-import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeList;
-import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList.MangaList;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
@@ -58,33 +56,18 @@ public class UserListingSearch extends Retriever {
     }
 
 
-    //TODO Advanced UserList parameters for anime
-    //TODO Advanced userlist parameters for manga
+    private UserListFilters userListFilters = null;
+
+    private String query = null;
+    private int page = 0;
+    private SortBy sortBy = null;
+
+    private OrderBy orderBy = null;
+    private OrderBy orderBy2 = null;
 
 
-    public CompletableFuture<MangaList> getMangaList(int page) {
-        return getList(page, null);
-    }
 
-    public CompletableFuture<MangaList> getMangaList(int page, MangaListFilters types) {
-        return getList(page, types);
-    }
 
-    public CompletableFuture<MangaList> getMangaList(MangaListFilters types) {
-        return getList(0, types);
-    }
-
-    public CompletableFuture<AnimeList> getAnimeList(int page) {
-        return getList(page, null);
-    }
-
-    public CompletableFuture<AnimeList> getAnimeList(int page, AnimeListFilters types) {
-        return getList(page, types);
-    }
-
-    public CompletableFuture<AnimeList> getAnimeList(AnimeListFilters types) {
-        return getList(0, types);
-    }
 
     /**
      * Gets an Anime/Manga list from user
@@ -92,7 +75,7 @@ public class UserListingSearch extends Retriever {
      * @param page if 0, returns all. if 1, returns 300 per page
      * @return CompletableFuture
      */
-    private CompletableFuture getList(int page, UserListFilters userListFilters) {
+    private CompletableFuture getList(int page, UserListFilters userListFilters, SortBy sortBy, OrderBy orderBy, OrderBy orderBy2) {
         StringBuilder options = new StringBuilder();
 
         if (userListFilters != null)
@@ -103,3 +86,4 @@ public class UserListingSearch extends Retriever {
         return retrieve(userListFilters.getaClass(), baseURL + "/user/" + username + options);
     }
 }
+

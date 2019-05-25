@@ -1,9 +1,6 @@
 package com.github.Doomsdayrs.Jikan4java;
 
-import com.github.Doomsdayrs.Jikan4java.core.Connector;
-import com.github.Doomsdayrs.Jikan4java.core.UserListingSearch;
-import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.MangaListFilters;
-import com.github.Doomsdayrs.Jikan4java.types.Main.User.User;
+import com.github.Doomsdayrs.Jikan4java.core.search.animeManga.AnimeSearch;
 
 import java.util.concurrent.ExecutionException;
 
@@ -125,9 +122,14 @@ public class ExampleClass {
         }
         System.out.println(completableFuture.get());
 */
-        User user = new Connector().userSearch("doomsdayrs").get();
-        UserListingSearch userListingSearch = user.getListingSearch();
-        System.out.println(userListingSearch.getMangaList(MangaListFilters.DROPPED).get());
+
+
+        AnimeSearch core = new AnimeSearch().setQuery("Shingeki no Kyojin Season 3 Part 2")
+                .setLimit(1);
+        System.out.println(core.get().get());
+        //    User user = new Connector().userSearch("doomsdayrs").get();
+        //  UserListingSearch userListingSearch = user.getListingSearch();
+        //System.out.println(userListingSearch.getMangaList(MangaListFilters.DROPPED).get());
     }
 
 }

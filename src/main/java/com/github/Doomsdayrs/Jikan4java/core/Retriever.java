@@ -129,7 +129,10 @@ public class Retriever {
                     else {
                         throw new CompletionException(new RequestError(object.get("error").toString()));
                     }
-                } else return null;
+                } else {
+                    System.out.println("Response body is null");
+                    return null;
+                }
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
                 return null;
