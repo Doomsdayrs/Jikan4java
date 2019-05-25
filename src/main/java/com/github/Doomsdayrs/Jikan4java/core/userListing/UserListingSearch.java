@@ -3,9 +3,9 @@ package com.github.Doomsdayrs.Jikan4java.core.userListing;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.Doomsdayrs.Jikan4java.core.Retriever;
 import com.github.Doomsdayrs.Jikan4java.enums.SortBy;
-import com.github.Doomsdayrs.Jikan4java.enums.search.animeManga.orderBy.OrderBy;
 import com.github.Doomsdayrs.Jikan4java.enums.status.Stati;
 import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.filters.UserListFilters;
+import com.github.Doomsdayrs.Jikan4java.enums.user.userListings.orderBy.ListOrderBy;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.AnimeList.AnimeList;
 import com.github.Doomsdayrs.Jikan4java.types.Main.User.Listing.MangaList.MangaList;
 import okhttp3.OkHttpClient;
@@ -66,8 +66,8 @@ public class UserListingSearch extends Retriever {
     protected int page = 0;
     protected SortBy sortBy = null;
 
-    protected OrderBy orderBy = null;
-    protected OrderBy orderBy2 = null;
+    protected ListOrderBy orderBy = null;
+    protected ListOrderBy orderBy2 = null;
 
     protected int[] from = null;
     protected int[] to = null;
@@ -91,12 +91,12 @@ public class UserListingSearch extends Retriever {
         return this;
     }
 
-    public UserListingSearch setOrderBy(OrderBy orderBy) {
+    public UserListingSearch setOrderBy(ListOrderBy orderBy) {
         this.orderBy = orderBy;
         return this;
     }
 
-    public UserListingSearch setOrderBy2(OrderBy orderBy2) {
+    public UserListingSearch setOrderBy2(ListOrderBy orderBy2) {
         this.orderBy2 = orderBy2;
         return this;
     }
