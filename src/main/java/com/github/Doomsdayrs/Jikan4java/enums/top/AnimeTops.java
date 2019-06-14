@@ -24,6 +24,7 @@ public enum AnimeTops implements TopSubType {
     TV("tv"),
     MOVIE("movie"),
     OVA("ova"),
+    BYPOPULARITY("bypopularity"),
     SPECIAL("special");
     private final String type;
 
