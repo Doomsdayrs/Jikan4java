@@ -19,4 +19,5 @@ package com.github.Doomsdayrs.Jikan4java.enums.top;
  * @author github.com/doomsdayrs
  */
 public interface TopSubType {
+    String toString();
 }

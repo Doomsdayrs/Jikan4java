@@ -40,10 +40,15 @@ public enum Tops {
         if (this.equals(PEOPLE) || this.equals(CHARACTERS))
             return false;
         if (topSubType != null) {
+            if (this.equals(ANIME) || this.equals(MANGA))
+                if (topSubType.getClass().equals(SharedTops.class))
+                    return true;
+
             if (this.equals(ANIME))
                 return topSubType.getClass().equals(AnimeTops.class);
             if (this.equals(MANGA))
                 return topSubType.getClass().equals(MangaTops.class);
+
         }
         return false;
     }

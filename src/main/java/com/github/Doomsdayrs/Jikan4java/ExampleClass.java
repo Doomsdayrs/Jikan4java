@@ -1,6 +1,12 @@
 package com.github.Doomsdayrs.Jikan4java;
 
+import com.github.Doomsdayrs.Jikan4java.core.search.TopSearch;
+import com.github.Doomsdayrs.Jikan4java.enums.top.SharedTops;
+import com.github.Doomsdayrs.Jikan4java.enums.top.Tops;
+import com.github.Doomsdayrs.Jikan4java.exceptions.IncompatibleEnumException;
+
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This file is part of Jikan4java.
@@ -20,14 +26,14 @@ import java.util.concurrent.ExecutionException;
  *
  * @author github.com/doomsdayrs
  */
-public class ExampleClass {
+class ExampleClass {
 
     /**
      * Example method
      *
      * @param args Args
      */
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
+    public static void main(String[] args) throws InterruptedException, ExecutionException, IncompatibleEnumException {
         /*
         AnimeConnection animeConnection = new AnimeConnection();
         CharacterConnection characterConnection = new CharacterConnection();
@@ -124,6 +130,13 @@ public class ExampleClass {
         //    User user = new Connector().userSearch("doomsdayrs").get();
         //  UserListingSearch userListingSearch = user.getListingSearch();
         //System.out.println(userListingSearch.getMangaList(MangaListFilters.DROPPED).get());
+
+        TopSearch topSearch = new TopSearch();
+        System.out.println(topSearch.searchTop(Tops.ANIME, SharedTops.BY_POPULARITY).get());
+        System.out.println(topSearch.searchTop(Tops.MANGA, SharedTops.BY_POPULARITY).get());
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println(topSearch.searchTop(Tops.PEOPLE, SharedTops.FAVORITE).get());
+        System.out.println(topSearch.searchTop(Tops.CHARACTERS, SharedTops.BY_POPULARITY).get());
     }
 
 }
