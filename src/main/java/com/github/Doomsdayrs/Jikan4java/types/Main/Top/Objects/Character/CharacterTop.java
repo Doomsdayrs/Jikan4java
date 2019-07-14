@@ -5,7 +5,7 @@ import com.github.Doomsdayrs.Jikan4java.types.Main.Top.Top;
 
 import java.util.ArrayList;
 
-/**
+/*
  * This file is part of Jikan4java.
  * Jikan4java is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
