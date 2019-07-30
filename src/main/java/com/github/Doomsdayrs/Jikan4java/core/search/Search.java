@@ -44,7 +44,7 @@ public class Search<T> extends Retriever {
     protected final Types type;
     protected T t;
     protected Class aClass;
-    protected String query = null;
+    protected String query = "";
     private int limit = 0;
 
     /**
