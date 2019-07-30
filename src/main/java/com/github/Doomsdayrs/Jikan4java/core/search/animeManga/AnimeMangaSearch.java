@@ -99,6 +99,8 @@ class AnimeMangaSearch<T> extends Search<T> {
         }
         if (!genreToggle) builder.append("&genre_exclude=").append(0);
         if (score != 0) builder.append("&score=").append(score);
+        if (startDate != null) builder.append(String.format("&start_date=%02d-%02d-%02d",startDate[0],startDate[1],startDate[2]));
+        if (endDate != null) builder.append(String.format("&end_date=%02d-%02d-%02d",endDate[0],endDate[1],endDate[2]));
         if (orderBy != null) builder.append("&order_by=").append(orderBy);
         if (sortBy != null) builder.append("&sort=").append(sortBy);
         return builder;
