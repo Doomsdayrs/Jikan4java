@@ -25,7 +25,6 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-//TODO Create Documentation detailing the need to convert their old deprecated Connection classes to this connector
 
 /*
  * This file is part of Jikan4java.
