@@ -42,7 +42,8 @@ public class Episode {
     public String title_romanji;
 
     @JsonProperty("aired")
-    public Aired aired;
+    public String aired;
+    //public Aired aired;
 
     @JsonProperty("filler")
     @SuppressWarnings("WeakerAccess")

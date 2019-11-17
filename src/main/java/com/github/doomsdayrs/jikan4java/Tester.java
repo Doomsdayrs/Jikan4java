@@ -1,4 +1,5 @@
-package com.github.doomsdayrs.jikan4java;/*
+package com.github.doomsdayrs.jikan4java;
+/*
  * This file is part of Jikan4java.
  *
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -55,70 +56,78 @@ class Tester {
             animeSearch = new AnimeSearch();
             animeSearch.setQuery(animeTitle);
 
-            System.out.println("Searching for ANIME\n");
+            System.out.println("\nSearching for ANIME\n");
             CompletableFuture<Anime> animeCompletableFuture = animeSearch.getFirst();
             animeCompletableFuture.thenAccept(System.out::println);
             Anime anime = animeCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
-            System.out.println("Character_Staff\n");
+            System.out.println("\nCharacter_Staff\n");
             CompletableFuture<Character_Staff> characterStaffCompletableFuture = anime.getCharacterStaffs();
             characterStaffCompletableFuture.thenAccept(System.out::println);
             Character_Staff character_staff = characterStaffCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
-            System.out.println("Episodes\n");
+            System.out.println("\nEpisodes\n");
             CompletableFuture<Episodes> episodesCompletableFuture = anime.getEpisodes();
             episodesCompletableFuture.thenAccept(System.out::println);
             Episodes episodes = episodesCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
+            System.out.println("\nNews\n");
             CompletableFuture<News> newsCompletableFuture = anime.getNews();
             newsCompletableFuture.thenAccept(System.out::println);
             News news = newsCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
+            System.out.println("\nPictures\n");
             CompletableFuture<Pictures> picturesCompletableFuture = anime.getPictures();
             picturesCompletableFuture.thenAccept(System.out::println);
             Pictures pictures = picturesCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
+            System.out.println("\nVideos\n");
             CompletableFuture<Video> videoCompletableFuture = anime.getVideos();
             videoCompletableFuture.thenAccept(System.out::println);
             Video video = videoCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
+            System.out.println("\nStats\n");
             CompletableFuture<Stats> statsCompletableFuture = anime.getStats();
             statsCompletableFuture.thenAccept(System.out::println);
             Stats stats = statsCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
+            System.out.println("\nForum\n");
             CompletableFuture<Forum> forumCompletableFuture = anime.getForum();
             forumCompletableFuture.thenAccept(System.out::println);
             Forum forum = forumCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
+            System.out.println("\nMoreInfo\n");
             CompletableFuture<MoreInfo> moreInfoCompletableFuture = anime.getMoreInfo();
             moreInfoCompletableFuture.thenAccept(System.out::println);
             MoreInfo moreInfo = moreInfoCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
+            System.out.println("\nReviewPage\n");
             CompletableFuture<AnimeReviewPage> reviewCompletableFuture = anime.getReviewPage();
             reviewCompletableFuture.thenAccept(System.out::println);
             AnimeReviewPage reviewPage = reviewCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
+            System.out.println("\nRecommendationPage\n");
             CompletableFuture<RecommendationPage> recommendCompletableFuture = anime.getRecommendationPage();
             recommendCompletableFuture.thenAccept(System.out::println);
             RecommendationPage recommendationPage = recommendCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
 
+            System.out.println("\nUserUpdates\n");
             CompletableFuture<AnimeUserUpdatesPage> animeUserUpdateCompletableFuture = anime.getUserUpdatesPage();
             animeUserUpdateCompletableFuture.thenAccept(System.out::println);
             AnimeUserUpdatesPage animeUserUpdatesPage = animeUserUpdateCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
-
-
         }
+        System.out.println("\n=== Completed ===\n");
     }
 }
