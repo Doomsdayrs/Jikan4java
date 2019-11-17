@@ -36,6 +36,12 @@ import java.util.concurrent.CompletionException;
  * @author github.com/doomsdayrs
  */
 public class Retriever {
+    protected static boolean debugMode = false;
+
+    public static void setDebugMode(boolean debugMode) {
+        Retriever.debugMode = debugMode;
+    }
+
     protected final String baseURL = "https://api.jikan.moe/v3";
 
     protected final OkHttpClient client;
@@ -126,7 +132,13 @@ public class Retriever {
                 ResponseBody responseBody = request(url);
                 if (responseBody != null) {
                     String response = responseBody.string();
+                    if (debugMode)
+                        System.out.println("RAWJSON: " + response);
+
                     JSONObject object = ((JSONObject) jsonParser.parse(response));
+                    if (debugMode)
+                        System.out.println("JSONOBJECT: " + object.toJSONString());
+
                     if (!object.containsKey("error"))
                         return objectMapper.readValue(object.toJSONString(), target);
                     else {

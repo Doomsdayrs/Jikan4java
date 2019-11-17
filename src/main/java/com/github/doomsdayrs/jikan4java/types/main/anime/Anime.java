@@ -143,7 +143,7 @@ public class Anime extends Retriever {
      * @return Episode object
      */
     @JsonProperty
-    public CompletableFuture<Episodes> getEpisode(int pageNumber) {
+    public CompletableFuture<Episodes> getEpisodes(int pageNumber) {
         String category = "/episodes";
         if (pageNumber != 0) {
             category = "/episodes/" + pageNumber;
@@ -153,8 +153,8 @@ public class Anime extends Retriever {
     }
 
     @JsonProperty
-    public CompletableFuture<Episodes> getEpisode() {
-        return getEpisode(0);
+    public CompletableFuture<Episodes> getEpisodes() {
+        return getEpisodes(0);
     }
 
 

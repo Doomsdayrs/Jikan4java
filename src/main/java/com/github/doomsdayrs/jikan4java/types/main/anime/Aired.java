@@ -27,6 +27,13 @@ import com.github.doomsdayrs.jikan4java.types.support.prop.Prop;
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class Aired {
+    @JsonProperty("request_hash")
+    public String request_hash;
+    @JsonProperty("request_cached")
+    public boolean request_cached;
+    @JsonProperty("request_cache_expiry")
+    public int request_cache_expiry;
+
     @JsonProperty("from")
     public String from;
 
@@ -42,7 +49,10 @@ public class Aired {
     @Override
     public String toString() {
         return "Aired{" +
-                "from='" + from + '\'' +
+                "request_hash='" + request_hash + '\'' +
+                ", request_cached=" + request_cached +
+                ", request_cache_expiry=" + request_cache_expiry +
+                ", from='" + from + '\'' +
                 ", to='" + to + '\'' +
                 ", prop=" + prop +
                 ", string='" + string + '\'' +
