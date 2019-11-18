@@ -21,29 +21,16 @@ import java.util.ArrayList;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*//**
  * Jikan4java
  * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class Other implements Day {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("other")
-    public ArrayList<SubAnime> other;
+public class Other extends Day {
 
-    @Override
-    public String toString() {
-        return "Other{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", other=" + other +
-                '}';
+    public Other(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry,
+                 @JsonProperty("other") ArrayList<SubAnime> subAnimes) {
+        super(request_hash, request_cached, request_cache_expiry, subAnimes);
     }
 }

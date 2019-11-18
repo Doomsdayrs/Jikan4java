@@ -22,25 +22,20 @@ import java.util.concurrent.CompletableFuture;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 07 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class MangaBasic extends Retriever {
-    @JsonProperty("mal_id")
-    public int mal_id;
+public class MangaBasic extends BasicObject {
 
-    @JsonProperty("url")
-    public String url;
+    public MangaBasic(@JsonProperty("mal_id") int mal_id, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url, @JsonProperty("name") String name) {
+        super(mal_id, url, image_url, name);
+    }
 
-    @JsonProperty("image_url")
-    public String image_url;
-
-    @JsonProperty("name")
-    public String name;
-    
     /**
      * Returns the Manga object of this object
      *
@@ -50,13 +45,5 @@ public class MangaBasic extends Retriever {
         return retrieve(Anime.class, baseURL + "/manga/" + mal_id);
     }
 
-    @Override
-    public String toString() {
-        return "MangaBasic{" +
-                "mal_id=" + mal_id +
-                ", url='" + url + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
+
 }
