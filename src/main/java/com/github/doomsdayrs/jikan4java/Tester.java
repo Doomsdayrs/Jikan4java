@@ -17,24 +17,15 @@ package com.github.doomsdayrs.jikan4java;
  */
 
 import com.github.doomsdayrs.jikan4java.core.Retriever;
+import com.github.doomsdayrs.jikan4java.core.search.TopSearch;
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch;
-import com.github.doomsdayrs.jikan4java.core.search.animemanga.MangaSearch;
-import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
-import com.github.doomsdayrs.jikan4java.types.main.anime.character_staff.Character_Staff;
-import com.github.doomsdayrs.jikan4java.types.main.anime.episodes.Episodes;
-import com.github.doomsdayrs.jikan4java.types.main.anime.videos.Video;
-import com.github.doomsdayrs.jikan4java.types.main.character.Character;
-import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
-import com.github.doomsdayrs.jikan4java.types.main.manga.MangaCharacters;
-import com.github.doomsdayrs.jikan4java.types.support.MoreInfo;
-import com.github.doomsdayrs.jikan4java.types.support.forum.Forum;
-import com.github.doomsdayrs.jikan4java.types.support.news.News;
-import com.github.doomsdayrs.jikan4java.types.support.pictures.Pictures;
-import com.github.doomsdayrs.jikan4java.types.support.recommendations.RecommendationPage;
-import com.github.doomsdayrs.jikan4java.types.support.reviews.anime.AnimeReviewPage;
-import com.github.doomsdayrs.jikan4java.types.support.stats.MangaStats;
-import com.github.doomsdayrs.jikan4java.types.support.stats.Stats;
-import com.github.doomsdayrs.jikan4java.types.support.userupdate.anime.AnimeUserUpdatesPage;
+import com.github.doomsdayrs.jikan4java.enums.top.Tops;
+import com.github.doomsdayrs.jikan4java.exceptions.IncompatibleEnumException;
+import com.github.doomsdayrs.jikan4java.types.main.top.Top;
+import com.github.doomsdayrs.jikan4java.types.main.top.objects.anime.AnimeTop;
+import com.github.doomsdayrs.jikan4java.types.main.top.objects.character.CharacterTop;
+import com.github.doomsdayrs.jikan4java.types.main.top.objects.manga.MangaTop;
+import com.github.doomsdayrs.jikan4java.types.main.top.objects.person.PersonTop;
 
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
@@ -52,8 +43,9 @@ import static com.github.doomsdayrs.jikan4java.core.Retriever.setDebugMode;
 class Tester {
     private static final String[] animes = {"Boku no Hero Academia 4th Season", "Steins;Gate", "Fullmetal Alchemist: Brotherhood", "Kimetsu no Yaiba"};
     private static final String[] mangaTitles = {"Berserk"/*, "Boku no", "One punch", "Shield"*/};
+    private static final Tops[] tops = {Tops.ANIME, Tops.MANGA, Tops.CHARACTERS, Tops.PEOPLE};
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException, IncompatibleEnumException {
         // Enables DEBUG mode
         setDebugMode(true);
 
@@ -136,6 +128,7 @@ class Tester {
             TimeUnit.SECONDS.sleep(4);
         }
 */
+       /*
         MangaSearch mangaSearch;
         for (String mangaTitle : mangaTitles) {
             mangaSearch = new MangaSearch();
@@ -166,7 +159,36 @@ class Tester {
             Stats stats = statsCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
         }
-
+*/
+        TopSearch topSearch;
+        for (Tops top : tops) {
+            topSearch = new TopSearch();
+            System.out.println("\n" + top.toString() + "\n");
+            CompletableFuture<Top> topCompletableFuture = topSearch.searchTop(top);
+            topCompletableFuture.thenAccept(System.out::println);
+            Top t = topCompletableFuture.get();
+            switch (top) {
+                case PEOPLE:
+                    PersonTop personTop = (PersonTop) t;
+                    System.out.println(personTop);
+                    break;
+                case CHARACTERS:
+                    CharacterTop characterTop = (CharacterTop) t;
+                    System.out.println(characterTop);
+                    break;
+                case MANGA:
+                    MangaTop mangaTop = (MangaTop) t;
+                    System.out.println(mangaTop);
+                    break;
+                case ANIME:
+                    AnimeTop animeTop = (AnimeTop) t;
+                    System.out.println(animeTop);
+                    break;
+                default:
+                    break;
+            }
+            TimeUnit.SECONDS.sleep(4);
+        }
         // Gets any and all errors from code
         ArrayList<String[]> errors = Retriever.getErrorMessages();
         for (String[] error : errors) {
