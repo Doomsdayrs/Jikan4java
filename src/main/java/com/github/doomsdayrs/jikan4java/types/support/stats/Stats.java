@@ -19,6 +19,9 @@ import com.github.doomsdayrs.jikan4java.types.support.stats.score.Score;
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
+ */
+
+/**
  * Jikan4java
  * 29 / October / 2018
  *
@@ -34,9 +37,6 @@ public class Stats {
     @JsonProperty("request_cache_expiry")
     public int request_cache_expiry;
 
-    @JsonProperty("watching")
-    public int watching;
-
     @JsonProperty("completed")
     public int completed;
 
@@ -46,26 +46,32 @@ public class Stats {
     @JsonProperty("dropped")
     public int dropped;
 
-    @JsonProperty("plan_to_watch")
-    public int plan_to_watch;
-
     @JsonProperty("total")
     public int total;
 
     @JsonProperty("scores")
     public Score scores;
-    
+
+    public Stats(String request_hash, boolean request_cached, int request_cache_expiry, int completed, int on_hold, int dropped, int total, Score scores) {
+        this.request_hash = request_hash;
+        this.request_cached = request_cached;
+        this.request_cache_expiry = request_cache_expiry;
+        this.completed = completed;
+        this.on_hold = on_hold;
+        this.dropped = dropped;
+        this.total = total;
+        this.scores = scores;
+    }
+
     @Override
     public String toString() {
         return "Stats{" +
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", watching=" + watching +
                 ", completed=" + completed +
                 ", on_hold=" + on_hold +
                 ", dropped=" + dropped +
-                ", plan_to_watch=" + plan_to_watch +
                 ", total=" + total +
                 ", scores=" + scores.toString() +
                 '}';

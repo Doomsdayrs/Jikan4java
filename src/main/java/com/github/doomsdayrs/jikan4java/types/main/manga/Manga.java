@@ -12,6 +12,7 @@ import com.github.doomsdayrs.jikan4java.types.support.pictures.Pictures;
 import com.github.doomsdayrs.jikan4java.types.support.recommendations.RecommendationPage;
 import com.github.doomsdayrs.jikan4java.types.support.related.Related;
 import com.github.doomsdayrs.jikan4java.types.support.reviews.manga.MangaReviewPage;
+import com.github.doomsdayrs.jikan4java.types.support.stats.MangaStats;
 import com.github.doomsdayrs.jikan4java.types.support.stats.Stats;
 import com.github.doomsdayrs.jikan4java.types.support.userupdate.manga.MangaUserUpdatesPage;
 import org.json.simple.parser.ParseException;
@@ -103,11 +104,9 @@ public class Manga extends Retriever {
      * Returns MangaCharacters object
      *
      * @return MangaCharacters
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
-    public CompletableFuture<MangaCharacters> getCharacters() throws IOException, ParseException {
+    public CompletableFuture<MangaCharacters> getCharacters() {
         return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/characters");
     }
 
@@ -115,47 +114,39 @@ public class Manga extends Retriever {
      * Gets news about Manga
      *
      * @return News object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
-    public CompletableFuture<News> getNews() throws IOException, ParseException {
-        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/news");
+    public CompletableFuture<News> getNews() {
+        return retrieve(News.class, baseURL + "/manga/" + mal_id + "/news");
     }
 
     /**
      * Gets pictures related to Manga
      *
      * @return Pictures object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
-    public CompletableFuture<Pictures> getPictures() throws IOException, ParseException {
-        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/pictures");
+    public CompletableFuture<Pictures> getPictures() {
+        return retrieve(Pictures.class, baseURL + "/manga/" + mal_id + "/pictures");
     }
 
     /**
      * Gets stats about Manga object
      *
      * @return Stats object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
-    public CompletableFuture<Stats> getStats() throws IOException, ParseException {
-        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/stats");
+    public CompletableFuture<MangaStats> getStats() {
+        return retrieve(MangaStats.class, baseURL + "/manga/" + mal_id + "/stats");
     }
 
     /**
      * Returns forum object
      *
      * @return Forum object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
-    public CompletableFuture<Forum> getForum() throws IOException, ParseException {
+    public CompletableFuture<Forum> getForum() {
         return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/forum");
     }
 
@@ -163,11 +154,9 @@ public class Manga extends Retriever {
      * Returns Moreinfo object
      *
      * @return MoreInfo
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
-    public CompletableFuture<MoreInfo> getMoreInfo() throws IOException, ParseException {
+    public CompletableFuture<MoreInfo> getMoreInfo() {
         return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/moreinfo");
     }
 
@@ -175,46 +164,41 @@ public class Manga extends Retriever {
      * Gets manga reviews
      *
      * @return MangaReviewPage
-     * @throws IOException
-     * @throws ParseException
      */
     @JsonProperty
-    public CompletableFuture<MangaReviewPage> getReviews() throws IOException, ParseException {
+    public CompletableFuture<MangaReviewPage> getReviews() {
         return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/reviews");
     }
 
     /**
      * Gets recommendations for this manga
+     *
      * @return RecommendationPage
-     * @throws IOException
-     * @throws ParseException
      */
     @JsonProperty
-    public CompletableFuture<RecommendationPage> getRecommendationPage() throws IOException, ParseException {
+    public CompletableFuture<RecommendationPage> getRecommendationPage() {
         return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/recommendations");
     }
 
     /**
      * Gets first page of user updates
+     *
      * @return MangaUserUpdatesPage
-     * @throws IOException
-     * @throws ParseException
      */
     @JsonProperty
-    public CompletableFuture<MangaUserUpdatesPage> getUserUpdatesPage() throws IOException, ParseException {
+    public CompletableFuture<MangaUserUpdatesPage> getUserUpdatesPage() {
         return getUserUpdatesPage(1);
     }
 
     /**
      * Gets a page of userUpdates
+     *
      * @param page
      * @return MangaUserUpdatesPage
-     * @throws IOException
-     * @throws ParseException
      */
     @JsonProperty
-    public CompletableFuture<MangaUserUpdatesPage> getUserUpdatesPage(int page) throws IOException, ParseException {
-        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/userupdates/"+page);
+    public CompletableFuture<MangaUserUpdatesPage> getUserUpdatesPage(int page) {
+        return retrieve(MangaCharacters.class, baseURL + "/manga/" + mal_id + "/userupdates/" + page);
     }
 
     @Override

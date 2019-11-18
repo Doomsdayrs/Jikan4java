@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.github.doomsdayrs.jikan4java.exceptions.RequestError;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,6 +12,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
@@ -30,16 +32,24 @@ import java.util.concurrent.CompletionException;
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
+ */
+
+/**
  * Jikan4java
  * 11 / May / 2019
  *
  * @author github.com/doomsdayrs
  */
 public class Retriever {
-    protected static boolean debugMode = false;
+    private static boolean debugMode = false;
+    private static final ArrayList<String[]> errorMessages = new ArrayList<>();
 
     public static void setDebugMode(boolean debugMode) {
         Retriever.debugMode = debugMode;
+    }
+
+    public static ArrayList<String[]> getErrorMessages() {
+        return errorMessages;
     }
 
     protected final String baseURL = "https://api.jikan.moe/v3";
@@ -127,11 +137,12 @@ public class Retriever {
      */
     public CompletableFuture retrieve(Class target, String url) {
         return CompletableFuture.supplyAsync(() -> {
+            String response = "";
             try {
                 System.out.println("Retrieving: " + url);
                 ResponseBody responseBody = request(url);
                 if (responseBody != null) {
-                    String response = responseBody.string();
+                    response = responseBody.string();
                     if (debugMode)
                         System.out.println("RAWJSON: " + response);
 
@@ -149,6 +160,8 @@ public class Retriever {
                     return null;
                 }
             } catch (IOException | ParseException e) {
+                if (debugMode)
+                    errorMessages.add(new String[]{e.getMessage(), response, url});
                 e.printStackTrace();
                 return null;
             }

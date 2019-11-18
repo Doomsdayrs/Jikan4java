@@ -14,7 +14,7 @@ import com.github.doomsdayrs.jikan4java.types.support.pictures.Pictures;
 import com.github.doomsdayrs.jikan4java.types.support.recommendations.RecommendationPage;
 import com.github.doomsdayrs.jikan4java.types.support.related.Related;
 import com.github.doomsdayrs.jikan4java.types.support.reviews.anime.AnimeReviewPage;
-import com.github.doomsdayrs.jikan4java.types.support.stats.Stats;
+import com.github.doomsdayrs.jikan4java.types.support.stats.AnimeStats;
 import com.github.doomsdayrs.jikan4java.types.support.userupdate.anime.AnimeUserUpdatesPage;
 import org.json.simple.parser.ParseException;
 
@@ -38,12 +38,27 @@ import java.util.concurrent.CompletableFuture;
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
+ */
+
+/**
  * Jikan4java
  * 28 / October / 2018
  *
  * @author github.com/doomsdayrs
+ * <p>
+ *     Provided Endpoints:
+ *     Episodes
+ *     News
+ *     Pictures
+ *     Videos
+ *     Stats
+ *     Forum
+ *     MoreInfo
+ *     Reviews
+ *     Recommendations
+ *     UserUpdates
+ * </p>
  */
-
 public class Anime extends Retriever {
     @JsonProperty("request_hash")
     public String request_hash;
@@ -200,8 +215,8 @@ public class Anime extends Retriever {
      * @return Stats object
      */
     @JsonProperty
-    public CompletableFuture<Stats> getStats() {
-        return retrieve(Stats.class, baseURL + "/anime/" + mal_id + "/stats");
+    public CompletableFuture<AnimeStats> getStats() {
+        return retrieve(AnimeStats.class, baseURL + "/anime/" + mal_id + "/stats");
     }
 
 
@@ -244,7 +259,6 @@ public class Anime extends Retriever {
     public CompletableFuture<AnimeUserUpdatesPage> getUserUpdatesPage() {
         return getUserUpdatesPage(0);
     }
-
 
 
     @JsonProperty

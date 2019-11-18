@@ -16,20 +16,27 @@ package com.github.doomsdayrs.jikan4java;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch;
+import com.github.doomsdayrs.jikan4java.core.search.animemanga.MangaSearch;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
 import com.github.doomsdayrs.jikan4java.types.main.anime.character_staff.Character_Staff;
 import com.github.doomsdayrs.jikan4java.types.main.anime.episodes.Episodes;
 import com.github.doomsdayrs.jikan4java.types.main.anime.videos.Video;
+import com.github.doomsdayrs.jikan4java.types.main.character.Character;
+import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
+import com.github.doomsdayrs.jikan4java.types.main.manga.MangaCharacters;
 import com.github.doomsdayrs.jikan4java.types.support.MoreInfo;
 import com.github.doomsdayrs.jikan4java.types.support.forum.Forum;
 import com.github.doomsdayrs.jikan4java.types.support.news.News;
 import com.github.doomsdayrs.jikan4java.types.support.pictures.Pictures;
 import com.github.doomsdayrs.jikan4java.types.support.recommendations.RecommendationPage;
 import com.github.doomsdayrs.jikan4java.types.support.reviews.anime.AnimeReviewPage;
+import com.github.doomsdayrs.jikan4java.types.support.stats.MangaStats;
 import com.github.doomsdayrs.jikan4java.types.support.stats.Stats;
 import com.github.doomsdayrs.jikan4java.types.support.userupdate.anime.AnimeUserUpdatesPage;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -44,7 +51,7 @@ import static com.github.doomsdayrs.jikan4java.core.Retriever.setDebugMode;
  */
 class Tester {
     private static final String[] animes = {"Boku no Hero Academia 4th Season", "Steins;Gate", "Fullmetal Alchemist: Brotherhood", "Kimetsu no Yaiba"};
-
+    private static final String[] mangaTitles = {"Berserk"/*, "Boku no", "One punch", "Shield"*/};
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         // Enables DEBUG mode
@@ -52,7 +59,7 @@ class Tester {
 
         // Anime
         AnimeSearch animeSearch;
-        for (String animeTitle : animes) {
+       /* for (String animeTitle : animes) {
             animeSearch = new AnimeSearch();
             animeSearch.setQuery(animeTitle);
 
@@ -127,6 +134,45 @@ class Tester {
             animeUserUpdateCompletableFuture.thenAccept(System.out::println);
             AnimeUserUpdatesPage animeUserUpdatesPage = animeUserUpdateCompletableFuture.get();
             TimeUnit.SECONDS.sleep(4);
+        }
+*/
+        MangaSearch mangaSearch;
+        for (String mangaTitle : mangaTitles) {
+            mangaSearch = new MangaSearch();
+            mangaSearch.setQuery(mangaTitle);
+            System.out.println("Searching Manga: " + mangaTitle);
+            CompletableFuture<Manga> mangaCompletableFuture = mangaSearch.getFirst();
+            mangaCompletableFuture.thenAccept(System.out::println);
+            Manga manga = mangaCompletableFuture.get();
+            TimeUnit.SECONDS.sleep(4);
+
+            CompletableFuture<MangaCharacters> characterCompletableFuture = manga.getCharacters();
+            characterCompletableFuture.thenAccept(System.out::println);
+            MangaCharacters mangaCharacters = characterCompletableFuture.get();
+            TimeUnit.SECONDS.sleep(4);
+
+            CompletableFuture<News> newsCompletableFuture = manga.getNews();
+            newsCompletableFuture.thenAccept(System.out::println);
+            News news = newsCompletableFuture.get();
+            TimeUnit.SECONDS.sleep(4);
+
+            CompletableFuture<Pictures> picturesCompletableFuture = manga.getPictures();
+            picturesCompletableFuture.thenAccept(System.out::println);
+            Pictures pictures = picturesCompletableFuture.get();
+            TimeUnit.SECONDS.sleep(4);
+
+            CompletableFuture<MangaStats> statsCompletableFuture = manga.getStats();
+            statsCompletableFuture.thenAccept(System.out::println);
+            Stats stats = statsCompletableFuture.get();
+            TimeUnit.SECONDS.sleep(4);
+        }
+
+        // Gets any and all errors from code
+        ArrayList<String[]> errors = Retriever.getErrorMessages();
+        for (String[] error : errors) {
+            System.out.println("\nError: " + error[0]);
+            System.out.println("\tJSON: " + error[1]);
+            System.out.println("\tURL: " + error[2]);
         }
         System.out.println("\n=== Completed ===\n");
     }
