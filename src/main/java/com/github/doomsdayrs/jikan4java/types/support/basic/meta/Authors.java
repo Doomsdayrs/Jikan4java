@@ -1,9 +1,6 @@
-package com.github.doomsdayrs.jikan4java.types.main.top;
+package com.github.doomsdayrs.jikan4java.types.support.basic.meta;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
-
-import java.util.ArrayList;
 
 /*
  * This file is part of Jikan4java.
@@ -20,29 +17,27 @@ import java.util.ArrayList;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================*/
-
-/**
+ * ====================================================================*//**
  * Jikan4java
- * 01 / November / 2018
+ * 28 / October / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class Top extends RequestHashing {
-
-    public ArrayList<TopListing> topListings;
-
-    public Top(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry) {
-        super(request_hash, request_cached, request_cache_expiry);
+public class Authors extends BasicMeta {
+    public Authors(@JsonProperty("mal_id") int mal_id,
+                   @JsonProperty("type") String type,
+                   @JsonProperty("name") String name,
+                   @JsonProperty("url") String url) {
+        super(mal_id, type, name, url);
     }
 
     @Override
     public String toString() {
-        return "Top{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", topListing=" + topListings +
+        return "Authors{" +
+                "mal_id=" + mal_id +
+                ", subType='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

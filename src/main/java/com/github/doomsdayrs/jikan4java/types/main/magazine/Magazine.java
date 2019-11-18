@@ -1,8 +1,8 @@
 package com.github.doomsdayrs.jikan4java.types.main.magazine;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.types.support.Authors;
-import com.github.doomsdayrs.jikan4java.types.support.Genre;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Authors;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Genre;
 
 import java.util.ArrayList;
 

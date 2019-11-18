@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.types.support.forum;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
 import com.github.doomsdayrs.jikan4java.types.support.forum.topic.Topic;
 
 import java.util.ArrayList;
@@ -26,16 +27,16 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Forum {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
+public class Forum extends RequestHashing {
     @JsonProperty("topics")
     public ArrayList<Topic> topics;
-    
+
+    public Forum(@JsonProperty("request_hash") String request_hash,
+                 @JsonProperty("request_cached") boolean request_cached,
+                 @JsonProperty("request_cache_expiry") int request_cache_expiry) {
+        super(request_hash, request_cached, request_cache_expiry);
+    }
+
     @Override
     public String toString() {
         return "Forum{" +

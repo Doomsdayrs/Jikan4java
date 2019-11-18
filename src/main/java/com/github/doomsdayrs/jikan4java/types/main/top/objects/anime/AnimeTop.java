@@ -27,14 +27,16 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class AnimeTop extends Top {
-    @JsonProperty("top")
     public ArrayList<TopAnime> topAnimes;
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
+
+    public AnimeTop(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry, @JsonProperty("top") ArrayList<TopAnime> topAnimes) {
+        super(request_hash, request_cached, request_cache_expiry);
+        this.topAnimes = topAnimes;
+        for (TopAnime topAnime : topAnimes) {
+            super.topListings.add(topAnime);
+        }
+    }
+
 
     @Override
     public String toString() {

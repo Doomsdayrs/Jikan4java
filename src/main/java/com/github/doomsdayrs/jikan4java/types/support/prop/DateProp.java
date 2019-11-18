@@ -1,8 +1,4 @@
-package com.github.doomsdayrs.jikan4java.types.support;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-/*
+package com.github.doomsdayrs.jikan4java.types.support.prop;/*
  * This file is part of Jikan4java.
  *
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -17,32 +13,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ */
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
  * Jikan4java
- * 28 / October / 2018
+ * 18 / 11 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public class Authors {
-    @JsonProperty("mal_id")
-    public int mal_id;
+public class DateProp {
+    public int day;
+    public int month;
+    public int year;
 
-    @JsonProperty("type")
-    public String type;
-
-    @JsonProperty("name")
-    public String name;
-
-    @JsonProperty("url")
-    public String url;
-
-    @Override
-    public String toString() {
-        return "Authors{" +
-                "mal_id=" + mal_id +
-                ", subType='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                '}';
+    public DateProp(@JsonProperty("day") int day,
+                    @JsonProperty("month") int month,
+                    @JsonProperty("year") int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
     }
 }

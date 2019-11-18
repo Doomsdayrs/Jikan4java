@@ -19,7 +19,7 @@ package com.github.doomsdayrs.jikan4java.types.support.reviews;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.types.support.reviews.manga.MangaReview;
+import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
 
 import java.util.ArrayList;
 
@@ -30,29 +30,19 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class ReviewPage {
-    public String request_hash;
-    public boolean request_cached;
-    public int request_cache_expiry;
-    public ArrayList<Review> reviews;
+public class ReviewPage extends RequestHashing {
+    public ArrayList<Review> reviews = new ArrayList<>();
 
     public ReviewPage(@JsonProperty("request_hash") String request_hash,
                       @JsonProperty("request_cached") boolean request_cached,
-                      @JsonProperty("request_cache_expiry") int request_cache_expiry,
-                      @JsonProperty("reviews") ArrayList<Review> reviews) {
+                      @JsonProperty("request_cache_expiry") int request_cache_expiry) {
+        super(request_hash, request_cached, request_cache_expiry);
         this.request_hash = request_hash;
         this.request_cached = request_cached;
         this.request_cache_expiry = request_cache_expiry;
-        this.reviews = reviews;
     }
 
-    @Override
-    public String toString() {
-        return "ReviewPage{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", reviews=" + reviews +
-                '}';
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
     }
 }

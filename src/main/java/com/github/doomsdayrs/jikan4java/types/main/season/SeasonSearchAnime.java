@@ -3,8 +3,8 @@ package com.github.doomsdayrs.jikan4java.types.main.season;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
-import com.github.doomsdayrs.jikan4java.types.support.Genre;
-import com.github.doomsdayrs.jikan4java.types.support.Producer;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Genre;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Producer;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;

@@ -1,9 +1,7 @@
-package com.github.doomsdayrs.jikan4java.types.main.magazine;
+package com.github.doomsdayrs.jikan4java.types.support.basic.meta;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.types.support.basic.meta.BasicMeta;
-
-import java.util.ArrayList;
 
 /*
  * This file is part of Jikan4java.
@@ -20,33 +18,29 @@ import java.util.ArrayList;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*//**
  * Jikan4java
- * 04 / November / 2018
+ * 28 / October / 2018
  *
  * @author github.com/doomsdayrs
  */
 
-public class MagazinePage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("meta")
-    public BasicMeta meta;
-    @JsonProperty("manga")
-    public ArrayList<Magazine> magazines;
+public class Producer extends BasicMeta {
+    public Producer(@JsonProperty("mal_id") int mal_id,
+                 @JsonProperty("type") String type,
+                 @JsonProperty("name") String name,
+                 @JsonProperty("url") String url) {
+        super(mal_id, type, name, url);
+    }
+
 
     @Override
     public String toString() {
-        return "MagazinePage{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", meta=" + meta +
-                ", magazines=" + magazines +
+        return "Producer{" +
+                "mal_id=" + mal_id +
+                ", subType='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

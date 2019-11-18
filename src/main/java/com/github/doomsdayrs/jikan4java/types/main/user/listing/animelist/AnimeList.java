@@ -27,19 +27,14 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 
-public class AnimeList implements UserListing {
-    @JsonProperty("request_hash")
-    public String request_hash;
-
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-
+public class AnimeList extends UserListing {
     @JsonProperty("anime")
     public ArrayList<AnimeListAnime> animes;
-    
+
+    public AnimeList(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry) {
+        super(request_hash, request_cached, request_cache_expiry);
+    }
+
     @Override
     public String toString() {
         return "AnimeList{" +

@@ -3,8 +3,8 @@ package com.github.doomsdayrs.jikan4java.types.main.manga;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.manga.published.Published;
-import com.github.doomsdayrs.jikan4java.types.support.Authors;
-import com.github.doomsdayrs.jikan4java.types.support.Genre;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Authors;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Genre;
 import com.github.doomsdayrs.jikan4java.types.support.MoreInfo;
 import com.github.doomsdayrs.jikan4java.types.support.forum.Forum;
 import com.github.doomsdayrs.jikan4java.types.support.news.News;
@@ -13,11 +13,8 @@ import com.github.doomsdayrs.jikan4java.types.support.recommendations.Recommenda
 import com.github.doomsdayrs.jikan4java.types.support.related.Related;
 import com.github.doomsdayrs.jikan4java.types.support.reviews.manga.MangaReviewPage;
 import com.github.doomsdayrs.jikan4java.types.support.stats.MangaStats;
-import com.github.doomsdayrs.jikan4java.types.support.stats.Stats;
 import com.github.doomsdayrs.jikan4java.types.support.userupdate.manga.MangaUserUpdatesPage;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 

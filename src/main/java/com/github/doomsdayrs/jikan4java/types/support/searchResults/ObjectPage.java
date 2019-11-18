@@ -33,9 +33,7 @@ public class ObjectPage extends Retriever {
     public String url;
     public String image_url;
 
-    public ObjectPage(@JsonProperty("mal_id") int mal_id,
-                      @JsonProperty("url") String url,
-                      @JsonProperty("image_url") String image_url) {
+    public ObjectPage(@JsonProperty("mal_id") int mal_id, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url) {
         this.mal_id = mal_id;
         this.url = url;
         this.image_url = image_url;

@@ -19,6 +19,7 @@ package com.github.doomsdayrs.jikan4java.types.support.searchResults;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
 
 /**
  * Jikan4java
@@ -27,17 +28,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-public class ResultPage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
+public class ResultPage extends RequestHashing {
     @JsonProperty("last_page")
     public int last_page;
 
-    public ResultPage(String request_hash, boolean request_cached, int request_cache_expiry, int last_page) {
+    public ResultPage(@JsonProperty("request_hash") String request_hash,
+                      @JsonProperty("request_cached") boolean request_cached,
+                      @JsonProperty("request_cache_expiry") int request_cache_expiry) {
+        super(request_hash, request_cached, request_cache_expiry);
         this.request_hash = request_hash;
         this.request_cached = request_cached;
         this.request_cache_expiry = request_cache_expiry;

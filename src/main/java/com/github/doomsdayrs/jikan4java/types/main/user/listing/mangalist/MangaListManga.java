@@ -23,7 +23,9 @@ import java.util.concurrent.CompletableFuture;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 16 / 05 / 2019
  *

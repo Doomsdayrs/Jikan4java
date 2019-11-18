@@ -1,9 +1,6 @@
-package com.github.doomsdayrs.jikan4java.types.main.magazine;
+package com.github.doomsdayrs.jikan4java.types.support.basic.meta;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.types.support.basic.meta.BasicMeta;
-
-import java.util.ArrayList;
 
 /*
  * This file is part of Jikan4java.
@@ -26,27 +23,30 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
+public class BasicMeta {
+    public int mal_id;
+    public String type;
+    public String name;
+    public String url;
 
-public class MagazinePage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("meta")
-    public BasicMeta meta;
-    @JsonProperty("manga")
-    public ArrayList<Magazine> magazines;
+    public BasicMeta(@JsonProperty("mal_id") int mal_id,
+                     @JsonProperty("type") String type,
+                     @JsonProperty("name") String name,
+                     @JsonProperty("url") String url) {
+        this.mal_id = mal_id;
+        this.type = type;
+        this.name = name;
+        this.url = url;
+    }
 
     @Override
     public String toString() {
-        return "MagazinePage{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", meta=" + meta +
-                ", magazines=" + magazines +
+        return "Meta{" +
+                "mal_id=" + mal_id +
+                ", subType='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }
+

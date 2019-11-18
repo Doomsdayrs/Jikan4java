@@ -23,13 +23,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-public class To {
-    @JsonProperty("day")
-    public int day;
-    @JsonProperty("month")
-    public int month;
-    @JsonProperty("year")
-    public int year;
+public class To extends DateProp {
+
+    public To(@JsonProperty("day") int day,
+              @JsonProperty("month") int month,
+              @JsonProperty("year") int year) {
+        super(day, month, year);
+    }
 
     @Override
     public String toString() {

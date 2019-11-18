@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.types.support.userupdate.manga;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
 
 import java.util.ArrayList;
 
@@ -19,25 +20,22 @@ import java.util.ArrayList;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 04 / January / 2019
  *
  * @author github.com/doomsdayrs
  */
-public class MangaUserUpdatesPage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-
+public class MangaUserUpdatesPage extends RequestHashing {
     @JsonProperty("users")
     public ArrayList<MangaUserUpdate> userUpdates;
-    
+
+    public MangaUserUpdatesPage(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry) {
+        super(request_hash, request_cached, request_cache_expiry);
+    }
+
     @Override
     public String toString() {
         return "UserUpdatesPage{" +

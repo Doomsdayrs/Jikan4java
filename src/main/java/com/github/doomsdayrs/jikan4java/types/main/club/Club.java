@@ -2,7 +2,7 @@ package com.github.doomsdayrs.jikan4java.types.main.club;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
-import com.github.doomsdayrs.jikan4java.types.support.basic.BasicMeta;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.BasicMeta;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;

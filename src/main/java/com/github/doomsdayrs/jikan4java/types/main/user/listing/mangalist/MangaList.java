@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.types.main.user.listing.mangalist;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.types.main.user.listing.UserListing;
+import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
 
 import java.util.ArrayList;
 
@@ -26,19 +27,16 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class MangaList implements UserListing {
-
-    @JsonProperty("request_hash")
-    public String request_hash;
-
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
+public class MangaList extends UserListing {
 
     @JsonProperty("manga")
     public ArrayList<MangaListManga> mangas;
+
+    public MangaList(@JsonProperty("request_hash") String request_hash,
+                     @JsonProperty("request_cached") boolean request_cached,
+                     @JsonProperty("request_cache_expiry") int request_cache_expiry) {
+        super(request_hash, request_cached, request_cache_expiry);
+    }
 
     @Override
     public String toString() {

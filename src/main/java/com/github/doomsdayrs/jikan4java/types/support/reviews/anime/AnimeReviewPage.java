@@ -37,8 +37,12 @@ public class AnimeReviewPage extends ReviewPage {
                            @JsonProperty("request_cached") boolean request_cached,
                            @JsonProperty("request_cache_expiry") int request_cache_expiry,
                            @JsonProperty("reviews") ArrayList<AnimeReview> reviews) {
-        super(request_hash, request_cached, request_cache_expiry, reviews);
+        super(request_hash, request_cached, request_cache_expiry);
         this.reviews = reviews;
+
+        for (Review review : this.reviews) {
+            super.reviews.add(review);
+        }
     }
 
     @Override
@@ -47,7 +51,7 @@ public class AnimeReviewPage extends ReviewPage {
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", animeReviews=" + animeReviews +
+                ", animeReviews=" + reviews +
                 '}';
     }
 }

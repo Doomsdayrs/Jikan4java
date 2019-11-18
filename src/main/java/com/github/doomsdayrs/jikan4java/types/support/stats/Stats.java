@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.types.support.stats;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
 import com.github.doomsdayrs.jikan4java.types.support.stats.score.Score;
 
 /*
@@ -27,16 +28,7 @@ import com.github.doomsdayrs.jikan4java.types.support.stats.score.Score;
  *
  * @author github.com/doomsdayrs
  */
-public class Stats {
-    @JsonProperty("request_hash")
-    public String request_hash;
-
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-
+public class Stats extends RequestHashing {
     @JsonProperty("completed")
     public int completed;
 
@@ -52,7 +44,8 @@ public class Stats {
     @JsonProperty("scores")
     public Score scores;
 
-    public Stats(String request_hash, boolean request_cached, int request_cache_expiry, int completed, int on_hold, int dropped, int total, Score scores) {
+    public Stats(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry, int completed, int on_hold, int dropped, int total, Score scores) {
+        super(request_hash, request_cached, request_cache_expiry);
         this.request_hash = request_hash;
         this.request_cached = request_cached;
         this.request_cache_expiry = request_cache_expiry;

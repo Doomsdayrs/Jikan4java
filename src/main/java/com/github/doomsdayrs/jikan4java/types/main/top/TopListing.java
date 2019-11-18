@@ -1,8 +1,4 @@
-package com.github.doomsdayrs.jikan4java.types.main.user.listing;
-
-import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
-
-/*
+package com.github.doomsdayrs.jikan4java.types.main.top;/*
  * This file is part of Jikan4java.
  *
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -17,17 +13,29 @@ import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================*/
+ */
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.core.Retriever;
 
 /**
  * Jikan4java
- * 25 / 05 / 2019
+ * 18 / 11 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public class UserListing extends RequestHashing {
+public class TopListing extends Retriever {
+    public int mal_id;
+    public int rank;
+    public String title;
+    public String url;
+    public String image_url;
 
-    public UserListing(String request_hash, boolean request_cached, int request_cache_expiry) {
-        super(request_hash, request_cached, request_cache_expiry);
+    public TopListing(@JsonProperty("mal_id") int mal_id, @JsonProperty("rank") int rank, @JsonProperty("title") String title, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url) {
+        this.mal_id = mal_id;
+        this.rank = rank;
+        this.title = title;
+        this.url = url;
+        this.image_url = image_url;
     }
 }

@@ -1,11 +1,9 @@
 package com.github.doomsdayrs.jikan4java.types.main.top.objects.manga;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
-import org.json.simple.parser.ParseException;
+import com.github.doomsdayrs.jikan4java.types.main.top.TopListingMedia;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /*
@@ -23,53 +21,27 @@ import java.util.concurrent.CompletableFuture;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class TopManga extends Retriever {
-    @JsonProperty("mal_id")
-    public int mal_id;
-
-    @JsonProperty("rank")
-    public int rank;
-
-    @JsonProperty("title")
-    public String title;
-
-    @JsonProperty("url")
-    public String url;
-
-    @JsonProperty("type")
-    public String type;
-
+public class TopManga extends TopListingMedia {
     @JsonProperty("volumes")
     public int volumes;
 
-    @JsonProperty("start_date")
-    public String start_date;
-
-    @JsonProperty("end_date")
-    public String end_date;
-
-    @JsonProperty("members")
-    public int members;
-
-    @JsonProperty("score")
-    public float score;
-
-    @JsonProperty("image_url")
-    public String image_url;
+    public TopManga(@JsonProperty("mal_id") int mal_id, @JsonProperty("rank") int rank, @JsonProperty("title") String title, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url, @JsonProperty("type") String type, @JsonProperty("score") float score, @JsonProperty("members") int members, @JsonProperty("start_date") String start_date, @JsonProperty("end_date") String end_date) {
+        super(mal_id, rank, title, url, image_url, type, score, members, start_date, end_date);
+    }
 
 
     /**
      * Returns the Manga object of this object
      *
      * @return Manga Object
-     * @throws IOException
-     * @throws ParseException
      */
     public CompletableFuture<Manga> getManga() {
         return retrieve(Manga.class, baseURL + "/manga/" + mal_id);

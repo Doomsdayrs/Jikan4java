@@ -3,8 +3,8 @@ package com.github.doomsdayrs.jikan4java.types.main.genresearch.manga;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
-import com.github.doomsdayrs.jikan4java.types.support.Authors;
-import com.github.doomsdayrs.jikan4java.types.support.Genre;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Authors;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Genre;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;

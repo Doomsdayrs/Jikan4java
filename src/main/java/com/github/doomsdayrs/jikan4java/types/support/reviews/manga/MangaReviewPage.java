@@ -37,8 +37,12 @@ public class MangaReviewPage extends ReviewPage {
                            @JsonProperty("request_cached") boolean request_cached,
                            @JsonProperty("request_cache_expiry") int request_cache_expiry,
                            @JsonProperty("reviews") ArrayList<MangaReview> reviews) {
-        super(request_hash, request_cached, request_cache_expiry, reviews);
+        super(request_hash, request_cached, request_cache_expiry);
         this.reviews = reviews;
+
+        for (Review review : this.reviews) {
+            super.reviews.add(review);
+        }
     }
 
 
@@ -48,7 +52,7 @@ public class MangaReviewPage extends ReviewPage {
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", mangaReviews=" + mangaReviews +
+                ", mangaReviews=" + reviews +
                 '}';
     }
 }
