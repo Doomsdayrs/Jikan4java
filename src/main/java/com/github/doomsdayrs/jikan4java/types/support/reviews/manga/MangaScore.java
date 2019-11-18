@@ -18,7 +18,9 @@ import com.github.doomsdayrs.jikan4java.types.support.reviews.Scores;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 30 / December / 2018
  *
@@ -40,7 +42,7 @@ public class MangaScore extends Scores {
 
     @JsonProperty("enjoyment")
     public int enjoyment;
-    
+
     @Override
     public String toString() {
         return "MangaScore{" +

@@ -1,6 +1,8 @@
 package com.github.doomsdayrs.jikan4java.types.support.reviews.anime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.types.support.reviews.Review;
+import com.github.doomsdayrs.jikan4java.types.support.reviews.ReviewPage;
 
 import java.util.ArrayList;
 
@@ -19,26 +21,26 @@ import java.util.ArrayList;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class AnimeReviewPage {
+public class AnimeReviewPage extends ReviewPage {
 
-    @JsonProperty("request_hash")
-    public String request_hash;
+    public ArrayList<AnimeReview> reviews;
 
-    @JsonProperty("request_cached")
-    public boolean request_cached;
+    public AnimeReviewPage(@JsonProperty("request_hash") String request_hash,
+                           @JsonProperty("request_cached") boolean request_cached,
+                           @JsonProperty("request_cache_expiry") int request_cache_expiry,
+                           @JsonProperty("reviews") ArrayList<AnimeReview> reviews) {
+        super(request_hash, request_cached, request_cache_expiry, reviews);
+        this.reviews = reviews;
+    }
 
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-
-    @JsonProperty("reviews")
-    public ArrayList<AnimeReview> animeReviews;
-    
     @Override
     public String toString() {
         return "AnimeReviewPage{" +

@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.types.support.reviews.anime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.types.support.reviews.Reviewer;
+import com.github.doomsdayrs.jikan4java.types.support.reviews.Scores;
 
 /*
  * This file is part of Jikan4java.
@@ -18,29 +19,26 @@ import com.github.doomsdayrs.jikan4java.types.support.reviews.Reviewer;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
 public class AnimeReviewer extends Reviewer {
-
-    @JsonProperty("url")
-    public String url;
-
-    @JsonProperty("image_url")
-    public String image_url;
-
-    @JsonProperty("username")
-    public String username;
-
-    @JsonProperty("episodes_seen")
-    public int seen;
-
-    @JsonProperty("scores")
     public AnimeScore scores;
-    
+
+    public AnimeReviewer(@JsonProperty("url") String url,
+                         @JsonProperty("image_url") String image_url,
+                         @JsonProperty("username") String username,
+                         @JsonProperty("episodes_seen") int seen,
+                         @JsonProperty("scores") AnimeScore scores) {
+        super(url, image_url, username, seen, scores);
+        this.scores = scores;
+    }
+
     @Override
     public String toString() {
         return "AnimeReviewer{" +
