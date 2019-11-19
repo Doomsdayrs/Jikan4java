@@ -22,7 +22,7 @@ package com.github.doomsdayrs.jikan4java.enums.genres;
  * @author github.com/doomsdayrs
  */
 public interface Genres {
-    public int getId();
+    int getId();
 
-    public String getType();
+    String getType();
 }

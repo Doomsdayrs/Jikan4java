@@ -177,8 +177,6 @@ public class Anime extends Retriever {
      * Gets news about anime
      *
      * @return News object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<News> getNews() {
@@ -189,8 +187,6 @@ public class Anime extends Retriever {
      * Gets pictures related to anime
      *
      * @return Pictures object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<Pictures> getPictures() {
@@ -201,8 +197,6 @@ public class Anime extends Retriever {
      * Gets videos related to anime
      *
      * @return Pictures object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<Video> getVideos() {
@@ -224,8 +218,6 @@ public class Anime extends Retriever {
      * Returns forum object
      *
      * @return Forum object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<Forum> getForum() {
@@ -233,11 +225,9 @@ public class Anime extends Retriever {
     }
 
     /**
-     * Returns Moreinfo object
+     * Returns MoreInfo object
      *
      * @return MoreInfo
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<MoreInfo> getMoreInfo() {

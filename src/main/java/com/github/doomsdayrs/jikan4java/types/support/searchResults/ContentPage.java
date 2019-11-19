@@ -28,13 +28,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author github.com/doomsdayrs
  */
 public class ContentPage extends ObjectPage {
-    public String title;
-    public String synopsis;
-    public String type;
-    public double score;
-    public String start_date;
-    public String end_date;
-    public int members;
+    public final String title;
+    public final String synopsis;
+    public final String type;
+    public final double score;
+    public final String start_date;
+    public final String end_date;
+    public final int members;
 
     public ContentPage(@JsonProperty("mal_id") int mal_id, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url, @JsonProperty("title") String title, @JsonProperty("synopsis") String synopsis, @JsonProperty("type") String type, @JsonProperty("score") double score, @JsonProperty("start_date") String start_date, @JsonProperty("end_date") String end_date, @JsonProperty("members") int members) {
         super(mal_id, url, image_url);

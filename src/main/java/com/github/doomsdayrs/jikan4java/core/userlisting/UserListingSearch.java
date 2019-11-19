@@ -40,6 +40,7 @@ class UserListingSearch<T> extends Retriever {
     private UserListFilters userListFilters = null;
     private SortBy sortBy = null;
     private ListOrderBy orderBy2 = null;
+    /** @noinspection FieldCanBeLocal*/
     private ListingStati listingStati = null;
 
     UserListingSearch(String username) {

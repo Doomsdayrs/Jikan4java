@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.types.main.top.objects.person;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.types.main.top.Top;
-import com.github.doomsdayrs.jikan4java.types.main.top.objects.manga.TopManga;
 
 import java.util.ArrayList;
 
@@ -30,7 +29,7 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class PersonTop extends Top {
-    public ArrayList<TopPerson> topPeople;
+    public final ArrayList<TopPerson> topPeople;
 
     public PersonTop(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry, @JsonProperty("top") ArrayList<TopPerson> topPeople) {
         super(request_hash, request_cached, request_cache_expiry);

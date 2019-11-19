@@ -24,10 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author github.com/doomsdayrs
  */
 public class BasicMeta {
-    public int mal_id;
-    public String type;
-    public String name;
-    public String url;
+    public final int mal_id;
+    public final String type;
+    public final String name;
+    public final String url;
 
     public BasicMeta(@JsonProperty("mal_id") int mal_id,
                      @JsonProperty("type") String type,

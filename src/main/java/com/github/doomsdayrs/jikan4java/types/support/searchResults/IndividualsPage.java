@@ -30,8 +30,8 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class IndividualsPage extends ObjectPage {
-    public String name;
-    public ArrayList<String> alternative_names;
+    public final String name;
+    public final ArrayList<String> alternative_names;
 
     public IndividualsPage(@JsonProperty("mal_id") int mal_id, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url, @JsonProperty("name") String name, @JsonProperty("alternative_names") ArrayList<String> alternative_names) {
         super(mal_id, url, image_url);

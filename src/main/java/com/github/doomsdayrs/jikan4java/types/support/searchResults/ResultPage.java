@@ -39,6 +39,5 @@ public class ResultPage extends RequestHashing {
         this.request_hash = request_hash;
         this.request_cached = request_cached;
         this.request_cache_expiry = request_cache_expiry;
-        this.last_page = last_page;
     }
 }

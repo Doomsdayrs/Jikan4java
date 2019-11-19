@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.types.main.anime.episodes;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.types.main.anime.Aired;
 
 /*
  * This file is part of Jikan4java.

@@ -25,12 +25,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class TopListingMedia extends TopListing {
 
-    public String type;
-    public float score;
-    public int members;
-    public String start_date;
+    public final String type;
+    public final float score;
+    public final int members;
+    public final String start_date;
 
-    public String end_date;
+    public final String end_date;
 
 
     public TopListingMedia(@JsonProperty("mal_id") int mal_id, @JsonProperty("rank") int rank, @JsonProperty("title") String title, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url, @JsonProperty("type") String type, @JsonProperty("score") float score, @JsonProperty("members") int members, @JsonProperty("start_date") String start_date, @JsonProperty("end_date") String end_date) {

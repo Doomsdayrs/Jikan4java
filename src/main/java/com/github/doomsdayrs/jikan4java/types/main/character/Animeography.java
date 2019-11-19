@@ -47,10 +47,8 @@ public class Animeography extends Retriever {
      * Returns the Anime object of this object
      *
      * @return Anime Object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public CompletableFuture<Anime> getAnime() throws IOException, ParseException {
+    public CompletableFuture<Anime> getAnime() {
         return retrieve(Anime.class, baseURL + "/anime/" + mal_id);
     }
 

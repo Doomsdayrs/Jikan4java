@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.types.main.top.objects.manga;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.types.main.top.Top;
-import com.github.doomsdayrs.jikan4java.types.main.top.objects.anime.TopAnime;
 
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class MangaTop extends Top {
-    public ArrayList<TopManga> topMangas;
+    public final ArrayList<TopManga> topMangas;
 
     public MangaTop(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry,    @JsonProperty("top")
             ArrayList<TopManga> topMangas) {

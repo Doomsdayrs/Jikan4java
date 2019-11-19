@@ -30,19 +30,19 @@ import com.github.doomsdayrs.jikan4java.types.support.stats.score.Score;
  */
 public class Stats extends RequestHashing {
     @JsonProperty("completed")
-    public int completed;
+    public final int completed;
 
     @JsonProperty("on_hold")
-    public int on_hold;
+    public final int on_hold;
 
     @JsonProperty("dropped")
-    public int dropped;
+    public final int dropped;
 
     @JsonProperty("total")
-    public int total;
+    public final int total;
 
     @JsonProperty("scores")
-    public Score scores;
+    public final Score scores;
 
     public Stats(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry, int completed, int on_hold, int dropped, int total, Score scores) {
         super(request_hash, request_cached, request_cache_expiry);

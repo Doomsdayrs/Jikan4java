@@ -24,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author github.com/doomsdayrs
  */
 public class DateProp {
-    public int day;
-    public int month;
-    public int year;
+    public final int day;
+    public final int month;
+    public final int year;
 
     public DateProp(@JsonProperty("day") int day,
                     @JsonProperty("month") int month,

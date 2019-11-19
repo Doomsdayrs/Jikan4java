@@ -125,8 +125,7 @@ public class Connector extends Retriever {
      *
      * @param name the name of the user to retrieve
      * @return User
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
+
      */
     public CompletableFuture<User> userSearch(String name) {
         return retrieve(User.class, baseURL + "/user/" + name);
@@ -138,8 +137,6 @@ public class Connector extends Retriever {
      * @param ID   ID of magazine
      * @param page page to core for
      * @return MagazinePage object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<MagazinePage> magazineSearch(int ID, int page) {
         return retrieve(MagazinePage.class, baseURL + "/magazine/" + ID + "/" + page);
@@ -148,14 +145,13 @@ public class Connector extends Retriever {
 
     /**
      * Gets meta data from API. WARNING USING MAY CAUSE ERRORS BEYOND IMAGINATION FOR ANYTHING BUT STATUS
-     * @param metaRequest
-     * @param metaType
-     * @param metaPeriod
-     * @return
+     * @param metaRequest REQUEST / STATUS
+     * @param metaType ANIME / CHARACTER / MANGA / PERSON / SEARCH / SCHEDULE / SEASON / TOP
+     * @param metaPeriod MONTHLY / WEEKLY / TODAY
+     * @return Completable future of metaRequest's class
      */
     public CompletableFuture getMeta(MetaRequest metaRequest, MetaType metaType, MetaPeriod metaPeriod) {
         if (metaRequest == null) return null;
-
         StringBuilder option = new StringBuilder();
         option.append(metaRequest);
         if (metaRequest.equals(MetaRequest.REQUEST)) {
@@ -175,8 +171,6 @@ public class Connector extends Retriever {
      * @param ID   ID of magazine
      * @param page page to core for
      * @return Producer object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<ProducerPage> producerSearch(int ID, int page) {
         return retrieve(ProducerPage.class, baseURL + "/producer/" + ID + "/" + page);

@@ -2,10 +2,8 @@ package com.github.doomsdayrs.jikan4java.types.main.manga.mangapage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
 import com.github.doomsdayrs.jikan4java.types.support.searchResults.ContentPage;
-import com.github.doomsdayrs.jikan4java.types.support.searchResults.ObjectPage;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -37,9 +35,9 @@ import java.util.concurrent.CompletableFuture;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class MangaPageManga extends ContentPage {
 
-    public boolean publishing;
-    public int chapters;
-    public int volumes;
+    public final boolean publishing;
+    public final int chapters;
+    public final int volumes;
 
     public MangaPageManga(@JsonProperty("mal_id") int mal_id,
                           @JsonProperty("url") String url,
@@ -64,10 +62,8 @@ public class MangaPageManga extends ContentPage {
      * Returns the Manga object of this object
      *
      * @return Manga Object
-     * @throws IOException
-     * @throws ParseException
      */
-    public CompletableFuture<Manga> getManga() throws IOException, ParseException {
+    public CompletableFuture<Manga> getManga() {
         return retrieve(Manga.class, baseURL + "/character/" + mal_id);
     }
 

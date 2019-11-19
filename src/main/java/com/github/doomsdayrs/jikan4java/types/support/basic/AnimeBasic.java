@@ -2,11 +2,7 @@ package com.github.doomsdayrs.jikan4java.types.support.basic;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /*
@@ -42,10 +38,8 @@ public class AnimeBasic extends BasicObject {
      * Returns the Anime object of this object
      *
      * @return Anime Object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
-    public CompletableFuture<Anime> getAnime() throws IOException, ParseException {
+    public CompletableFuture<Anime> getAnime() {
         return retrieve(Anime.class, baseURL + "/anime/" + mal_id);
     }
 }

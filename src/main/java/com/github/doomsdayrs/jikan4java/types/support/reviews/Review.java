@@ -17,19 +17,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================*//**
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
 public class Review {
-    public int mal_id;
-    public String url;
-    public int helpful_count;
-    public String date;
-    public Reviewer reviewer;
-    public String content;
+    public final int mal_id;
+    public final String url;
+    public final int helpful_count;
+    public final String date;
+    public final Reviewer reviewer;
+    public final String content;
 
 
     public Review(@JsonProperty("mal_id") int mal_id,

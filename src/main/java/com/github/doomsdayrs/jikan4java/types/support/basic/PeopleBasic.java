@@ -1,7 +1,6 @@
 package com.github.doomsdayrs.jikan4java.types.support.basic;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
 import com.github.doomsdayrs.jikan4java.types.main.person.Person;
 

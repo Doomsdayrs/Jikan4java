@@ -190,7 +190,7 @@ public class Manga extends Retriever {
     /**
      * Gets a page of userUpdates
      *
-     * @param page
+     * @param page which page to get, default is 1
      * @return MangaUserUpdatesPage
      */
     @JsonProperty

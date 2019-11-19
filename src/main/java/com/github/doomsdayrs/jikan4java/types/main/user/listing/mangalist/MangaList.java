@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.types.main.user.listing.mangalist;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.types.main.user.listing.UserListing;
-import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
 
 import java.util.ArrayList;
 

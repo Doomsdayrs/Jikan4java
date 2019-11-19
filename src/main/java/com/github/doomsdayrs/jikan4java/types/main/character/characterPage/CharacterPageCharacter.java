@@ -34,8 +34,8 @@ import java.util.concurrent.CompletableFuture;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class CharacterPageCharacter extends IndividualsPage {
 
-    public ArrayList<PageCharacterAnime> animes;
-    public ArrayList<PageCharacterManga> mangas;
+    public final ArrayList<PageCharacterAnime> animes;
+    public final ArrayList<PageCharacterManga> mangas;
 
 
     public CharacterPageCharacter(@JsonProperty("mal_id") int mal_id,
@@ -54,8 +54,6 @@ public class CharacterPageCharacter extends IndividualsPage {
      * Returns the Character object of this object
      *
      * @return Character Object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<Character> getCharacter() {
         return retrieve(Character.class, baseURL + "/character/" + mal_id);

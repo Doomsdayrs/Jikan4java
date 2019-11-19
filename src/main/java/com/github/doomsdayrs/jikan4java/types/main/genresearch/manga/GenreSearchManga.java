@@ -64,9 +64,7 @@ public class GenreSearchManga extends Retriever {
     /**
      * Returns the Manga object of this object
      *
-     * @return Manga Object
-     * @throws IOException
-     * @throws ParseException
+     * @return Manga Object\
      */
     public CompletableFuture<Manga> getManga() {
         return retrieve(Manga.class, baseURL + "/manga/" + mal_id);

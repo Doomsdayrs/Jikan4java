@@ -2,10 +2,8 @@ package com.github.doomsdayrs.jikan4java.types.main.anime.animePage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
 import com.github.doomsdayrs.jikan4java.types.support.searchResults.ContentPage;
-import com.github.doomsdayrs.jikan4java.types.support.searchResults.ObjectPage;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -33,10 +31,10 @@ import java.util.concurrent.CompletableFuture;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public class AnimePageAnime extends ContentPage {
 
-    public boolean airing;
-    public int episodes;
-    public String source;
-    public String rated;
+    public final boolean airing;
+    public final int episodes;
+    public final String source;
+    public final String rated;
 
     public AnimePageAnime(@JsonProperty("mal_id") int mal_id,
                           @JsonProperty("url") String url,

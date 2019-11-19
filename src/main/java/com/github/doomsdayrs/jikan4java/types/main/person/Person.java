@@ -68,7 +68,7 @@ public class Person extends Retriever {
     public ArrayList<PublishedManga> publishedMangas;
 
     @JsonIgnore
-    public CompletableFuture<Pictures> getPictures() throws IOException, ParseException {
+    public CompletableFuture<Pictures> getPictures() {
         return retrieve(Pictures.class, baseURL + "/person/" + mal_id + "/pictures");
     }
 

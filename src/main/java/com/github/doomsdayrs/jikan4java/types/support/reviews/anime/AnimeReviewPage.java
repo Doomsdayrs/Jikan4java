@@ -31,7 +31,7 @@ import java.util.ArrayList;
  */
 public class AnimeReviewPage extends ReviewPage {
 
-    public ArrayList<AnimeReview> reviews;
+    public final ArrayList<AnimeReview> reviews;
 
     public AnimeReviewPage(@JsonProperty("request_hash") String request_hash,
                            @JsonProperty("request_cached") boolean request_cached,

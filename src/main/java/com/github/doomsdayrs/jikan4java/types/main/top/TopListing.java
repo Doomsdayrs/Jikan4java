@@ -25,11 +25,11 @@ import com.github.doomsdayrs.jikan4java.core.Retriever;
  * @author github.com/doomsdayrs
  */
 public class TopListing extends Retriever {
-    public int mal_id;
-    public int rank;
-    public String title;
-    public String url;
-    public String image_url;
+    public final int mal_id;
+    public final int rank;
+    public final String title;
+    public final String url;
+    public final String image_url;
 
     public TopListing(@JsonProperty("mal_id") int mal_id, @JsonProperty("rank") int rank, @JsonProperty("title") String title, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url) {
         this.mal_id = mal_id;

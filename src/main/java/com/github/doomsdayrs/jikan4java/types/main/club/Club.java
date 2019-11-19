@@ -67,7 +67,7 @@ public class Club extends Retriever {
     public ArrayList<BasicMeta> character_relations;
 
     @JsonProperty
-    public CompletableFuture<ClubMemberPage> getMembers() throws IOException, ParseException {
+    public CompletableFuture<ClubMemberPage> getMembers() {
         return retrieve(ClubMemberPage.class, baseURL + "/club/" + mal_id + "/members");
     }
 

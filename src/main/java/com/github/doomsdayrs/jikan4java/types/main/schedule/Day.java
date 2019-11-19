@@ -1,7 +1,5 @@
 package com.github.doomsdayrs.jikan4java.types.main.schedule;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 
 /*
@@ -28,10 +26,10 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class Day {
-    public String request_hash;
-    public boolean request_cached;
-    public int request_cache_expiry;
-    public ArrayList<SubAnime> subAnimes;
+    public final String request_hash;
+    public final boolean request_cached;
+    public final int request_cache_expiry;
+    public final ArrayList<SubAnime> subAnimes;
 
     public Day(String request_hash, boolean request_cached, int request_cache_expiry, ArrayList<SubAnime> subAnimes) {
         this.request_hash = request_hash;

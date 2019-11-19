@@ -24,8 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author github.com/doomsdayrs
  */
 public class TopListingBeing extends TopListing {
-    public int favorites;
-    public String name_kanji;
+    public final int favorites;
+    public final String name_kanji;
 
     public TopListingBeing(int mal_id, int rank, String title, String url, @JsonProperty("favorites") int favorites, @JsonProperty("name_kanji") String name_kanji, @JsonProperty("image_url") String image_url) {
         super(mal_id, rank, title, url, image_url);

@@ -67,11 +67,9 @@ public class Character extends Retriever {
      * Gets pictures
      *
      * @return pictures
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
-    public CompletableFuture<Pictures> getPictures() throws IOException, ParseException {
+    public CompletableFuture<Pictures> getPictures() {
         return retrieve(Pictures.class, baseURL + "/character/" + mal_id + "/pictures");
     }
 

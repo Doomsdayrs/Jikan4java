@@ -29,9 +29,9 @@ import com.github.doomsdayrs.jikan4java.core.Retriever;
  * @author github.com/doomsdayrs
  */
 public class ObjectPage extends Retriever {
-    public int mal_id;
-    public String url;
-    public String image_url;
+    public final int mal_id;
+    public final String url;
+    public final String image_url;
 
     public ObjectPage(@JsonProperty("mal_id") int mal_id, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url) {
         this.mal_id = mal_id;

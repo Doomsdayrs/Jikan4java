@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.types.support.reviews.anime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.types.support.reviews.Review;
-import com.github.doomsdayrs.jikan4java.types.support.reviews.Reviewer;
 
 /*
  * This file is part of Jikan4java.
@@ -28,7 +27,7 @@ import com.github.doomsdayrs.jikan4java.types.support.reviews.Reviewer;
  * @author github.com/doomsdayrs
  */
 public class AnimeReview extends Review {
-    public AnimeReviewer reviewer;
+    public final AnimeReviewer reviewer;
 
     public AnimeReview(@JsonProperty("mal_id") int mal_id,
                        @JsonProperty("url") String url,

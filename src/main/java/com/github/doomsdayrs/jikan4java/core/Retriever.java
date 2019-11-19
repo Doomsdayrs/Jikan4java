@@ -1,7 +1,6 @@
 package com.github.doomsdayrs.jikan4java.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.github.doomsdayrs.jikan4java.exceptions.RequestError;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

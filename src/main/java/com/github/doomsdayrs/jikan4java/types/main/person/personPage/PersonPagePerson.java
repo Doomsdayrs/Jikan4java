@@ -44,8 +44,6 @@ public class PersonPagePerson extends IndividualsPage {
      * Returns the Person object of this object
      *
      * @return Person Object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     public CompletableFuture<Person> getPerson() {
         return retrieve(Person.class, baseURL + "/person/" + mal_id);

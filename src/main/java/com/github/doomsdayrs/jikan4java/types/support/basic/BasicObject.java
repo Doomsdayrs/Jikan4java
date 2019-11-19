@@ -19,11 +19,7 @@ package com.github.doomsdayrs.jikan4java.types.support.basic;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.json.simple.parser.JSONParser;
 
 /**
  * com.github.doomsdayrs.jikan4java.types.support.basic
@@ -33,13 +29,13 @@ import org.json.simple.parser.JSONParser;
  */
 public class BasicObject extends Retriever {
     @JsonProperty("mal_id")
-    public int mal_id;
+    public final int mal_id;
     @JsonProperty("url")
-    public String url;
+    public final String url;
     @JsonProperty("image_url")
-    public String image_url;
+    public final String image_url;
     @JsonProperty("name")
-    public String name;
+    public final String name;
 
     public BasicObject(int mal_id, String url, String image_url, String name) {
         this.mal_id = mal_id;

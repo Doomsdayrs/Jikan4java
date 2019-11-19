@@ -2,7 +2,7 @@ package com.github.doomsdayrs.jikan4java.types.main.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/*
+/** @noinspection ALL*/ /*
  * This file is part of Jikan4java.
  *
  * Jikan4java is free software: you can redistribute it and/or modify

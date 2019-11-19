@@ -3,9 +3,7 @@ package com.github.doomsdayrs.jikan4java.types.main.top.objects.character;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.types.main.character.Character;
 import com.github.doomsdayrs.jikan4java.types.main.top.TopListingBeing;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
