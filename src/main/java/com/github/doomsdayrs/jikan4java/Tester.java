@@ -16,17 +16,29 @@ package com.github.doomsdayrs.jikan4java;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import com.github.doomsdayrs.jikan4java.core.Connector;
+import com.github.doomsdayrs.jikan4java.core.search.GenreSearch;
 import com.github.doomsdayrs.jikan4java.core.search.TopSearch;
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch;
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.MangaSearch;
+import com.github.doomsdayrs.jikan4java.enums.Days;
+import com.github.doomsdayrs.jikan4java.enums.genres.AnimeGenres;
+import com.github.doomsdayrs.jikan4java.enums.genres.MangaGenres;
 import com.github.doomsdayrs.jikan4java.enums.top.Tops;
 import com.github.doomsdayrs.jikan4java.exceptions.IncompatibleEnumException;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
 import com.github.doomsdayrs.jikan4java.types.main.anime.character_staff.Character_Staff;
 import com.github.doomsdayrs.jikan4java.types.main.anime.episodes.Episodes;
 import com.github.doomsdayrs.jikan4java.types.main.anime.videos.Video;
+import com.github.doomsdayrs.jikan4java.types.main.character.Character;
+import com.github.doomsdayrs.jikan4java.types.main.genresearch.anime.GenreSearchAnimePage;
+import com.github.doomsdayrs.jikan4java.types.main.genresearch.manga.GenreSearchMangaPage;
 import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
 import com.github.doomsdayrs.jikan4java.types.main.manga.MangaCharacters;
+import com.github.doomsdayrs.jikan4java.types.main.person.Person;
+import com.github.doomsdayrs.jikan4java.types.main.schedule.Day;
+import com.github.doomsdayrs.jikan4java.types.main.season.SeasonSearch;
+import com.github.doomsdayrs.jikan4java.types.main.season.seasonarchive.SeasonArchive;
 import com.github.doomsdayrs.jikan4java.types.main.top.Top;
 import com.github.doomsdayrs.jikan4java.types.main.top.objects.anime.AnimeTop;
 import com.github.doomsdayrs.jikan4java.types.main.top.objects.character.CharacterTop;
@@ -35,6 +47,7 @@ import com.github.doomsdayrs.jikan4java.types.main.top.objects.person.PersonTop;
 import com.github.doomsdayrs.jikan4java.types.support.MoreInfo;
 import com.github.doomsdayrs.jikan4java.types.support.forum.Forum;
 import com.github.doomsdayrs.jikan4java.types.support.news.News;
+import com.github.doomsdayrs.jikan4java.types.support.pictures.Picture;
 import com.github.doomsdayrs.jikan4java.types.support.pictures.Pictures;
 import com.github.doomsdayrs.jikan4java.types.support.recommendations.RecommendationPage;
 import com.github.doomsdayrs.jikan4java.types.support.reviews.anime.AnimeReviewPage;
@@ -59,36 +72,30 @@ import static com.github.doomsdayrs.jikan4java.core.Retriever.setDebugMode;
  */
 class Tester {
     private static final String[] animes = {"Boku no Hero Academia 4th Season", "Steins;Gate", "Fullmetal Alchemist: Brotherhood", "Kimetsu no Yaiba"};
-    private static final String[] mangaTitles = {"Berserk"/*, "Boku no", "One punch", "Shield"*/};
+    private static final String[] mangaTitles = {"Berserk", "Boku no"/*,"One punch", "Shield"*/};
     private static final Tops[] tops = {Tops.ANIME, Tops.MANGA, Tops.CHARACTERS, Tops.PEOPLE};
+    private static final Days[] days = {Days.MONDAY, Days.TUESDAY, Days.WEDNESDAY, Days.THURSDAY, Days.FRIDAY, Days.UNKNOWN, Days.OTHER};
+
     /**
      * Types: Anime, Manga, Top
      */
-    private static final boolean[] types = {true, true, true};
-    private static final int max = 58;
+    private static final boolean[] types = {true, true, true, true, true, true};
+    private static int max = 1 + (animes.length * 12) + (mangaTitles.length * 5) + (tops.length) + 6 + days.length;
     private static int currentProgress = 0;
 
     /**
      * S is for sleep, It sleeps!
      *
-     * @throws InterruptedException SLEEEEEEEEP
+     * @throws InterruptedException AAAA
      */
     private static void s() throws InterruptedException {
         TimeUnit.SECONDS.sleep(4);
     }
 
-    /**
-     * Loops through array setting values
-     *
-     * @param target value to set opposite of Value
-     * @param value  set the rest to this
-     */
-    public static void setLoopSwap(int target, boolean value) {
-        for (int x = 0; x < types.length; x++)
-            if (x != target)
-                types[x] = value;
-            else types[x] = !value;
+    private static void p(Object object) {
+        System.out.println(object);
     }
+
 
     private static void progressUpdate() {
         currentProgress++;
@@ -105,7 +112,7 @@ class Tester {
     /**
      * Tester method
      *
-     * @param args No args = run's all tests, Default all types enabled, -(type)=0 disables said type, -(type)=1 disables all but said type
+     * @param args No args = run's all tests, Default all types enabled, -(type)=0 disables said type
      * @throws ExecutionException        ignored
      * @throws InterruptedException      ignored
      * @throws IncompatibleEnumException ignored
@@ -118,7 +125,7 @@ class Tester {
             String holder = "";
             int v = arg.indexOf("=");
             if (v != -1 && v != arg.length() - 1)
-                holder = arg.substring(v+1);
+                holder = arg.substring(v + 1);
             else throw new IndexOutOfBoundsException("Invalid entry!");
             int value = -1;
             try {
@@ -131,110 +138,125 @@ class Tester {
 
 
             if (arg.toLowerCase().contains("-anime")) {
-                if (value == 0)
+                if (value == 0) {
+                    max = max - (animes.length * 12);
                     types[0] = false;
-                else setLoopSwap(0, false);
+                }
             } else if (arg.toLowerCase().contains("-manga")) {
-
-                if (value == 0)
+                if (value == 0) {
+                    max = max - (mangaTitles.length * 5);
                     types[1] = false;
-                else setLoopSwap(1, false);
+                }
             } else if (arg.toLowerCase().contains("-top")) {
-                if (value == 0)
+                if (value == 0) {
+                    max = max - tops.length;
                     types[2] = false;
-                else setLoopSwap(2, false);
+                }
+            } else if (arg.toLowerCase().contains("-connector")) {
+                if (value == 0) {
+                    max = max - 6;
+                    types[3] = false;
+                }
+            } else if (arg.toLowerCase().contains("-days")) {
+                if (value == 0) {
+                    max = max - days.length;
+                    types[4] = false;
+                }
+            } else if (arg.toLowerCase().contains("-genre")) {
+                if (value == 0) {
+                    max = max - days.length;
+                    types[4] = false;
+                }
             }
         }
 
         // Anime
         if (types[0]) {
             AnimeSearch animeSearch;
-            int a = 0;
             for (String animeTitle : animes) {
-                a++;
                 animeSearch = new AnimeSearch();
                 animeSearch.setQuery(animeTitle);
 
                 progressUpdate();
                 System.out.println("\nSearching for ANIME\n");
                 CompletableFuture<Anime> animeCompletableFuture = animeSearch.getFirst();
-                animeCompletableFuture.thenAccept(System.out::println);
+                animeCompletableFuture.thenAccept(Tester::p);
                 Anime anime = animeCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nCharacter_Staff\n");
                 CompletableFuture<Character_Staff> characterStaffCompletableFuture = anime.getCharacterStaffs();
-                characterStaffCompletableFuture.thenAccept(System.out::println);
+                characterStaffCompletableFuture.thenAccept(Tester::p);
                 Character_Staff character_staff = characterStaffCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nEpisodes\n");
                 CompletableFuture<Episodes> episodesCompletableFuture = anime.getEpisodes();
-                episodesCompletableFuture.thenAccept(System.out::println);
+                episodesCompletableFuture.thenAccept(Tester::p);
                 Episodes episodes = episodesCompletableFuture.get();
                 s();
 
                 System.out.println("\nNews\n");
                 CompletableFuture<News> newsCompletableFuture = anime.getNews();
-                newsCompletableFuture.thenAccept(System.out::println);
+                newsCompletableFuture.thenAccept(Tester::p);
                 News news = newsCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nPictures\n");
                 CompletableFuture<Pictures> picturesCompletableFuture = anime.getPictures();
-                picturesCompletableFuture.thenAccept(System.out::println);
+                picturesCompletableFuture.thenAccept(Tester::p);
                 Pictures pictures = picturesCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nVideos\n");
                 CompletableFuture<Video> videoCompletableFuture = anime.getVideos();
-                videoCompletableFuture.thenAccept(System.out::println);
+                videoCompletableFuture.thenAccept(Tester::p);
                 Video video = videoCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nStats\n");
                 CompletableFuture<AnimeStats> statsCompletableFuture = anime.getStats();
-                statsCompletableFuture.thenAccept(System.out::println);
+                statsCompletableFuture.thenAccept(Tester::p);
                 Stats stats = statsCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nForum\n");
                 CompletableFuture<Forum> forumCompletableFuture = anime.getForum();
-                forumCompletableFuture.thenAccept(System.out::println);
+                forumCompletableFuture.thenAccept(Tester::p);
                 Forum forum = forumCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nMoreInfo\n");
                 CompletableFuture<MoreInfo> moreInfoCompletableFuture = anime.getMoreInfo();
-                moreInfoCompletableFuture.thenAccept(System.out::println);
+                moreInfoCompletableFuture.thenAccept(Tester::p);
                 MoreInfo moreInfo = moreInfoCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nReviewPage\n");
                 CompletableFuture<AnimeReviewPage> reviewCompletableFuture = anime.getReviewPage();
-                reviewCompletableFuture.thenAccept(System.out::println);
+                reviewCompletableFuture.thenAccept(Tester::p);
                 AnimeReviewPage reviewPage = reviewCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nRecommendationPage\n");
                 CompletableFuture<RecommendationPage> recommendCompletableFuture = anime.getRecommendationPage();
-                recommendCompletableFuture.thenAccept(System.out::println);
+                recommendCompletableFuture.thenAccept(Tester::p);
                 RecommendationPage recommendationPage = recommendCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 System.out.println("\nUserUpdates\n");
                 CompletableFuture<AnimeUserUpdatesPage> animeUserUpdateCompletableFuture = anime.getUserUpdatesPage();
-                animeUserUpdateCompletableFuture.thenAccept(System.out::println);
+                animeUserUpdateCompletableFuture.thenAccept(Tester::p);
                 AnimeUserUpdatesPage animeUserUpdatesPage = animeUserUpdateCompletableFuture.get();
                 s();
             }
@@ -249,31 +271,31 @@ class Tester {
                 progressUpdate();
                 System.out.println("Searching Manga: " + mangaTitle);
                 CompletableFuture<Manga> mangaCompletableFuture = mangaSearch.getFirst();
-                mangaCompletableFuture.thenAccept(System.out::println);
+                mangaCompletableFuture.thenAccept(Tester::p);
                 Manga manga = mangaCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 CompletableFuture<MangaCharacters> characterCompletableFuture = manga.getCharacters();
-                characterCompletableFuture.thenAccept(System.out::println);
+                characterCompletableFuture.thenAccept(Tester::p);
                 MangaCharacters mangaCharacters = characterCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 CompletableFuture<News> newsCompletableFuture = manga.getNews();
-                newsCompletableFuture.thenAccept(System.out::println);
+                newsCompletableFuture.thenAccept(Tester::p);
                 News news = newsCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 CompletableFuture<Pictures> picturesCompletableFuture = manga.getPictures();
-                picturesCompletableFuture.thenAccept(System.out::println);
+                picturesCompletableFuture.thenAccept(Tester::p);
                 Pictures pictures = picturesCompletableFuture.get();
                 s();
 
                 progressUpdate();
                 CompletableFuture<MangaStats> statsCompletableFuture = manga.getStats();
-                statsCompletableFuture.thenAccept(System.out::println);
+                statsCompletableFuture.thenAccept(Tester::p);
                 Stats stats = statsCompletableFuture.get();
                 s();
             }
@@ -287,7 +309,7 @@ class Tester {
                 progressUpdate();
                 System.out.println("\n" + top.toString() + "\n");
                 CompletableFuture<Top> topCompletableFuture = topSearch.searchTop(top);
-                topCompletableFuture.thenAccept(System.out::println);
+                topCompletableFuture.thenAccept(Tester::p);
                 Top t = topCompletableFuture.get();
                 switch (top) {
                     case PEOPLE:
@@ -312,6 +334,72 @@ class Tester {
                 s();
             }
         }
+
+        Connector connector = new Connector();
+        if (types[3]) {
+            progressUpdate();
+            CompletableFuture<Person> personCompletableFuture = connector.retrievePerson(1);
+            personCompletableFuture.thenAccept(Tester::p);
+            Person person = personCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<Pictures> picturesCompletableFuture = person.getPictures();
+            picturesCompletableFuture.thenAccept(Tester::p);
+            Pictures personPictures = picturesCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<Character> characterCompletableFuture = connector.retrieveCharacter(1);
+            characterCompletableFuture.thenAccept(Tester::p);
+            Character character = characterCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            picturesCompletableFuture = character.getPictures();
+            picturesCompletableFuture.thenAccept(Tester::p);
+            Pictures characterPictures = picturesCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<SeasonArchive> seasonArchiveCompletableFuture = connector.seasonArchive();
+            seasonArchiveCompletableFuture.thenAccept(Tester::p);
+            seasonArchiveCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<SeasonSearch> seasonSearchCompletableFuture = connector.seasonLater();
+            seasonSearchCompletableFuture.thenAccept(Tester::p);
+            seasonSearchCompletableFuture.get();
+            s();
+
+        }
+
+        if (types[4]) {
+            for (Days day : days) {
+                progressUpdate();
+                CompletableFuture<Day> daysCompletableFuture = connector.scheduleSearch(day);
+                daysCompletableFuture.thenAccept(Tester::p);
+                daysCompletableFuture.get();
+                s();
+            }
+        }
+
+        if (types[5]) {
+            GenreSearch genreSearch = new GenreSearch();
+            progressUpdate();
+            CompletableFuture<GenreSearchAnimePage> animePageCompletableFuture = genreSearch.searchGenre(AnimeGenres.ACTION);
+            animePageCompletableFuture.thenAccept(Tester::p);
+            animePageCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<GenreSearchMangaPage> mangaPageCompletableFuture = genreSearch.searchGenre(MangaGenres.ACTION);
+            mangaPageCompletableFuture.thenAccept(Tester::p);
+            mangaPageCompletableFuture.get();
+            s();
+        }
+
         // Gets any and all errors from code
         ArrayList<String[]> errors = getErrorMessages();
         for (String[] error : errors) {

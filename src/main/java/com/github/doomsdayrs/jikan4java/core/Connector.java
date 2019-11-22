@@ -8,6 +8,7 @@ import com.github.doomsdayrs.jikan4java.enums.meta.MetaPeriod;
 import com.github.doomsdayrs.jikan4java.enums.meta.MetaRequest;
 import com.github.doomsdayrs.jikan4java.enums.meta.MetaType;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
+import com.github.doomsdayrs.jikan4java.types.main.character.Character;
 import com.github.doomsdayrs.jikan4java.types.main.club.Club;
 import com.github.doomsdayrs.jikan4java.types.main.magazine.MagazinePage;
 import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
@@ -18,6 +19,7 @@ import com.github.doomsdayrs.jikan4java.types.main.schedule.Schedule;
 import com.github.doomsdayrs.jikan4java.types.main.season.SeasonSearch;
 import com.github.doomsdayrs.jikan4java.types.main.season.seasonarchive.SeasonArchive;
 import com.github.doomsdayrs.jikan4java.types.main.user.User;
+import com.github.doomsdayrs.jikan4java.types.support.pictures.Pictures;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
@@ -106,7 +108,11 @@ public class Connector extends Retriever {
      * @return Person
      */
     public CompletableFuture<Person> retrievePerson(int ID) {
-        return retrieve(Person.class, baseURL + "/manga/" + ID);
+        return retrieve(Person.class, baseURL + "/person/" + ID);
+    }
+
+    public CompletableFuture<Pictures> getPersonPictures(int id) {
+        return retrieve(Pictures.class, baseURL + "/person/" + id + "/pictures");
     }
 
     /**
@@ -116,9 +122,12 @@ public class Connector extends Retriever {
      * @return Character
      */
     public CompletableFuture<Character> retrieveCharacter(int ID) {
-        return retrieve(Character.class, baseURL + "/manga/" + ID);
+        return retrieve(Character.class, baseURL + "/character/" + ID);
     }
 
+    public CompletableFuture<Pictures> getCharacterPictures(int id) {
+        return retrieve(Pictures.class, baseURL + "/character/" + id + "/pictures");
+    }
 
     /**
      * Returns a user object
