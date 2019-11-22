@@ -80,7 +80,7 @@ class Tester {
      * Types: Anime, Manga, Top
      */
     private static final boolean[] types = {true, true, true, true, true, true};
-    private static int max = 1 + (animes.length * 12) + (mangaTitles.length * 5) + (tops.length) + 6 + days.length;
+    private static int max = 1 + (animes.length * 12) + (mangaTitles.length * 5) + (tops.length) + 6 + days.length + 2;
     private static int currentProgress = 0;
 
     /**
@@ -164,7 +164,7 @@ class Tester {
                 }
             } else if (arg.toLowerCase().contains("-genre")) {
                 if (value == 0) {
-                    max = max - days.length;
+                    max = max - 2;
                     types[4] = false;
                 }
             }

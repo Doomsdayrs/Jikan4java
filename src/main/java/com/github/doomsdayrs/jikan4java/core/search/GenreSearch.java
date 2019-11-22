@@ -38,7 +38,7 @@ public class GenreSearch extends Retriever {
      * @return GenreSearchMangaPage
      */
     public CompletableFuture<GenreSearchAnimePage> searchGenre(AnimeGenres genreID) {
-        return searchGenrePage(genreID, 1);
+        return searchGenrePage(genreID, 1,GenreSearchAnimePage.class);
     }
 
     /**
@@ -48,7 +48,7 @@ public class GenreSearch extends Retriever {
      * @return GenreSearchMangaPage
      */
     public CompletableFuture<GenreSearchMangaPage> searchGenre(MangaGenres genreID) {
-        return searchGenrePage(genreID, 1);
+        return searchGenrePage(genreID, 1,GenreSearchMangaPage.class);
     }
 
     /**
@@ -59,7 +59,7 @@ public class GenreSearch extends Retriever {
      * @return GenreSearchAnimePage
      */
     public CompletableFuture<GenreSearchAnimePage> searchGenre(AnimeGenres genreID, int page) {
-        return searchGenrePage(genreID, page);
+        return searchGenrePage(genreID, page,GenreSearchAnimePage.class);
     }
 
     /**
@@ -70,7 +70,7 @@ public class GenreSearch extends Retriever {
      * @return GenreSearchAnimePage
      */
     public CompletableFuture<GenreSearchMangaPage> searchGenre(MangaGenres genreID, int page) {
-        return searchGenrePage(genreID, page);
+        return searchGenrePage(genreID, page,GenreSearchMangaPage.class);
 
     }
 
@@ -81,7 +81,7 @@ public class GenreSearch extends Retriever {
      * @param page    The page number to go to, 0 should be the default unless you know else wise
      * @return GenreSearchAnimePage
      */
-    public CompletableFuture searchGenrePage(Genres genreID, int page) {
-        return retrieve(GenreSearchAnimePage.class, baseURL + "/genre/" + genreID.getType() + "/" + genreID.getId() + "/" + page);
+    public CompletableFuture searchGenrePage(Genres genreID, int page, Class c) {
+        return retrieve(c, baseURL + "/genre/" + genreID.getType() + "/" + genreID.getId() + "/" + page);
     }
 }
