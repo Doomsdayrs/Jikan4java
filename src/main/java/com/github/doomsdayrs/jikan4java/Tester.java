@@ -65,7 +65,7 @@ class Tester {
      * Types: Anime, Manga, Top
      */
     private static final boolean[] types = {true, true, true};
-    private static final int max = 53;
+    private static final int max = 58;
     private static int currentProgress = 0;
 
     /**
@@ -92,12 +92,13 @@ class Tester {
 
     private static void progressUpdate() {
         currentProgress++;
-        System.out.println("\f");
+        System.out.print("\033[H\033[2J");
         StringBuilder stringBuilder = new StringBuilder("[");
         for (int x = 0; x < currentProgress; x++)
             stringBuilder.append("=");
         for (int x = currentProgress; x < max; x++)
             stringBuilder.append("-");
+        stringBuilder.append("]").append(" ").append(currentProgress).append("/").append(max);
         System.out.println("Progress: " + stringBuilder.toString());
     }
 
@@ -112,11 +113,12 @@ class Tester {
     public static void main(String[] args) throws ExecutionException, InterruptedException, IncompatibleEnumException {
         // Enables DEBUG mode
         setDebugMode(true);
+        progressUpdate();
         for (String arg : args) {
             String holder = "";
             int v = arg.indexOf("=");
             if (v != -1 && v != arg.length() - 1)
-                holder = arg.substring(v);
+                holder = arg.substring(v+1);
             else throw new IndexOutOfBoundsException("Invalid entry!");
             int value = -1;
             try {
@@ -124,27 +126,23 @@ class Tester {
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
-            if (value != 1 || value != 0)
+            if (value != 1 && value != 0)
                 throw new IndexOutOfBoundsException("Invalid entry!");
 
 
             if (arg.toLowerCase().contains("-anime")) {
                 if (value == 0)
                     types[0] = false;
-                else if (value == 1)
-                    setLoopSwap(0, false);
+                else setLoopSwap(0, false);
             } else if (arg.toLowerCase().contains("-manga")) {
 
                 if (value == 0)
                     types[1] = false;
-                else if (value == 1)
-                    setLoopSwap(1, false);
+                else setLoopSwap(1, false);
             } else if (arg.toLowerCase().contains("-top")) {
-
                 if (value == 0)
                     types[2] = false;
-                else if (value == 1)
-                    setLoopSwap(2, false);
+                else setLoopSwap(2, false);
             }
         }
 
@@ -285,6 +283,7 @@ class Tester {
             TopSearch topSearch;
             for (Tops top : tops) {
                 topSearch = new TopSearch();
+
                 progressUpdate();
                 System.out.println("\n" + top.toString() + "\n");
                 CompletableFuture<Top> topCompletableFuture = topSearch.searchTop(top);
