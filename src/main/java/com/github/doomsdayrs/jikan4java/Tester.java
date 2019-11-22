@@ -65,15 +65,17 @@ class Tester {
      * Types: Anime, Manga, Top
      */
     private static final boolean[] types = {true, true, true};
+    private static final int max = 53;
+    private static int currentProgress = 0;
 
     /**
      * S is for sleep, It sleeps!
+     *
      * @throws InterruptedException SLEEEEEEEEP
      */
     private static void s() throws InterruptedException {
         TimeUnit.SECONDS.sleep(4);
     }
-
 
     /**
      * Loops through array setting values
@@ -88,6 +90,17 @@ class Tester {
             else types[x] = !value;
     }
 
+    private static void progressUpdate() {
+        currentProgress++;
+        System.out.println("\f");
+        StringBuilder stringBuilder = new StringBuilder("[");
+        for (int x = 0; x < currentProgress; x++)
+            stringBuilder.append("=");
+        for (int x = currentProgress; x < max; x++)
+            stringBuilder.append("-");
+        System.out.println("Progress: " + stringBuilder.toString());
+    }
+
     /**
      * Tester method
      *
@@ -96,31 +109,7 @@ class Tester {
      * @throws InterruptedException      ignored
      * @throws IncompatibleEnumException ignored
      */
-    public static void main(String[] args) throws ExecutionException, InterruptedException, IncompatibleEnumException
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {
+    public static void main(String[] args) throws ExecutionException, InterruptedException, IncompatibleEnumException {
         // Enables DEBUG mode
         setDebugMode(true);
         for (String arg : args) {
@@ -162,21 +151,27 @@ class Tester {
         // Anime
         if (types[0]) {
             AnimeSearch animeSearch;
+            int a = 0;
             for (String animeTitle : animes) {
+                a++;
                 animeSearch = new AnimeSearch();
                 animeSearch.setQuery(animeTitle);
 
+                progressUpdate();
                 System.out.println("\nSearching for ANIME\n");
                 CompletableFuture<Anime> animeCompletableFuture = animeSearch.getFirst();
                 animeCompletableFuture.thenAccept(System.out::println);
                 Anime anime = animeCompletableFuture.get();
+                s();
 
+                progressUpdate();
                 System.out.println("\nCharacter_Staff\n");
                 CompletableFuture<Character_Staff> characterStaffCompletableFuture = anime.getCharacterStaffs();
                 characterStaffCompletableFuture.thenAccept(System.out::println);
                 Character_Staff character_staff = characterStaffCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 System.out.println("\nEpisodes\n");
                 CompletableFuture<Episodes> episodesCompletableFuture = anime.getEpisodes();
                 episodesCompletableFuture.thenAccept(System.out::println);
@@ -189,48 +184,56 @@ class Tester {
                 News news = newsCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 System.out.println("\nPictures\n");
                 CompletableFuture<Pictures> picturesCompletableFuture = anime.getPictures();
                 picturesCompletableFuture.thenAccept(System.out::println);
                 Pictures pictures = picturesCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 System.out.println("\nVideos\n");
                 CompletableFuture<Video> videoCompletableFuture = anime.getVideos();
                 videoCompletableFuture.thenAccept(System.out::println);
                 Video video = videoCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 System.out.println("\nStats\n");
                 CompletableFuture<AnimeStats> statsCompletableFuture = anime.getStats();
                 statsCompletableFuture.thenAccept(System.out::println);
                 Stats stats = statsCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 System.out.println("\nForum\n");
                 CompletableFuture<Forum> forumCompletableFuture = anime.getForum();
                 forumCompletableFuture.thenAccept(System.out::println);
                 Forum forum = forumCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 System.out.println("\nMoreInfo\n");
                 CompletableFuture<MoreInfo> moreInfoCompletableFuture = anime.getMoreInfo();
                 moreInfoCompletableFuture.thenAccept(System.out::println);
                 MoreInfo moreInfo = moreInfoCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 System.out.println("\nReviewPage\n");
                 CompletableFuture<AnimeReviewPage> reviewCompletableFuture = anime.getReviewPage();
                 reviewCompletableFuture.thenAccept(System.out::println);
                 AnimeReviewPage reviewPage = reviewCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 System.out.println("\nRecommendationPage\n");
                 CompletableFuture<RecommendationPage> recommendCompletableFuture = anime.getRecommendationPage();
                 recommendCompletableFuture.thenAccept(System.out::println);
                 RecommendationPage recommendationPage = recommendCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 System.out.println("\nUserUpdates\n");
                 CompletableFuture<AnimeUserUpdatesPage> animeUserUpdateCompletableFuture = anime.getUserUpdatesPage();
                 animeUserUpdateCompletableFuture.thenAccept(System.out::println);
@@ -244,27 +247,33 @@ class Tester {
             for (String mangaTitle : mangaTitles) {
                 mangaSearch = new MangaSearch();
                 mangaSearch.setQuery(mangaTitle);
+
+                progressUpdate();
                 System.out.println("Searching Manga: " + mangaTitle);
                 CompletableFuture<Manga> mangaCompletableFuture = mangaSearch.getFirst();
                 mangaCompletableFuture.thenAccept(System.out::println);
                 Manga manga = mangaCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 CompletableFuture<MangaCharacters> characterCompletableFuture = manga.getCharacters();
                 characterCompletableFuture.thenAccept(System.out::println);
                 MangaCharacters mangaCharacters = characterCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 CompletableFuture<News> newsCompletableFuture = manga.getNews();
                 newsCompletableFuture.thenAccept(System.out::println);
                 News news = newsCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 CompletableFuture<Pictures> picturesCompletableFuture = manga.getPictures();
                 picturesCompletableFuture.thenAccept(System.out::println);
                 Pictures pictures = picturesCompletableFuture.get();
                 s();
 
+                progressUpdate();
                 CompletableFuture<MangaStats> statsCompletableFuture = manga.getStats();
                 statsCompletableFuture.thenAccept(System.out::println);
                 Stats stats = statsCompletableFuture.get();
@@ -276,6 +285,7 @@ class Tester {
             TopSearch topSearch;
             for (Tops top : tops) {
                 topSearch = new TopSearch();
+                progressUpdate();
                 System.out.println("\n" + top.toString() + "\n");
                 CompletableFuture<Top> topCompletableFuture = topSearch.searchTop(top);
                 topCompletableFuture.thenAccept(System.out::println);
