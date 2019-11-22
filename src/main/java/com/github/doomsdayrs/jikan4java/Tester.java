@@ -33,9 +33,11 @@ import com.github.doomsdayrs.jikan4java.types.main.anime.videos.Video;
 import com.github.doomsdayrs.jikan4java.types.main.character.Character;
 import com.github.doomsdayrs.jikan4java.types.main.genresearch.anime.GenreSearchAnimePage;
 import com.github.doomsdayrs.jikan4java.types.main.genresearch.manga.GenreSearchMangaPage;
+import com.github.doomsdayrs.jikan4java.types.main.magazine.MagazinePage;
 import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
 import com.github.doomsdayrs.jikan4java.types.main.manga.MangaCharacters;
 import com.github.doomsdayrs.jikan4java.types.main.person.Person;
+import com.github.doomsdayrs.jikan4java.types.main.producer.ProducerPage;
 import com.github.doomsdayrs.jikan4java.types.main.schedule.Day;
 import com.github.doomsdayrs.jikan4java.types.main.season.SeasonSearch;
 import com.github.doomsdayrs.jikan4java.types.main.season.seasonarchive.SeasonArchive;
@@ -44,10 +46,12 @@ import com.github.doomsdayrs.jikan4java.types.main.top.objects.anime.AnimeTop;
 import com.github.doomsdayrs.jikan4java.types.main.top.objects.character.CharacterTop;
 import com.github.doomsdayrs.jikan4java.types.main.top.objects.manga.MangaTop;
 import com.github.doomsdayrs.jikan4java.types.main.top.objects.person.PersonTop;
+import com.github.doomsdayrs.jikan4java.types.main.user.User;
+import com.github.doomsdayrs.jikan4java.types.main.user.listing.animelist.AnimeList;
+import com.github.doomsdayrs.jikan4java.types.main.user.listing.mangalist.MangaList;
 import com.github.doomsdayrs.jikan4java.types.support.MoreInfo;
 import com.github.doomsdayrs.jikan4java.types.support.forum.Forum;
 import com.github.doomsdayrs.jikan4java.types.support.news.News;
-import com.github.doomsdayrs.jikan4java.types.support.pictures.Picture;
 import com.github.doomsdayrs.jikan4java.types.support.pictures.Pictures;
 import com.github.doomsdayrs.jikan4java.types.support.recommendations.RecommendationPage;
 import com.github.doomsdayrs.jikan4java.types.support.reviews.anime.AnimeReviewPage;
@@ -79,8 +83,8 @@ class Tester {
     /**
      * Types: Anime, Manga, Top
      */
-    private static final boolean[] types = {true, true, true, true, true, true};
-    private static int max = 1 + (animes.length * 12) + (mangaTitles.length * 5) + (tops.length) + 6 + days.length + 2;
+    private static final boolean[] types = {true, true, true, true, true, true, true};
+    private static int max = 1 + (animes.length * 12) + (mangaTitles.length * 5) + (tops.length) + 8 + days.length + 2 + 3;
     private static int currentProgress = 0;
 
     /**
@@ -154,7 +158,7 @@ class Tester {
                 }
             } else if (arg.toLowerCase().contains("-connector")) {
                 if (value == 0) {
-                    max = max - 6;
+                    max = max - 8;
                     types[3] = false;
                 }
             } else if (arg.toLowerCase().contains("-days")) {
@@ -165,7 +169,12 @@ class Tester {
             } else if (arg.toLowerCase().contains("-genre")) {
                 if (value == 0) {
                     max = max - 2;
-                    types[4] = false;
+                    types[5] = false;
+                }
+            }  else if (arg.toLowerCase().contains("-user")) {
+                if (value == 0) {
+                    max = max - 3;
+                    types[6] = false;
                 }
             }
         }
@@ -373,6 +382,17 @@ class Tester {
             seasonSearchCompletableFuture.get();
             s();
 
+            progressUpdate();
+            CompletableFuture<ProducerPage> producerPageCompletableFuture = connector.producerSearch(1, 1);
+            producerPageCompletableFuture.thenAccept(Tester::p);
+            producerPageCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<MagazinePage> magazinePageCompletableFuture = connector.magazineSearch(1, 1);
+            magazinePageCompletableFuture.thenAccept(Tester::p);
+            magazinePageCompletableFuture.get();
+            s();
         }
 
         if (types[4]) {
@@ -397,6 +417,26 @@ class Tester {
             CompletableFuture<GenreSearchMangaPage> mangaPageCompletableFuture = genreSearch.searchGenre(MangaGenres.ACTION);
             mangaPageCompletableFuture.thenAccept(Tester::p);
             mangaPageCompletableFuture.get();
+            s();
+        }
+
+        if (types[6]) {
+            progressUpdate();
+            CompletableFuture<User> userCompletableFuture = connector.userRetrieve("doomsdayrs");
+            userCompletableFuture.thenAccept(Tester::p);
+            User user = userCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<AnimeList> animeListCompletableFuture = user.getAnimeListSearch().getList();
+            animeListCompletableFuture.thenAccept(Tester::p);
+            animeListCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<MangaList> mangaListCompletableFuture = user.getMangaListSearch().getList();
+            mangaListCompletableFuture.thenAccept(Tester::p);
+            mangaListCompletableFuture.get();
             s();
         }
 

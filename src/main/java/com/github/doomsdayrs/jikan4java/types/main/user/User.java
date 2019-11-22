@@ -40,6 +40,9 @@ public class User extends Retriever {
     @JsonProperty("request_cache_expiry")
     public int request_cache_expiry;
 
+    @JsonProperty("user_id")
+    public int user_id;
+
     @JsonProperty("username")
     public String username;
     @JsonProperty("url")
@@ -99,6 +102,7 @@ public class User extends Retriever {
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
+                ", user_id=" + user_id +
                 ", username='" + username + '\'' +
                 ", url='" + url + '\'' +
                 ", image_url='" + image_url + '\'' +

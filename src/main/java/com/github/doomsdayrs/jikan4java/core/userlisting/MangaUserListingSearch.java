@@ -140,7 +140,7 @@ public class MangaUserListingSearch extends UserListingSearch<MangaList> {
         return stringBuilder;
     }
 
-    protected CompletableFuture<MangaList> getList() {
+    public CompletableFuture<MangaList> getList() {
         return retrieve(MangaList.class, baseURL + "/user/" + username + this.createURL());
     }
 }

@@ -158,7 +158,7 @@ public class AnimeUserListingSearch extends UserListingSearch<AnimeList> {
         return stringBuilder;
     }
 
-    protected CompletableFuture<AnimeList> getList() {
+    public CompletableFuture<AnimeList> getList() {
         return retrieve(AnimeList.class, baseURL + "/user/" + username + this.createURL());
     }
 }

@@ -136,7 +136,7 @@ public class Connector extends Retriever {
      * @return User
 
      */
-    public CompletableFuture<User> userSearch(String name) {
+    public CompletableFuture<User> userRetrieve(String name) {
         return retrieve(User.class, baseURL + "/user/" + name);
     }
 
