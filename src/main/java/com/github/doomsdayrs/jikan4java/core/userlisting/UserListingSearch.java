@@ -121,8 +121,6 @@ class UserListingSearch<T> extends Retriever {
     }
 
     /**
-     * This must be set, or will return null on getList
-     *
      * @param userListFilters The type of list you wish, and what filtering. Default with all
      * @return this
      */

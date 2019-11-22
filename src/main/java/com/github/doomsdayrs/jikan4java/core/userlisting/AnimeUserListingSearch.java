@@ -3,6 +3,7 @@ package com.github.doomsdayrs.jikan4java.core.userlisting;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.doomsdayrs.jikan4java.enums.Season;
 import com.github.doomsdayrs.jikan4java.enums.SortBy;
+import com.github.doomsdayrs.jikan4java.enums.userlistings.filters.AnimeListFilters;
 import com.github.doomsdayrs.jikan4java.enums.userlistings.filters.UserListFilters;
 import com.github.doomsdayrs.jikan4java.enums.userlistings.orderby.ListOrderBy;
 import com.github.doomsdayrs.jikan4java.enums.userlistings.status.AnimeListingStati;
@@ -41,23 +42,28 @@ public class AnimeUserListingSearch extends UserListingSearch<AnimeList> {
 
     public AnimeUserListingSearch(String username) {
         super(username);
+        setUserListFilters(AnimeListFilters.ALL);
     }
 
     public AnimeUserListingSearch(OkHttpClient client, String username) {
         super(client, username);
+        setUserListFilters(AnimeListFilters.ALL);
     }
 
 
     public AnimeUserListingSearch(ObjectMapper objectMapper, String username) {
         super(objectMapper, username);
+        setUserListFilters(AnimeListFilters.ALL);
     }
 
     public AnimeUserListingSearch(JSONParser jsonParser, String username) {
         super(jsonParser, username);
+        setUserListFilters(AnimeListFilters.ALL);
     }
 
     public AnimeUserListingSearch(Request.Builder builder, String username) {
         super(builder, username);
+        setUserListFilters(AnimeListFilters.ALL);
     }
 
     public AnimeUserListingSearch setProducer(int producer) {
