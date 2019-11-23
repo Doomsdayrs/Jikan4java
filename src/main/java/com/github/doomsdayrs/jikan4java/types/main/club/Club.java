@@ -66,10 +66,22 @@ public class Club extends Retriever {
     @JsonProperty("character_relations")
     public ArrayList<BasicMeta> character_relations;
 
-    @JsonProperty
-    public CompletableFuture<ClubMemberPage> getMembers() {
-        return retrieve(ClubMemberPage.class, baseURL + "/club/" + mal_id + "/members");
+    /**
+     * 35 per page
+     * @param page page
+     * @return Members
+     */
+    public CompletableFuture<ClubMemberPage> getMembers(int page) {
+        return retrieve(ClubMemberPage.class, baseURL + "/club/" + mal_id + "/members/"+page);
     }
+
+    /**
+     * Returns first page, 35 count
+     * @return Members
+     */    public CompletableFuture<ClubMemberPage> getMembers() {
+        return getMembers(1);
+    }
+
 
 
     @Override

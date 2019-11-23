@@ -22,18 +22,18 @@ import com.github.doomsdayrs.jikan4java.core.search.TopSearch;
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch;
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.MangaSearch;
 import com.github.doomsdayrs.jikan4java.enums.Days;
+import com.github.doomsdayrs.jikan4java.enums.HistoryTypes;
 import com.github.doomsdayrs.jikan4java.enums.genres.AnimeGenres;
 import com.github.doomsdayrs.jikan4java.enums.genres.MangaGenres;
 import com.github.doomsdayrs.jikan4java.enums.top.Tops;
-import com.github.doomsdayrs.jikan4java.enums.userlistings.filters.AnimeListFilters;
-import com.github.doomsdayrs.jikan4java.enums.userlistings.filters.MangaListFilters;
-import com.github.doomsdayrs.jikan4java.enums.userlistings.filters.UserListFilters;
 import com.github.doomsdayrs.jikan4java.exceptions.IncompatibleEnumException;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
 import com.github.doomsdayrs.jikan4java.types.main.anime.character_staff.Character_Staff;
 import com.github.doomsdayrs.jikan4java.types.main.anime.episodes.Episodes;
 import com.github.doomsdayrs.jikan4java.types.main.anime.videos.Video;
 import com.github.doomsdayrs.jikan4java.types.main.character.Character;
+import com.github.doomsdayrs.jikan4java.types.main.club.Club;
+import com.github.doomsdayrs.jikan4java.types.main.club.ClubMemberPage;
 import com.github.doomsdayrs.jikan4java.types.main.genresearch.anime.GenreSearchAnimePage;
 import com.github.doomsdayrs.jikan4java.types.main.genresearch.manga.GenreSearchMangaPage;
 import com.github.doomsdayrs.jikan4java.types.main.magazine.MagazinePage;
@@ -50,6 +50,8 @@ import com.github.doomsdayrs.jikan4java.types.main.top.objects.character.Charact
 import com.github.doomsdayrs.jikan4java.types.main.top.objects.manga.MangaTop;
 import com.github.doomsdayrs.jikan4java.types.main.top.objects.person.PersonTop;
 import com.github.doomsdayrs.jikan4java.types.main.user.User;
+import com.github.doomsdayrs.jikan4java.types.main.user.friends.Friends;
+import com.github.doomsdayrs.jikan4java.types.main.user.history.HistoryPage;
 import com.github.doomsdayrs.jikan4java.types.main.user.listing.animelist.AnimeList;
 import com.github.doomsdayrs.jikan4java.types.main.user.listing.mangalist.MangaList;
 import com.github.doomsdayrs.jikan4java.types.support.MoreInfo;
@@ -83,11 +85,16 @@ class Tester {
     private static final Tops[] tops = {Tops.ANIME, Tops.MANGA, Tops.CHARACTERS, Tops.PEOPLE};
     private static final Days[] days = {Days.MONDAY, Days.TUESDAY, Days.WEDNESDAY, Days.THURSDAY, Days.FRIDAY, Days.UNKNOWN, Days.OTHER};
 
+    private static final int CONNECTOR_SIZE = 8;
+    private static final int GENRES_SIZE = 2;
+    private static final int USER_SIZE = 5;
+    private static final int CLUB_SIZE = 2;
+
     /**
-     * Types: Anime, Manga, Top
+     * Types: Anime, Manga, Top, Connector, Days, Genres, User, Club
      */
-    private static final boolean[] types = {true, true, true, true, true, true, true};
-    private static int max = 1 + (animes.length * 12) + (mangaTitles.length * 5) + (tops.length) + 8 + days.length + 2 + 3;
+    private static final boolean[] types = {true, true, true, true, true, true, true, true};
+    private static int max = 1 + (animes.length * 12) + (mangaTitles.length * 5) + (tops.length) + CONNECTOR_SIZE + days.length + GENRES_SIZE + USER_SIZE + CLUB_SIZE;
     private static int currentProgress = 0;
 
     /**
@@ -146,37 +153,42 @@ class Tester {
 
             if (arg.toLowerCase().contains("-anime")) {
                 if (value == 0) {
-                    max = max - (animes.length * 12);
+                    max -= (animes.length * 12);
                     types[0] = false;
                 }
             } else if (arg.toLowerCase().contains("-manga")) {
                 if (value == 0) {
-                    max = max - (mangaTitles.length * 5);
+                    max -= (mangaTitles.length * 5);
                     types[1] = false;
                 }
             } else if (arg.toLowerCase().contains("-top")) {
                 if (value == 0) {
-                    max = max - tops.length;
+                    max -= tops.length;
                     types[2] = false;
                 }
             } else if (arg.toLowerCase().contains("-connector")) {
                 if (value == 0) {
-                    max = max - 8;
+                    max -= CONNECTOR_SIZE;
                     types[3] = false;
                 }
             } else if (arg.toLowerCase().contains("-days")) {
                 if (value == 0) {
-                    max = max - days.length;
+                    max -= days.length;
                     types[4] = false;
                 }
             } else if (arg.toLowerCase().contains("-genre")) {
                 if (value == 0) {
-                    max = max - 2;
+                    max -= GENRES_SIZE;
                     types[5] = false;
                 }
-            }  else if (arg.toLowerCase().contains("-user")) {
+            } else if (arg.toLowerCase().contains("-user")) {
                 if (value == 0) {
-                    max = max - 3;
+                    max -= USER_SIZE;
+                    types[6] = false;
+                }
+            } else if (arg.toLowerCase().contains("-club")) {
+                if (value == 0) {
+                    max -= CLUB_SIZE;
                     types[6] = false;
                 }
             }
@@ -441,8 +453,39 @@ class Tester {
             mangaListCompletableFuture.thenAccept(Tester::p);
             mangaListCompletableFuture.get();
             s();
+
+            progressUpdate();
+            CompletableFuture<Friends> friendsCompletableFuture = user.getFriends(1);
+            friendsCompletableFuture.thenAccept(Tester::p);
+            friendsCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<HistoryPage> animeHistoryPageCompletableFuture = user.getHistory(HistoryTypes.ANIME);
+            animeHistoryPageCompletableFuture.thenAccept(Tester::p);
+            animeHistoryPageCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<HistoryPage> mangaHistoryPageCompletableFuture = user.getHistory(HistoryTypes.MANGA);
+            mangaHistoryPageCompletableFuture.thenAccept(Tester::p);
+            mangaHistoryPageCompletableFuture.get();
+            s();
         }
 
+        if (types[7]) {
+            progressUpdate();
+            CompletableFuture<Club> clubCompletableFuture = connector.retrieveClub(1);
+            clubCompletableFuture.thenAccept(Tester::p);
+            Club club = clubCompletableFuture.get();
+            s();
+
+            progressUpdate();
+            CompletableFuture<ClubMemberPage> clubMemberPageCompletableFuture = club.getMembers();
+            clubMemberPageCompletableFuture.thenAccept(Tester::p);
+            clubMemberPageCompletableFuture.get();
+
+        }
         // Gets any and all errors from code
         ArrayList<String[]> errors = getErrorMessages();
         for (String[] error : errors) {

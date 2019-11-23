@@ -1,6 +1,10 @@
 package com.github.doomsdayrs.jikan4java.types.main.club;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.core.Retriever;
+import com.github.doomsdayrs.jikan4java.types.main.user.User;
+
+import java.util.concurrent.CompletableFuture;
 
 /*
  * This file is part of Jikan4java.
@@ -23,13 +27,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-public class ClubMember {
+public class ClubMember extends Retriever {
     @JsonProperty("username")
     public String username;
     @JsonProperty("url")
     public String url;
     @JsonProperty("image_url")
     public String image_url;
+
+    /**
+     * Returns a user object
+     *
+     * @param name the name of the user to retrieve
+     * @return User
+     */
+    public CompletableFuture<User> userRetrieve(String name) {
+        return retrieve(User.class, baseURL + "/user/" + name);
+    }
 
     @Override
     public String toString() {

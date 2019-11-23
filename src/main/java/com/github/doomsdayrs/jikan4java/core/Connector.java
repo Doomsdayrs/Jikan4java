@@ -10,6 +10,7 @@ import com.github.doomsdayrs.jikan4java.enums.meta.MetaType;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
 import com.github.doomsdayrs.jikan4java.types.main.character.Character;
 import com.github.doomsdayrs.jikan4java.types.main.club.Club;
+import com.github.doomsdayrs.jikan4java.types.main.club.ClubMemberPage;
 import com.github.doomsdayrs.jikan4java.types.main.magazine.MagazinePage;
 import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
 import com.github.doomsdayrs.jikan4java.types.main.person.Person;
@@ -23,9 +24,7 @@ import com.github.doomsdayrs.jikan4java.types.support.pictures.Pictures;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /*
@@ -82,6 +81,27 @@ public class Connector extends Retriever {
     }
 
     /**
+     * 35 per page
+     *
+     * @param id   of club
+     * @param page page
+     * @return Members
+     */
+    public CompletableFuture<ClubMemberPage> getMembers(int id, int page) {
+        return retrieve(ClubMemberPage.class, baseURL + "/club/" + id + "/members/" + page);
+    }
+
+    /**
+     * Returns first page, 35 count
+     *
+     * @param id of club
+     * @return Members
+     */
+    public CompletableFuture<ClubMemberPage> getMembers(int id) {
+        return getMembers(id, 1);
+    }
+
+    /**
      * retreives an anime
      *
      * @param ID id of the anime
@@ -111,6 +131,10 @@ public class Connector extends Retriever {
         return retrieve(Person.class, baseURL + "/person/" + ID);
     }
 
+    /**
+     * @param id id of a person
+     * @return their pictures
+     */
     public CompletableFuture<Pictures> getPersonPictures(int id) {
         return retrieve(Pictures.class, baseURL + "/person/" + id + "/pictures");
     }
@@ -125,6 +149,10 @@ public class Connector extends Retriever {
         return retrieve(Character.class, baseURL + "/character/" + ID);
     }
 
+    /**
+     * @param id id of a character
+     * @return their pictures
+     */
     public CompletableFuture<Pictures> getCharacterPictures(int id) {
         return retrieve(Pictures.class, baseURL + "/character/" + id + "/pictures");
     }
@@ -134,7 +162,6 @@ public class Connector extends Retriever {
      *
      * @param name the name of the user to retrieve
      * @return User
-
      */
     public CompletableFuture<User> userRetrieve(String name) {
         return retrieve(User.class, baseURL + "/user/" + name);
@@ -154,9 +181,10 @@ public class Connector extends Retriever {
 
     /**
      * Gets meta data from API. WARNING USING MAY CAUSE ERRORS BEYOND IMAGINATION FOR ANYTHING BUT STATUS
+     *
      * @param metaRequest REQUEST / STATUS
-     * @param metaType ANIME / CHARACTER / MANGA / PERSON / SEARCH / SCHEDULE / SEASON / TOP
-     * @param metaPeriod MONTHLY / WEEKLY / TODAY
+     * @param metaType    ANIME / CHARACTER / MANGA / PERSON / SEARCH / SCHEDULE / SEASON / TOP
+     * @param metaPeriod  MONTHLY / WEEKLY / TODAY
      * @return Completable future of metaRequest's class
      */
     public CompletableFuture getMeta(MetaRequest metaRequest, MetaType metaType, MetaPeriod metaPeriod) {
