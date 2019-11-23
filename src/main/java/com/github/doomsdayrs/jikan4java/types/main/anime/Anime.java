@@ -5,16 +5,16 @@ import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.anime.character_staff.Character_Staff;
 import com.github.doomsdayrs.jikan4java.types.main.anime.episodes.Episodes;
 import com.github.doomsdayrs.jikan4java.types.main.anime.videos.Video;
-import com.github.doomsdayrs.jikan4java.types.support.Genre;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Genre;
 import com.github.doomsdayrs.jikan4java.types.support.MoreInfo;
-import com.github.doomsdayrs.jikan4java.types.support.Producer;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Producer;
 import com.github.doomsdayrs.jikan4java.types.support.forum.Forum;
 import com.github.doomsdayrs.jikan4java.types.support.news.News;
 import com.github.doomsdayrs.jikan4java.types.support.pictures.Pictures;
 import com.github.doomsdayrs.jikan4java.types.support.recommendations.RecommendationPage;
 import com.github.doomsdayrs.jikan4java.types.support.related.Related;
 import com.github.doomsdayrs.jikan4java.types.support.reviews.anime.AnimeReviewPage;
-import com.github.doomsdayrs.jikan4java.types.support.stats.Stats;
+import com.github.doomsdayrs.jikan4java.types.support.stats.AnimeStats;
 import com.github.doomsdayrs.jikan4java.types.support.userupdate.anime.AnimeUserUpdatesPage;
 import org.json.simple.parser.ParseException;
 
@@ -38,12 +38,27 @@ import java.util.concurrent.CompletableFuture;
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
+ */
+
+/**
  * Jikan4java
  * 28 / October / 2018
  *
  * @author github.com/doomsdayrs
+ * <p>
+ *     Provided Endpoints:
+ *     Episodes
+ *     News
+ *     Pictures
+ *     Videos
+ *     Stats
+ *     Forum
+ *     MoreInfo
+ *     Reviews
+ *     Recommendations
+ *     UserUpdates
+ * </p>
  */
-
 public class Anime extends Retriever {
     @JsonProperty("request_hash")
     public String request_hash;
@@ -143,7 +158,7 @@ public class Anime extends Retriever {
      * @return Episode object
      */
     @JsonProperty
-    public CompletableFuture<Episodes> getEpisode(int pageNumber) {
+    public CompletableFuture<Episodes> getEpisodes(int pageNumber) {
         String category = "/episodes";
         if (pageNumber != 0) {
             category = "/episodes/" + pageNumber;
@@ -153,8 +168,8 @@ public class Anime extends Retriever {
     }
 
     @JsonProperty
-    public CompletableFuture<Episodes> getEpisode() {
-        return getEpisode(0);
+    public CompletableFuture<Episodes> getEpisodes() {
+        return getEpisodes(0);
     }
 
 
@@ -162,8 +177,6 @@ public class Anime extends Retriever {
      * Gets news about anime
      *
      * @return News object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<News> getNews() {
@@ -174,8 +187,6 @@ public class Anime extends Retriever {
      * Gets pictures related to anime
      *
      * @return Pictures object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<Pictures> getPictures() {
@@ -186,8 +197,6 @@ public class Anime extends Retriever {
      * Gets videos related to anime
      *
      * @return Pictures object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<Video> getVideos() {
@@ -200,8 +209,8 @@ public class Anime extends Retriever {
      * @return Stats object
      */
     @JsonProperty
-    public CompletableFuture<Stats> getStats() {
-        return retrieve(Stats.class, baseURL + "/anime/" + mal_id + "/stats");
+    public CompletableFuture<AnimeStats> getStats() {
+        return retrieve(AnimeStats.class, baseURL + "/anime/" + mal_id + "/stats");
     }
 
 
@@ -209,8 +218,6 @@ public class Anime extends Retriever {
      * Returns forum object
      *
      * @return Forum object
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<Forum> getForum() {
@@ -218,11 +225,9 @@ public class Anime extends Retriever {
     }
 
     /**
-     * Returns Moreinfo object
+     * Returns MoreInfo object
      *
      * @return MoreInfo
-     * @throws IOException    IOException
-     * @throws ParseException ParseException
      */
     @JsonProperty
     public CompletableFuture<MoreInfo> getMoreInfo() {
@@ -244,7 +249,6 @@ public class Anime extends Retriever {
     public CompletableFuture<AnimeUserUpdatesPage> getUserUpdatesPage() {
         return getUserUpdatesPage(0);
     }
-
 
 
     @JsonProperty

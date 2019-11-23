@@ -1,11 +1,9 @@
 package com.github.doomsdayrs.jikan4java.types.main.top.objects.character;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.character.Character;
-import org.json.simple.parser.ParseException;
+import com.github.doomsdayrs.jikan4java.types.main.top.TopListingBeing;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
@@ -24,38 +22,27 @@ import java.util.concurrent.CompletableFuture;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class TopCharacter extends Retriever {
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("rank")
-    public int rank;
-    @JsonProperty("title")
-    public String title;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("name_kanji")
-    public String name_kanji;
+public class TopCharacter extends TopListingBeing {
     @JsonProperty("animeography")
     public ArrayList<TopCharacterAnime> characterAnimes;
     @JsonProperty("mangaography")
     public ArrayList<TopCharacterManga> characterMangas;
-    @JsonProperty("favorites")
-    public int favorites;
-    @JsonProperty("image_url")
-    public String image_url;
+    public TopCharacter(@JsonProperty("mal_id") int mal_id, @JsonProperty("rank") int rank, @JsonProperty("title") String title, @JsonProperty("url") String url, @JsonProperty("favorites") int favorites, @JsonProperty("name_kanji") String name_kanji, @JsonProperty("image_url") String image_url) {
+        super(mal_id, rank, title, url, favorites, name_kanji, image_url);
+    }
 
     /**
      * Returns the Character object of this object
      *
      * @return Character Object
-     * @throws IOException
-     * @throws ParseException
      */
     public CompletableFuture<Character> getCharacter() {
         return retrieve(Character.class, baseURL + "/character/" + mal_id);

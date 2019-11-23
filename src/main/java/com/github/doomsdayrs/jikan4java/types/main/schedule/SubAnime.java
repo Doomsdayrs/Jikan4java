@@ -3,8 +3,8 @@ package com.github.doomsdayrs.jikan4java.types.main.schedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
-import com.github.doomsdayrs.jikan4java.types.support.Genre;
-import com.github.doomsdayrs.jikan4java.types.support.Producer;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Genre;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.Producer;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -71,10 +71,8 @@ public class SubAnime extends Retriever {
      * Returns the Anime object of this object
      *
      * @return Anime Object
-     * @throws IOException
-     * @throws ParseException
      */
-    public CompletableFuture<Anime> getAnime() throws IOException, ParseException {
+    public CompletableFuture<Anime> getAnime() {
         return retrieve(Anime.class, baseURL + "/anime/" + mal_id);
     }
 

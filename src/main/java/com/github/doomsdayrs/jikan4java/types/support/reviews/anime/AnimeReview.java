@@ -18,31 +18,27 @@ import com.github.doomsdayrs.jikan4java.types.support.reviews.Review;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
 public class AnimeReview extends Review {
-    @JsonProperty("mal_id")
-    public int mal_id;
+    public final AnimeReviewer reviewer;
 
-    @JsonProperty("url")
-    public String url;
+    public AnimeReview(@JsonProperty("mal_id") int mal_id,
+                       @JsonProperty("url") String url,
+                       @JsonProperty("helpful_count") int helpful_count,
+                       @JsonProperty("date") String date,
+                       @JsonProperty("reviewer") AnimeReviewer reviewer,
+                       @JsonProperty("content") String content) {
+        super(mal_id, url, helpful_count, date, reviewer, content);
+        this.reviewer = reviewer;
+    }
 
-    @JsonProperty("helpful_count")
-    public int helpful_count;
-
-    @JsonProperty("date")
-    public String date;
-
-    @JsonProperty("reviewer")
-    public AnimeReviewer reviewer;
-
-    @JsonProperty("content")
-    public String content;
-    
     @Override
     public String toString() {
         return "AnimeReview{" +

@@ -25,22 +25,18 @@ import com.github.doomsdayrs.jikan4java.types.support.reviews.Reviewer;
  * @author github.com/doomsdayrs
  */
 public class MangaReviewer extends Reviewer {
+    public final MangaScore scores;
 
-    @JsonProperty("url")
-    public String url;
+    public MangaReviewer(@JsonProperty("url") String url,
+                         @JsonProperty("image_url") String image_url,
+                         @JsonProperty("username") String username,
+                         @JsonProperty("chapters_read") int seen,
+                         @JsonProperty("scores") MangaScore scores) {
+        super(url, image_url, username, seen, scores);
+        this.scores = scores;
 
-    @JsonProperty("image_url")
-    public String image_url;
+    }
 
-    @JsonProperty("username")
-    public String username;
-
-    @JsonProperty("chapters_read")
-    public int seen;
-
-    @JsonProperty("scores")
-    public MangaScore scores;
-    
 
     @Override
     public String toString() {

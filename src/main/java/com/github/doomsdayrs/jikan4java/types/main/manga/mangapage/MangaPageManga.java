@@ -2,8 +2,8 @@ package com.github.doomsdayrs.jikan4java.types.main.manga.mangapage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
+import com.github.doomsdayrs.jikan4java.types.support.searchResults.ContentPage;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -24,49 +24,46 @@ import java.util.concurrent.CompletableFuture;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 04 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class MangaPageManga extends Retriever {
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("image_url")
-    public String iconURL;
-    @JsonProperty("title")
-    public String title;
-    @JsonProperty("publishing")
-    public boolean publishing;
-    @JsonProperty("synopsis")
-    public String synopsis;
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("chapters")
-    public int chapters;
-    @JsonProperty("volumes")
-    public int volumes;
-    @JsonProperty("score")
-    public double score;
-    @JsonProperty("start_date")
-    public String start_date;
-    @JsonProperty("end_date")
-    public String end_date;
-    @JsonProperty("members")
-    public int members;
-    
+public class MangaPageManga extends ContentPage {
+
+    public final boolean publishing;
+    public final int chapters;
+    public final int volumes;
+
+    public MangaPageManga(@JsonProperty("mal_id") int mal_id,
+                          @JsonProperty("url") String url,
+                          @JsonProperty("image_url") String image_url,
+                          @JsonProperty("title") String title,
+                          @JsonProperty("synopsis") String synopsis,
+                          @JsonProperty("type") String type,
+                          @JsonProperty("score") double score,
+                          @JsonProperty("start_date") String start_date,
+                          @JsonProperty("end_date") String end_date,
+                          @JsonProperty("members") int members,
+                          @JsonProperty("publishing") boolean publishing,
+                          @JsonProperty("chapters") int chapters,
+                          @JsonProperty("volumes") int volumes) {
+        super(mal_id, url, image_url, title, synopsis, type, score, start_date, end_date, members);
+        this.publishing = publishing;
+        this.chapters = chapters;
+        this.volumes = volumes;
+    }
+
     /**
      * Returns the Manga object of this object
      *
      * @return Manga Object
-     * @throws IOException
-     * @throws ParseException
      */
-    public CompletableFuture<Manga> getManga() throws IOException, ParseException {
+    public CompletableFuture<Manga> getManga() {
         return retrieve(Manga.class, baseURL + "/character/" + mal_id);
     }
 
@@ -75,7 +72,7 @@ public class MangaPageManga extends Retriever {
         return "MangaPageManga{" +
                 "mal_id=" + mal_id +
                 ", url='" + url + '\'' +
-                ", iconURL='" + iconURL + '\'' +
+                ", image_url='" + image_url + '\'' +
                 ", title='" + title + '\'' +
                 ", publishing=" + publishing +
                 ", synopsis='" + synopsis + '\'' +

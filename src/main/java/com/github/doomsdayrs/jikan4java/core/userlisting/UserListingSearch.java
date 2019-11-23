@@ -40,6 +40,7 @@ class UserListingSearch<T> extends Retriever {
     private UserListFilters userListFilters = null;
     private SortBy sortBy = null;
     private ListOrderBy orderBy2 = null;
+    /** @noinspection FieldCanBeLocal*/
     private ListingStati listingStati = null;
 
     UserListingSearch(String username) {
@@ -120,8 +121,6 @@ class UserListingSearch<T> extends Retriever {
     }
 
     /**
-     * This must be set, or will return null on getList
-     *
      * @param userListFilters The type of list you wish, and what filtering. Default with all
      * @return this
      */

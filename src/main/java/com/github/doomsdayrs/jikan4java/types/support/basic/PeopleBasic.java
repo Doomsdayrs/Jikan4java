@@ -1,7 +1,6 @@
 package com.github.doomsdayrs.jikan4java.types.support.basic;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
 import com.github.doomsdayrs.jikan4java.types.main.person.Person;
 
@@ -22,25 +21,19 @@ import java.util.concurrent.CompletableFuture;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 03 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class PeopleBasic extends Retriever {
-    @JsonProperty("mal_id")
-    public int mal_id;
+public class PeopleBasic extends BasicObject {
+    public PeopleBasic(@JsonProperty("mal_id") int mal_id, @JsonProperty("url") String url, @JsonProperty("image_url") String image_url, @JsonProperty("name") String name) {
+        super(mal_id, url, image_url, name);
+    }
 
-    @JsonProperty("url")
-    public String url;
-
-    @JsonProperty("image_url")
-    public String image_url;
-
-    @JsonProperty("name")
-    public String name;
-    
     /**
      * Returns the Person object of this object
      *
@@ -50,13 +43,5 @@ public class PeopleBasic extends Retriever {
         return retrieve(Anime.class, baseURL + "/person/" + mal_id);
     }
 
-    @Override
-    public String toString() {
-        return "PeopleBasic{" +
-                "mal_id=" + mal_id +
-                ", url='" + url + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
+
 }

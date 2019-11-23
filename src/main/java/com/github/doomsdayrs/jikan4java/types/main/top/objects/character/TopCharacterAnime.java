@@ -43,8 +43,6 @@ public class TopCharacterAnime extends Retriever {
      * Returns the Anime object of this object
      *
      * @return Anime Object
-     * @throws IOException
-     * @throws ParseException
      */
     public CompletableFuture<Anime> getAnime() {
         return retrieve(Anime.class, baseURL + "/anime/" + mal_id);

@@ -1,6 +1,8 @@
 package com.github.doomsdayrs.jikan4java.types.support.reviews.manga;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.types.support.reviews.Review;
+import com.github.doomsdayrs.jikan4java.types.support.reviews.ReviewPage;
 
 import java.util.ArrayList;
 
@@ -19,24 +21,29 @@ import java.util.ArrayList;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 30 / December / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class MangaReviewPage {
-    @JsonProperty("request_hash")
-    public String request_hash;
+public class MangaReviewPage extends ReviewPage {
 
-    @JsonProperty("request_cached")
-    public boolean request_cached;
+    public final ArrayList<MangaReview> reviews;
 
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
+    public MangaReviewPage(@JsonProperty("request_hash") String request_hash,
+                           @JsonProperty("request_cached") boolean request_cached,
+                           @JsonProperty("request_cache_expiry") int request_cache_expiry,
+                           @JsonProperty("reviews") ArrayList<MangaReview> reviews) {
+        super(request_hash, request_cached, request_cache_expiry);
+        this.reviews = reviews;
 
-    @JsonProperty("reviews")
-    public ArrayList<MangaReview> mangaReviews;
+        for (Review review : this.reviews) {
+            super.reviews.add(review);
+        }
+    }
 
 
     @Override
@@ -45,7 +52,7 @@ public class MangaReviewPage {
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", mangaReviews=" + mangaReviews +
+                ", mangaReviews=" + reviews +
                 '}';
     }
 }

@@ -27,15 +27,17 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 public class MangaTop extends Top {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("top")
-    public ArrayList<TopManga> topMangas;
-    
+    public final ArrayList<TopManga> topMangas;
+
+    public MangaTop(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry,    @JsonProperty("top")
+            ArrayList<TopManga> topMangas) {
+        super(request_hash, request_cached, request_cache_expiry);
+        this.topMangas = topMangas;
+        for (TopManga topManga : topMangas) {
+            super.topListings.add(topManga);
+        }
+    }
+
     @Override
     public String toString() {
         return "MangaTop{" +

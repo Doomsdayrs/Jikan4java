@@ -1,8 +1,4 @@
-package com.github.doomsdayrs.jikan4java.types.support;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-/*
+package com.github.doomsdayrs.jikan4java.types.support;/*
  * This file is part of Jikan4java.
  *
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -17,32 +13,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ */
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
  * Jikan4java
- * 28 / October / 2018
+ * 18 / 11 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public class Authors {
-    @JsonProperty("mal_id")
-    public int mal_id;
+public class RequestHashing {
+    public String request_hash;
+    public boolean request_cached;
+    public int request_cache_expiry;
 
-    @JsonProperty("type")
-    public String type;
-
-    @JsonProperty("name")
-    public String name;
-
-    @JsonProperty("url")
-    public String url;
-
-    @Override
-    public String toString() {
-        return "Authors{" +
-                "mal_id=" + mal_id +
-                ", subType='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                '}';
+    public RequestHashing(
+            @JsonProperty("request_hash") String request_hash,
+            @JsonProperty("request_cached") boolean request_cached,
+            @JsonProperty("request_cache_expiry") int request_cache_expiry) {
+        this.request_hash = request_hash;
+        this.request_cached = request_cached;
+        this.request_cache_expiry = request_cache_expiry;
     }
 }

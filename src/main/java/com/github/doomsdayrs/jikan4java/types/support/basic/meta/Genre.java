@@ -1,6 +1,7 @@
-package com.github.doomsdayrs.jikan4java.types.support.basic;
+package com.github.doomsdayrs.jikan4java.types.support.basic.meta;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.BasicMeta;
 
 /*
  * This file is part of Jikan4java.
@@ -17,25 +18,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*//**
  * Jikan4java
- * 04 / November / 2018
+ * 28 / October / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class BasicMeta {
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("name")
-    public String name;
-    @JsonProperty("url")
-    public String url;
-    
+public class Genre extends BasicMeta {
+    public Genre(@JsonProperty("mal_id") int mal_id,
+                   @JsonProperty("type") String type,
+                   @JsonProperty("name") String name,
+                   @JsonProperty("url") String url) {
+        super(mal_id, type, name, url);
+    }
+
     @Override
     public String toString() {
-        return "Meta{" +
+        return "Genre{" +
                 "mal_id=" + mal_id +
                 ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
@@ -43,4 +42,3 @@ public class BasicMeta {
                 '}';
     }
 }
-

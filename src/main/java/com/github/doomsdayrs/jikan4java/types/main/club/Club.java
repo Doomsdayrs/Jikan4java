@@ -2,7 +2,7 @@ package com.github.doomsdayrs.jikan4java.types.main.club;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
-import com.github.doomsdayrs.jikan4java.types.support.basic.BasicMeta;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.BasicMeta;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -66,10 +66,22 @@ public class Club extends Retriever {
     @JsonProperty("character_relations")
     public ArrayList<BasicMeta> character_relations;
 
-    @JsonProperty
-    public CompletableFuture<ClubMemberPage> getMembers() throws IOException, ParseException {
-        return retrieve(ClubMemberPage.class, baseURL + "/club/" + mal_id + "/members");
+    /**
+     * 35 per page
+     * @param page page
+     * @return Members
+     */
+    public CompletableFuture<ClubMemberPage> getMembers(int page) {
+        return retrieve(ClubMemberPage.class, baseURL + "/club/" + mal_id + "/members/"+page);
     }
+
+    /**
+     * Returns first page, 35 count
+     * @return Members
+     */    public CompletableFuture<ClubMemberPage> getMembers() {
+        return getMembers(1);
+    }
+
 
 
     @Override

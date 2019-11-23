@@ -1,6 +1,4 @@
-package com.github.doomsdayrs.jikan4java.types.support;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.github.doomsdayrs.jikan4java.types.support.basic;
 
 /*
  * This file is part of Jikan4java.
@@ -17,32 +15,42 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
- * Jikan4java
- * 28 / October / 2018
+ */
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.doomsdayrs.jikan4java.core.Retriever;
+
+/**
+ * com.github.doomsdayrs.jikan4java.types.support.basic
+ * 17 / November / 2019
  *
  * @author github.com/doomsdayrs
  */
-public class Genre {
+public class BasicObject extends Retriever {
     @JsonProperty("mal_id")
-    public int mal_id;
-
-    @JsonProperty("type")
-    public String type;
-
-    @JsonProperty("name")
-    public String name;
-
+    public final int mal_id;
     @JsonProperty("url")
-    public String url;
+    public final String url;
+    @JsonProperty("image_url")
+    public final String image_url;
+    @JsonProperty("name")
+    public final String name;
+
+    public BasicObject(int mal_id, String url, String image_url, String name) {
+        this.mal_id = mal_id;
+        this.url = url;
+        this.image_url = image_url;
+        this.name = name;
+    }
 
     @Override
     public String toString() {
-        return "Genre{" +
+        return "BasicObject{" +
                 "mal_id=" + mal_id +
-                ", subType='" + type + '\'' +
-                ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

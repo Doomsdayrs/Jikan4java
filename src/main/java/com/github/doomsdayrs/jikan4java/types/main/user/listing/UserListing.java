@@ -1,5 +1,7 @@
 package com.github.doomsdayrs.jikan4java.types.main.user.listing;
 
+import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
+
 /*
  * This file is part of Jikan4java.
  *
@@ -15,11 +17,17 @@ package com.github.doomsdayrs.jikan4java.types.main.user.listing;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 25 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public interface UserListing {
+public class UserListing extends RequestHashing {
+
+    public UserListing(String request_hash, boolean request_cached, int request_cache_expiry) {
+        super(request_hash, request_cached, request_cache_expiry);
+    }
 }

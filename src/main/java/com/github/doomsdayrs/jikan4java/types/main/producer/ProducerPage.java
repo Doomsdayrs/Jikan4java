@@ -2,7 +2,7 @@ package com.github.doomsdayrs.jikan4java.types.main.producer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.types.main.schedule.SubAnime;
-import com.github.doomsdayrs.jikan4java.types.support.basic.BasicMeta;
+import com.github.doomsdayrs.jikan4java.types.support.basic.meta.BasicMeta;
 
 import java.util.ArrayList;
 

@@ -17,22 +17,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 30 / October / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class MoreInfo {
-    @JsonProperty("request_hash")
+public class MoreInfo extends RequestHashing {
     public String request_hash;
-    @JsonProperty("request_cached")
     public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
     public int request_cache_expiry;
+
     @JsonProperty("moreinfo")
     public String moreinfo;
-    
+
+    public MoreInfo(@JsonProperty("request_hash") String request_hash,
+                    @JsonProperty("request_cached") boolean request_cached,
+                    @JsonProperty("request_cache_expiry") int request_cache_expiry) {
+        super(request_hash, request_cached, request_cache_expiry);
+    }
+
 
     @Override
     public String toString() {

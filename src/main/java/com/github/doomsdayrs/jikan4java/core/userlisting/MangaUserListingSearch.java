@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.core.userlisting;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.doomsdayrs.jikan4java.enums.SortBy;
+import com.github.doomsdayrs.jikan4java.enums.userlistings.filters.MangaListFilters;
 import com.github.doomsdayrs.jikan4java.enums.userlistings.filters.UserListFilters;
 import com.github.doomsdayrs.jikan4java.enums.userlistings.orderby.ListOrderBy;
 import com.github.doomsdayrs.jikan4java.enums.userlistings.status.MangaListingStati;
@@ -38,22 +39,27 @@ public class MangaUserListingSearch extends UserListingSearch<MangaList> {
 
     public MangaUserListingSearch(String username) {
         super(username);
+        setUserListFilters(MangaListFilters.ALL);
     }
 
     public MangaUserListingSearch(OkHttpClient client, String username) {
         super(client, username);
+        setUserListFilters(MangaListFilters.ALL);
     }
 
     public MangaUserListingSearch(ObjectMapper objectMapper, String username) {
         super(objectMapper, username);
+        setUserListFilters(MangaListFilters.ALL);
     }
 
     public MangaUserListingSearch(JSONParser jsonParser, String username) {
         super(jsonParser, username);
+        setUserListFilters(MangaListFilters.ALL);
     }
 
     public MangaUserListingSearch(Request.Builder builder, String username) {
         super(builder, username);
+        setUserListFilters(MangaListFilters.ALL);
     }
 
     public MangaUserListingSearch setMagazine(int magazine) {
@@ -140,7 +146,7 @@ public class MangaUserListingSearch extends UserListingSearch<MangaList> {
         return stringBuilder;
     }
 
-    protected CompletableFuture<MangaList> getList() {
+    public CompletableFuture<MangaList> getList() {
         return retrieve(MangaList.class, baseURL + "/user/" + username + this.createURL());
     }
 }

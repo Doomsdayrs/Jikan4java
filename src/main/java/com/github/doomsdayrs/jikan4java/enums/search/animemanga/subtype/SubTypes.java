@@ -24,5 +24,5 @@ package com.github.doomsdayrs.jikan4java.enums.search.animemanga.subtype;
 public interface SubTypes {
 
     @Override
-    public String toString();
+    String toString();
 }

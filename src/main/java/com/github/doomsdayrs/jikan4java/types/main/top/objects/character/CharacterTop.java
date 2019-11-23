@@ -20,21 +20,24 @@ import java.util.ArrayList;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
 public class CharacterTop extends Top {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("top")
-    public ArrayList<TopCharacter> topCharacters;
+    public final ArrayList<TopCharacter> topCharacters;
+
+    public CharacterTop(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry, @JsonProperty("top") ArrayList<TopCharacter> topCharacters) {
+        super(request_hash, request_cached, request_cache_expiry);
+        this.topCharacters = topCharacters;
+        for (TopCharacter topCharacter : topCharacters) {
+            super.topListings.add(topCharacter);
+        }
+    }
 
 
     @Override

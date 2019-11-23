@@ -24,22 +24,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author github.com/doomsdayrs
  */
 public class Reviewer {
+    public final String url;
+    public final String image_url;
+    public final String username;
+    public final int seen;
+    public final Scores scores;
 
-    @JsonProperty("url")
-    public String url;
+    public Reviewer(@JsonProperty("url") String url,
+                    @JsonProperty("image_url") String image_url,
+                    @JsonProperty("username") String username,
+                    int seen,
+                    @JsonProperty("scores") Scores scores) {
+        this.url = url;
+        this.image_url = image_url;
+        this.username = username;
+        this.seen = seen;
+        this.scores = scores;
+    }
 
-    @JsonProperty("image_url")
-    public String image_url;
-
-    @JsonProperty("username")
-    public String username;
-
-    @JsonProperty()
-    public int seen;
-
-    @JsonProperty("scores")
-    public Scores scores;
-    
     @Override
     public String toString() {
         return "Reviewer{" +

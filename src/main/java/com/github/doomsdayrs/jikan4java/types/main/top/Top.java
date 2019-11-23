@@ -1,10 +1,7 @@
 package com.github.doomsdayrs.jikan4java.types.main.top;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.types.main.top.objects.anime.TopAnime;
-import com.github.doomsdayrs.jikan4java.types.main.top.objects.character.TopCharacter;
-import com.github.doomsdayrs.jikan4java.types.main.top.objects.manga.TopManga;
-import com.github.doomsdayrs.jikan4java.types.main.top.objects.person.TopPerson;
+import com.github.doomsdayrs.jikan4java.types.support.RequestHashing;
 
 import java.util.ArrayList;
 
@@ -23,31 +20,21 @@ import java.util.ArrayList;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ * ====================================================================*/
+
+/**
  * Jikan4java
  * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class Top {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
+public class Top extends RequestHashing {
 
-    //Anime
-    public ArrayList<TopAnime> topAnimes;
+    public final ArrayList<TopListing> topListings = new ArrayList<>();
 
-    //Character
-    public ArrayList<TopCharacter> topCharacters;
-
-    //Manga
-    public ArrayList<TopManga> topMangas;
-
-    //Person
-    public ArrayList<TopPerson> topPeople;
+    public Top(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry) {
+        super(request_hash, request_cached, request_cache_expiry);
+    }
 
     @Override
     public String toString() {
@@ -55,10 +42,7 @@ public class Top {
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
-                ", topAnimes=" + topAnimes +
-                ", topCharacters=" + topCharacters +
-                ", topMangas=" + topMangas +
-                ", topPeople=" + topPeople +
+                ", topListing=" + topListings +
                 '}';
     }
 }

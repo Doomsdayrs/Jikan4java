@@ -45,10 +45,8 @@ public class PageCharacterManga extends Retriever {
      * Returns the Manga object of this object
      *
      * @return Manga Object
-     * @throws IOException
-     * @throws ParseException
      */
-    public CompletableFuture<Manga> getManga() throws IOException, ParseException {
+    public CompletableFuture<Manga> getManga() {
         return retrieve(Manga.class, baseURL + "/manga/" + mal_id);
     }
 

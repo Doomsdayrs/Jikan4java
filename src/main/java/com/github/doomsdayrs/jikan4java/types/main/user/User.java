@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.core.userlisting.AnimeUserListingSearch;
 import com.github.doomsdayrs.jikan4java.core.userlisting.MangaUserListingSearch;
+import com.github.doomsdayrs.jikan4java.enums.HistoryTypes;
 import com.github.doomsdayrs.jikan4java.types.main.user.friends.Friends;
 import com.github.doomsdayrs.jikan4java.types.main.user.history.HistoryPage;
 
@@ -40,6 +41,9 @@ public class User extends Retriever {
     @JsonProperty("request_cache_expiry")
     public int request_cache_expiry;
 
+    @JsonProperty("user_id")
+    public int user_id;
+
     @JsonProperty("username")
     public String username;
     @JsonProperty("url")
@@ -71,8 +75,8 @@ public class User extends Retriever {
      * @param type Anime or Manga
      * @return History object
      */
-    public CompletableFuture<HistoryPage> getHistory(String type) {
-        return retrieve(HistoryPage.class, baseURL + "/user/" + username + "/history" + type.toLowerCase());
+    public CompletableFuture<HistoryPage> getHistory(HistoryTypes type) {
+        return retrieve(HistoryPage.class, baseURL + "/user/" + username + "/history" + type);
     }
 
     /**
@@ -99,6 +103,7 @@ public class User extends Retriever {
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
                 ", request_cache_expiry=" + request_cache_expiry +
+                ", user_id=" + user_id +
                 ", username='" + username + '\'' +
                 ", url='" + url + '\'' +
                 ", image_url='" + image_url + '\'' +

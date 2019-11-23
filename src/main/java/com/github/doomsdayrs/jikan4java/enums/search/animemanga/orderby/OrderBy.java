@@ -23,5 +23,5 @@ package com.github.doomsdayrs.jikan4java.enums.search.animemanga.orderby;
  */
 public interface OrderBy {
     @Override
-    public String toString();
+    String toString();
 }

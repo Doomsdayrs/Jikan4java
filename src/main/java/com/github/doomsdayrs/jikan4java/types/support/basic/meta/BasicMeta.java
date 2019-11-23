@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.types.support;
+package com.github.doomsdayrs.jikan4java.types.support.basic.meta;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,28 +19,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 28 / October / 2018
+ * 04 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
+public class BasicMeta {
+    public final int mal_id;
+    public final String type;
+    public final String name;
+    public final String url;
 
-public class Producer {
-    @JsonProperty("mal_id")
-    public int mal_id;
-
-    @JsonProperty("type")
-    public String type;
-
-    @JsonProperty("name")
-    public String name;
-
-    @JsonProperty("url")
-    public String url;
-
+    public BasicMeta(@JsonProperty("mal_id") int mal_id,
+                     @JsonProperty("type") String type,
+                     @JsonProperty("name") String name,
+                     @JsonProperty("url") String url) {
+        this.mal_id = mal_id;
+        this.type = type;
+        this.name = name;
+        this.url = url;
+    }
 
     @Override
     public String toString() {
-        return "Producer{" +
+        return "Meta{" +
                 "mal_id=" + mal_id +
                 ", subType='" + type + '\'' +
                 ", name='" + name + '\'' +
@@ -48,3 +49,4 @@ public class Producer {
                 '}';
     }
 }
+
