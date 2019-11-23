@@ -1,4 +1,5 @@
-package com.github.doomsdayrs.jikan4java.enums;/*
+package com.github.doomsdayrs.jikan4java.enums;
+/*
  * This file is part of Jikan4java.
  *
  * Jikan4java is free software: you can redistribute it and/or modify
