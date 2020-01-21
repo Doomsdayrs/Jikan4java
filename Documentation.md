@@ -18,7 +18,7 @@ There is a single class that communicates to jikan and back, this class is the [
 The class is the parent class of many objects within this wrapper, being the main driving force for parsing and communication. 
 You can use this class to bypass the convenient pre-built objects to parse data. But do so at your own risk, as you need to make all the URLs yourself.
 
-The Retriever class parents two main classes, the [Connector](https://github.com/Doomsdayrs/Jikan4java/blob/master/src/main/java/com/github/Doomsdayrs/Jikan4java/core/Connector.java) and
+The Retriever class parents two main classes, the [Connector](https://github.com/Doomsdayrs/Jikan4java/blob/master/src/main/java/com/github/doomsdayrs/jikan4java/core/Connector.java) and
 the [Search](https://github.com/Doomsdayrs/Jikan4java/blob/master/src/main/java/com/github/Doomsdayrs/Jikan4java/core/search/Search.java) classes. These allow you to easily retrieve data from jikan with mostly no worries.
 
 ### Connector class
