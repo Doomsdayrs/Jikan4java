@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/Doomsdayrs/Jikan4java.svg)](https://jitpack.io/#Doomsdayrs/Jikan4java)
 # Jikan4java
 Java api wrapper for Jikan api
 Website for Jikan: https://jikan.moe/
