@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/Doomsdayrs/Jikan4java.svg)](https://jitpack.io/#Doomsdayrs/Jikan4java)
+[![](https://jitpack.io/v/Doomsdayrs/Jikan4java.svg)](https://jitpack.io/#Doomsdayrs/Jikan4java)[![Discord Server](https://img.shields.io/discord/460491088004907029.svg?style=flat&logo=discord)](https://discord.gg/4tvCr36)
 # Jikan4java
 Java api wrapper for Jikan api
 Website for Jikan: https://jikan.moe/
