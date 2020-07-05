@@ -3,7 +3,7 @@ package com.github.doomsdayrs.jikan4java.core.search;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.enums.top.*;
 import com.github.doomsdayrs.jikan4java.exceptions.IncompatibleEnumException;
-import com.github.doomsdayrs.jikan4java.types.main.top.Top;
+import com.github.doomsdayrs.jikan4java.model.main.top.Top;
 
 import java.util.concurrent.CompletableFuture;
 

@@ -4,8 +4,8 @@ import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.enums.genres.AnimeGenres;
 import com.github.doomsdayrs.jikan4java.enums.genres.Genres;
 import com.github.doomsdayrs.jikan4java.enums.genres.MangaGenres;
-import com.github.doomsdayrs.jikan4java.types.main.genresearch.anime.GenreSearchAnimePage;
-import com.github.doomsdayrs.jikan4java.types.main.genresearch.manga.GenreSearchMangaPage;
+import com.github.doomsdayrs.jikan4java.model.main.genresearch.anime.GenreSearchAnimePage;
+import com.github.doomsdayrs.jikan4java.model.main.genresearch.manga.GenreSearchMangaPage;
 
 import java.util.concurrent.CompletableFuture;
 

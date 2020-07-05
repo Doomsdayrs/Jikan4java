@@ -1,6 +1,6 @@
 package com.github.doomsdayrs.jikan4java.enums;
 
-import com.github.doomsdayrs.jikan4java.types.main.schedule.week.*;
+import com.github.doomsdayrs.jikan4java.model.main.schedule.week.*;
 
 /*
  * This file is part of Jikan4java.

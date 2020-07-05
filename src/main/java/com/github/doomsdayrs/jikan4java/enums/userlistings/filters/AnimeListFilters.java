@@ -1,6 +1,6 @@
 package com.github.doomsdayrs.jikan4java.enums.userlistings.filters;
 
-import com.github.doomsdayrs.jikan4java.types.main.user.listing.animelist.AnimeList;
+import com.github.doomsdayrs.jikan4java.model.main.user.listing.animelist.AnimeList;
 
 /*
  * This file is part of Jikan4java.

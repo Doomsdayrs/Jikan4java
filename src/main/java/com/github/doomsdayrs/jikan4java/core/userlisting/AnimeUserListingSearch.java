@@ -7,7 +7,7 @@ import com.github.doomsdayrs.jikan4java.enums.userlistings.filters.AnimeListFilt
 import com.github.doomsdayrs.jikan4java.enums.userlistings.filters.UserListFilters;
 import com.github.doomsdayrs.jikan4java.enums.userlistings.orderby.ListOrderBy;
 import com.github.doomsdayrs.jikan4java.enums.userlistings.status.AnimeListingStati;
-import com.github.doomsdayrs.jikan4java.types.main.user.listing.animelist.AnimeList;
+import com.github.doomsdayrs.jikan4java.model.main.user.listing.animelist.AnimeList;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;

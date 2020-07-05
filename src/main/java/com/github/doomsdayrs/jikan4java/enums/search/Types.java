@@ -1,12 +1,12 @@
 package com.github.doomsdayrs.jikan4java.enums.search;
 
-import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
-import com.github.doomsdayrs.jikan4java.types.main.anime.animePage.AnimePage;
-import com.github.doomsdayrs.jikan4java.types.main.character.characterPage.CharacterPage;
-import com.github.doomsdayrs.jikan4java.types.main.manga.Manga;
-import com.github.doomsdayrs.jikan4java.types.main.manga.mangapage.MangaPage;
-import com.github.doomsdayrs.jikan4java.types.main.person.Person;
-import com.github.doomsdayrs.jikan4java.types.main.person.personPage.PersonPage;
+import com.github.doomsdayrs.jikan4java.model.main.anime.Anime;
+import com.github.doomsdayrs.jikan4java.model.main.anime.animePage.AnimePage;
+import com.github.doomsdayrs.jikan4java.model.main.character.characterPage.CharacterPage;
+import com.github.doomsdayrs.jikan4java.model.main.manga.Manga;
+import com.github.doomsdayrs.jikan4java.model.main.manga.mangapage.MangaPage;
+import com.github.doomsdayrs.jikan4java.model.main.person.Person;
+import com.github.doomsdayrs.jikan4java.model.main.person.personPage.PersonPage;
 
 /*
  * This file is part of Jikan4java.

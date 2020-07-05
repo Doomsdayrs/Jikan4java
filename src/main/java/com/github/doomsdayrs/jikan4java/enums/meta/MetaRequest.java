@@ -1,6 +1,6 @@
 package com.github.doomsdayrs.jikan4java.enums.meta;
 
-import com.github.doomsdayrs.jikan4java.types.main.meta.Status;
+import com.github.doomsdayrs.jikan4java.model.main.meta.Status;
 
 /*
  * This file is part of Jikan4java.
