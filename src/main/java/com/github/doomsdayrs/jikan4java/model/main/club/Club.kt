@@ -1,11 +1,11 @@
-package com.github.doomsdayrs.jikan4java.model.main.club;
+package com.github.doomsdayrs.jikan4java.model.main.club
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
-import com.github.doomsdayrs.jikan4java.model.support.basic.meta.BasicMeta;
-
-import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import com.github.doomsdayrs.jikan4java.model.support.basic.meta.BasicMeta
+import java.util.*
+import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -28,79 +28,38 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class Club extends Retriever {
+class Club(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("mal_id") val mal_id: Int = 0,
+		@field:JsonProperty("url") val url: String? = null,
+		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("title") val title: String? = null,
+		@field:JsonProperty("members_count") val members_count: Float = 0f,
+		@field:JsonProperty("pictures_count") val pictures_count: Float = 0f,
+		@field:JsonProperty("category") val category: String? = null,
+		@field:JsonProperty("created") val created: String? = null,
+		@field:JsonProperty("type") val type: String? = null,
+		@field:JsonProperty("staff") val staff: ArrayList<BasicMeta>? = null,
+		@field:JsonProperty("anime_relations") val anime_relations: ArrayList<BasicMeta>? = null,
+		@field:JsonProperty("manga_relations") val manga_relations: ArrayList<BasicMeta>? = null,
+		@field:JsonProperty("character_relations") val character_relations: ArrayList<BasicMeta>? = null
+) : Retriever(), RequestHashing {
 
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
+	/**
+	 * 35 per page
+	 * @param page page
+	 * @return Members
+	 */
+	fun getMembers(page: Int): CompletableFuture<ClubMemberPage> {
+		return retrieve("$baseURL/club/$mal_id/members/$page")
+	}
 
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("image_url")
-    public String image_url;
-    @JsonProperty("title")
-    public String title;
-    @JsonProperty("members_count")
-    public float members_count;
-    @JsonProperty("pictures_count")
-    public float pictures_count;
-    @JsonProperty("category")
-    public String category;
-    @JsonProperty("created")
-    public String created;
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("staff")
-    public ArrayList<BasicMeta> staff;
-    @JsonProperty("anime_relations")
-    public ArrayList<BasicMeta> anime_relations;
-    @JsonProperty("manga_relations")
-    public ArrayList<BasicMeta> manga_relations;
-    @JsonProperty("character_relations")
-    public ArrayList<BasicMeta> character_relations;
-
-    /**
-     * 35 per page
-     * @param page page
-     * @return Members
-     */
-    public CompletableFuture<ClubMemberPage> getMembers(int page) {
-        return retrieve(ClubMemberPage.class, baseURL + "/club/" + mal_id + "/members/"+page);
-    }
-
-    /**
-     * Returns first page, 35 count
-     * @return Members
-     */    public CompletableFuture<ClubMemberPage> getMembers() {
-        return getMembers(1);
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "Club{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", mal_id=" + mal_id +
-                ", url='" + url + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", title=" + title +
-                ", members_count=" + members_count +
-                ", pictures_count=" + pictures_count +
-                ", category='" + category + '\'' +
-                ", created='" + created + '\'' +
-                ", subType='" + type + '\'' +
-                ", staff=" + staff +
-                ", anime_relations=" + anime_relations +
-                ", manga_relations=" + manga_relations +
-                ", character_relations=" + character_relations +
-                '}';
-    }
+	/**
+	 * Returns first page, 35 count
+	 * @return Members
+	 */
+	val members: CompletableFuture<ClubMemberPage>
+		get() = getMembers(1)
 }
