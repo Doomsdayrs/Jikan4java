@@ -1,6 +1,6 @@
-package com.github.doomsdayrs.jikan4java.model.main.user.friends;
+package com.github.doomsdayrs.jikan4java.model.main.user.friends
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty
 
 /*
  * This file is part of Jikan4java.
@@ -23,29 +23,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-public class Friends {
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("username")
-    public String username;
-    @JsonProperty("image_url")
-    public String image_url;
-    @JsonProperty("last_online")
-    @SuppressWarnings("WeakerAccess")
-    public String last_online;
-    @JsonProperty("friends_since")
-    @SuppressWarnings("WeakerAccess")
-    public String friends_since;
-    
-
-    @Override
-    public String toString() {
-        return "Friends{" +
-                "url='" + url + '\'' +
-                ", username='" + username + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", last_online='" + last_online + '\'' +
-                ", friends_since='" + friends_since + '\'' +
-                '}';
-    }
-}
+data class Friends(
+		@field:JsonProperty("url") var url: String? = null,
+		@field:JsonProperty("username") var username: String? = null,
+		@field:JsonProperty("image_url") var image_url: String? = null,
+		@field:JsonProperty("last_online") var last_online: String? = null,
+		@field:JsonProperty("friends_since") var friends_since: String? = null
+)

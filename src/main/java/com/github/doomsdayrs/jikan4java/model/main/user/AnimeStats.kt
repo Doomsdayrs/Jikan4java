@@ -1,6 +1,6 @@
-package com.github.doomsdayrs.jikan4java.model.main.user;
+package com.github.doomsdayrs.jikan4java.model.main.user
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty
 
 /*
  * This file is part of Jikan4java.
@@ -23,41 +23,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-public class AnimeStats {
-    @JsonProperty("days_watched")
-    public float days_watched;
-    @JsonProperty("mean_score")
-    public float mean_score;
-    @JsonProperty("watching")
-    public int watching;
-    @JsonProperty("completed")
-    public int completed;
-    @JsonProperty("on_hold")
-    public int on_hold;
-    @JsonProperty("dropped")
-    public int dropped;
-    @JsonProperty("plan_to_watch")
-    public int plan_to_watch;
-    @JsonProperty("total_entries")
-    public int total_entries;
-    @JsonProperty("rewatched")
-    public int rewatched;
-    @JsonProperty("episodes_watched")
-    public int episodes_watched;
-
-    @Override
-    public String toString() {
-        return "AnimeStats{" +
-                "days_watched=" + days_watched +
-                ", mean_score=" + mean_score +
-                ", watching=" + watching +
-                ", completed=" + completed +
-                ", on_hold=" + on_hold +
-                ", dropped=" + dropped +
-                ", plan_to_watch=" + plan_to_watch +
-                ", total_entries=" + total_entries +
-                ", rewatched=" + rewatched +
-                ", episodes_watched=" + episodes_watched +
-                '}';
-    }
-}
+data class AnimeStats(
+		@field:JsonProperty("days_watched") var days_watched: Float = 0f,
+		@field:JsonProperty("mean_score") var mean_score: Float = 0f,
+		@field:JsonProperty("watching") var watching: Int = 0,
+		@field:JsonProperty("completed") var completed: Int = 0,
+		@field:JsonProperty("on_hold") var on_hold: Int = 0,
+		@field:JsonProperty("dropped") var dropped: Int = 0,
+		@field:JsonProperty("plan_to_watch") var plan_to_watch: Int = 0,
+		@field:JsonProperty("total_entries") var total_entries: Int = 0,
+		@field:JsonProperty("rewatched") var rewatched: Int = 0,
+		@field:JsonProperty("episodes_watched") var episodes_watched: Int = 0
+)

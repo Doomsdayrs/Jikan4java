@@ -1,9 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.user.listing.animelist;
+package com.github.doomsdayrs.jikan4java.model.main.user.listing.animelist
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.main.user.listing.UserListing;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.main.user.listing.UserListing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -26,22 +25,9 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-
-public class AnimeList extends UserListing {
-    @JsonProperty("anime")
-    public ArrayList<AnimeListAnime> animes;
-
-    public AnimeList(@JsonProperty("request_hash") String request_hash, @JsonProperty("request_cached") boolean request_cached, @JsonProperty("request_cache_expiry") int request_cache_expiry) {
-        super(request_hash, request_cached, request_cache_expiry);
-    }
-
-    @Override
-    public String toString() {
-        return "AnimeList{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", animes=" + animes +
-                '}';
-    }
-}
+data class AnimeList(
+		@JsonProperty("request_hash") override val request_hash: String?,
+		@JsonProperty("request_cached") override val request_cached: Boolean,
+		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
+		@field:JsonProperty("anime") var animes: ArrayList<AnimeListAnime>? = null
+) : UserListing()

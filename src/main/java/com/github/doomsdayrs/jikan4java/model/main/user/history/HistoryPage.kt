@@ -1,7 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.user.history;
+package com.github.doomsdayrs.jikan4java.model.main.user.history
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.support.basic.meta.BasicMeta;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -24,23 +25,9 @@ import com.github.doomsdayrs.jikan4java.model.support.basic.meta.BasicMeta;
  *
  * @author github.com/doomsdayrs
  */
-public class History {
-
-    @SuppressWarnings("WeakerAccess")
-    @JsonProperty("meta")
-    public BasicMeta basicMeta;
-    @JsonProperty("increment")
-    public int increment;
-    @JsonProperty("date")
-    public String date;
-    
-
-    @Override
-    public String toString() {
-        return "History{" +
-                "meta=" + basicMeta +
-                ", increment=" + increment +
-                ", date='" + date + '\'' +
-                '}';
-    }
-}
+data class HistoryPage(
+		@field:JsonProperty("request_hash") override var request_hash: String? = null,
+		@field:JsonProperty("request_cached") override var request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override var request_cache_expiry: Int = 0,
+		@field:JsonProperty("history") var history: ArrayList<History>? = null
+) : RequestHashing

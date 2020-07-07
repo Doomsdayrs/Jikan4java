@@ -1,8 +1,10 @@
-package com.github.doomsdayrs.jikan4java.model.main.user;
+package com.github.doomsdayrs.jikan4java.model.main.user
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty
 
-/** @noinspection ALL*/ /*
+/** @noinspection ALL
+ */
+/*
  * This file is part of Jikan4java.
  *
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -23,45 +25,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-public class MangaStats {
-    @JsonProperty("days_read")
-    public float days_read;
-    @JsonProperty("mean_score")
-    public float mean_score;
-    @JsonProperty("reading")
-    public int reading;
-    @JsonProperty("completed")
-    public int completed;
-    @JsonProperty("on_hold")
-    public int on_hold;
-    @JsonProperty("dropped")
-    public int dropped;
-    @JsonProperty("plan_to_read")
-    public int plan_to_read;
-    @JsonProperty("total_entries")
-    public int total_entries;
-    @JsonProperty("reread")
-    public int reread;
-    @JsonProperty("chapters_read")
-    public int chapters_read;
-    @JsonProperty("volumes_read")
-    public int volumes_read;
-    
-
-    @Override
-    public String toString() {
-        return "MangaStats{" +
-                "days_read=" + days_read +
-                ", mean_score=" + mean_score +
-                ", reading=" + reading +
-                ", completed=" + completed +
-                ", on_hold=" + on_hold +
-                ", dropped=" + dropped +
-                ", plan_to_read=" + plan_to_read +
-                ", total_entries=" + total_entries +
-                ", reread=" + reread +
-                ", chapters_read=" + chapters_read +
-                ", volumes_read=" + volumes_read +
-                '}';
-    }
-}
+data class MangaStats(
+		@field:JsonProperty("days_read") var days_read: Float = 0f,
+		@field:JsonProperty("mean_score") var mean_score: Float = 0f,
+		@field:JsonProperty("reading") var reading: Int = 0,
+		@field:JsonProperty("completed") var completed: Int = 0,
+		@field:JsonProperty("on_hold") var on_hold: Int = 0,
+		@field:JsonProperty("dropped") var dropped: Int = 0,
+		@field:JsonProperty("plan_to_read") var plan_to_read: Int = 0,
+		@field:JsonProperty("total_entries") var total_entries: Int = 0,
+		@field:JsonProperty("reread") var reread: Int = 0,
+		@field:JsonProperty("chapters_read") var chapters_read: Int = 0,
+		@field:JsonProperty("volumes_read") var volumes_read: Int = 0
+)

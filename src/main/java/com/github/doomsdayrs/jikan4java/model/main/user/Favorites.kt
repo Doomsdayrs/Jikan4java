@@ -1,12 +1,11 @@
-package com.github.doomsdayrs.jikan4java.model.main.user;
+package com.github.doomsdayrs.jikan4java.model.main.user
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.support.basic.AnimeBasic;
-import com.github.doomsdayrs.jikan4java.model.support.basic.CharacterBasic;
-import com.github.doomsdayrs.jikan4java.model.support.basic.MangaBasic;
-import com.github.doomsdayrs.jikan4java.model.support.basic.PeopleBasic;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.basic.AnimeBasic
+import com.github.doomsdayrs.jikan4java.model.support.basic.CharacterBasic
+import com.github.doomsdayrs.jikan4java.model.support.basic.MangaBasic
+import com.github.doomsdayrs.jikan4java.model.support.basic.PeopleBasic
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -29,24 +28,9 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Favorites {
-    @JsonProperty("anime")
-    public ArrayList<AnimeBasic> animes;
-    @JsonProperty("manga")
-    public ArrayList<MangaBasic> mangas;
-    @JsonProperty("characters")
-    public ArrayList<CharacterBasic> characters;
-    @JsonProperty("people")
-    public ArrayList<PeopleBasic> peoples;
-    
-
-    @Override
-    public String toString() {
-        return "Favorites{" +
-                "animes=" + animes +
-                ", mangas=" + mangas +
-                ", characters=" + characters +
-                ", peoples=" + peoples +
-                '}';
-    }
-}
+data class Favorites(
+		@field:JsonProperty("anime") var animes: ArrayList<AnimeBasic>? = null,
+		@field:JsonProperty("manga") var mangas: ArrayList<MangaBasic>? = null,
+		@field:JsonProperty("characters") var characters: ArrayList<CharacterBasic>? = null,
+		@field:JsonProperty("people") var peoples: ArrayList<PeopleBasic>? = null
+)

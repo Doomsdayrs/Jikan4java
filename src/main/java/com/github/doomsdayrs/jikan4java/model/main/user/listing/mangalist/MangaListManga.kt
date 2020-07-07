@@ -1,12 +1,10 @@
-package com.github.doomsdayrs.jikan4java.model.main.user.listing.mangalist;
+package com.github.doomsdayrs.jikan4java.model.main.user.listing.mangalist
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
-import com.github.doomsdayrs.jikan4java.model.main.anime.Anime;
-import com.github.doomsdayrs.jikan4java.model.main.magazine.Magazine;
-
-import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.model.main.magazine.Magazine
+import com.github.doomsdayrs.jikan4java.model.main.manga.Manga
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -24,121 +22,42 @@ import java.util.concurrent.CompletableFuture;
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================*/
-
 /**
  * Jikan4java
  * 16 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public class MangaListManga extends Retriever {
-    @JsonProperty("mal_id")
-    public int mal_id;
+data class MangaListManga(
+		@field:JsonProperty("mal_id") var mal_id: Int = 0,
+		@field:JsonProperty("title") var title: String? = null,
+		@field:JsonProperty("url") var url: String? = null,
+		@field:JsonProperty("image_url") var image_url: String? = null,
+		@field:JsonProperty("type") var type: String? = null,
+		@field:JsonProperty("reading_status") var reading_status: Int = 0,
+		@field:JsonProperty("score") var score: Int = 0,
+		@field:JsonProperty("read_chapters") var read_chapters: Int = 0,
+		@field:JsonProperty("read_volumes") var read_volumes: Int = 0,
+		@field:JsonProperty("total_chapters") var total_chapters: Int = 0,
+		@field:JsonProperty("total_volumes") var total_volumes: Int = 0,
+		@field:JsonProperty("publishing_status") var publishing_status: Int = 0,
+		@field:JsonProperty("is_rereading") var is_rereading: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
+		@field:JsonProperty("tags") var tags: ArrayList<String>? = null,
+		@field:JsonProperty("start_date") var start_date: String? = null,
+		@field:JsonProperty("end_date") var end_date: String? = null,
+		@field:JsonProperty("read_start_date") var read_start_date: String? = null,
+		@field:JsonProperty("read_end_date") var read_end_date: String? = null,//Not sure of this
+		@field:JsonProperty("days") var days: Int = 0,//Also unsure
+		@field:JsonProperty("retail") var retail: String? = null,
+		@field:JsonProperty("priority") var priority: String? = null,
+		@field:JsonProperty("added_to_list") var added_to_list: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
+		@field:JsonProperty("magazines") var magazines: ArrayList<Magazine>? = null
+) : Retriever() {
 
-    @JsonProperty("title")
-    public String title;
-
-    @JsonProperty("url")
-    public String url;
-
-    @JsonProperty("image_url")
-    public String image_url;
-
-    @JsonProperty("type")
-    public String type;
-
-    @JsonProperty("reading_status")
-    public int reading_status;
-
-    @JsonProperty("score")
-    public int score;
-
-    @JsonProperty("read_chapters")
-    public int read_chapters;
-
-    @JsonProperty("read_volumes")
-    public int read_volumes;
-
-    @JsonProperty("total_chapters")
-    public int total_chapters;
-
-    @JsonProperty("total_volumes")
-    public int total_volumes;
-
-    @JsonProperty("publishing_status")
-    public int publishing_status;
-
-    @JsonProperty("is_rereading")
-    public boolean is_rereading;
-
-    //This will become an error in the future, well. Ill be given a user tag that i can use
-    @JsonProperty("tags")
-    public ArrayList<String> tags;
-
-    @JsonProperty("start_date")
-    public String start_date;
-
-    @JsonProperty("end_date")
-    public String end_date;
-
-    @JsonProperty("read_start_date")
-    public String read_start_date;
-
-    @JsonProperty("read_end_date")
-    public String read_end_date;
-
-    //Not sure of this
-    @JsonProperty("days")
-    public int days;
-    //Also unsure
-    @JsonProperty("retail")
-    public String retail;
-
-    @JsonProperty("priority")
-    public String priority;
-
-    @JsonProperty("added_to_list")
-    public boolean added_to_list;
-
-    //This will become an error in the future, well. Ill be given a user tag that i can use
-    @JsonProperty("magazines")
-    public ArrayList<Magazine> magazines;
-
-    /**
-     * Returns the Manga object of this object
-     *
-     * @return Manga Object
-     */
-    public CompletableFuture<Anime> getManga() {
-        return retrieve(Anime.class, baseURL + "/manga/" + mal_id);
-    }
-
-    @Override
-    public String toString() {
-        return "MangaListManga{" +
-                "mal_id=" + mal_id +
-                ", title='" + title + '\'' +
-                ", url='" + url + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", subType='" + type + '\'' +
-                ", reading_status=" + reading_status +
-                ", score=" + score +
-                ", read_chapters=" + read_chapters +
-                ", read_volumes=" + read_volumes +
-                ", total_chapters=" + total_chapters +
-                ", total_volumes=" + total_volumes +
-                ", publishing_status=" + publishing_status +
-                ", is_rereading=" + is_rereading +
-                ", tags=" + tags +
-                ", start_date='" + start_date + '\'' +
-                ", end_date='" + end_date + '\'' +
-                ", read_start_date='" + read_start_date + '\'' +
-                ", read_end_date='" + read_end_date + '\'' +
-                ", days=" + days +
-                ", retail='" + retail + '\'' +
-                ", priority='" + priority + '\'' +
-                ", added_to_list=" + added_to_list +
-                ", magazines=" + magazines +
-                '}';
-    }
+	/**
+	 * Returns the Manga object of this object
+	 *
+	 * @return Manga Object
+	 */
+	val manga by lazy { retrieve<Manga>("$baseURL/manga/$mal_id") }
 }

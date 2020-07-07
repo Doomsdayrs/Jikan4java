@@ -1,15 +1,15 @@
-package com.github.doomsdayrs.jikan4java.model.main.user;
+package com.github.doomsdayrs.jikan4java.model.main.user
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
-import com.github.doomsdayrs.jikan4java.core.userlisting.AnimeUserListingSearch;
-import com.github.doomsdayrs.jikan4java.core.userlisting.MangaUserListingSearch;
-import com.github.doomsdayrs.jikan4java.enums.HistoryTypes;
-import com.github.doomsdayrs.jikan4java.model.main.user.friends.Friends;
-import com.github.doomsdayrs.jikan4java.model.main.user.history.HistoryPage;
-
-import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.core.userlisting.AnimeUserListingSearch
+import com.github.doomsdayrs.jikan4java.core.userlisting.MangaUserListingSearch
+import com.github.doomsdayrs.jikan4java.enums.HistoryTypes
+import com.github.doomsdayrs.jikan4java.model.main.user.friends.Friends
+import com.github.doomsdayrs.jikan4java.model.main.user.history.HistoryPage
+import java.util.*
+import java.util.concurrent.CompletableFuture
+import kotlin.collections.HashMap
 
 /*
  * This file is part of Jikan4java.
@@ -32,90 +32,50 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
+data class User(
+		@field:JsonProperty("request_hash") var request_hash: String? = null,
+		@field:JsonProperty("request_cached") var request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") var request_cache_expiry: Int = 0,
+		@field:JsonProperty("user_id") var user_id: Int = 0,
+		@field:JsonProperty("username") var username: String? = null,
+		@field:JsonProperty("url") var url: String? = null,
+		@field:JsonProperty("image_url") var image_url: String? = null,
+		@field:JsonProperty("last_online") var last_online: String? = null,
+		@field:JsonProperty("gender") var gender: String? = null,
+		@field:JsonProperty("birthday") var birthday: String? = null,
+		@field:JsonProperty("location") var location: String? = null,
+		@field:JsonProperty("joined") var joined: String? = null,
+		@field:JsonProperty("anime_stats") var animeStats: ArrayList<AnimeStats>? = null,
+		@field:JsonProperty("manga_stats") var mangaStats: ArrayList<MangaStats>? = null,
+		@field:JsonProperty("favorites") var favorites: Favorites? = null,
+		@field:JsonProperty("about") var about: String? = null
+) : Retriever() {
+	val historyHash = HashMap<HistoryTypes, CompletableFuture<HistoryPage>>()
+	val friendsHash = HashMap<Int, CompletableFuture<Friends>>()
+	val animeListSearch: AnimeUserListingSearch by lazy { AnimeUserListingSearch(username) }
+	val mangaListSearch: MangaUserListingSearch by lazy { MangaUserListingSearch(username) }
 
-public class User extends Retriever {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
+	/**
+	 * Returns history of the person
+	 *
+	 * @param type Anime or Manga
+	 * @return History object
+	 */
+	fun getHistory(type: HistoryTypes): CompletableFuture<HistoryPage> =
+			historyHash.takeIf { it.containsKey(type) }?.get(type)
+					?: historyHash.also {
+						historyHash[type] = retrieve("$baseURL/user/$username/history$type")
+					}[type]!!
 
-    @JsonProperty("user_id")
-    public int user_id;
-
-    @JsonProperty("username")
-    public String username;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("image_url")
-    public String image_url;
-    @JsonProperty("last_online")
-    public String last_online;
-    @JsonProperty("gender")
-    public String gender;
-    @JsonProperty("birthday")
-    public String birthday;
-    @JsonProperty("location")
-    public String location;
-    @JsonProperty("joined")
-    public String joined;
-    @JsonProperty("anime_stats")
-    public ArrayList<AnimeStats> animeStats;
-    @JsonProperty("manga_stats")
-    public ArrayList<MangaStats> mangaStats;
-    @JsonProperty("favorites")
-    public Favorites favorites;
-    @JsonProperty("about")
-    public String about;
-
-    /**
-     * Returns history of the person
-     *
-     * @param type Anime or Manga
-     * @return History object
-     */
-    public CompletableFuture<HistoryPage> getHistory(HistoryTypes type) {
-        return retrieve(HistoryPage.class, baseURL + "/user/" + username + "/history" + type);
-    }
-
-    /**
-     * Returns friends of the person
-     *
-     * @param page Page to call for
-     * @return Friends object
-     */
-    public CompletableFuture<Friends> getFriends(int page) {
-        return retrieve(Friends.class, baseURL + "/user/" + username + "/friends/" + page);
-    }
-
-    public AnimeUserListingSearch getAnimeListSearch() {
-        return new AnimeUserListingSearch(username);
-    }
-
-    public MangaUserListingSearch getMangaListSearch() {
-        return new MangaUserListingSearch(username);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", user_id=" + user_id +
-                ", username='" + username + '\'' +
-                ", url='" + url + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", last_online='" + last_online + '\'' +
-                ", gender='" + gender + '\'' +
-                ", birthday='" + birthday + '\'' +
-                ", location='" + location + '\'' +
-                ", joined='" + joined + '\'' +
-                ", animeStats=" + animeStats +
-                ", mangaStats=" + mangaStats +
-                ", favorites=" + favorites +
-                ", about='" + about + '\'' +
-                '}';
-    }
+	/**
+	 * Returns friends of the person
+	 *
+	 * @param page Page to call for
+	 * @return Friends object
+	 */
+	fun getFriends(page: Int): CompletableFuture<Friends> =
+			friendsHash.takeIf { it.containsKey(page) }?.get(page)
+					?: friendsHash.also {
+						friendsHash[page] = retrieve("$baseURL/user/$username/friends/$page")
+					}[page]!!
 }

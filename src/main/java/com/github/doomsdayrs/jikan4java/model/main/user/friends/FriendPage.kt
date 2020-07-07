@@ -1,8 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.user.friends;
+package com.github.doomsdayrs.jikan4java.model.main.user.friends
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -25,23 +25,9 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class FriendPage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("friends")
-    public ArrayList<Friends> friends;
-    
-    @Override
-    public String toString() {
-        return "FriendPage{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", friends=" + friends +
-                '}';
-    }
-}
+data class FriendPage(
+		@field:JsonProperty("request_hash") override var request_hash: String? = null,
+		@field:JsonProperty("request_cache_expiry") override var request_cache_expiry: Int = 0,
+		@field:JsonProperty("friends") var friends: ArrayList<Friends>? = null,
+		@field:JsonProperty("request_cached") override var request_cached: Boolean = false
+) : RequestHashing
