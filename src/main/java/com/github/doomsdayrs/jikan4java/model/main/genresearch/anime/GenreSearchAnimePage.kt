@@ -1,11 +1,11 @@
-package com.github.doomsdayrs.jikan4java.model.main.genresearch.anime;
+package com.github.doomsdayrs.jikan4java.model.main.genresearch.anime
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.main.genresearch.MalURL;
-import com.github.doomsdayrs.jikan4java.model.main.schedule.SubAnime;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.main.genresearch.MalURL
+import com.github.doomsdayrs.jikan4java.model.main.schedule.SubAnime
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -29,29 +29,11 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class GenreSearchAnimePage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("mal_url")
-    public MalURL malURL;
-    @JsonProperty("item_count")
-    public int item_count;
-    @JsonProperty("anime")
-    public ArrayList<SubAnime> animes;
-    
-    @Override
-    public String toString() {
-        return "GenreSearchAnimePage{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", malURL=" + malURL +
-                ", item_count=" + item_count +
-                ", animes=" + animes +
-                '}';
-    }
-}
+class GenreSearchAnimePage(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("mal_url") val malURL: MalURL? = null,
+		@field:JsonProperty("item_count") val item_count: Int = 0,
+		@field:JsonProperty("anime") val animes: ArrayList<SubAnime>? = null
+) : RequestHashing

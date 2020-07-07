@@ -1,9 +1,9 @@
-package com.github.doomsdayrs.jikan4java.model.main.genresearch.manga;
+package com.github.doomsdayrs.jikan4java.model.main.genresearch.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.main.genresearch.MalURL;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.main.genresearch.MalURL
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -26,29 +26,11 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class GenreSearchMangaPage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("mal_url")
-    public MalURL malURL;
-    @JsonProperty("item_count")
-    public int item_count;
-    @JsonProperty("manga")
-    public ArrayList<GenreSearchManga> mangas;
-    
-    @Override
-    public String toString() {
-        return "GenreSearchMangaPage{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", malURL=" + malURL +
-                ", item_count=" + item_count +
-                ", mangas=" + mangas +
-                '}';
-    }
-}
+class GenreSearchMangaPage(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("mal_url") val malURL: MalURL? = null,
+		@field:JsonProperty("item_count") val item_count: Int = 0,
+		@field:JsonProperty("manga") val mangas: ArrayList<GenreSearchManga>? = null
+) : RequestHashing

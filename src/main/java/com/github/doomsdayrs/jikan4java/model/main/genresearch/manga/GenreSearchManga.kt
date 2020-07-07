@@ -1,13 +1,12 @@
-package com.github.doomsdayrs.jikan4java.model.main.genresearch.manga;
+package com.github.doomsdayrs.jikan4java.model.main.genresearch.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
-import com.github.doomsdayrs.jikan4java.model.main.manga.Manga;
-import com.github.doomsdayrs.jikan4java.model.support.basic.meta.Authors;
-import com.github.doomsdayrs.jikan4java.model.support.basic.meta.Genre;
-
-import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.model.main.manga.Manga
+import com.github.doomsdayrs.jikan4java.model.support.basic.meta.Authors
+import com.github.doomsdayrs.jikan4java.model.support.basic.meta.Genre
+import java.util.*
+import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -30,60 +29,26 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class GenreSearchManga extends Retriever {
+class GenreSearchManga(
+		@field:JsonProperty("mal_id") val mal_id: Int = 0,
+		@field:JsonProperty("url") val url: String? = null,
+		@field:JsonProperty("title") val title: String? = null,
+		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("synopsis") val synopsis: String? = null,
+		@field:JsonProperty("type") val type: String? = null,
+		@field:JsonProperty("publishing_start") val publishing_start: String? = null,
+		@field:JsonProperty("volumes") val volumes: Int = 0,
+		@field:JsonProperty("members") val members: Int = 0,
+		@field:JsonProperty("genres") val genres: ArrayList<Genre>? = null,
+		@field:JsonProperty("authors") val authors: ArrayList<Authors>? = null,
+		@field:JsonProperty("score") val score: Float = 0f,
+		@field:JsonProperty("serialization") val serialization: ArrayList<String>? = null
+) : Retriever() {
 
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("title")
-    public String title;
-    @JsonProperty("image_url")
-    public String image_url;
-    @JsonProperty("synopsis")
-    public String synopsis;
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("publishing_start")
-    public String publishing_start;
-    @JsonProperty("volumes")
-    public int volumes;
-    @JsonProperty("members")
-    public int members;
-    @JsonProperty("genres")
-    public ArrayList<Genre> genres;
-    @JsonProperty("authors")
-    public ArrayList<Authors> authors;
-    @JsonProperty("score")
-    public float score;
-    @JsonProperty("serialization")
-    public ArrayList<String> serialization;
-
-    /**
-     * Returns the Manga object of this object
-     *
-     * @return Manga Object\
-     */
-    public CompletableFuture<Manga> getManga() {
-        return retrieve(Manga.class, baseURL + "/manga/" + mal_id);
-    }
-
-    @Override
-    public String toString() {
-        return "GenreSearchManga{" +
-                "mal_id=" + mal_id +
-                ", url='" + url + '\'' +
-                ", title='" + title + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", synopsis='" + synopsis + '\'' +
-                ", subType='" + type + '\'' +
-                ", publishing_start='" + publishing_start + '\'' +
-                ", volumes=" + volumes +
-                ", members=" + members +
-                ", genres=" + genres +
-                ", authors=" + authors +
-                ", score=" + score +
-                ", serialization=" + serialization +
-                '}';
-    }
+	/**
+	 * Returns the Manga object of this object
+	 *
+	 * @return Manga Object\
+	 */
+	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$baseURL/manga/$mal_id") }
 }

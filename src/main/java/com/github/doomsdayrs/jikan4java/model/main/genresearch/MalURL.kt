@@ -1,6 +1,6 @@
-package com.github.doomsdayrs.jikan4java.model.main.genresearch;
+package com.github.doomsdayrs.jikan4java.model.main.genresearch
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty
 
 /*
  * This file is part of Jikan4java.
@@ -23,24 +23,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-
-public class MalURL {
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("name")
-    public String name;
-    @JsonProperty("url")
-    public String url;
-    
-    @Override
-    public String toString() {
-        return "MalURL{" +
-                "mal_id=" + mal_id +
-                ", subType='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                '}';
-    }
-}
+data class MalURL(
+		@field:JsonProperty("mal_id") val mal_id: Int = 0,
+		@field:JsonProperty("type") val type: String? = null,
+		@field:JsonProperty("name") val name: String? = null,
+		@field:JsonProperty("url") val url: String? = null
+)
