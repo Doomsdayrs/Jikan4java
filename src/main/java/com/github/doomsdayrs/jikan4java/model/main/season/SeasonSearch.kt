@@ -1,8 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.season;
+package com.github.doomsdayrs.jikan4java.model.main.season
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -25,29 +25,11 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class SeasonSearch {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("season_name")
-    public String season_name;
-    @JsonProperty("season_year")
-    public int season_year;
-    @JsonProperty("anime")
-    public ArrayList<SeasonSearchAnime> animes;
-
-    @Override
-    public String toString() {
-        return "SeasonSearch{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", season_name='" + season_name + '\'' +
-                ", season_year=" + season_year +
-                ", animes=" + animes +
-                '}';
-    }
-}
+data class SeasonSearch(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("season_name") val season_name: String? = null,
+		@field:JsonProperty("season_year") val season_year: Int = 0,
+		@field:JsonProperty("anime") val animes: ArrayList<SeasonSearchAnime>? = null
+) : RequestHashing

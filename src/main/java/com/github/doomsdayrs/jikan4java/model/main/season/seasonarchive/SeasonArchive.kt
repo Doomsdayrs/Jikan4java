@@ -1,8 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.season.seasonarchive;
+package com.github.doomsdayrs.jikan4java.model.main.season.seasonarchive
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -25,23 +25,9 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class SeasonArchive {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("archive")
-    public ArrayList<Archive> archives;
-
-    @Override
-    public String toString() {
-        return "SeasonArchive{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", archives=" + archives +
-                '}';
-    }
-}
+data class SeasonArchive(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("archive") val archives: ArrayList<Archive>? = null
+):RequestHashing

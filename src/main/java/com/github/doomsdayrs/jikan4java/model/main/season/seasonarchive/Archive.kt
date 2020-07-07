@@ -1,8 +1,7 @@
-package com.github.doomsdayrs.jikan4java.model.main.season.seasonarchive;
+package com.github.doomsdayrs.jikan4java.model.main.season.seasonarchive
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -25,17 +24,7 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Archive {
-    @JsonProperty("year")
-    public int year;
-    @JsonProperty("seasons")
-    public ArrayList<String> seasons;
-    
-    @Override
-    public String toString() {
-        return "Archive{" +
-                "year=" + year +
-                ", seasons=" + seasons +
-                '}';
-    }
-}
+data class Archive(
+		@field:JsonProperty("year") val year: Int = 0,
+		@field:JsonProperty("seasons") val seasons: ArrayList<String>? = null
+)

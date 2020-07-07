@@ -1,8 +1,9 @@
-package com.github.doomsdayrs.jikan4java.model.main.top.model.anime
+package com.github.doomsdayrs.jikan4java.model.main.top.model.character
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.model.main.top.base.Top
-import java.util.*
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.model.main.manga.Manga
+import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -21,13 +22,21 @@ import java.util.*
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
  * Jikan4java
- * 01 / November / 2018
+ * 02 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-data class AnimeTop(
-		@JsonProperty("request_hash") override val request_hash: String?,
-		@JsonProperty("request_cached") override val request_cached: Boolean,
-		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
-		@param:JsonProperty("top") override val topListings: ArrayList<TopAnime>
-) : Top<TopAnime>
+data class TopCharacterManga(
+		@field:JsonProperty("mal_id") var mal_id: Int,
+		@field:JsonProperty("type") var type: String?,
+		@field:JsonProperty("name") var name: String?,
+		@field:JsonProperty("url") var url: String?
+) : Retriever() {
+
+	/**
+	 * Returns the Manga object of this object
+	 *
+	 * @return Manga Object
+	 */
+	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$baseURL/manga/$mal_id") }
+}

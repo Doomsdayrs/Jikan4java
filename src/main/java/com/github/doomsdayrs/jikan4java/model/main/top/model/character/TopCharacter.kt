@@ -1,8 +1,9 @@
-package com.github.doomsdayrs.jikan4java.model.main.top.model.anime
+package com.github.doomsdayrs.jikan4java.model.main.top.model.character
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.model.main.anime.Anime
-import com.github.doomsdayrs.jikan4java.model.main.top.base.TopListingMedia
+import com.github.doomsdayrs.jikan4java.model.main.character.Character
+import com.github.doomsdayrs.jikan4java.model.main.top.base.TopListingBeing
+import java.util.*
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -27,24 +28,22 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-data class TopAnime(
+data class TopCharacter(
 		@JsonProperty("mal_id") override val malID: Int,
 		@JsonProperty("rank") override val rank: Int,
 		@JsonProperty("title") override val title: String,
 		@JsonProperty("url") override val url: String,
+		@JsonProperty("favorites") override val favorites: Int,
+		@JsonProperty("name_kanji") override val nameKanji: String,
 		@JsonProperty("image_url") override val imageURL: String,
-		@JsonProperty("type") override val type: String,
-		@JsonProperty("score") override val score: Float,
-		@JsonProperty("members") override val members: Int,
-		@JsonProperty("start_date") override val startDate: String,
-		@JsonProperty("end_date") override val endDate: String,
-		@JsonProperty("episodes") val episodes: Int = 0
-) : TopListingMedia() {
+		@JsonProperty("animeography") var characterAnimes: ArrayList<TopCharacterAnime>?,
+		@JsonProperty("mangaography") var characterMangas: ArrayList<TopCharacterManga>?
+) : TopListingBeing() {
 
 	/**
-	 * Returns the Anime object of this object
+	 * Returns the Character object of this object
 	 *
-	 * @return Anime Object
+	 * @return Character Object
 	 */
-	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
+	val character: CompletableFuture<Character> by lazy { retrieve<Character>("$baseURL/character/$malID") }
 }

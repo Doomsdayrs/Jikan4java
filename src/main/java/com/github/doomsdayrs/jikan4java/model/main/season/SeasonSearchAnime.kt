@@ -1,13 +1,12 @@
-package com.github.doomsdayrs.jikan4java.model.main.season;
+package com.github.doomsdayrs.jikan4java.model.main.season
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
-import com.github.doomsdayrs.jikan4java.model.main.anime.Anime;
-import com.github.doomsdayrs.jikan4java.model.support.basic.meta.Genre;
-import com.github.doomsdayrs.jikan4java.model.support.basic.meta.Producer;
-
-import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.model.main.anime.Anime
+import com.github.doomsdayrs.jikan4java.model.support.basic.meta.Genre
+import com.github.doomsdayrs.jikan4java.model.support.basic.meta.Producer
+import java.util.*
+import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -30,71 +29,30 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class SeasonSearchAnime extends Retriever {
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("title")
-    public String title;
-    @JsonProperty("image_url")
-    public String image_url;
-    @JsonProperty("synopsis")
-    public String synopsis;
-    @JsonProperty("type")
-    public String type;
-    @JsonProperty("airing_start")
-    public String airing_start;
-    @JsonProperty("episodes")
-    public int episodes;
-    @JsonProperty("members")
-    public int members;
-    @JsonProperty("genres")
-    public ArrayList<Genre> genres;
-    @JsonProperty("source")
-    public String source;
-    @JsonProperty("producers")
-    public ArrayList<Producer> producers;
-    @JsonProperty("score")
-    public float score;
-    @JsonProperty("licensors")
-    public ArrayList<String> licensors;
-    @JsonProperty("r18")
-    public boolean r18;
-    @JsonProperty("kids")
-    public boolean kids;
-    @JsonProperty("continuing")
-    public boolean continuing;
-    
-    /**
-     * Returns the Anime object of this object
-     *
-     * @return Anime Object
-     */
-    public CompletableFuture<Anime> getAnime() {
-        return retrieve(Anime.class, baseURL + "/anime/" + mal_id);
-    }
+data class SeasonSearchAnime(
+		@field:JsonProperty("mal_id") val mal_id: Int = 0,
+		@field:JsonProperty("url") val url: String? = null,
+		@field:JsonProperty("title") val title: String? = null,
+		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("synopsis") val synopsis: String? = null,
+		@field:JsonProperty("type") val type: String? = null,
+		@field:JsonProperty("airing_start") val airing_start: String? = null,
+		@field:JsonProperty("episodes") val episodes: Int = 0,
+		@field:JsonProperty("members") val members: Int = 0,
+		@field:JsonProperty("genres") val genres: ArrayList<Genre>? = null,
+		@field:JsonProperty("source") val source: String? = null,
+		@field:JsonProperty("producers") val producers: ArrayList<Producer>? = null,
+		@field:JsonProperty("score") val score: Float = 0f,
+		@field:JsonProperty("licensors") val licensors: ArrayList<String>? = null,
+		@field:JsonProperty("r18") val r18: Boolean = false,
+		@field:JsonProperty("kids") val kids: Boolean = false,
+		@field:JsonProperty("continuing") val continuing: Boolean = false
+) : Retriever() {
 
-    @Override
-    public String toString() {
-        return "SeasonSearchAnime{" +
-                "mal_id=" + mal_id +
-                ", url='" + url + '\'' +
-                ", title='" + title + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", synopsis='" + synopsis + '\'' +
-                ", subType='" + type + '\'' +
-                ", airing_start='" + airing_start + '\'' +
-                ", episodes=" + episodes +
-                ", members=" + members +
-                ", genres=" + genres +
-                ", source='" + source + '\'' +
-                ", producers=" + producers +
-                ", score=" + score +
-                ", licensors=" + licensors +
-                ", r18=" + r18 +
-                ", kids=" + kids +
-                ", continuing=" + continuing +
-                '}';
-    }
+	/**
+	 * Returns the Anime object of this object
+	 *
+	 * @return Anime Object
+	 */
+	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$mal_id") }
 }

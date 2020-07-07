@@ -1,8 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.top.model.anime
+package com.github.doomsdayrs.jikan4java.model.main.top.model.character
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.model.main.anime.Anime
-import com.github.doomsdayrs.jikan4java.model.main.top.base.TopListingMedia
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -20,31 +20,23 @@ import java.util.concurrent.CompletableFuture
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================*/
-/**
+ * ====================================================================
  * Jikan4java
- * 01 / November / 2018
+ * 02 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-data class TopAnime(
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("rank") override val rank: Int,
-		@JsonProperty("title") override val title: String,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String,
-		@JsonProperty("type") override val type: String,
-		@JsonProperty("score") override val score: Float,
-		@JsonProperty("members") override val members: Int,
-		@JsonProperty("start_date") override val startDate: String,
-		@JsonProperty("end_date") override val endDate: String,
-		@JsonProperty("episodes") val episodes: Int = 0
-) : TopListingMedia() {
+data class TopCharacterAnime(
+		@field:JsonProperty("mal_id") var mal_id: Int = 0,
+		@field:JsonProperty("type") var type: String? = null,
+		@field:JsonProperty("name") var name: String? = null,
+		@field:JsonProperty("url") var url: String? = null
+) : Retriever() {
 
 	/**
 	 * Returns the Anime object of this object
 	 *
 	 * @return Anime Object
 	 */
-	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
+	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$mal_id") }
 }

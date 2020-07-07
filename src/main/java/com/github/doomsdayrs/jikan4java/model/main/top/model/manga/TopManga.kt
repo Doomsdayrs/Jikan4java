@@ -1,7 +1,7 @@
-package com.github.doomsdayrs.jikan4java.model.main.top.model.anime
+package com.github.doomsdayrs.jikan4java.model.main.top.model.manga
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.model.main.anime.Anime
+import com.github.doomsdayrs.jikan4java.model.main.manga.Manga
 import com.github.doomsdayrs.jikan4java.model.main.top.base.TopListingMedia
 import java.util.concurrent.CompletableFuture
 
@@ -27,7 +27,7 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-data class TopAnime(
+data class TopManga(
 		@JsonProperty("mal_id") override val malID: Int,
 		@JsonProperty("rank") override val rank: Int,
 		@JsonProperty("title") override val title: String,
@@ -38,13 +38,13 @@ data class TopAnime(
 		@JsonProperty("members") override val members: Int,
 		@JsonProperty("start_date") override val startDate: String,
 		@JsonProperty("end_date") override val endDate: String,
-		@JsonProperty("episodes") val episodes: Int = 0
+		@JsonProperty("volumes") val volumes: Int
 ) : TopListingMedia() {
 
 	/**
-	 * Returns the Anime object of this object
+	 * Returns the Manga object of this object
 	 *
-	 * @return Anime Object
+	 * @return Manga Object
 	 */
-	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
+	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$baseURL/manga/$malID") }
 }

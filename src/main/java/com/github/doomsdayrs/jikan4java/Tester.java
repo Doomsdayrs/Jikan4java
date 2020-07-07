@@ -44,11 +44,11 @@ import com.github.doomsdayrs.jikan4java.model.main.producer.ProducerPage;
 import com.github.doomsdayrs.jikan4java.model.main.schedule.Day;
 import com.github.doomsdayrs.jikan4java.model.main.season.SeasonSearch;
 import com.github.doomsdayrs.jikan4java.model.main.season.seasonarchive.SeasonArchive;
-import com.github.doomsdayrs.jikan4java.model.main.top.Top;
-import com.github.doomsdayrs.jikan4java.model.main.top.objects.anime.AnimeTop;
-import com.github.doomsdayrs.jikan4java.model.main.top.objects.character.CharacterTop;
-import com.github.doomsdayrs.jikan4java.model.main.top.objects.manga.MangaTop;
-import com.github.doomsdayrs.jikan4java.model.main.top.objects.person.PersonTop;
+import com.github.doomsdayrs.jikan4java.model.main.top.base.Top;
+import com.github.doomsdayrs.jikan4java.model.main.top.model.anime.AnimeTop;
+import com.github.doomsdayrs.jikan4java.model.main.top.model.character.CharacterTop;
+import com.github.doomsdayrs.jikan4java.model.main.top.model.manga.MangaTop;
+import com.github.doomsdayrs.jikan4java.model.main.top.model.person.PersonTop;
 import com.github.doomsdayrs.jikan4java.model.main.user.User;
 import com.github.doomsdayrs.jikan4java.model.main.user.friends.Friends;
 import com.github.doomsdayrs.jikan4java.model.main.user.history.HistoryPage;
@@ -70,7 +70,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import static com.github.doomsdayrs.jikan4java.core.Retriever.getErrorMessages;
 import static com.github.doomsdayrs.jikan4java.core.Retriever.setDebugMode;
 
 /**

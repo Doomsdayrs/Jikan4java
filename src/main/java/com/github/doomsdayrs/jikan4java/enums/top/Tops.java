@@ -1,9 +1,9 @@
 package com.github.doomsdayrs.jikan4java.enums.top;
 
-import com.github.doomsdayrs.jikan4java.model.main.top.objects.anime.AnimeTop;
-import com.github.doomsdayrs.jikan4java.model.main.top.objects.character.CharacterTop;
-import com.github.doomsdayrs.jikan4java.model.main.top.objects.manga.MangaTop;
-import com.github.doomsdayrs.jikan4java.model.main.top.objects.person.PersonTop;
+import com.github.doomsdayrs.jikan4java.model.main.top.model.anime.AnimeTop;
+import com.github.doomsdayrs.jikan4java.model.main.top.model.character.CharacterTop;
+import com.github.doomsdayrs.jikan4java.model.main.top.model.manga.MangaTop;
+import com.github.doomsdayrs.jikan4java.model.main.top.model.person.PersonTop;
 
 /*
  * This file is part of Jikan4java.

@@ -1,4 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.top;/*
+package com.github.doomsdayrs.jikan4java.model.main.top.base
+
+import com.github.doomsdayrs.jikan4java.model.main.top.base.TopListing
+
+/*
  * This file is part of Jikan4java.
  *
  * Jikan4java is free software: you can redistribute it and/or modify
@@ -13,25 +17,13 @@ package com.github.doomsdayrs.jikan4java.model.main.top;/*
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- */
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-/**
+ */ /**
  * Jikan4java
  * 18 / 11 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public class TopListingBeing extends TopListing {
-    public final int favorites;
-    public final String name_kanji;
-
-    public TopListingBeing(int mal_id, int rank, String title, String url, @JsonProperty("favorites") int favorites, @JsonProperty("name_kanji") String name_kanji, @JsonProperty("image_url") String image_url) {
-        super(mal_id, rank, title, url, image_url);
-        this.favorites = favorites;
-        this.name_kanji = name_kanji;
-    }
-
-
+abstract class TopListingBeing : TopListing() {
+	abstract val favorites: Int
+	abstract val nameKanji: String
 }
