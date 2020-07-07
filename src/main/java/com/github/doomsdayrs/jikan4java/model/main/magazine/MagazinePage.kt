@@ -1,9 +1,9 @@
-package com.github.doomsdayrs.jikan4java.model.main.magazine;
+package com.github.doomsdayrs.jikan4java.model.main.magazine
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.support.basic.meta.BasicMeta;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import com.github.doomsdayrs.jikan4java.model.support.basic.meta.BasicMeta
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -26,27 +26,10 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-
-public class MagazinePage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("meta")
-    public BasicMeta meta;
-    @JsonProperty("manga")
-    public ArrayList<Magazine> magazines;
-
-    @Override
-    public String toString() {
-        return "MagazinePage{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", meta=" + meta +
-                ", magazines=" + magazines +
-                '}';
-    }
-}
+class MagazinePage(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("meta") val meta: BasicMeta? = null,
+		@field:JsonProperty("manga") val magazines: ArrayList<Magazine>? = null
+) : RequestHashing
