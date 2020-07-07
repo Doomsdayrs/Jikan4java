@@ -1,8 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.person;
+package com.github.doomsdayrs.jikan4java.model.main.person
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.support.basic.AnimeBasic;
-import com.github.doomsdayrs.jikan4java.model.support.basic.CharacterBasic;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.basic.AnimeBasic
+import com.github.doomsdayrs.jikan4java.model.support.basic.CharacterBasic
 
 /*
  * This file is part of Jikan4java.
@@ -25,22 +25,8 @@ import com.github.doomsdayrs.jikan4java.model.support.basic.CharacterBasic;
  *
  * @author github.com/doomsdayrs
  */
-public class VoiceActingRoles {
-    @JsonProperty("role")
-    public String role;
-
-    @JsonProperty("anime")
-    public AnimeBasic animeBasic;
-
-    @JsonProperty("character")
-    public CharacterBasic characterBasic;
-
-    @Override
-    public String toString() {
-        return "VoiceActingRoles{" +
-                "role='" + role + '\'' +
-                ", animeBasic=" + animeBasic +
-                ", characterBasic=" + characterBasic +
-                '}';
-    }
-}
+data class VoiceActingRoles(
+		@field:JsonProperty("role") val role: String? = null,
+		@field:JsonProperty("anime") val animeBasic: AnimeBasic? = null,
+		@field:JsonProperty("character") val characterBasic: CharacterBasic? = null
+) 

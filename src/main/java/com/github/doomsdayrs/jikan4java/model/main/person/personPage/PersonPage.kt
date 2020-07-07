@@ -1,8 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.person.personPage;
+package com.github.doomsdayrs.jikan4java.model.main.person.personPage
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -25,26 +25,10 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class PersonPage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("results")
-    public ArrayList<PersonPagePerson> people;
-    @JsonProperty("last_page")
-    public int last_page;
-
-    @Override
-    public String toString() {
-        return "PersonPage{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", animes=" + people +
-                ", last_page=" + last_page +
-                '}';
-    }
-}
+data class PersonPage(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("results") val people: ArrayList<PersonPagePerson>? = null,
+		@field:JsonProperty("last_page") val last_page: Int = 0
+) : RequestHashing

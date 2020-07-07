@@ -28,5 +28,5 @@ import java.util.*
  */
 abstract class IndividualsPage : ObjectPage() {
 	abstract val name: String?
-	abstract val alternative_names: ArrayList<String?>?
+	abstract val alternative_names: ArrayList<String>?
 }

@@ -1,12 +1,12 @@
-package com.github.doomsdayrs.jikan4java.model.main.person;
+package com.github.doomsdayrs.jikan4java.model.main.person
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
-import com.github.doomsdayrs.jikan4java.model.support.pictures.Pictures;
-
-import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import com.github.doomsdayrs.jikan4java.model.support.pictures.Pictures
+import java.util.*
+import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -29,68 +29,26 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author github.com/doomsdayrs
  */
-public class Person extends Retriever {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("image_url")
-    public String image_url;
-    @JsonProperty("website_url")
-    public String website_url;
-    @JsonProperty("name")
-    public String name;
-    @JsonProperty("given_name")
-    public String given_name;
-    @JsonProperty("family_name")
-    public String family_name;
-    @JsonProperty("alternate_names")
-    public ArrayList<String> alternate_names;
-    @JsonProperty("birthday")
-    public String birthday;
-    @JsonProperty("member_favorites")
-    public int member_favorites;
-    @JsonProperty("about")
-    public String about;
-    @JsonProperty("voice_acting_roles")
-    public ArrayList<VoiceActingRoles> voiceActingRoles;
-    @JsonProperty("anime_staff_positions")
-    public ArrayList<AnimeStaffPosition> animeStaffPositions;
-    @JsonProperty("published_manga")
-    public ArrayList<PublishedManga> publishedMangas;
+data class Person(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("mal_id") val mal_id: Int = 0,
+		@field:JsonProperty("url") val url: String? = null,
+		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("website_url") val website_url: String? = null,
+		@field:JsonProperty("name") val name: String? = null,
+		@field:JsonProperty("given_name") val given_name: String? = null,
+		@field:JsonProperty("family_name") val family_name: String? = null,
+		@field:JsonProperty("alternate_names") val alternate_names: ArrayList<String>? = null,
+		@field:JsonProperty("birthday") val birthday: String? = null,
+		@field:JsonProperty("member_favorites") val member_favorites: Int = 0,
+		@field:JsonProperty("about") val about: String? = null,
+		@field:JsonProperty("voice_acting_roles") val voiceActingRoles: ArrayList<VoiceActingRoles>? = null,
+		@field:JsonProperty("anime_staff_positions") val animeStaffPositions: ArrayList<AnimeStaffPosition>? = null,
+		@field:JsonProperty("published_manga") val publishedMangas: ArrayList<PublishedManga>? = null
+) : Retriever(),RequestHashing {
 
-    @JsonIgnore
-    public CompletableFuture<Pictures> getPictures() {
-        return retrieve(Pictures.class, baseURL + "/person/" + mal_id + "/pictures");
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "baseURL='" + baseURL + '\'' +
-                ",\n request_hash='" + request_hash + '\'' +
-                ",\n request_cached=" + request_cached +
-                ",\n request_cache_expiry=" + request_cache_expiry +
-                ",\n mal_id=" + mal_id +
-                ",\n url='" + url + '\'' +
-                ",\n image_url='" + image_url + '\'' +
-                ",\n website_url='" + website_url + '\'' +
-                ",\n name='" + name + '\'' +
-                ",\n given_name='" + given_name + '\'' +
-                ",\n family_name='" + family_name + '\'' +
-                ",\n alternate_names=" + alternate_names +
-                ",\n birthday='" + birthday + '\'' +
-                ",\n member_favorites=" + member_favorites +
-                ",\n about='" + about + '\'' +
-                ",\n voiceActingRoles=" + voiceActingRoles +
-                ",\n animeStaffPositions=" + animeStaffPositions +
-                ",\n publishedMangas=" + publishedMangas +
-                '}';
-    }
+	@get:JsonIgnore
+	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$baseURL/person/$mal_id/pictures") }
 }

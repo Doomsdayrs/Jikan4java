@@ -1,7 +1,7 @@
-package com.github.doomsdayrs.jikan4java.model.main.person;
+package com.github.doomsdayrs.jikan4java.model.main.person
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.support.basic.AnimeBasic;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.basic.AnimeBasic
 
 /*
  * This file is part of Jikan4java.
@@ -24,18 +24,7 @@ import com.github.doomsdayrs.jikan4java.model.support.basic.AnimeBasic;
  *
  * @author github.com/doomsdayrs
  */
-public class AnimeStaffPosition {
-    @JsonProperty("position")
-    public String position;
-
-    @JsonProperty("anime")
-    public AnimeBasic animeBasic;
-
-    @Override
-    public String toString() {
-        return "AnimeStaffPosition{" +
-                "position='" + position + '\'' +
-                ", animeBasic=" + animeBasic +
-                '}';
-    }
-}
+data class AnimeStaffPosition(
+		@field:JsonProperty("position") val position: String? = null,
+		@field:JsonProperty("anime") val animeBasic: AnimeBasic? = null
+)
