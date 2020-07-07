@@ -1,8 +1,7 @@
-package com.github.doomsdayrs.jikan4java.model.main.schedule;
+package com.github.doomsdayrs.jikan4java.model.main.schedule
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -25,49 +24,17 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class Schedule {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("monday")
-    public ArrayList<SubAnime> monday;
-    @JsonProperty("tuesday")
-    public ArrayList<SubAnime> tuesday;
-    @JsonProperty("wednesday")
-    public ArrayList<SubAnime> wednesday;
-    @JsonProperty("thursday")
-    public ArrayList<SubAnime> thursday;
-    @JsonProperty("friday")
-    public ArrayList<SubAnime> friday;
-    @JsonProperty("saturday")
-    public ArrayList<SubAnime> saturday;
-    @JsonProperty("sunday")
-    public ArrayList<SubAnime> sunday;
-    @JsonProperty("other")
-    public ArrayList<SubAnime> others;
-    @JsonProperty("unknown")
-    public ArrayList<SubAnime> unknown;
-
-
-
-    @Override
-    public String toString() {
-        return "Schedule{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", monday=" + monday +
-                ", tuesday=" + tuesday +
-                ", wednesday=" + wednesday +
-                ", thursday=" + thursday +
-                ", friday=" + friday +
-                ", saturday=" + saturday +
-                ", sunday=" + sunday +
-                ", others=" + others +
-                ", unknown=" + unknown +
-                '}';
-    }
-}
+class Schedule(
+		@field:JsonProperty("request_hash") var request_hash: String? = null,
+		@field:JsonProperty("request_cached") var request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") var request_cache_expiry: Int = 0,
+		@field:JsonProperty("monday") var monday: ArrayList<SubAnime>? = null,
+		@field:JsonProperty("tuesday") var tuesday: ArrayList<SubAnime>? = null,
+		@field:JsonProperty("wednesday") var wednesday: ArrayList<SubAnime>? = null,
+		@field:JsonProperty("thursday") var thursday: ArrayList<SubAnime>? = null,
+		@field:JsonProperty("friday") var friday: ArrayList<SubAnime>? = null,
+		@field:JsonProperty("saturday") var saturday: ArrayList<SubAnime>? = null,
+		@field:JsonProperty("sunday") var sunday: ArrayList<SubAnime>? = null,
+		@field:JsonProperty("other") var others: ArrayList<SubAnime>? = null,
+		@field:JsonProperty("unknown") var unknown: ArrayList<SubAnime>? = null
+)

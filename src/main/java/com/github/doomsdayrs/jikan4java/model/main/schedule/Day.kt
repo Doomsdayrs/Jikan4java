@@ -1,6 +1,7 @@
-package com.github.doomsdayrs.jikan4java.model.main.schedule;
+package com.github.doomsdayrs.jikan4java.model.main.schedule
 
-import java.util.ArrayList;
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -18,34 +19,12 @@ import java.util.ArrayList;
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================*/
-
 /**
  * Jikan4java
  * 01 / November / 2018
  *
  * @author github.com/doomsdayrs
  */
-public class Day {
-    public final String request_hash;
-    public final boolean request_cached;
-    public final int request_cache_expiry;
-    public final ArrayList<SubAnime> subAnimes;
-
-    public Day(String request_hash, boolean request_cached, int request_cache_expiry, ArrayList<SubAnime> subAnimes) {
-        this.request_hash = request_hash;
-        this.request_cached = request_cached;
-        this.request_cache_expiry = request_cache_expiry;
-        this.subAnimes = subAnimes;
-    }
-
-    @Override
-    public String toString() {
-        return "Day{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", subAnimes=" + subAnimes +
-                '}';
-    }
+abstract class Day() : RequestHashing {
+	abstract val subAnimes: ArrayList<SubAnime>
 }
-

@@ -1,6 +1,6 @@
-package com.github.doomsdayrs.jikan4java.enums;
+package com.github.doomsdayrs.jikan4java.enums
 
-import com.github.doomsdayrs.jikan4java.model.main.schedule.week.*;
+import com.github.doomsdayrs.jikan4java.model.main.schedule.week.*
 
 /*
  * This file is part of Jikan4java.
@@ -23,31 +23,20 @@ import com.github.doomsdayrs.jikan4java.model.main.schedule.week.*;
  *
  * @author github.com/doomsdayrs
  */
-public enum Days {
-    MONDAY("monday", Monday.class),
-    TUESDAY("tuesday", Tuesday.class),
-    WEDNESDAY("wednesday", Wednesday.class),
-    THURSDAY("thursday", Thursday.class),
-    FRIDAY("friday", Friday.class),
-    SATURDAY("saturday", Saturday.class),
-    SUNDAY("sunday", Sunday.class),
-    OTHER("other", Other.class),
-    UNKNOWN("unknown", Unknown.class);
+enum class Days(private val type: String, val aClass: Class<*>) {
+	MONDAY("monday", Monday::class.java),
+	TUESDAY("tuesday", Tuesday::class.java),
+	WEDNESDAY("wednesday", Wednesday::class.java),
+	THURSDAY("thursday", Thursday::class.java),
+	FRIDAY("friday", Friday::class.java),
+	SATURDAY("saturday", Saturday::class.java),
+	SUNDAY("sunday", Sunday::class.java),
+	OTHER("other", Other::class.java),
+	UNKNOWN("unknown", Unknown::class.java);
 
-    private final String type;
-    private final Class aClass;
 
-    Days(String type, Class aClass) {
-        this.type = type;
-        this.aClass = aClass;
-    }
+	override fun toString(): String {
+		return type
+	}
 
-    public Class getaClass() {
-        return aClass;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

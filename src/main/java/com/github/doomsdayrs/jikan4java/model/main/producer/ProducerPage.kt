@@ -1,10 +1,10 @@
-package com.github.doomsdayrs.jikan4java.model.main.producer;
+package com.github.doomsdayrs.jikan4java.model.main.producer
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.main.schedule.SubAnime;
-import com.github.doomsdayrs.jikan4java.model.support.basic.meta.BasicMeta;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.main.schedule.SubAnime
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import com.github.doomsdayrs.jikan4java.model.support.basic.meta.BasicMeta
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -27,26 +27,10 @@ import java.util.ArrayList;
  *
  * @author github.com/doomsdayrs
  */
-public class ProducerPage {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("meta")
-    public BasicMeta meta;
-    @JsonProperty("anime")
-    public ArrayList<SubAnime> subAnimes;
-
-    @Override
-    public String toString() {
-        return "ProducerPage{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", meta=" + meta +
-                ", subAnimes=" + subAnimes +
-                '}';
-    }
-}
+data class ProducerPage(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val  request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val  request_cache_expiry: Int = 0,
+		@field:JsonProperty("meta") val meta: BasicMeta? = null,
+		@field:JsonProperty("anime") val subAnimes: ArrayList<SubAnime>? = null
+):RequestHashing
