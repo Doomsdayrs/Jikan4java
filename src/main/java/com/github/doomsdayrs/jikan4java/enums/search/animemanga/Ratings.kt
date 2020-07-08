@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.search.animemanga;
+package com.github.doomsdayrs.jikan4java.enums.search.animemanga
 
 /*
  * This file is part of Jikan4java.
@@ -21,22 +21,14 @@ package com.github.doomsdayrs.jikan4java.enums.search.animemanga;
  *
  * @author github.com/doomsdayrs
  */
-public enum Ratings {
-    G("g"),
-    PG("pg"),
-    PG13("pg13"),
-    R17("r17"),
-    R("r"),
-    RX("rx");
+enum class Ratings(private val rating: String) {
+	G("g"),
+	PG("pg"),
+	PG13("pg13"),
+	R17("r17"),
+	R("r"),
+	RX("rx");
 
-    private final String rating;
+	override fun toString(): String = rating
 
-    Ratings(String rating) {
-        this.rating = rating;
-    }
-
-    @Override
-    public String toString() {
-        return rating;
-    }
 }

@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.top;
+package com.github.doomsdayrs.jikan4java.enums.top
 
 /*
  * This file is part of Jikan4java.
@@ -21,22 +21,11 @@ package com.github.doomsdayrs.jikan4java.enums.top;
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaTops implements TopSubType {
-    MANGA("manga"),
-    NOVELS("novels"),
-    ONESHOTS("oneshots"),
-    DOUJIN("doujin"),
-    MANHWA("manhwa"),
-    MANHUA("manhua");
+enum class MangaTops(private val type: String) : TopSubType {
+	MANGA("manga"), NOVELS("novels"), ONESHOTS("oneshots"), DOUJIN("doujin"), MANHWA("manhwa"), MANHUA("manhua");
 
-    private final String type;
+	override fun toString(): String {
+		return type
+	}
 
-    MangaTops(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

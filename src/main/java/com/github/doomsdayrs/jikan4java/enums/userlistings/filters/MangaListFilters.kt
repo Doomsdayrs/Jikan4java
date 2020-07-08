@@ -1,6 +1,6 @@
-package com.github.doomsdayrs.jikan4java.enums.userlistings.filters;
+package com.github.doomsdayrs.jikan4java.enums.userlistings.filters
 
-import com.github.doomsdayrs.jikan4java.model.main.user.listing.mangalist.MangaList;
+import com.github.doomsdayrs.jikan4java.model.main.user.listing.mangalist.MangaList
 
 /*
  * This file is part of Jikan4java.
@@ -23,34 +23,20 @@ import com.github.doomsdayrs.jikan4java.model.main.user.listing.mangalist.MangaL
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaListFilters implements UserListFilters {
-    ALL("all"),
-    READING("reading"),
-    COMPLETED("completed"),
-    ONHOLD("onhold"),
-    DROPPED("dropped"),
-    PLANTOREAD("plantoread"),
-    PTR(PLANTOREAD.type);
+enum class MangaListFilters(private val type: String) : UserListFilters {
+	ALL("all"),
+	READING("reading"),
+	COMPLETED("completed"),
+	ONHOLD("onhold"),
+	DROPPED("dropped"),
+	PLANTOREAD("plantoread"),
+	PTR(PLANTOREAD.type);
 
-    private final String type;
-    private final Class aClass = MangaList.class;
 
-    MangaListFilters(String type) {
-        this.type = type;
-    }
+	override fun toString(): String = type
 
-    @Override
-    public String toString() {
-        return type;
-    }
+	override val form: String = "mangalist"
 
-    @Override
-    public String getForm() {
-        return "mangalist";
-    }
+	override fun getaClass(): Class<*> =  MangaList::class.java
 
-    @Override
-    public Class getaClass() {
-        return aClass;
-    }
 }

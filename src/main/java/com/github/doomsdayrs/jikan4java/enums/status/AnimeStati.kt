@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.status;
+package com.github.doomsdayrs.jikan4java.enums.status
 
 /*
  * This file is part of Jikan4java.
@@ -21,21 +21,13 @@ package com.github.doomsdayrs.jikan4java.enums.status;
  *
  * @author github.com/doomsdayrs
  */
-public enum AnimeStati implements Stati {
-    AIRING("airing"),
-    COMPLETED("completed"),
-    COMPLETE("complete"),
-    TBA("tba"),
-    UPCOMING("upcoming");
+enum class AnimeStati(private val status: String) : Stati {
+	AIRING("airing"),
+	COMPLETED("completed"),
+	COMPLETE("complete"),
+	TBA("tba"),
+	UPCOMING("upcoming");
 
-    private final String status;
+	override fun toString(): String = status
 
-    AnimeStati(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return status;
-    }
 }

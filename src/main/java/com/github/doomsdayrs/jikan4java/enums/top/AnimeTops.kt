@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.top;
+package com.github.doomsdayrs.jikan4java.enums.top
 
 /*
  * This file is part of Jikan4java.
@@ -21,21 +21,11 @@ package com.github.doomsdayrs.jikan4java.enums.top;
  *
  * @author github.com/doomsdayrs
  */
-public enum AnimeTops implements TopSubType {
-    AIRING("airing"),
-    UPCOMING("upcoming"),
-    TV("tv"),
-    MOVIE("movie"),
-    OVA("ova"),
-    SPECIAL("special");
-    private final String type;
+enum class AnimeTops(private val type: String) : TopSubType {
+	AIRING("airing"), UPCOMING("upcoming"), TV("tv"), MOVIE("movie"), OVA("ova"), SPECIAL("special");
 
-    AnimeTops(String type) {
-        this.type = type;
-    }
+	override fun toString(): String {
+		return type
+	}
 
-    @Override
-    public String toString() {
-        return type;
-    }
 }

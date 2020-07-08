@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.userlistings.filters;
+package com.github.doomsdayrs.jikan4java.enums.userlistings.filters
 
 /*
  * This file is part of Jikan4java.
@@ -21,11 +21,8 @@ package com.github.doomsdayrs.jikan4java.enums.userlistings.filters;
  *
  * @author github.com/doomsdayrs
  */
-public interface UserListFilters {
-    String getForm();
-
-    Class getaClass();
-
-    @Override
-    String toString();
+interface UserListFilters {
+	val form: String
+	fun getaClass(): Class<*>?
+	override fun toString(): String
 }

@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.userlistings.status;
+package com.github.doomsdayrs.jikan4java.enums.userlistings.status
 
 /*
  * This file is part of Jikan4java.
@@ -21,22 +21,11 @@ package com.github.doomsdayrs.jikan4java.enums.userlistings.status;
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaListingStati implements ListingStati {
-    PUBLISHING("publishing"),
-    FINISHED("finished"),
-    COMPLETE(FINISHED.type),
-    TO_BE_PUBLISHED("to_be_published"),
-    NOT_YET_PUBLISHED(TO_BE_PUBLISHED.type),
-    TBP(NOT_YET_PUBLISHED.type),
-    NYP(TBP.type);
-    private final String type;
+enum class MangaListingStati(private val type: String) : ListingStati {
+	PUBLISHING("publishing"), FINISHED("finished"), COMPLETE(FINISHED.type), TO_BE_PUBLISHED("to_be_published"), NOT_YET_PUBLISHED(TO_BE_PUBLISHED.type), TBP(NOT_YET_PUBLISHED.type), NYP(TBP.type);
 
-    MangaListingStati(String type) {
-        this.type = type;
-    }
+	override fun toString(): String {
+		return type
+	}
 
-    @Override
-    public String toString() {
-        return type;
-    }
 }

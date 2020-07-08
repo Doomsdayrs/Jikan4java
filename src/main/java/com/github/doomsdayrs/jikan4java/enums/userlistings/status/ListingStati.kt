@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.userlistings.status;
+package com.github.doomsdayrs.jikan4java.enums.userlistings.status
 
 /*
  * This file is part of Jikan4java.
@@ -21,5 +21,4 @@ package com.github.doomsdayrs.jikan4java.enums.userlistings.status;
  *
  * @author github.com/doomsdayrs
  */
-public interface ListingStati {
-}
+interface ListingStati 

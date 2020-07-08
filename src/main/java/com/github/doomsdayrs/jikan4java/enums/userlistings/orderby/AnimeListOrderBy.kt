@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.userlistings.orderby;
+package com.github.doomsdayrs.jikan4java.enums.userlistings.orderby
 
 /*
  * This file is part of Jikan4java.
@@ -21,32 +21,11 @@ package com.github.doomsdayrs.jikan4java.enums.userlistings.orderby;
  *
  * @author github.com/doomsdayrs
  */
-public enum AnimeListOrderBy implements ListOrderBy {
-    TITLE("title"),
-    FINISH_DATE("finish_date"),
-    START_DATE("start_date"),
-    SCORE("score"),
-    LAST_UPDATED("last_updated"),
-    TYPE("type"),
-    RATED("rated"),
-    REWATCH("rewatch"),
-    REWATCHED_VALUE(REWATCH.type),
-    PRIORITY("priority"),
-    PROGRESS("progress"),
-    EPISODES_WATCHED(PROGRESS.type),
-    STORAGE("storage"),
-    AIR_START("air_start"),
-    AIR_END("air_end"),
-    STATUS("status");
+enum class AnimeListOrderBy(private val type: String) : ListOrderBy {
+	TITLE("title"), FINISH_DATE("finish_date"), START_DATE("start_date"), SCORE("score"), LAST_UPDATED("last_updated"), TYPE("type"), RATED("rated"), REWATCH("rewatch"), REWATCHED_VALUE(REWATCH.type), PRIORITY("priority"), PROGRESS("progress"), EPISODES_WATCHED(PROGRESS.type), STORAGE("storage"), AIR_START("air_start"), AIR_END("air_end"), STATUS("status");
 
-    private final String type;
+	override fun toString(): String {
+		return type
+	}
 
-    AnimeListOrderBy(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

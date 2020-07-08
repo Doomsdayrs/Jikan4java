@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.userlistings.status;
+package com.github.doomsdayrs.jikan4java.enums.userlistings.status
 
 /*
  * This file is part of Jikan4java.
@@ -21,23 +21,11 @@ package com.github.doomsdayrs.jikan4java.enums.userlistings.status;
  *
  * @author github.com/doomsdayrs
  */
-public enum AnimeListingStati implements ListingStati {
-    AIRING("airing"),
-    FINISHED("finished"),
-    COMPLETE(FINISHED.type),
-    TO_BE_AIRED("to_be_aired"),
-    NOT_YET_AIRED(TO_BE_AIRED.type),
-    TBA(NOT_YET_AIRED.type),
-    NYA(TBA.type);
+enum class AnimeListingStati(private val type: String) : ListingStati {
+	AIRING("airing"), FINISHED("finished"), COMPLETE(FINISHED.type), TO_BE_AIRED("to_be_aired"), NOT_YET_AIRED(TO_BE_AIRED.type), TBA(NOT_YET_AIRED.type), NYA(TBA.type);
 
-    private final String type;
+	override fun toString(): String {
+		return type
+	}
 
-    AnimeListingStati(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

@@ -1,12 +1,12 @@
-package com.github.doomsdayrs.jikan4java.enums.search;
+package com.github.doomsdayrs.jikan4java.enums.search
 
-import com.github.doomsdayrs.jikan4java.model.main.anime.Anime;
-import com.github.doomsdayrs.jikan4java.model.main.anime.animePage.AnimePage;
-import com.github.doomsdayrs.jikan4java.model.main.character.characterPage.CharacterPage;
-import com.github.doomsdayrs.jikan4java.model.main.manga.Manga;
-import com.github.doomsdayrs.jikan4java.model.main.manga.mangapage.MangaPage;
-import com.github.doomsdayrs.jikan4java.model.main.person.Person;
-import com.github.doomsdayrs.jikan4java.model.main.person.personPage.PersonPage;
+import com.github.doomsdayrs.jikan4java.model.main.anime.Anime
+import com.github.doomsdayrs.jikan4java.model.main.anime.animePage.AnimePage
+import com.github.doomsdayrs.jikan4java.model.main.character.characterPage.CharacterPage
+import com.github.doomsdayrs.jikan4java.model.main.manga.Manga
+import com.github.doomsdayrs.jikan4java.model.main.manga.mangapage.MangaPage
+import com.github.doomsdayrs.jikan4java.model.main.person.Person
+import com.github.doomsdayrs.jikan4java.model.main.person.personPage.PersonPage
 
 /*
  * This file is part of Jikan4java.
@@ -29,31 +29,11 @@ import com.github.doomsdayrs.jikan4java.model.main.person.personPage.PersonPage;
  *
  * @author github.com/doomsdayrs
  */
-public enum Types {
-    ANIME("anime", AnimePage.class, Anime.class),
-    MANGA("manga", MangaPage.class, Manga.class),
-    PERSON("person", PersonPage.class, Person.class),
-    CHARACTER("character", CharacterPage.class, Character.class);
-    private final String type;
-    private final Class a;
-    private final Class b;
+enum class Types(private val type: String, val a: Class<*>, val b: Class<*>) {
+	ANIME("anime", AnimePage::class.java, Anime::class.java),
+	MANGA("manga", MangaPage::class.java, Manga::class.java),
+	PERSON("person", PersonPage::class.java, Person::class.java),
+	CHARACTER("character", CharacterPage::class.java, Char::class.java);
 
-    Types(String type, Class a, Class b) {
-        this.type = type;
-        this.a = a;
-        this.b = b;
-    }
-
-    public Class getA() {
-        return a;
-    }
-
-    public Class getB() {
-        return b;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
+	override fun toString(): String = type
 }

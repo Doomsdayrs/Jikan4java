@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.userlistings.orderby;
+package com.github.doomsdayrs.jikan4java.enums.userlistings.orderby
 
 /*
  * This file is part of Jikan4java.
@@ -21,5 +21,4 @@ package com.github.doomsdayrs.jikan4java.enums.userlistings.orderby;
  *
  * @author github.com/doomsdayrs
  */
-public interface ListOrderBy {
-}
+interface ListOrderBy 

@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums;
+package com.github.doomsdayrs.jikan4java.enums
 
 /*
  * This file is part of Jikan4java.
@@ -21,19 +21,11 @@ package com.github.doomsdayrs.jikan4java.enums;
  *
  * @author github.com/doomsdayrs
  */
-public enum Season {
-    SUMMER("summer"),
-    SPRING("spring"),
-    FALL("fall"),
-    WINTER("winter");
-    private final String season;
+enum class Season(private val season: String) {
+	SUMMER("summer"), SPRING("spring"), FALL("fall"), WINTER("winter");
 
-    Season(String season) {
-        this.season = season;
-    }
+	override fun toString(): String {
+		return season
+	}
 
-    @Override
-    public String toString() {
-        return season;
-    }
 }

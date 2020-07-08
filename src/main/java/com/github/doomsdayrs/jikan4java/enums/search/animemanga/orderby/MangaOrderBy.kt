@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.search.animemanga.orderby;
+package com.github.doomsdayrs.jikan4java.enums.search.animemanga.orderby
 
 /*
  * This file is part of Jikan4java.
@@ -21,25 +21,19 @@ package com.github.doomsdayrs.jikan4java.enums.search.animemanga.orderby;
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaOrderBy implements OrderBy {
-    TITLE("title"),
-    START_DATE("start_date"),
-    END_DATE("end_date"),
-    SCORE("score"),
-    TYPE("type"),
-    MEMBERS("members"),
-    ID("id"),
-    CHAPTERS("chapters"),
-    VOLUMES("volumes");
+enum class MangaOrderBy(private val type: String) : OrderBy {
+	TITLE("title"),
+	START_DATE("start_date"),
+	END_DATE("end_date"),
+	SCORE("score"),
+	TYPE("type"),
+	MEMBERS("members"),
+	ID("id"),
+	CHAPTERS("chapters"),
+	VOLUMES("volumes");
 
-    private final String type;
+	override fun toString(): String {
+		return type
+	}
 
-    MangaOrderBy(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

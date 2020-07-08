@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.top;
+package com.github.doomsdayrs.jikan4java.enums.top
 
 /*
  * This file is part of Jikan4java.
@@ -21,18 +21,11 @@ package com.github.doomsdayrs.jikan4java.enums.top;
  *
  * @author github.com/doomsdayrs
  */
-public enum SharedTops implements TopSubType {
-    BY_POPULARITY("bypopularity"),
-    FAVORITE("favorite");
+enum class SharedTops(private val type: String) : TopSubType {
+	BY_POPULARITY("bypopularity"), FAVORITE("favorite");
 
-    private final String type;
+	override fun toString(): String {
+		return type
+	}
 
-    SharedTops(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

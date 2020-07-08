@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.meta;
+package com.github.doomsdayrs.jikan4java.enums.meta
 
 /*
  * This file is part of Jikan4java.
@@ -21,24 +21,15 @@ package com.github.doomsdayrs.jikan4java.enums.meta;
  *
  * @author github.com/doomsdayrs
  */
-public enum MetaType {
-    ANIME("anime"),
-    MANGA("manga"),
-    CHARACTER("character"),
-    PERSON("person"),
-    SEARCH("search"),
-    TOP("top"),
-    SCHEDULE("schedule"),
-    SEASON("season");
+enum class MetaType(private val type: String) {
+	ANIME("anime"),
+	MANGA("manga"),
+	CHARACTER("character"),
+	PERSON("person"),
+	SEARCH("search"),
+	TOP("top"),
+	SCHEDULE("schedule"),
+	SEASON("season");
 
-    private final String type;
-
-    MetaType(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
+	override fun toString(): String = type
 }

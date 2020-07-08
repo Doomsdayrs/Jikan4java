@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.search.animemanga.orderby;
+package com.github.doomsdayrs.jikan4java.enums.search.animemanga.orderby
 
 /*
  * This file is part of Jikan4java.
@@ -21,7 +21,6 @@ package com.github.doomsdayrs.jikan4java.enums.search.animemanga.orderby;
  *
  * @author github.com/doomsdayrs
  */
-public interface OrderBy {
-    @Override
-    String toString();
+interface OrderBy {
+	override fun toString(): String
 }

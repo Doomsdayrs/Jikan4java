@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.search.animemanga.subtype;
+package com.github.doomsdayrs.jikan4java.enums.search.animemanga.subtype
 
 /*
  * This file is part of Jikan4java.
@@ -21,22 +21,14 @@ package com.github.doomsdayrs.jikan4java.enums.search.animemanga.subtype;
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaSubType {
-    MANGA("manga"),
-    NOVEL("novel"),
-    ONESHOT("oneshot"),
-    DOUJIN("doujin"),
-    MANHWA("manhwa"),
-    MANHUA("manhua");
+enum class MangaSubType(private val type: String) {
+	MANGA("manga"),
+	NOVEL("novel"),
+	ONESHOT("oneshot"),
+	DOUJIN("doujin"),
+	MANHWA("manhwa"),
+	MANHUA("manhua");
 
-    private final String type;
+	override fun toString(): String = type
 
-    MangaSubType(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.top;
+package com.github.doomsdayrs.jikan4java.enums.top
 
 /*
  * This file is part of Jikan4java.
@@ -21,6 +21,6 @@ package com.github.doomsdayrs.jikan4java.enums.top;
  *
  * @author github.com/doomsdayrs
  */
-public interface TopSubType {
-    String toString();
+interface TopSubType {
+	override fun toString(): String
 }

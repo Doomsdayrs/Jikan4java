@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.genres;
+package com.github.doomsdayrs.jikan4java.enums.genres
 
 /*
  * This file is part of Jikan4java.
@@ -21,8 +21,7 @@ package com.github.doomsdayrs.jikan4java.enums.genres;
  *
  * @author github.com/doomsdayrs
  */
-public interface Genres {
-    int getId();
-
-    String getType();
+interface Genres {
+	val id: Int
+	val type: String
 }

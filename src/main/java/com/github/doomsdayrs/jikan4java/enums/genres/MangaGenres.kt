@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.genres;
+package com.github.doomsdayrs.jikan4java.enums.genres
 
 /*
  * This file is part of Jikan4java.
@@ -21,71 +21,55 @@ package com.github.doomsdayrs.jikan4java.enums.genres;
  *
  * @author github.com/doomsdayrs
  */
-public enum MangaGenres implements Genres {
-    ACTION(1),
-    ADVENTURE(2),
-    CARS(3),
-    COMEDY(4),
-    DEMENTIA(5),
-    DEMONS(6),
-    MYSTERY(7),
-    DRAMA(8),
-    ECCHI(9),
-    FANTASY(10),
-    GAME(11),
-    HENTAI(12),
-    HISTORICAL(13),
-    HORROR(14),
-    KIDS(15),
-    MAGIC(16),
-    MARTIAL_ARTS(17),
-    MECHA(18),
-    MUSIC(19),
-    PARODY(20),
-    SAMURAI(21),
-    ROMANCE(22),
-    SCHOOL(23),
-    SCI_FI(24),
-    SHOUJO(25),
-    SHOUJO_AI(26),
-    SHOUNEN(27),
-    SHOUNEN_AI(28),
-    SPACE(29),
-    SPORTS(30),
-    SUPER_POWER(31),
-    VAMPIRE(32),
-    YAOI(33),
-    YURI(34),
-    HAREM(35),
-    SLICE_OF_LIFE(36),
-    SUPERNATURAL(37),
-    MILITARY(38),
-    POLICE(39),
-    PSYCHOLOGICAL(40),
-    SEINEN(41),
-    JOSEI(42),
-    DOUJINSHI(43),
-    GENDER_BENDER(44),
-    THRILLER(45);
+enum class MangaGenres(override val id: Int) : Genres {
+	ACTION(1),
+	ADVENTURE(2),
+	CARS(3),
+	COMEDY(4),
+	DEMENTIA(5),
+	DEMONS(6),
+	MYSTERY(7),
+	DRAMA(8),
+	ECCHI(9),
+	FANTASY(10),
+	GAME(11),
+	HENTAI(12),
+	HISTORICAL(13),
+	HORROR(14),
+	KIDS(15),
+	MAGIC(16),
+	MARTIAL_ARTS(17),
+	MECHA(18),
+	MUSIC(19),
+	PARODY(20),
+	SAMURAI(21),
+	ROMANCE(22),
+	SCHOOL(23),
+	SCI_FI(24),
+	SHOUJO(25),
+	SHOUJO_AI(26),
+	SHOUNEN(27),
+	SHOUNEN_AI(28),
+	SPACE(29),
+	SPORTS(30),
+	SUPER_POWER(31),
+	VAMPIRE(32),
+	YAOI(33),
+	YURI(34),
+	HAREM(35),
+	SLICE_OF_LIFE(36),
+	SUPERNATURAL(37),
+	MILITARY(38),
+	POLICE(39),
+	PSYCHOLOGICAL(40),
+	SEINEN(41),
+	JOSEI(42),
+	DOUJINSHI(43),
+	GENDER_BENDER(44),
+	THRILLER(45);
 
-    final int id;
-    final String type = "manga";
+	override val type = "manga"
 
-    MangaGenres(int id) {
-        this.id = id;
-    }
+	override fun toString(): String = "${super.name}($id)"
 
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public String getType() {
-        return type;
-    }
-
-    @Override
-    public String toString() {
-        return super.name() + "(" + id + ")";
-    }
 }

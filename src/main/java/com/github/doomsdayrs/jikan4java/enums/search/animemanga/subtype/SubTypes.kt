@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.search.animemanga.subtype;
+package com.github.doomsdayrs.jikan4java.enums.search.animemanga.subtype
 
 /*
  * This file is part of Jikan4java.
@@ -21,8 +21,6 @@ package com.github.doomsdayrs.jikan4java.enums.search.animemanga.subtype;
  *
  * @author github.com/doomsdayrs
  */
-public interface SubTypes {
-
-    @Override
-    String toString();
+interface SubTypes {
+	override fun toString(): String
 }

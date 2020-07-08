@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums;
+package com.github.doomsdayrs.jikan4java.enums
 
 /*
  * This file is part of Jikan4java.
@@ -21,20 +21,11 @@ package com.github.doomsdayrs.jikan4java.enums;
  *
  * @author github.com/doomsdayrs
  */
-public enum SortBy {
-    ASCENDING("ascending"),
-    ASC(ASCENDING.type),
-    DESCENDING("descending"),
-    DESC(DESCENDING.type);
+enum class SortBy(private val type: String) {
+	ASCENDING("ascending"), ASC(ASCENDING.type), DESCENDING("descending"), DESC(DESCENDING.type);
 
-    private final String type;
+	override fun toString(): String {
+		return type
+	}
 
-    SortBy(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

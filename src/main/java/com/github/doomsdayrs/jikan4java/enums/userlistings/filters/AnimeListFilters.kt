@@ -1,6 +1,6 @@
-package com.github.doomsdayrs.jikan4java.enums.userlistings.filters;
+package com.github.doomsdayrs.jikan4java.enums.userlistings.filters
 
-import com.github.doomsdayrs.jikan4java.model.main.user.listing.animelist.AnimeList;
+import com.github.doomsdayrs.jikan4java.model.main.user.listing.animelist.AnimeList
 
 /*
  * This file is part of Jikan4java.
@@ -23,34 +23,19 @@ import com.github.doomsdayrs.jikan4java.model.main.user.listing.animelist.AnimeL
  *
  * @author github.com/doomsdayrs
  */
-public enum AnimeListFilters implements UserListFilters {
-    ALL("all"), //Default is all anyways
-    WATCHING("watching"),
-    COMPLETED("completed"),
-    ONHOLD("onhold"),
-    DROPPED("dropped"),
-    PLANTOWATCH("plantowatch"),
-    PTW(PLANTOWATCH.type);
+enum class AnimeListFilters(private val type: String) : UserListFilters {
+	ALL("all"),  //Default is all anyways
+	WATCHING("watching"),
+	COMPLETED("completed"),
+	ONHOLD("onhold"),
+	DROPPED("dropped"),
+	PLANTOWATCH("plantowatch"),
+	PTW(PLANTOWATCH.type);
 
-    private final String type;
-    private final Class aClass = AnimeList.class;
+	override fun toString(): String = type
 
-    AnimeListFilters(String type) {
-        this.type = type;
-    }
+	override val form: String = "animelist"
 
-    @Override
-    public String toString() {
-        return type;
-    }
+	override fun getaClass(): Class<*> = AnimeList::class.java
 
-    @Override
-    public String getForm() {
-        return "animelist";
-    }
-
-    @Override
-    public Class getaClass() {
-        return aClass;
-    }
 }

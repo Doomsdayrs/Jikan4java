@@ -1,4 +1,5 @@
-package com.github.doomsdayrs.jikan4java.enums;
+package com.github.doomsdayrs.jikan4java.enums
+
 /*
  * This file is part of Jikan4java.
  *
@@ -14,30 +15,17 @@ package com.github.doomsdayrs.jikan4java.enums;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- */
-
-/**
+ */ /**
  * Jikan4java
  * 23 / 11 / 2019
  *
  * @author github.com/doomsdayrs
  */
-public enum HistoryTypes {
-    ANIME("anime"),
-    MANGA("manga");
+enum class HistoryTypes(val type: String) {
+	ANIME("anime"), MANGA("manga");
 
-    final String type;
+	override fun toString(): String {
+		return type
+	}
 
-    HistoryTypes(String type){
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

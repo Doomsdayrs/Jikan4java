@@ -1,9 +1,9 @@
-package com.github.doomsdayrs.jikan4java.enums.top;
+package com.github.doomsdayrs.jikan4java.enums.top
 
-import com.github.doomsdayrs.jikan4java.model.main.top.model.anime.AnimeTop;
-import com.github.doomsdayrs.jikan4java.model.main.top.model.character.CharacterTop;
-import com.github.doomsdayrs.jikan4java.model.main.top.model.manga.MangaTop;
-import com.github.doomsdayrs.jikan4java.model.main.top.model.person.PersonTop;
+import com.github.doomsdayrs.jikan4java.model.main.top.model.anime.AnimeTop
+import com.github.doomsdayrs.jikan4java.model.main.top.model.character.CharacterTop
+import com.github.doomsdayrs.jikan4java.model.main.top.model.manga.MangaTop
+import com.github.doomsdayrs.jikan4java.model.main.top.model.person.PersonTop
 
 /*
  * This file is part of Jikan4java.
@@ -26,42 +26,25 @@ import com.github.doomsdayrs.jikan4java.model.main.top.model.person.PersonTop;
  *
  * @author github.com/doomsdayrs
  */
-public enum Tops {
-    ANIME("anime", AnimeTop.class),
-    MANGA("manga", MangaTop.class),
-    PEOPLE("people", PersonTop.class),
-    CHARACTERS("characters", CharacterTop.class);
-    private final String type;
-    private final Class aClass;
+enum class Tops(private val type: String, private val aClass: Class<*>) {
+	ANIME("anime", AnimeTop::class.java), MANGA("manga", MangaTop::class.java), PEOPLE("people", PersonTop::class.java), CHARACTERS("characters", CharacterTop::class.java);
 
-    Tops(String type, Class aClass) {
-        this.type = type;
-        this.aClass = aClass;
-    }
+	fun compatible(topSubType: TopSubType?): Boolean {
+		if (this == PEOPLE || this == CHARACTERS) return false
+		if (topSubType != null) {
+			if (this == ANIME || this == MANGA) if (topSubType.javaClass == SharedTops::class.java) return true
+			if (this == ANIME) return topSubType.javaClass == AnimeTops::class.java
+			if (this == MANGA) return topSubType.javaClass == MangaTops::class.java
+		}
+		return false
+	}
 
-    public boolean compatible(TopSubType topSubType) {
-        if (this.equals(PEOPLE) || this.equals(CHARACTERS))
-            return false;
-        if (topSubType != null) {
-            if (this.equals(ANIME) || this.equals(MANGA))
-                if (topSubType.getClass().equals(SharedTops.class))
-                    return true;
+	fun getaClass(): Class<*> {
+		return aClass
+	}
 
-            if (this.equals(ANIME))
-                return topSubType.getClass().equals(AnimeTops.class);
-            if (this.equals(MANGA))
-                return topSubType.getClass().equals(MangaTops.class);
+	override fun toString(): String {
+		return type
+	}
 
-        }
-        return false;
-    }
-
-    public Class getaClass() {
-        return aClass;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
 }

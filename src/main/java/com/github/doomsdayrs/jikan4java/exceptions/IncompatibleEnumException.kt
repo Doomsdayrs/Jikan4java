@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.exceptions;
+package com.github.doomsdayrs.jikan4java.exceptions
 
 /*
  * This file is part of Jikan4java.
@@ -21,20 +21,9 @@ package com.github.doomsdayrs.jikan4java.exceptions;
  *
  * @author github.com/doomsdayrs
  */
-public class IncompatibleEnumException extends Exception {
-    public IncompatibleEnumException() {
-        super();
-    }
-
-    public IncompatibleEnumException(String message) {
-        super(message);
-    }
-
-    public IncompatibleEnumException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public IncompatibleEnumException(Throwable cause) {
-        super(cause);
-    }
+class IncompatibleEnumException : Exception {
+	constructor() : super()
+	constructor(message: String?) : super(message)
+	constructor(message: String?, cause: Throwable?) : super(message, cause)
+	constructor(cause: Throwable?) : super(cause)
 }

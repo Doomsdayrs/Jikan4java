@@ -1,4 +1,4 @@
-package com.github.doomsdayrs.jikan4java.enums.meta;
+package com.github.doomsdayrs.jikan4java.enums.meta
 
 /*
  * This file is part of Jikan4java.
@@ -21,19 +21,10 @@ package com.github.doomsdayrs.jikan4java.enums.meta;
  *
  * @author github.com/doomsdayrs
  */
-public enum MetaPeriod {
-    TODAY("type"),
-    WEEKLY("weekly"),
-    MONTHLY("monthly");
+enum class MetaPeriod(private val type: String) {
+	TODAY("type"),
+	WEEKLY("weekly"),
+	MONTHLY("monthly");
 
-    private final String type;
-
-    MetaPeriod(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return type;
-    }
+	override fun toString(): String = type
 }
