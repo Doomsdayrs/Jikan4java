@@ -1,9 +1,9 @@
-package com.github.doomsdayrs.jikan4java.model.main.manga.mangapage
+package com.github.doomsdayrs.jikan4java.data.model.main.manga.mangapage
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.model.main.manga.Manga
-import com.github.doomsdayrs.jikan4java.model.support.searchResults.ContentPage
+import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
+import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.ContentPage
 
 /*
  * This file is part of Jikan4java.
