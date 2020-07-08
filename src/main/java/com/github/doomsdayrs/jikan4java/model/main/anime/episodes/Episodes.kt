@@ -1,9 +1,9 @@
-package com.github.doomsdayrs.jikan4java.model.main.anime.episodes;
+package com.github.doomsdayrs.jikan4java.model.main.anime.episodes
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -27,26 +27,10 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class Episodes {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-    @JsonProperty("episodes_last_page")
-    public int episodes_last_page;
-    @JsonProperty("episodes")
-    public ArrayList<Episode> episodes;
-
-    @Override
-    public String toString() {
-        return "Episodes{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", episodes_last_page=" + episodes_last_page +
-                ", episodes=" + episodes +
-                '}';
-    }
-}
+class Episodes(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("episodes_last_page") val episodes_last_page: Int = 0,
+		@field:JsonProperty("episodes") val episodes: ArrayList<Episode>? = null
+) : RequestHashing

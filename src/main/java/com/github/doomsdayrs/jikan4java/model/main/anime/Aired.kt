@@ -1,8 +1,9 @@
-package com.github.doomsdayrs.jikan4java.model.main.anime;
+package com.github.doomsdayrs.jikan4java.model.main.anime
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.support.prop.Prop;
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.RequestHashing
+import com.github.doomsdayrs.jikan4java.model.support.prop.Prop
 
 /*
  * This file is part of Jikan4java.
@@ -26,36 +27,12 @@ import com.github.doomsdayrs.jikan4java.model.support.prop.Prop;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class Aired {
-    @JsonProperty("request_hash")
-    public String request_hash;
-    @JsonProperty("request_cached")
-    public boolean request_cached;
-    @JsonProperty("request_cache_expiry")
-    public int request_cache_expiry;
-
-    @JsonProperty("from")
-    public String from;
-
-    @JsonProperty("to")
-    public String to;
-
-    @JsonProperty("prop")
-    public Prop prop;
-
-    @JsonProperty("string")
-    public String string;
-
-    @Override
-    public String toString() {
-        return "Aired{" +
-                "request_hash='" + request_hash + '\'' +
-                ", request_cached=" + request_cached +
-                ", request_cache_expiry=" + request_cache_expiry +
-                ", from='" + from + '\'' +
-                ", to='" + to + '\'' +
-                ", prop=" + prop +
-                ", string='" + string + '\'' +
-                '}';
-    }
-}
+class Aired(
+		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
+		@field:JsonProperty("from") val from: String? = null,
+		@field:JsonProperty("to") val to: String? = null,
+		@field:JsonProperty("prop") val prop: Prop? = null,
+		@field:JsonProperty("string") val string: String? = null
+) : RequestHashing

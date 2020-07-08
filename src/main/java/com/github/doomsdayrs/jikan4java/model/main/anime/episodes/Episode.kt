@@ -1,7 +1,7 @@
-package com.github.doomsdayrs.jikan4java.model.main.anime.episodes;
+package com.github.doomsdayrs.jikan4java.model.main.anime.episodes
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonProperty
 
 /*
  * This file is part of Jikan4java.
@@ -25,53 +25,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class Episode {
-    @JsonProperty("episode_id")
-    @SuppressWarnings("WeakerAccess")
-    public int episode_id;
-
-    @JsonProperty("title")
-    public String title;
-
-    @JsonProperty("title_japanese")
-    public String title_japanese;
-
-    @JsonProperty("title_romanji")
-    @SuppressWarnings("WeakerAccess")
-    public String title_romanji;
-
-    @JsonProperty("aired")
-    public String aired;
-    //public Aired aired;
-
-    @JsonProperty("filler")
-    @SuppressWarnings("WeakerAccess")
-    public boolean filler;
-
-    @JsonProperty("recap")
-    @SuppressWarnings("WeakerAccess")
-    public boolean recap;
-
-    @JsonProperty("video_url")
-    public String video_url;
-
-    @JsonProperty("forum_url")
-    @SuppressWarnings("WeakerAccess")
-    public String forum_url;
-    
-
-    @Override
-    public String toString() {
-        return "Episode{" +
-                "episode_id=" + episode_id +
-                ", title='" + title + '\'' +
-                ", title_japanese='" + title_japanese + '\'' +
-                ", title_romanji='" + title_romanji + '\'' +
-                ", aired=" + aired +
-                ", filler=" + filler +
-                ", recap=" + recap +
-                ", video_url='" + video_url + '\'' +
-                ", forum_url='" + forum_url + '\'' +
-                '}';
-    }
-}
+class Episode(
+		@field:JsonProperty("episode_id") val episode_id: Int = 0,
+		@field:JsonProperty("title") val title: String? = null,
+		@field:JsonProperty("title_japanese") val title_japanese: String? = null,
+		@field:JsonProperty("title_romanji") val title_romanji: String? = null,
+		@field:JsonProperty("aired") val aired: String? = null,
+		@field:JsonProperty("filler") val filler: Boolean = false,
+		@field:JsonProperty("recap") val recap: Boolean = false,
+		@field:JsonProperty("video_url") val video_url: String? = null,
+		@field:JsonProperty("forum_url") val forum_url: String? = null
+)

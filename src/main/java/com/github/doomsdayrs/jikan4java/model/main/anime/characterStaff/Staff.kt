@@ -1,10 +1,8 @@
-package com.github.doomsdayrs.jikan4java.model.main.anime.character_staff;
+package com.github.doomsdayrs.jikan4java.model.main.anime.characterStaff
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonProperty
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -28,28 +26,10 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class Staff {
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("name")
-    public String name;
-    @JsonProperty("image_url")
-    public String image_url;
-    @JsonProperty("positions")
-    public ArrayList<String> positions;
-
-
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "mal_id=" + mal_id +
-                ", url='" + url + '\'' +
-                ", name='" + name + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", positions=" + positions +
-                '}';
-    }
-}
-
+class Staff(
+		@field:JsonProperty("mal_id") val mal_id: Int = 0,
+		@field:JsonProperty("url") val url: String? = null,
+		@field:JsonProperty("name") val name: String? = null,
+		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("positions") val positions: ArrayList<String>? = null
+)

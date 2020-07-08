@@ -1,7 +1,7 @@
-package com.github.doomsdayrs.jikan4java.model.main.anime.videos;
+package com.github.doomsdayrs.jikan4java.model.main.anime.videos
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonProperty
 
 /*
  * This file is part of Jikan4java.
@@ -25,22 +25,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class Promo {
-    @JsonProperty("title")
-    public String title;
-
-    @JsonProperty("image_url")
-    public String image_url;
-
-    @JsonProperty("video_url")
-    public String video_url;
-    
-    @Override
-    public String toString() {
-        return "Promo{" +
-                "title='" + title + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", video_url='" + video_url + '\'' +
-                '}';
-    }
-}
+class Promo(
+		@field:JsonProperty("title") val title: String? = null,
+		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("video_url") val video_url: String? = null
+)

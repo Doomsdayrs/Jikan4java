@@ -1,6 +1,6 @@
-package com.github.doomsdayrs.jikan4java.model.main.anime;
+package com.github.doomsdayrs.jikan4java.model.main.anime
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty
 
 /*
  * This file is part of Jikan4java.
@@ -23,28 +23,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author github.com/doomsdayrs
  */
-
-public class Studios {
-    @JsonProperty("mal_id")
-    public int mal_id;
-
-    @JsonProperty("type")
-    public String type;
-
-    @JsonProperty("name")
-    public String name;
-
-    @JsonProperty("url")
-    public String url;
-
-    @Override
-    public String toString() {
-        return "Studios{" +
-                "mal_id=" + mal_id +
-                ", subType='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                '}';
-    }
-}
-
+class Studios(
+		@field:JsonProperty("mal_id") var mal_id: Int = 0,
+		@field:JsonProperty("type") var type: String? = null,
+		@field:JsonProperty("name") var name: String? = null,
+		@field:JsonProperty("url") var url: String? = null
+)

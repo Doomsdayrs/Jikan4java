@@ -1,10 +1,9 @@
-package com.github.doomsdayrs.jikan4java.model.main.anime.character_staff;
+package com.github.doomsdayrs.jikan4java.model.main.anime.characterStaff
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.model.support.VoiceActors;
-
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.model.support.VoiceActors
+import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -28,34 +27,11 @@ import java.util.ArrayList;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class AnimeCharacter {
-    @JsonProperty("mal_id")
-    public int mal_id;
-
-    @JsonProperty("url")
-    public String url;
-
-    @JsonProperty("image_url")
-    public String image_url;
-
-    @JsonProperty("name")
-    public String name;
-
-    @JsonProperty("role")
-    public String role;
-
-    @JsonProperty("voice_actors")
-    public ArrayList<VoiceActors> voice_actors;
-
-    @Override
-    public String toString() {
-        return "CharacterList{" +
-                "mal_id=" + mal_id +
-                ",\n url='" + url + '\'' +
-                ",\n image_url='" + image_url + '\'' +
-                ",\n name='" + name + '\'' +
-                ",\n role='" + role + '\'' +
-                ",\n voice_actors=" + voice_actors +
-                '}';
-    }
-}
+class AnimeCharacter(
+		@field:JsonProperty("mal_id") val mal_id: Int = 0,
+		@field:JsonProperty("url") val url: String? = null,
+		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("name") val name: String? = null,
+		@field:JsonProperty("role") val role: String? = null,
+		@field:JsonProperty("voice_actors") val voice_actors: ArrayList<VoiceActors>? = null
+)

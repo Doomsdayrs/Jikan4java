@@ -28,7 +28,7 @@ import com.github.doomsdayrs.jikan4java.enums.genres.MangaGenres;
 import com.github.doomsdayrs.jikan4java.enums.top.Tops;
 import com.github.doomsdayrs.jikan4java.exceptions.IncompatibleEnumException;
 import com.github.doomsdayrs.jikan4java.model.main.anime.Anime;
-import com.github.doomsdayrs.jikan4java.model.main.anime.character_staff.Character_Staff;
+import com.github.doomsdayrs.jikan4java.model.main.anime.characterStaff.CharacterStaff;
 import com.github.doomsdayrs.jikan4java.model.main.anime.episodes.Episodes;
 import com.github.doomsdayrs.jikan4java.model.main.anime.videos.Video;
 import com.github.doomsdayrs.jikan4java.model.main.character.Character;
@@ -209,9 +209,9 @@ class Tester {
 
                 progressUpdate();
                 System.out.println("\nCharacter_Staff\n");
-                CompletableFuture<Character_Staff> characterStaffCompletableFuture = anime.getCharacterStaffs();
+                CompletableFuture<CharacterStaff> characterStaffCompletableFuture = anime.getCharacterStaffs();
                 characterStaffCompletableFuture.thenAccept(Tester::p);
-                Character_Staff character_staff = characterStaffCompletableFuture.get();
+                CharacterStaff character_staff = characterStaffCompletableFuture.get();
                 s();
 
                 progressUpdate();
