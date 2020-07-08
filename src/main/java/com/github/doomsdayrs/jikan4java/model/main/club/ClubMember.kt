@@ -26,7 +26,7 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-class ClubMember(
+data class ClubMember(
 		@field:JsonProperty("username") val username: String? = null,
 		@field:JsonProperty("url") val url: String? = null,
 		@field:JsonProperty("image_url") val image_url: String? = null

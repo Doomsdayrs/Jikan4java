@@ -28,7 +28,7 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-class Club(
+data class Club(
 		@field:JsonProperty("request_hash") override val request_hash: String? = null,
 		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,

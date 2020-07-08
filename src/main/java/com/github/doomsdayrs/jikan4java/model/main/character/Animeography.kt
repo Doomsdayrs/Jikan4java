@@ -1,11 +1,10 @@
-package com.github.doomsdayrs.jikan4java.model.main.character;
+package com.github.doomsdayrs.jikan4java.model.main.character
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.doomsdayrs.jikan4java.core.Retriever;
-import com.github.doomsdayrs.jikan4java.model.main.anime.Anime;
-
-import java.util.concurrent.CompletableFuture;
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.model.main.anime.Anime
+import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -29,35 +28,18 @@ import java.util.concurrent.CompletableFuture;
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public class Animeography extends Retriever {
-    @JsonProperty("mal_id")
-    public int mal_id;
-    @JsonProperty("name")
-    public String name;
-    @JsonProperty("url")
-    public String url;
-    @JsonProperty("image_url")
-    public String image_url;
-    @JsonProperty("role")
-    public String role;
-    
-    /**
-     * Returns the Anime object of this object
-     *
-     * @return Anime Object
-     */
-    public CompletableFuture<Anime> getAnime() {
-        return retrieve(Anime.class, baseURL + "/anime/" + mal_id);
-    }
+data class Animeography(
+		@field:JsonProperty("mal_id") val mal_id: Int = 0,
+		@field:JsonProperty("name") val name: String? = null,
+		@field:JsonProperty("url") val url: String? = null,
+		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("role") val role: String? = null
+) : Retriever() {
 
-    @Override
-    public String toString() {
-        return "Animeography{" +
-                "mal_id=" + mal_id +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
+	/**
+	 * Returns the Anime object of this object
+	 *
+	 * @return Anime Object
+	 */
+	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$mal_id") }
 }

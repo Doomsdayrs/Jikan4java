@@ -29,14 +29,15 @@ import java.util.*
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-data class CharacterPageCharacter(@JsonProperty("mal_id") override val mal_id: Int,
-                                  @JsonProperty("url") override val url: String?,
-                                  @JsonProperty("image_url") override val image_url: String?,
-                                  @JsonProperty("name") override val name: String?,
-                                  @JsonProperty("alternative_names") override val alternative_names: ArrayList<String?>?,
-                                  @param:JsonProperty("anime") val animes: ArrayList<PageCharacterAnime>,
-                                  @param:JsonProperty("manga") val mangas: ArrayList<PageCharacterManga>) :
-		IndividualsPage() {
+data class CharacterPageCharacter(
+		@JsonProperty("mal_id") override val mal_id: Int,
+		@JsonProperty("url") override val url: String?,
+		@JsonProperty("image_url") override val image_url: String?,
+		@JsonProperty("name") override val name: String?,
+		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>?,
+		@param:JsonProperty("anime") val animes: ArrayList<PageCharacterAnime>,
+		@param:JsonProperty("manga") val mangas: ArrayList<PageCharacterManga>
+) : IndividualsPage() {
 
 	/**
 	 * Returns the Character object of this object
