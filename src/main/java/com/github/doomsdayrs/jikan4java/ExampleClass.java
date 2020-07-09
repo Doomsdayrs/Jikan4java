@@ -1,9 +1,9 @@
 package com.github.doomsdayrs.jikan4java;
 
 import com.github.doomsdayrs.jikan4java.core.search.TopSearch;
-import com.github.doomsdayrs.jikan4java.enums.top.SharedTops;
-import com.github.doomsdayrs.jikan4java.enums.top.Tops;
-import com.github.doomsdayrs.jikan4java.exceptions.IncompatibleEnumException;
+import com.github.doomsdayrs.jikan4java.data.enums.top.SharedSubTops;
+import com.github.doomsdayrs.jikan4java.data.enums.top.Tops;
+import com.github.doomsdayrs.jikan4java.data.exceptions.IncompatibleEnumException;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -135,11 +135,11 @@ class ExampleClass {
         //System.out.println(userListingSearch.getMangaList(MangaListFilters.DROPPED).get());
 
         TopSearch topSearch = new TopSearch();
-        System.out.println(topSearch.searchTop(Tops.ANIME, SharedTops.BY_POPULARITY).get());
-        System.out.println(topSearch.searchTop(Tops.MANGA, SharedTops.BY_POPULARITY).get());
+        System.out.println(topSearch.searchTop(Tops.ANIME, SharedSubTops.BY_POPULARITY).get());
+        System.out.println(topSearch.searchTop(Tops.MANGA, SharedSubTops.BY_POPULARITY).get());
         TimeUnit.SECONDS.sleep(1);
-        System.out.println(topSearch.searchTop(Tops.PEOPLE, SharedTops.FAVORITE).get());
-        System.out.println(topSearch.searchTop(Tops.CHARACTERS, SharedTops.BY_POPULARITY).get());
+        System.out.println(topSearch.searchTop(Tops.PEOPLE, SharedSubTops.FAVORITE).get());
+        System.out.println(topSearch.searchTop(Tops.CHARACTERS, SharedSubTops.BY_POPULARITY).get());
     }
 
 }
