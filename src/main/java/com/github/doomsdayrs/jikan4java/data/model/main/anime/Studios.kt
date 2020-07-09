@@ -1,6 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.anime
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -24,8 +28,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author github.com/doomsdayrs
  */
 class Studios(
-		@field:JsonProperty("mal_id") var mal_id: Int = 0,
-		@field:JsonProperty("type") var type: String? = null,
-		@field:JsonProperty("name") var name: String? = null,
-		@field:JsonProperty("url") var url: String? = null
-)
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("type") override val type: String? = null,
+		@field:JsonProperty("name") override val name: String,
+		@field:JsonProperty("url") override val url: String
+) : MyAnimeListID, MyAnimeListURL, MyAnimeListName, MyAnimeListType

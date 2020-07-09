@@ -1,5 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.searchResults
 
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
 import java.util.*
 
 /*
@@ -24,7 +25,6 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
-abstract class IndividualsPage : ObjectPage() {
-	abstract val name: String?
+abstract class IndividualsPage : ObjectPage(), MyAnimeListName {
 	abstract val alternative_names: ArrayList<String>?
 }

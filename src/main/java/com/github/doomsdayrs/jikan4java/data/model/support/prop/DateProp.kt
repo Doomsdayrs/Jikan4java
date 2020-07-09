@@ -23,6 +23,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
-data class DateProp(@JsonProperty("day")  val day: Int,
-              @JsonProperty("month")  val month: Int,
-              @JsonProperty("year")  val year: Int)
+data class DateProp(
+		@JsonProperty("day") val day: Int,
+		@JsonProperty("month") val month: Int,
+		@JsonProperty("year") val year: Int
+)

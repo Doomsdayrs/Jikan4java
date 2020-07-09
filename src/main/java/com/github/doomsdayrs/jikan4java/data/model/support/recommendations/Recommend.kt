@@ -1,6 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.recommendations
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -24,10 +28,10 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author github.com/doomsdayrs
  */
 data class Recommend(
-		@JsonProperty("mal_id") val mal_id: Int ,
-		@JsonProperty("url") val url: String? ,
-		@JsonProperty("image_url") val image_url: String? ,
-		@JsonProperty("recommendation_url") val recommendation_url: String? ,
-		@JsonProperty("title") val title: String? ,
-		@JsonProperty("recommendation_count") val recommendation_count: Int 
-)
+		@JsonProperty("mal_id") override val malID: Int,
+		@JsonProperty("url") override val url: String,
+		@JsonProperty("image_url") override val imageURL: String?,
+		@JsonProperty("recommendation_url") val recommendation_url: String?,
+		@JsonProperty("title") override val title: String,
+		@JsonProperty("recommendation_count") val recommendation_count: Int
+) : MyAnimeListID, MyAnimeListURL, MyAnimeListTitle, MyAnimeListImageURL

@@ -1,5 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.reviews
 
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+
 /*
  * This file is part of Jikan4java.
  *
@@ -22,9 +25,7 @@ package com.github.doomsdayrs.jikan4java.data.model.support.reviews
  *
  * @author github.com/doomsdayrs
  */
-interface Review {
-	val mal_id: Int
-	val url: String?
+interface Review : MyAnimeListID, MyAnimeListURL {
 	val helpful_count: Int
 	val date: String?
 	val reviewer: Reviewer

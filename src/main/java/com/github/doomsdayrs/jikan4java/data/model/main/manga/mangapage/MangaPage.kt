@@ -27,9 +27,9 @@ import java.util.*
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 data class MangaPage(
-		@field:JsonProperty("request_hash") var request_hash: String? = null,
-		@field:JsonProperty("request_cached") var request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") var request_cache_expiry: Int = 0,
-		@field:JsonProperty("results") var mangas: ArrayList<MangaPageManga>? = null,
-		@field:JsonProperty("last_page") var last_page: Int = 0
+		@field:JsonProperty("request_hash") val request_hash: String? = null,
+		@field:JsonProperty("request_cached") val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") val request_cache_expiry: Int = 0,
+		@field:JsonProperty("results") val mangas: ArrayList<MangaPageManga>? = null,
+		@field:JsonProperty("last_page") val last_page: Int = 0
 )

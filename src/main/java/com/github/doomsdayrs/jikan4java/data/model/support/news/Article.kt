@@ -1,6 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.news
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -24,8 +26,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author github.com/doomsdayrs
  */
 data class Article(
-		@JsonProperty("url") var url: String?,
-		@JsonProperty("title") var title: String?,
+		@JsonProperty("url") override var url: String,
+		@JsonProperty("title") override var title: String,
 		@JsonProperty("date") var date: String?,
 		@JsonProperty("author_name") var author_name: String?,
 		@JsonProperty("author_url") var author_url: String?,
@@ -33,4 +35,4 @@ data class Article(
 		@JsonProperty("image_url") var image_url: String?,
 		@JsonProperty("comments") var comments: Int,
 		@JsonProperty("intro") var intro: String?
-)
+) : MyAnimeListURL, MyAnimeListTitle

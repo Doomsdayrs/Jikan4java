@@ -26,11 +26,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class MoreInfo(
 		@JsonProperty("request_hash")
-		val request_hash: String,
+		override val request_hash: String,
 		@JsonProperty("request_cached")
-		val request_cached: Boolean = false,
+		override val request_cached: Boolean = false,
 		@JsonProperty("request_cache_expiry")
-		val request_cache_expiry: Int = 0,
+		override val request_cache_expiry: Int = 0,
 		@JsonProperty("moreinfo")
 		val moreinfo: String? = null
-)
+) : RequestHashing

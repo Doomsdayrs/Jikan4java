@@ -28,10 +28,10 @@ import java.util.*
  * @author github.com/doomsdayrs
  */
 data class PersonPagePerson(
-		@JsonProperty("mal_id") override val mal_id: Int,
-		@JsonProperty("url") override val url: String?,
-		@JsonProperty("image_url") override val image_url: String?,
-		@JsonProperty("name") override val name: String?,
+		@JsonProperty("mal_id") override val malID: Int,
+		@JsonProperty("url") override val url: String,
+		@JsonProperty("image_url") override val imageURL: String?,
+		@JsonProperty("name") override val name: String,
 		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>?
 ) : IndividualsPage() {
 	/**
@@ -39,5 +39,5 @@ data class PersonPagePerson(
 	 *
 	 * @return Person Object
 	 */
-	val person by lazy { retrieve<Person>("$baseURL/person/$mal_id") }
+	val person by lazy { retrieve<Person>("$baseURL/person/$malID") }
 }

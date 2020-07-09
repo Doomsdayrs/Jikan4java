@@ -1,7 +1,5 @@
-package com.github.doomsdayrs.jikan4java.data.model.support.reviews.anime
+package com.github.doomsdayrs.jikan4java.data.base
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.model.support.reviews.Review
 
 /*
  * This file is part of Jikan4java.
@@ -18,18 +16,13 @@ import com.github.doomsdayrs.jikan4java.data.model.support.reviews.Review
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================*/
+ */
 /**
  * Jikan4java
- * 30 / December / 2018
+ * 08 / 07 / 2020
  *
  * @author github.com/doomsdayrs
  */
-data class AnimeReview(
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("helpful_count") override val helpful_count: Int,
-		@JsonProperty("date") override val date: String?,
-		@JsonProperty("reviewer") override val reviewer: AnimeReviewer,
-		@JsonProperty("content") override val content: String?
-) : Review
+interface MyAnimeListType {
+	val type: String?
+}

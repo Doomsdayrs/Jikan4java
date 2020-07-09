@@ -1,6 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.manga
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -24,9 +27,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author github.com/doomsdayrs
  */
 data class MangaCharacter(
-		@field:JsonProperty("mal_id") var mal_id: Int = 0,
-		@field:JsonProperty("url") var url: String? = null,
-		@field:JsonProperty("image_url") var image_url: String? = null,
-		@field:JsonProperty("name") var name: String? = null,
-		@field:JsonProperty("role") var role: String? = null
-)
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
+		@field:JsonProperty("name") val name: String? = null,
+		@field:JsonProperty("role") val role: String? = null
+) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL

@@ -1,6 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.forum.topic
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -25,11 +27,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class Topic(
 		@JsonProperty("topic_id") val topic_id: Int,
-		@JsonProperty("url") val url: String?,
-		@JsonProperty("title") val title: String?,
+		@JsonProperty("url") override val url: String,
+		@JsonProperty("title") override val title: String,
 		@JsonProperty("date_posted") val date_posted: String?,
 		@JsonProperty("author_name") val author_name: String?,
 		@JsonProperty("author_url") val author_url: String?,
 		@JsonProperty("replies") val replies: Int,
 		@JsonProperty("last_post") val lastPost: LastPost?
-)
+) : MyAnimeListURL, MyAnimeListTitle

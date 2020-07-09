@@ -26,7 +26,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
-data class ResultPage(@JsonProperty("request_hash") var request_hash: String?,
-                      @JsonProperty("request_cached") var request_cached: Boolean,
-                      @JsonProperty("request_cache_expiry") var request_cache_expiry: Int,
-                      @JsonProperty("last_page") var last_page: Int = 0)
+data class ResultPage(
+		@JsonProperty("request_hash") val request_hash: String?,
+		@JsonProperty("request_cached") val request_cached: Boolean,
+		@JsonProperty("request_cache_expiry") val request_cache_expiry: Int,
+		@JsonProperty("last_page") val last_page: Int = 0
+)

@@ -3,6 +3,10 @@ package com.github.doomsdayrs.jikan4java.data.model.main.character.characterPage
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
 import java.util.concurrent.CompletableFuture
 
@@ -29,15 +33,15 @@ import java.util.concurrent.CompletableFuture
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 data class PageCharacterManga(
-		@field:JsonProperty("mal_id") val mal_id: Int = 0,
-		@field:JsonProperty("type") val type: String? = null,
-		@field:JsonProperty("name") val name: String? = null,
-		@field:JsonProperty("url") val url: String? = null
-) : Retriever() {
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("type") override val type: String? = null,
+		@field:JsonProperty("name") override val name: String,
+		@field:JsonProperty("url") override val url: String
+) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListName, MyAnimeListType {
 	/**
 	 * Returns the Manga object of this object
 	 *
 	 * @return Manga Object
 	 */
-	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$baseURL/manga/$mal_id") }
+	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$baseURL/manga/$malID") }
 }

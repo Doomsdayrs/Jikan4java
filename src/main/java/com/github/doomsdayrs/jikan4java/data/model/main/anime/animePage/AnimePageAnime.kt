@@ -29,10 +29,10 @@ import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.Content
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 data class AnimePageAnime(
-		@JsonProperty("mal_id") override val mal_id: Int,
-		@JsonProperty("url") override val url: String?,
-		@JsonProperty("image_url") override val image_url: String?,
-		@JsonProperty("title") override val title: String?,
+		@JsonProperty("mal_id") override val malID: Int,
+		@JsonProperty("url") override val url: String,
+		@JsonProperty("image_url") override val imageURL: String?,
+		@JsonProperty("title") override val title: String,
 		@JsonProperty("synopsis") override val synopsis: String?,
 		@JsonProperty("type") override val type: String?,
 		@JsonProperty("score") override val score: Double,
@@ -49,5 +49,5 @@ data class AnimePageAnime(
 	 *
 	 * @return Anime Object
 	 */
-	val anime by lazy { retrieve<Anime>(baseURL + "anime/" + mal_id) }
+	val anime by lazy { retrieve<Anime>(baseURL + "anime/" + malID) }
 }

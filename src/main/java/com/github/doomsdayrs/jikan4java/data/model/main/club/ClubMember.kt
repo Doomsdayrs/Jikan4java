@@ -2,6 +2,8 @@ package com.github.doomsdayrs.jikan4java.data.model.main.club
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.main.user.User
 import java.util.concurrent.CompletableFuture
 
@@ -28,9 +30,9 @@ import java.util.concurrent.CompletableFuture
  */
 data class ClubMember(
 		@field:JsonProperty("username") val username: String? = null,
-		@field:JsonProperty("url") val url: String? = null,
-		@field:JsonProperty("image_url") val image_url: String? = null
-) : Retriever() {
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("image_url") override val imageURL: String? = null
+) : Retriever(), MyAnimeListURL, MyAnimeListImageURL {
 
 	/**
 	 * Returns a user object

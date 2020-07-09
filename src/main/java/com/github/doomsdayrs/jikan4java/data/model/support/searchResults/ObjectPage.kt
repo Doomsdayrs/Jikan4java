@@ -1,6 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.searchResults
 
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -24,8 +27,4 @@ import com.github.doomsdayrs.jikan4java.core.Retriever
  *
  * @author github.com/doomsdayrs
  */
-abstract class ObjectPage : Retriever() {
-	abstract val mal_id: Int
-	abstract val url: String?
-	abstract val image_url: String?
-}
+abstract class ObjectPage : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL

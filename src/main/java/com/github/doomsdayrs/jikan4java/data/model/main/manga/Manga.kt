@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.manga
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.*
 import com.github.doomsdayrs.jikan4java.data.model.main.manga.published.Published
 import com.github.doomsdayrs.jikan4java.data.model.support.MoreInfo
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Authors
@@ -39,35 +40,35 @@ import java.util.concurrent.CompletableFuture
  * @author github.com/doomsdayrs
  */
 data class Manga(
-		@field:JsonProperty("request_hash") var request_hash: String? = null,
-		@field:JsonProperty("request_cached") var request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") var request_cache_expiry: Int = 0,
-		@field:JsonProperty("mal_id") var mal_id: Int = 0,
-		@field:JsonProperty("url") var url: String? = null,
-		@field:JsonProperty("title") var title: String? = null,
-		@field:JsonProperty("title_english") var title_english: String? = null,
-		@field:JsonProperty("title_synonyms") var title_synonyms: ArrayList<String>? = null,
-		@field:JsonProperty("title_japanese") var title_japanese: String? = null,
-		@field:JsonProperty("status") var status: String? = null,
-		@field:JsonProperty("image_url") var image_url: String? = null,
-		@field:JsonProperty("type") var type: String? = null,
-		@field:JsonProperty("volumes") var volumes: Int = 0,
-		@field:JsonProperty("chapters") var chapters: Int = 0,
-		@field:JsonProperty("publishing") var publishing: Boolean = false,
-		@field:JsonProperty("published") var published: Published? = null,
-		@field:JsonProperty("rank") var rank: Int = 0,
-		@field:JsonProperty("score") var score: Double = 0.0,
-		@field:JsonProperty("scored_by") var scored_by: Int = 0,
-		@field:JsonProperty("popularity") var popularity: Int = 0,
-		@field:JsonProperty("members") var members: Int = 0,
-		@field:JsonProperty("favorites") var favorites: Int = 0,
-		@field:JsonProperty("synopsis") var synopsis: String? = null,
-		@field:JsonProperty("background") var background: String? = null,
-		@field:JsonProperty("related") var related: ArrayList<Related>? = null,
-		@field:JsonProperty("genres") var genres: ArrayList<Genre>? = null,
-		@field:JsonProperty("authors") var authors: ArrayList<Authors>? = null,
-		@field:JsonProperty("serializations") var serializations: ArrayList<Serializations>? = null
-) : Retriever() {
+		@field:JsonProperty("request_hash") val request_hash: String? = null,
+		@field:JsonProperty("request_cached") val request_cached: Boolean = false,
+		@field:JsonProperty("request_cache_expiry") val request_cache_expiry: Int = 0,
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("title") override val title: String,
+		@field:JsonProperty("title_english") val title_english: String? = null,
+		@field:JsonProperty("title_synonyms") val title_synonyms: ArrayList<String>? = null,
+		@field:JsonProperty("title_japanese") val title_japanese: String? = null,
+		@field:JsonProperty("status") override val status: String? = null,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
+		@field:JsonProperty("type") val type: String? = null,
+		@field:JsonProperty("volumes") val volumes: Int = 0,
+		@field:JsonProperty("chapters") val chapters: Int = 0,
+		@field:JsonProperty("publishing") val publishing: Boolean = false,
+		@field:JsonProperty("published") val published: Published? = null,
+		@field:JsonProperty("rank") val rank: Int = 0,
+		@field:JsonProperty("score") val score: Double = 0.0,
+		@field:JsonProperty("scored_by") val scored_by: Int = 0,
+		@field:JsonProperty("popularity") val popularity: Int = 0,
+		@field:JsonProperty("members") val members: Int = 0,
+		@field:JsonProperty("favorites") val favorites: Int = 0,
+		@field:JsonProperty("synopsis") val synopsis: String? = null,
+		@field:JsonProperty("background") val background: String? = null,
+		@field:JsonProperty("related") val related: ArrayList<Related>? = null,
+		@field:JsonProperty("genres") val genres: ArrayList<Genre>? = null,
+		@field:JsonProperty("authors") val authors: ArrayList<Authors>? = null,
+		@field:JsonProperty("serializations") val serializations: ArrayList<Serializations>? = null
+) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListTitle, MyAnimeListImageURL ,MyAnimeListStatus{
 
 	/**
 	 * Returns MangaCharacters object
@@ -75,7 +76,7 @@ data class Manga(
 	 * @return MangaCharacters
 	 */
 	@get:JsonProperty
-	val characters: CompletableFuture<MangaCharacters> by lazy { retrieve<MangaCharacters>("$baseURL/manga/$mal_id/characters") }
+	val characters: CompletableFuture<MangaCharacters> by lazy { retrieve<MangaCharacters>("$baseURL/manga/$malID/characters") }
 
 	/**
 	 * Gets news about Manga
@@ -83,7 +84,7 @@ data class Manga(
 	 * @return News object
 	 */
 	@get:JsonProperty
-	val news: CompletableFuture<News> by lazy { retrieve<News>("$baseURL/manga/$mal_id/news") }
+	val news: CompletableFuture<News> by lazy { retrieve<News>("$baseURL/manga/$malID/news") }
 
 	/**
 	 * Gets pictures related to Manga
@@ -91,7 +92,7 @@ data class Manga(
 	 * @return Pictures object
 	 */
 	@get:JsonProperty
-	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$baseURL/manga/$mal_id/pictures") }
+	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$baseURL/manga/$malID/pictures") }
 
 	/**
 	 * Gets stats about Manga object
@@ -99,7 +100,7 @@ data class Manga(
 	 * @return Stats object
 	 */
 	@get:JsonProperty
-	val stats: CompletableFuture<MangaStats> by lazy { retrieve<MangaStats>("$baseURL/manga/$mal_id/stats") }
+	val stats: CompletableFuture<MangaStats> by lazy { retrieve<MangaStats>("$baseURL/manga/$malID/stats") }
 
 	/**
 	 * Returns forum object
@@ -107,7 +108,7 @@ data class Manga(
 	 * @return Forum object
 	 */
 	@get:JsonProperty
-	val forum: CompletableFuture<Forum> by lazy { retrieve<Forum>("$baseURL/manga/$mal_id/forum") }
+	val forum: CompletableFuture<Forum> by lazy { retrieve<Forum>("$baseURL/manga/$malID/forum") }
 
 	/**
 	 * Returns Moreinfo object
@@ -115,7 +116,7 @@ data class Manga(
 	 * @return MoreInfo
 	 */
 	@get:JsonProperty
-	val moreInfo: CompletableFuture<MoreInfo> by lazy { retrieve<MoreInfo>("$baseURL/manga/$mal_id/moreinfo") }
+	val moreInfo: CompletableFuture<MoreInfo> by lazy { retrieve<MoreInfo>("$baseURL/manga/$malID/moreinfo") }
 
 	/**
 	 * Gets manga reviews
@@ -123,7 +124,7 @@ data class Manga(
 	 * @return MangaReviewPage
 	 */
 	@get:JsonProperty
-	val reviews: CompletableFuture<MangaReviewPage> by lazy { retrieve<MangaReviewPage>("$baseURL/manga/$mal_id/reviews") }
+	val reviews: CompletableFuture<MangaReviewPage> by lazy { retrieve<MangaReviewPage>("$baseURL/manga/$malID/reviews") }
 
 	/**
 	 * Gets recommendations for this manga
@@ -131,7 +132,7 @@ data class Manga(
 	 * @return RecommendationPage
 	 */
 	@get:JsonProperty
-	val recommendationPage: CompletableFuture<RecommendationPage> by lazy { retrieve<RecommendationPage>("$baseURL/manga/$mal_id/recommendations") }
+	val recommendationPage: CompletableFuture<RecommendationPage> by lazy { retrieve<RecommendationPage>("$baseURL/manga/$malID/recommendations") }
 
 	/**
 	 * Gets first page of user updates
@@ -149,5 +150,5 @@ data class Manga(
 	 */
 	@JsonProperty
 	fun getUserUpdatesPage(page: Int): CompletableFuture<MangaUserUpdatesPage> =
-			retrieve<MangaUserUpdatesPage>("$baseURL/manga/$mal_id/userupdates/$page")
+			retrieve<MangaUserUpdatesPage>("$baseURL/manga/$malID/userupdates/$page")
 }

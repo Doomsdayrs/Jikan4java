@@ -3,6 +3,9 @@ package com.github.doomsdayrs.jikan4java.data.model.main.person
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.pictures.Pictures
 import java.util.*
@@ -33,9 +36,9 @@ data class Person(
 		@field:JsonProperty("request_hash") override val request_hash: String? = null,
 		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("mal_id") val mal_id: Int = 0,
-		@field:JsonProperty("url") val url: String? = null,
-		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
 		@field:JsonProperty("website_url") val website_url: String? = null,
 		@field:JsonProperty("name") val name: String? = null,
 		@field:JsonProperty("given_name") val given_name: String? = null,
@@ -47,8 +50,8 @@ data class Person(
 		@field:JsonProperty("voice_acting_roles") val voiceActingRoles: ArrayList<VoiceActingRoles>? = null,
 		@field:JsonProperty("anime_staff_positions") val animeStaffPositions: ArrayList<AnimeStaffPosition>? = null,
 		@field:JsonProperty("published_manga") val publishedMangas: ArrayList<PublishedManga>? = null
-) : Retriever(),RequestHashing {
+) : Retriever(), RequestHashing, MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL {
 
 	@get:JsonIgnore
-	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$baseURL/person/$mal_id/pictures") }
+	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$baseURL/person/$malID/pictures") }
 }

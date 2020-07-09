@@ -26,8 +26,8 @@ import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.UserUpdate
  */
 data class AnimeUserUpdate(
 		@JsonProperty("username") override val username: String?,
-		@JsonProperty("url") override val url: String?,
-		@JsonProperty("image_url") override val image_url: String?,
+		@JsonProperty("url") override val url: String,
+		@JsonProperty("image_url") override val imageURL: String?,
 		@JsonProperty("score") override val scores: Int,
 		@JsonProperty("status") override val status: String?,
 		@JsonProperty("episodes_seen") val episodes_seen: Int,

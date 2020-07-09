@@ -1,5 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.base
 
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
+
 /*
  * This file is part of Jikan4java.
  *
@@ -21,8 +23,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.top.base
  *
  * @author github.com/doomsdayrs
  */
-abstract class TopListingMedia : TopListing() {
-	abstract val type: String
+abstract class TopListingMedia : TopListing(), MyAnimeListType {
 	abstract val score: Float
 	abstract val members: Int
 	abstract val startDate: String

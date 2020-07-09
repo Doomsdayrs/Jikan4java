@@ -1,6 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.basic.meta
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -23,7 +27,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
-open class BasicMeta(@param:JsonProperty("mal_id") open val mal_id: Int,
-                     @param:JsonProperty("type") open val type: String?,
-                     @param:JsonProperty("name") open val name: String?,
-                     @param:JsonProperty("url") open val url: String?)
+open class BasicMeta(
+		@param:JsonProperty("mal_id") override val malID: Int,
+		@param:JsonProperty("type") override val type: String?,
+		@param:JsonProperty("name") override val name: String,
+		@param:JsonProperty("url") override val url: String
+) : MyAnimeListID, MyAnimeListType, MyAnimeListName, MyAnimeListURL

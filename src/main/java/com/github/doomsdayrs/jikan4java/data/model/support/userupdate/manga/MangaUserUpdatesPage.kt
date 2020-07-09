@@ -30,5 +30,5 @@ data class MangaUserUpdatesPage(
 		@JsonProperty("request_hash") override val request_hash: String?,
 		@JsonProperty("request_cached") override val request_cached: Boolean,
 		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
-		@JsonProperty("users") var userUpdates: ArrayList<MangaUserUpdate>? = null
+		@JsonProperty("users") override val userUpdates: ArrayList<MangaUserUpdate>
 ) : UserUpdatePage<MangaUserUpdate>

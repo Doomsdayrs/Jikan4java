@@ -1,5 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.userupdate
 
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListStatus
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+
 
 /*
  * This file is part of Jikan4java.
@@ -23,11 +27,8 @@ package com.github.doomsdayrs.jikan4java.data.model.support.userupdate
  *
  * @author github.com/doomsdayrs
  */
-interface UserUpdate {
+interface UserUpdate : MyAnimeListImageURL, MyAnimeListURL, MyAnimeListStatus {
 	val username: String?
-	val url: String?
-	val image_url: String?
 	val scores: Int
-	val status: String?
 	val date: String?
 }

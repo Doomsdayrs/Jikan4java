@@ -2,6 +2,10 @@ package com.github.doomsdayrs.jikan4java.data.model.main.schedule
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Producer
@@ -30,28 +34,28 @@ import java.util.concurrent.CompletableFuture
  * @author github.com/doomsdayrs
  */
 class SubAnime(
-		@field:JsonProperty("mal_id") var mal_id: Int = 0,
-		@field:JsonProperty("url") var url: String? = null,
-		@field:JsonProperty("title") var title: String? = null,
-		@field:JsonProperty("image_url") var image_url: String? = null,
-		@field:JsonProperty("synopsis") var synopsis: String? = null,
-		@field:JsonProperty("type") var type: String? = null,
-		@field:JsonProperty("airing_start") var airing_start: String? = null,
-		@field:JsonProperty("episodes") var episodes: Int = 0,
-		@field:JsonProperty("members") var members: Int = 0,
-		@field:JsonProperty("genres") var genres: ArrayList<Genre>? = null,
-		@field:JsonProperty("source") var source: String? = null,
-		@field:JsonProperty("producers") var producers: ArrayList<Producer>? = null,
-		@field:JsonProperty("score") var score: Float = 0f,
-		@field:JsonProperty("licensors") var licensors: ArrayList<String>? = null,
-		@field:JsonProperty("r18") var r18: Boolean = false,
-		@field:JsonProperty("kids") var kids: Boolean = false
-) : Retriever() {
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("url") val url: String? = null,
+		@field:JsonProperty("title") override val title: String,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
+		@field:JsonProperty("synopsis") val synopsis: String? = null,
+		@field:JsonProperty("type") override val type: String? = null,
+		@field:JsonProperty("airing_start") val airing_start: String? = null,
+		@field:JsonProperty("episodes") val episodes: Int = 0,
+		@field:JsonProperty("members") val members: Int = 0,
+		@field:JsonProperty("genres") val genres: ArrayList<Genre>? = null,
+		@field:JsonProperty("source") val source: String? = null,
+		@field:JsonProperty("producers") val producers: ArrayList<Producer>? = null,
+		@field:JsonProperty("score") val score: Float = 0f,
+		@field:JsonProperty("licensors") val licensors: ArrayList<String>? = null,
+		@field:JsonProperty("r18") val r18: Boolean = false,
+		@field:JsonProperty("kids") val kids: Boolean = false
+) : Retriever(), MyAnimeListID, MyAnimeListTitle, MyAnimeListImageURL,MyAnimeListType {
 
 	/**
 	 * Returns the Anime object of this object
 	 *
 	 * @return Anime Object
 	 */
-	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$mal_id") }
+	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
 }

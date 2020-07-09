@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.forum.topic
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -23,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
-data class LastPost (
-	@JsonProperty("url") val url: String? ,
-	@JsonProperty("author_name") val author_name: String? ,
-	@JsonProperty("author_url") val author_url: String? ,
-	@JsonProperty("date_posted") val date_posted: String? 
-)
+data class LastPost(
+		@JsonProperty("url") override val url: String,
+		@JsonProperty("author_name") val author_name: String?,
+		@JsonProperty("author_url") val author_url: String?,
+		@JsonProperty("date_posted") val date_posted: String?
+) : MyAnimeListURL

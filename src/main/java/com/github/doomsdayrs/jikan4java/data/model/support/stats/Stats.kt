@@ -1,5 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.stats
 
+import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.stats.score.Score
 
 /*
@@ -25,10 +26,7 @@ import com.github.doomsdayrs.jikan4java.data.model.support.stats.score.Score
  *
  * @author github.com/doomsdayrs
  */
-interface Stats {
-	val request_hash: String?
-	val request_cached: Boolean
-	val request_cache_expiry: Int
+interface Stats : RequestHashing {
 
 	val completed: Int
 	val on_hold: Int

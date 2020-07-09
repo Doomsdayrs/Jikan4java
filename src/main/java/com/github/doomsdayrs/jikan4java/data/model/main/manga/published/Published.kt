@@ -27,8 +27,8 @@ import com.github.doomsdayrs.jikan4java.data.model.support.prop.Prop
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 data class Published(
-		@field:JsonProperty("from") var from: String? = null,
-		@field:JsonProperty("to") var to: String? = null,
-		@field:JsonProperty("prop") var prop: Prop? = null,
-		@field:JsonProperty("string") var string: String? = null
+		@field:JsonProperty("from") val from: String? = null,
+		@field:JsonProperty("to") val to: String? = null,
+		@field:JsonProperty("prop") val prop: Prop? = null,
+		@field:JsonProperty("string") val string: String? = null
 )

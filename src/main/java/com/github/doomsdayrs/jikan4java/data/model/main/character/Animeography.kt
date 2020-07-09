@@ -3,6 +3,10 @@ package com.github.doomsdayrs.jikan4java.data.model.main.character
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import java.util.concurrent.CompletableFuture
 
@@ -29,17 +33,17 @@ import java.util.concurrent.CompletableFuture
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 data class Animeography(
-		@field:JsonProperty("mal_id") val mal_id: Int = 0,
-		@field:JsonProperty("name") val name: String? = null,
-		@field:JsonProperty("url") val url: String? = null,
-		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("name") override val name: String,
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
 		@field:JsonProperty("role") val role: String? = null
-) : Retriever() {
+) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListName {
 
 	/**
 	 * Returns the Anime object of this object
 	 *
 	 * @return Anime Object
 	 */
-	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$mal_id") }
+	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
 }

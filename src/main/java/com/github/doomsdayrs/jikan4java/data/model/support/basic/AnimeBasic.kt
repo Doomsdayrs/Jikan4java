@@ -25,7 +25,12 @@ import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
  *
  * @author github.com/doomsdayrs
  */
-class AnimeBasic(@JsonProperty("mal_id") mal_id: Int, @JsonProperty("url") url: String?, @JsonProperty("image_url") image_url: String?, @JsonProperty("name") name: String?) : BasicObject(mal_id, url, image_url, name) {
+class AnimeBasic(
+		@JsonProperty("mal_id") mal_id: Int,
+		@JsonProperty("url") url: String,
+		@JsonProperty("image_url") image_url: String?,
+		@JsonProperty("name") name: String
+) : BasicObject(mal_id, url, image_url, name) {
 	/**
 	 * Returns the Anime object of this object
 	 *

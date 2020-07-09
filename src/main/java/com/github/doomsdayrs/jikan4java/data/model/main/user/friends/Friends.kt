@@ -1,6 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user.friends
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -24,9 +26,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author github.com/doomsdayrs
  */
 data class Friends(
-		@field:JsonProperty("url") var url: String? = null,
-		@field:JsonProperty("username") var username: String? = null,
-		@field:JsonProperty("image_url") var image_url: String? = null,
-		@field:JsonProperty("last_online") var last_online: String? = null,
-		@field:JsonProperty("friends_since") var friends_since: String? = null
-)
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("username") val username: String? = null,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
+		@field:JsonProperty("last_online") val last_online: String? = null,
+		@field:JsonProperty("friends_since") val friends_since: String? = null
+) : MyAnimeListURL, MyAnimeListImageURL

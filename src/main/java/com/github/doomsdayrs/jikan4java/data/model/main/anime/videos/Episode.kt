@@ -2,6 +2,9 @@ package com.github.doomsdayrs.jikan4java.data.model.main.anime.videos
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -26,8 +29,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 class Episode(
-		@field:JsonProperty("title") val title: String? = null,
+		@field:JsonProperty("title") override val title: String,
 		@field:JsonProperty("episode") val episode: String? = null,
-		@field:JsonProperty("url") val url: String? = null,
-		@field:JsonProperty("image_url") val image_url: String? = null
-)
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("image_url") override val imageURL: String? = null
+) : MyAnimeListURL, MyAnimeListImageURL, MyAnimeListTitle

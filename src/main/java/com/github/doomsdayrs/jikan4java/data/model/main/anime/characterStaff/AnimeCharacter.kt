@@ -2,6 +2,10 @@ package com.github.doomsdayrs.jikan4java.data.model.main.anime.characterStaff
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.support.VoiceActors
 import java.util.*
 
@@ -28,10 +32,10 @@ import java.util.*
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 class AnimeCharacter(
-		@field:JsonProperty("mal_id") val mal_id: Int = 0,
-		@field:JsonProperty("url") val url: String? = null,
-		@field:JsonProperty("image_url") val image_url: String? = null,
-		@field:JsonProperty("name") val name: String? = null,
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
+		@field:JsonProperty("name") override val name: String,
 		@field:JsonProperty("role") val role: String? = null,
 		@field:JsonProperty("voice_actors") val voice_actors: ArrayList<VoiceActors>? = null
-)
+) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListName

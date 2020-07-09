@@ -3,6 +3,10 @@ package com.github.doomsdayrs.jikan4java.data.model.main.character
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.VoiceActors
 import com.github.doomsdayrs.jikan4java.data.model.support.pictures.Pictures
@@ -35,18 +39,18 @@ data class Character(
 		@field:JsonProperty("request_hash") override val request_hash: String? = null,
 		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("mal_id") val mal_id: Int = 0,
-		@field:JsonProperty("url") val url: String? = null,
-		@field:JsonProperty("name") val name: String? = null,
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("name") override val name: String,
 		@field:JsonProperty("name_kanji") val name_kanji: String? = null,
 		@field:JsonProperty("nicknames") val nicknames: ArrayList<String>? = null,
 		@field:JsonProperty("about") val about: String? = null,
 		@field:JsonProperty("member_favorites") val member_favorites: Int = 0,
-		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
 		@field:JsonProperty("animeography") val animeography: ArrayList<Animeography>? = null,
 		@field:JsonProperty("mangaography") val mangaography: ArrayList<Mangaography>? = null,
 		@field:JsonProperty("voice_actors") val voice_actors: ArrayList<VoiceActors>? = null
-) : Retriever(), RequestHashing {
+) : Retriever(), RequestHashing, MyAnimeListID, MyAnimeListURL, MyAnimeListName, MyAnimeListImageURL {
 
 	/**
 	 * Gets pictures
@@ -54,5 +58,5 @@ data class Character(
 	 * @return pictures
 	 */
 	@get:JsonProperty
-	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$baseURL/character/$mal_id/pictures") }
+	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$baseURL/character/$malID/pictures") }
 }

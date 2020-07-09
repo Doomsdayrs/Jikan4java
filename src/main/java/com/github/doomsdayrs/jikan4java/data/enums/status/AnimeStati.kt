@@ -21,7 +21,7 @@ package com.github.doomsdayrs.jikan4java.data.enums.status
  *
  * @author github.com/doomsdayrs
  */
-enum class AnimeStati(private val status: String) : Stati {
+enum class AnimeStati(val status: String) : Stati {
 	AIRING("airing"),
 	COMPLETED("completed"),
 	COMPLETE("complete"),

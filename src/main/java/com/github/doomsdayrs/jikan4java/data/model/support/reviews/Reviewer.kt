@@ -1,5 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.reviews
 
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+
 /*
  * This file is part of Jikan4java.
  *
@@ -21,10 +24,7 @@ package com.github.doomsdayrs.jikan4java.data.model.support.reviews
  *
  * @author github.com/doomsdayrs
  */
-abstract class Reviewer {
-	abstract val url: String?
-
-	abstract val image_url: String?
+abstract class Reviewer : MyAnimeListURL, MyAnimeListImageURL {
 
 	abstract val username: String?
 

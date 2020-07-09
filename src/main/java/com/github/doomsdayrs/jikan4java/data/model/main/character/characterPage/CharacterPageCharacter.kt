@@ -30,9 +30,9 @@ import java.util.*
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 data class CharacterPageCharacter(
-		@JsonProperty("mal_id") override val mal_id: Int,
-		@JsonProperty("url") override val url: String?,
-		@JsonProperty("image_url") override val image_url: String?,
+		@JsonProperty("mal_id") override val malID: Int,
+		@JsonProperty("url") override val url: String,
+		@JsonProperty("image_url") override val imageURL: String?,
 		@JsonProperty("name") override val name: String?,
 		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>?,
 		@param:JsonProperty("anime") val animes: ArrayList<PageCharacterAnime>,
@@ -44,5 +44,5 @@ data class CharacterPageCharacter(
 	 *
 	 * @return Character Object
 	 */
-	val character by lazy { retrieve<Character>("$baseURL/character/$mal_id") }
+	val character by lazy { retrieve<Character>("$baseURL/character/$malID") }
 }

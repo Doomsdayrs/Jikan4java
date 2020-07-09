@@ -1,6 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.related
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -24,8 +28,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author github.com/doomsdayrs
  */
 data class RelatedType(
-		@JsonProperty("mal_id") var mal_id: Int,
-		@JsonProperty("type") var type: String?,
-		@JsonProperty("name") var name: String?,
-		@JsonProperty("url") var url: String?
-)
+		@JsonProperty("mal_id") override val malID: Int,
+		@JsonProperty("type") override val type: String?,
+		@JsonProperty("name") override val name: String,
+		@JsonProperty("url") override val url: String
+) : MyAnimeListID, MyAnimeListType, MyAnimeListName, MyAnimeListURL

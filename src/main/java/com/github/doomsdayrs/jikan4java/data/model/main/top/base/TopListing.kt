@@ -1,6 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.base
 
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -23,14 +27,6 @@ import com.github.doomsdayrs.jikan4java.core.Retriever
  *
  * @author github.com/doomsdayrs
  */
-abstract class TopListing : Retriever() {
-	abstract val malID: Int
-
+abstract class TopListing : Retriever(), MyAnimeListID, MyAnimeListTitle, MyAnimeListURL, MyAnimeListImageURL {
 	abstract val rank: Int
-
-	abstract val title: String
-
-	abstract val url: String
-
-	abstract val imageURL: String
 }

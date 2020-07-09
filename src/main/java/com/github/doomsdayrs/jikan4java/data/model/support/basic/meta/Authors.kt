@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
-data class Authors(@JsonProperty("mal_id") override val mal_id: Int,
+data class Authors(@JsonProperty("mal_id") override val malID: Int,
                    @JsonProperty("type") override val type: String?,
                    @JsonProperty("name") override val name: String?,
-                   @JsonProperty("url") override val url: String?) : BasicMeta(mal_id, type, name, url)
+                   @JsonProperty("url") override val url: String?) : BasicMeta(malID, type, name, url)

@@ -26,8 +26,8 @@ import com.github.doomsdayrs.jikan4java.data.model.support.reviews.Review
  * @author github.com/doomsdayrs
  */
 data class MangaReview(
-		@JsonProperty("mal_id") override val mal_id: Int,
-		@JsonProperty("url") override val url: String?,
+		@JsonProperty("mal_id") override val malID: Int,
+		@JsonProperty("url") override val url: String,
 		@JsonProperty("helpful_count") override val helpful_count: Int,
 		@JsonProperty("date") override val date: String?,
 		@JsonProperty("reviewer") override val reviewer: MangaReviewer,

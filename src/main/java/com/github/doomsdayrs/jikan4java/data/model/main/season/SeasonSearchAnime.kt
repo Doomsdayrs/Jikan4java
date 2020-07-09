@@ -2,6 +2,10 @@ package com.github.doomsdayrs.jikan4java.data.model.main.season
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Producer
@@ -30,12 +34,12 @@ import java.util.concurrent.CompletableFuture
  * @author github.com/doomsdayrs
  */
 data class SeasonSearchAnime(
-		@field:JsonProperty("mal_id") val mal_id: Int = 0,
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("url") val url: String? = null,
-		@field:JsonProperty("title") val title: String? = null,
-		@field:JsonProperty("image_url") val image_url: String? = null,
+		@field:JsonProperty("title") override val title: String,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
 		@field:JsonProperty("synopsis") val synopsis: String? = null,
-		@field:JsonProperty("type") val type: String? = null,
+		@field:JsonProperty("type") override val type: String? = null,
 		@field:JsonProperty("airing_start") val airing_start: String? = null,
 		@field:JsonProperty("episodes") val episodes: Int = 0,
 		@field:JsonProperty("members") val members: Int = 0,
@@ -47,12 +51,12 @@ data class SeasonSearchAnime(
 		@field:JsonProperty("r18") val r18: Boolean = false,
 		@field:JsonProperty("kids") val kids: Boolean = false,
 		@field:JsonProperty("continuing") val continuing: Boolean = false
-) : Retriever() {
+) : Retriever(), MyAnimeListID, MyAnimeListTitle, MyAnimeListImageURL, MyAnimeListType {
 
 	/**
 	 * Returns the Anime object of this object
 	 *
 	 * @return Anime Object
 	 */
-	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$mal_id") }
+	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
 }

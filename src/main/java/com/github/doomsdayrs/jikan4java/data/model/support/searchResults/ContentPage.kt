@@ -1,5 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.searchResults
 
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
+
 /*
  * This file is part of Jikan4java.
  *
@@ -22,12 +25,8 @@ package com.github.doomsdayrs.jikan4java.data.model.support.searchResults
  *
  * @author github.com/doomsdayrs
  */
-abstract class ContentPage : ObjectPage() {
-	abstract val title: String?
-
+abstract class ContentPage : ObjectPage(), MyAnimeListTitle, MyAnimeListType {
 	abstract val synopsis: String?
-
-	abstract val type: String?
 
 	abstract val score: Double
 

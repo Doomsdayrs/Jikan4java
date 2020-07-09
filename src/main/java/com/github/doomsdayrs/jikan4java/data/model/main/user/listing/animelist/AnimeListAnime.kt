@@ -2,6 +2,10 @@ package com.github.doomsdayrs.jikan4java.data.model.main.user.listing.animelist
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Licensors
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Studios
@@ -30,41 +34,41 @@ import java.util.*
  * @author github.com/doomsdayrs
  */
 data class AnimeListAnime(
-		@field:JsonProperty("mal_id") var mal_id: Int = 0,
-		@field:JsonProperty("title") var title: String? = null,
-		@field:JsonProperty("video_url") var video_url: String? = null,
-		@field:JsonProperty("url") var url: String? = null,
-		@field:JsonProperty("image_url") var image_url: String? = null,
-		@field:JsonProperty("type") var type: String? = null,
-		@field:JsonProperty("watching_status") var watching_status: Int = 0,
-		@field:JsonProperty("score") var score: Int = 0,
-		@field:JsonProperty("watched_episodes") var watched_episodes: Int = 0,
-		@field:JsonProperty("total_episodes") var total_episodes: Int = 0,
-		@field:JsonProperty("airing_status") var airing_status: Int = 0,
-		@field:JsonProperty("season_name") var season_name: String? = null,
-		@field:JsonProperty("season_year") var season_year: String? = null,
-		@field:JsonProperty("has_episode_video") var has_episode_video: Boolean = false,
-		@field:JsonProperty("has_promo_video") var has_promo_video: Boolean = false,
-		@field:JsonProperty("has_video") var has_video: Boolean = false,
-		@field:JsonProperty("is_rewatching") var is_rewatching: Boolean = false,
-		@field:JsonProperty("tags") var tags: String? = null,
-		@field:JsonProperty("rating") var rating: String? = null,
-		@field:JsonProperty("start_date") var start_date: String? = null,
-		@field:JsonProperty("end_date") var end_date: String? = null,
-		@field:JsonProperty("watch_start_date") var watch_start_date: String? = null,
-		@field:JsonProperty("watch_end_date") var watch_end_date: String? = null,
-		@field:JsonProperty("days") var days: String? = null,
-		@field:JsonProperty("storage") var storage: String? = null,
-		@field:JsonProperty("priority") var priority: String? = null,
-		@field:JsonProperty("added_to_list") var added_to_list: Boolean = false,
-		@field:JsonProperty("studios") var studios: ArrayList<Studios>? = null,
-		@field:JsonProperty("licensors") var licensors: ArrayList<Licensors>? = null
-) : Retriever() {
+		@field:JsonProperty("mal_id") override val malID: Int = 0,
+		@field:JsonProperty("title") val title: String? = null,
+		@field:JsonProperty("video_url") val video_url: String? = null,
+		@field:JsonProperty("url") override val url: String,
+		@field:JsonProperty("image_url") override val imageURL: String? = null,
+		@field:JsonProperty("type") override val type: String? = null,
+		@field:JsonProperty("watching_status") val watching_status: Int = 0,
+		@field:JsonProperty("score") val score: Int = 0,
+		@field:JsonProperty("watched_episodes") val watched_episodes: Int = 0,
+		@field:JsonProperty("total_episodes") val total_episodes: Int = 0,
+		@field:JsonProperty("airing_status") val airing_status: Int = 0,
+		@field:JsonProperty("season_name") val season_name: String? = null,
+		@field:JsonProperty("season_year") val season_year: String? = null,
+		@field:JsonProperty("has_episode_video") val has_episode_video: Boolean = false,
+		@field:JsonProperty("has_promo_video") val has_promo_video: Boolean = false,
+		@field:JsonProperty("has_video") val has_video: Boolean = false,
+		@field:JsonProperty("is_rewatching") val is_rewatching: Boolean = false,
+		@field:JsonProperty("tags") val tags: String? = null,
+		@field:JsonProperty("rating") val rating: String? = null,
+		@field:JsonProperty("start_date") val start_date: String? = null,
+		@field:JsonProperty("end_date") val end_date: String? = null,
+		@field:JsonProperty("watch_start_date") val watch_start_date: String? = null,
+		@field:JsonProperty("watch_end_date") val watch_end_date: String? = null,
+		@field:JsonProperty("days") val days: String? = null,
+		@field:JsonProperty("storage") val storage: String? = null,
+		@field:JsonProperty("priority") val priority: String? = null,
+		@field:JsonProperty("added_to_list") val added_to_list: Boolean = false,
+		@field:JsonProperty("studios") val studios: ArrayList<Studios>? = null,
+		@field:JsonProperty("licensors") val licensors: ArrayList<Licensors>? = null
+) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListType {
 
 	/**
 	 * Returns the Anime object of this object
 	 *
 	 * @return Anime Object
 	 */
-	val anime by lazy { retrieve<Anime>("$baseURL/anime/$mal_id") }
+	val anime by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
 }

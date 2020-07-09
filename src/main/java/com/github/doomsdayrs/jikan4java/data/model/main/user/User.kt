@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.core.userlisting.AnimeUserListingSearch
 import com.github.doomsdayrs.jikan4java.core.userlisting.MangaUserListingSearch
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.enums.HistoryTypes
 import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.Friends
 import com.github.doomsdayrs.jikan4java.data.model.main.user.history.HistoryPage
@@ -38,8 +40,8 @@ data class User(
 		@field:JsonProperty("request_cache_expiry") var request_cache_expiry: Int = 0,
 		@field:JsonProperty("user_id") var user_id: Int = 0,
 		@field:JsonProperty("username") var username: String? = null,
-		@field:JsonProperty("url") var url: String? = null,
-		@field:JsonProperty("image_url") var image_url: String? = null,
+		@field:JsonProperty("url") override var url: String,
+		@field:JsonProperty("image_url") override var imageURL: String? = null,
 		@field:JsonProperty("last_online") var last_online: String? = null,
 		@field:JsonProperty("gender") var gender: String? = null,
 		@field:JsonProperty("birthday") var birthday: String? = null,
@@ -49,11 +51,11 @@ data class User(
 		@field:JsonProperty("manga_stats") var mangaStats: ArrayList<MangaStats>? = null,
 		@field:JsonProperty("favorites") var favorites: Favorites? = null,
 		@field:JsonProperty("about") var about: String? = null
-) : Retriever() {
+) : Retriever(), MyAnimeListURL, MyAnimeListImageURL {
 	val historyHash = HashMap<HistoryTypes, CompletableFuture<HistoryPage>>()
 	val friendsHash = HashMap<Int, CompletableFuture<Friends>>()
-	val animeListSearch: AnimeUserListingSearch by lazy { AnimeUserListingSearch(username) }
-	val mangaListSearch: MangaUserListingSearch by lazy { MangaUserListingSearch(username) }
+	val animeListSearch: AnimeUserListingSearch by lazy { AnimeUserListingSearch(username!!) }
+	val mangaListSearch: MangaUserListingSearch by lazy { MangaUserListingSearch(username!!) }
 
 	/**
 	 * Returns history of the person

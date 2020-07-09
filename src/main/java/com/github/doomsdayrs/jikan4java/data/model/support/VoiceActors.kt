@@ -1,6 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.support
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -25,13 +29,13 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class VoiceActors(
 		@JsonProperty("mal_id")
-		var malID: Int,
+		override val malID: Int,
 		@JsonProperty("name")
-		var name: String?,
+		override val name: String,
 		@JsonProperty("url")
-		var url: String?,
+		override val url: String,
 		@JsonProperty("image_url")
-		var image_url: String?,
+		override val imageURL: String?,
 		@JsonProperty("language")
-		var language: String?
-)
+		val language: String?
+) : MyAnimeListID, MyAnimeListName, MyAnimeListURL, MyAnimeListImageURL
