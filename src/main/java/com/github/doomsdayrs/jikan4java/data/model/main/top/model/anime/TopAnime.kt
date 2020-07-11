@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.model.anime
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.TopListingMedia
 import java.util.concurrent.CompletableFuture
@@ -46,5 +47,5 @@ data class TopAnime(
 	 *
 	 * @return Anime Object
 	 */
-	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
+	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$jikanURL/anime/$malID") }
 }

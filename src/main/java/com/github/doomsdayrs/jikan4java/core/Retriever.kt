@@ -1,6 +1,8 @@
 package com.github.doomsdayrs.jikan4java.core
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.github.doomsdayrs.jikan4java.common.*
 import com.github.doomsdayrs.jikan4java.data.exceptions.RequestError
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -38,18 +40,20 @@ import java.util.concurrent.CompletionException
  * @author github.com/doomsdayrs
  */
 open class Retriever(
-		protected val client: OkHttpClient = OkHttpClient(),
-		protected val objectMapper: ObjectMapper = ObjectMapper(),
-		protected val jsonParser: JSONParser = JSONParser(),
-		protected val builder: Request.Builder = Request.Builder()
+		@JsonIgnore
+		val client: OkHttpClient = getDefaultOkHttpClient(),
+		@JsonIgnore
+		val objectMapper: ObjectMapper = getDefaultObjectMapper(),
+		@JsonIgnore
+		val jsonParser: JSONParser = getDefaultJSONParser(),
+		@JsonIgnore
+		val builder: Request.Builder = getDefaultRequestBuilder()
 ) {
 	companion object {
-		val baseURL = "https://api.jikan.moe/v3"
 
-		var debugMode = false
 
 		@JvmStatic
-		val errorMessages = ArrayList<Array<String?>>()
+		val errorMessages = ArrayList<Array<String>>()
 	}
 
 	/**
@@ -59,8 +63,12 @@ open class Retriever(
 	 * @return response from jikan
 	 * @throws IOException something went wrong
 	 */
+	@JsonIgnore
 	@Throws(IOException::class)
-	protected fun request(url: String?): ResponseBody? = client.newCall(builder.url(URL(url)).build()).execute().body()
+	fun request(url: String): ResponseBody? {
+		println(url)
+		return client.newCall(builder.url(URL(url)).build()).execute().body()
+	}
 
 	/**
 	 * Connects to the jikan API and parses incoming data
@@ -69,11 +77,11 @@ open class Retriever(
 	 * @param url    apiURL
 	 * @return A completable future of the parsed response
 	 */
+	@JsonIgnore
 	inline fun <reified T> retrieve(url: String): CompletableFuture<T> {
 		return CompletableFuture.supplyAsync<T> {
 			var response = ""
 			try {
-				println("Retrieving: $url")
 				val responseBody = request(url)
 				if (responseBody != null) {
 					response = responseBody.string()
@@ -91,11 +99,11 @@ open class Retriever(
 					return@supplyAsync null
 				}
 			} catch (e: IOException) {
-				if (debugMode) errorMessages.add(arrayOf(e.message, response, url))
+				if (debugMode) errorMessages.add(arrayOf(e.message ?: unknownMessage, response, url))
 				e.printStackTrace()
 				return@supplyAsync null
 			} catch (e: ParseException) {
-				if (debugMode) errorMessages.add(arrayOf(e.message, response, url))
+				if (debugMode) errorMessages.add(arrayOf(e.message ?: unknownMessage, response, url))
 				e.printStackTrace()
 				return@supplyAsync null
 			}

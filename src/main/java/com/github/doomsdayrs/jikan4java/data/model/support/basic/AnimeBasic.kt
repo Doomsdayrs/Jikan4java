@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.basic
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 
 /*
@@ -36,5 +37,5 @@ class AnimeBasic(
 	 *
 	 * @return Anime Object
 	 */
-	val anime by lazy { retrieve<Anime>("$baseURL/anime/$mal_id") }
+	val anime by lazy { retrieve<Anime>("$jikanURL/anime/$mal_id") }
 }

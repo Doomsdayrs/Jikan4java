@@ -1,5 +1,6 @@
 package com.github.doomsdayrs.jikan4java.core.search
 
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.genres.AnimeGenres
 import com.github.doomsdayrs.jikan4java.data.enums.genres.Genres
@@ -62,5 +63,5 @@ class GenreSearch : Retriever() {
 	 * @return GenreSearchAnimePage
 	 */
 	inline fun <reified T> searchGenrePage(genreID: Genres, page: Int, c: Class<T>): CompletableFuture<T> =
-			retrieve(baseURL + "/genre/" + genreID.type + "/" + genreID.id + "/" + page)
+			retrieve(jikanURL + "/genre/" + genreID.type + "/" + genreID.id + "/" + page)
 }

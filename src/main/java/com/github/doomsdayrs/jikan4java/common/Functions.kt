@@ -1,7 +1,6 @@
-package com.github.doomsdayrs.jikan4java.data.model.support.stats
+package com.github.doomsdayrs.jikan4java.common
 
-import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
-import com.github.doomsdayrs.jikan4java.data.model.support.stats.score.Score
+import java.util.concurrent.TimeUnit
 
 /*
  * This file is part of Jikan4java.
@@ -18,18 +17,37 @@ import com.github.doomsdayrs.jikan4java.data.model.support.stats.score.Score
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
  */
+
 /**
  * Jikan4java
- * 29 / October / 2018
+ * 10 / 07 / 2020
  *
  * @author github.com/doomsdayrs
  */
-interface Stats : RequestHashing {
-	val completed: Int
-	val on_hold: Int
-	val dropped: Int
-	val total: Int
-	val scores: List<Score>
+
+var lastRequest = 0L
+
+fun canContinue() = lastRequest + 2000 < System.currentTimeMillis()
+
+@Synchronized
+fun rateLimit() {
+	while (!canContinue()) {
+		if (printRateLimit) println("$jikan4JavaName: $rateLimMessage")
+		TimeUnit.SECONDS.sleep(2)
+	}
+	lastRequest = System.currentTimeMillis()
+}
+
+fun main() {
+	printRateLimit = true
+
+	// Checks the 2 second rule
+	for (i in 0..40) {
+		val t = Thread {
+			rateLimit()
+			println(i)
+		}
+		t.start()
+	}
 }

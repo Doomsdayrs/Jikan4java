@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.anime.animePage
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.ContentPage
 
@@ -49,5 +50,5 @@ data class AnimePageAnime(
 	 *
 	 * @return Anime Object
 	 */
-	val anime by lazy { retrieve<Anime>(baseURL + "anime/" + malID) }
+	val anime by lazy { retrieve<Anime>(jikanURL + "anime/" + malID) }
 }

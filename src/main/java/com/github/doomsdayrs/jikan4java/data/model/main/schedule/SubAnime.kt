@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.schedule
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
@@ -57,5 +58,5 @@ class SubAnime(
 	 *
 	 * @return Anime Object
 	 */
-	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
+	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$jikanURL/anime/$malID") }
 }

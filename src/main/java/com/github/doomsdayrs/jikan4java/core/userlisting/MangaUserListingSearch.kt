@@ -2,10 +2,8 @@ package com.github.doomsdayrs.jikan4java.core.userlisting
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.doomsdayrs.jikan4java.data.enums.SortBy
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters.MangaListFilters
-import com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters.UserListFilters
-import com.github.doomsdayrs.jikan4java.data.enums.userlistings.orderby.ListOrderBy
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.status.MangaListingStati
 import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.mangalist.MangaList
 import okhttp3.OkHttpClient
@@ -41,12 +39,18 @@ class MangaUserListingSearch(
 		objectMapper: ObjectMapper = ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true),
 		jsonParser: JSONParser = JSONParser(),
 		builder: Request.Builder = Request.Builder()
-) : UserListingSearch<MangaList, MangaListingStati, MangaUserListingSearch>(username, client, objectMapper, jsonParser, builder) {
+) : UserListingSearch<MangaList, MangaListingStati, MangaUserListingSearch>(
+		username = username,
+		client = client,
+		objectMapper = objectMapper,
+		jsonParser = jsonParser,
+		builder = builder
+) {
 
 	private var magazine = 0
 	val list: CompletableFuture<MangaList>
 		@Throws(InvalidParameterException::class)
-		get() = retrieve("$baseURL/user/$username${createURL()}")
+		get() = retrieve("$jikanURL/user/$username${createURL()}")
 
 	init {
 		setUserListFilters(MangaListFilters.ALL)

@@ -39,7 +39,12 @@ open class UserListingSearch<T, LS : ListingStati, out O>(
 		objectMapper: ObjectMapper = ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true),
 		jsonParser: JSONParser = JSONParser(),
 		builder: Request.Builder = Request.Builder()
-) : Retriever(client, objectMapper, jsonParser, builder)
+) : Retriever(
+		client = client,
+		objectMapper = objectMapper,
+		jsonParser = jsonParser,
+		builder = builder
+)
 		where O : UserListingSearch<T, LS, O>
 {
 

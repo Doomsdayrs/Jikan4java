@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.core.userlisting.AnimeUserListingSearch
 import com.github.doomsdayrs.jikan4java.core.userlisting.MangaUserListingSearch
@@ -66,7 +67,7 @@ data class User(
 	fun getHistory(type: HistoryTypes): CompletableFuture<HistoryPage> =
 			historyHash.takeIf { it.containsKey(type) }?.get(type)
 					?: historyHash.also {
-						historyHash[type] = retrieve("$baseURL/user/$username/history$type")
+						historyHash[type] = retrieve("$jikanURL/user/$username/history$type")
 					}[type]!!
 
 	/**
@@ -78,6 +79,6 @@ data class User(
 	fun getFriends(page: Int): CompletableFuture<Friends> =
 			friendsHash.takeIf { it.containsKey(page) }?.get(page)
 					?: friendsHash.also {
-						friendsHash[page] = retrieve("$baseURL/user/$username/friends/$page")
+						friendsHash[page] = retrieve("$jikanURL/user/$username/friends/$page")
 					}[page]!!
 }

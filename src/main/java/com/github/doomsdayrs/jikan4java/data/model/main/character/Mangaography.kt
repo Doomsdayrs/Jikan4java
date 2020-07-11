@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.character
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
@@ -44,5 +45,5 @@ data class Mangaography(
 	 *
 	 * @return Manga Object
 	 */
-	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$baseURL/manga/$malID") }
+	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$jikanURL/manga/$malID") }
 }

@@ -134,12 +134,12 @@ class ExampleClass {
         //  UserListingSearch userListingSearch = user.getListingSearch();
         //System.out.println(userListingSearch.getMangaList(MangaListFilters.DROPPED).get());
 
-        TopSearch topSearch = new TopSearch();
-        System.out.println(topSearch.searchTop(Tops.ANIME, SharedSubTops.BY_POPULARITY).get());
-        System.out.println(topSearch.searchTop(Tops.MANGA, SharedSubTops.BY_POPULARITY).get());
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println(topSearch.searchTop(Tops.PEOPLE, SharedSubTops.FAVORITE).get());
-        System.out.println(topSearch.searchTop(Tops.CHARACTERS, SharedSubTops.BY_POPULARITY).get());
+     ///   TopSearch topSearch = new TopSearch();
+      //  System.out.println(topSearch.searchTop(Tops.ANIME, SharedSubTops.BY_POPULARITY).get());
+       // System.out.println(topSearch.searchTop(Tops.MANGA, SharedSubTops.BY_POPULARITY).get());
+        //TimeUnit.SECONDS.sleep(1);
+        //System.out.println(topSearch.searchTop(Tops.PEOPLE, SharedSubTops.FAVORITE).get());
+       // System.out.println(topSearch.searchTop(Tops.CHARACTERS, SharedSubTops.BY_POPULARITY).get());
     }
 
 }

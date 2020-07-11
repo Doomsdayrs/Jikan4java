@@ -1,14 +1,12 @@
 package com.github.doomsdayrs.jikan4java.core.search
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
+import com.github.doomsdayrs.jikan4java.common.*
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.search.Types
-import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.simple.JSONArray
 import org.json.simple.JSONObject
-import org.json.simple.parser.JSONParser
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionException
 
@@ -36,10 +34,10 @@ import java.util.concurrent.CompletionException
 open class Search<PAGE, SINGLE, SET>(
 		val type: Types
 ) : Retriever(
-		client = OkHttpClient(),
-		objectMapper = ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true),
-		jsonParser = JSONParser(),
-		builder = Request.Builder()
+		client = getDefaultOkHttpClient(),
+		objectMapper = getDefaultObjectMapper(),
+		jsonParser = getDefaultJSONParser(),
+		builder = getDefaultRequestBuilder()
 ) where SET : Search<PAGE, SINGLE, SET> {
 	var query = ""
 	var limit = 10
@@ -49,7 +47,7 @@ open class Search<PAGE, SINGLE, SET>(
 	 *
 	 * @return StringBuilder of the URL so far
 	 */
-	open fun createURL(): String = "$baseURL/search/type?q=${query.replace(" ".toRegex(), "%20")}${
+	open fun createURL(): String = "$jikanURL/search/$type?q=${query.replace(" ".toRegex(), "%20")}${
 	if (limit != 0)
 		"&limit=$limit"
 	else ""
@@ -93,12 +91,13 @@ open class Search<PAGE, SINGLE, SET>(
 			val responseBody = super.request(createURL())
 			val jsonObject = jsonParser.parse(responseBody!!.string()) as JSONObject
 			val jsonArray = jsonObject["results"] as JSONArray?
+			println(jsonArray)
 			// Gets anime ID then goes to it's page
 			val request = Request.Builder()
-					.url("$baseURL/$type/${(jsonArray!![0] as JSONObject)["mal_id"].toString()}").build()
+					.url("$jikanURL/${type}/${(jsonArray!![0] as JSONObject)["mal_id"].toString()}").build()
 			val response = client.newCall(request).execute()
 			return@supplyAsync response.body()?.let {
-				objectMapper.readValue((jsonParser.parse(it.string()) as JSONObject).toJSONString(), S::class.java)
+				objectMapper.readValue<S>((jsonParser.parse(it.string()) as JSONObject).toJSONString())
 			}
 		} catch (e: Exception) {
 			throw CompletionException(e)
@@ -112,5 +111,5 @@ open class Search<PAGE, SINGLE, SET>(
 	 */
 	inline fun <reified P> get(): CompletableFuture<P> where P : PAGE = retrieve(createURL())
 
-	inline fun <reified S> getByID(id: Int): CompletableFuture<S> where S : SINGLE = retrieve("$baseURL/$type/$id")
+	inline fun <reified S> getByID(id: Int): CompletableFuture<S> where S : SINGLE = retrieve("$jikanURL/$type/$id")
 }

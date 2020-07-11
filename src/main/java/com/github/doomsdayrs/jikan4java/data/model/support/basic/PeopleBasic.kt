@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.basic
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
 
 /*
@@ -36,5 +37,5 @@ class PeopleBasic(
 	 *
 	 * @return Person Object
 	 */
-	val person by lazy { retrieve<Person>("$baseURL/person/$mal_id") }
+	val person by lazy { retrieve<Person>("$jikanURL/person/$mal_id") }
 }

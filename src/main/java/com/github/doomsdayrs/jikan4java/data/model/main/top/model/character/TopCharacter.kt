@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.model.character
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.model.main.character.Character
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.TopListingBeing
 import java.util.*
@@ -45,5 +46,5 @@ data class TopCharacter(
 	 *
 	 * @return Character Object
 	 */
-	val character: CompletableFuture<Character> by lazy { retrieve<Character>("$baseURL/character/$malID") }
+	val character: CompletableFuture<Character> by lazy { retrieve<Character>("$jikanURL/character/$malID") }
 }

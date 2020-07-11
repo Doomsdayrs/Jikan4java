@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.model.person
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.TopListingBeing
 import java.util.concurrent.CompletableFuture
@@ -42,5 +43,5 @@ data class TopPerson(
 	 *
 	 * @return Person Object
 	 */
-	val person: CompletableFuture<Person> by lazy { retrieve<Person>("$baseURL/person/$malID") }
+	val person: CompletableFuture<Person> by lazy { retrieve<Person>("$jikanURL/person/$malID") }
 }

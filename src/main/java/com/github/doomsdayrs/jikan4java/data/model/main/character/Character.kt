@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.character
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
@@ -58,5 +59,5 @@ data class Character(
 	 * @return pictures
 	 */
 	@get:JsonProperty
-	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$baseURL/character/$malID/pictures") }
+	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$jikanURL/character/$malID/pictures") }
 }

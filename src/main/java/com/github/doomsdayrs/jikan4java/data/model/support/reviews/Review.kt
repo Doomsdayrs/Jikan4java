@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.reviews
 
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 
 /*
@@ -25,7 +26,7 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
-interface Review : MyAnimeListID, MyAnimeListURL {
+interface Review : MyAnimeListID, MyAnimeListURL,MyAnimeListType {
 	val helpful_count: Int
 	val date: String?
 	val reviewer: Reviewer

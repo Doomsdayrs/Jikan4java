@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.core.userlisting
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.enums.Season
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters.AnimeListFilters
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.status.AnimeListingStati
@@ -40,11 +41,11 @@ class AnimeUserListingSearch(
 		jsonParser: JSONParser = JSONParser(),
 		builder: Request.Builder = Request.Builder()
 ) : UserListingSearch<AnimeList, AnimeListingStati, AnimeUserListingSearch>(
-		username,
-		client,
-		objectMapper,
-		jsonParser,
-		builder
+		username = username,
+		client = client,
+		objectMapper = objectMapper,
+		jsonParser = jsonParser,
+		builder = builder
 ) {
 
 	private var producer = 0
@@ -52,7 +53,7 @@ class AnimeUserListingSearch(
 	private var season: Season? = null
 	val list: CompletableFuture<AnimeList>
 		@Throws(InvalidParameterException::class)
-		get() = retrieve("$baseURL/user/$username${createURL()}")
+		get() = retrieve("$jikanURL/user/$username${createURL()}")
 
 	init {
 		setUserListFilters(AnimeListFilters.ALL)

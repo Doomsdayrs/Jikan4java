@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.character.characterPage
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
@@ -44,5 +45,5 @@ data class PageCharacterAnime(
 	 *
 	 * @return Anime Object
 	 */
-	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$baseURL/anime/$malID") }
+	val anime: CompletableFuture<Anime> by lazy { retrieve<Anime>("$jikanURL/anime/$malID") }
 }

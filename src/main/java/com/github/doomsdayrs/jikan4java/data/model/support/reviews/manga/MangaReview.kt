@@ -31,5 +31,6 @@ data class MangaReview(
 		@JsonProperty("helpful_count") override val helpful_count: Int,
 		@JsonProperty("date") override val date: String?,
 		@JsonProperty("reviewer") override val reviewer: MangaReviewer,
-		@JsonProperty("content") override val content: String?
+		@JsonProperty("content") override val content: String?,
+		@JsonProperty("type") override val type: String?
 ) : Review

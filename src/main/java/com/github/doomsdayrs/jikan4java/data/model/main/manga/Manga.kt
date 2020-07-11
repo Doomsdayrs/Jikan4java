@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.manga
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.*
 import com.github.doomsdayrs.jikan4java.data.model.main.manga.published.Published
@@ -76,7 +77,7 @@ data class Manga(
 	 * @return MangaCharacters
 	 */
 	@get:JsonProperty
-	val characters: CompletableFuture<MangaCharacters> by lazy { retrieve<MangaCharacters>("$baseURL/manga/$malID/characters") }
+	val characters: CompletableFuture<MangaCharacters> by lazy { retrieve<MangaCharacters>("$jikanURL/manga/$malID/characters") }
 
 	/**
 	 * Gets news about Manga
@@ -84,7 +85,7 @@ data class Manga(
 	 * @return News object
 	 */
 	@get:JsonProperty
-	val news: CompletableFuture<News> by lazy { retrieve<News>("$baseURL/manga/$malID/news") }
+	val news: CompletableFuture<News> by lazy { retrieve<News>("$jikanURL/manga/$malID/news") }
 
 	/**
 	 * Gets pictures related to Manga
@@ -92,7 +93,7 @@ data class Manga(
 	 * @return Pictures object
 	 */
 	@get:JsonProperty
-	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$baseURL/manga/$malID/pictures") }
+	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$jikanURL/manga/$malID/pictures") }
 
 	/**
 	 * Gets stats about Manga object
@@ -100,7 +101,7 @@ data class Manga(
 	 * @return Stats object
 	 */
 	@get:JsonProperty
-	val stats: CompletableFuture<MangaStats> by lazy { retrieve<MangaStats>("$baseURL/manga/$malID/stats") }
+	val stats: CompletableFuture<MangaStats> by lazy { retrieve<MangaStats>("$jikanURL/manga/$malID/stats") }
 
 	/**
 	 * Returns forum object
@@ -108,7 +109,7 @@ data class Manga(
 	 * @return Forum object
 	 */
 	@get:JsonProperty
-	val forum: CompletableFuture<Forum> by lazy { retrieve<Forum>("$baseURL/manga/$malID/forum") }
+	val forum: CompletableFuture<Forum> by lazy { retrieve<Forum>("$jikanURL/manga/$malID/forum") }
 
 	/**
 	 * Returns Moreinfo object
@@ -116,7 +117,7 @@ data class Manga(
 	 * @return MoreInfo
 	 */
 	@get:JsonProperty
-	val moreInfo: CompletableFuture<MoreInfo> by lazy { retrieve<MoreInfo>("$baseURL/manga/$malID/moreinfo") }
+	val moreInfo: CompletableFuture<MoreInfo> by lazy { retrieve<MoreInfo>("$jikanURL/manga/$malID/moreinfo") }
 
 	/**
 	 * Gets manga reviews
@@ -124,7 +125,7 @@ data class Manga(
 	 * @return MangaReviewPage
 	 */
 	@get:JsonProperty
-	val reviews: CompletableFuture<MangaReviewPage> by lazy { retrieve<MangaReviewPage>("$baseURL/manga/$malID/reviews") }
+	val reviews: CompletableFuture<MangaReviewPage> by lazy { retrieve<MangaReviewPage>("$jikanURL/manga/$malID/reviews") }
 
 	/**
 	 * Gets recommendations for this manga
@@ -132,7 +133,7 @@ data class Manga(
 	 * @return RecommendationPage
 	 */
 	@get:JsonProperty
-	val recommendationPage: CompletableFuture<RecommendationPage> by lazy { retrieve<RecommendationPage>("$baseURL/manga/$malID/recommendations") }
+	val recommendationPage: CompletableFuture<RecommendationPage> by lazy { retrieve<RecommendationPage>("$jikanURL/manga/$malID/recommendations") }
 
 	/**
 	 * Gets first page of user updates
@@ -150,5 +151,5 @@ data class Manga(
 	 */
 	@JsonProperty
 	fun getUserUpdatesPage(page: Int): CompletableFuture<MangaUserUpdatesPage> =
-			retrieve<MangaUserUpdatesPage>("$baseURL/manga/$malID/userupdates/$page")
+			retrieve<MangaUserUpdatesPage>("$jikanURL/manga/$malID/userupdates/$page")
 }

@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.club
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
@@ -40,5 +41,5 @@ data class ClubMember(
 	 * @param name the name of the user to retrieve
 	 * @return User
 	 */
-	fun userRetrieve(name: String): CompletableFuture<User> = retrieve("$baseURL/user/$name")
+	fun userRetrieve(name: String): CompletableFuture<User> = retrieve("$jikanURL/user/$name")
 }

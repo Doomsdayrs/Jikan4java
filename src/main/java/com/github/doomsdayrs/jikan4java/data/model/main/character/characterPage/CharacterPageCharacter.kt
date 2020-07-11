@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.character.characterPage
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.model.main.character.Character
 import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.IndividualsPage
 import java.util.*
@@ -33,7 +34,7 @@ data class CharacterPageCharacter(
 		@JsonProperty("mal_id") override val malID: Int,
 		@JsonProperty("url") override val url: String,
 		@JsonProperty("image_url") override val imageURL: String?,
-		@JsonProperty("name") override val name: String?,
+		@JsonProperty("name") override val name: String,
 		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>?,
 		@param:JsonProperty("anime") val animes: ArrayList<PageCharacterAnime>,
 		@param:JsonProperty("manga") val mangas: ArrayList<PageCharacterManga>
@@ -44,5 +45,5 @@ data class CharacterPageCharacter(
 	 *
 	 * @return Character Object
 	 */
-	val character by lazy { retrieve<Character>("$baseURL/character/$malID") }
+	val character by lazy { retrieve<Character>("$jikanURL/character/$malID") }
 }

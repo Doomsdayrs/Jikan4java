@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.person.personPage
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
 import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.IndividualsPage
 import java.util.*
@@ -39,5 +40,5 @@ data class PersonPagePerson(
 	 *
 	 * @return Person Object
 	 */
-	val person by lazy { retrieve<Person>("$baseURL/person/$malID") }
+	val person by lazy { retrieve<Person>("$jikanURL/person/$malID") }
 }

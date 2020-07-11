@@ -1,5 +1,6 @@
 package com.github.doomsdayrs.jikan4java.core.search
 
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.top.*
 import com.github.doomsdayrs.jikan4java.data.exceptions.IncompatibleEnumException
@@ -28,23 +29,6 @@ import java.util.concurrent.CompletableFuture
  * @author github.com/doomsdayrs
  */
 class TopSearch : Retriever() {
-	/**
-	 * Searches the top charts of MAL
-	 *
-	 * @param tops       What subType of media: anime, manga, people, characters
-	 * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
-	 * @param subtype    The sub category to core for.
-	 * @return Top object
-	 */
-	@Throws(IncompatibleEnumException::class)
-	@JvmOverloads
-	inline fun <reified T : Top<*>> searchTop(
-			tops: Tops?,
-			pageNumber: Int = 0,
-			subtype: AnimeSubTops?
-	): CompletableFuture<T> {
-		return searchCore(tops, pageNumber, subtype)
-	}
 
 	/**
 	 * Searches the top charts of MAL
@@ -57,47 +41,10 @@ class TopSearch : Retriever() {
 	@Throws(IncompatibleEnumException::class)
 	@JvmOverloads
 	inline fun <reified T : Top<*>> searchTop(
-			tops: Tops?,
+			tops: Tops,
 			pageNumber: Int = 0,
-			subtype: MangaSubTops?
+			subtype: TopSubType? = null
 	): CompletableFuture<T> {
-		return searchCore(tops, pageNumber, subtype)
-	}
-
-	/**
-	 * Searches the top charts of MAL
-	 *
-	 * @param tops       What subType of media: anime, manga, people, characters
-	 * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
-	 * @param subtype    The sub category to core for.
-	 * @return Top object
-	 */
-	@Throws(IncompatibleEnumException::class)
-	@JvmOverloads
-	inline fun <reified T : Top<*>> searchTop(
-			tops: Tops?,
-			pageNumber: Int = 0,
-			subtype: SharedSubTops?
-	): CompletableFuture<T> {
-		return searchCore(tops, pageNumber, subtype)
-	}
-
-	/**
-	 * Searches the top charts of MAL
-	 *
-	 * @param tops       What subType of media: anime, manga, people, characters
-	 * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
-	 * @param subtype    The sub category to core for.
-	 * @return Top object
-	 */
-	@Throws(IncompatibleEnumException::class)
-	@JvmOverloads
-	inline fun <reified T : Top<*>> searchCore(
-			tops: Tops?,
-			pageNumber: Int = 0,
-			subtype: TopSubType?
-	): CompletableFuture<T> {
-		if (tops == null) throw EnumConstantNotPresentException(Tops::class.java, "Tops subType not present!")
 		val options = StringBuilder()
 		options.append("/")
 		options.append(if (pageNumber == 0) 1 else pageNumber)
@@ -105,6 +52,6 @@ class TopSearch : Retriever() {
 			if (tops.compatible(subtype)) options.append("/").append(subtype)
 			else throw IncompatibleEnumException("$tops is not compatible with $subtype")
 		}
-		return retrieve("$baseURL/top/$tops$options")
+		return retrieve("$jikanURL/top/$tops$options")
 	}
 }

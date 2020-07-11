@@ -1,5 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.base
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 
 /*
  * This file is part of Jikan4java.
@@ -24,5 +26,6 @@ package com.github.doomsdayrs.jikan4java.data.base
  * @author github.com/doomsdayrs
  */
 interface MyAnimeListID {
+	@get:JsonProperty("mal_id")
 	val malID: Int
 }

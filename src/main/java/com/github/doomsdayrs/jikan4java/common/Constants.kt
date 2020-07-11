@@ -1,7 +1,5 @@
-package com.github.doomsdayrs.jikan4java.data.model.support.stats
+package com.github.doomsdayrs.jikan4java.common
 
-import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
-import com.github.doomsdayrs.jikan4java.data.model.support.stats.score.Score
 
 /*
  * This file is part of Jikan4java.
@@ -18,18 +16,16 @@ import com.github.doomsdayrs.jikan4java.data.model.support.stats.score.Score
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
  */
 /**
  * Jikan4java
- * 29 / October / 2018
+ * 10 / 07 / 2020
  *
  * @author github.com/doomsdayrs
  */
-interface Stats : RequestHashing {
-	val completed: Int
-	val on_hold: Int
-	val dropped: Int
-	val total: Int
-	val scores: List<Score>
-}
+const val jikan4JavaName = "Jikan4Java"
+const val jikanURL = "https://api.jikan.moe/v3"
+const val unknownMessage = "unknown"
+
+const val loadingMessage = "Loading URL"
+const val rateLimMessage = "RateLimit hit, Waiting 2000ms"

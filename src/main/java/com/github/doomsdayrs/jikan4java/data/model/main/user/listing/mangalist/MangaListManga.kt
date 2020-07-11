@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user.listing.mangalist
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.*
 import com.github.doomsdayrs.jikan4java.data.model.main.magazine.Magazine
@@ -60,5 +61,5 @@ data class MangaListManga(
 	 *
 	 * @return Manga Object
 	 */
-	val manga by lazy { retrieve<Manga>("$baseURL/manga/$malID") }
+	val manga by lazy { retrieve<Manga>("$jikanURL/manga/$malID") }
 }
