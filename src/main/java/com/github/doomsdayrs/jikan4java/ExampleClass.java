@@ -1,12 +1,7 @@
 package com.github.doomsdayrs.jikan4java;
 
-import com.github.doomsdayrs.jikan4java.core.search.TopSearch;
-import com.github.doomsdayrs.jikan4java.enums.top.SharedTops;
-import com.github.doomsdayrs.jikan4java.enums.top.Tops;
-import com.github.doomsdayrs.jikan4java.exceptions.IncompatibleEnumException;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 /*
  * This file is part of Jikan4java.
@@ -23,11 +18,11 @@ import java.util.concurrent.TimeUnit;
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ */
+
+/**
  * Jikan4java
  * 28 / October / 2018
- *
- * @author github.com/doomsdayrs
  */
 class ExampleClass {
 
@@ -36,7 +31,7 @@ class ExampleClass {
      *
      * @param args Args
      */
-    public static void main(String[] args) throws InterruptedException, ExecutionException, IncompatibleEnumException {
+    public static void main(String[] args) {
         /*
         AnimeConnection animeConnection = new AnimeConnection();
         CharacterConnection characterConnection = new CharacterConnection();
@@ -134,12 +129,12 @@ class ExampleClass {
         //  UserListingSearch userListingSearch = user.getListingSearch();
         //System.out.println(userListingSearch.getMangaList(MangaListFilters.DROPPED).get());
 
-        TopSearch topSearch = new TopSearch();
-        System.out.println(topSearch.searchTop(Tops.ANIME, SharedTops.BY_POPULARITY).get());
-        System.out.println(topSearch.searchTop(Tops.MANGA, SharedTops.BY_POPULARITY).get());
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println(topSearch.searchTop(Tops.PEOPLE, SharedTops.FAVORITE).get());
-        System.out.println(topSearch.searchTop(Tops.CHARACTERS, SharedTops.BY_POPULARITY).get());
+        ///   TopSearch topSearch = new TopSearch();
+        //  System.out.println(topSearch.searchTop(Tops.ANIME, SharedSubTops.BY_POPULARITY).get());
+        // System.out.println(topSearch.searchTop(Tops.MANGA, SharedSubTops.BY_POPULARITY).get());
+        //TimeUnit.SECONDS.sleep(1);
+        //System.out.println(topSearch.searchTop(Tops.PEOPLE, SharedSubTops.FAVORITE).get());
+        // System.out.println(topSearch.searchTop(Tops.CHARACTERS, SharedSubTops.BY_POPULARITY).get());
     }
 
 }
