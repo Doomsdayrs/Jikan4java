@@ -34,7 +34,7 @@ data class TopPerson(
 		@JsonProperty("title") override val title: String,
 		@JsonProperty("url") override val url: String,
 		@JsonProperty("favorites") override val favorites: Int,
-		@JsonProperty("name_kanji") override val nameKanji: String,
+		@JsonProperty("name_kanji") override val nameKanji: String = "",
 		@JsonProperty("image_url") override val imageURL: String,
 		@JsonProperty("birthday") val birthday: String? = null
 ) : TopListingBeing() {

@@ -26,8 +26,8 @@ import java.util.*
  * @author github.com/doomsdayrs
  */
 data class MangaTop(
-		@JsonProperty("request_hash") override val request_hash: String?,
-		@JsonProperty("request_cached") override val request_cached: Boolean,
-		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
-		@param:JsonProperty("top") override val topListings: ArrayList<TopManga>
-) : Top<TopManga>
+		@JsonProperty("request_hash") override val request_hash: String?= null,
+		@JsonProperty("request_cached") override val request_cached: Boolean = false,
+		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = -1,
+		@param:JsonProperty("top") override val topListings: ArrayList<TopManga> = arrayListOf()
+) : Top<TopManga>("manga")

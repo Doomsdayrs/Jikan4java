@@ -2,7 +2,7 @@ package com.github.doomsdayrs.jikan4java.common
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -37,7 +37,9 @@ fun getDefaultObjectMapper() =
 				.apply {
 					configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
 				}
-				.registerKotlinModule()
+				.registerModule(KotlinModule(
+						nullIsSameAsDefault = true
+				))
 
 fun getDefaultOkHttpClient() = OkHttpClient().let {
 	val builder = it.newBuilder()

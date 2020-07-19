@@ -1,5 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.enums.top
 
+import com.github.doomsdayrs.jikan4java.data.model.main.top.base.Top
+import com.github.doomsdayrs.jikan4java.data.model.main.top.model.manga.MangaTop
+
 /*
  * This file is part of Jikan4java.
  *
@@ -24,9 +27,7 @@ package com.github.doomsdayrs.jikan4java.data.enums.top
 enum class MangaSubTops(private val type: String) : TopSubType {
 	MANGA("manga"), NOVELS("novels"), ONESHOTS("oneshots"), DOUJIN("doujin"), MANHWA("manhwa"), MANHUA("manhua");
 
-	override fun toString(): String {
-		return type
-	}
+	override fun toString(): String = type
 
-	override fun compatible(tops: Tops): Boolean = tops == Tops.MANGA
+	override fun compatible(tops: Top<*>): Boolean = tops is MangaTop
 }

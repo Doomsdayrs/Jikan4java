@@ -11,7 +11,6 @@ import com.github.doomsdayrs.jikan4java.data.enums.Days
 import com.github.doomsdayrs.jikan4java.data.enums.HistoryTypes
 import com.github.doomsdayrs.jikan4java.data.enums.genres.AnimeGenres
 import com.github.doomsdayrs.jikan4java.data.enums.genres.MangaGenres
-import com.github.doomsdayrs.jikan4java.data.enums.top.Tops
 import com.github.doomsdayrs.jikan4java.data.exceptions.IncompatibleEnumException
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.characterStaff.CharacterStaff
@@ -31,13 +30,8 @@ import com.github.doomsdayrs.jikan4java.data.model.main.schedule.Day
 import com.github.doomsdayrs.jikan4java.data.model.main.season.SeasonSearch
 import com.github.doomsdayrs.jikan4java.data.model.main.season.seasonarchive.SeasonArchive
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.Top
-import com.github.doomsdayrs.jikan4java.data.model.main.top.model.anime.AnimeTop
-import com.github.doomsdayrs.jikan4java.data.model.main.top.model.character.CharacterTop
-import com.github.doomsdayrs.jikan4java.data.model.main.top.model.manga.MangaTop
-import com.github.doomsdayrs.jikan4java.data.model.main.top.model.person.PersonTop
 import com.github.doomsdayrs.jikan4java.data.model.main.user.User
 import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.FriendPage
-import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.Friends
 import com.github.doomsdayrs.jikan4java.data.model.main.user.history.HistoryPage
 import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.animelist.AnimeList
 import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.mangalist.MangaList
@@ -79,11 +73,11 @@ import java.util.concurrent.ExecutionException
  *
  * @author github.com/doomsdayrs
  */
-internal object Tester {
+internal object KotlinTester {
 
 	private val animes = arrayOf("Boku no Hero Academia 4th Season", "Steins;Gate", "Fullmetal Alchemist: Brotherhood", "Kimetsu no Yaiba")
 	private val mangaTitles = arrayOf("Berserk", "Boku no" /*,"One punch", "Shield"*/)
-	private val tops = arrayOf(Tops.ANIME, Tops.MANGA, Tops.CHARACTERS, Tops.PEOPLE)
+	private val tops = arrayOf(TopSearch.ANIME, TopSearch.MANGA, TopSearch.CHARACTER)
 	private val days = arrayOf(Days.MONDAY, Days.TUESDAY, Days.WEDNESDAY, Days.THURSDAY, Days.FRIDAY, Days.UNKNOWN, Days.OTHER)
 	private const val CONNECTOR_SIZE = 8
 	private const val GENRES_SIZE = 2
@@ -95,7 +89,7 @@ internal object Tester {
 	private val types = booleanArrayOf(
 			false,//Anime
 			false,//Manga
-			false,//Top
+			true,//Top
 			false,//Connector
 			false,//Days
 			false,//Genres
@@ -334,34 +328,41 @@ internal object Tester {
 	fun testSearch() {
 		if (types[2]) {
 			var topSearch: TopSearch
-			for (top in tops) {
+			run {
 				topSearch = TopSearch()
 				progressUpdate()
 				println("\n")
-				val topCompletableFuture: CompletableFuture<Top<*>> = topSearch.searchTop(top)
+				val topCompletableFuture = topSearch.searchTop(TopSearch.ANIME)
 				topCompletableFuture.thenAccept { obj: Top<*>? -> p(obj) }
 				val t = topCompletableFuture.get()
-				when (top) {
-					Tops.PEOPLE -> {
-						val personTop = t as PersonTop
-						println(personTop)
-					}
-					Tops.CHARACTERS -> {
-						val characterTop = t as CharacterTop
-						println(characterTop)
-					}
-					Tops.MANGA -> {
-						val mangaTop = t as MangaTop
-						println(mangaTop)
-					}
-					Tops.ANIME -> {
-						val animeTop = t as AnimeTop
-						println(animeTop)
-					}
-					else -> {
-					}
-				}
-				s()
+				println(t)
+			}
+			run {
+				topSearch = TopSearch()
+				progressUpdate()
+				println("\n")
+				val topCompletableFuture = topSearch.searchTop(TopSearch.MANGA)
+				topCompletableFuture.thenAccept { obj: Top<*>? -> p(obj) }
+				val t = topCompletableFuture.get()
+				println(t)
+			}
+			run {
+				topSearch = TopSearch()
+				progressUpdate()
+				println("\n")
+				val topCompletableFuture = topSearch.searchTop(TopSearch.CHARACTER)
+				topCompletableFuture.thenAccept { obj: Top<*>? -> p(obj) }
+				val t = topCompletableFuture.get()
+				println(t)
+			}
+			run {
+				topSearch = TopSearch()
+				progressUpdate()
+				println("\n")
+				val topCompletableFuture = topSearch.searchTop(TopSearch.PERSON)
+				topCompletableFuture.thenAccept { obj: Top<*>? -> p(obj) }
+				val t = topCompletableFuture.get()
+				println(t)
 			}
 		}
 	}

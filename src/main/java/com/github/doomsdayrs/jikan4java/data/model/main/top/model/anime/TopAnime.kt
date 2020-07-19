@@ -38,7 +38,7 @@ data class TopAnime(
 		@JsonProperty("score") override val score: Float,
 		@JsonProperty("members") override val members: Int,
 		@JsonProperty("start_date") override val startDate: String,
-		@JsonProperty("end_date") override val endDate: String,
+		@JsonProperty("end_date") override val endDate: String = "",
 		@JsonProperty("episodes") val episodes: Int = 0
 ) : TopListingMedia() {
 

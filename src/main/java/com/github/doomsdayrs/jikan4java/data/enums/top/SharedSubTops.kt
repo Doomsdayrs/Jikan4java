@@ -1,5 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.enums.top
 
+import com.github.doomsdayrs.jikan4java.data.model.main.top.base.Top
+import com.github.doomsdayrs.jikan4java.data.model.main.top.model.anime.AnimeTop
+import com.github.doomsdayrs.jikan4java.data.model.main.top.model.manga.MangaTop
+
 /*
  * This file is part of Jikan4java.
  *
@@ -24,9 +28,7 @@ package com.github.doomsdayrs.jikan4java.data.enums.top
 enum class SharedSubTops(private val type: String) : TopSubType {
 	BY_POPULARITY("bypopularity"), FAVORITE("favorite");
 
-	override fun toString(): String {
-		return type
-	}
+	override fun toString(): String = type
 
-	override fun compatible(tops: Tops): Boolean = tops == Tops.ANIME || tops == Tops.MANGA
+	override fun compatible(tops: Top<*>): Boolean = tops is AnimeTop || tops is MangaTop
 }

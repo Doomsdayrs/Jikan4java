@@ -1,11 +1,15 @@
 package com.github.doomsdayrs.jikan4java.core.search
 
-import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.enums.top.*
+import com.github.doomsdayrs.jikan4java.data.enums.top.TopSubType
 import com.github.doomsdayrs.jikan4java.data.exceptions.IncompatibleEnumException
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.Top
+import com.github.doomsdayrs.jikan4java.data.model.main.top.base.TopListing
+import com.github.doomsdayrs.jikan4java.data.model.main.top.model.anime.AnimeTop
+import com.github.doomsdayrs.jikan4java.data.model.main.top.model.character.CharacterTop
+import com.github.doomsdayrs.jikan4java.data.model.main.top.model.manga.MangaTop
+import com.github.doomsdayrs.jikan4java.data.model.main.top.model.person.PersonTop
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -23,7 +27,9 @@ import java.util.concurrent.CompletableFuture
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ */
+
+/**
  * Jikan4java
  * 21 / 05 / 2019
  *
@@ -42,18 +48,28 @@ class TopSearch : Retriever() {
 	 */
 	@Throws(IncompatibleEnumException::class)
 	@JvmOverloads
-	inline fun <reified T : Top<*>> searchTop(
-			tops: Tops,
+	inline fun <reified TOP, reified V> searchTop(
+			top: TOP,
 			pageNumber: Int = 0,
 			subtype: TopSubType? = null
-	): CompletableFuture<T> {
-		val options = StringBuilder()
-		options.append("/")
-		options.append(if (pageNumber == 0) 1 else pageNumber)
+	): CompletableFuture<TOP>
+			where TOP : Top<V>,
+			      V : TopListing {
+		val options = StringBuilder("/${if (pageNumber == 0) 1 else pageNumber}")
 		if (subtype != null) {
-			if (tops.compatible(subtype)) options.append("/").append(subtype)
-			else throw IncompatibleEnumException("$tops is not compatible with $subtype")
+			if (top.compatible(subtype)) options.append("/").append(subtype)
+			else throw IncompatibleEnumException("$top is not compatible with $subtype")
 		}
-		return retrieve("$jikanURL/top/$tops$options")
+		println("TOP IS: ${TOP::class.simpleName}")
+		println("var IS: ${top::class.simpleName}")
+
+		return retrieve("$jikanURL/top/${top.name}$options")
+	}
+
+	companion object {
+		val PERSON by lazy { PersonTop() }
+		val MANGA by lazy { MangaTop() }
+		val CHARACTER by lazy { CharacterTop() }
+		val ANIME by lazy { AnimeTop() }
 	}
 }
