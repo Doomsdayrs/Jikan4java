@@ -5,8 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.doomsdayrs</groupId>
     <artifactId>jikan4java</artifactId>
-    <version>1.4.0</version>
-
+    <version>2.0.0</version>
 
     <build>
         <plugins>
@@ -90,7 +89,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.9.9</version>
+            <version>2.11.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
