@@ -3,7 +3,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.*
+import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPageResult
 import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Authors
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
@@ -36,21 +36,21 @@ class GenreSearchManga(
 		@field:JsonProperty("url") override val url: String,
 		@field:JsonProperty("title") override val title: String,
 		@field:JsonProperty("image_url") override val imageURL: String? = null,
-		@field:JsonProperty("synopsis") val synopsis: String? = null,
+		@field:JsonProperty("synopsis") override val synopsis: String? = null,
 		@field:JsonProperty("type") override val type: String? = null,
 		@field:JsonProperty("publishing_start") val publishing_start: String? = null,
 		@field:JsonProperty("volumes") val volumes: Int = 0,
-		@field:JsonProperty("members") val members: Int = 0,
-		@field:JsonProperty("genres") val genres: ArrayList<Genre>? = null,
+		@field:JsonProperty("members") override val members: Int = 0,
+		@field:JsonProperty("genres") override val genres: List<Genre>,
 		@field:JsonProperty("authors") val authors: ArrayList<Authors>? = null,
-		@field:JsonProperty("score") val score: Float = 0f,
+		@field:JsonProperty("score") override val score: Float = 0f,
 		@field:JsonProperty("serialization") val serialization: ArrayList<String>? = null
-) : Retriever(), MyAnimeListID, MyAnimeListType, MyAnimeListTitle, MyAnimeListImageURL, MyAnimeListURL {
+) : Retriever(), GenreSearchPageResult {
 
 	/**
 	 * Returns the Manga object of this object
 	 *
-	 * @return Manga Object\
+	 * @return Manga Object
 	 */
 	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$jikanURL/manga/$malID") }
 }

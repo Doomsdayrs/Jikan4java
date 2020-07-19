@@ -70,6 +70,36 @@ open class Retriever(
 		return client.newCall(builder.url(URL(url)).build()).execute().body()
 	}
 
+
+	fun <T> retrieve(url: String, clazz: Class<T>): CompletableFuture<T>
+			= CompletableFuture.supplyAsync<T> {
+		var response = ""
+		try {
+			val responseBody = request(url)
+			if (responseBody != null) {
+				response = responseBody.string()
+				if (debugMode) println("RAWJSON: $response")
+				val jsonObject = jsonParser.parse(response) as JSONObject
+				if (debugMode) println("JSONOBJECT: " + jsonObject.toJSONString())
+
+				if (!jsonObject.containsKey("error")) {
+					return@supplyAsync objectMapper.readValue(jsonObject.toJSONString(), clazz)
+				} else throw CompletionException(RequestError(jsonObject["error"].toString()))
+			} else {
+				println("Response body is null")
+				return@supplyAsync null
+			}
+		} catch (e: IOException) {
+			if (debugMode) errorMessages.add(arrayOf(e.message ?: unknownMessage, response, url))
+			e.printStackTrace()
+			return@supplyAsync null
+		} catch (e: ParseException) {
+			if (debugMode) errorMessages.add(arrayOf(e.message ?: unknownMessage, response, url))
+			e.printStackTrace()
+			return@supplyAsync null
+		}
+	}
+
 	/**
 	 * Connects to the jikan API and parses incoming data
 	 *
@@ -78,36 +108,6 @@ open class Retriever(
 	 * @return A completable future of the parsed response
 	 */
 	@JsonIgnore
-	inline fun <reified T> retrieve(url: String): CompletableFuture<T> {
-		return CompletableFuture.supplyAsync<T> {
-			var response = ""
-			try {
-				val responseBody = request(url)
-				if (responseBody != null) {
-					response = responseBody.string()
-					if (debugMode) println("RAWJSON: $response")
-					val jsonObject = jsonParser.parse(response) as JSONObject
-					if (debugMode) println("JSONOBJECT: " + jsonObject.toJSONString())
-
-					if (!jsonObject.containsKey("error")) {
-						return@supplyAsync objectMapper.readValue(jsonObject.toJSONString(), T::class.java)
-					} else {
-						throw CompletionException(RequestError(jsonObject["error"].toString()))
-					}
-				} else {
-					println("Response body is null")
-					return@supplyAsync null
-				}
-			} catch (e: IOException) {
-				if (debugMode) errorMessages.add(arrayOf(e.message ?: unknownMessage, response, url))
-				e.printStackTrace()
-				return@supplyAsync null
-			} catch (e: ParseException) {
-				if (debugMode) errorMessages.add(arrayOf(e.message ?: unknownMessage, response, url))
-				e.printStackTrace()
-				return@supplyAsync null
-			}
-		}
-	}
+	inline fun <reified T> retrieve(url: String): CompletableFuture<T> = retrieve(url, T::class.java)
 
 }

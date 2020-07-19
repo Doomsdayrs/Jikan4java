@@ -1,10 +1,10 @@
 package com.github.doomsdayrs.jikan4java.core
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.common.getDefaultJSONParser
 import com.github.doomsdayrs.jikan4java.common.getDefaultObjectMapper
 import com.github.doomsdayrs.jikan4java.common.getDefaultOkHttpClient
+import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.data.enums.Days
 import com.github.doomsdayrs.jikan4java.data.enums.Season
 import com.github.doomsdayrs.jikan4java.data.enums.meta.MetaPeriod
@@ -201,7 +201,7 @@ class Connector(
 	 * @return DaySchedule object
 	 */
 	fun scheduleSearch(day: Days): CompletableFuture<Day> =
-			retrieve("$jikanURL/schedule/$day")
+			retrieve("$jikanURL/schedule/$day", day.clazz) as CompletableFuture<Day>
 
 	/**
 	 * Searches for anime by season
@@ -225,5 +225,5 @@ class Connector(
 	 *
 	 * @return SeasonArchive
 	 */
-	fun seasonArchive(): CompletableFuture<SeasonArchive> = retrieve( "$jikanURL/season/archive")
+	fun seasonArchive(): CompletableFuture<SeasonArchive> = retrieve("$jikanURL/season/archive")
 }

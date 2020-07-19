@@ -29,5 +29,5 @@ data class AnimeList(
 		@JsonProperty("request_hash") override val request_hash: String?,
 		@JsonProperty("request_cached") override val request_cached: Boolean,
 		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
-		@field:JsonProperty("anime") var animes: ArrayList<AnimeListAnime>? = null
+		@JsonProperty("anime") var animes: ArrayList<AnimeListAnime>
 ) : UserListing()

@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java
 
 import com.github.doomsdayrs.jikan4java.common.debugMode
 import com.github.doomsdayrs.jikan4java.core.Connector
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.core.Retriever.Companion.errorMessages
 import com.github.doomsdayrs.jikan4java.core.search.GenreSearch
 import com.github.doomsdayrs.jikan4java.core.search.TopSearch
@@ -37,6 +36,7 @@ import com.github.doomsdayrs.jikan4java.data.model.main.top.model.character.Char
 import com.github.doomsdayrs.jikan4java.data.model.main.top.model.manga.MangaTop
 import com.github.doomsdayrs.jikan4java.data.model.main.top.model.person.PersonTop
 import com.github.doomsdayrs.jikan4java.data.model.main.user.User
+import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.FriendPage
 import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.Friends
 import com.github.doomsdayrs.jikan4java.data.model.main.user.history.HistoryPage
 import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.animelist.AnimeList
@@ -51,10 +51,12 @@ import com.github.doomsdayrs.jikan4java.data.model.support.stats.AnimeStats
 import com.github.doomsdayrs.jikan4java.data.model.support.stats.MangaStats
 import com.github.doomsdayrs.jikan4java.data.model.support.stats.Stats
 import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.anime.AnimeUserUpdatesPage
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ExecutionException
-import java.util.concurrent.TimeUnit
 
 /*
  * This file is part of Jikan4java.
@@ -78,6 +80,7 @@ import java.util.concurrent.TimeUnit
  * @author github.com/doomsdayrs
  */
 internal object Tester {
+
 	private val animes = arrayOf("Boku no Hero Academia 4th Season", "Steins;Gate", "Fullmetal Alchemist: Brotherhood", "Kimetsu no Yaiba")
 	private val mangaTitles = arrayOf("Berserk", "Boku no" /*,"One punch", "Shield"*/)
 	private val tops = arrayOf(Tops.ANIME, Tops.MANGA, Tops.CHARACTERS, Tops.PEOPLE)
@@ -86,11 +89,19 @@ internal object Tester {
 	private const val GENRES_SIZE = 2
 	private const val USER_SIZE = 5
 	private const val CLUB_SIZE = 2
+	private const val USER_NAME = "Parisbelle"
 
-	/**
-	 * Types: Anime, Manga, Top, Connector, Days, Genres, User, Club
-	 */
-	private val types = booleanArrayOf(true, true, true, true, true, true, true, true)
+	/** Types: Anime, Manga, Top, Connector, Days, Genres, User, Club */
+	private val types = booleanArrayOf(
+			false,//Anime
+			false,//Manga
+			false,//Top
+			false,//Connector
+			false,//Days
+			false,//Genres
+			false,//User
+			false//Club
+	)
 	private var max = 1 + animes.size * 12 + mangaTitles.size * 5 + tops.size + CONNECTOR_SIZE + days.size + GENRES_SIZE + USER_SIZE + CLUB_SIZE
 	private var currentProgress = 0
 
@@ -100,7 +111,8 @@ internal object Tester {
 	 * @throws InterruptedException AAAA
 	 */
 	@Throws(InterruptedException::class)
-	private fun s() {}
+	private fun s() {
+	}
 
 	private fun p(`object`: Any?) {
 		println(`object`)
@@ -127,8 +139,7 @@ internal object Tester {
 	@Throws(ExecutionException::class, InterruptedException::class, IncompatibleEnumException::class)
 	@JvmStatic
 	fun main(args: Array<String>) {
-		// Enables DEBUG mode
-		debugMode = true
+		setupTest()
 		progressUpdate()
 		for (arg in args) {
 			var holder = ""
@@ -184,7 +195,24 @@ internal object Tester {
 			}
 		}
 
-		// Anime
+		testAnime()
+		testManga()
+		testSearch()
+		testGeneralConnector()
+		testDay()
+		testGenre()
+		testUser()
+		testClub()
+		finnaly()
+	}
+
+	@Before
+	fun setupTest() {
+		debugMode = true
+	}
+
+	@Test
+	fun testAnime() {
 		if (types[0]) {
 			var animeSearch: AnimeSearch
 			for (animeTitle in animes) {
@@ -263,6 +291,10 @@ internal object Tester {
 				s()
 			}
 		}
+	}
+
+	@Test
+	fun testManga() {
 		if (types[1]) {
 			var mangaSearch: MangaSearch
 			for (mangaTitle in mangaTitles) {
@@ -296,6 +328,10 @@ internal object Tester {
 				s()
 			}
 		}
+	}
+
+	@Test
+	fun testSearch() {
 		if (types[2]) {
 			var topSearch: TopSearch
 			for (top in tops) {
@@ -328,6 +364,10 @@ internal object Tester {
 				s()
 			}
 		}
+	}
+
+	@Test
+	fun testGeneralConnector() {
 		val connector = Connector()
 		if (types[3]) {
 			progressUpdate()
@@ -371,6 +411,11 @@ internal object Tester {
 			magazinePageCompletableFuture.get()
 			s()
 		}
+	}
+
+	@Test
+	fun testDay() {
+		val connector = Connector()
 		if (types[4]) {
 			for (day in days) {
 				progressUpdate()
@@ -380,6 +425,11 @@ internal object Tester {
 				s()
 			}
 		}
+	}
+
+	@Test
+	fun testGenre() {
+		val connector = Connector()
 		if (types[5]) {
 			val genreSearch = GenreSearch()
 			progressUpdate()
@@ -393,9 +443,14 @@ internal object Tester {
 			mangaPageCompletableFuture.get()
 			s()
 		}
+	}
+
+	@Test
+	fun testUser() {
+		val connector = Connector()
 		if (types[6]) {
 			progressUpdate()
-			val userCompletableFuture = connector.userRetrieve("doomsdayrs")
+			val userCompletableFuture = connector.userRetrieve(USER_NAME)
 			userCompletableFuture.thenAccept { obj: User? -> p(obj) }
 			val user = userCompletableFuture.get()
 			s()
@@ -411,7 +466,7 @@ internal object Tester {
 			s()
 			progressUpdate()
 			val friendsCompletableFuture = user.getFriends(1)
-			friendsCompletableFuture.thenAccept { obj: Friends? -> p(obj) }
+			friendsCompletableFuture.thenAccept { obj: FriendPage? -> p(obj) }
 			friendsCompletableFuture.get()
 			s()
 			progressUpdate()
@@ -425,6 +480,11 @@ internal object Tester {
 			mangaHistoryPageCompletableFuture.get()
 			s()
 		}
+	}
+
+	@Test
+	fun testClub() {
+		val connector = Connector()
 		if (types[7]) {
 			progressUpdate()
 			val clubCompletableFuture = connector.retrieveClub(1)
@@ -436,6 +496,10 @@ internal object Tester {
 			clubMemberPageCompletableFuture.thenAccept { obj: ClubMemberPage? -> p(obj) }
 			clubMemberPageCompletableFuture.get()
 		}
+	}
+
+	@After
+	fun finnaly() {
 		// Gets any and all errors from code
 		val errors: ArrayList<Array<String>> = errorMessages
 		for (error in errors) {

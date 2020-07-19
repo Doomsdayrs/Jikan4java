@@ -2,9 +2,9 @@ package com.github.doomsdayrs.jikan4java.data.model.main.genresearch.anime
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPage
 import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.MalURL
 import com.github.doomsdayrs.jikan4java.data.model.main.schedule.SubAnime
-import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import java.util.*
 
 /*
@@ -33,7 +33,7 @@ class GenreSearchAnimePage(
 		@field:JsonProperty("request_hash") override val request_hash: String? = null,
 		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("mal_url") val malURL: MalURL? = null,
-		@field:JsonProperty("item_count") val item_count: Int = 0,
-		@field:JsonProperty("anime") val animes: ArrayList<SubAnime>? = null
-) : RequestHashing
+		@field:JsonProperty("mal_url") override val malURL: MalURL,
+		@field:JsonProperty("item_count") override val item_count: Int,
+		@field:JsonProperty("anime") override val results: ArrayList<GenreSearchAnime>
+) : GenreSearchPage<GenreSearchAnime>

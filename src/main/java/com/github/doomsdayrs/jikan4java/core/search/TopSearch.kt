@@ -1,5 +1,6 @@
 package com.github.doomsdayrs.jikan4java.core.search
 
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.top.*
@@ -28,6 +29,7 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
+@Deprecated("Issue with compliation method")
 class TopSearch : Retriever() {
 
 	/**

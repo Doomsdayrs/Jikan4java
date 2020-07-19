@@ -35,13 +35,23 @@ class GenreSearch : Retriever() {
 	 * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
 	 *
 	 * @param genreID The genre ID
-	 * @param page    The page number to go to, 0 should be the default unless you know else wise
+	 * @param page    The page number to go to, 1 should be the default unless you know else wise
 	 * @return GenreSearchAnimePage
 	 */
 	@JvmOverloads
-	fun searchGenre(genreID: AnimeGenres, page: Int = 0): CompletableFuture<GenreSearchAnimePage> {
-		return searchGenrePage(genreID, page, GenreSearchAnimePage::class.java)
-	}
+	fun searchGenre(genreID: AnimeGenres, page: Int = 1): CompletableFuture<GenreSearchAnimePage> =
+			searchGenre(genreID as Genres, page)
+
+	/**
+	 * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
+	 *
+	 * @param genreID The genre ID
+	 * @param page    The page number to go to, 1 should be the default unless you know else wise
+	 * @return GenreSearchAnimePage
+	 */
+	@JvmOverloads
+	fun searchGenre(genreID: MangaGenres, page: Int = 1): CompletableFuture<GenreSearchMangaPage> =
+			searchGenre(genreID as Genres, page)
 
 	/**
 	 * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
@@ -50,18 +60,6 @@ class GenreSearch : Retriever() {
 	 * @param page    The page number to go to, 0 should be the default unless you know else wise
 	 * @return GenreSearchAnimePage
 	 */
-	@JvmOverloads
-	fun searchGenre(genreID: MangaGenres, page: Int = 0): CompletableFuture<GenreSearchMangaPage> {
-		return searchGenrePage(genreID, page, GenreSearchMangaPage::class.java)
-	}
-
-	/**
-	 * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
-	 *
-	 * @param genreID The genre ID
-	 * @param page    The page number to go to, 0 should be the default unless you know else wise
-	 * @return GenreSearchAnimePage
-	 */
-	inline fun <reified T> searchGenrePage(genreID: Genres, page: Int, c: Class<T>): CompletableFuture<T> =
+	inline fun <reified T> searchGenre(genreID: Genres, page: Int): CompletableFuture<T> =
 			retrieve(jikanURL + "/genre/" + genreID.type + "/" + genreID.id + "/" + page)
 }

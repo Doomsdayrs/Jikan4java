@@ -8,6 +8,7 @@ import com.github.doomsdayrs.jikan4java.core.userlisting.MangaUserListingSearch
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.enums.HistoryTypes
+import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.FriendPage
 import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.Friends
 import com.github.doomsdayrs.jikan4java.data.model.main.user.history.HistoryPage
 import java.util.*
@@ -54,7 +55,7 @@ data class User(
 		@field:JsonProperty("about") var about: String? = null
 ) : Retriever(), MyAnimeListURL, MyAnimeListImageURL {
 	val historyHash = HashMap<HistoryTypes, CompletableFuture<HistoryPage>>()
-	val friendsHash = HashMap<Int, CompletableFuture<Friends>>()
+	val friendsHash = HashMap<Int, CompletableFuture<FriendPage>>()
 	val animeListSearch: AnimeUserListingSearch by lazy { AnimeUserListingSearch(username!!) }
 	val mangaListSearch: MangaUserListingSearch by lazy { MangaUserListingSearch(username!!) }
 
@@ -67,7 +68,7 @@ data class User(
 	fun getHistory(type: HistoryTypes): CompletableFuture<HistoryPage> =
 			historyHash.takeIf { it.containsKey(type) }?.get(type)
 					?: historyHash.also {
-						historyHash[type] = retrieve("$jikanURL/user/$username/history$type")
+						historyHash[type] = retrieve("$jikanURL/user/$username/history/$type")
 					}[type]!!
 
 	/**
@@ -76,7 +77,7 @@ data class User(
 	 * @param page Page to call for
 	 * @return Friends object
 	 */
-	fun getFriends(page: Int): CompletableFuture<Friends> =
+	fun getFriends(page: Int): CompletableFuture<FriendPage> =
 			friendsHash.takeIf { it.containsKey(page) }?.get(page)
 					?: friendsHash.also {
 						friendsHash[page] = retrieve("$jikanURL/user/$username/friends/$page")

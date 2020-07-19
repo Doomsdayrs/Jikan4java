@@ -1,8 +1,8 @@
-package com.github.doomsdayrs.jikan4java.data.model.main.user.friends
+package com.github.doomsdayrs.jikan4java.data.base.genreSearch
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
-import java.util.*
+import com.github.doomsdayrs.jikan4java.data.base.*
+
 
 /*
  * This file is part of Jikan4java.
@@ -19,15 +19,22 @@ import java.util.*
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ */
+/**
  * Jikan4java
- * 03 / November / 2018
+ * 12 / 07 / 2020
  *
  * @author github.com/doomsdayrs
  */
-data class FriendPage(
-		@field:JsonProperty("request_hash") override var request_hash: String? = null,
-		@field:JsonProperty("request_cache_expiry") override var request_cache_expiry: Int = 0,
-		@field:JsonProperty("request_cached") override var request_cached: Boolean = false,
-		@field:JsonProperty("friends") var friends: ArrayList<Friends>
-) : RequestHashing
+interface GenreSearchPageResult
+	:
+		MyAnimeListID,
+		MyAnimeListType,
+		MyAnimeListTitle,
+		MyAnimeListImageURL,
+		MyAnimeListURL,
+		MyAnimeListSynopsis,
+		MyAnimeListGenres {
+	val score: Float
+	val members: Int
+}
