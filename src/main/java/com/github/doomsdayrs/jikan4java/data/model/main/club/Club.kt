@@ -39,7 +39,7 @@ data class Club(
 		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
 		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("url") val url: String? = null,
-		@field:JsonProperty("image_url") override val imageURL: String,
+		@field:JsonProperty("image_url") override val imageURL: String = "",
 		@field:JsonProperty("title") override val title: String,
 		@field:JsonProperty("members_count") val members_count: Float = 0f,
 		@field:JsonProperty("pictures_count") val pictures_count: Float = 0f,

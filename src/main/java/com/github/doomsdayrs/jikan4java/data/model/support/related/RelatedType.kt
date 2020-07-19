@@ -29,7 +29,7 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  */
 data class RelatedType(
 		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("type") override val type: String?,
+		@JsonProperty("type") override val type: String = "",
 		@JsonProperty("name") override val name: String,
 		@JsonProperty("url") override val url: String
 ) : MyAnimeListID, MyAnimeListType, MyAnimeListName, MyAnimeListURL

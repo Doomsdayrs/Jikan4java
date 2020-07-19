@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.anime.episodes
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListEpisodes
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import java.util.*
 
@@ -32,5 +33,5 @@ class Episodes(
 		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
 		@field:JsonProperty("episodes_last_page") val episodes_last_page: Int = 0,
-		@field:JsonProperty("episodes") val episodes: ArrayList<Episode>? = null
-) : RequestHashing
+		@field:JsonProperty("episodes") override val episodes: ArrayList<Episode>
+) : RequestHashing, MyAnimeListEpisodes<Episode>

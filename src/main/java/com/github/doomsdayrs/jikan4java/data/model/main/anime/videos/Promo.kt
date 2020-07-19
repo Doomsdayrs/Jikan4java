@@ -29,6 +29,6 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 class Promo(
 		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null,
-		@field:JsonProperty("video_url") val video_url: String? = null
+		@field:JsonProperty("image_url") override val imageURL: String = "",
+		@field:JsonProperty("video_url") val video_url: String = ""
 ) : MyAnimeListTitle, MyAnimeListImageURL

@@ -38,7 +38,8 @@ fun getDefaultObjectMapper() =
 					configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
 				}
 				.registerModule(KotlinModule(
-						nullIsSameAsDefault = true
+						nullIsSameAsDefault = true,
+						nullToEmptyCollection = true
 				))
 
 fun getDefaultOkHttpClient() = OkHttpClient().let {

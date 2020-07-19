@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.anime.videos
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListEpisodes
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import java.util.*
 
@@ -27,10 +28,10 @@ import java.util.*
  * @author github.com/doomsdayrs
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-class Video(
+data class Video(
 		@field:JsonProperty("request_hash") override val request_hash: String? = null,
 		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("promo") val promos: ArrayList<Promo>? = null,
-		@field:JsonProperty("episodes") val episodes: ArrayList<Episode>? = null
-) : RequestHashing
+		@field:JsonProperty("promo") val promos: ArrayList<Promo>,
+		@field:JsonProperty("episodes") override val episodes: ArrayList<Episode>
+) : RequestHashing, MyAnimeListEpisodes<Episode>

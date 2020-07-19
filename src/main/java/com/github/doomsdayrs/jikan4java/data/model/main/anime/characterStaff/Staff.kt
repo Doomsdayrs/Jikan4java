@@ -34,6 +34,6 @@ class Staff(
 		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("url") override val url: String,
 		@field:JsonProperty("name") override val name: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null,
-		@field:JsonProperty("positions") val positions: ArrayList<String>? = null
+		@field:JsonProperty("image_url") override val imageURL: String = "",
+		@field:JsonProperty("positions") val positions: ArrayList<String> = arrayListOf()
 ) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListName

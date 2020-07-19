@@ -32,7 +32,7 @@ import java.util.concurrent.CompletableFuture
 data class ClubMember(
 		@field:JsonProperty("username") val username: String? = null,
 		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null
+		@field:JsonProperty("image_url") override val imageURL: String = ""
 ) : Retriever(), MyAnimeListURL, MyAnimeListImageURL {
 
 	/**

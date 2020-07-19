@@ -31,6 +31,6 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 open class BasicObject(
 		@field:JsonProperty("mal_id") override val malID: Int,
 		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String?,
+		@field:JsonProperty("image_url") override val imageURL: String = "",
 		@field:JsonProperty("name") override val name: String
 ) : Retriever(), MyAnimeListID, MyAnimeListImageURL, MyAnimeListName, MyAnimeListURL

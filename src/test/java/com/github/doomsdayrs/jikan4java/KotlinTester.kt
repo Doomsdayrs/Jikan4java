@@ -162,7 +162,7 @@ internal object KotlinTester {
 
 				progressUpdate()
 				println("\nEpisodes\n")
-				val episodesCompletableFuture = anime.getEpisodes()
+				val episodesCompletableFuture = anime.getEpisodeCount()
 				episodesCompletableFuture.thenAccept { obj: Episodes? -> p(obj) }
 				episodesCompletableFuture.get()
 

@@ -28,11 +28,11 @@ import com.github.doomsdayrs.jikan4java.data.model.support.prop.Prop
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 class Aired(
-		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_hash") override val request_hash: String?,
 		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("from") val from: String? = null,
-		@field:JsonProperty("to") val to: String? = null,
-		@field:JsonProperty("prop") val prop: Prop? = null,
-		@field:JsonProperty("string") val string: String? = null
+		@field:JsonProperty("from") val from: String = "",
+		@field:JsonProperty("to") val to: String = "",
+		@field:JsonProperty("prop") val prop: Prop?,
+		@field:JsonProperty("string") val string: String = ""
 ) : RequestHashing

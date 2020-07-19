@@ -33,15 +33,14 @@ data class TopManga(
 		@JsonProperty("rank") override val rank: Int,
 		@JsonProperty("title") override val title: String,
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String,
+		@JsonProperty("image_url") override val imageURL: String = "",
 		@JsonProperty("type") override val type: String,
-		@JsonProperty("score") override val score: Float,
+		@JsonProperty("score") override val score: Double,
 		@JsonProperty("members") override val members: Int,
 		@JsonProperty("start_date") override val startDate: String,
 		@JsonProperty("end_date") override val endDate: String = "",
 		@JsonProperty("volumes") val volumes: Int
 ) : TopListingMedia() {
-
 	/**
 	 * Returns the Manga object of this object
 	 *

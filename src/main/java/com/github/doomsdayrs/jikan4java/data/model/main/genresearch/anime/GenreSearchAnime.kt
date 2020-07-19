@@ -3,6 +3,8 @@ package com.github.doomsdayrs.jikan4java.data.model.main.genresearch.anime
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListEpisodeCount
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListSource
 import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPageResult
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
@@ -37,20 +39,20 @@ data class GenreSearchAnime(
 		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("url") override val url: String,
 		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null,
-		@field:JsonProperty("synopsis") override val synopsis: String? = null,
-		@field:JsonProperty("type") override val type: String? = null,
-		@field:JsonProperty("airing_start") val airing_start: String? = null,
-		@field:JsonProperty("episodes") val episodes: Int = 0,
+		@field:JsonProperty("image_url") override val imageURL: String = "",
+		@field:JsonProperty("synopsis") override val synopsis: String = "",
+		@field:JsonProperty("type") override val type: String = "",
+		@field:JsonProperty("airing_start") val airing_start: String = "",
+		@field:JsonProperty("episodes") override val episodeCount: Int = 0,
 		@field:JsonProperty("members") override val members: Int = 0,
 		@field:JsonProperty("genres") override val genres: List<Genre>,
-		@field:JsonProperty("source") val source: String? = null,
-		@field:JsonProperty("producers") val producers: ArrayList<Producer>? = null,
-		@field:JsonProperty("score") override val score: Float = 0f,
-		@field:JsonProperty("licensors") val licensors: ArrayList<String>? = null,
+		@field:JsonProperty("source") override val source: String = "",
+		@field:JsonProperty("producers") val producers: ArrayList<Producer>,
+		@field:JsonProperty("score") override val score: Double,
+		@field:JsonProperty("licensors") val licensors: ArrayList<String>,
 		@field:JsonProperty("r18") val r18: Boolean = false,
 		@field:JsonProperty("kids") val kids: Boolean = false
-) : Retriever(), GenreSearchPageResult {
+) : Retriever(), GenreSearchPageResult, MyAnimeListSource, MyAnimeListEpisodeCount {
 
 	/**
 	 * Returns the Anime object of this object

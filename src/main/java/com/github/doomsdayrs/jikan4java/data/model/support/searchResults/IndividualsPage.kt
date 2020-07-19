@@ -26,5 +26,5 @@ import java.util.*
  * @author github.com/doomsdayrs
  */
 abstract class IndividualsPage : ObjectPage(), MyAnimeListName {
-	abstract val alternative_names: ArrayList<String>?
+	abstract val alternative_names: ArrayList<String>
 }

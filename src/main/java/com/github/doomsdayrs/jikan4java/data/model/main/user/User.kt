@@ -9,7 +9,6 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
 import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.enums.HistoryTypes
 import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.FriendPage
-import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.Friends
 import com.github.doomsdayrs.jikan4java.data.model.main.user.history.HistoryPage
 import java.util.*
 import java.util.concurrent.CompletableFuture
@@ -37,22 +36,22 @@ import kotlin.collections.HashMap
  * @author github.com/doomsdayrs
  */
 data class User(
-		@field:JsonProperty("request_hash") var request_hash: String? = null,
+		@field:JsonProperty("request_hash") var request_hash: String?,
 		@field:JsonProperty("request_cached") var request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") var request_cache_expiry: Int = 0,
 		@field:JsonProperty("user_id") var user_id: Int = 0,
-		@field:JsonProperty("username") var username: String? = null,
+		@field:JsonProperty("username") var username: String = "",
 		@field:JsonProperty("url") override var url: String,
-		@field:JsonProperty("image_url") override var imageURL: String? = null,
-		@field:JsonProperty("last_online") var last_online: String? = null,
-		@field:JsonProperty("gender") var gender: String? = null,
-		@field:JsonProperty("birthday") var birthday: String? = null,
-		@field:JsonProperty("location") var location: String? = null,
-		@field:JsonProperty("joined") var joined: String? = null,
-		@field:JsonProperty("anime_stats") var animeStats: ArrayList<AnimeStats>? = null,
-		@field:JsonProperty("manga_stats") var mangaStats: ArrayList<MangaStats>? = null,
-		@field:JsonProperty("favorites") var favorites: Favorites? = null,
-		@field:JsonProperty("about") var about: String? = null
+		@field:JsonProperty("image_url") override var imageURL: String = "",
+		@field:JsonProperty("last_online") var last_online: String = "",
+		@field:JsonProperty("gender") var gender: String = "",
+		@field:JsonProperty("birthday") var birthday: String = "",
+		@field:JsonProperty("location") var location: String = "",
+		@field:JsonProperty("joined") var joined: String = "",
+		@field:JsonProperty("anime_stats") var animeStats: ArrayList<AnimeStats>,
+		@field:JsonProperty("manga_stats") var mangaStats: ArrayList<MangaStats>,
+		@field:JsonProperty("favorites") var favorites: Favorites?,
+		@field:JsonProperty("about") var about: String = ""
 ) : Retriever(), MyAnimeListURL, MyAnimeListImageURL {
 	val historyHash = HashMap<HistoryTypes, CompletableFuture<HistoryPage>>()
 	val friendsHash = HashMap<Int, CompletableFuture<FriendPage>>()

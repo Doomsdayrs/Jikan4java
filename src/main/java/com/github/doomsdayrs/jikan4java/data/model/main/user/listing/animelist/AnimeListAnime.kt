@@ -3,10 +3,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.user.listing.animelist
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.*
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Licensors
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Studios
@@ -36,35 +33,35 @@ import java.util.*
  */
 data class AnimeListAnime(
 		@JsonProperty("mal_id") override val malID: Int = 0,
-		@JsonProperty("title") val title: String? = null,
-		@JsonProperty("video_url") val video_url: String? = null,
+		@JsonProperty("title") val title: String = "",
+		@JsonProperty("video_url") val video_url: String = "",
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String? = null,
-		@JsonProperty("type") override val type: String? = null,
+		@JsonProperty("image_url") override val imageURL: String = "",
+		@JsonProperty("type") override val type: String = "",
 		@JsonProperty("watching_status") val watching_status: Int = 0,
 		@JsonProperty("score") val score: Int = 0,
 		@JsonProperty("watched_episodes") val watched_episodes: Int = 0,
 		@JsonProperty("total_episodes") val total_episodes: Int = 0,
 		@JsonProperty("airing_status") val airing_status: Int = 0,
-		@JsonProperty("season_name") val season_name: String? = null,
-		@JsonProperty("season_year") val season_year: String? = null,
+		@JsonProperty("season_name") val season_name: String = "",
+		@JsonProperty("season_year") val season_year: String = "",
 		@JsonProperty("has_episode_video") val has_episode_video: Boolean = false,
 		@JsonProperty("has_promo_video") val has_promo_video: Boolean = false,
 		@JsonProperty("has_video") val has_video: Boolean = false,
 		@JsonProperty("is_rewatching") val is_rewatching: Boolean = false,
-		@JsonProperty("tags") val tags: String? = null,
-		@JsonProperty("rating") val rating: String? = null,
-		@JsonProperty("start_date") val start_date: String? = null,
-		@JsonProperty("end_date") val end_date: String? = null,
-		@JsonProperty("watch_start_date") val watch_start_date: String? = null,
-		@JsonProperty("watch_end_date") val watch_end_date: String? = null,
-		@JsonProperty("days") val days: String? = null,
-		@JsonProperty("storage") val storage: String? = null,
-		@JsonProperty("priority") val priority: String? = null,
+		@JsonProperty("tags") val tags: String = "",
+		@JsonProperty("rating") val rating: String = "",
+		@JsonProperty("start_date") override val startDate: String = "",
+		@JsonProperty("end_date") override val end_date: String = "",
+		@JsonProperty("watch_start_date") val watch_start_date: String = "",
+		@JsonProperty("watch_end_date") val watch_end_date: String = "",
+		@JsonProperty("days") val days: String = "",
+		@JsonProperty("storage") val storage: String = "",
+		@JsonProperty("priority") val priority: String = "",
 		@JsonProperty("added_to_list") val added_to_list: Boolean = false,
-		@JsonProperty("studios") val studios: ArrayList<Studios>? = null,
-		@JsonProperty("licensors") val licensors: ArrayList<Licensors>? = null
-) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListType {
+		@JsonProperty("studios") val studios: ArrayList<Studios>,
+		@JsonProperty("licensors") val licensors: ArrayList<Licensors>
+) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListType, MyAnimeListStartEndDate {
 
 	/**
 	 * Returns the Anime object of this object

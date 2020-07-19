@@ -34,9 +34,9 @@ data class TopCharacter(
 		@JsonProperty("rank") override val rank: Int,
 		@JsonProperty("title") override val title: String,
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("favorites") override val favorites: Int,
+		@JsonProperty("favorites") override val favoritesCount: Int,
 		@JsonProperty("name_kanji") override val nameKanji: String,
-		@JsonProperty("image_url") override val imageURL: String,
+		@JsonProperty("image_url") override val imageURL: String = "",
 		@JsonProperty("animeography") var characterAnimes: ArrayList<TopCharacterAnime>?,
 		@JsonProperty("mangaography") var characterMangas: ArrayList<TopCharacterManga>?
 ) : TopListingBeing() {

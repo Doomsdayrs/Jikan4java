@@ -30,8 +30,8 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 data class Recommend(
 		@JsonProperty("mal_id") override val malID: Int,
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String?,
-		@JsonProperty("recommendation_url") val recommendation_url: String?,
+		@JsonProperty("image_url") override val imageURL: String = "",
+		@JsonProperty("recommendation_url") val recommendation_url: String = "",
 		@JsonProperty("title") override val title: String,
 		@JsonProperty("recommendation_count") val recommendation_count: Int
 ) : MyAnimeListID, MyAnimeListURL, MyAnimeListTitle, MyAnimeListImageURL

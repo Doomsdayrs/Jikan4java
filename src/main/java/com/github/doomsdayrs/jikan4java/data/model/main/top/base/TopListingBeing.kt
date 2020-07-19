@@ -1,5 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.base
 
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListFavoriteCount
+
 /*
  * This file is part of Jikan4java.
  *
@@ -21,7 +23,6 @@ package com.github.doomsdayrs.jikan4java.data.model.main.top.base
  *
  * @author github.com/doomsdayrs
  */
-abstract class TopListingBeing : TopListing() {
-	abstract val favorites: Int
+abstract class TopListingBeing : TopListing(), MyAnimeListFavoriteCount {
 	abstract val nameKanji: String
 }

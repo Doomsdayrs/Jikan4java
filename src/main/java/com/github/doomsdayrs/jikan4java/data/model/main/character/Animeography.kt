@@ -37,8 +37,8 @@ data class Animeography(
 		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("name") override val name: String,
 		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null,
-		@field:JsonProperty("role") val role: String? = null
+		@field:JsonProperty("image_url") override val imageURL: String = "",
+		@field:JsonProperty("role") val role: String = ""
 ) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListName {
 
 	/**

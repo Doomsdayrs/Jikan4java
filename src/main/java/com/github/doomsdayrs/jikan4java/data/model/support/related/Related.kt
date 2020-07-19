@@ -25,16 +25,16 @@ import java.util.*
  * @author github.com/doomsdayrs
  */
 data class Related(
-		@JsonProperty("Prequel") val prequel: ArrayList<RelatedType>?,
-		@JsonProperty("Alternative version") val altVersion: ArrayList<RelatedType>?,
-		@JsonProperty("Spin-off") val spinOff: ArrayList<RelatedType>?,
-		@JsonProperty("Adaptation") val adaptation: ArrayList<RelatedType>?,
-		@JsonProperty("Summary") val summaries: ArrayList<RelatedType>?,
-		@JsonProperty("Sequel") val sequels: ArrayList<RelatedType>?,
-		@JsonProperty("Side story") val sideStories: ArrayList<RelatedType>?,
-		@JsonProperty("Other") val other: ArrayList<RelatedType>?,
-		@JsonProperty("Parent story") val parentStories: ArrayList<RelatedType>?,
-		@JsonProperty("Alternative setting") val alternativeSettings: ArrayList<RelatedType>?,
-		@JsonProperty("Character") val characters: ArrayList<RelatedType>?,
-		@JsonProperty("Full story") val fullStories: ArrayList<RelatedType>?
+		@JsonProperty("Prequel") val prequel: ArrayList<RelatedType>,
+		@JsonProperty("Alternative version") val altVersion: ArrayList<RelatedType>,
+		@JsonProperty("Spin-off") val spinOff: ArrayList<RelatedType>,
+		@JsonProperty("Adaptation") val adaptation: ArrayList<RelatedType>,
+		@JsonProperty("Summary") val summaries: ArrayList<RelatedType>,
+		@JsonProperty("Sequel") val sequels: ArrayList<RelatedType>,
+		@JsonProperty("Side story") val sideStories: ArrayList<RelatedType>,
+		@JsonProperty("Other") val other: ArrayList<RelatedType>,
+		@JsonProperty("Parent story") val parentStories: ArrayList<RelatedType>,
+		@JsonProperty("Alternative setting") val alternativeSettings: ArrayList<RelatedType>,
+		@JsonProperty("Character") val characters: ArrayList<RelatedType>,
+		@JsonProperty("Full story") val fullStories: ArrayList<RelatedType>
 )

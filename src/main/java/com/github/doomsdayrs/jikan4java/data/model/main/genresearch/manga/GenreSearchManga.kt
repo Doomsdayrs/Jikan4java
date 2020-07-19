@@ -3,6 +3,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListPublishingStart
 import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPageResult
 import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Authors
@@ -35,17 +36,17 @@ class GenreSearchManga(
 		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("url") override val url: String,
 		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null,
-		@field:JsonProperty("synopsis") override val synopsis: String? = null,
-		@field:JsonProperty("type") override val type: String? = null,
-		@field:JsonProperty("publishing_start") val publishing_start: String? = null,
+		@field:JsonProperty("image_url") override val imageURL: String = "",
+		@field:JsonProperty("synopsis") override val synopsis: String = "",
+		@field:JsonProperty("type") override val type: String = "",
+		@field:JsonProperty("publishing_start") override val publishingStart: String = "",
 		@field:JsonProperty("volumes") val volumes: Int = 0,
 		@field:JsonProperty("members") override val members: Int = 0,
 		@field:JsonProperty("genres") override val genres: List<Genre>,
-		@field:JsonProperty("authors") val authors: ArrayList<Authors>? = null,
-		@field:JsonProperty("score") override val score: Float = 0f,
-		@field:JsonProperty("serialization") val serialization: ArrayList<String>? = null
-) : Retriever(), GenreSearchPageResult {
+		@field:JsonProperty("authors") val authors: ArrayList<Authors>,
+		@field:JsonProperty("score") override val score: Double,
+		@field:JsonProperty("serialization") val serialization: ArrayList<String>
+) : Retriever(), GenreSearchPageResult, MyAnimeListPublishingStart {
 
 	/**
 	 * Returns the Manga object of this object

@@ -33,9 +33,9 @@ import java.util.*
 data class CharacterPageCharacter(
 		@JsonProperty("mal_id") override val malID: Int,
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String?,
+		@JsonProperty("image_url") override val imageURL: String = "",
 		@JsonProperty("name") override val name: String,
-		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>?,
+		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>,
 		@param:JsonProperty("anime") val animes: ArrayList<PageCharacterAnime>,
 		@param:JsonProperty("manga") val mangas: ArrayList<PageCharacterManga>
 ) : IndividualsPage() {

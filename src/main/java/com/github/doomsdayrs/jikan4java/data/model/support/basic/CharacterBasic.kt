@@ -29,7 +29,7 @@ import com.github.doomsdayrs.jikan4java.data.model.main.character.Character
 class CharacterBasic(
 		@JsonProperty("mal_id") mal_id: Int,
 		@JsonProperty("url") url: String,
-		@JsonProperty("image_url") image_url: String?,
+		@JsonProperty("image_url") image_url: String="",
 		@JsonProperty("name") name: String
 ) : BasicObject(mal_id, url, image_url, name) {
 	/**

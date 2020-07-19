@@ -16,7 +16,6 @@ import com.github.doomsdayrs.jikan4java.data.model.support.related.Related
 import com.github.doomsdayrs.jikan4java.data.model.support.reviews.manga.MangaReviewPage
 import com.github.doomsdayrs.jikan4java.data.model.support.stats.MangaStats
 import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.manga.MangaUserUpdatesPage
-import java.util.*
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -41,35 +40,44 @@ import java.util.concurrent.CompletableFuture
  * @author github.com/doomsdayrs
  */
 data class Manga(
-		@field:JsonProperty("request_hash") val request_hash: String? = null,
+		@field:JsonProperty("request_hash") val request_hash: String? = "",
 		@field:JsonProperty("request_cached") val request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") val request_cache_expiry: Int = 0,
 		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("url") override val url: String,
 		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("title_english") val title_english: String? = null,
-		@field:JsonProperty("title_synonyms") val title_synonyms: ArrayList<String>? = null,
-		@field:JsonProperty("title_japanese") val title_japanese: String? = null,
-		@field:JsonProperty("status") override val status: String? = null,
-		@field:JsonProperty("image_url") override val imageURL: String? = null,
-		@field:JsonProperty("type") val type: String? = null,
+		@field:JsonProperty("title_english") val title_english: String = "",
+		@field:JsonProperty("title_synonyms") val title_synonyms: List<String>,
+		@field:JsonProperty("title_japanese") val title_japanese: String?,
+		@field:JsonProperty("status") override val status: String = "",
+		@field:JsonProperty("image_url") override val imageURL: String = "",
+		@field:JsonProperty("type") val type: String = "",
 		@field:JsonProperty("volumes") val volumes: Int = 0,
 		@field:JsonProperty("chapters") val chapters: Int = 0,
 		@field:JsonProperty("publishing") val publishing: Boolean = false,
-		@field:JsonProperty("published") val published: Published? = null,
+		@field:JsonProperty("published") val published: Published?,
 		@field:JsonProperty("rank") val rank: Int = 0,
 		@field:JsonProperty("score") val score: Double = 0.0,
 		@field:JsonProperty("scored_by") val scored_by: Int = 0,
 		@field:JsonProperty("popularity") val popularity: Int = 0,
 		@field:JsonProperty("members") val members: Int = 0,
-		@field:JsonProperty("favorites") val favorites: Int = 0,
-		@field:JsonProperty("synopsis") val synopsis: String? = null,
-		@field:JsonProperty("background") val background: String? = null,
-		@field:JsonProperty("related") val related: ArrayList<Related>? = null,
-		@field:JsonProperty("genres") val genres: ArrayList<Genre>? = null,
-		@field:JsonProperty("authors") val authors: ArrayList<Authors>? = null,
-		@field:JsonProperty("serializations") val serializations: ArrayList<Serializations>? = null
-) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListTitle, MyAnimeListImageURL ,MyAnimeListStatus{
+		@field:JsonProperty("favorites") override val favoritesCount: Int = 0,
+		@field:JsonProperty("synopsis") val synopsis: String = "",
+		@field:JsonProperty("background") val background: String = "",
+		@field:JsonProperty("related") override val related: Related?,
+		@field:JsonProperty("genres") override val genres: List<Genre>,
+		@field:JsonProperty("authors") val authors: List<Authors>,
+		@field:JsonProperty("serializations") val serializations: List<Serializations>
+) :
+		Retriever(),
+		MyAnimeListID,
+		MyAnimeListURL,
+		MyAnimeListTitle,
+		MyAnimeListImageURL,
+		MyAnimeListStatus,
+		MyAnimeListRelated,
+		MyAnimeListGenres,
+		MyAnimeListFavoriteCount {
 
 	/**
 	 * Returns MangaCharacters object

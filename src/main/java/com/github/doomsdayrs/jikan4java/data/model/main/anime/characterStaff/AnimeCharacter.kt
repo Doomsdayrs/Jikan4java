@@ -34,8 +34,8 @@ import java.util.*
 class AnimeCharacter(
 		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null,
+		@field:JsonProperty("image_url") override val imageURL: String = "",
 		@field:JsonProperty("name") override val name: String,
 		@field:JsonProperty("role") val role: String? = null,
-		@field:JsonProperty("voice_actors") val voice_actors: ArrayList<VoiceActors>? = null
+		@field:JsonProperty("voice_actors") val voice_actors: ArrayList<VoiceActors> = arrayListOf()
 ) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListName

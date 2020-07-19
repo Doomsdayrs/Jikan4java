@@ -34,23 +34,23 @@ import java.util.concurrent.CompletableFuture
  * @author github.com/doomsdayrs
  */
 data class Person(
-		@field:JsonProperty("request_hash") override val request_hash: String? = null,
+		@field:JsonProperty("request_hash") override val request_hash: String?,
 		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
 		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
 		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null,
-		@field:JsonProperty("website_url") val website_url: String? = null,
-		@field:JsonProperty("name") val name: String? = null,
-		@field:JsonProperty("given_name") val given_name: String? = null,
-		@field:JsonProperty("family_name") val family_name: String? = null,
-		@field:JsonProperty("alternate_names") val alternate_names: ArrayList<String>? = null,
-		@field:JsonProperty("birthday") val birthday: String? = null,
+		@field:JsonProperty("image_url") override val imageURL: String = "",
+		@field:JsonProperty("website_url") val website_url: String = "",
+		@field:JsonProperty("name") val name: String,
+		@field:JsonProperty("given_name") val given_name: String = "",
+		@field:JsonProperty("family_name") val family_name: String = "",
+		@field:JsonProperty("alternate_names") val alternate_names: ArrayList<String>,
+		@field:JsonProperty("birthday") val birthday: String = "",
 		@field:JsonProperty("member_favorites") val member_favorites: Int = 0,
-		@field:JsonProperty("about") val about: String? = null,
-		@field:JsonProperty("voice_acting_roles") val voiceActingRoles: ArrayList<VoiceActingRoles>? = null,
-		@field:JsonProperty("anime_staff_positions") val animeStaffPositions: ArrayList<AnimeStaffPosition>? = null,
-		@field:JsonProperty("published_manga") val publishedMangas: ArrayList<PublishedManga>? = null
+		@field:JsonProperty("about") val about: String = "",
+		@field:JsonProperty("voice_acting_roles") val voiceActingRoles: ArrayList<VoiceActingRoles>,
+		@field:JsonProperty("anime_staff_positions") val animeStaffPositions: ArrayList<AnimeStaffPosition>,
+		@field:JsonProperty("published_manga") val publishedMangas: ArrayList<PublishedManga>
 ) : Retriever(), RequestHashing, MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL {
 
 	@get:JsonIgnore

@@ -27,8 +27,8 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  */
 data class Friends(
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("username") val username: String?,
-		@JsonProperty("image_url") override val imageURL: String?,
-		@JsonProperty("last_online") val last_online: String?,
-		@JsonProperty("friends_since") val friends_since: String?
+		@JsonProperty("username") val username: String = "",
+		@JsonProperty("image_url") override val imageURL: String = "",
+		@JsonProperty("last_online") val last_online: String = "",
+		@JsonProperty("friends_since") val friends_since: String = ""
 ) : MyAnimeListURL, MyAnimeListImageURL

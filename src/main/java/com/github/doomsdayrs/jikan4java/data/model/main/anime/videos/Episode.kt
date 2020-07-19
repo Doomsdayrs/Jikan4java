@@ -30,7 +30,7 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 class Episode(
 		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("episode") val episode: String? = null,
+		@field:JsonProperty("episode") val episode: String = "",
 		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null
+		@field:JsonProperty("image_url") override val imageURL: String = ""
 ) : MyAnimeListURL, MyAnimeListImageURL, MyAnimeListTitle

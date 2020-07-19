@@ -1,6 +1,5 @@
 package com.github.doomsdayrs.jikan4java.data.base.genreSearch
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.base.*
 
 
@@ -34,7 +33,7 @@ interface GenreSearchPageResult
 		MyAnimeListImageURL,
 		MyAnimeListURL,
 		MyAnimeListSynopsis,
-		MyAnimeListGenres {
-	val score: Float
+		MyAnimeListGenres,
+		MyAnimeListScore {
 	val members: Int
 }

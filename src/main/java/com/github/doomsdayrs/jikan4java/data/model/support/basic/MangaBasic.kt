@@ -30,7 +30,7 @@ import java.util.concurrent.CompletableFuture
 class MangaBasic(
 		@JsonProperty("mal_id") mal_id: Int,
 		@JsonProperty("url") url: String,
-		@JsonProperty("image_url") image_url: String?,
+		@JsonProperty("image_url") image_url: String="",
 		@JsonProperty("name") name: String
 ) : BasicObject(mal_id, url, image_url, name) {
 	/**

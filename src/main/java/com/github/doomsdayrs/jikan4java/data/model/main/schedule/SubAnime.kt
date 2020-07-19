@@ -7,7 +7,6 @@ import com.github.doomsdayrs.jikan4java.data.base.*
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Producer
-import java.util.*
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -35,20 +34,30 @@ class SubAnime(
 		@field:JsonProperty("mal_id") override val malID: Int = 0,
 		@field:JsonProperty("url") override val url: String,
 		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("image_url") override val imageURL: String? = null,
-		@field:JsonProperty("synopsis") val synopsis: String? = null,
-		@field:JsonProperty("type") override val type: String? = null,
-		@field:JsonProperty("airing_start") val airing_start: String? = null,
-		@field:JsonProperty("episodes") val episodes: Int = 0,
+		@field:JsonProperty("image_url") override val imageURL: String = "",
+		@field:JsonProperty("synopsis") val synopsis: String = "",
+		@field:JsonProperty("type") override val type: String = "",
+		@field:JsonProperty("airing_start") val airing_start: String = "",
+		@field:JsonProperty("episodes") override val episodeCount: Int = 0,
 		@field:JsonProperty("members") val members: Int = 0,
-		@field:JsonProperty("genres") val genres: ArrayList<Genre>? = null,
-		@field:JsonProperty("source") val source: String? = null,
-		@field:JsonProperty("producers") val producers: ArrayList<Producer>? = null,
-		@field:JsonProperty("score") val score: Float = 0f,
-		@field:JsonProperty("licensors") val licensors: ArrayList<String>? = null,
+		@field:JsonProperty("genres") override val genres: List<Genre>,
+		@field:JsonProperty("source") override val source: String = "",
+		@field:JsonProperty("producers") val producers: List<Producer>,
+		@field:JsonProperty("score") override val score: Double,
+		@field:JsonProperty("licensors") val licensors: List<String>,
 		@field:JsonProperty("r18") val r18: Boolean = false,
 		@field:JsonProperty("kids") val kids: Boolean = false
-) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListTitle, MyAnimeListImageURL, MyAnimeListType {
+) :
+		Retriever(),
+		MyAnimeListID,
+		MyAnimeListURL,
+		MyAnimeListTitle,
+		MyAnimeListImageURL,
+		MyAnimeListType,
+		MyAnimeListSource,
+		MyAnimeListEpisodeCount,
+		MyAnimeListScore,
+		MyAnimeListGenres {
 
 	/**
 	 * Returns the Anime object of this object

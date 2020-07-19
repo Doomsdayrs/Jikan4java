@@ -34,8 +34,8 @@ data class MangaListManga(
 		@JsonProperty("mal_id") override val malID: Int = 0,
 		@JsonProperty("title") override val title: String,
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String? = null,
-		@JsonProperty("type") override val type: String? = null,
+		@JsonProperty("image_url") override val imageURL: String = "",
+		@JsonProperty("type") override val type: String = "",
 		@JsonProperty("reading_status") val reading_status: Int = 0,
 		@JsonProperty("score") val score: Int = 0,
 		@JsonProperty("read_chapters") val read_chapters: Int = 0,
@@ -44,17 +44,24 @@ data class MangaListManga(
 		@JsonProperty("total_volumes") val total_volumes: Int = 0,
 		@JsonProperty("publishing_status") val publishing_status: Int = 0,
 		@JsonProperty("is_rereading") val is_rereading: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
-		@JsonProperty("tags") val tags: ArrayList<String>? = null,
-		@JsonProperty("start_date") val start_date: String? = null,
-		@JsonProperty("end_date") val end_date: String? = null,
-		@JsonProperty("read_start_date") val read_start_date: String? = null,
-		@JsonProperty("read_end_date") val read_end_date: String? = null,//Not sure of this
+		@JsonProperty("tags") val tags: ArrayList<String>,
+		@JsonProperty("start_date") override val startDate: String = "",
+		@JsonProperty("end_date") override val end_date: String = "",
+		@JsonProperty("read_start_date") val read_start_date: String = "",
+		@JsonProperty("read_end_date") val read_end_date: String = "",//Not sure of this
 		@JsonProperty("days") val days: Int = 0,//Also unsure
-		@JsonProperty("retail") val retail: String? = null,
-		@JsonProperty("priority") val priority: String? = null,
+		@JsonProperty("retail") val retail: String = "",
+		@JsonProperty("priority") val priority: String = "",
 		@JsonProperty("added_to_list") val added_to_list: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
-		@JsonProperty("magazines") val magazines: ArrayList<Magazine>? = null
-) : Retriever(), MyAnimeListID, MyAnimeListTitle, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListType {
+		@JsonProperty("magazines") val magazines: ArrayList<Magazine>?
+) :
+		Retriever(),
+		MyAnimeListID,
+		MyAnimeListTitle,
+		MyAnimeListURL,
+		MyAnimeListImageURL,
+		MyAnimeListType,
+		MyAnimeListStartEndDate {
 
 	/**
 	 * Returns the Manga object of this object

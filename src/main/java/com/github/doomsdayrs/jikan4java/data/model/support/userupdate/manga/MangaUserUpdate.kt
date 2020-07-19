@@ -25,14 +25,14 @@ import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.UserUpdate
  * @author github.com/doomsdayrs
  */
 data class MangaUserUpdate(
-		@JsonProperty("username") override val username: String?,
+		@JsonProperty("username") override val username: String = "",
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String?,
+		@JsonProperty("image_url") override val imageURL: String = "",
 		@JsonProperty("score") override val scores: Int,
-		@JsonProperty("status") override val status: String?,
+		@JsonProperty("status") override val status: String = "",
 		@JsonProperty("chapters_read") val chapters_seen: Int,
 		@JsonProperty("volumes_read") val volumes_seen: Int,
 		@JsonProperty("chapters_total") val episodes_total: Int,
 		@JsonProperty("volumes_total") val volumes_total: Int,
-		@JsonProperty("date") override val date: String?
+		@JsonProperty("date") override val date: String = ""
 ) : UserUpdate

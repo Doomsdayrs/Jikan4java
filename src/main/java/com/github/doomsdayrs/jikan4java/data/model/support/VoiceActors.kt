@@ -35,7 +35,7 @@ data class VoiceActors(
 		@JsonProperty("url")
 		override val url: String,
 		@JsonProperty("image_url")
-		override val imageURL: String?,
+		override val imageURL: String = "",
 		@JsonProperty("language")
-		val language: String?
+		val language: String = ""
 ) : MyAnimeListID, MyAnimeListName, MyAnimeListURL, MyAnimeListImageURL

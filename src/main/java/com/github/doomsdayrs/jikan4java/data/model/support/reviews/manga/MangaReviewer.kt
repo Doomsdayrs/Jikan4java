@@ -26,8 +26,8 @@ import com.github.doomsdayrs.jikan4java.data.model.support.reviews.Reviewer
  */
 data class MangaReviewer(
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String?,
-		@JsonProperty("username") override val username: String?,
+		@JsonProperty("image_url") override val imageURL: String = "",
+		@JsonProperty("username") override val username: String = "",
 		@JsonProperty("chapters_read") override val seen: Int,
 		@JsonProperty("scores") override val scores: MangaScore
 ) : Reviewer()

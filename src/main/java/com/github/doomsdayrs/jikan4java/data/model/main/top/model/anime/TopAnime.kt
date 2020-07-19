@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.top.model.anime
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.common.jikanURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListEpisodeCount
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.TopListingMedia
 import java.util.concurrent.CompletableFuture
@@ -33,14 +34,14 @@ data class TopAnime(
 		@JsonProperty("rank") override val rank: Int,
 		@JsonProperty("title") override val title: String,
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String,
+		@JsonProperty("image_url") override val imageURL: String = "",
 		@JsonProperty("type") override val type: String,
-		@JsonProperty("score") override val score: Float,
+		@JsonProperty("score") override val score: Double,
 		@JsonProperty("members") override val members: Int,
 		@JsonProperty("start_date") override val startDate: String,
 		@JsonProperty("end_date") override val endDate: String = "",
-		@JsonProperty("episodes") val episodes: Int = 0
-) : TopListingMedia() {
+		@JsonProperty("episodes") override val episodeCount: Int = 0
+) : TopListingMedia(), MyAnimeListEpisodeCount {
 
 	/**
 	 * Returns the Anime object of this object

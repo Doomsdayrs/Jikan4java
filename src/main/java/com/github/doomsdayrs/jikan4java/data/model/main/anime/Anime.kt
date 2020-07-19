@@ -20,7 +20,6 @@ import com.github.doomsdayrs.jikan4java.data.model.support.related.Related
 import com.github.doomsdayrs.jikan4java.data.model.support.reviews.anime.AnimeReviewPage
 import com.github.doomsdayrs.jikan4java.data.model.support.stats.AnimeStats
 import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.anime.AnimeUserUpdatesPage
-import java.util.*
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -52,37 +51,37 @@ data class Anime(
 		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
 		@JsonProperty("mal_id") override val malID: Int,
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("trailer_url") val trailer_url: String?,
+		@JsonProperty("trailer_url") val trailer_url: String = "",
 		@JsonProperty("title") override val title: String,
-		@JsonProperty("title_english") val title_english: String?,
-		@JsonProperty("title_japanese") val title_japanese: String?,
-		@JsonProperty("title_synonyms") val title_synonyms: ArrayList<String>?,
-		@JsonProperty("type") override val type: String?,
-		@JsonProperty("source") val source: String?,
-		@JsonProperty("episodes") val episodes: Int,
-		@JsonProperty("status") override val status: String?,
+		@JsonProperty("title_english") val title_english: String = "",
+		@JsonProperty("title_japanese") val title_japanese: String = "",
+		@JsonProperty("title_synonyms") val title_synonyms: List<String>,
+		@JsonProperty("type") override val type: String = "",
+		@JsonProperty("source") override val source: String = "",
+		@JsonProperty("episodes") override val episodeCount: Int,
+		@JsonProperty("status") override val status: String = "",
 		@JsonProperty("aired") val aired: Aired?,
 		@JsonProperty("airing") val airing: Boolean,
-		@JsonProperty("duration") val duration: String?,
-		@JsonProperty("rating") val rating: String?,
-		@JsonProperty("score") val score: Double,
+		@JsonProperty("duration") val duration: String = "",
+		@JsonProperty("rating") val rating: String = "",
+		@JsonProperty("score") override val score: Double,
 		@JsonProperty("scored_by") val scored_by: Int,
 		@JsonProperty("rank") val rank: Int,
 		@JsonProperty("popularity") val popularity: Int,
 		@JsonProperty("members") val members: Int,
-		@JsonProperty("favorites") val favorites: Int,
-		@JsonProperty("synopsis") val synopsis: String?,
-		@JsonProperty("background") val background: String?,
-		@JsonProperty("premiered") val premiered: String?,
-		@JsonProperty("broadcast") val broadcast: String?,
-		@JsonProperty("related") val related: Related?,
-		@JsonProperty("producers") val producers: ArrayList<Producer>?,
-		@JsonProperty("licensors") val licensors: ArrayList<Licensors>?,
-		@JsonProperty("studios") val studios: ArrayList<Studios>?,
-		@JsonProperty("genres") val genres: ArrayList<Genre>?,
-		@JsonProperty("opening_themes") val opening_themes: ArrayList<String>?,
-		@JsonProperty("ending_themes") val ending_themes: ArrayList<String>?,
-		@JsonProperty("image_url") override val imageURL: String?
+		@JsonProperty("favorites") override val favoritesCount: Int,
+		@JsonProperty("synopsis") val synopsis: String = "",
+		@JsonProperty("background") val background: String = "",
+		@JsonProperty("premiered") val premiered: String = "",
+		@JsonProperty("broadcast") val broadcast: String = "",
+		@JsonProperty("related") override val related: Related?,
+		@JsonProperty("producers") val producers: List<Producer>,
+		@JsonProperty("licensors") val licensors: List<Licensors>,
+		@JsonProperty("studios") val studios: List<Studios>,
+		@JsonProperty("genres") override val genres: List<Genre>,
+		@JsonProperty("opening_themes") val opening_themes: List<String>,
+		@JsonProperty("ending_themes") val ending_themes: List<String>,
+		@JsonProperty("image_url") override val imageURL: String = ""
 ) :
 		Retriever(),
 		RequestHashing,
@@ -91,7 +90,13 @@ data class Anime(
 		MyAnimeListTitle,
 		MyAnimeListImageURL,
 		MyAnimeListType,
-		MyAnimeListStatus {
+		MyAnimeListStatus,
+		MyAnimeListSource,
+		MyAnimeListEpisodeCount,
+		MyAnimeListScore,
+		MyAnimeListRelated,
+		MyAnimeListGenres,
+		MyAnimeListFavoriteCount {
 
 	/**
 	 * Gets character and staff object
@@ -110,7 +115,7 @@ data class Anime(
 	fun getEpisodes(pageNumber: Int): CompletableFuture<Episodes> = retrieve("$jikanURL/anime/$malID${if (pageNumber != 0) "/episodes/$pageNumber" else "/episodes"}")
 
 	@JsonIgnore
-	fun getEpisodes(): CompletableFuture<Episodes> = getEpisodes(0)
+	fun getEpisodeCount(): CompletableFuture<Episodes> = getEpisodes(0)
 
 	/**
 	 * Gets news about anime

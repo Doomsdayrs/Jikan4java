@@ -3,6 +3,9 @@ package com.github.doomsdayrs.jikan4java.data.model.main.anime.animePage
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.common.jikanURL
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListEpisodeCount
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListScore
+import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListSource
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.ContentPage
 
@@ -32,19 +35,19 @@ import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.Content
 data class AnimePageAnime(
 		@JsonProperty("mal_id") override val malID: Int,
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String?,
+		@JsonProperty("image_url") override val imageURL: String = "",
 		@JsonProperty("title") override val title: String,
 		@JsonProperty("synopsis") override val synopsis: String?,
 		@JsonProperty("type") override val type: String?,
 		@JsonProperty("score") override val score: Double,
-		@JsonProperty("start_date") override val start_date: String?,
+		@JsonProperty("start_date") override val startDate: String?,
 		@JsonProperty("end_date") override val end_date: String?,
 		@JsonProperty("members") override val members: Int,
 		@JsonProperty("airing") val airing: Boolean,
-		@JsonProperty("episodes") val episodes: Int,
-		@JsonProperty("source") val source: String,
+		@JsonProperty("episodes") override val episodeCount: Int,
+		@JsonProperty("source") override val source: String,
 		@JsonProperty("rated") val rated: String
-) : ContentPage() {
+) : ContentPage(), MyAnimeListSource, MyAnimeListEpisodeCount, MyAnimeListScore {
 	/**
 	 * Returns the Anime object of this object
 	 *

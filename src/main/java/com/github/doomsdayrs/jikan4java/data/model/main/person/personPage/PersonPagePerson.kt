@@ -31,9 +31,9 @@ import java.util.*
 data class PersonPagePerson(
 		@JsonProperty("mal_id") override val malID: Int,
 		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String?,
+		@JsonProperty("image_url") override val imageURL: String = "",
 		@JsonProperty("name") override val name: String,
-		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>?
+		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>
 ) : IndividualsPage() {
 	/**
 	 * Returns the Person object of this object
