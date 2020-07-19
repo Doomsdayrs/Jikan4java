@@ -43,7 +43,6 @@ import com.github.doomsdayrs.jikan4java.data.model.support.recommendations.Recom
 import com.github.doomsdayrs.jikan4java.data.model.support.reviews.anime.AnimeReviewPage
 import com.github.doomsdayrs.jikan4java.data.model.support.stats.AnimeStats
 import com.github.doomsdayrs.jikan4java.data.model.support.stats.MangaStats
-import com.github.doomsdayrs.jikan4java.data.model.support.stats.Stats
 import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.anime.AnimeUserUpdatesPage
 import org.junit.After
 import org.junit.Before
@@ -87,26 +86,17 @@ internal object KotlinTester {
 
 	/** Types: Anime, Manga, Top, Connector, Days, Genres, User, Club */
 	private val types = booleanArrayOf(
-			false,//Anime
-			false,//Manga
+			true,//Anime
+			true,//Manga
 			true,//Top
-			false,//Connector
-			false,//Days
-			false,//Genres
-			false,//User
-			false//Club
+			true,//Connector
+			true,//Days
+			true,//Genres
+			true,//User
+			true//Club
 	)
 	private var max = 1 + animes.size * 12 + mangaTitles.size * 5 + tops.size + CONNECTOR_SIZE + days.size + GENRES_SIZE + USER_SIZE + CLUB_SIZE
 	private var currentProgress = 0
-
-	/**
-	 * S is for sleep, It sleeps!
-	 *
-	 * @throws InterruptedException AAAA
-	 */
-	@Throws(InterruptedException::class)
-	private fun s() {
-	}
 
 	private fun p(`object`: Any?) {
 		println(`object`)
@@ -135,60 +125,6 @@ internal object KotlinTester {
 	fun main(args: Array<String>) {
 		setupTest()
 		progressUpdate()
-		for (arg in args) {
-			var holder = ""
-			val v = arg.indexOf("=")
-			holder = if (v != -1 && v != arg.length - 1) arg.substring(v + 1) else throw IndexOutOfBoundsException("Invalid entry!")
-			var value = -1
-			try {
-				value = holder.toInt()
-			} catch (e: NumberFormatException) {
-				e.printStackTrace()
-			}
-			if (value != 1 && value != 0) throw IndexOutOfBoundsException("Invalid entry!")
-			if (arg.toLowerCase().contains("-anime")) {
-				if (value == 0) {
-					max -= animes.size * 12
-					types[0] = false
-				}
-			} else if (arg.toLowerCase().contains("-manga")) {
-				if (value == 0) {
-					max -= mangaTitles.size * 5
-					types[1] = false
-				}
-			} else if (arg.toLowerCase().contains("-top")) {
-				if (value == 0) {
-					max -= tops.size
-					types[2] = false
-				}
-			} else if (arg.toLowerCase().contains("-connector")) {
-				if (value == 0) {
-					max -= CONNECTOR_SIZE
-					types[3] = false
-				}
-			} else if (arg.toLowerCase().contains("-days")) {
-				if (value == 0) {
-					max -= days.size
-					types[4] = false
-				}
-			} else if (arg.toLowerCase().contains("-genre")) {
-				if (value == 0) {
-					max -= GENRES_SIZE
-					types[5] = false
-				}
-			} else if (arg.toLowerCase().contains("-user")) {
-				if (value == 0) {
-					max -= USER_SIZE
-					types[6] = false
-				}
-			} else if (arg.toLowerCase().contains("-club")) {
-				if (value == 0) {
-					max -= CLUB_SIZE
-					types[6] = false
-				}
-			}
-		}
-
 		testAnime()
 		testManga()
 		testSearch()
@@ -217,72 +153,72 @@ internal object KotlinTester {
 				val animeCompletableFuture = animeSearch.getFirst<Anime>()
 				animeCompletableFuture!!.thenAccept { obj: Anime? -> p(obj) }
 				val anime: Anime = animeCompletableFuture.get()
-				s()
+
 				progressUpdate()
 				println("\nCharacter_Staff\n")
 				val characterStaffCompletableFuture = anime.characterStaffs
 				characterStaffCompletableFuture.thenAccept { obj: CharacterStaff? -> p(obj) }
-				val character_staff = characterStaffCompletableFuture.get()
-				s()
+				characterStaffCompletableFuture.get()
+
 				progressUpdate()
 				println("\nEpisodes\n")
 				val episodesCompletableFuture = anime.getEpisodes()
 				episodesCompletableFuture.thenAccept { obj: Episodes? -> p(obj) }
-				val episodes = episodesCompletableFuture.get()
-				s()
+				episodesCompletableFuture.get()
+
 				println("\nNews\n")
 				val newsCompletableFuture = anime.news
 				newsCompletableFuture.thenAccept { obj: News? -> p(obj) }
-				val news = newsCompletableFuture.get()
-				s()
+				newsCompletableFuture.get()
+
 				progressUpdate()
 				println("\nPictures\n")
 				val picturesCompletableFuture = anime.pictures
 				picturesCompletableFuture.thenAccept { obj: Pictures? -> p(obj) }
-				val pictures = picturesCompletableFuture.get()
-				s()
+				picturesCompletableFuture.get()
+
 				progressUpdate()
 				println("\nVideos\n")
 				val videoCompletableFuture = anime.videos
 				videoCompletableFuture.thenAccept { obj: Video? -> p(obj) }
-				val video = videoCompletableFuture.get()
-				s()
+				videoCompletableFuture.get()
+
 				progressUpdate()
 				println("\nStats\n")
 				val statsCompletableFuture = anime.stats
 				statsCompletableFuture.thenAccept { obj: AnimeStats? -> p(obj) }
-				val stats: Stats = statsCompletableFuture.get()
-				s()
+				statsCompletableFuture.get()
+
 				progressUpdate()
 				println("\nForum\n")
 				val forumCompletableFuture = anime.forum
 				forumCompletableFuture.thenAccept { obj: Forum? -> p(obj) }
-				val forum = forumCompletableFuture.get()
-				s()
+				forumCompletableFuture.get()
+
 				progressUpdate()
 				println("\nMoreInfo\n")
 				val moreInfoCompletableFuture = anime.moreInfo
 				moreInfoCompletableFuture.thenAccept { obj: MoreInfo? -> p(obj) }
-				val moreInfo = moreInfoCompletableFuture.get()
-				s()
+				moreInfoCompletableFuture.get()
+
 				progressUpdate()
 				println("\nReviewPage\n")
 				val reviewCompletableFuture = anime.reviewPage
 				reviewCompletableFuture.thenAccept { obj: AnimeReviewPage? -> p(obj) }
-				val reviewPage = reviewCompletableFuture.get()
-				s()
+				reviewCompletableFuture.get()
+
 				progressUpdate()
 				println("\nRecommendationPage\n")
 				val recommendCompletableFuture = anime.recommendationPage
 				recommendCompletableFuture.thenAccept { obj: RecommendationPage? -> p(obj) }
-				val recommendationPage = recommendCompletableFuture.get()
-				s()
+				recommendCompletableFuture.get()
+
 				progressUpdate()
 				println("\nUserUpdates\n")
 				val animeUserUpdateCompletableFuture = anime.userUpdatesPage
 				animeUserUpdateCompletableFuture.thenAccept { obj: AnimeUserUpdatesPage? -> p(obj) }
-				val (request_hash, request_cached, request_cache_expiry, userUpdates) = animeUserUpdateCompletableFuture.get()
-				s()
+				animeUserUpdateCompletableFuture.get()
+
 			}
 		}
 	}
@@ -299,27 +235,26 @@ internal object KotlinTester {
 				val mangaCompletableFuture = mangaSearch.getFirst<Manga>()
 				mangaCompletableFuture!!.thenAccept { obj: Manga? -> p(obj) }
 				val manga = mangaCompletableFuture.get()
-				s()
+
 				progressUpdate()
 				val characterCompletableFuture = manga.characters
 				characterCompletableFuture.thenAccept { obj: MangaCharacters? -> p(obj) }
-				val (request_hash, request_cached, request_cache_expiry, characterArrayList) = characterCompletableFuture.get()
-				s()
+				characterCompletableFuture.get()
+
 				progressUpdate()
 				val newsCompletableFuture = manga.news
 				newsCompletableFuture.thenAccept { obj: News? -> p(obj) }
-				val news = newsCompletableFuture.get()
-				s()
+				newsCompletableFuture.get()
+
 				progressUpdate()
 				val picturesCompletableFuture = manga.pictures
 				picturesCompletableFuture.thenAccept { obj: Pictures? -> p(obj) }
-				val pictures = picturesCompletableFuture.get()
-				s()
+				picturesCompletableFuture.get()
+
 				progressUpdate()
 				val statsCompletableFuture = manga.stats
 				statsCompletableFuture.thenAccept { obj: MangaStats? -> p(obj) }
-				val stats: Stats = statsCompletableFuture.get()
-				s()
+				statsCompletableFuture.get()
 			}
 		}
 	}
@@ -334,8 +269,7 @@ internal object KotlinTester {
 				println("\n")
 				val topCompletableFuture = topSearch.searchTop(TopSearch.ANIME)
 				topCompletableFuture.thenAccept { obj: Top<*>? -> p(obj) }
-				val t = topCompletableFuture.get()
-				println(t)
+				topCompletableFuture.get()
 			}
 			run {
 				topSearch = TopSearch()
@@ -343,8 +277,7 @@ internal object KotlinTester {
 				println("\n")
 				val topCompletableFuture = topSearch.searchTop(TopSearch.MANGA)
 				topCompletableFuture.thenAccept { obj: Top<*>? -> p(obj) }
-				val t = topCompletableFuture.get()
-				println(t)
+				topCompletableFuture.get()
 			}
 			run {
 				topSearch = TopSearch()
@@ -352,8 +285,7 @@ internal object KotlinTester {
 				println("\n")
 				val topCompletableFuture = topSearch.searchTop(TopSearch.CHARACTER)
 				topCompletableFuture.thenAccept { obj: Top<*>? -> p(obj) }
-				val t = topCompletableFuture.get()
-				println(t)
+				topCompletableFuture.get()
 			}
 			run {
 				topSearch = TopSearch()
@@ -361,8 +293,7 @@ internal object KotlinTester {
 				println("\n")
 				val topCompletableFuture = topSearch.searchTop(TopSearch.PERSON)
 				topCompletableFuture.thenAccept { obj: Top<*>? -> p(obj) }
-				val t = topCompletableFuture.get()
-				println(t)
+				topCompletableFuture.get()
 			}
 		}
 	}
@@ -375,42 +306,42 @@ internal object KotlinTester {
 			val personCompletableFuture = connector.retrievePerson(1)
 			personCompletableFuture.thenAccept { obj: Person? -> p(obj) }
 			val person = personCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			var picturesCompletableFuture: CompletableFuture<Pictures> = person.pictures
 			picturesCompletableFuture.thenAccept { obj: Pictures? -> p(obj) }
-			val personPictures = picturesCompletableFuture.get()
-			s()
+			picturesCompletableFuture.get()
+
 			progressUpdate()
 			val characterCompletableFuture = connector.retrieveCharacter(1)
 			characterCompletableFuture.thenAccept { obj: Character? -> p(obj) }
 			val character = characterCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			picturesCompletableFuture = character.pictures
 			picturesCompletableFuture.thenAccept { obj: Pictures? -> p(obj) }
-			val characterPictures = picturesCompletableFuture.get()
-			s()
+			picturesCompletableFuture.get()
+
 			progressUpdate()
 			val seasonArchiveCompletableFuture = connector.seasonArchive()
 			seasonArchiveCompletableFuture.thenAccept { obj: SeasonArchive? -> p(obj) }
 			seasonArchiveCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val seasonSearchCompletableFuture = connector.seasonLater()
 			seasonSearchCompletableFuture.thenAccept { obj: SeasonSearch? -> p(obj) }
 			seasonSearchCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val producerPageCompletableFuture = connector.producerSearch(1, 1)
 			producerPageCompletableFuture.thenAccept { obj: ProducerPage? -> p(obj) }
 			producerPageCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val magazinePageCompletableFuture = connector.magazineSearch(1, 1)
 			magazinePageCompletableFuture.thenAccept { obj: MagazinePage? -> p(obj) }
 			magazinePageCompletableFuture.get()
-			s()
+
 		}
 	}
 
@@ -423,7 +354,7 @@ internal object KotlinTester {
 				val daysCompletableFuture = connector.scheduleSearch(day)
 				daysCompletableFuture.thenAccept { obj: Day? -> p(obj) }
 				daysCompletableFuture.get()
-				s()
+
 			}
 		}
 	}
@@ -437,12 +368,12 @@ internal object KotlinTester {
 			val animePageCompletableFuture = genreSearch.searchGenre(AnimeGenres.ACTION)
 			animePageCompletableFuture.thenAccept { obj: GenreSearchAnimePage? -> p(obj) }
 			animePageCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val mangaPageCompletableFuture = genreSearch.searchGenre(MangaGenres.ACTION)
 			mangaPageCompletableFuture.thenAccept { obj: GenreSearchMangaPage? -> p(obj) }
 			mangaPageCompletableFuture.get()
-			s()
+
 		}
 	}
 
@@ -454,32 +385,32 @@ internal object KotlinTester {
 			val userCompletableFuture = connector.userRetrieve(USER_NAME)
 			userCompletableFuture.thenAccept { obj: User? -> p(obj) }
 			val user = userCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val animeListCompletableFuture = user.animeListSearch.list
 			animeListCompletableFuture.thenAccept { obj: AnimeList? -> p(obj) }
 			animeListCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val mangaListCompletableFuture = user.mangaListSearch.list
 			mangaListCompletableFuture.thenAccept { obj: MangaList? -> p(obj) }
 			mangaListCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val friendsCompletableFuture = user.getFriends(1)
 			friendsCompletableFuture.thenAccept { obj: FriendPage? -> p(obj) }
 			friendsCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val animeHistoryPageCompletableFuture = user.getHistory(HistoryTypes.ANIME)
 			animeHistoryPageCompletableFuture.thenAccept { obj: HistoryPage? -> p(obj) }
 			animeHistoryPageCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val mangaHistoryPageCompletableFuture = user.getHistory(HistoryTypes.MANGA)
 			mangaHistoryPageCompletableFuture.thenAccept { obj: HistoryPage? -> p(obj) }
 			mangaHistoryPageCompletableFuture.get()
-			s()
+
 		}
 	}
 
@@ -491,7 +422,7 @@ internal object KotlinTester {
 			val clubCompletableFuture = connector.retrieveClub(1)
 			clubCompletableFuture.thenAccept { obj: Club? -> p(obj) }
 			val club = clubCompletableFuture.get()
-			s()
+
 			progressUpdate()
 			val clubMemberPageCompletableFuture = club.members
 			clubMemberPageCompletableFuture.thenAccept { obj: ClubMemberPage? -> p(obj) }

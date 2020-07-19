@@ -35,7 +35,6 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-@Deprecated("Issue with compliation method")
 class TopSearch : Retriever() {
 
 	/**
