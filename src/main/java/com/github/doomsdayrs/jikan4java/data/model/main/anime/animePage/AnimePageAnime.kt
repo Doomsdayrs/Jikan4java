@@ -45,7 +45,7 @@ data class AnimePageAnime(
 		@JsonProperty("members") override val members: Int,
 		@JsonProperty("airing") val airing: Boolean,
 		@JsonProperty("episodes") override val episodeCount: Int,
-		@JsonProperty("source") override val source: String,
+		@JsonProperty("source") override val source: String?,
 		@JsonProperty("rated") val rated: String
 ) : ContentPage(), MyAnimeListSource, MyAnimeListEpisodeCount, MyAnimeListScore {
 	/**
