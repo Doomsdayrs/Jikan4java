@@ -39,5 +39,5 @@ data class TopManga(
 	@SerialName("members") override val members: Int,
 	@SerialName("start_date") override val startDate: String,
 	@SerialName("end_date") override val endDate: String = "",
-	@SerialName("volumes") val volumes: Int
+	@SerialName("volumes") val volumes: Int = 0
 ) : TopListingMedia(), MyAnimeListMangaType

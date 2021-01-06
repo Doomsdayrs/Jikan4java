@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.data.model.support.related
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -27,16 +26,39 @@ import java.util.*
  */
 @Serializable
 data class Related(
-	@SerialName("Prequel") val prequel: ArrayList<RelatedType>,
-	@SerialName("Alternative version") val altVersion: ArrayList<RelatedType>,
-	@SerialName("Spin-off") val spinOff: ArrayList<RelatedType>,
-	@SerialName("Adaptation") val adaptation: ArrayList<RelatedType>,
-	@SerialName("Summary") val summaries: ArrayList<RelatedType>,
-	@SerialName("Sequel") val sequels: ArrayList<RelatedType>,
-	@SerialName("Side story") val sideStories: ArrayList<RelatedType>,
-	@SerialName("Other") val other: ArrayList<RelatedType>,
-	@SerialName("Parent story") val parentStories: ArrayList<RelatedType>,
-	@SerialName("Alternative setting") val alternativeSettings: ArrayList<RelatedType>,
-	@SerialName("Character") val characters: ArrayList<RelatedType>,
-	@SerialName("Full story") val fullStories: ArrayList<RelatedType>
+	@SerialName("Prequel")
+	val prequel: List<RelatedType> = listOf(),
+
+	@SerialName("Alternative version")
+	val altVersion: List<RelatedType> = listOf(),
+
+	@SerialName("Spin-off")
+	val spinOff: List<RelatedType> = listOf(),
+
+	@SerialName("Adaptation")
+	val adaptation: List<RelatedType> = listOf(),
+
+	@SerialName("Summary")
+	val summaries: List<RelatedType> = listOf(),
+
+	@SerialName("Sequel")
+	val sequels: List<RelatedType> = listOf(),
+
+	@SerialName("Side story")
+	val sideStories: List<RelatedType> = listOf(),
+
+	@SerialName("Other")
+	val other: List<RelatedType> = listOf(),
+
+	@SerialName("Parent story")
+	val parentStories: List<RelatedType> = listOf(),
+
+	@SerialName("Alternative setting")
+	val alternativeSettings: List<RelatedType> = listOf(),
+
+	@SerialName("Character")
+	val characters: List<RelatedType> = listOf(),
+
+	@SerialName("Full story")
+	val fullStories: List<RelatedType> = listOf()
 )

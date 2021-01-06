@@ -3,7 +3,6 @@ package com.github.doomsdayrs.jikan4java.data.model.main.club
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -28,8 +27,8 @@ import java.util.*
  */
 @Serializable
 data class ClubMemberPage(
-	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
-	@SerialName("members") val clubMembers: ArrayList<ClubMember>? = null
+	@SerialName("members") val clubMembers: List<ClubMember> = listOf()
 ) : RequestHashing

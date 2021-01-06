@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.data.base.genreSearch
 
 import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.MalURL
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
-import java.util.*
 
 
 /*
@@ -30,7 +29,7 @@ import java.util.*
 interface GenreSearchPage<T : GenreSearchPageResult> : RequestHashing {
 	val malURL: MalURL
 	val itemCount: Int
-	val results: ArrayList<T>
+	val results: List<T>
 
 	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
 	@Suppress("PropertyName")

@@ -28,13 +28,13 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class Article(
-	@SerialName("url") override var url: String,
-	@SerialName("title") override var title: String,
-	@SerialName("date") var date: String?,
-	@SerialName("author_name") var author_name: String?,
-	@SerialName("author_url") var author_url: String?,
-	@SerialName("forum_url") var forum_url: String?,
-	@SerialName("image_url") var image_url: String?,
-	@SerialName("comments") var comments: Int,
-	@SerialName("intro") var intro: String?
+	@SerialName("url") override val url: String,
+	@SerialName("title") override val title: String,
+	@SerialName("date") val date: String?,
+	@SerialName("author_name") val author_name: String?,
+	@SerialName("author_url") val author_url: String?,
+	@SerialName("forum_url") val forum_url: String?,
+	@SerialName("image_url") val image_url: String?,
+	@SerialName("comments") val comments: Int,
+	@SerialName("intro") val intro: String?
 ) : MyAnimeListURL, MyAnimeListTitle

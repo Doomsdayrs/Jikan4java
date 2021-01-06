@@ -11,7 +11,6 @@ import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.BasicMeta
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -37,7 +36,7 @@ import java.util.concurrent.CompletableFuture
  */
 @Serializable
 data class Club(
-	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
 	@SerialName("mal_id") override val malID: Int = 0,
@@ -49,10 +48,10 @@ data class Club(
 	@SerialName("category") val category: String? = null,
 	@SerialName("created") val created: String? = null,
 	@SerialName("type") override val type: String? = null,
-	@SerialName("staff") val staff: ArrayList<BasicMeta>? = null,
-	@SerialName("anime_relations") val anime_relations: ArrayList<BasicMeta>? = null,
-	@SerialName("manga_relations") val manga_relations: ArrayList<BasicMeta>? = null,
-	@SerialName("character_relations") val character_relations: ArrayList<BasicMeta>? = null
+	@SerialName("staff") val staff: List<BasicMeta> = listOf(),
+	@SerialName("anime_relations") val anime_relations: List<BasicMeta> = listOf(),
+	@SerialName("manga_relations") val manga_relations: List<BasicMeta> = listOf(),
+	@SerialName("character_relations") val character_relations: List<BasicMeta> = listOf()
 ) : RequestHashing, MyAnimeListID, MyAnimeListImageURL, MyAnimeListTitle,
 	MyAnimeListType {
 

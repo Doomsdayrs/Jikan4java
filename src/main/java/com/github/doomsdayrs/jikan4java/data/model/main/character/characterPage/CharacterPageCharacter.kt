@@ -4,7 +4,6 @@ import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListCharacterType
 import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.IndividualsPage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -34,7 +33,7 @@ data class CharacterPageCharacter(
 	@SerialName("url") override val url: String,
 	@SerialName("image_url") override val imageURL: String = "",
 	@SerialName("name") override val name: String,
-	@SerialName("alternative_names") override val alternativeNames: ArrayList<String>,
-	@SerialName("anime") val animes: ArrayList<PageCharacterAnime>,
-	@SerialName("manga") val mangas: ArrayList<PageCharacterManga>
+	@SerialName("alternative_names") override val alternativeNames: List<String>,
+	@SerialName("anime") val animes: List<PageCharacterAnime>,
+	@SerialName("manga") val mangas: List<PageCharacterManga>
 ) : IndividualsPage(), MyAnimeListCharacterType

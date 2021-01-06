@@ -3,18 +3,17 @@ package com.github.doomsdayrs.jikan4java.data.model.main.character
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
 import com.github.doomsdayrs.jikan4java.core.JikanResult
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListPicturesEndPoint
+import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListSelfType
+import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListName
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
-import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListPicturesEndPoint
-import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListSelfType
-import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.VoiceActors
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -47,13 +46,13 @@ data class Character(
 	@SerialName("url") override val url: String,
 	@SerialName("name") override val name: String,
 	@SerialName("name_kanji") val name_kanji: String = "",
-	@SerialName("nicknames") val nicknames: ArrayList<String> = arrayListOf(),
+	@SerialName("nicknames") val nicknames: List<String> = listOf(),
 	@SerialName("about") val about: String = "",
 	@SerialName("member_favorites") val member_favorites: Int = 0,
 	@SerialName("image_url") override val imageURL: String = "",
-	@SerialName("animeography") val animeography: ArrayList<Animeography>,
-	@SerialName("mangaography") val mangaography: ArrayList<Mangaography>,
-	@SerialName("voice_actors") val voice_actors: ArrayList<VoiceActors>
+	@SerialName("animeography") val animeography: List<Animeography>,
+	@SerialName("mangaography") val mangaography: List<Mangaography>,
+	@SerialName("voice_actors") val voice_actors: List<VoiceActors>
 ) : RequestHashing, MyAnimeListID, MyAnimeListURL, MyAnimeListName,
 	MyAnimeListImageURL, MyAnimeListPicturesEndPoint {
 	override val urlPoint: String by lazy { "character" }

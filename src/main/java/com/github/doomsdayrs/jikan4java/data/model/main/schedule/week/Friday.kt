@@ -4,7 +4,6 @@ import com.github.doomsdayrs.jikan4java.data.model.main.schedule.Day
 import com.github.doomsdayrs.jikan4java.data.model.main.schedule.SubAnime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -30,8 +29,8 @@ import java.util.*
  */
 @Serializable
 data class Friday(
-	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
-	@SerialName("friday") override val subAnimes: ArrayList<SubAnime>
+	@SerialName("friday") override val subAnimes: List<SubAnime>
 ) : Day()

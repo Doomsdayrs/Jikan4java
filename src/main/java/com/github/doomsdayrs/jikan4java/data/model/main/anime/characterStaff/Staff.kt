@@ -6,7 +6,6 @@ import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListName
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -35,5 +34,5 @@ data class Staff(
 	@SerialName("url") override val url: String,
 	@SerialName("name") override val name: String,
 	@SerialName("image_url") override val imageURL: String = "",
-	@SerialName("positions") val positions: ArrayList<String> = arrayListOf()
+	@SerialName("positions") val positions: List<String> = arrayListOf()
 ) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListName

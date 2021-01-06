@@ -6,7 +6,6 @@ import com.github.doomsdayrs.jikan4java.data.model.support.basic.MangaBasic
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.PeopleBasic
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -31,8 +30,8 @@ import java.util.*
  */
 @Serializable
 data class Favorites(
-	@SerialName("anime") var animes: ArrayList<AnimeBasic>? = null,
-	@SerialName("manga") var mangas: ArrayList<MangaBasic>? = null,
-	@SerialName("characters") var characters: ArrayList<CharacterBasic>? = null,
-	@SerialName("people") var peoples: ArrayList<PeopleBasic>? = null
+	@SerialName("anime") val animes: List<AnimeBasic> = listOf(),
+	@SerialName("manga") val mangas: List<MangaBasic> = listOf(),
+	@SerialName("characters") val characters: List<CharacterBasic> = listOf(),
+	@SerialName("people") val peoples: List<PeopleBasic> = listOf()
 )

@@ -3,7 +3,6 @@ package com.github.doomsdayrs.jikan4java.data.model.main.character.characterPage
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -28,9 +27,9 @@ import java.util.*
  */
 @Serializable
 data class CharacterPage(
-	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
-	@SerialName("results") val characters: ArrayList<CharacterPageCharacter>? = null,
+	@SerialName("results") val characters: List<CharacterPageCharacter> = listOf(),
 	@SerialName("last_page") val last_page: Int = 0
 ) : RequestHashing

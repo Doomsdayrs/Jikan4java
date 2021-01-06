@@ -30,9 +30,9 @@ data class AnimeUserUpdate(
 	@SerialName("username") override val username: String = "",
 	@SerialName("url") override val url: String,
 	@SerialName("image_url") override val imageURL: String = "",
-	@SerialName("score") override val scores: Int,
+	@SerialName("score") override val scores: Int = 0,
 	@SerialName("status") override val status: String = "",
-	@SerialName("episodes_seen") val episodes_seen: Int,
-	@SerialName("episodes_total") val episodes_total: Int,
-	@SerialName("date") override val date: String?
+	@SerialName("episodes_seen") val episodes_seen: Int = 0,
+	@SerialName("episodes_total") val episodes_total: Int = 0,
+	@SerialName("date") override val date: String? = null
 ) : UserUpdate

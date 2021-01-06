@@ -5,7 +5,6 @@ import com.github.doomsdayrs.jikan4java.data.base.values.*
 import com.github.doomsdayrs.jikan4java.data.model.main.magazine.Magazine
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -44,7 +43,7 @@ data class MangaListManga(
 	@SerialName("total_volumes") val total_volumes: Int = 0,
 	@SerialName("publishing_status") val publishing_status: Int = 0,
 	@SerialName("is_rereading") val is_rereading: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
-	@SerialName("tags") val tags: ArrayList<String>,
+	@SerialName("tags") val tags: List<String>,
 	@SerialName("start_date") override val startDate: String = "",
 	@SerialName("end_date") override val endDate: String = "",
 	@SerialName("read_start_date") val read_start_date: String = "",
@@ -53,7 +52,7 @@ data class MangaListManga(
 	@SerialName("retail") val retail: String = "",
 	@SerialName("priority") val priority: String = "",
 	@SerialName("added_to_list") val added_to_list: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
-	@SerialName("magazines") val magazines: ArrayList<Magazine>?
+	@SerialName("magazines") val magazines: List<Magazine>?
 ) :
 	MyAnimeListID,
 	MyAnimeListTitle,

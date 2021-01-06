@@ -4,7 +4,6 @@ import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPage
 import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.MalURL
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -29,10 +28,10 @@ import java.util.*
  */
 @Serializable
 data class GenreSearchAnimePage(
-	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
 	@SerialName("mal_url") override val malURL: MalURL,
 	@SerialName("item_count") override val itemCount: Int,
-	@SerialName("anime") override val results: ArrayList<GenreSearchAnime>
+	@SerialName("anime") override val results: List<GenreSearchAnime>
 ) : GenreSearchPage<GenreSearchAnime>

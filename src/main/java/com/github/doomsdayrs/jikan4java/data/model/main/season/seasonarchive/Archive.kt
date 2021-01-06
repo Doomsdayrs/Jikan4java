@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.data.model.main.season.seasonarchive
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -28,5 +27,5 @@ import java.util.*
 @Serializable
 data class Archive(
 	@SerialName("year") val year: Int = 0,
-	@SerialName("seasons") val seasons: ArrayList<String>? = null
+	@SerialName("seasons") val seasons: List<String> = listOf()
 )

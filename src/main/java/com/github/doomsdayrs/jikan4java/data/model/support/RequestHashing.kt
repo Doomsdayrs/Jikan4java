@@ -25,7 +25,7 @@ import kotlinx.serialization.SerialName
  */
 interface RequestHashing {
 	@SerialName("request_hash")
-	val requestHash: String?
+	val requestHash: String
 
 	@SerialName("request_cached")
 	val requestCached: Boolean

@@ -4,7 +4,6 @@ import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.forum.topic.Topic
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -29,8 +28,8 @@ import java.util.*
  */
 @Serializable
 data class Forum(
-	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
-	@SerialName("topics") val topics: ArrayList<Topic>?
+	@SerialName("topics") val topics: List<Topic>?
 ) : RequestHashing

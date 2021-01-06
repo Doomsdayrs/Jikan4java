@@ -27,7 +27,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class AnimeUserUpdatesPage(
-	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
 	@SerialName("users") override val userUpdates: List<AnimeUserUpdate>

@@ -6,7 +6,6 @@ import com.github.doomsdayrs.jikan4java.data.model.main.anime.Licensors
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Studios
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -59,7 +58,7 @@ data class AnimeListAnime(
 	@SerialName("storage") val storage: String = "",
 	@SerialName("priority") val priority: String = "",
 	@SerialName("added_to_list") val added_to_list: Boolean = false,
-	@SerialName("studios") val studios: ArrayList<Studios>,
-	@SerialName("licensors") val licensors: ArrayList<Licensors>
+	@SerialName("studios") val studios: List<Studios>,
+	@SerialName("licensors") val licensors: List<Licensors>
 ) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListType,
 	MyAnimeListStartEndDate, MyAnimeListAnimeType

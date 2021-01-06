@@ -30,19 +30,19 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class SeasonSearchAnime(
-	@SerialName("mal_id") override val malID: Int = 0,
+	@SerialName("mal_id") override val malID: Int,
 	@SerialName("url") val url: String = "",
 	@SerialName("title") override val title: String,
 	@SerialName("image_url") override val imageURL: String = "",
 	@SerialName("synopsis") val synopsis: String = "",
 	@SerialName("type") override val type: String = "",
 	@SerialName("airing_start") val airing_start: String = "",
-	@SerialName("episodes") override val episodeCount: Int = 0,
-	@SerialName("members") val members: Int = 0,
+	@SerialName("episodes") override val episodeCount: Int = -1,
+	@SerialName("members") val members: Int = -1,
 	@SerialName("genres") override val genres: List<Genre>,
 	@SerialName("source") override val source: String = "",
 	@SerialName("producers") val producers: List<Producer>,
-	@SerialName("score") override val score: Double,
+	@SerialName("score") override val score: Double = -1.0,
 	@SerialName("licensors") val licensors: List<String>,
 	@SerialName("r18") val r18: Boolean = false,
 	@SerialName("kids") val kids: Boolean = false,

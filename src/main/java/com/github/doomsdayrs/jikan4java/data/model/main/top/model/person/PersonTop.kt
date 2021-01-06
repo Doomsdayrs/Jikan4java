@@ -3,7 +3,6 @@ package com.github.doomsdayrs.jikan4java.data.model.main.top.model.person
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.Top
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -29,8 +28,11 @@ import java.util.*
  */
 @Serializable
 data class PersonTop(
-	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_hash") override val requestHash: String = "",
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = -1,
-	@SerialName("top") override val topListings: ArrayList<TopPerson> = arrayListOf()
-) : Top<TopPerson>("people")
+	@SerialName("top") override val topListings: List<TopPerson> = arrayListOf()
+) : Top<TopPerson>() {
+	override val name: String
+		get() = "people"
+}

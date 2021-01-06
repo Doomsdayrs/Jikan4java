@@ -29,10 +29,10 @@ import java.util.*
  */
 @Serializable
 data class GenreSearchMangaPage(
-	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
 	@SerialName("mal_url") override val malURL: MalURL,
 	@SerialName("item_count") override val itemCount: Int,
-	@SerialName("manga") override val results: ArrayList<GenreSearchManga>
+	@SerialName("manga") override val results: List<GenreSearchManga>
 ) : GenreSearchPage<GenreSearchManga>

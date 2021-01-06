@@ -24,5 +24,5 @@ package com.github.doomsdayrs.jikan4java.data.base.values
  * @author github.com/doomsdayrs
  */
 interface MyAnimeListEpisodes<T> {
-	val episodes: ArrayList<T>
+	val episodes: List<T>
 }

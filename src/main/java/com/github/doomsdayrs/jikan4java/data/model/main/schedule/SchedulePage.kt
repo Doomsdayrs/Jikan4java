@@ -5,7 +5,6 @@ import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -30,18 +29,18 @@ import java.util.*
  */
 @Serializable
 data class SchedulePage(
-	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
-	@SerialName("monday") var monday: ArrayList<SubAnime>? = null,
-	@SerialName("tuesday") var tuesday: ArrayList<SubAnime>? = null,
-	@SerialName("wednesday") var wednesday: ArrayList<SubAnime>? = null,
-	@SerialName("thursday") var thursday: ArrayList<SubAnime>? = null,
-	@SerialName("friday") var friday: ArrayList<SubAnime>? = null,
-	@SerialName("saturday") var saturday: ArrayList<SubAnime>? = null,
-	@SerialName("sunday") var sunday: ArrayList<SubAnime>? = null,
-	@SerialName("other") var others: ArrayList<SubAnime>? = null,
-	@SerialName("unknown") var unknown: ArrayList<SubAnime>? = null
+	@SerialName("monday") val monday: List<SubAnime> = listOf(),
+	@SerialName("tuesday") val tuesday: List<SubAnime> = listOf(),
+	@SerialName("wednesday") val wednesday: List<SubAnime> = listOf(),
+	@SerialName("thursday") val thursday: List<SubAnime> = listOf(),
+	@SerialName("friday") val friday: List<SubAnime> = listOf(),
+	@SerialName("saturday") val saturday: List<SubAnime> = listOf(),
+	@SerialName("sunday") val sunday: List<SubAnime> = listOf(),
+	@SerialName("other") val others: List<SubAnime> = listOf(),
+	@SerialName("unknown") val unknown: List<SubAnime> = listOf()
 ) : RequestHashing {
 	companion object {
 		@Suppress("unused")

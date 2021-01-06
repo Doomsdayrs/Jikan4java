@@ -9,7 +9,6 @@ import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.support.VoiceActors
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -39,11 +38,11 @@ data class AnimeCharacter(
 	@SerialName("image_url") override val imageURL: String = "",
 	@SerialName("name") override val name: String,
 	@SerialName("role") val role: String? = null,
-	@SerialName("voice_actors") val voiceActors: ArrayList<VoiceActors> = arrayListOf()
+	@SerialName("voice_actors") val voiceActors: List<VoiceActors> = arrayListOf()
 ) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListName {
 
 	@Suppress("PropertyName")
 	@Deprecated("Changed to proper naming format", ReplaceWith("voiceActors"))
-	val voice_actors: ArrayList<VoiceActors>
+	val voice_actors: List<VoiceActors>
 		get() = voiceActors
 }

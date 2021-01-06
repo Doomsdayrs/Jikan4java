@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.data.model.main.manga
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -27,8 +26,8 @@ import java.util.*
  */
 @Serializable
 data class MangaCharacters(
-	@SerialName("request_hash") var request_hash: String? = null,
-	@SerialName("request_cached") var request_cached: Boolean = false,
-	@SerialName("request_cache_expiry") var request_cache_expiry: Int = 0,
-	@SerialName("characters") var characterArrayList: ArrayList<MangaCharacter>? = null
+	@SerialName("request_hash") val request_hash: String? = null,
+	@SerialName("request_cached") val request_cached: Boolean = false,
+	@SerialName("request_cache_expiry") val request_cache_expiry: Int = 0,
+	@SerialName("characters") val characterList: List<MangaCharacter> = listOf()
 )

@@ -12,7 +12,6 @@ import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.FriendPage
 import com.github.doomsdayrs.jikan4java.data.model.main.user.history.HistoryPage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -38,21 +37,21 @@ import java.util.concurrent.CompletableFuture
  */
 @Serializable
 data class User(
-	@SerialName("request_hash") var request_hash: String?,
-	@SerialName("request_cached") var request_cached: Boolean = false,
-	@SerialName("request_cache_expiry") var request_cache_expiry: Int = 0,
-	@SerialName("user_id") var user_id: Int = 0,
-	@SerialName("username") var username: String = "",
-	@SerialName("url") override var url: String,
-	@SerialName("image_url") override var imageURL: String = "",
-	@SerialName("last_online") var last_online: String = "",
-	@SerialName("gender") var gender: String = "",
-	@SerialName("birthday") var birthday: String = "",
-	@SerialName("location") var location: String = "",
-	@SerialName("joined") var joined: String = "",
-	@SerialName("anime_stats") var animeStats: ArrayList<AnimeStats>,
-	@SerialName("manga_stats") var mangaStats: ArrayList<MangaStats>,
-	@SerialName("favorites") var favorites: Favorites?,
+	@SerialName("request_hash") val request_hash: String?,
+	@SerialName("request_cached") val request_cached: Boolean = false,
+	@SerialName("request_cache_expiry") val request_cache_expiry: Int = 0,
+	@SerialName("user_id") val user_id: Int = 0,
+	@SerialName("username") val username: String = "",
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("last_online") val last_online: String = "",
+	@SerialName("gender") val gender: String = "",
+	@SerialName("birthday") val birthday: String = "",
+	@SerialName("location") val location: String = "",
+	@SerialName("joined") val joined: String = "",
+	@SerialName("anime_stats") val animeStats: List<AnimeStats>,
+	@SerialName("manga_stats") val mangaStats: List<MangaStats>,
+	@SerialName("favorites") val favorites: Favorites?,
 	@SerialName("about") var about: String = ""
 ) : MyAnimeListURL, MyAnimeListImageURL {
 

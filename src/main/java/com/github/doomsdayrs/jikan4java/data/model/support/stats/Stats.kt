@@ -37,5 +37,5 @@ interface Stats : RequestHashing {
 
 	val dropped: Int
 	val total: Int
-	val scores: List<Score>
+	val scores: Score
 }

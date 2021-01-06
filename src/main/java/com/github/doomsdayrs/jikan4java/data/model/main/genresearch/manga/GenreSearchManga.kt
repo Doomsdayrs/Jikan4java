@@ -1,13 +1,12 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga
 
-import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListPublishingStart
 import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPageResult
 import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListMangaType
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListPublishingStart
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Authors
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -42,7 +41,7 @@ data class GenreSearchManga(
 	@SerialName("volumes") val volumes: Int = 0,
 	@SerialName("members") override val members: Int = 0,
 	@SerialName("genres") override val genres: List<Genre>,
-	@SerialName("authors") val authors: ArrayList<Authors>,
+	@SerialName("authors") val authors: List<Authors>,
 	@SerialName("score") override val score: Double,
-	@SerialName("serialization") val serialization: ArrayList<String>
+	@SerialName("serialization") val serialization: List<String>
 ) : GenreSearchPageResult, MyAnimeListPublishingStart, MyAnimeListMangaType

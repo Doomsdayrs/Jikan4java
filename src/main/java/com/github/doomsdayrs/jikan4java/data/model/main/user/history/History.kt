@@ -27,7 +27,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class History(
-	@SerialName("meta") var basicMeta: BasicMeta? = null,
+	@SerialName("meta") val basicMeta: BasicMeta? = null,
 	@SerialName("increment") var increment: Int = 0,
 	@SerialName("date") var date: String? = null
 )

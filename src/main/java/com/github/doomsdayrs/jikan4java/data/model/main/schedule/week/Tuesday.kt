@@ -30,8 +30,8 @@ import java.util.*
  */
 @Serializable
 data class Tuesday(
-	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
-	@SerialName("tuesday") override val subAnimes: ArrayList<SubAnime>
+	@SerialName("tuesday") override val subAnimes: List<SubAnime>
 ) : Day()

@@ -2,7 +2,6 @@ package com.github.doomsdayrs.jikan4java.data.model.main.manga.mangapage
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -30,6 +29,6 @@ data class MangaPage(
 	@SerialName("request_hash") val request_hash: String? = null,
 	@SerialName("request_cached") val request_cached: Boolean = false,
 	@SerialName("request_cache_expiry") val request_cache_expiry: Int = 0,
-	@SerialName("results") val mangas: ArrayList<MangaPageManga>? = null,
+	@SerialName("results") val mangas: List<MangaPageManga> = listOf(),
 	@SerialName("last_page") val last_page: Int = 0
 )

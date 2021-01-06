@@ -4,7 +4,6 @@ import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListCharacterType
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.TopListingBeing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -35,8 +34,8 @@ data class TopCharacter(
 	@SerialName("title") override val title: String,
 	@SerialName("url") override val url: String,
 	@SerialName("favorites") override val favoritesCount: Int,
-	@SerialName("name_kanji") override val nameKanji: String,
+	@SerialName("name_kanji") override val nameKanji: String = "",
 	@SerialName("image_url") override val imageURL: String = "",
-	@SerialName("animeography") var characterAnimes: ArrayList<TopCharacterAnime>?,
-	@SerialName("mangaography") var characterMangas: ArrayList<TopCharacterManga>?
+	@SerialName("animeography") val characterAnimes: List<TopCharacterAnime>?,
+	@SerialName("mangaography") val characterMangas: List<TopCharacterManga>?
 ) : TopListingBeing(), MyAnimeListCharacterType

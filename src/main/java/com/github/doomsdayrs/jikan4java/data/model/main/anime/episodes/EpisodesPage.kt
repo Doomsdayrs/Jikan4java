@@ -29,11 +29,11 @@ import java.util.*
  */
 @Serializable
 data class EpisodesPage(
-	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
 	@SerialName("episodes_last_page") val episodesLastPage: Int = 0,
-	@SerialName("episodes") override val episodes: ArrayList<Episode>
+	@SerialName("episodes") override val episodes: List<Episode>
 ) : RequestHashing, MyAnimeListEpisodes<Episode> {
 
 	@Deprecated(

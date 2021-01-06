@@ -1,6 +1,5 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.anime
 
-import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.prop.Prop
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -28,11 +27,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class Aired(
-	@SerialName("request_hash") override val requestHash: String?,
-	@SerialName("request_cached") override val requestCached: Boolean = false,
-	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
 	@SerialName("from") val from: String = "",
 	@SerialName("to") val to: String = "",
 	@SerialName("prop") val prop: Prop?,
 	@SerialName("string") val string: String = ""
-) : RequestHashing
+)

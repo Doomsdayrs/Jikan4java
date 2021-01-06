@@ -3,7 +3,6 @@ package com.github.doomsdayrs.jikan4java.data.model.main.season
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -28,10 +27,10 @@ import java.util.*
  */
 @Serializable
 data class SeasonSearch(
-	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
 	@SerialName("season_name") val season_name: String? = null,
 	@SerialName("season_year") val season_year: Int = 0,
-	@SerialName("anime") val animes: ArrayList<SeasonSearchAnime>? = null
+	@SerialName("anime") val animes: List<SeasonSearchAnime> = listOf()
 ) : RequestHashing

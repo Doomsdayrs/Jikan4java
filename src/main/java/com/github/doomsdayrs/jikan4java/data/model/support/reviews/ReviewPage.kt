@@ -1,7 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.reviews
 
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -26,5 +25,5 @@ import java.util.*
  * @author github.com/doomsdayrs
  */
 interface ReviewPage<T : Review> : RequestHashing {
-	val reviews: ArrayList<T>
+	val reviews: List<T>
 }

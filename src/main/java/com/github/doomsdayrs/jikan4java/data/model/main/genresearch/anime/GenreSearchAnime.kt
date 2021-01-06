@@ -1,14 +1,13 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.genresearch.anime
 
-import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListEpisodeCount
-import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListSource
 import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPageResult
 import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListAnimeType
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListEpisodeCount
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListSource
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Producer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 
 /*
@@ -46,9 +45,9 @@ data class GenreSearchAnime(
 	@SerialName("members") override val members: Int = 0,
 	@SerialName("genres") override val genres: List<Genre>,
 	@SerialName("source") override val source: String = "",
-	@SerialName("producers") val producers: ArrayList<Producer>,
+	@SerialName("producers") val producers: List<Producer>,
 	@SerialName("score") override val score: Double,
-	@SerialName("licensors") val licensors: ArrayList<String>,
+	@SerialName("licensors") val licensors: List<String>,
 	@SerialName("r18") val r18: Boolean = false,
 	@SerialName("kids") val kids: Boolean = false
 ) : GenreSearchPageResult, MyAnimeListSource, MyAnimeListEpisodeCount,

@@ -26,10 +26,10 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class AnimeStats(
-	@SerialName("days_watched") var days_watched: Float = 0f,
-	@SerialName("mean_score") var mean_score: Float = 0f,
-	@SerialName("watching") var watching: Int = 0,
-	@SerialName("completed") var completed: Int = 0,
+	@SerialName("days_watched") val days_watched: Float = 0f,
+	@SerialName("mean_score") val mean_score: Float = 0f,
+	@SerialName("watching") val watching: Int = 0,
+	@SerialName("completed") val completed: Int = 0,
 	@SerialName("on_hold") var on_hold: Int = 0,
 	@SerialName("dropped") var dropped: Int = 0,
 	@SerialName("plan_to_watch") var plan_to_watch: Int = 0,

@@ -28,15 +28,15 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MangaStats(
-	@SerialName("days_read") var days_read: Float = 0f,
-	@SerialName("mean_score") var mean_score: Float = 0f,
-	@SerialName("reading") var reading: Int = 0,
-	@SerialName("completed") var completed: Int = 0,
-	@SerialName("on_hold") var on_hold: Int = 0,
-	@SerialName("dropped") var dropped: Int = 0,
-	@SerialName("plan_to_read") var plan_to_read: Int = 0,
-	@SerialName("total_entries") var total_entries: Int = 0,
-	@SerialName("reread") var reread: Int = 0,
-	@SerialName("chapters_read") var chapters_read: Int = 0,
-	@SerialName("volumes_read") var volumes_read: Int = 0
+	@SerialName("days_read") val days_read: Float = 0f,
+	@SerialName("mean_score") val mean_score: Float = 0f,
+	@SerialName("reading") val reading: Int = 0,
+	@SerialName("completed") val completed: Int = 0,
+	@SerialName("on_hold") val on_hold: Int = 0,
+	@SerialName("dropped") val dropped: Int = 0,
+	@SerialName("plan_to_read") val plan_to_read: Int = 0,
+	@SerialName("total_entries") val total_entries: Int = 0,
+	@SerialName("reread") val reread: Int = 0,
+	@SerialName("chapters_read") val chapters_read: Int = 0,
+	@SerialName("volumes_read") val volumes_read: Int = 0
 )

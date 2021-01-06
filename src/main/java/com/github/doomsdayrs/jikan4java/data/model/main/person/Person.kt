@@ -2,16 +2,15 @@ package com.github.doomsdayrs.jikan4java.data.model.main.person
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
 import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListPicturesEndPoint
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListSelfType
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -36,7 +35,7 @@ import java.util.*
  */
 @Serializable
 data class Person(
-	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
 	@SerialName("mal_id") override val malID: Int = 0,
@@ -46,13 +45,13 @@ data class Person(
 	@SerialName("name") val name: String,
 	@SerialName("given_name") val given_name: String = "",
 	@SerialName("family_name") val family_name: String = "",
-	@SerialName("alternate_names") val alternate_names: ArrayList<String>,
+	@SerialName("alternate_names") val alternate_names: List<String>,
 	@SerialName("birthday") val birthday: String = "",
 	@SerialName("member_favorites") val member_favorites: Int = 0,
 	@SerialName("about") val about: String = "",
-	@SerialName("voice_acting_roles") val voiceActingRoles: ArrayList<VoiceActingRoles>,
-	@SerialName("anime_staff_positions") val animeStaffPositions: ArrayList<AnimeStaffPosition>,
-	@SerialName("published_manga") val publishedMangas: ArrayList<PublishedManga>
+	@SerialName("voice_acting_roles") val voiceActingRoles: List<VoiceActingRoles>,
+	@SerialName("anime_staff_positions") val animeStaffPositions: List<AnimeStaffPosition>,
+	@SerialName("published_manga") val publishedMangas: List<PublishedManga>
 ) : RequestHashing, MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL,
 	MyAnimeListPicturesEndPoint {
 	override val urlPoint: String

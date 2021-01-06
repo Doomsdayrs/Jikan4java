@@ -29,8 +29,8 @@ import java.util.*
  */
 @Serializable
 data class AnimeReviewPage(
-	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
-	@SerialName("reviews") override val reviews: ArrayList<AnimeReview>
+	@SerialName("reviews") override val reviews: List<AnimeReview>
 ) : ReviewPage<AnimeReview>

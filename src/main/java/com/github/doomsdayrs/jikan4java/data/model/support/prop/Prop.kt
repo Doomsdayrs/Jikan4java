@@ -27,7 +27,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Prop(
 	@SerialName("from")
-	var from: DateProp?,
+	val from: DateProp?,
 	@SerialName("to")
-	var to: DateProp?
+	val to: DateProp?
 )

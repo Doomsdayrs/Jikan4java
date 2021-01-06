@@ -47,7 +47,7 @@ import java.util.concurrent.CompletableFuture
 
 @Serializable
 data class Anime(
-	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
 	@SerialName("mal_id") override val malID: Int,
@@ -75,7 +75,7 @@ data class Anime(
 	@SerialName("background") val background: String = "",
 	@SerialName("premiered") val premiered: String = "",
 	@SerialName("broadcast") val broadcast: String = "",
-	@SerialName("related") override val related: Related?,
+	@SerialName("related") override val related: Related? = null,
 	@SerialName("producers") val producers: List<Producer>,
 	@SerialName("licensors") val licensors: List<Licensors>,
 	@SerialName("studios") val studios: List<Studios>,

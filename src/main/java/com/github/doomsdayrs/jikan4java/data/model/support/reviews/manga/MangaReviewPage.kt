@@ -3,7 +3,6 @@ package com.github.doomsdayrs.jikan4java.data.model.support.reviews.manga
 import com.github.doomsdayrs.jikan4java.data.model.support.reviews.ReviewPage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -29,8 +28,8 @@ import java.util.*
  */
 @Serializable
 data class MangaReviewPage(
-	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
-	@SerialName("reviews") override val reviews: ArrayList<MangaReview>
+	@SerialName("reviews") override val reviews: List<MangaReview>
 ) : ReviewPage<MangaReview>
