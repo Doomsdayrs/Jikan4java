@@ -29,6 +29,12 @@ import java.util.*
  */
 interface GenreSearchPage<T : GenreSearchPageResult> : RequestHashing {
 	val malURL: MalURL
-	val item_count: Int
+	val itemCount: Int
 	val results: ArrayList<T>
+
+	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
+	@Suppress("PropertyName")
+	val item_count: Int
+		get() = itemCount
+
 }

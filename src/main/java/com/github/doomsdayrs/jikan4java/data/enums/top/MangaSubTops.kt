@@ -25,7 +25,10 @@ import com.github.doomsdayrs.jikan4java.data.model.main.top.model.manga.MangaTop
  * @author github.com/doomsdayrs
  */
 enum class MangaSubTops(private val type: String) : TopSubType {
-	MANGA("manga"), NOVELS("novels"), ONESHOTS("oneshots"), DOUJIN("doujin"), MANHWA("manhwa"), MANHUA("manhua");
+	MANGA("manga"), NOVELS("novels"), ONESHOTS("oneshots"), DOUJIN("doujin"), MANHWA(
+		"manhwa"
+	),
+	MANHUA("manhua");
 
 	override fun toString(): String = type
 

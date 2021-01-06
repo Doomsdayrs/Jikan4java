@@ -1,5 +1,6 @@
 package com.github.doomsdayrs.jikan4java.core.search.animemanga
 
+import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.core.search.Search
 import com.github.doomsdayrs.jikan4java.data.enums.SortBy
 import com.github.doomsdayrs.jikan4java.data.enums.genres.Genres
@@ -32,8 +33,9 @@ import java.util.*
  * @author github.com/doomsdayrs
  */
 open class AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY>(
-		type: Types
-) : Search<PAGE, SINGLE, SET>(type)
+	type: Types,
+	retriever: Retriever
+) : Search<PAGE, SINGLE, SET>(type, retriever)
 		where SET : AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY>,
 		      STATI : Stati,
 		      GENRE : Genres,
@@ -79,13 +81,31 @@ open class AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY>(
 		if (genres != null) {
 			builder.append("&genre=")
 			for (integer in genres!!) builder.append(integer).append(",")
-			builder.replace(builder.lastIndexOf(","), builder.lastIndexOf(",") + 1, "")
+			builder.replace(
+				builder.lastIndexOf(","),
+				builder.lastIndexOf(",") + 1,
+				""
+			)
 			println(builder.toString())
 		}
 		if (!isGenreToggle) builder.append("&genre_exclude=").append(0)
 		if (score != 0f) builder.append("&score=").append(score)
-		if (startDate != null) builder.append(String.format("&start_date=%02d-%02d-%02d", startDate!![0], startDate!![1], startDate!![2]))
-		if (endDate != null) builder.append(String.format("&end_date=%02d-%02d-%02d", endDate!![0], endDate!![1], endDate!![2]))
+		if (startDate != null) builder.append(
+			String.format(
+				"&start_date=%02d-%02d-%02d",
+				startDate!![0],
+				startDate!![1],
+				startDate!![2]
+			)
+		)
+		if (endDate != null) builder.append(
+			String.format(
+				"&end_date=%02d-%02d-%02d",
+				endDate!![0],
+				endDate!![1],
+				endDate!![2]
+			)
+		)
 		if (orderBy != null) builder.append("&order_by=").append(orderBy)
 		if (sortBy != null) builder.append("&sort=").append(sortBy)
 		return builder.toString()
@@ -186,6 +206,7 @@ open class AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY>(
 	 * @param limit how many results per page
 	 * @return this
 	 */
+	@Throws(IndexOutOfBoundsException::class)
 	override fun setLimit(limit: Int): SET {
 		super.setLimit(limit)
 		return this as SET

@@ -1,8 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.basic
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.data.model.main.character.Character
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListCharacterType
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -26,16 +26,10 @@ import com.github.doomsdayrs.jikan4java.data.model.main.character.Character
  *
  * @author github.com/doomsdayrs
  */
-class CharacterBasic(
-		@JsonProperty("mal_id") mal_id: Int,
-		@JsonProperty("url") url: String,
-		@JsonProperty("image_url") image_url: String="",
-		@JsonProperty("name") name: String
-) : BasicObject(mal_id, url, image_url, name) {
-	/**
-	 * Returns the Character object of this object
-	 *
-	 * @return Character Object
-	 */
-	val character by lazy { retrieve<Character>("$jikanURL/character/$mal_id") }
-}
+@Serializable
+data class CharacterBasic(
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("name") override val name: String
+) : BasicObject, MyAnimeListCharacterType

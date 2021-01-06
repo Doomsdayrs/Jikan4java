@@ -1,10 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.genresearch.anime
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPage
 import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.MalURL
-import com.github.doomsdayrs.jikan4java.data.model.main.schedule.SubAnime
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -28,12 +27,12 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-class GenreSearchAnimePage(
-		@field:JsonProperty("request_hash") override val request_hash: String? = null,
-		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("mal_url") override val malURL: MalURL,
-		@field:JsonProperty("item_count") override val item_count: Int,
-		@field:JsonProperty("anime") override val results: ArrayList<GenreSearchAnime>
+@Serializable
+data class GenreSearchAnimePage(
+	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_cached") override val requestCached: Boolean = false,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
+	@SerialName("mal_url") override val malURL: MalURL,
+	@SerialName("item_count") override val itemCount: Int,
+	@SerialName("anime") override val results: ArrayList<GenreSearchAnime>
 ) : GenreSearchPage<GenreSearchAnime>

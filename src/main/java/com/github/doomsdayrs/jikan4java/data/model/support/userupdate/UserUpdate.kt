@@ -1,8 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.userupdate
 
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListStatus
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListStatus
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 
 
 /*

@@ -28,7 +28,13 @@ import com.github.doomsdayrs.jikan4java.data.model.support.stats.score.Score
  */
 interface Stats : RequestHashing {
 	val completed: Int
+	val onHold: Int
+
+	@Suppress("PropertyName")
+	@Deprecated("Changed to proper naming format", ReplaceWith("onHold"))
 	val on_hold: Int
+		get() = onHold
+
 	val dropped: Int
 	val total: Int
 	val scores: List<Score>

@@ -78,3 +78,6 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint.idea
 Jikan4java.iml
+.gradle
+classes
+target

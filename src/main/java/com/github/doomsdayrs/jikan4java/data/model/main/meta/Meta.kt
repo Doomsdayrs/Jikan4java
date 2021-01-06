@@ -23,5 +23,4 @@ package com.github.doomsdayrs.jikan4java.data.model.main.meta
  *
  * @author github.com/doomsdayrs
  */
-interface Meta {
-}
+interface Meta

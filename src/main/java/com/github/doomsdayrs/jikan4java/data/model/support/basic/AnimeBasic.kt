@@ -1,8 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.basic
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListAnimeType
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -26,16 +26,10 @@ import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
  *
  * @author github.com/doomsdayrs
  */
-class AnimeBasic(
-		@JsonProperty("mal_id") mal_id: Int,
-		@JsonProperty("url") url: String,
-		@JsonProperty("image_url") image_url: String = "",
-		@JsonProperty("name") name: String
-) : BasicObject(mal_id, url, image_url, name) {
-	/**
-	 * Returns the Anime object of this object
-	 *
-	 * @return Anime Object
-	 */
-	val anime by lazy { retrieve<Anime>("$jikanURL/anime/$mal_id") }
-}
+@Serializable
+data class AnimeBasic(
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("name") override val name: String
+) : BasicObject, MyAnimeListAnimeType

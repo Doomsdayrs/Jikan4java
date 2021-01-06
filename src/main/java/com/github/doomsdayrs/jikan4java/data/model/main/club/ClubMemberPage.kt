@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.club
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -25,9 +26,10 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class ClubMemberPage(
-		@field:JsonProperty("request_hash") override val request_hash: String? = null,
-		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("members") val clubMembers: ArrayList<ClubMember>? = null
+	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_cached") override val requestCached: Boolean = false,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
+	@SerialName("members") val clubMembers: ArrayList<ClubMember>? = null
 ) : RequestHashing

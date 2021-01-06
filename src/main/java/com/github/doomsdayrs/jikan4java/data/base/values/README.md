@@ -1,0 +1,1 @@
+These interfaces define the values that are shared in the library

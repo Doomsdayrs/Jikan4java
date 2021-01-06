@@ -1,10 +1,6 @@
 package com.github.doomsdayrs.jikan4java.core
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.doomsdayrs.jikan4java.common.getDefaultJSONParser
-import com.github.doomsdayrs.jikan4java.common.getDefaultObjectMapper
-import com.github.doomsdayrs.jikan4java.common.getDefaultOkHttpClient
-import com.github.doomsdayrs.jikan4java.common.jikanURL
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
 import com.github.doomsdayrs.jikan4java.data.enums.Days
 import com.github.doomsdayrs.jikan4java.data.enums.Season
 import com.github.doomsdayrs.jikan4java.data.enums.meta.MetaPeriod
@@ -20,14 +16,10 @@ import com.github.doomsdayrs.jikan4java.data.model.main.meta.Meta
 import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
 import com.github.doomsdayrs.jikan4java.data.model.main.producer.ProducerPage
 import com.github.doomsdayrs.jikan4java.data.model.main.schedule.Day
-import com.github.doomsdayrs.jikan4java.data.model.main.schedule.Schedule
+import com.github.doomsdayrs.jikan4java.data.model.main.schedule.SchedulePage
 import com.github.doomsdayrs.jikan4java.data.model.main.season.SeasonSearch
 import com.github.doomsdayrs.jikan4java.data.model.main.season.seasonarchive.SeasonArchive
 import com.github.doomsdayrs.jikan4java.data.model.main.user.User
-import com.github.doomsdayrs.jikan4java.data.model.support.pictures.Pictures
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import org.json.simple.parser.JSONParser
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -52,24 +44,21 @@ import java.util.concurrent.CompletableFuture
  * @author github.com/doomsdayrs
  */
 class Connector(
-		client: OkHttpClient = getDefaultOkHttpClient(),
-		objectMapper: ObjectMapper = getDefaultObjectMapper(),
-		jsonParser: JSONParser = getDefaultJSONParser(),
-		builder: Request.Builder = Request.Builder()
-) : Retriever(
-		client = client,
-		objectMapper = objectMapper,
-		jsonParser = jsonParser,
-		builder = builder
+	val retriever: Retriever
 ) {
-
 	/**
-	 * gets an club
+	 * Returns current schedule for all anime
 	 *
-	 * @param ID id of the club
-	 * @return Club
+	 * @return Schedule
 	 */
-	fun retrieveClub(ID: Int): CompletableFuture<Club> = retrieve("$jikanURL/club/$ID")
+	val currentSchedulePage: CompletableFuture<JikanResult<SchedulePage>>
+		get() = retriever("$JIKAN_URL/schedule")
+
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("Club.getByID(retriever,ID)")
+	)
+	fun retrieveClub(ID: Int) = Club.getByID(retriever, ID)
 
 	/**
 	 * 35 per page
@@ -78,7 +67,12 @@ class Connector(
 	 * @param page page
 	 * @return Members
 	 */
-	fun getMembers(id: Int, page: Int): CompletableFuture<ClubMemberPage> = retrieve("$jikanURL/club/$id/members/$page")
+	@Suppress("MemberVisibilityCanBePrivate")
+	fun getMembers(
+		id: Int,
+		page: Int
+	): CompletableFuture<JikanResult<ClubMemberPage>> =
+		retriever("$JIKAN_URL/club/$id/members/$page")
 
 	/**
 	 * Returns first page, 35 count
@@ -86,53 +80,45 @@ class Connector(
 	 * @param id of club
 	 * @return Members
 	 */
-	fun getMembers(id: Int): CompletableFuture<ClubMemberPage> = getMembers(id, 1)
+	@Deprecated("Removal warning", ReplaceWith("getMembers(id,1)"))
+	fun getMembers(id: Int) = getMembers(id, 1)
 
-	/**
-	 * retreives an anime
-	 *
-	 * @param ID id of the anime
-	 * @return Anime
-	 */
-	fun retrieveAnime(ID: Int): CompletableFuture<Anime> = retrieve("$jikanURL/anime/$ID")
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("Anime.getByID(retriever,ID)")
+	)
+	fun retrieveAnime(ID: Int) = Anime.getByID(retriever, ID)
 
-	/**
-	 * retreives an manga
-	 *
-	 * @param ID id of the manga
-	 * @return Manga
-	 */
-	fun retrieveManga(ID: Int): CompletableFuture<Manga> = retrieve("$jikanURL/manga/$ID")
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("Manga.getByID(retriever,ID)")
+	)
+	fun retrieveManga(ID: Int) = Manga.getByID(retriever, ID)
 
-	/**
-	 * retreives an person
-	 *
-	 * @param ID id of the person
-	 * @return Person
-	 */
-	fun retrievePerson(ID: Int): CompletableFuture<Person> = retrieve("$jikanURL/person/$ID")
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("Person.getByID(retriever,ID)")
+	)
+	fun retrievePerson(ID: Int) = Person.getByID(retriever, ID)
 
-	/**
-	 * @param id id of a person
-	 * @return their pictures
-	 */
-	fun getPersonPictures(id: Int): CompletableFuture<Pictures> = retrieve("$jikanURL/person/$id/pictures")
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("Person.getPicturesByID(retriever,id)")
+	)
+	fun getPersonPictures(id: Int) = Person.getPictures(retriever, id)
 
-	/**
-	 * retreives an character
-	 *
-	 * @param ID id of the character
-	 * @return Character
-	 */
-	fun retrieveCharacter(ID: Int): CompletableFuture<Character> =
-			retrieve("$jikanURL/character/$ID")
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("Character.getByID(retriever,ID)")
+	)
+	fun retrieveCharacter(ID: Int) = Character.getByID(retriever, ID)
 
-	/**
-	 * @param id id of a character
-	 * @return their pictures
-	 */
-	fun getCharacterPictures(id: Int): CompletableFuture<Pictures> =
-			retrieve("$jikanURL/character/$id/pictures")
+
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("Character.getPicturesByID(retriever,id)")
+	)
+	fun getCharacterPictures(id: Int) = Character.getPictures(retriever, id)
 
 	/**
 	 * Returns a user object
@@ -140,8 +126,12 @@ class Connector(
 	 * @param name the name of the user to retrieve
 	 * @return User
 	 */
-	fun userRetrieve(name: String): CompletableFuture<User> =
-			retrieve("$jikanURL/user/$name")
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("User.getByName(retriever,name)")
+	)
+	fun userRetrieve(name: String): CompletableFuture<JikanResult<User>> =
+		User.getByName(retriever, name)
 
 	/**
 	 * Retrieves Magazines
@@ -150,8 +140,11 @@ class Connector(
 	 * @param page page to core for
 	 * @return MagazinePage object
 	 */
-	fun magazineSearch(ID: Int, page: Int): CompletableFuture<MagazinePage> =
-			retrieve("$jikanURL/magazine/$ID/$page")
+	fun magazineSearch(
+		ID: Int,
+		page: Int
+	): CompletableFuture<JikanResult<MagazinePage>> =
+		retriever("$JIKAN_URL/magazine/$ID/$page")
 
 	/**
 	 * Gets meta data from API. WARNING USING MAY CAUSE ERRORS BEYOND IMAGINATION FOR ANYTHING BUT STATUS
@@ -162,10 +155,10 @@ class Connector(
 	 * @return Completable future of metaRequest's class
 	 */
 	inline fun <reified T : Class<V>, V : Meta> getMeta(
-			metaRequest: MetaRequest,
-			metaType: MetaType,
-			metaPeriod: MetaPeriod
-	): CompletableFuture<T>? {
+		metaRequest: MetaRequest,
+		metaType: MetaType,
+		metaPeriod: MetaPeriod
+	): CompletableFuture<JikanResult<T>> {
 		val option = StringBuilder()
 		option.append(metaRequest)
 
@@ -173,7 +166,7 @@ class Connector(
 			option.append("/").append(metaType)
 			option.append("/").append(metaPeriod)
 		}
-		return retrieve("$jikanURL/meta/$option")
+		return retriever("$JIKAN_URL/meta/$option")
 	}
 
 	/**
@@ -183,16 +176,11 @@ class Connector(
 	 * @param page page to core for
 	 * @return Producer object
 	 */
-	fun producerSearch(ID: Int, page: Int): CompletableFuture<ProducerPage> =
-			retrieve("$jikanURL/producer/$ID/$page")
-
-	/**
-	 * Returns current schedule for all anime
-	 *
-	 * @return Schedule
-	 */
-	val currentSchedule: CompletableFuture<Schedule>
-		get() = retrieve("$jikanURL/schedule")
+	fun producerSearch(
+		ID: Int,
+		page: Int
+	): CompletableFuture<JikanResult<ProducerPage>> =
+		retriever("$JIKAN_URL/producer/$ID/$page")
 
 	/**
 	 * Returns all anime schedule on a certain day
@@ -200,8 +188,8 @@ class Connector(
 	 * @param day Day to retrieve, Can also be other or unknown
 	 * @return DaySchedule object
 	 */
-	fun scheduleSearch(day: Days): CompletableFuture<Day> =
-			retrieve("$jikanURL/schedule/$day", day.clazz) as CompletableFuture<Day>
+	fun scheduleSearch(day: Days): CompletableFuture<JikanResult<Day>> =
+		retriever("$JIKAN_URL/schedule/$day")
 
 	/**
 	 * Searches for anime by season
@@ -210,20 +198,25 @@ class Connector(
 	 * @param season Season
 	 * @return SeasonSearchObject
 	 */
-	fun seasonSearch(year: Int, season: Season): CompletableFuture<SeasonSearch> =
-			retrieve("$jikanURL/season/$year/$season")
+	fun seasonSearch(
+		year: Int,
+		season: Season
+	): CompletableFuture<JikanResult<SeasonSearch>> =
+		retriever("$JIKAN_URL/season/$year/$season")
 
 	/**
 	 * Returns next season of anime
 	 *
 	 * @return SeasonSearchObject
 	 */
-	fun seasonLater(): CompletableFuture<SeasonSearch> = retrieve("$jikanURL/season/later")
+	fun seasonLater(): CompletableFuture<JikanResult<SeasonSearch>> =
+		retriever("$JIKAN_URL/season/later")
 
 	/**
 	 * Returns archive of all possible seasons and years
 	 *
 	 * @return SeasonArchive
 	 */
-	fun seasonArchive(): CompletableFuture<SeasonArchive> = retrieve("$jikanURL/season/archive")
+	fun seasonArchive(): CompletableFuture<JikanResult<SeasonArchive>> =
+		retriever("$JIKAN_URL/season/archive")
 }

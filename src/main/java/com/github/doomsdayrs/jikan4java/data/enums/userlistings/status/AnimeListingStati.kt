@@ -22,7 +22,10 @@ package com.github.doomsdayrs.jikan4java.data.enums.userlistings.status
  * @author github.com/doomsdayrs
  */
 enum class AnimeListingStati(private val type: String) : ListingStati {
-	AIRING("airing"), FINISHED("finished"), COMPLETE(FINISHED.type), TO_BE_AIRED("to_be_aired"), NOT_YET_AIRED(TO_BE_AIRED.type), TBA(NOT_YET_AIRED.type), NYA(TBA.type);
+	AIRING("airing"), FINISHED("finished"), COMPLETE(FINISHED.type), TO_BE_AIRED(
+		"to_be_aired"
+	),
+	NOT_YET_AIRED(TO_BE_AIRED.type), TBA(NOT_YET_AIRED.type), NYA(TBA.type);
 
 	override fun toString(): String {
 		return type

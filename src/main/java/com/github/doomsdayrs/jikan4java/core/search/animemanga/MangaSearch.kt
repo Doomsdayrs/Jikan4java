@@ -1,5 +1,6 @@
 package com.github.doomsdayrs.jikan4java.core.search.animemanga
 
+import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.genres.MangaGenres
 import com.github.doomsdayrs.jikan4java.data.enums.search.Types
 import com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.orderby.MangaOrderBy
@@ -28,4 +29,8 @@ import com.github.doomsdayrs.jikan4java.data.model.main.manga.mangapage.MangaPag
  *
  * @author github.com/doomsdayrs
  */
-class MangaSearch : AnimeMangaSearch<MangaPage, Manga, MangaSearch, MangaStati, MangaGenres, MangaOrderBy>(Types.MANGA)
+class MangaSearch(retriever: Retriever) :
+	AnimeMangaSearch<MangaPage, Manga, MangaSearch, MangaStati, MangaGenres, MangaOrderBy>(
+		Types.MANGA,
+		retriever
+	)

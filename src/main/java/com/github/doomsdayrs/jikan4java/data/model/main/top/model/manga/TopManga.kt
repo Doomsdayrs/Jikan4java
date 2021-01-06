@@ -1,10 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.model.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListMangaType
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.TopListingMedia
-import java.util.concurrent.CompletableFuture
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -28,23 +27,17 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class TopManga(
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("rank") override val rank: Int,
-		@JsonProperty("title") override val title: String,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String = "",
-		@JsonProperty("type") override val type: String,
-		@JsonProperty("score") override val score: Double,
-		@JsonProperty("members") override val members: Int,
-		@JsonProperty("start_date") override val startDate: String,
-		@JsonProperty("end_date") override val endDate: String = "",
-		@JsonProperty("volumes") val volumes: Int
-) : TopListingMedia() {
-	/**
-	 * Returns the Manga object of this object
-	 *
-	 * @return Manga Object
-	 */
-	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$jikanURL/manga/$malID") }
-}
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("rank") override val rank: Int,
+	@SerialName("title") override val title: String,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("type") override val type: String,
+	@SerialName("score") override val score: Double,
+	@SerialName("members") override val members: Int,
+	@SerialName("start_date") override val startDate: String,
+	@SerialName("end_date") override val endDate: String = "",
+	@SerialName("volumes") val volumes: Int
+) : TopListingMedia(), MyAnimeListMangaType

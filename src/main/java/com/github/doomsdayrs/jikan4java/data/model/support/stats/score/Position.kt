@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.stats.score
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -23,9 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * Jikan4java
  * 30 / October / 2018
  */
+@Serializable
 data class Position(
-		@JsonProperty("votes")
-		val votes: Int,
-		@JsonProperty("percentage")
-		val percentage: Float
+	@SerialName("votes")
+	val votes: Int,
+	@SerialName("percentage")
+	val percentage: Float
 )

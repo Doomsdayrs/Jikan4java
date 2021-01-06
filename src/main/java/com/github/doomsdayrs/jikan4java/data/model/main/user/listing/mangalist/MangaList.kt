@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user.listing.mangalist
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.UserListing
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -25,9 +26,10 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class MangaList(
-		@JsonProperty("request_hash") override val request_hash: String?,
-		@JsonProperty("request_cached") override val request_cached: Boolean,
-		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
-		@JsonProperty("manga") val mangas: ArrayList<MangaListManga>?
+	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_cached") override val requestCached: Boolean,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+	@SerialName("manga") val mangas: ArrayList<MangaListManga>?
 ) : UserListing()

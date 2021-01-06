@@ -1,10 +1,11 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.AnimeBasic
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.CharacterBasic
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.MangaBasic
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.PeopleBasic
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -28,9 +29,10 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Favorites(
-		@field:JsonProperty("anime") var animes: ArrayList<AnimeBasic>? = null,
-		@field:JsonProperty("manga") var mangas: ArrayList<MangaBasic>? = null,
-		@field:JsonProperty("characters") var characters: ArrayList<CharacterBasic>? = null,
-		@field:JsonProperty("people") var peoples: ArrayList<PeopleBasic>? = null
+	@SerialName("anime") var animes: ArrayList<AnimeBasic>? = null,
+	@SerialName("manga") var mangas: ArrayList<MangaBasic>? = null,
+	@SerialName("characters") var characters: ArrayList<CharacterBasic>? = null,
+	@SerialName("people") var peoples: ArrayList<PeopleBasic>? = null
 )

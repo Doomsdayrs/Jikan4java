@@ -1,11 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.basic
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -28,9 +26,16 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
-open class BasicObject(
-		@field:JsonProperty("mal_id") override val malID: Int,
-		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String = "",
-		@field:JsonProperty("name") override val name: String
-) : Retriever(), MyAnimeListID, MyAnimeListImageURL, MyAnimeListName, MyAnimeListURL
+interface BasicObject : MyAnimeListID, MyAnimeListImageURL, MyAnimeListName,
+	MyAnimeListURL {
+
+	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
+	@Suppress("PropertyName")
+	val mal_id
+		get() = malID
+
+	@Deprecated("Changed to proper naming format", ReplaceWith("imageURL"))
+	@Suppress("PropertyName")
+	val image_url
+		get() = imageURL
+}

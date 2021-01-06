@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.searchResults
 
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -25,6 +26,12 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 abstract class IndividualsPage : ObjectPage(), MyAnimeListName {
-	abstract val alternative_names: ArrayList<String>
+	abstract val alternativeNames: ArrayList<String>
+
+	@Suppress("PropertyName")
+	@Deprecated("Changed to proper naming format", ReplaceWith("alternativeNames"))
+	val alternative_names: ArrayList<String>
+		get() = alternativeNames
 }

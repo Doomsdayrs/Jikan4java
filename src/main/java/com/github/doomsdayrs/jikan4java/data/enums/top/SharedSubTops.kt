@@ -30,5 +30,6 @@ enum class SharedSubTops(private val type: String) : TopSubType {
 
 	override fun toString(): String = type
 
-	override fun compatible(tops: Top<*>): Boolean = tops is AnimeTop || tops is MangaTop
+	override fun compatible(tops: Top<*>): Boolean =
+		tops is AnimeTop || tops is MangaTop
 }

@@ -1,9 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.anime.videos
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListTitle
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -26,9 +26,20 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-class Promo(
-		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("image_url") override val imageURL: String = "",
-		@field:JsonProperty("video_url") val video_url: String = ""
-) : MyAnimeListTitle, MyAnimeListImageURL
+@Serializable
+data class Promo(
+	@SerialName("title") override val title: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("video_url") val videoURL: String = ""
+) : MyAnimeListTitle, MyAnimeListImageURL {
+
+
+	@Suppress("PropertyName", "unused")
+	@Deprecated(
+		"Changed to proper naming format",
+		ReplaceWith("videoURL")
+	)
+	val video_url
+		get() = videoURL
+
+}

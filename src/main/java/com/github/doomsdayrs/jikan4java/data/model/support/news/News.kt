@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.news
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -25,9 +26,10 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class News(
-		@JsonProperty("request_hash") override val request_hash: String?,
-		@JsonProperty("request_cached") override val request_cached: Boolean,
-		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
-		@JsonProperty("articles") val articles: ArrayList<Article>? = null
+	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_cached") override val requestCached: Boolean,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+	@SerialName("articles") val articles: ArrayList<Article>? = null
 ) : RequestHashing

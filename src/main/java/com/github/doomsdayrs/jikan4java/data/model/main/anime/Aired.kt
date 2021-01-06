@@ -1,9 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.anime
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.prop.Prop
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -26,13 +26,13 @@ import com.github.doomsdayrs.jikan4java.data.model.support.prop.Prop
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-class Aired(
-		@field:JsonProperty("request_hash") override val request_hash: String?,
-		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("from") val from: String = "",
-		@field:JsonProperty("to") val to: String = "",
-		@field:JsonProperty("prop") val prop: Prop?,
-		@field:JsonProperty("string") val string: String = ""
+@Serializable
+data class Aired(
+	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_cached") override val requestCached: Boolean = false,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
+	@SerialName("from") val from: String = "",
+	@SerialName("to") val to: String = "",
+	@SerialName("prop") val prop: Prop?,
+	@SerialName("string") val string: String = ""
 ) : RequestHashing

@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.basic.meta
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,9 +25,14 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Producer(
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("type") override val type: String?,
-		@JsonProperty("name") override val name: String,
-		@JsonProperty("url") override val url: String
-) : BasicMeta(malID, type, name, url)
+	@SerialName("mal_id")
+	override val malID: Int,
+	@SerialName("type")
+	override val type: String?,
+	@SerialName("name")
+	override val name: String,
+	@SerialName("url")
+	override val url: String
+) : BasicMeta

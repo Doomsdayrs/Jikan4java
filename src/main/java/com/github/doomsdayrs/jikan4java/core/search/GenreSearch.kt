@@ -1,7 +1,9 @@
 package com.github.doomsdayrs.jikan4java.core.search
 
-import com.github.doomsdayrs.jikan4java.common.jikanURL
+import com.github.doomsdayrs.jikan4java.core.JikanResult
 import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPage
+import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPageResult
 import com.github.doomsdayrs.jikan4java.data.enums.genres.AnimeGenres
 import com.github.doomsdayrs.jikan4java.data.enums.genres.Genres
 import com.github.doomsdayrs.jikan4java.data.enums.genres.MangaGenres
@@ -30,36 +32,45 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-class GenreSearch : Retriever() {
-	/**
-	 * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
-	 *
-	 * @param genreID The genre ID
-	 * @param page    The page number to go to, 1 should be the default unless you know else wise
-	 * @return GenreSearchAnimePage
-	 */
+@Deprecated("Use the methods a genre provides")
+class GenreSearch(
+	val retriever: Retriever
+) {
+	@Suppress("MemberVisibilityCanBePrivate")
+	@Deprecated(
+		"Moved to extension function",
+		ReplaceWith("genreID.search(retriever,page)")
+	)
 	@JvmOverloads
-	fun searchGenre(genreID: AnimeGenres, page: Int = 1): CompletableFuture<GenreSearchAnimePage> =
-			searchGenre(genreID as Genres, page)
+	fun searchGenre(
+		genreID: AnimeGenres,
+		page: Int = 1
+	): CompletableFuture<JikanResult<GenreSearchAnimePage>> =
+		genreID.search(retriever, page)
 
-	/**
-	 * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
-	 *
-	 * @param genreID The genre ID
-	 * @param page    The page number to go to, 1 should be the default unless you know else wise
-	 * @return GenreSearchAnimePage
-	 */
+	@Suppress("MemberVisibilityCanBePrivate")
+	@Deprecated(
+		"Moved to extension function",
+		ReplaceWith("genreID.search(retriever,page)")
+	)
 	@JvmOverloads
-	fun searchGenre(genreID: MangaGenres, page: Int = 1): CompletableFuture<GenreSearchMangaPage> =
-			searchGenre(genreID as Genres, page)
+	fun searchGenre(
+		genreID: MangaGenres,
+		page: Int = 1
+	): CompletableFuture<JikanResult<GenreSearchMangaPage>> =
+		genreID.search(retriever, page)
 
-	/**
-	 * Searches for Anime/manga by genre, There are more than one page since each page has a hundred entries max.
-	 *
-	 * @param genreID The genre ID
-	 * @param page    The page number to go to, 0 should be the default unless you know else wise
-	 * @return GenreSearchAnimePage
-	 */
-	inline fun <reified T> searchGenre(genreID: Genres, page: Int): CompletableFuture<T> =
-			retrieve(jikanURL + "/genre/" + genreID.type + "/" + genreID.id + "/" + page)
+	@Suppress("MemberVisibilityCanBePrivate", "unused")
+	@Deprecated(
+		"Moved to extension function",
+		ReplaceWith(
+			"genreID.search(retriever,page)",
+			"com.github.doomsdayrs.jikan4java.data.enums.genres.search"
+		)
+	)
+	inline fun <reified R : GenreSearchPageResult, reified T : GenreSearchPage<R>> searchGenre(
+		genreID: Genres<R, T>,
+		page: Int
+	): CompletableFuture<JikanResult<T>> =
+		genreID.search(retriever, page)
 }

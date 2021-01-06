@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.base
 
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListScore
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListScore
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListType
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,7 +25,9 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
  *
  * @author github.com/doomsdayrs
  */
-abstract class TopListingMedia : TopListing(), MyAnimeListType, MyAnimeListScore {
+@Serializable
+abstract class TopListingMedia : TopListing(), MyAnimeListType,
+	MyAnimeListScore {
 	abstract val members: Int
 	abstract val startDate: String
 	abstract val endDate: String

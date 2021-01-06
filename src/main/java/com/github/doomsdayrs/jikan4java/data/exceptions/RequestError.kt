@@ -1,5 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.exceptions
 
+import java.lang.Exception
+
 /*
  * This file is part of Jikan4java.
  *

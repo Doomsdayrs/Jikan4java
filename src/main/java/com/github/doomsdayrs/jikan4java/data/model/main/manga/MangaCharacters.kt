@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -24,9 +25,10 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class MangaCharacters(
-		@field:JsonProperty("request_hash") var request_hash: String? = null,
-		@field:JsonProperty("request_cached") var request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") var request_cache_expiry: Int = 0,
-		@field:JsonProperty("characters") var characterArrayList: ArrayList<MangaCharacter>? = null
+	@SerialName("request_hash") var request_hash: String? = null,
+	@SerialName("request_cached") var request_cached: Boolean = false,
+	@SerialName("request_cache_expiry") var request_cache_expiry: Int = 0,
+	@SerialName("characters") var characterArrayList: ArrayList<MangaCharacter>? = null
 )

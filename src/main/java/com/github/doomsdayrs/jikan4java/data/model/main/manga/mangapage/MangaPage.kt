@@ -1,7 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.manga.mangapage
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -25,11 +25,11 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@Serializable
 data class MangaPage(
-		@field:JsonProperty("request_hash") val request_hash: String? = null,
-		@field:JsonProperty("request_cached") val request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") val request_cache_expiry: Int = 0,
-		@field:JsonProperty("results") val mangas: ArrayList<MangaPageManga>? = null,
-		@field:JsonProperty("last_page") val last_page: Int = 0
+	@SerialName("request_hash") val request_hash: String? = null,
+	@SerialName("request_cached") val request_cached: Boolean = false,
+	@SerialName("request_cache_expiry") val request_cache_expiry: Int = 0,
+	@SerialName("results") val mangas: ArrayList<MangaPageManga>? = null,
+	@SerialName("last_page") val last_page: Int = 0
 )

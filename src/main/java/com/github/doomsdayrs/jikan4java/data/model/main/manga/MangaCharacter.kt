@@ -1,9 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -26,10 +27,11 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class MangaCharacter(
-		@field:JsonProperty("mal_id") override val malID: Int = 0,
-		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String = "",
-		@field:JsonProperty("name") val name: String = "",
-		@field:JsonProperty("role") val role: String = ""
+	@SerialName("mal_id") override val malID: Int = 0,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("name") val name: String = "",
+	@SerialName("role") val role: String = ""
 ) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL

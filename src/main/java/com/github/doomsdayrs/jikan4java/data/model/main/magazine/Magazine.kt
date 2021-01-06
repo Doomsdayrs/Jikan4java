@@ -1,9 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.magazine
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.base.*
+import com.github.doomsdayrs.jikan4java.data.base.values.*
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Authors
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -26,22 +27,24 @@ import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
  *
  * @author github.com/doomsdayrs
  */
-class Magazine(
-		@field:JsonProperty("mal_id") override val malID: Int = 0,
-		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("image_url") override val imageURL: String = "",
-		@field:JsonProperty("synopsis") val synopsis: String = "",
-		@field:JsonProperty("type") override val type: String = "",
-		@field:JsonProperty("publishing_start") override val publishingStart: String = "",
-		@field:JsonProperty("volumes") val volumes: Int = 0,
-		@field:JsonProperty("members") val members: Int = 0,
-		@field:JsonProperty("genres") override val genres: List<Genre>,
-		@field:JsonProperty("authors") val authors: List<Authors>,
-		@field:JsonProperty("score") override val score: Double,
-		@field:JsonProperty("serialization") val serializations: List<String>
+@Serializable
+data class Magazine(
+	@SerialName("mal_id") override val malID: Int = 0,
+	@SerialName("url") override val url: String,
+	@SerialName("title") override val title: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("synopsis") val synopsis: String = "",
+	@SerialName("type") override val type: String = "",
+	@SerialName("publishing_start") override val publishingStart: String = "",
+	@SerialName("volumes") val volumes: Int = 0,
+	@SerialName("members") val members: Int = 0,
+	@SerialName("genres") override val genres: List<Genre>,
+	@SerialName("authors") val authors: List<Authors>,
+	@SerialName("score") override val score: Double,
+	@SerialName("serialization") val serializations: List<String>
 ) :
-		MyAnimeListID,
-		MyAnimeListURL,
-		MyAnimeListTitle,
-		MyAnimeListImageURL, MyAnimeListType, MyAnimeListPublishingStart, MyAnimeListScore, MyAnimeListGenres
+	MyAnimeListID,
+	MyAnimeListURL,
+	MyAnimeListTitle,
+	MyAnimeListImageURL, MyAnimeListType, MyAnimeListPublishingStart,
+	MyAnimeListScore, MyAnimeListGenres

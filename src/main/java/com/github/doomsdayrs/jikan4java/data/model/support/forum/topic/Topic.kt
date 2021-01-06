@@ -1,8 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.forum.topic
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -25,13 +26,34 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Topic(
-		@JsonProperty("topic_id") val topic_id: Int,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("title") override val title: String,
-		@JsonProperty("date_posted") val date_posted: String?,
-		@JsonProperty("author_name") val author_name: String?,
-		@JsonProperty("author_url") val author_url: String?,
-		@JsonProperty("replies") val replies: Int,
-		@JsonProperty("last_post") val lastPost: LastPost?
-) : MyAnimeListURL, MyAnimeListTitle
+	@SerialName("topic_id") val topicId: Int,
+	@SerialName("url") override val url: String,
+	@SerialName("title") override val title: String,
+	@SerialName("date_posted") val datePosted: String?,
+	@SerialName("author_name") val authorName: String?,
+	@SerialName("author_url") val authorUrl: String?,
+	@SerialName("replies") val replies: Int,
+	@SerialName("last_post") val lastPost: LastPost?
+) : MyAnimeListURL, MyAnimeListTitle {
+	@Suppress("PropertyName", "unused")
+	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
+	val topic_id
+		get() = topicId
+
+	@Suppress("PropertyName", "unused")
+	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
+	val date_posted
+		get() = datePosted
+
+	@Suppress("PropertyName", "unused")
+	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
+	val author_name
+		get() = authorName
+
+	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
+	@Suppress("PropertyName", "unused")
+	val author_url
+		get() = authorUrl
+}

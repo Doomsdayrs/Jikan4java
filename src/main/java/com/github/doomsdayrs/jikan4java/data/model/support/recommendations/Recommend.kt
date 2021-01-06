@@ -1,10 +1,11 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.recommendations
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -27,11 +28,12 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Recommend(
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String = "",
-		@JsonProperty("recommendation_url") val recommendation_url: String = "",
-		@JsonProperty("title") override val title: String,
-		@JsonProperty("recommendation_count") val recommendation_count: Int
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("recommendation_url") val recommendation_url: String = "",
+	@SerialName("title") override val title: String,
+	@SerialName("recommendation_count") val recommendation_count: Int
 ) : MyAnimeListID, MyAnimeListURL, MyAnimeListTitle, MyAnimeListImageURL

@@ -1,8 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.reviews
 
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListType
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -26,8 +26,16 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
-interface Review : MyAnimeListID, MyAnimeListURL,MyAnimeListType {
+interface Review : MyAnimeListID, MyAnimeListURL, MyAnimeListType {
+
+	val helpfulCount: Int
+
+	@Deprecated("Changed to proper naming format", ReplaceWith("helpful_count"))
+	@Suppress("PropertyName")
 	val helpful_count: Int
+		get() = helpfulCount
+
+
 	val date: String?
 	val reviewer: Reviewer
 	val content: String?

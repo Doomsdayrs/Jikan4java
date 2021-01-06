@@ -1,15 +1,13 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListPublishingStart
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListPublishingStart
 import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPageResult
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListMangaType
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Authors
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
-import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -32,26 +30,19 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-class GenreSearchManga(
-		@field:JsonProperty("mal_id") override val malID: Int = 0,
-		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("image_url") override val imageURL: String = "",
-		@field:JsonProperty("synopsis") override val synopsis: String = "",
-		@field:JsonProperty("type") override val type: String = "",
-		@field:JsonProperty("publishing_start") override val publishingStart: String = "",
-		@field:JsonProperty("volumes") val volumes: Int = 0,
-		@field:JsonProperty("members") override val members: Int = 0,
-		@field:JsonProperty("genres") override val genres: List<Genre>,
-		@field:JsonProperty("authors") val authors: ArrayList<Authors>,
-		@field:JsonProperty("score") override val score: Double,
-		@field:JsonProperty("serialization") val serialization: ArrayList<String>
-) : Retriever(), GenreSearchPageResult, MyAnimeListPublishingStart {
-
-	/**
-	 * Returns the Manga object of this object
-	 *
-	 * @return Manga Object
-	 */
-	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$jikanURL/manga/$malID") }
-}
+@Serializable
+data class GenreSearchManga(
+	@SerialName("mal_id") override val malID: Int = 0,
+	@SerialName("url") override val url: String,
+	@SerialName("title") override val title: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("synopsis") override val synopsis: String = "",
+	@SerialName("type") override val type: String = "",
+	@SerialName("publishing_start") override val publishingStart: String = "",
+	@SerialName("volumes") val volumes: Int = 0,
+	@SerialName("members") override val members: Int = 0,
+	@SerialName("genres") override val genres: List<Genre>,
+	@SerialName("authors") val authors: ArrayList<Authors>,
+	@SerialName("score") override val score: Double,
+	@SerialName("serialization") val serialization: ArrayList<String>
+) : GenreSearchPageResult, MyAnimeListPublishingStart, MyAnimeListMangaType

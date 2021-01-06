@@ -1,11 +1,11 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.anime.characterStaff
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -29,11 +29,11 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-class Staff(
-		@field:JsonProperty("mal_id") override val malID: Int = 0,
-		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("name") override val name: String,
-		@field:JsonProperty("image_url") override val imageURL: String = "",
-		@field:JsonProperty("positions") val positions: ArrayList<String> = arrayListOf()
+@Serializable
+data class Staff(
+	@SerialName("mal_id") override val malID: Int = 0,
+	@SerialName("url") override val url: String,
+	@SerialName("name") override val name: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("positions") val positions: ArrayList<String> = arrayListOf()
 ) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListName

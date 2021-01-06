@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.meta
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -23,11 +24,12 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Status(
-		@field:JsonProperty("cached_requests") val cached_requests: Int = 0,
-		@field:JsonProperty("requests_today") val requests_today: Int = 0,
-		@field:JsonProperty("requests_this_week") val requests_this_week: Int = 0,
-		@field:JsonProperty("requests_this_month") val requests_this_month: Int = 0,
-		@field:JsonProperty("connected_clients") val connected_clients: String? = null,
-		@field:JsonProperty("total_connections_received") val total_connections_received: String? = null
+	@SerialName("cached_requests") val cached_requests: Int = 0,
+	@SerialName("requests_today") val requests_today: Int = 0,
+	@SerialName("requests_this_week") val requests_this_week: Int = 0,
+	@SerialName("requests_this_month") val requests_this_month: Int = 0,
+	@SerialName("connected_clients") val connected_clients: String? = null,
+	@SerialName("total_connections_received") val total_connections_received: String? = null
 ) : Meta

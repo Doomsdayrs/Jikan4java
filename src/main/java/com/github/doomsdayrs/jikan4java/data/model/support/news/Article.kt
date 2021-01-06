@@ -1,8 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.news
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -25,14 +26,15 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Article(
-		@JsonProperty("url") override var url: String,
-		@JsonProperty("title") override var title: String,
-		@JsonProperty("date") var date: String?,
-		@JsonProperty("author_name") var author_name: String?,
-		@JsonProperty("author_url") var author_url: String?,
-		@JsonProperty("forum_url") var forum_url: String?,
-		@JsonProperty("image_url") var image_url: String?,
-		@JsonProperty("comments") var comments: Int,
-		@JsonProperty("intro") var intro: String?
+	@SerialName("url") override var url: String,
+	@SerialName("title") override var title: String,
+	@SerialName("date") var date: String?,
+	@SerialName("author_name") var author_name: String?,
+	@SerialName("author_url") var author_url: String?,
+	@SerialName("forum_url") var forum_url: String?,
+	@SerialName("image_url") var image_url: String?,
+	@SerialName("comments") var comments: Int,
+	@SerialName("intro") var intro: String?
 ) : MyAnimeListURL, MyAnimeListTitle

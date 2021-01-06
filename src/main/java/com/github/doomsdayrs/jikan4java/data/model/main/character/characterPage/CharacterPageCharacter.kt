@@ -1,10 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.character.characterPage
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.data.model.main.character.Character
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListCharacterType
 import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.IndividualsPage
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -29,21 +28,13 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@Serializable
 data class CharacterPageCharacter(
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String = "",
-		@JsonProperty("name") override val name: String,
-		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>,
-		@param:JsonProperty("anime") val animes: ArrayList<PageCharacterAnime>,
-		@param:JsonProperty("manga") val mangas: ArrayList<PageCharacterManga>
-) : IndividualsPage() {
-
-	/**
-	 * Returns the Character object of this object
-	 *
-	 * @return Character Object
-	 */
-	val character by lazy { retrieve<Character>("$jikanURL/character/$malID") }
-}
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("name") override val name: String,
+	@SerialName("alternative_names") override val alternativeNames: ArrayList<String>,
+	@SerialName("anime") val animes: ArrayList<PageCharacterAnime>,
+	@SerialName("manga") val mangas: ArrayList<PageCharacterManga>
+) : IndividualsPage(), MyAnimeListCharacterType

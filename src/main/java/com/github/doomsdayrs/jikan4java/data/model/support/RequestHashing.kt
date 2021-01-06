@@ -1,5 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support
 
+import kotlinx.serialization.SerialName
+
 /*
  * This file is part of Jikan4java.
  *
@@ -22,7 +24,28 @@ package com.github.doomsdayrs.jikan4java.data.model.support
  * @author github.com/doomsdayrs
  */
 interface RequestHashing {
+	@SerialName("request_hash")
+	val requestHash: String?
+
+	@SerialName("request_cached")
+	val requestCached: Boolean
+
+	@SerialName("request_cache_expiry")
+	val requestCacheExpiry: Int
+
+
+	@Suppress("PropertyName")
+	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
 	val request_hash: String?
+		get() = requestHash
+
+	@Suppress("PropertyName")
+	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
 	val request_cached: Boolean
+		get() = requestCached
+
+	@Suppress("PropertyName")
+	@Deprecated("Changed to proper naming format", ReplaceWith("malID"))
 	val request_cache_expiry: Int
+		get() = requestCacheExpiry
 }

@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.data.model.main.top.base
 
 import com.github.doomsdayrs.jikan4java.data.enums.top.TopSubType
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -26,6 +27,7 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 abstract class Top<T : TopListing>(val name: String) : RequestHashing {
 	abstract val topListings: ArrayList<T>
 

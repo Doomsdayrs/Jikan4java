@@ -1,8 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.manga.published
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.prop.Prop
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -25,10 +25,10 @@ import com.github.doomsdayrs.jikan4java.data.model.support.prop.Prop
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@Serializable
 data class Published(
-		@field:JsonProperty("from") val from: String? = null,
-		@field:JsonProperty("to") val to: String? = null,
-		@field:JsonProperty("prop") val prop: Prop? = null,
-		@field:JsonProperty("string") val string: String? = null
+	@SerialName("from") val from: String? = null,
+	@SerialName("to") val to: String? = null,
+	@SerialName("prop") val prop: Prop? = null,
+	@SerialName("string") val string: String? = null
 )

@@ -1,10 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.manga.mangapage
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListMangaType
 import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.ContentPage
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -28,26 +27,19 @@ import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.Content
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@Serializable
 data class MangaPageManga(
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String = "",
-		@JsonProperty("title") override val title: String,
-		@JsonProperty("synopsis") override val synopsis: String = "",
-		@JsonProperty("type") override val type: String?,
-		@JsonProperty("score") override val score: Double,
-		@JsonProperty("start_date") override val startDate: String = "",
-		@JsonProperty("end_date") override val end_date: String = "",
-		@JsonProperty("members") override val members: Int,
-		@JsonProperty("publishing") val publishing: Boolean,
-		@JsonProperty("chapters") val chapters: Int,
-		@JsonProperty("volumes") val volumes: Int
-) : ContentPage() {
-	/**
-	 * Returns the Manga object of this object
-	 *
-	 * @return Manga Object
-	 */
-	val manga by lazy { retrieve<Manga>("$jikanURL/character/$malID") }
-}
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("title") override val title: String,
+	@SerialName("synopsis") override val synopsis: String = "",
+	@SerialName("type") override val type: String?,
+	@SerialName("score") override val score: Double,
+	@SerialName("start_date") override val startDate: String = "",
+	@SerialName("end_date") override val endDate: String = "",
+	@SerialName("members") override val members: Int,
+	@SerialName("publishing") val publishing: Boolean,
+	@SerialName("chapters") val chapters: Int,
+	@SerialName("volumes") val volumes: Int
+) : ContentPage(), MyAnimeListMangaType

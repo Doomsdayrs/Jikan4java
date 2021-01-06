@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.model.character
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.Top
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -26,9 +27,10 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class CharacterTop(
-		@JsonProperty("request_hash") override val request_hash: String?= null,
-		@JsonProperty("request_cached") override val request_cached: Boolean = false,
-		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = -1,
-		@param:JsonProperty("top") override val topListings: ArrayList<TopCharacter> = arrayListOf()
+	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_cached") override val requestCached: Boolean = false,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = -1,
+	@SerialName("top") override val topListings: ArrayList<TopCharacter> = arrayListOf()
 ) : Top<TopCharacter>("characters")

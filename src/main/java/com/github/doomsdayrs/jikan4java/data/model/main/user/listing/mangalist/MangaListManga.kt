@@ -1,11 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user.listing.mangalist
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.*
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListMangaType
+import com.github.doomsdayrs.jikan4java.data.base.values.*
 import com.github.doomsdayrs.jikan4java.data.model.main.magazine.Magazine
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -30,43 +29,35 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class MangaListManga(
-		@JsonProperty("mal_id") override val malID: Int = 0,
-		@JsonProperty("title") override val title: String,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String = "",
-		@JsonProperty("type") override val type: String = "",
-		@JsonProperty("reading_status") val reading_status: Int = 0,
-		@JsonProperty("score") val score: Int = 0,
-		@JsonProperty("read_chapters") val read_chapters: Int = 0,
-		@JsonProperty("read_volumes") val read_volumes: Int = 0,
-		@JsonProperty("total_chapters") val total_chapters: Int = 0,
-		@JsonProperty("total_volumes") val total_volumes: Int = 0,
-		@JsonProperty("publishing_status") val publishing_status: Int = 0,
-		@JsonProperty("is_rereading") val is_rereading: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
-		@JsonProperty("tags") val tags: ArrayList<String>,
-		@JsonProperty("start_date") override val startDate: String = "",
-		@JsonProperty("end_date") override val end_date: String = "",
-		@JsonProperty("read_start_date") val read_start_date: String = "",
-		@JsonProperty("read_end_date") val read_end_date: String = "",//Not sure of this
-		@JsonProperty("days") val days: Int = 0,//Also unsure
-		@JsonProperty("retail") val retail: String = "",
-		@JsonProperty("priority") val priority: String = "",
-		@JsonProperty("added_to_list") val added_to_list: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
-		@JsonProperty("magazines") val magazines: ArrayList<Magazine>?
+	@SerialName("mal_id") override val malID: Int = 0,
+	@SerialName("title") override val title: String,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("type") override val type: String = "",
+	@SerialName("reading_status") val reading_status: Int = 0,
+	@SerialName("score") val score: Int = 0,
+	@SerialName("read_chapters") val read_chapters: Int = 0,
+	@SerialName("read_volumes") val read_volumes: Int = 0,
+	@SerialName("total_chapters") val total_chapters: Int = 0,
+	@SerialName("total_volumes") val total_volumes: Int = 0,
+	@SerialName("publishing_status") val publishing_status: Int = 0,
+	@SerialName("is_rereading") val is_rereading: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
+	@SerialName("tags") val tags: ArrayList<String>,
+	@SerialName("start_date") override val startDate: String = "",
+	@SerialName("end_date") override val endDate: String = "",
+	@SerialName("read_start_date") val read_start_date: String = "",
+	@SerialName("read_end_date") val read_end_date: String = "",//Not sure of this
+	@SerialName("days") val days: Int = 0,//Also unsure
+	@SerialName("retail") val retail: String = "",
+	@SerialName("priority") val priority: String = "",
+	@SerialName("added_to_list") val added_to_list: Boolean = false,//This will become an error in the future, well. Ill be given a user tag that i can use
+	@SerialName("magazines") val magazines: ArrayList<Magazine>?
 ) :
-		Retriever(),
-		MyAnimeListID,
-		MyAnimeListTitle,
-		MyAnimeListURL,
-		MyAnimeListImageURL,
-		MyAnimeListType,
-		MyAnimeListStartEndDate {
-
-	/**
-	 * Returns the Manga object of this object
-	 *
-	 * @return Manga Object
-	 */
-	val manga by lazy { retrieve<Manga>("$jikanURL/manga/$malID") }
-}
+	MyAnimeListID,
+	MyAnimeListTitle,
+	MyAnimeListURL,
+	MyAnimeListImageURL,
+	MyAnimeListType,
+	MyAnimeListStartEndDate, MyAnimeListMangaType

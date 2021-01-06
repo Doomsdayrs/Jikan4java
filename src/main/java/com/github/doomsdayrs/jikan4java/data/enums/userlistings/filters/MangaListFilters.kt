@@ -37,6 +37,6 @@ enum class MangaListFilters(private val type: String) : UserListFilters {
 
 	override val form: String = "mangalist"
 
-	override fun getaClass(): Class<*> =  MangaList::class.java
+	override fun getaClass(): Class<*> = MangaList::class.java
 
 }

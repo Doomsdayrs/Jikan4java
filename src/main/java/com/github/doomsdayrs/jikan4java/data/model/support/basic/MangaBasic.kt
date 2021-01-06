@@ -1,9 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.basic
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
-import java.util.concurrent.CompletableFuture
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListMangaType
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -27,16 +26,10 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-class MangaBasic(
-		@JsonProperty("mal_id") mal_id: Int,
-		@JsonProperty("url") url: String,
-		@JsonProperty("image_url") image_url: String="",
-		@JsonProperty("name") name: String
-) : BasicObject(mal_id, url, image_url, name) {
-	/**
-	 * Returns the Manga object of this object
-	 *
-	 * @return Manga Object
-	 */
-	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$jikanURL/manga/$mal_id") }
-}
+@Serializable
+data class MangaBasic(
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("name") override val name: String
+) : BasicObject, MyAnimeListMangaType

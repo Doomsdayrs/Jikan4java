@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.reviews
 
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,6 +25,7 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 abstract class Reviewer : MyAnimeListURL, MyAnimeListImageURL {
 
 	abstract val username: String?

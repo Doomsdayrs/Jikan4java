@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.core.search
 
-import com.github.doomsdayrs.jikan4java.common.jikanURL
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
+import com.github.doomsdayrs.jikan4java.core.JikanResult
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.top.TopSubType
 import com.github.doomsdayrs.jikan4java.data.exceptions.IncompatibleEnumException
@@ -35,26 +36,28 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-class TopSearch : Retriever() {
+class TopSearch(
+	val retriever: Retriever
+) {
 
 	/**
 	 * Searches the top charts of MAL
 	 *
-	 * @param tops       What subType of media: anime, manga, people, characters
+	 * @param top       What subType of media: anime, manga, people, characters
 	 * @param pageNumber Should be 1 by default, Each page has 50 entries; Page 2 would be the next page, so 50 - 100
 	 * @param subtype    The sub category to core for.
 	 * @return Top object
 	 */
-	@Throws(IncompatibleEnumException::class)
 	@JvmOverloads
 	inline fun <reified TOP, reified V> searchTop(
-			top: TOP,
-			pageNumber: Int = 0,
-			subtype: TopSubType? = null
-	): CompletableFuture<TOP>
+		top: TOP,
+		pageNumber: Int = 0,
+		subtype: TopSubType? = null
+	): CompletableFuture<JikanResult<TOP>>
 			where TOP : Top<V>,
 			      V : TopListing {
-		val options = StringBuilder("/${if (pageNumber == 0) 1 else pageNumber}")
+		val options =
+			StringBuilder("/${if (pageNumber == 0) 1 else pageNumber}")
 		if (subtype != null) {
 			if (top.compatible(subtype)) options.append("/").append(subtype)
 			else throw IncompatibleEnumException("$top is not compatible with $subtype")
@@ -62,7 +65,7 @@ class TopSearch : Retriever() {
 		println("TOP IS: ${TOP::class.simpleName}")
 		println("var IS: ${top::class.simpleName}")
 
-		return retrieve("$jikanURL/top/${top.name}$options")
+		return retriever("$JIKAN_URL/top/${top.name}$options")
 	}
 
 	companion object {

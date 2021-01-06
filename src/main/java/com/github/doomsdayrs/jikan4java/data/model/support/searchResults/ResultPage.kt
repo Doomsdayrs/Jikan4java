@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.searchResults
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -26,9 +27,10 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class ResultPage(
-		@JsonProperty("request_hash") val request_hash: String?,
-		@JsonProperty("request_cached") val request_cached: Boolean,
-		@JsonProperty("request_cache_expiry") val request_cache_expiry: Int,
-		@JsonProperty("last_page") val last_page: Int = 0
+	@SerialName("request_hash") val request_hash: String?,
+	@SerialName("request_cached") val request_cached: Boolean,
+	@SerialName("request_cache_expiry") val request_cache_expiry: Int,
+	@SerialName("last_page") val last_page: Int = 0
 )

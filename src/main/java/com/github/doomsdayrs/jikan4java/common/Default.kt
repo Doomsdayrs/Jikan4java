@@ -1,12 +1,9 @@
 package com.github.doomsdayrs.jikan4java.common
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
+import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.json.simple.parser.JSONParser
 
 
 /*
@@ -32,27 +29,20 @@ import org.json.simple.parser.JSONParser
  * @author github.com/doomsdayrs
  */
 
-fun getDefaultObjectMapper() =
-		ObjectMapper()
-				.apply {
-					configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
-				}
-				.registerModule(KotlinModule(
-						nullIsSameAsDefault = true,
-						nullToEmptyCollection = true
-				))
-
-fun getDefaultOkHttpClient() = OkHttpClient().let {
+internal fun getDefaultOkHttpClient() = OkHttpClient().let {
 	val builder = it.newBuilder()
-	builder.addInterceptor { chain: Interceptor.Chain ->
+	builder.addInterceptor @Throws(InterruptedException::class) { chain: Interceptor.Chain ->
 		val request = chain.request()
 		rateLimit()
-		println("$jikan4JavaName: $loadingMessage:\t ${request.url()}")
+		if (debugMode)
+			println("$PROJECT_NAME: $LOADING_MESSAGE:\t ${request.url}")
 		chain.proceed(request)
 	}
 	builder.build()
 }
 
-fun getDefaultJSONParser() = JSONParser()
+internal fun getDefaultJSONParser() = Json {
+	encodeDefaults = true
+}
 
-fun getDefaultRequestBuilder() = Request.Builder()
+internal fun getDefaultRequestBuilder() = Request.Builder()

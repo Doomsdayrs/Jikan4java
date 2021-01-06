@@ -1,8 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.person
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.AnimeBasic
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.CharacterBasic
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -25,8 +26,9 @@ import com.github.doomsdayrs.jikan4java.data.model.support.basic.CharacterBasic
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class VoiceActingRoles(
-		@field:JsonProperty("role") val role: String? = null,
-		@field:JsonProperty("anime") val animeBasic: AnimeBasic? = null,
-		@field:JsonProperty("character") val characterBasic: CharacterBasic? = null
+	@SerialName("role") val role: String? = null,
+	@SerialName("anime") val animeBasic: AnimeBasic? = null,
+	@SerialName("character") val characterBasic: CharacterBasic? = null
 ) 

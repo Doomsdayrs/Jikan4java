@@ -1,14 +1,11 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.character
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
-import java.util.concurrent.CompletableFuture
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListMangaType
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -31,19 +28,11 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@Serializable
 data class Mangaography(
-		@field:JsonProperty("mal_id") override val malID: Int = 0,
-		@field:JsonProperty("name") val name: String = "",
-		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String = "",
-		@field:JsonProperty("role") val role: String = ""
-) : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL {
-
-	/**
-	 * Returns the Manga object of this object
-	 *
-	 * @return Manga Object
-	 */
-	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$jikanURL/manga/$malID") }
-}
+	@SerialName("mal_id") override val malID: Int = 0,
+	@SerialName("name") val name: String = "",
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("role") val role: String = ""
+) : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL, MyAnimeListMangaType

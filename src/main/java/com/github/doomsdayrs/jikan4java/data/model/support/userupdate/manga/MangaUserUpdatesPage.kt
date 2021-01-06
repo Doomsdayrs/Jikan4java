@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.userupdate.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.UserUpdatePage
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -26,9 +27,10 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class MangaUserUpdatesPage(
-		@JsonProperty("request_hash") override val request_hash: String?,
-		@JsonProperty("request_cached") override val request_cached: Boolean,
-		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
-		@JsonProperty("users") override val userUpdates: ArrayList<MangaUserUpdate>
+	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_cached") override val requestCached: Boolean,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+	@SerialName("users") override val userUpdates: ArrayList<MangaUserUpdate>
 ) : UserUpdatePage<MangaUserUpdate>

@@ -30,11 +30,11 @@ import com.github.doomsdayrs.jikan4java.data.model.main.person.personPage.Person
  * @author github.com/doomsdayrs
  */
 enum class Types(
-		private val type: String,
-		@Deprecated("Useless with kotlin")
-		val a: Class<*>,
-		@Deprecated("Useless with kotlin")
-		val b: Class<*>
+	private val type: String,
+	@Deprecated("Useless with kotlin")
+	val a: Class<*>,
+	@Deprecated("Useless with kotlin")
+	val b: Class<*>
 ) {
 	ANIME("anime", AnimePage::class.java, Anime::class.java),
 	MANGA("manga", MangaPage::class.java, Manga::class.java),

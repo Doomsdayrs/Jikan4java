@@ -1,14 +1,12 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.model.character
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListName
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListType
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
-import java.util.concurrent.CompletableFuture
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListName
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListType
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListMangaType
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -31,17 +29,11 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class TopCharacterManga(
-		@field:JsonProperty("mal_id") override val malID: Int,
-		@field:JsonProperty("type") override val type: String?,
-		@field:JsonProperty("name") override val name: String,
-		@field:JsonProperty("url") override val url: String
-) : Retriever(), MyAnimeListID, MyAnimeListType, MyAnimeListName, MyAnimeListURL {
-
-	/**
-	 * Returns the Manga object of this object
-	 *
-	 * @return Manga Object
-	 */
-	val manga: CompletableFuture<Manga> by lazy { retrieve<Manga>("$jikanURL/manga/$malID") }
-}
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("type") override val type: String?,
+	@SerialName("name") override val name: String,
+	@SerialName("url") override val url: String
+) : MyAnimeListID, MyAnimeListType, MyAnimeListName, MyAnimeListURL,
+	MyAnimeListMangaType

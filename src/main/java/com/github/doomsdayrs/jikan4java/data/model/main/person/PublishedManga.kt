@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.person
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.MangaBasic
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,7 +25,8 @@ import com.github.doomsdayrs.jikan4java.data.model.support.basic.MangaBasic
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class PublishedManga(
-		@field:JsonProperty("position") val position: String? = null,
-		@field:JsonProperty("manga") val mangaBasic: MangaBasic? = null
+	@SerialName("position") val position: String? = null,
+	@SerialName("manga") val mangaBasic: MangaBasic? = null
 )

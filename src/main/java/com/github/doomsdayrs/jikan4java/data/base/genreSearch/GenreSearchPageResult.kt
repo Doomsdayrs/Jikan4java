@@ -1,6 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.base.genreSearch
 
-import com.github.doomsdayrs.jikan4java.data.base.*
+import com.github.doomsdayrs.jikan4java.data.base.values.*
 
 
 /*
@@ -27,13 +27,13 @@ import com.github.doomsdayrs.jikan4java.data.base.*
  */
 interface GenreSearchPageResult
 	:
-		MyAnimeListID,
-		MyAnimeListType,
-		MyAnimeListTitle,
-		MyAnimeListImageURL,
-		MyAnimeListURL,
-		MyAnimeListSynopsis,
-		MyAnimeListGenres,
-		MyAnimeListScore {
+	MyAnimeListID,
+	MyAnimeListType,
+	MyAnimeListTitle,
+	MyAnimeListImageURL,
+	MyAnimeListURL,
+	MyAnimeListSynopsis,
+	MyAnimeListGenres,
+	MyAnimeListScore {
 	val members: Int
 }

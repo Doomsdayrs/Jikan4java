@@ -24,7 +24,7 @@ import com.github.doomsdayrs.jikan4java.data.model.main.schedule.week.*
  * @author github.com/doomsdayrs
  */
 enum class Days(private val type: String, val clazz: Class<*>) {
-	MONDAY("monday", Monday::class.java) {},
+	MONDAY("monday", Monday::class.java),
 	TUESDAY("tuesday", Tuesday::class.java),
 	WEDNESDAY("wednesday", Wednesday::class.java),
 	THURSDAY("thursday", Thursday::class.java),

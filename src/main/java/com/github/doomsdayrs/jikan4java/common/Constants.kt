@@ -23,9 +23,9 @@ package com.github.doomsdayrs.jikan4java.common
  *
  * @author github.com/doomsdayrs
  */
-const val jikan4JavaName = "Jikan4Java"
-const val jikanURL = "https://api.jikan.moe/v3"
-const val unknownMessage = "unknown"
+internal const val PROJECT_NAME = "Jikan4Java"
+const val JIKAN_URL = "https://api.jikan.moe/v3"
+const val UNKNOWN_MESSAGE = "unknown"
 
-const val loadingMessage = "Loading URL"
-const val rateLimMessage = "RateLimit hit, Waiting 2000ms"
+internal const val LOADING_MESSAGE = "Loading URL"
+internal const val RATE_LIMIT_MESSAGE = "RateLimit hit, Waiting 2000ms"

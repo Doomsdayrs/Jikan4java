@@ -1,16 +1,17 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.person
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
 import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListPicturesEndPoint
+import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListSelfType
+import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
-import com.github.doomsdayrs.jikan4java.data.model.support.pictures.Pictures
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
-import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -33,26 +34,35 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Person(
-		@field:JsonProperty("request_hash") override val request_hash: String?,
-		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("mal_id") override val malID: Int = 0,
-		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String = "",
-		@field:JsonProperty("website_url") val website_url: String = "",
-		@field:JsonProperty("name") val name: String,
-		@field:JsonProperty("given_name") val given_name: String = "",
-		@field:JsonProperty("family_name") val family_name: String = "",
-		@field:JsonProperty("alternate_names") val alternate_names: ArrayList<String>,
-		@field:JsonProperty("birthday") val birthday: String = "",
-		@field:JsonProperty("member_favorites") val member_favorites: Int = 0,
-		@field:JsonProperty("about") val about: String = "",
-		@field:JsonProperty("voice_acting_roles") val voiceActingRoles: ArrayList<VoiceActingRoles>,
-		@field:JsonProperty("anime_staff_positions") val animeStaffPositions: ArrayList<AnimeStaffPosition>,
-		@field:JsonProperty("published_manga") val publishedMangas: ArrayList<PublishedManga>
-) : Retriever(), RequestHashing, MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL {
+	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_cached") override val requestCached: Boolean = false,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
+	@SerialName("mal_id") override val malID: Int = 0,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("website_url") val website_url: String = "",
+	@SerialName("name") val name: String,
+	@SerialName("given_name") val given_name: String = "",
+	@SerialName("family_name") val family_name: String = "",
+	@SerialName("alternate_names") val alternate_names: ArrayList<String>,
+	@SerialName("birthday") val birthday: String = "",
+	@SerialName("member_favorites") val member_favorites: Int = 0,
+	@SerialName("about") val about: String = "",
+	@SerialName("voice_acting_roles") val voiceActingRoles: ArrayList<VoiceActingRoles>,
+	@SerialName("anime_staff_positions") val animeStaffPositions: ArrayList<AnimeStaffPosition>,
+	@SerialName("published_manga") val publishedMangas: ArrayList<PublishedManga>
+) : RequestHashing, MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL,
+	MyAnimeListPicturesEndPoint {
+	override val urlPoint: String
+		get() = "person"
 
-	@get:JsonIgnore
-	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$jikanURL/person/$malID/pictures") }
+	companion object : MyAnimeListSelfType<Person>,
+		MyAnimeListDirectPicturesEndPoint {
+		override fun getByID(retriever: Retriever, id: Int) =
+			retriever<Person>("$JIKAN_URL/person/$id")
+
+		override val urlPoint: String by lazy { "person" }
+	}
 }

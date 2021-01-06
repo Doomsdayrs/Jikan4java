@@ -1,12 +1,11 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.club
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
 import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.main.user.User
-import java.util.concurrent.CompletableFuture
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -29,17 +28,18 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class ClubMember(
-		@field:JsonProperty("username") val username: String? = null,
-		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String = ""
-) : Retriever(), MyAnimeListURL, MyAnimeListImageURL {
+	@SerialName("username") val username: String = "",
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = ""
+) : MyAnimeListURL, MyAnimeListImageURL {
 
 	/**
 	 * Returns a user object
 	 *
-	 * @param name the name of the user to retrieve
-	 * @return User
+	 * @return [User]
 	 */
-	fun userRetrieve(name: String): CompletableFuture<User> = retrieve("$jikanURL/user/$name")
+	fun userRetrieve(retriever: Retriever) =
+		User.getByName(retriever, username)
 }

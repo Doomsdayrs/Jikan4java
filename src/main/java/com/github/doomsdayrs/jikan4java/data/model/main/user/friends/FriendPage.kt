@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user.friends
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -25,9 +26,10 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class FriendPage(
-		@field:JsonProperty("request_hash") override var request_hash: String? = null,
-		@field:JsonProperty("request_cache_expiry") override var request_cache_expiry: Int = 0,
-		@field:JsonProperty("request_cached") override var request_cached: Boolean = false,
-		@field:JsonProperty("friends") var friends: ArrayList<Friends>
+	@SerialName("request_hash") override var requestHash: String? = null,
+	@SerialName("request_cache_expiry") override var requestCacheExpiry: Int = 0,
+	@SerialName("request_cached") override var requestCached: Boolean = false,
+	@SerialName("friends") var friends: ArrayList<Friends>
 ) : RequestHashing

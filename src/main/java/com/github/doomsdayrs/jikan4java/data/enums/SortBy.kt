@@ -22,7 +22,9 @@ package com.github.doomsdayrs.jikan4java.data.enums
  * @author github.com/doomsdayrs
  */
 enum class SortBy(private val type: String) {
-	ASCENDING("ascending"), ASC(ASCENDING.type), DESCENDING("descending"), DESC(DESCENDING.type);
+	ASCENDING("ascending"), ASC(ASCENDING.type), DESCENDING("descending"), DESC(
+		DESCENDING.type
+	);
 
 	override fun toString(): String {
 		return type

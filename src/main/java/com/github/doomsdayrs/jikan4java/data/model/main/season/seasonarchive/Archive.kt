@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.season.seasonarchive
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -24,7 +25,8 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Archive(
-		@field:JsonProperty("year") val year: Int = 0,
-		@field:JsonProperty("seasons") val seasons: ArrayList<String>? = null
+	@SerialName("year") val year: Int = 0,
+	@SerialName("seasons") val seasons: ArrayList<String>? = null
 )

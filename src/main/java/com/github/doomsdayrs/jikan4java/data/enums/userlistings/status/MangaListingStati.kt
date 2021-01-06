@@ -22,7 +22,12 @@ package com.github.doomsdayrs.jikan4java.data.enums.userlistings.status
  * @author github.com/doomsdayrs
  */
 enum class MangaListingStati(private val type: String) : ListingStati {
-	PUBLISHING("publishing"), FINISHED("finished"), COMPLETE(FINISHED.type), TO_BE_PUBLISHED("to_be_published"), NOT_YET_PUBLISHED(TO_BE_PUBLISHED.type), TBP(NOT_YET_PUBLISHED.type), NYP(TBP.type);
+	PUBLISHING("publishing"), FINISHED("finished"), COMPLETE(FINISHED.type), TO_BE_PUBLISHED(
+		"to_be_published"
+	),
+	NOT_YET_PUBLISHED(TO_BE_PUBLISHED.type), TBP(NOT_YET_PUBLISHED.type), NYP(
+		TBP.type
+	);
 
 	override fun toString(): String {
 		return type

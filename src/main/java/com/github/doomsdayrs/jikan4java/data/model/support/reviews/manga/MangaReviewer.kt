@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.reviews.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.reviews.Reviewer
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,10 +25,11 @@ import com.github.doomsdayrs.jikan4java.data.model.support.reviews.Reviewer
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class MangaReviewer(
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String = "",
-		@JsonProperty("username") override val username: String = "",
-		@JsonProperty("chapters_read") override val seen: Int,
-		@JsonProperty("scores") override val scores: MangaScore
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("username") override val username: String = "",
+	@SerialName("chapters_read") override val seen: Int,
+	@SerialName("scores") override val scores: MangaScore
 ) : Reviewer()

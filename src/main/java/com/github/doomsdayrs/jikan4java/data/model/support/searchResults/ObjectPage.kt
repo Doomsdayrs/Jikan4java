@@ -1,9 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.searchResults
 
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 
 /*
  * This file is part of Jikan4java.
@@ -27,4 +26,4 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
-abstract class ObjectPage : Retriever(), MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL
+abstract class ObjectPage : MyAnimeListID, MyAnimeListURL, MyAnimeListImageURL

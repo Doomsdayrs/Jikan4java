@@ -25,6 +25,6 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
-abstract class Day() : RequestHashing {
+abstract class Day : RequestHashing {
 	abstract val subAnimes: ArrayList<SubAnime>
 }

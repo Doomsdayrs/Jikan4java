@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.pictures
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -23,7 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Picture(
-		@JsonProperty("large") val LARGE: String?,
-		@JsonProperty("small") val SMALL: String?
+	@SerialName("large") val LARGE: String?,
+	@SerialName("small") val SMALL: String?
 )

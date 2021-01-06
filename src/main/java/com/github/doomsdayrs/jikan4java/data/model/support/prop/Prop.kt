@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.prop
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -23,9 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Prop(
-		@JsonProperty("from")
-		var from: DateProp?,
-		@JsonProperty("to")
-		var to: DateProp?
+	@SerialName("from")
+	var from: DateProp?,
+	@SerialName("to")
+	var to: DateProp?
 )

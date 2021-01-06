@@ -1,14 +1,11 @@
 package com.github.doomsdayrs.jikan4java.core.userlisting
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.doomsdayrs.jikan4java.common.jikanURL
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
+import com.github.doomsdayrs.jikan4java.core.JikanResult
+import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters.MangaListFilters
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.status.MangaListingStati
 import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.mangalist.MangaList
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import org.json.simple.parser.JSONParser
 import java.security.InvalidParameterException
 import java.util.concurrent.CompletableFuture
 
@@ -34,23 +31,17 @@ import java.util.concurrent.CompletableFuture
  * @author github.com/doomsdayrs
  */
 class MangaUserListingSearch(
-		username: String = "",
-		client: OkHttpClient = OkHttpClient(),
-		objectMapper: ObjectMapper = ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true),
-		jsonParser: JSONParser = JSONParser(),
-		builder: Request.Builder = Request.Builder()
+	username: String = "",
+	retriever: Retriever
 ) : UserListingSearch<MangaList, MangaListingStati, MangaUserListingSearch>(
-		username = username,
-		client = client,
-		objectMapper = objectMapper,
-		jsonParser = jsonParser,
-		builder = builder
+	username = username,
+	retriever = retriever,
 ) {
 
 	private var magazine = 0
-	val list: CompletableFuture<MangaList>
+	val list: CompletableFuture<JikanResult<MangaList>>
 		@Throws(InvalidParameterException::class)
-		get() = retrieve("$jikanURL/user/$username${createURL()}")
+		get() = retriever("$JIKAN_URL/user/$username${createURL()}")
 
 	init {
 		setUserListFilters(MangaListFilters.ALL)

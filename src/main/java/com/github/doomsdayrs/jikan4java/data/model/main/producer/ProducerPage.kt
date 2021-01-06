@@ -1,9 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.producer
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.main.schedule.SubAnime
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.BasicMeta
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -27,10 +28,11 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class ProducerPage(
-		@field:JsonProperty("request_hash") override val request_hash: String? = null,
-		@field:JsonProperty("request_cached") override val  request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") override val  request_cache_expiry: Int = 0,
-		@field:JsonProperty("meta") val meta: BasicMeta? = null,
-		@field:JsonProperty("anime") val subAnimes: ArrayList<SubAnime>? = null
-):RequestHashing
+	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_cached") override val requestCached: Boolean = false,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
+	@SerialName("meta") val meta: BasicMeta? = null,
+	@SerialName("anime") val subAnimes: ArrayList<SubAnime>? = null
+) : RequestHashing

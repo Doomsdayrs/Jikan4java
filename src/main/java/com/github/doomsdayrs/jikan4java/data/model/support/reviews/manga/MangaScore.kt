@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.reviews.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.reviews.Scores
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -25,10 +26,11 @@ import com.github.doomsdayrs.jikan4java.data.model.support.reviews.Scores
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class MangaScore(
-		@JsonProperty("overall") override val overall: Int = 0,
-		@JsonProperty("story") override val story: Int = 0,
-		@JsonProperty("art") val art: Int = 0,
-		@JsonProperty("character") override val character: Int = 0,
-		@JsonProperty("enjoyment") override val enjoyment: Int = 0
+	@SerialName("overall") override val overall: Int = 0,
+	@SerialName("story") override val story: Int = 0,
+	@SerialName("art") val art: Int = 0,
+	@SerialName("character") override val character: Int = 0,
+	@SerialName("enjoyment") override val enjoyment: Int = 0
 ) : Scores

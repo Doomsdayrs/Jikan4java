@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.person.personPage
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -25,10 +26,11 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class PersonPage(
-		@field:JsonProperty("request_hash") override val request_hash: String? = null,
-		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("results") val people: ArrayList<PersonPagePerson>? = null,
-		@field:JsonProperty("last_page") val last_page: Int = 0
+	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_cached") override val requestCached: Boolean = false,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
+	@SerialName("results") val people: ArrayList<PersonPagePerson>? = null,
+	@SerialName("last_page") val last_page: Int = 0
 ) : RequestHashing

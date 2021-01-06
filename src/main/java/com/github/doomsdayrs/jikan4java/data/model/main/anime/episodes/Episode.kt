@@ -1,8 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.anime.episodes
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListTitle
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -25,15 +25,55 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-class Episode(
-		@field:JsonProperty("episode_id") val episode_id: Int = 0,
-		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("title_japanese") val title_japanese: String? = null,
-		@field:JsonProperty("title_romanji") val title_romanji: String? = null,
-		@field:JsonProperty("aired") val aired: String? = null,
-		@field:JsonProperty("filler") val filler: Boolean = false,
-		@field:JsonProperty("recap") val recap: Boolean = false,
-		@field:JsonProperty("video_url") val video_url: String? = null,
-		@field:JsonProperty("forum_url") val forum_url: String? = null
-) : MyAnimeListTitle
+@Serializable
+data class Episode(
+	@SerialName("episode_id") val episodeID: Int = 0,
+	@SerialName("title") override val title: String,
+	@SerialName("title_japanese") val titleJapanese: String? = null,
+	@SerialName("title_romanji") val titleRomanji: String? = null,
+	@SerialName("aired") val aired: String? = null,
+	@SerialName("filler") val filler: Boolean = false,
+	@SerialName("recap") val recap: Boolean = false,
+	@SerialName("video_url") val videoURL: String? = null,
+	@SerialName("forum_url") val forumURL: String? = null
+) : MyAnimeListTitle {
+	@Suppress("PropertyName", "unused")
+	@Deprecated(
+		"Changed to proper naming format",
+		ReplaceWith("episodeID")
+	)
+	val episode_id
+		get() = episodeID
+
+	@Suppress("PropertyName", "unused")
+	@Deprecated(
+		"Changed to proper naming format",
+		ReplaceWith("titleJapanese")
+	)
+	val title_japanese
+		get() = titleJapanese
+
+	@Suppress("PropertyName", "unused")
+	@Deprecated(
+		"Changed to proper naming format",
+		ReplaceWith("titleRomanji")
+	)
+	val title_romanji
+		get() = titleRomanji
+
+	@Suppress("PropertyName", "unused")
+	@Deprecated(
+		"Changed to proper naming format",
+		ReplaceWith("videoURL")
+	)
+	val video_url
+		get() = videoURL
+
+	@Deprecated(
+		"Changed to proper naming format",
+		ReplaceWith("forumURL")
+	)
+	@Suppress("PropertyName", "unused")
+	val forum_url
+		get() = forumURL
+}

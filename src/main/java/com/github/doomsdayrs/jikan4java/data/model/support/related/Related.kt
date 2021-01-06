@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.related
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -24,17 +25,18 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Related(
-		@JsonProperty("Prequel") val prequel: ArrayList<RelatedType>,
-		@JsonProperty("Alternative version") val altVersion: ArrayList<RelatedType>,
-		@JsonProperty("Spin-off") val spinOff: ArrayList<RelatedType>,
-		@JsonProperty("Adaptation") val adaptation: ArrayList<RelatedType>,
-		@JsonProperty("Summary") val summaries: ArrayList<RelatedType>,
-		@JsonProperty("Sequel") val sequels: ArrayList<RelatedType>,
-		@JsonProperty("Side story") val sideStories: ArrayList<RelatedType>,
-		@JsonProperty("Other") val other: ArrayList<RelatedType>,
-		@JsonProperty("Parent story") val parentStories: ArrayList<RelatedType>,
-		@JsonProperty("Alternative setting") val alternativeSettings: ArrayList<RelatedType>,
-		@JsonProperty("Character") val characters: ArrayList<RelatedType>,
-		@JsonProperty("Full story") val fullStories: ArrayList<RelatedType>
+	@SerialName("Prequel") val prequel: ArrayList<RelatedType>,
+	@SerialName("Alternative version") val altVersion: ArrayList<RelatedType>,
+	@SerialName("Spin-off") val spinOff: ArrayList<RelatedType>,
+	@SerialName("Adaptation") val adaptation: ArrayList<RelatedType>,
+	@SerialName("Summary") val summaries: ArrayList<RelatedType>,
+	@SerialName("Sequel") val sequels: ArrayList<RelatedType>,
+	@SerialName("Side story") val sideStories: ArrayList<RelatedType>,
+	@SerialName("Other") val other: ArrayList<RelatedType>,
+	@SerialName("Parent story") val parentStories: ArrayList<RelatedType>,
+	@SerialName("Alternative setting") val alternativeSettings: ArrayList<RelatedType>,
+	@SerialName("Character") val characters: ArrayList<RelatedType>,
+	@SerialName("Full story") val fullStories: ArrayList<RelatedType>
 )

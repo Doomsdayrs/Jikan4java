@@ -1,9 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.person.personPage
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListPersonType
 import com.github.doomsdayrs.jikan4java.data.model.support.searchResults.IndividualsPage
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -28,17 +28,11 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class PersonPagePerson(
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String = "",
-		@JsonProperty("name") override val name: String,
-		@JsonProperty("alternative_names") override val alternative_names: ArrayList<String>
-) : IndividualsPage() {
-	/**
-	 * Returns the Person object of this object
-	 *
-	 * @return Person Object
-	 */
-	val person by lazy { retrieve<Person>("$jikanURL/person/$malID") }
-}
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("name") override val name: String,
+	@SerialName("alternative_names") override val alternativeNames: ArrayList<String>
+) : IndividualsPage(), MyAnimeListPersonType

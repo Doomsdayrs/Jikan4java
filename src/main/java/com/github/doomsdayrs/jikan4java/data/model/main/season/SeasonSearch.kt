@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.season
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -25,11 +26,12 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class SeasonSearch(
-		@field:JsonProperty("request_hash") override val request_hash: String? = null,
-		@field:JsonProperty("request_cached") override val request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") override val request_cache_expiry: Int = 0,
-		@field:JsonProperty("season_name") val season_name: String? = null,
-		@field:JsonProperty("season_year") val season_year: Int = 0,
-		@field:JsonProperty("anime") val animes: ArrayList<SeasonSearchAnime>? = null
+	@SerialName("request_hash") override val requestHash: String? = null,
+	@SerialName("request_cached") override val requestCached: Boolean = false,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
+	@SerialName("season_name") val season_name: String? = null,
+	@SerialName("season_year") val season_year: Int = 0,
+	@SerialName("anime") val animes: ArrayList<SeasonSearchAnime>? = null
 ) : RequestHashing

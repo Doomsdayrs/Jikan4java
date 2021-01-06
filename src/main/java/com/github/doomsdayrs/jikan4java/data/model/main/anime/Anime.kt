@@ -1,25 +1,24 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.anime
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
+import com.github.doomsdayrs.jikan4java.core.JikanResult
 import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.*
-import com.github.doomsdayrs.jikan4java.data.model.main.anime.characterStaff.CharacterStaff
-import com.github.doomsdayrs.jikan4java.data.model.main.anime.episodes.Episodes
-import com.github.doomsdayrs.jikan4java.data.model.main.anime.videos.Video
-import com.github.doomsdayrs.jikan4java.data.model.support.MoreInfo
+import com.github.doomsdayrs.jikan4java.data.base.endpoint.*
+import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
+import com.github.doomsdayrs.jikan4java.data.base.values.*
+import com.github.doomsdayrs.jikan4java.data.model.main.anime.characterStaff.AnimeCharacterStaffPage
+import com.github.doomsdayrs.jikan4java.data.model.main.anime.episodes.EpisodesPage
+import com.github.doomsdayrs.jikan4java.data.model.main.anime.videos.AnimeVideos
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Genre
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.Producer
-import com.github.doomsdayrs.jikan4java.data.model.support.forum.Forum
-import com.github.doomsdayrs.jikan4java.data.model.support.news.News
-import com.github.doomsdayrs.jikan4java.data.model.support.pictures.Pictures
-import com.github.doomsdayrs.jikan4java.data.model.support.recommendations.RecommendationPage
+import com.github.doomsdayrs.jikan4java.data.model.support.recommendations.AnimeRecommendationPage
 import com.github.doomsdayrs.jikan4java.data.model.support.related.Related
 import com.github.doomsdayrs.jikan4java.data.model.support.reviews.anime.AnimeReviewPage
 import com.github.doomsdayrs.jikan4java.data.model.support.stats.AnimeStats
 import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.anime.AnimeUserUpdatesPage
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.concurrent.CompletableFuture
 
 /*
@@ -45,137 +44,138 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
+
+@Serializable
 data class Anime(
-		@JsonProperty("request_hash") override val request_hash: String?,
-		@JsonProperty("request_cached") override val request_cached: Boolean,
-		@JsonProperty("request_cache_expiry") override val request_cache_expiry: Int,
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("trailer_url") val trailer_url: String = "",
-		@JsonProperty("title") override val title: String,
-		@JsonProperty("title_english") val title_english: String = "",
-		@JsonProperty("title_japanese") val title_japanese: String = "",
-		@JsonProperty("title_synonyms") val title_synonyms: List<String>,
-		@JsonProperty("type") override val type: String = "",
-		@JsonProperty("source") override val source: String = "",
-		@JsonProperty("episodes") override val episodeCount: Int,
-		@JsonProperty("status") override val status: String = "",
-		@JsonProperty("aired") val aired: Aired?,
-		@JsonProperty("airing") val airing: Boolean,
-		@JsonProperty("duration") val duration: String = "",
-		@JsonProperty("rating") val rating: String = "",
-		@JsonProperty("score") override val score: Double,
-		@JsonProperty("scored_by") val scored_by: Int,
-		@JsonProperty("rank") val rank: Int,
-		@JsonProperty("popularity") val popularity: Int,
-		@JsonProperty("members") val members: Int,
-		@JsonProperty("favorites") override val favoritesCount: Int,
-		@JsonProperty("synopsis") val synopsis: String = "",
-		@JsonProperty("background") val background: String = "",
-		@JsonProperty("premiered") val premiered: String = "",
-		@JsonProperty("broadcast") val broadcast: String = "",
-		@JsonProperty("related") override val related: Related?,
-		@JsonProperty("producers") val producers: List<Producer>,
-		@JsonProperty("licensors") val licensors: List<Licensors>,
-		@JsonProperty("studios") val studios: List<Studios>,
-		@JsonProperty("genres") override val genres: List<Genre>,
-		@JsonProperty("opening_themes") val opening_themes: List<String>,
-		@JsonProperty("ending_themes") val ending_themes: List<String>,
-		@JsonProperty("image_url") override val imageURL: String = ""
+	@SerialName("request_hash") override val requestHash: String?,
+	@SerialName("request_cached") override val requestCached: Boolean,
+	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("url") override val url: String,
+	@SerialName("trailer_url") val trailer_url: String = "",
+	@SerialName("title") override val title: String,
+	@SerialName("title_english") val title_english: String = "",
+	@SerialName("title_japanese") val title_japanese: String = "",
+	@SerialName("title_synonyms") val title_synonyms: List<String>,
+	@SerialName("type") override val type: String = "",
+	@SerialName("source") override val source: String = "",
+	@SerialName("episodes") override val episodeCount: Int,
+	@SerialName("status") override val status: String = "",
+	@SerialName("aired") val aired: Aired?,
+	@SerialName("airing") val airing: Boolean,
+	@SerialName("duration") val duration: String = "",
+	@SerialName("rating") val rating: String = "",
+	@SerialName("score") override val score: Double,
+	@SerialName("scored_by") val scored_by: Int,
+	@SerialName("rank") val rank: Int,
+	@SerialName("popularity") val popularity: Int,
+	@SerialName("members") val members: Int,
+	@SerialName("favorites") override val favoritesCount: Int,
+	@SerialName("synopsis") val synopsis: String = "",
+	@SerialName("background") val background: String = "",
+	@SerialName("premiered") val premiered: String = "",
+	@SerialName("broadcast") val broadcast: String = "",
+	@SerialName("related") override val related: Related?,
+	@SerialName("producers") val producers: List<Producer>,
+	@SerialName("licensors") val licensors: List<Licensors>,
+	@SerialName("studios") val studios: List<Studios>,
+	@SerialName("genres") override val genres: List<Genre>,
+	@SerialName("opening_themes") val opening_themes: List<String>,
+	@SerialName("ending_themes") val ending_themes: List<String>,
+	@SerialName("image_url") override val imageURL: String = ""
 ) :
-		Retriever(),
-		RequestHashing,
-		MyAnimeListID,
-		MyAnimeListURL,
-		MyAnimeListTitle,
-		MyAnimeListImageURL,
-		MyAnimeListType,
-		MyAnimeListStatus,
-		MyAnimeListSource,
-		MyAnimeListEpisodeCount,
-		MyAnimeListScore,
-		MyAnimeListRelated,
-		MyAnimeListGenres,
-		MyAnimeListFavoriteCount {
+	RequestHashing,
+	MyAnimeListID,
+	MyAnimeListURL,
+	MyAnimeListTitle,
+	MyAnimeListImageURL,
+	MyAnimeListType,
+	MyAnimeListStatus,
+	MyAnimeListSource,
+	MyAnimeListEpisodeCount,
+	MyAnimeListScore,
+	MyAnimeListRelated,
+	MyAnimeListGenres,
+	MyAnimeListFavoriteCount,
+	MyAnimeListNewsEndPoint,
+	MyAnimeListPicturesEndPoint,
+	MyAnimeListMoreInfoEndPoint,
+	MyAnimeListForumEndPoint {
+
+	override val urlPoint: String
+		get() = "anime"
 
 	/**
 	 * Gets character and staff object
 	 *
-	 * @return Character_Staff
+	 * @return [AnimeCharacterStaffPage]
 	 */
-	@get:JsonIgnore
-	val characterStaffs: CompletableFuture<CharacterStaff> by lazy { retrieve<CharacterStaff>("$jikanURL/anime/$malID/characters_staff") }
+	fun getCharacterStaffs(retriever: Retriever): CompletableFuture<JikanResult<AnimeCharacterStaffPage>> =
+		retriever("$JIKAN_URL/anime/$malID/characters_staff")
 
 	/**
-	 * Gets episodes, Please be aware that if the amount of episodes is greater than 100, the episode list will be split into two pages.
+	 * Gets episodes, Please be aware that if the amount
+	 * of episodes is greater than 100, the
+	 * episode list will be split into two pages.
 	 *
-	 * @return Episode object
+	 * @return [EpisodesPage]
 	 */
-	@JsonIgnore
-	fun getEpisodes(pageNumber: Int): CompletableFuture<Episodes> = retrieve("$jikanURL/anime/$malID${if (pageNumber != 0) "/episodes/$pageNumber" else "/episodes"}")
-
-	@JsonIgnore
-	fun getEpisodeCount(): CompletableFuture<Episodes> = getEpisodes(0)
-
-	/**
-	 * Gets news about anime
-	 *
-	 * @return News object
-	 */
-	@get:JsonIgnore
-	val news: CompletableFuture<News> by lazy { retrieve<News>("$jikanURL/anime/$malID/news") }
-
-	/**
-	 * Gets pictures related to anime
-	 *
-	 * @return Pictures object
-	 */
-	@get:JsonIgnore
-	val pictures: CompletableFuture<Pictures> by lazy { retrieve<Pictures>("$jikanURL/anime/$malID/pictures") }
+	fun getEpisodesPage(
+		retriever: Retriever,
+		pageNumber: Int
+	): CompletableFuture<JikanResult<EpisodesPage>> {
+		val pagesEndpoint = if (pageNumber != 0) "/$pageNumber" else ""
+		return retriever("$JIKAN_URL/anime/$malID/episodes$pagesEndpoint")
+	}
 
 	/**
 	 * Gets videos related to anime
 	 *
-	 * @return Pictures object
+	 * @return [AnimeVideos]
 	 */
-	@get:JsonIgnore
-	val videos: CompletableFuture<Video> by lazy { retrieve<Video>("$jikanURL/anime/$malID/videos") }
+	fun getVideos(retriever: Retriever): CompletableFuture<JikanResult<AnimeVideos>> =
+		retriever("$JIKAN_URL/anime/$malID/videos")
 
 	/**
 	 * Gets stats about anime object
 	 *
-	 * @return Stats object
+	 * @return [AnimeStats]
 	 */
-	@get:JsonIgnore
-	val stats: CompletableFuture<AnimeStats> by lazy { retrieve<AnimeStats>("$jikanURL/anime/$malID/stats") }
+	fun getStats(retriever: Retriever): CompletableFuture<JikanResult<AnimeStats>> =
+		retriever("$JIKAN_URL/anime/$malID/stats")
+
 
 	/**
-	 * Returns forum object
 	 *
-	 * @return Forum object
+	 * @return [AnimeReviewPage]
 	 */
-	@get:JsonIgnore
-	val forum: CompletableFuture<Forum> by lazy { retrieve<Forum>("$jikanURL/anime/$malID/forum") }
+	fun getReviewPage(retriever: Retriever): CompletableFuture<JikanResult<AnimeReviewPage>> =
+		retriever("$JIKAN_URL/anime/$malID/reviews")
+
 
 	/**
-	 * Returns MoreInfo object
 	 *
-	 * @return MoreInfo
+	 * @return [AnimeRecommendationPage]
 	 */
-	@get:JsonIgnore
-	val moreInfo: CompletableFuture<MoreInfo> by lazy { retrieve<MoreInfo>("$jikanURL/anime/$malID/moreinfo") }
+	fun getRecommendationPage(retriever: Retriever): CompletableFuture<JikanResult<AnimeRecommendationPage>> =
+		retriever("$JIKAN_URL/anime/$malID/recommendations")
 
-	@get:JsonIgnore
-	val reviewPage: CompletableFuture<AnimeReviewPage> by lazy { retrieve<AnimeReviewPage>("$jikanURL/anime/$malID/reviews") }
 
-	@get:JsonIgnore
-	val recommendationPage: CompletableFuture<RecommendationPage> by lazy { retrieve<RecommendationPage>("$jikanURL/anime/$malID/recommendations") }
+	/**
+	 *
+	 * @return [AnimeUserUpdatesPage]
+	 */
+	fun getUserUpdatesPage(
+		retriever: Retriever,
+		page: Int
+	): CompletableFuture<JikanResult<AnimeUserUpdatesPage>> =
+		retriever("$JIKAN_URL/anime/$malID/userupdates/$page")
 
-	@get:JsonIgnore
-	val userUpdatesPage: CompletableFuture<AnimeUserUpdatesPage> by lazy { getUserUpdatesPage(0) }
+	companion object : MyAnimeListSelfType<Anime>,
+		MyAnimeListDirectPicturesEndPoint {
+		override fun getByID(retriever: Retriever, id: Int) =
+			retriever<Anime>("$JIKAN_URL/$urlPoint/$id")
 
-	@JsonIgnore
-	fun getUserUpdatesPage(page: Int): CompletableFuture<AnimeUserUpdatesPage> {
-		return retrieve("$jikanURL/anime/$malID/userupdates/$page")
+		override val urlPoint: String by lazy { "anime" }
 	}
 }

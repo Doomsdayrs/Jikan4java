@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user.history
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.*
 
 /*
@@ -25,9 +26,10 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class HistoryPage(
-		@field:JsonProperty("request_hash") override var request_hash: String? = null,
-		@field:JsonProperty("request_cached") override var request_cached: Boolean = false,
-		@field:JsonProperty("request_cache_expiry") override var request_cache_expiry: Int = 0,
-		@field:JsonProperty("history") var history: ArrayList<History>? = null
+	@SerialName("request_hash") override var requestHash: String? = null,
+	@SerialName("request_cached") override var requestCached: Boolean = false,
+	@SerialName("request_cache_expiry") override var requestCacheExpiry: Int = 0,
+	@SerialName("history") var history: ArrayList<History>? = null
 ) : RequestHashing

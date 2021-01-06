@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.searchResults
 
-import com.github.doomsdayrs.jikan4java.data.base.*
+import com.github.doomsdayrs.jikan4java.data.base.values.*
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,7 +25,9 @@ import com.github.doomsdayrs.jikan4java.data.base.*
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 abstract class ContentPage
-	: ObjectPage(), MyAnimeListTitle, MyAnimeListType, MyAnimeListSynopsis, MyAnimeListStartEndDate, MyAnimeListScore {
+	: ObjectPage(), MyAnimeListTitle, MyAnimeListType, MyAnimeListSynopsis,
+	MyAnimeListStartEndDate, MyAnimeListScore {
 	abstract val members: Int
 }

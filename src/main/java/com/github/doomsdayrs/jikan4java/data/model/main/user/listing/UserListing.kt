@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user.listing
 
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,4 +25,5 @@ import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
  *
  * @author github.com/doomsdayrs
  */
-abstract class UserListing() : RequestHashing
+@Serializable
+abstract class UserListing : RequestHashing

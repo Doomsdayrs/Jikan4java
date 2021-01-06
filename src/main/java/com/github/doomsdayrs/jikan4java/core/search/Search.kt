@@ -1,14 +1,16 @@
 package com.github.doomsdayrs.jikan4java.core.search
 
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.doomsdayrs.jikan4java.common.*
-import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.core.*
 import com.github.doomsdayrs.jikan4java.data.enums.search.Types
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.future.future
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
 import okhttp3.Request
-import org.json.simple.JSONArray
-import org.json.simple.JSONObject
+import okio.IOException
 import java.util.concurrent.CompletableFuture
-import java.util.concurrent.CompletionException
 
 /*
  * This file is part of Jikan4java.
@@ -32,14 +34,13 @@ import java.util.concurrent.CompletionException
  * @author github.com/doomsdayrs
  */
 open class Search<PAGE, SINGLE, SET>(
-		val type: Types
-) : Retriever(
-		client = getDefaultOkHttpClient(),
-		objectMapper = getDefaultObjectMapper(),
-		jsonParser = getDefaultJSONParser(),
-		builder = getDefaultRequestBuilder()
+	val type: Types,
+	val retriever: Retriever
 ) where SET : Search<PAGE, SINGLE, SET> {
+	@Suppress("MemberVisibilityCanBePrivate")
 	var query = ""
+
+	@Suppress("MemberVisibilityCanBePrivate")
 	var limit = 10
 
 	/**
@@ -47,11 +48,19 @@ open class Search<PAGE, SINGLE, SET>(
 	 *
 	 * @return StringBuilder of the URL so far
 	 */
-	open fun createURL(): String = "$jikanURL/search/$type?q=${query.replace(" ".toRegex(), "%20")}${
-	if (limit != 0)
-		"&limit=$limit"
-	else ""
-	}"
+	open fun createURL(): String {
+
+		return "$JIKAN_URL/search/$type?q=${
+			query.replace(
+				" ".toRegex(),
+				"%20"
+			)
+		}${
+			if (limit != 0)
+				"&limit=$limit"
+			else ""
+		}"
+	}
 
 	/**
 	 * Set how many result to be listed per page, limit is greater then 0
@@ -60,8 +69,11 @@ open class Search<PAGE, SINGLE, SET>(
 	 * @return This
 	 * @throws IndexOutOfBoundsException incase you input a 0
 	 */
+	@Throws(IndexOutOfBoundsException::class)
 	open fun setLimit(limit: Int): SET {
-		if (limit != 0) this.limit = limit else throw IndexOutOfBoundsException("This program does not accept 0s")
+		if (limit != 0) this.limit = limit else throw IndexOutOfBoundsException(
+			"This program does not accept 0s"
+		)
 		return this as SET
 	}
 
@@ -85,31 +97,54 @@ open class Search<PAGE, SINGLE, SET>(
 	 *
 	 * @return Completable future of the process
 	 */
-	@Throws(CompletionException::class)
-	inline fun <reified S> getFirst(): CompletableFuture<SINGLE>? where S : SINGLE = CompletableFuture.supplyAsync {
-		try {
-			val responseBody = super.request(createURL())
-			val jsonObject = jsonParser.parse(responseBody!!.string()) as JSONObject
-			val jsonArray = jsonObject["results"] as JSONArray?
-			println(jsonArray)
-			// Gets anime ID then goes to it's page
-			val request = Request.Builder()
-					.url("$jikanURL/${type}/${(jsonArray!![0] as JSONObject)["mal_id"].toString()}").build()
-			val response = client.newCall(request).execute()
-			return@supplyAsync response.body()?.let {
-				objectMapper.readValue<S>((jsonParser.parse(it.string()) as JSONObject).toJSONString())
+	inline fun <reified S> getFirst(): CompletableFuture<JikanResult<SINGLE>> where S : SINGLE =
+		GlobalScope.future {
+			return@future try {
+				retriever.request(createURL()).use { responseBody ->
+					val jsonElement =
+						retriever.format.parseToJsonElement(responseBody!!.string())
+
+					val jsonObject =
+						jsonElement.jsonObject
+
+					val jsonArray = jsonObject["results"]!!.jsonArray
+					if (debugMode)
+						println(jsonArray)
+					// Gets first entities ID
+					jsonArray[0].jsonObject["mal_id"].toString()
+				}.let { malID ->
+					val request = Request.Builder()
+						.url("$JIKAN_URL/${type}/$malID")
+						.build()
+					val response = retriever.client.newCall(request).execute()
+					val responseBody = response.body
+						?: return@future emptyResult() as JikanResult<SINGLE>
+
+					responseBody.use {
+						val responseContent = responseBody.string()
+						successResult(
+							retriever.format.decodeFromString<S>(
+								responseContent
+							)
+						)
+					}
+				}
+
+			} catch (e: IOException) {
+				errorResult(e) as JikanResult<SINGLE>
+			} catch (e: Exception) {
+				errorResult(e) as JikanResult<SINGLE>
 			}
-		} catch (e: Exception) {
-			throw CompletionException(e)
 		}
-	}
 
 	/**
 	 * Gets the page
 	 *
 	 * @return Completable future of the process
 	 */
-	inline fun <reified P> get(): CompletableFuture<P> where P : PAGE = retrieve(createURL())
+	inline fun <reified P> get(): CompletableFuture<JikanResult<P>> where P : PAGE =
+		retriever(createURL())
 
-	inline fun <reified S> getByID(id: Int): CompletableFuture<S> where S : SINGLE = retrieve("$jikanURL/$type/$id")
+	inline fun <reified S> getByID(id: Int): CompletableFuture<JikanResult<S>> where S : SINGLE =
+		retriever("$JIKAN_URL/$type/$id")
 }

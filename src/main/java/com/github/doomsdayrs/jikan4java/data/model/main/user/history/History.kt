@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user.history
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.BasicMeta
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,8 +25,9 @@ import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.BasicMeta
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class History(
-		@field:JsonProperty("meta") var basicMeta: BasicMeta? = null,
-		@field:JsonProperty("increment") var increment: Int = 0,
-		@field:JsonProperty("date") var date: String? = null
+	@SerialName("meta") var basicMeta: BasicMeta? = null,
+	@SerialName("increment") var increment: Int = 0,
+	@SerialName("date") var date: String? = null
 )

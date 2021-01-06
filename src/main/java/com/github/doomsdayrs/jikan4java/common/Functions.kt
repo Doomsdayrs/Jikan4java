@@ -26,28 +26,17 @@ import java.util.concurrent.TimeUnit
  * @author github.com/doomsdayrs
  */
 
-var lastRequest = 0L
+private var lastRequest = 0L
 
-fun canContinue() = lastRequest + 2000 < System.currentTimeMillis()
+internal fun canContinue() = lastRequest + 2000 < System.currentTimeMillis()
 
+@Throws(InterruptedException::class)
 @Synchronized
 fun rateLimit() {
 	while (!canContinue()) {
-		if (printRateLimit) println("$jikan4JavaName: $rateLimMessage")
+		if (printRateLimit) println("$PROJECT_NAME: $RATE_LIMIT_MESSAGE")
 		TimeUnit.SECONDS.sleep(2)
 	}
 	lastRequest = System.currentTimeMillis()
 }
 
-fun main() {
-	printRateLimit = true
-
-	// Checks the 2 second rule
-	for (i in 0..40) {
-		val t = Thread {
-			rateLimit()
-			println(i)
-		}
-		t.start()
-	}
-}

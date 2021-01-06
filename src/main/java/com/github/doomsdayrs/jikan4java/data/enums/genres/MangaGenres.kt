@@ -1,5 +1,11 @@
 package com.github.doomsdayrs.jikan4java.data.enums.genres
 
+import com.github.doomsdayrs.jikan4java.core.JikanResult
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga.GenreSearchManga
+import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga.GenreSearchMangaPage
+import java.util.concurrent.CompletableFuture
+
 /*
  * This file is part of Jikan4java.
  *
@@ -21,7 +27,8 @@ package com.github.doomsdayrs.jikan4java.data.enums.genres
  *
  * @author github.com/doomsdayrs
  */
-enum class MangaGenres(override val id: Int) : Genres {
+enum class MangaGenres(override val id: Int) :
+	Genres<GenreSearchManga, GenreSearchMangaPage> {
 	ACTION(1),
 	ADVENTURE(2),
 	CARS(3),
@@ -72,4 +79,18 @@ enum class MangaGenres(override val id: Int) : Genres {
 
 	override fun toString(): String = "${super.name}($id)"
 
+	/**
+	 * Searches for Anime/manga by genre,
+	 * There are more than one page since each page has a hundred entries max.
+	 *
+	 * @param page    The page number to go to,
+	 * 1 should be the default unless you know else wise
+	 *
+	 * @return [GenreSearchMangaPage]
+	 */
+	override fun search(
+		retriever: Retriever,
+		page: Int
+	): CompletableFuture<JikanResult<GenreSearchMangaPage>> =
+		iSearch(retriever, page)
 }

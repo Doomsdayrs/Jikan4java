@@ -1,7 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.userupdate.manga
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.UserUpdate
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,15 +25,16 @@ import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.UserUpdate
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class MangaUserUpdate(
-		@JsonProperty("username") override val username: String = "",
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("image_url") override val imageURL: String = "",
-		@JsonProperty("score") override val scores: Int,
-		@JsonProperty("status") override val status: String = "",
-		@JsonProperty("chapters_read") val chapters_seen: Int,
-		@JsonProperty("volumes_read") val volumes_seen: Int,
-		@JsonProperty("chapters_total") val episodes_total: Int,
-		@JsonProperty("volumes_total") val volumes_total: Int,
-		@JsonProperty("date") override val date: String = ""
+	@SerialName("username") override val username: String = "",
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("score") override val scores: Int,
+	@SerialName("status") override val status: String = "",
+	@SerialName("chapters_read") val chapters_seen: Int,
+	@SerialName("volumes_read") val volumes_seen: Int,
+	@SerialName("chapters_total") val episodes_total: Int,
+	@SerialName("volumes_total") val volumes_total: Int,
+	@SerialName("date") override val date: String = ""
 ) : UserUpdate

@@ -1,10 +1,9 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.model.person
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.common.jikanURL
-import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
+import com.github.doomsdayrs.jikan4java.data.base.type.MyAnimeListPersonType
 import com.github.doomsdayrs.jikan4java.data.model.main.top.base.TopListingBeing
-import java.util.concurrent.CompletableFuture
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -28,20 +27,14 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class TopPerson(
-		@JsonProperty("mal_id") override val malID: Int,
-		@JsonProperty("rank") override val rank: Int,
-		@JsonProperty("title") override val title: String,
-		@JsonProperty("url") override val url: String,
-		@JsonProperty("favorites") override val favoritesCount: Int,
-		@JsonProperty("name_kanji") override val nameKanji: String = "",
-		@JsonProperty("image_url") override val imageURL: String = "",
-		@JsonProperty("birthday") val birthday: String? = null
-) : TopListingBeing() {
-	/**
-	 * Returns the Person object of this object
-	 *
-	 * @return Person Object
-	 */
-	val person: CompletableFuture<Person> by lazy { retrieve<Person>("$jikanURL/person/$malID") }
-}
+	@SerialName("mal_id") override val malID: Int,
+	@SerialName("rank") override val rank: Int,
+	@SerialName("title") override val title: String,
+	@SerialName("url") override val url: String,
+	@SerialName("favorites") override val favoritesCount: Int,
+	@SerialName("name_kanji") override val nameKanji: String = "",
+	@SerialName("image_url") override val imageURL: String = "",
+	@SerialName("birthday") val birthday: String? = null
+) : TopListingBeing(), MyAnimeListPersonType

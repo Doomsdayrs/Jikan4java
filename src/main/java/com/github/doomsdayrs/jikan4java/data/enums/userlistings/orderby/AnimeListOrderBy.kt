@@ -22,7 +22,22 @@ package com.github.doomsdayrs.jikan4java.data.enums.userlistings.orderby
  * @author github.com/doomsdayrs
  */
 enum class AnimeListOrderBy(private val type: String) : ListOrderBy {
-	TITLE("title"), FINISH_DATE("finish_date"), START_DATE("start_date"), SCORE("score"), LAST_UPDATED("last_updated"), TYPE("type"), RATED("rated"), REWATCH("rewatch"), REWATCHED_VALUE(REWATCH.type), PRIORITY("priority"), PROGRESS("progress"), EPISODES_WATCHED(PROGRESS.type), STORAGE("storage"), AIR_START("air_start"), AIR_END("air_end"), STATUS("status");
+	TITLE("title"),
+	FINISH_DATE("finish_date"),
+	START_DATE("start_date"),
+	SCORE("score"),
+	LAST_UPDATED("last_updated"),
+	TYPE("type"),
+	RATED("rated"),
+	REWATCH("rewatch"),
+	REWATCHED_VALUE(REWATCH.type),
+	PRIORITY("priority"),
+	PROGRESS("progress"),
+	EPISODES_WATCHED(PROGRESS.type),
+	STORAGE("storage"),
+	AIR_START("air_start"),
+	AIR_END("air_end"),
+	STATUS("status");
 
 	override fun toString(): String {
 		return type

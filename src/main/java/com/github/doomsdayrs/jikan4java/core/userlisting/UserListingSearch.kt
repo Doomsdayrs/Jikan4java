@@ -1,15 +1,10 @@
 package com.github.doomsdayrs.jikan4java.core.userlisting
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.SortBy
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters.UserListFilters
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.orderby.ListOrderBy
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.status.ListingStati
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import org.json.simple.parser.JSONParser
 import java.security.InvalidParameterException
 
 /*
@@ -34,35 +29,43 @@ import java.security.InvalidParameterException
  * @author github.com/doomsdayrs
  */
 open class UserListingSearch<T, LS : ListingStati, out O>(
-		var username: String = "",
-		client: OkHttpClient = OkHttpClient(),
-		objectMapper: ObjectMapper = ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true),
-		jsonParser: JSONParser = JSONParser(),
-		builder: Request.Builder = Request.Builder()
-) : Retriever(
-		client = client,
-		objectMapper = objectMapper,
-		jsonParser = jsonParser,
-		builder = builder
-)
-		where O : UserListingSearch<T, LS, O>
-{
+	var username: String = "",
+	val retriever: Retriever
+) where O : UserListingSearch<T, LS, O> {
 
+	@Suppress("MemberVisibilityCanBePrivate")
 	var from: IntArray? = null
+
+	@Suppress("MemberVisibilityCanBePrivate")
 	var listingStati: LS? = null
+
+	@Suppress("MemberVisibilityCanBePrivate")
 	var orderBy: ListOrderBy? = null
+
+	@Suppress("MemberVisibilityCanBePrivate")
 	var orderBy2: ListOrderBy? = null
+
+	@Suppress("MemberVisibilityCanBePrivate")
 	var page = 0
+
+	@Suppress("MemberVisibilityCanBePrivate")
 	var query: String? = null
+
+	@Suppress("MemberVisibilityCanBePrivate")
 	var sortBy: SortBy? = null
+
+	@Suppress("MemberVisibilityCanBePrivate")
 	var to: IntArray? = null
+
+	@Suppress("MemberVisibilityCanBePrivate")
 	var userListFilters: UserListFilters? = null
 
 	@Throws(InvalidParameterException::class)
 	protected open fun createURL(): StringBuilder {
 		val options = StringBuilder()
 		if (userListFilters != null)
-			options.append("/").append(userListFilters!!.form).append("/").append(userListFilters)
+			options.append("/").append(userListFilters!!.form).append("/")
+				.append(userListFilters)
 		else throw InvalidParameterException("Expected userListingFilters")
 		if (page != 0) options.append("/").append(page)
 		if (query != null) options.append("?q=").append(query)
@@ -75,7 +78,8 @@ open class UserListingSearch<T, LS : ListingStati, out O>(
 			options.append("&order_by2").append(orderBy2)
 			ordering = true
 		}
-		if (ordering) if (sortBy != null) options.append("&sort=").append(sortBy)
+		if (ordering) if (sortBy != null) options.append("&sort=")
+			.append(sortBy)
 		return options
 	}
 

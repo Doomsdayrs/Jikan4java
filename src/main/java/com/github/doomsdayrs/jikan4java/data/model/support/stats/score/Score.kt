@@ -1,6 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.support.stats.score
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -23,25 +24,26 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * @author github.com/doomsdayrs
  */
+@Serializable
 data class Score(
-		@JsonProperty("1")
-		val one: Position?,
-		@JsonProperty("2")
-		val two: Position?,
-		@JsonProperty("3")
-		val three: Position?,
-		@JsonProperty("4")
-		val four: Position?,
-		@JsonProperty("5")
-		val five: Position?,
-		@JsonProperty("6")
-		val six: Position?,
-		@JsonProperty("7")
-		val seven: Position?,
-		@JsonProperty("8")
-		val eight: Position?,
-		@JsonProperty("9")
-		val nine: Position?,
-		@JsonProperty("10")
-		val ten: Position?
+	@SerialName("1")
+	val one: Position?,
+	@SerialName("2")
+	val two: Position?,
+	@SerialName("3")
+	val three: Position?,
+	@SerialName("4")
+	val four: Position?,
+	@SerialName("5")
+	val five: Position?,
+	@SerialName("6")
+	val six: Position?,
+	@SerialName("7")
+	val seven: Position?,
+	@SerialName("8")
+	val eight: Position?,
+	@SerialName("9")
+	val nine: Position?,
+	@SerialName("10")
+	val ten: Position?
 )

@@ -1,10 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.anime.videos
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListImageURL
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListTitle
-import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListTitle
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -27,10 +27,10 @@ import com.github.doomsdayrs.jikan4java.data.base.MyAnimeListURL
  *
  * @author github.com/doomsdayrs
  */
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
-class Episode(
-		@field:JsonProperty("title") override val title: String,
-		@field:JsonProperty("episode") val episode: String = "",
-		@field:JsonProperty("url") override val url: String,
-		@field:JsonProperty("image_url") override val imageURL: String = ""
+@Serializable
+data class Episode(
+	@SerialName("title") override val title: String,
+	@SerialName("episode") val episode: String = "",
+	@SerialName("url") override val url: String,
+	@SerialName("image_url") override val imageURL: String = ""
 ) : MyAnimeListURL, MyAnimeListImageURL, MyAnimeListTitle
