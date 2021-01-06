@@ -19,10 +19,13 @@ import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
 import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
 import com.github.doomsdayrs.jikan4java.data.model.main.user.User
 import com.github.doomsdayrs.jikan4java.data.model.support.pictures.Pictures
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.await
+import kotlinx.coroutines.launch
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import org.junit.platform.commons.annotation.Testable
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ExecutionException
 
@@ -41,14 +44,15 @@ import java.util.concurrent.ExecutionException
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- */ /**
+ */
+/**
  * Jikan4java
  * 47 / 44 / 2049
  *
  * @author github.com/doomsdayrs
  */
+@Testable
 internal object KotlinTester {
-
 	private val animes = arrayOf(
 		"Boku no Hero Academia 4th Season",
 		"Steins;Gate",
@@ -72,11 +76,13 @@ internal object KotlinTester {
 	private const val GENRES_SIZE = 2
 	private const val USER_SIZE = 5
 	private const val CLUB_SIZE = 2
+	private val exceptions = ArrayList<Pair<Int, Exception>>()
 
 	@Suppress("SpellCheckingInspection")
 	private const val USER_NAME = "Parisbelle"
 
 	private val retriever: Retriever = Retriever()
+
 
 	/** Types: Anime, Manga, Top, Connector, Days, Genres, User, Club */
 	private val types = booleanArrayOf(
@@ -93,8 +99,19 @@ internal object KotlinTester {
 		1 + animes.size * 12 + mangaTitles.size * 5 + tops.size + CONNECTOR_SIZE + days.size + GENRES_SIZE + USER_SIZE + CLUB_SIZE
 	private var currentProgress = 0
 
-	private fun p(`object`: Any?) {
-		println(`object`)
+	private inline fun <reified T> p(jikanResult: JikanResult<T>) {
+		val line = Throwable().stackTrace[0].lineNumber
+		jikanResult.handle(
+			onError = {
+				exceptions.add(line to it.exception)
+				it.exception.printStackTrace()
+			},
+			onEmpty = {
+				println("No results found")
+			}
+		) {
+			println(it)
+		}
 	}
 
 	private fun progressUpdate() {
@@ -122,18 +139,25 @@ internal object KotlinTester {
 		IncompatibleEnumException::class
 	)
 	@JvmStatic
-	suspend fun main(args: Array<String>) {
-		setupTest()
-		progressUpdate()
-		testAnime()
-		testManga()
-		testSearch()
-		testGeneralConnector()
-		testDay()
-		testGenre()
-		testUser()
-		testClub()
-		finally()
+	fun main(args: Array<String>) {
+		val job = GlobalScope.launch {
+			setupTest()
+			progressUpdate()
+			testAnime()
+			testManga()
+			testSearch()
+			testGeneralConnector()
+			testDay()
+			testGenre()
+			testUser()
+			testClub()
+			finally()
+		}
+
+		var i = 0
+		while (job.isActive) {
+			i++
+		}
 	}
 
 	@BeforeAll
@@ -521,16 +545,9 @@ internal object KotlinTester {
 	@AfterAll
 	fun finally() {
 		// Gets any and all errors from code
-		val errors: List<Array<String>> = listOf()
-		for (error in errors) {
-			println(
-				"""
-	
-	Error: ${error[0]}
-	""".trimIndent()
-			)
-			println("\tJSON: " + error[1])
-			println("\tURL: " + error[2])
+		exceptions.forEach { (line, exception) ->
+			println("\nException at line $line\n")
+			exception.printStackTrace()
 		}
 		println("\n=== Completed ===\n")
 	}

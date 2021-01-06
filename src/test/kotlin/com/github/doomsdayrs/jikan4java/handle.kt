@@ -7,7 +7,9 @@ import com.github.doomsdayrs.jikan4java.core.JikanResult
  */
 internal inline fun <reified I> JikanResult<I>.handle(
 	onEmpty: () -> Unit = {},
-	onError: (JikanResult.JException) -> Unit = {},
+	onError: (JikanResult.JException) -> Unit = {
+		it.exception.printStackTrace()
+	},
 	onSuccess: (I) -> Unit = {}
 ) = when (this) {
 	is JikanResult.Success -> onSuccess(this.data)
