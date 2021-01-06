@@ -4,7 +4,6 @@ import com.github.doomsdayrs.jikan4java.common.debugMode
 import com.github.doomsdayrs.jikan4java.core.Connector
 import com.github.doomsdayrs.jikan4java.core.JikanResult
 import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.core.search.GenreSearch
 import com.github.doomsdayrs.jikan4java.core.search.TopSearch
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.MangaSearch
@@ -427,10 +426,9 @@ internal object KotlinTester {
 	suspend fun testGenre() {
 		Connector(retriever)
 		if (types[5]) {
-			val genreSearch = GenreSearch(retriever)
 			progressUpdate()
 			val animePageCompletableFuture =
-				AnimeGenres.ACTION.search(genreSearch.retriever, 1)
+				AnimeGenres.ACTION.search(retriever, 1)
 			animePageCompletableFuture.thenAccept { obj ->
 				p(
 					obj
@@ -440,7 +438,7 @@ internal object KotlinTester {
 
 			progressUpdate()
 			val mangaPageCompletableFuture =
-				MangaGenres.ACTION.search(genreSearch.retriever, 1)
+				MangaGenres.ACTION.search(retriever, 1)
 			mangaPageCompletableFuture.thenAccept { obj ->
 				p(
 					obj

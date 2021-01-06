@@ -81,3 +81,4 @@ Jikan4java.iml
 .gradle
 classes
 target
+build

@@ -86,7 +86,6 @@ enum class AnimeGenres(override val id: Int) :
 	 *
 	 * @return [GenreSearchAnimePage]
 	 */
-	@JvmOverloads
 	override fun search(
 		retriever: Retriever,
 		page: Int

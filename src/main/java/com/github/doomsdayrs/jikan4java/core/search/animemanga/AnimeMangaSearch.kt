@@ -2,6 +2,8 @@ package com.github.doomsdayrs.jikan4java.core.search.animemanga
 
 import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.core.search.Search
+import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPage
+import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPageResult
 import com.github.doomsdayrs.jikan4java.data.enums.SortBy
 import com.github.doomsdayrs.jikan4java.data.enums.genres.Genres
 import com.github.doomsdayrs.jikan4java.data.enums.search.Types
@@ -32,14 +34,16 @@ import java.util.*
  *
  * @author github.com/doomsdayrs
  */
-open class AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY>(
+open class AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY, GENRE_RESULT, GENRE_PAGE> internal constructor(
 	type: Types,
 	retriever: Retriever
 ) : Search<PAGE, SINGLE, SET>(type, retriever)
-		where SET : AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY>,
+		where SET : AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY, GENRE_RESULT, GENRE_PAGE>,
 		      STATI : Stati,
-		      GENRE : Genres,
-		      ORDER_BY : OrderBy {
+		      GENRE : Genres<GENRE_RESULT, GENRE_PAGE>,
+		      ORDER_BY : OrderBy,
+		      GENRE_RESULT : GenreSearchPageResult,
+		      GENRE_PAGE : GenreSearchPage<GENRE_RESULT> {
 	/**
 	 * Returns page count
 	 *

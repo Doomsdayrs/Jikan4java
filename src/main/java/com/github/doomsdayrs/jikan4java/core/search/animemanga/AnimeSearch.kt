@@ -7,6 +7,8 @@ import com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.orderby.Ani
 import com.github.doomsdayrs.jikan4java.data.enums.status.AnimeStati
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
 import com.github.doomsdayrs.jikan4java.data.model.main.anime.animePage.AnimePage
+import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.anime.GenreSearchAnime
+import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.anime.GenreSearchAnimePage
 
 /*
  * This file is part of Jikan4java.
@@ -30,7 +32,7 @@ import com.github.doomsdayrs.jikan4java.data.model.main.anime.animePage.AnimePag
  * @author github.com/doomsdayrs
  */
 class AnimeSearch(retriever: Retriever) :
-	AnimeMangaSearch<AnimePage, Anime, AnimeSearch, AnimeStati, AnimeGenres, AnimeOrderBy>(
+	AnimeMangaSearch<AnimePage, Anime, AnimeSearch, AnimeStati, AnimeGenres, AnimeOrderBy, GenreSearchAnime, GenreSearchAnimePage>(
 		Types.ANIME,
 		retriever
 	)
