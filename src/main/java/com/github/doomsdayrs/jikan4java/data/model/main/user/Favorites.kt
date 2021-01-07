@@ -30,8 +30,12 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class Favorites(
-	@SerialName("anime") val animes: List<AnimeBasic> = listOf(),
-	@SerialName("manga") val mangas: List<MangaBasic> = listOf(),
-	@SerialName("characters") val characters: List<CharacterBasic> = listOf(),
-	@SerialName("people") val peoples: List<PeopleBasic> = listOf()
+	@SerialName("anime")
+	val animes: List<AnimeBasic> = listOf(),
+	@SerialName("manga")
+	val mangas: List<MangaBasic> = listOf(),
+	@SerialName("characters")
+	val characters: List<CharacterBasic> = listOf(),
+	@SerialName("people")
+	val peoples: List<PeopleBasic> = listOf()
 )

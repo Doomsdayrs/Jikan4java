@@ -27,8 +27,12 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class Authors(
-	@SerialName("mal_id") override val malID: Int,
-	@SerialName("type") override val type: String?,
-	@SerialName("name") override val name: String,
-	@SerialName("url") override val url: String
+	@SerialName("mal_id")
+	override val malID: Int,
+	@SerialName("type")
+	override val type: String?,
+	@SerialName("name")
+	override val name: String,
+	@SerialName("url")
+	override val url: String
 ) : BasicMeta

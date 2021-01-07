@@ -61,6 +61,7 @@ data class Character(
 		MyAnimeListDirectPicturesEndPoint {
 		override val urlPoint: String by lazy { "character" }
 
+		@JvmStatic
 		override fun getByID(
 			retriever: Retriever,
 			id: Int

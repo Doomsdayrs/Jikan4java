@@ -1,6 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.schedule
 
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -24,6 +26,80 @@ import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
  *
  * @author github.com/doomsdayrs
  */
-abstract class Day : RequestHashing {
+@Serializable
+sealed class Day : RequestHashing {
 	abstract val subAnimes: List<SubAnime>
+
+	@Serializable
+	data class Friday(
+		@SerialName("request_hash") override val requestHash: String,
+		@SerialName("request_cached") override val requestCached: Boolean,
+		@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+		@SerialName("friday") override val subAnimes: List<SubAnime>
+	) : Day()
+
+
+	@Serializable
+	data class Monday(
+		@SerialName("request_hash") override val requestHash: String,
+		@SerialName("request_cached") override val requestCached: Boolean,
+		@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+		@SerialName("monday") override val subAnimes: List<SubAnime>
+	) : Day()
+
+	@Serializable
+	data class Other(
+		@SerialName("request_hash") override val requestHash: String,
+		@SerialName("request_cached") override val requestCached: Boolean,
+		@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+		@SerialName("other") override val subAnimes: List<SubAnime>
+	) : Day()
+
+	@Serializable
+	data class Saturday(
+		@SerialName("request_hash") override val requestHash: String,
+		@SerialName("request_cached") override val requestCached: Boolean,
+		@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+		@SerialName("saturday") override val subAnimes: List<SubAnime>
+	) : Day()
+
+	@Serializable
+	data class Sunday(
+		@SerialName("request_hash") override val requestHash: String,
+		@SerialName("request_cached") override val requestCached: Boolean,
+		@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+		@SerialName("sunday") override val subAnimes: List<SubAnime>
+	) : Day()
+
+	@Serializable
+	data class Thursday(
+		@SerialName("request_hash") override val requestHash: String,
+		@SerialName("request_cached") override val requestCached: Boolean,
+		@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+		@SerialName("thursday") override val subAnimes: List<SubAnime>
+	) : Day()
+
+	@Serializable
+	data class Tuesday(
+		@SerialName("request_hash") override val requestHash: String,
+		@SerialName("request_cached") override val requestCached: Boolean,
+		@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+		@SerialName("tuesday") override val subAnimes: List<SubAnime>
+	) : Day()
+
+	@Serializable
+	data class Unknown(
+		@SerialName("request_hash") override val requestHash: String,
+		@SerialName("request_cached") override val requestCached: Boolean,
+		@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+		@SerialName("unknown") override val subAnimes: List<SubAnime>
+	) : Day()
+
+	@Serializable
+	data class Wednesday(
+		@SerialName("request_hash") override val requestHash: String,
+		@SerialName("request_cached") override val requestCached: Boolean,
+		@SerialName("request_cache_expiry") override val requestCacheExpiry: Int,
+		@SerialName("wednesday") override val subAnimes: List<SubAnime>
+	) : Day()
 }

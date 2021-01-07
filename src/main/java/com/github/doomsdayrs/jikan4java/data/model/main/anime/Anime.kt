@@ -173,9 +173,11 @@ data class Anime(
 
 	companion object : MyAnimeListSelfType<Anime>,
 		MyAnimeListDirectPicturesEndPoint {
+		@JvmStatic
 		override fun getByID(retriever: Retriever, id: Int) =
 			retriever<Anime>("$JIKAN_URL/$urlPoint/$id")
 
 		override val urlPoint: String by lazy { "anime" }
+
 	}
 }

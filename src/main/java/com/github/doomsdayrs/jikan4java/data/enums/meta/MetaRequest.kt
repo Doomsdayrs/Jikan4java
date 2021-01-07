@@ -1,6 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.enums.meta
 
-import com.github.doomsdayrs.jikan4java.data.model.main.meta.Status
+import com.github.doomsdayrs.jikan4java.data.model.main.meta.JikanStatus
 
 /*
  * This file is part of Jikan4java.
@@ -25,7 +25,7 @@ import com.github.doomsdayrs.jikan4java.data.model.main.meta.Status
  */
 enum class MetaRequest(private val type: String, val aClass: Class<*>?) {
 	REQUEST("requests", null),
-	STATUS("status", Status::class.java);
+	STATUS("status", JikanStatus::class.java);
 
 	override fun toString(): String = type
 }

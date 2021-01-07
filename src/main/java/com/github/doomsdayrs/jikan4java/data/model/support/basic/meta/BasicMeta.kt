@@ -4,6 +4,8 @@ import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListName
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListType
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /*
  * This file is part of Jikan4java.
@@ -28,3 +30,15 @@ import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
  */
 interface BasicMeta :
 	MyAnimeListID, MyAnimeListType, MyAnimeListName, MyAnimeListURL
+
+@Serializable
+data class GenericMeta(
+	@SerialName("mal_id")
+	override val malID: Int,
+	@SerialName("type")
+	override val type: String?,
+	@SerialName("name")
+	override val name: String,
+	@SerialName("url")
+	override val url: String
+) : BasicMeta

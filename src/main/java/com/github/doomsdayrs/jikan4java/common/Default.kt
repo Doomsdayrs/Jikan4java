@@ -43,6 +43,7 @@ internal fun getDefaultOkHttpClient() = OkHttpClient().let {
 
 internal fun getDefaultJSONParser() = Json {
 	encodeDefaults = true
+	prettyPrint = true
 	coerceInputValues = true
 }
 

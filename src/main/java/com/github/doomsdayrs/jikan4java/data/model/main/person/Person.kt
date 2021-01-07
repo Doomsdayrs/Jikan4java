@@ -59,6 +59,7 @@ data class Person(
 
 	companion object : MyAnimeListSelfType<Person>,
 		MyAnimeListDirectPicturesEndPoint {
+		@JvmStatic
 		override fun getByID(retriever: Retriever, id: Int) =
 			retriever<Person>("$JIKAN_URL/person/$id")
 

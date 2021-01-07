@@ -5,6 +5,7 @@ import com.github.doomsdayrs.jikan4java.data.exceptions.RequestError
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.future
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -76,7 +77,7 @@ class Retriever(
 
 				if (debugMode)
 					println(
-						"JSONOBJECT: $jsonElement"
+						"JSONOBJECT:\n${format.encodeToString(jsonElement)}"
 					)
 
 				val jsonObject: JsonObject = jsonElement.jsonObject

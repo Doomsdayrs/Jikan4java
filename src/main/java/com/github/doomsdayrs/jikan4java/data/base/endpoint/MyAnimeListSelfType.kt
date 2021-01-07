@@ -27,7 +27,7 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-interface MyAnimeListSelfType<SELF> : MyAnimeListEntityPoint {
+interface MyAnimeListSelfType<SELF>  {
 
 	/**
 	 * Gets [SELF] by it's ID

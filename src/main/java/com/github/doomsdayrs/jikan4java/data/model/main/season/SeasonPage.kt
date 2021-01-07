@@ -1,5 +1,8 @@
-package com.github.doomsdayrs.jikan4java.data.model.main.season.seasonarchive
+package com.github.doomsdayrs.jikan4java.data.model.main.season
 
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
+import com.github.doomsdayrs.jikan4java.core.Retriever
+import com.github.doomsdayrs.jikan4java.data.enums.Season
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -25,10 +28,45 @@ import kotlinx.serialization.Serializable
  *
  * @author github.com/doomsdayrs
  */
+
+@Deprecated(
+	"Renamed",
+	ReplaceWith(
+		"SeasonPage",
+		"com.github.doomsdayrs.jikan4java.data.model.main.season.SeasonPage"
+	)
+)
+typealias SeasonSearch = SeasonPage
+
 @Serializable
-data class SeasonArchive(
+data class SeasonPage(
 	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
-	@SerialName("archive") val archives: List<Archive>? = null
-) : RequestHashing
+	@SerialName("season_name") val season_name: String? = null,
+	@SerialName("season_year") val season_year: Int = 0,
+	@SerialName("anime") val animes: List<SeasonSearchAnime> = listOf()
+) : RequestHashing {
+
+	companion object {
+
+		/**
+		 * Gets a [SeasonPage] via [year] and the [season] of that year
+		 *
+		 * @param retriever Retriever class
+		 * @param year Which year to look at
+		 * @param season Which season of the [year]
+		 */
+		@JvmStatic
+		fun get(
+			retriever: Retriever,
+			year: Int,
+			season: Season
+		) = retriever<SeasonPage>("$JIKAN_URL/season/$year/$season")
+
+		@JvmStatic
+		fun getNextSeason(retriever: Retriever) =
+			retriever<SeasonPage>("$JIKAN_URL/season/later")
+
+	}
+}

@@ -1,5 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.meta
 
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
+import com.github.doomsdayrs.jikan4java.core.Retriever
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -24,12 +26,28 @@ import kotlinx.serialization.Serializable
  *
  * @author github.com/doomsdayrs
  */
+
+@Deprecated(
+	"Renamed",
+	ReplaceWith(
+		"JikanStatus",
+		"com.github.doomsdayrs.jikan4java.data.model.main.meta.JikanStatus"
+	)
+)
+typealias Status = JikanStatus
+
 @Serializable
-data class Status(
+data class JikanStatus(
 	@SerialName("cached_requests") val cached_requests: Int = 0,
 	@SerialName("requests_today") val requests_today: Int = 0,
 	@SerialName("requests_this_week") val requests_this_week: Int = 0,
 	@SerialName("requests_this_month") val requests_this_month: Int = 0,
 	@SerialName("connected_clients") val connected_clients: String? = null,
 	@SerialName("total_connections_received") val total_connections_received: String? = null
-) : Meta
+) : Meta {
+	companion object {
+		@JvmStatic
+		fun get(retriever: Retriever) =
+			retriever<JikanStatus>("$JIKAN_URL/meta/status")
+	}
+}

@@ -32,19 +32,58 @@ data class SchedulePage(
 	@SerialName("request_hash") override val requestHash: String,
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
+
+	@SerialName("sunday") val sunday: List<SubAnime> = listOf(),
 	@SerialName("monday") val monday: List<SubAnime> = listOf(),
 	@SerialName("tuesday") val tuesday: List<SubAnime> = listOf(),
 	@SerialName("wednesday") val wednesday: List<SubAnime> = listOf(),
 	@SerialName("thursday") val thursday: List<SubAnime> = listOf(),
 	@SerialName("friday") val friday: List<SubAnime> = listOf(),
 	@SerialName("saturday") val saturday: List<SubAnime> = listOf(),
-	@SerialName("sunday") val sunday: List<SubAnime> = listOf(),
+
 	@SerialName("other") val others: List<SubAnime> = listOf(),
 	@SerialName("unknown") val unknown: List<SubAnime> = listOf()
 ) : RequestHashing {
 	companion object {
-		@Suppress("unused")
+		@JvmStatic
 		fun getSchedule(retriever: Retriever) =
 			retriever<SchedulePage>("$JIKAN_URL/schedule")
+
+		@JvmStatic
+		fun getSundaySchedule(retriever: Retriever) =
+			retriever<Day.Sunday>("$JIKAN_URL/schedule/sunday")
+
+		@JvmStatic
+		fun getMondaySchedule(retriever: Retriever) =
+			retriever<Day.Monday>("$JIKAN_URL/schedule/monday")
+
+		@JvmStatic
+		fun getTuesdaySchedule(retriever: Retriever) =
+			retriever<Day.Tuesday>("$JIKAN_URL/schedule/tuesday")
+
+		@JvmStatic
+		fun getWednesdaySchedule(retriever: Retriever) =
+			retriever<Day.Wednesday>("$JIKAN_URL/schedule/wednesday")
+
+		@JvmStatic
+		fun getThursdaySchedule(retriever: Retriever) =
+			retriever<Day.Thursday>("$JIKAN_URL/schedule/thursday")
+
+		@JvmStatic
+		fun getFridaySchedule(retriever: Retriever) =
+			retriever<Day.Friday>("$JIKAN_URL/schedule/friday")
+
+		@JvmStatic
+		fun getSaturdaySchedule(retriever: Retriever) =
+			retriever<Day.Saturday>("$JIKAN_URL/schedule/saturday")
+
+		@JvmStatic
+		fun getOtherSchedule(retriever: Retriever) =
+			retriever<Day.Other>("$JIKAN_URL/schedule/other")
+
+		@JvmStatic
+		fun getUnknownSchedule(retriever: Retriever) =
+			retriever<Day.Unknown>("$JIKAN_URL/schedule/unknown")
+
 	}
 }

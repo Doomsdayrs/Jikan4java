@@ -124,6 +124,7 @@ data class Manga(
 
 	companion object : MyAnimeListSelfType<Manga>,
 		MyAnimeListDirectPicturesEndPoint {
+		@JvmStatic
 		override fun getByID(retriever: Retriever, id: Int) =
 			retriever<Manga>("$JIKAN_URL/manga/$id")
 

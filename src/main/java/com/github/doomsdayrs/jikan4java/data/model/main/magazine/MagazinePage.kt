@@ -1,9 +1,13 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.magazine
 
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
+import com.github.doomsdayrs.jikan4java.core.JikanResult
+import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.BasicMeta
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -28,9 +32,36 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MagazinePage(
-	@SerialName("request_hash") override val requestHash: String,
-	@SerialName("request_cached") override val requestCached: Boolean = false,
-	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
-	@SerialName("meta") val meta: BasicMeta? = null,
-	@SerialName("manga") val magazines: List<Magazine> = listOf()
-) : RequestHashing
+	@SerialName("request_hash")
+	override val requestHash: String,
+
+	@SerialName("request_cached")
+	override val requestCached: Boolean = false,
+
+	@SerialName("request_cache_expiry")
+	override val requestCacheExpiry: Int = 0,
+
+	@SerialName("meta")
+	val meta: BasicMeta? = null,
+
+	@SerialName("manga")
+	val magazines: List<Magazine> = listOf()
+) : RequestHashing {
+
+	companion object {
+		/**
+		 * Retrieves Magazines
+		 *
+		 * @param ID   ID of magazine
+		 * @param page page to core for
+		 * @return [JikanResult] of [MagazinePage]
+		 */
+		@JvmStatic
+		fun get(
+			retriever: Retriever,
+			ID: Int,
+			page: Int
+		): CompletableFuture<JikanResult<MagazinePage>> =
+			retriever<MagazinePage>("$JIKAN_URL/magazine/$ID/$page")
+	}
+}

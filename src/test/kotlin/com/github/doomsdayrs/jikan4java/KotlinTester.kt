@@ -1,5 +1,6 @@
 package com.github.doomsdayrs.jikan4java
 
+import com.github.doomsdayrs.jikan4java.common.JCompletableFuture
 import com.github.doomsdayrs.jikan4java.common.debugMode
 import com.github.doomsdayrs.jikan4java.core.Connector
 import com.github.doomsdayrs.jikan4java.core.JikanResult
@@ -7,7 +8,6 @@ import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.core.search.TopSearch
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.MangaSearch
-import com.github.doomsdayrs.jikan4java.data.enums.Days
 import com.github.doomsdayrs.jikan4java.data.enums.HistoryTypes
 import com.github.doomsdayrs.jikan4java.data.enums.genres.AnimeGenres
 import com.github.doomsdayrs.jikan4java.data.enums.genres.MangaGenres
@@ -17,6 +17,9 @@ import com.github.doomsdayrs.jikan4java.data.model.main.character.Character
 import com.github.doomsdayrs.jikan4java.data.model.main.club.Club
 import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
 import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
+import com.github.doomsdayrs.jikan4java.data.model.main.producer.ProducerPage
+import com.github.doomsdayrs.jikan4java.data.model.main.schedule.Day
+import com.github.doomsdayrs.jikan4java.data.model.main.schedule.SchedulePage
 import com.github.doomsdayrs.jikan4java.data.model.main.user.User
 import com.github.doomsdayrs.jikan4java.data.model.support.pictures.Pictures
 import kotlinx.coroutines.GlobalScope
@@ -28,6 +31,7 @@ import org.junit.jupiter.api.Test
 import org.junit.platform.commons.annotation.Testable
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ExecutionException
+import kotlin.reflect.KFunction1
 
 /*
  * This file is part of Jikan4java.
@@ -63,15 +67,7 @@ internal object KotlinTester {
 		arrayOf("Berserk", "Boku no" /*,"One punch", "Shield"*/)
 	private val tops =
 		arrayOf(TopSearch.ANIME, TopSearch.MANGA, TopSearch.CHARACTER)
-	private val days = arrayOf(
-		Days.MONDAY,
-		Days.TUESDAY,
-		Days.WEDNESDAY,
-		Days.THURSDAY,
-		Days.FRIDAY,
-		Days.UNKNOWN,
-		Days.OTHER
-	)
+
 	private const val CONNECTOR_SIZE = 8
 	private const val GENRES_SIZE = 2
 	private const val USER_SIZE = 5
@@ -96,7 +92,7 @@ internal object KotlinTester {
 		true//Club
 	)
 	private var max =
-		1 + animes.size * 12 + mangaTitles.size * 5 + tops.size + CONNECTOR_SIZE + days.size + GENRES_SIZE + USER_SIZE + CLUB_SIZE
+		1 + animes.size * 12 + mangaTitles.size * 5 + tops.size + CONNECTOR_SIZE + 10 + GENRES_SIZE + USER_SIZE + CLUB_SIZE
 	private var currentProgress = 0
 
 	private inline fun <reified T> p(jikanResult: JikanResult<T>) {
@@ -143,14 +139,15 @@ internal object KotlinTester {
 		val job = GlobalScope.launch {
 			setupTest()
 			progressUpdate()
-			testAnime()
-			testManga()
-			testSearch()
+			//testAnime()
+			//testManga()
+			//testSearch()
 			testGeneralConnector()
-			testDay()
-			testGenre()
-			testUser()
-			testClub()
+			testProducer()
+			//testSchedule()
+			//testGenre()
+			//testUser()
+			//testClub()
 			finally()
 		}
 
@@ -158,6 +155,12 @@ internal object KotlinTester {
 		while (job.isActive) {
 			i++
 		}
+	}
+
+	@Test
+	private suspend fun testProducer() {
+		ProducerPage.search(retriever, 1).awaitAndPrint()
+
 	}
 
 	@BeforeAll
@@ -332,35 +335,22 @@ internal object KotlinTester {
 			run {
 				topSearch = TopSearch(retriever)
 				progressUpdate()
-				println("\n")
-				val topCompletableFuture = topSearch.searchTop(TopSearch.ANIME)
-				topCompletableFuture.thenAccept { obj -> p(obj) }
-				topCompletableFuture.await()
+				topSearch.searchTop(TopSearch.ANIME).awaitAndPrint()
 			}
 			run {
 				topSearch = TopSearch(retriever)
 				progressUpdate()
-				println("\n")
-				val topCompletableFuture = topSearch.searchTop(TopSearch.MANGA)
-				topCompletableFuture.thenAccept { obj -> p(obj) }
-				topCompletableFuture.await()
+				topSearch.searchTop(TopSearch.MANGA).awaitAndPrint()
 			}
 			run {
 				topSearch = TopSearch(retriever)
 				progressUpdate()
-				println("\n")
-				val topCompletableFuture =
-					topSearch.searchTop(TopSearch.CHARACTER)
-				topCompletableFuture.thenAccept { obj -> p(obj) }
-				topCompletableFuture.await()
+				topSearch.searchTop(TopSearch.CHARACTER).awaitAndPrint()
 			}
 			run {
 				topSearch = TopSearch(retriever)
 				progressUpdate()
-				println("\n")
-				val topCompletableFuture = topSearch.searchTop(TopSearch.PERSON)
-				topCompletableFuture.thenAccept { obj -> p(obj) }
-				topCompletableFuture.await()
+				topSearch.searchTop(TopSearch.PERSON).awaitAndPrint()
 			}
 		}
 	}
@@ -370,26 +360,26 @@ internal object KotlinTester {
 		val connector = Connector(retriever)
 		if (types[3]) {
 			progressUpdate()
-			val personCompletableFuture = Person.getByID(connector.retriever, 1)
-			personCompletableFuture.thenAccept { obj -> p(obj) }
-			personCompletableFuture.await().handle { person ->
-				progressUpdate()
-				var picturesCompletableFuture: CompletableFuture<JikanResult<Pictures>> =
-					person.getPictures(retriever)
-				picturesCompletableFuture.thenAccept { obj -> p(obj) }
-				picturesCompletableFuture.await()
-
-				progressUpdate()
-				val characterCompletableFuture =
-					Character.getByID(connector.retriever, 1)
-				characterCompletableFuture.thenAccept { obj -> p(obj) }
-				characterCompletableFuture.await().handle { character ->
+			Person.getByID(connector.retriever, 1).awaitAndPrint()
+				.handle { person ->
 					progressUpdate()
-					picturesCompletableFuture = character.getPictures(retriever)
+					var picturesCompletableFuture: CompletableFuture<JikanResult<Pictures>> =
+						person.getPictures(retriever)
 					picturesCompletableFuture.thenAccept { obj -> p(obj) }
 					picturesCompletableFuture.await()
+
+					progressUpdate()
+					val characterCompletableFuture =
+						Character.getByID(connector.retriever, 1)
+					characterCompletableFuture.thenAccept { obj -> p(obj) }
+					characterCompletableFuture.await().handle { character ->
+						progressUpdate()
+						picturesCompletableFuture =
+							character.getPictures(retriever)
+						picturesCompletableFuture.thenAccept { obj -> p(obj) }
+						picturesCompletableFuture.await()
+					}
 				}
-			}
 
 
 
@@ -412,7 +402,8 @@ internal object KotlinTester {
 			seasonSearchCompletableFuture.await()
 
 			progressUpdate()
-			val producerPageCompletableFuture = connector.producerSearch(1, 1)
+			val producerPageCompletableFuture =
+				ProducerPage.search(connector.retriever, 1, 1)
 			producerPageCompletableFuture.thenAccept { obj ->
 				p(
 					obj
@@ -432,16 +423,30 @@ internal object KotlinTester {
 		}
 	}
 
-	@Test
-	suspend fun testDay() {
-		val connector = Connector(retriever)
-		if (types[4]) {
-			for (day in days) {
-				progressUpdate()
-				val daysCompletableFuture = connector.scheduleSearch(day)
-				daysCompletableFuture.thenAccept { obj -> p(obj) }
-				daysCompletableFuture.await()
+	suspend inline fun <reified T> JCompletableFuture<T>.awaitAndPrint(): JikanResult<T> {
+		thenAccept { p(it) }
+		return await()
+	}
 
+	@Test
+	suspend fun testSchedule() {
+		if (types[4]) {
+			progressUpdate()
+			SchedulePage.getSchedule(retriever).awaitAndPrint()
+
+			arrayOf(
+				SchedulePage.Companion::getSundaySchedule as KFunction1<Retriever, CompletableFuture<JikanResult<Day>>>,
+				SchedulePage.Companion::getMondaySchedule as KFunction1<Retriever, CompletableFuture<JikanResult<Day>>>,
+				SchedulePage.Companion::getTuesdaySchedule as KFunction1<Retriever, CompletableFuture<JikanResult<Day>>>,
+				SchedulePage.Companion::getWednesdaySchedule as KFunction1<Retriever, CompletableFuture<JikanResult<Day>>>,
+				SchedulePage.Companion::getThursdaySchedule as KFunction1<Retriever, CompletableFuture<JikanResult<Day>>>,
+				SchedulePage.Companion::getFridaySchedule as KFunction1<Retriever, CompletableFuture<JikanResult<Day>>>,
+				SchedulePage.Companion::getSaturdaySchedule as KFunction1<Retriever, CompletableFuture<JikanResult<Day>>>,
+				SchedulePage.Companion::getOtherSchedule as KFunction1<Retriever, CompletableFuture<JikanResult<Day>>>,
+				SchedulePage.Companion::getUnknownSchedule as KFunction1<Retriever, CompletableFuture<JikanResult<Day>>>,
+			).forEach {
+				progressUpdate()
+				it.invoke(retriever).awaitAndPrint()
 			}
 		}
 	}

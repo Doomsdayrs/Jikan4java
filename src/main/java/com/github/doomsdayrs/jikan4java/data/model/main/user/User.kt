@@ -30,10 +30,13 @@ import java.util.concurrent.CompletableFuture
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
  * ====================================================================
+ */
+/**
  * Jikan4java
  * 02 / November / 2018
  *
  * @author github.com/doomsdayrs
+ * @param about HTML section that the user wrote about themselves
  */
 @Serializable
 data class User(
@@ -49,8 +52,8 @@ data class User(
 	@SerialName("birthday") val birthday: String = "",
 	@SerialName("location") val location: String = "",
 	@SerialName("joined") val joined: String = "",
-	@SerialName("anime_stats") val animeStats: List<AnimeStats>,
-	@SerialName("manga_stats") val mangaStats: List<MangaStats>,
+	@SerialName("anime_stats") val animeStats: AnimeStats,
+	@SerialName("manga_stats") val mangaStats: MangaStats,
 	@SerialName("favorites") val favorites: Favorites?,
 	@SerialName("about") var about: String = ""
 ) : MyAnimeListURL, MyAnimeListImageURL {
@@ -92,7 +95,8 @@ data class User(
 		retriever("$JIKAN_URL/user/$username/friends/$page")
 
 	companion object {
-		fun getByName(retriever: Retriever, name: String)=
+		@JvmStatic
+		fun getByName(retriever: Retriever, name: String) =
 			retriever<User>("$JIKAN_URL/user/$name")
 	}
 }

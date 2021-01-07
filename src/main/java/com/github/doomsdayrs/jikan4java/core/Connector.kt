@@ -1,7 +1,6 @@
 package com.github.doomsdayrs.jikan4java.core
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.data.enums.Days
 import com.github.doomsdayrs.jikan4java.data.enums.Season
 import com.github.doomsdayrs.jikan4java.data.enums.meta.MetaPeriod
 import com.github.doomsdayrs.jikan4java.data.enums.meta.MetaRequest
@@ -15,10 +14,9 @@ import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
 import com.github.doomsdayrs.jikan4java.data.model.main.meta.Meta
 import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
 import com.github.doomsdayrs.jikan4java.data.model.main.producer.ProducerPage
-import com.github.doomsdayrs.jikan4java.data.model.main.schedule.Day
 import com.github.doomsdayrs.jikan4java.data.model.main.schedule.SchedulePage
-import com.github.doomsdayrs.jikan4java.data.model.main.season.SeasonSearch
-import com.github.doomsdayrs.jikan4java.data.model.main.season.seasonarchive.SeasonArchive
+import com.github.doomsdayrs.jikan4java.data.model.main.season.SeasonPage
+import com.github.doomsdayrs.jikan4java.data.model.main.season.seasonarchive.SeasonArchivePage
 import com.github.doomsdayrs.jikan4java.data.model.main.user.User
 import java.util.concurrent.CompletableFuture
 
@@ -46,13 +44,12 @@ import java.util.concurrent.CompletableFuture
 class Connector(
 	val retriever: Retriever
 ) {
-	/**
-	 * Returns current schedule for all anime
-	 *
-	 * @return Schedule
-	 */
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("SchedulePage.getSchedule(retriever)")
+	)
 	val currentSchedulePage: CompletableFuture<JikanResult<SchedulePage>>
-		get() = retriever("$JIKAN_URL/schedule")
+		get() = SchedulePage.getSchedule(retriever)
 
 	@Deprecated(
 		"Moved to companion",
@@ -60,27 +57,23 @@ class Connector(
 	)
 	fun retrieveClub(ID: Int) = Club.getByID(retriever, ID)
 
-	/**
-	 * 35 per page
-	 *
-	 * @param id   of club
-	 * @param page page
-	 * @return Members
-	 */
+
+	@Deprecated(
+		"Moved to companion",
+		ReplaceWith("ClubMemberPage.get(retriever,id,1)")
+	)
 	@Suppress("MemberVisibilityCanBePrivate")
 	fun getMembers(
 		id: Int,
 		page: Int
 	): CompletableFuture<JikanResult<ClubMemberPage>> =
-		retriever("$JIKAN_URL/club/$id/members/$page")
+		ClubMemberPage.get(retriever, id, page)
 
-	/**
-	 * Returns first page, 35 count
-	 *
-	 * @param id of club
-	 * @return Members
-	 */
-	@Deprecated("Removal warning", ReplaceWith("getMembers(id,1)"))
+
+	@Deprecated(
+		"Moved to companion",
+		ReplaceWith("ClubMemberPage.get(retriever,id,1)")
+	)
 	fun getMembers(id: Int) = getMembers(id, 1)
 
 	@Deprecated(
@@ -120,12 +113,6 @@ class Connector(
 	)
 	fun getCharacterPictures(id: Int) = Character.getPictures(retriever, id)
 
-	/**
-	 * Returns a user object
-	 *
-	 * @param name the name of the user to retrieve
-	 * @return User
-	 */
 	@Deprecated(
 		"Moved to companion",
 		replaceWith = ReplaceWith("User.getByName(retriever,name)")
@@ -133,27 +120,27 @@ class Connector(
 	fun userRetrieve(name: String): CompletableFuture<JikanResult<User>> =
 		User.getByName(retriever, name)
 
-	/**
-	 * Retrieves Magazines
-	 *
-	 * @param ID   ID of magazine
-	 * @param page page to core for
-	 * @return MagazinePage object
-	 */
+
+	@Deprecated(
+		"Moved to companion",
+		replaceWith = ReplaceWith("MagazinePage.get(retriever,ID,page)")
+	)
 	fun magazineSearch(
 		ID: Int,
 		page: Int
 	): CompletableFuture<JikanResult<MagazinePage>> =
-		retriever("$JIKAN_URL/magazine/$ID/$page")
+		MagazinePage.get(retriever, ID, page)
 
 	/**
-	 * Gets meta data from API. WARNING USING MAY CAUSE ERRORS BEYOND IMAGINATION FOR ANYTHING BUT STATUS
+	 * Gets meta data from API.
+	 * WARNING USING MAY CAUSE ERRORS BEYOND IMAGINATION FOR ANYTHING BUT STATUS
 	 *
 	 * @param metaRequest REQUEST / STATUS
 	 * @param metaType    ANIME / CHARACTER / MANGA / PERSON / SEARCH / SCHEDULE / SEASON / TOP
 	 * @param metaPeriod  MONTHLY / WEEKLY / TODAY
 	 * @return Completable future of metaRequest's class
 	 */
+	@Deprecated("Just don't use ever, Look at the JikanStatus object and use its get")
 	inline fun <reified T : Class<V>, V : Meta> getMeta(
 		metaRequest: MetaRequest,
 		metaType: MetaType,
@@ -169,54 +156,39 @@ class Connector(
 		return retriever("$JIKAN_URL/meta/$option")
 	}
 
-	/**
-	 * Retrieves Producer
-	 *
-	 * @param ID   ID of magazine
-	 * @param page page to core for
-	 * @return Producer object
-	 */
+	@Deprecated(
+		"Moved to companion",
+		ReplaceWith(
+			"ProducerPage.search(retriever,ID,page)",
+			"com.github.doomsdayrs.jikan4java.data.model.main.producer.ProducerPage"
+		)
+	)
 	fun producerSearch(
 		ID: Int,
 		page: Int
-	): CompletableFuture<JikanResult<ProducerPage>> =
-		retriever("$JIKAN_URL/producer/$ID/$page")
+	) = ProducerPage.search(retriever, ID, page)
 
-	/**
-	 * Returns all anime schedule on a certain day
-	 *
-	 * @param day Day to retrieve, Can also be other or unknown
-	 * @return DaySchedule object
-	 */
-	fun scheduleSearch(day: Days): CompletableFuture<JikanResult<Day>> =
-		retriever("$JIKAN_URL/schedule/$day")
 
-	/**
-	 * Searches for anime by season
-	 *
-	 * @param year   Year
-	 * @param season Season
-	 * @return SeasonSearchObject
-	 */
+	@Deprecated(
+		"Moved to companion",
+		ReplaceWith("SeasonPage.get(retriever,year,season)")
+	)
 	fun seasonSearch(
 		year: Int,
 		season: Season
-	): CompletableFuture<JikanResult<SeasonSearch>> =
-		retriever("$JIKAN_URL/season/$year/$season")
+	): CompletableFuture<JikanResult<SeasonPage>> =
+		SeasonPage.get(retriever, year, season)
 
-	/**
-	 * Returns next season of anime
-	 *
-	 * @return SeasonSearchObject
-	 */
-	fun seasonLater(): CompletableFuture<JikanResult<SeasonSearch>> =
-		retriever("$JIKAN_URL/season/later")
 
-	/**
-	 * Returns archive of all possible seasons and years
-	 *
-	 * @return SeasonArchive
-	 */
-	fun seasonArchive(): CompletableFuture<JikanResult<SeasonArchive>> =
-		retriever("$JIKAN_URL/season/archive")
+	@Deprecated(
+		"Moved to companion",
+		ReplaceWith("SeasonPage.getNextSeason(retriever)")
+	)
+	fun seasonLater() = SeasonPage.getNextSeason(retriever)
+
+	@Deprecated(
+		"Moved to companion",
+		ReplaceWith("SeasonArchivePage.get(retriever)")
+	)
+	fun seasonArchive() = SeasonArchivePage.get(retriever)
 }

@@ -1,10 +1,14 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.producer
 
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
+import com.github.doomsdayrs.jikan4java.core.JikanResult
+import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.model.main.schedule.SubAnime
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.BasicMeta
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -34,4 +38,23 @@ data class ProducerPage(
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
 	@SerialName("meta") val meta: BasicMeta? = null,
 	@SerialName("anime") val subAnimes: List<SubAnime> = listOf()
-) : RequestHashing
+) : RequestHashing {
+	companion object {
+
+		/**
+		 * Retrieves Producer
+		 *
+		 * @param id   ID of magazine
+		 * @param page page to core for
+		 * @return Producer object
+		 */
+		@JvmStatic
+		@JvmOverloads
+		fun search(
+			retriever: Retriever,
+			id: Int,
+			page: Int = 1
+		): CompletableFuture<JikanResult<ProducerPage>> =
+			retriever("$JIKAN_URL/producer/$id/$page")
+	}
+}
