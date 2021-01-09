@@ -38,10 +38,10 @@ import java.util.concurrent.CompletionException
  * @author github.com/doomsdayrs
  */
 class Retriever(
-	private val client: OkHttpClient = getDefaultOkHttpClient(),
+	val client: OkHttpClient = getDefaultOkHttpClient(),
 	@Suppress("MemberVisibilityCanBePrivate")
-	private val builder: Request.Builder = getDefaultRequestBuilder(),
-	private val format: Json = getDefaultJSONParser(),
+	val builder: Request.Builder = getDefaultRequestBuilder(),
+	val format: Json = getDefaultJSONParser(),
 ) {
 
 	/**
@@ -51,7 +51,7 @@ class Retriever(
 	 * @return response from jikan
 	 * @throws IOException something went wrong
 	 */
-	internal fun request(url: String): ResponseBody? {
+	fun request(url: String): ResponseBody? {
 		println(url)
 		val request: Request = builder.url(url).build()
 		val call = client.newCall(request)
@@ -61,7 +61,7 @@ class Retriever(
 	internal inline operator fun <reified T> invoke(url: String) =
 		retrieve<T>(url)
 
-	internal inline fun <reified T> retrieve(
+	inline fun <reified T> retrieve(
 		url: String
 	): JCompletableFuture<T> = GlobalScope.future {
 		var response = ""
