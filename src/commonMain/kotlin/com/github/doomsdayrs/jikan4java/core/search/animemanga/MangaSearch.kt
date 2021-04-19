@@ -1,14 +1,11 @@
 package com.github.doomsdayrs.jikan4java.core.search.animemanga
 
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.genres.MangaGenres
 import com.github.doomsdayrs.jikan4java.data.enums.search.Types
 import com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.orderby.MangaOrderBy
 import com.github.doomsdayrs.jikan4java.data.enums.status.MangaStati
 import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga.GenreSearchManga
 import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga.GenreSearchMangaPage
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.mangapage.MangaPage
 
 /*
  * This file is part of Jikan4java.
@@ -25,14 +22,15 @@ import com.github.doomsdayrs.jikan4java.data.model.main.manga.mangapage.MangaPag
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ */
+
+/**
  * Jikan4java
  * 13 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-class MangaSearch(retriever: Retriever) :
-	AnimeMangaSearch<MangaPage, Manga, MangaSearch, MangaStati, MangaGenres, MangaOrderBy, GenreSearchManga, GenreSearchMangaPage>(
+class MangaSearch :
+	AnimeMangaSearch<MangaSearch, MangaStati, MangaGenres, MangaOrderBy, GenreSearchManga, GenreSearchMangaPage>(
 		Types.MANGA,
-		retriever
 	)

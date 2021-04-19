@@ -1,6 +1,5 @@
 package com.github.doomsdayrs.jikan4java.core.search.animemanga
 
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.core.search.Search
 import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPage
 import com.github.doomsdayrs.jikan4java.data.base.genreSearch.GenreSearchPageResult
@@ -11,7 +10,6 @@ import com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.Ratings
 import com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.orderby.OrderBy
 import com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.subtype.SubTypes
 import com.github.doomsdayrs.jikan4java.data.enums.status.Stati
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -28,22 +26,22 @@ import java.util.*
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ */
+/**
  * Jikan4java
  * 13 / 05 / 2019
  *
  * @author github.com/doomsdayrs
  */
-open class AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY, GENRE_RESULT, GENRE_PAGE> internal constructor(
+open class AnimeMangaSearch<SET, STATUS_T, GENRE, ORDER_BY_T, GENRE_RESULT_T, GENRE_PAGE> internal constructor(
 	type: Types,
-	retriever: Retriever
-) : Search<PAGE, SINGLE, SET>(type, retriever)
-		where SET : AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY, GENRE_RESULT, GENRE_PAGE>,
-		      STATI : Stati,
-		      GENRE : Genres<GENRE_RESULT, GENRE_PAGE>,
-		      ORDER_BY : OrderBy,
-		      GENRE_RESULT : GenreSearchPageResult,
-		      GENRE_PAGE : GenreSearchPage<GENRE_RESULT> {
+) : Search<SET>(type)
+		where SET : AnimeMangaSearch<SET, STATUS_T, GENRE, ORDER_BY_T, GENRE_RESULT_T, GENRE_PAGE>,
+		      STATUS_T : Stati,
+		      GENRE : Genres,
+		      ORDER_BY_T : OrderBy,
+		      GENRE_RESULT_T : GenreSearchPageResult,
+		      GENRE_PAGE : GenreSearchPage<GENRE_RESULT_T> {
 	/**
 	 * Returns page count
 	 *
@@ -84,32 +82,19 @@ open class AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY, GENRE_RES
 		if (rating != null) builder.append("&rated=").append(rating)
 		if (genres != null) {
 			builder.append("&genre=")
-			for (integer in genres!!) builder.append(integer).append(",")
-			builder.replace(
-				builder.lastIndexOf(","),
-				builder.lastIndexOf(",") + 1,
-				""
-			)
+			for ((index, integer) in genres!!.withIndex()) {
+				builder.append(integer)
+				if (index + 1 < genres!!.size)
+					builder.append(",")
+			}
 			println(builder.toString())
 		}
 		if (!isGenreToggle) builder.append("&genre_exclude=").append(0)
 		if (score != 0f) builder.append("&score=").append(score)
-		if (startDate != null) builder.append(
-			String.format(
-				"&start_date=%02d-%02d-%02d",
-				startDate!![0],
-				startDate!![1],
-				startDate!![2]
-			)
-		)
-		if (endDate != null) builder.append(
-			String.format(
-				"&end_date=%02d-%02d-%02d",
-				endDate!![0],
-				endDate!![1],
-				endDate!![2]
-			)
-		)
+		if (startDate != null) {
+			builder.append("&start_date=${startDate!![0]}-${startDate!![1]}-${startDate!![2]}")
+		}
+		if (endDate != null) builder.append("&end_date=${endDate!![0]}-${endDate!![1]}-${endDate!![2]}")
 		if (orderBy != null) builder.append("&order_by=").append(orderBy)
 		if (sortBy != null) builder.append("&sort=").append(sortBy)
 		return builder.toString()
@@ -145,7 +130,7 @@ open class AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY, GENRE_RES
 	 * @param status Status
 	 * @return this
 	 */
-	fun setStatus(status: STATI?): SET {
+	fun setStatus(status: STATUS_T?): SET {
 		this.status = status
 		return this as SET
 	}
@@ -216,7 +201,7 @@ open class AnimeMangaSearch<PAGE, SINGLE, SET, STATI, GENRE, ORDER_BY, GENRE_RES
 		return this as SET
 	}
 
-	fun orderBy(orderBy: ORDER_BY?): SET {
+	fun orderBy(orderBy: ORDER_BY_T?): SET {
 		this.orderBy = orderBy
 		return this as SET
 	}
