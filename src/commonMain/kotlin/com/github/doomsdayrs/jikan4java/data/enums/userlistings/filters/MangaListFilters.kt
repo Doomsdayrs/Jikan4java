@@ -1,7 +1,5 @@
 package com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters
 
-import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.mangalist.MangaList
-
 /*
  * This file is part of Jikan4java.
  *
@@ -23,20 +21,14 @@ import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.mangalist.M
  *
  * @author github.com/doomsdayrs
  */
-enum class MangaListFilters(private val type: String) : UserListFilters {
+enum class MangaListFilters(override val urlKey: String) : UserListFilters {
 	ALL("all"),
 	READING("reading"),
 	COMPLETED("completed"),
 	ONHOLD("onhold"),
 	DROPPED("dropped"),
 	PLANTOREAD("plantoread"),
-	PTR(PLANTOREAD.type);
+	PTR(PLANTOREAD.urlKey);
 
-
-	override fun toString(): String = type
-
-	override val form: String = "mangalist"
-
-	override fun getaClass(): Class<*> = MangaList::class.java
-
+	override val form: String by lazy { "mangalist" }
 }

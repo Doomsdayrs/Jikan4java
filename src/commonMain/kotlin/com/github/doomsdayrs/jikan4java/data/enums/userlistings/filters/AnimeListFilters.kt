@@ -1,7 +1,5 @@
 package com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters
 
-import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.animelist.AnimeList
-
 /*
  * This file is part of Jikan4java.
  *
@@ -23,19 +21,14 @@ import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.animelist.A
  *
  * @author github.com/doomsdayrs
  */
-enum class AnimeListFilters(private val type: String) : UserListFilters {
+enum class AnimeListFilters(override val urlKey: String) : UserListFilters {
 	ALL("all"),  //Default is all anyways
 	WATCHING("watching"),
 	COMPLETED("completed"),
 	ONHOLD("onhold"),
 	DROPPED("dropped"),
 	PLANTOWATCH("plantowatch"),
-	PTW(PLANTOWATCH.type);
+	PTW(PLANTOWATCH.urlKey);
 
-	override fun toString(): String = type
-
-	override val form: String = "animelist"
-
-	override fun getaClass(): Class<*> = AnimeList::class.java
-
+	override val form: String by lazy { "animelist" }
 }
