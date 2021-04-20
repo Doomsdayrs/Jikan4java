@@ -1,5 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.orderby
 
+import com.github.doomsdayrs.jikan4java.data.enums.UrlEnum
+
 /*
  * This file is part of Jikan4java.
  *
@@ -21,6 +23,4 @@ package com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.orderby
  *
  * @author github.com/doomsdayrs
  */
-interface OrderBy {
-	override fun toString(): String
-}
+interface OrderBy:UrlEnum
