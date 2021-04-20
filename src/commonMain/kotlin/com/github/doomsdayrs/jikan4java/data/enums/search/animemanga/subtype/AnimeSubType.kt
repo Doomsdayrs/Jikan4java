@@ -21,14 +21,11 @@ package com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.subtype
  *
  * @author github.com/doomsdayrs
  */
-enum class AnimeSubType(private val type: String) {
+enum class AnimeSubType(override val urlKey: String) : SubTypes {
 	TV("tv"),
 	OVA("ova"),
 	MOVIE("movie"),
 	SPECIAL("special"),
 	ONA("ona"),
-	MUSIC("music");
-
-	override fun toString(): String = type
-
+	MUSIC("music")
 }

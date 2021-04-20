@@ -21,14 +21,11 @@ package com.github.doomsdayrs.jikan4java.data.enums.search.animemanga.subtype
  *
  * @author github.com/doomsdayrs
  */
-enum class MangaSubType(private val type: String) {
+enum class MangaSubType(override val urlKey: String) : SubTypes {
 	MANGA("manga"),
 	NOVEL("novel"),
 	ONESHOT("oneshot"),
 	DOUJIN("doujin"),
 	MANHWA("manhwa"),
-	MANHUA("manhua");
-
-	override fun toString(): String = type
-
+	MANHUA("manhua")
 }
