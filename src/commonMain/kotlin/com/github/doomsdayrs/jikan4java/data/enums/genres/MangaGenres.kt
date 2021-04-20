@@ -1,10 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.enums.genres
 
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga.GenreSearchManga
 import com.github.doomsdayrs.jikan4java.data.model.main.genresearch.manga.GenreSearchMangaPage
-import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -28,7 +24,7 @@ import java.util.concurrent.CompletableFuture
  * @author github.com/doomsdayrs
  */
 enum class MangaGenres(override val id: Int) :
-	Genres<GenreSearchManga, GenreSearchMangaPage> {
+	Genres {
 	ACTION(1),
 	ADVENTURE(2),
 	CARS(3),
@@ -86,11 +82,10 @@ enum class MangaGenres(override val id: Int) :
 	 * @param page    The page number to go to,
 	 * 1 should be the default unless you know else wise
 	 *
-	 * @return [GenreSearchMangaPage]
+	 * @return [GenreSearchMangaPage] url
 	 */
-	override fun search(
-		retriever: Retriever,
+	@Suppress("RedundantOverride")
+	override fun getSearchUrl(
 		page: Int
-	): CompletableFuture<JikanResult<GenreSearchMangaPage>> =
-		iSearch(retriever, page)
+	): String = super.getSearchUrl(page)
 }
