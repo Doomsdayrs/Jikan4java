@@ -1,11 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.base.endpoint
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.model.support.MoreInfo
-import java.util.concurrent.CompletableFuture
 
 
 /*
@@ -32,12 +28,9 @@ import java.util.concurrent.CompletableFuture
  */
 interface MyAnimeListMoreInfoEndPoint : MyAnimeListID, MyAnimeListEntityPoint {
 
-	/**
-	 * Gets pictures related to Manga
-	 *
-	 * @return Pictures object
-	 */
-	fun getMoreInfo(retrieve: Retriever): CompletableFuture<JikanResult<MoreInfo>> =
-		retrieve("$JIKAN_URL/$urlPoint/$malID/moreinfo")
+	val moreInfoUrl
+		get() =
+			@Suppress("SpellCheckingInspection")
+			"$JIKAN_URL/$urlPoint/$malID/moreinfo"
 
 }

@@ -1,11 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.base.type
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
-import java.util.concurrent.CompletableFuture
 
 
 /*
@@ -33,12 +30,6 @@ import java.util.concurrent.CompletableFuture
  * A data type that is connected to an [Manga]
  */
 interface MyAnimeListMangaType : MyAnimeListID {
-	/**
-	 * Returns the Anime object of this object
-	 *
-	 * @return Anime Object
-	 */
-	@Suppress("unused")
-	fun getManga(retriever: Retriever): CompletableFuture<JikanResult<Manga>> =
-		retriever("$JIKAN_URL/manga/$malID")
+	val mangaUrl
+		get() = "$JIKAN_URL/manga/$malID"
 }

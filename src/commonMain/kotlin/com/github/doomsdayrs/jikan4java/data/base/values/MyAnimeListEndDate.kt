@@ -25,9 +25,4 @@ package com.github.doomsdayrs.jikan4java.data.base.values
  */
 interface MyAnimeListEndDate {
 	val endDate: String?
-
-	@Deprecated("Changed to proper naming format", ReplaceWith("end_date"))
-	@Suppress("PropertyName")
-	val end_date
-		get() = endDate
 }

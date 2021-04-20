@@ -1,11 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.base.endpoint
 
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
+import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.model.support.pictures.Pictures
-import java.util.concurrent.CompletableFuture
 
 
 /*
@@ -39,9 +36,7 @@ interface MyAnimeListPicturesEndPoint : MyAnimeListID, MyAnimeListEntityPoint,
 	 *
 	 * @return [JikanResult] of [Pictures]
 	 */
-	fun getPictures(
-		retrieve: Retriever
-	): CompletableFuture<JikanResult<Pictures>> =
-		getPictures(retrieve, malID)
+	val picturesUrl
+		get() = getPicturesUrl(malID)
 }
 

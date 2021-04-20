@@ -1,9 +1,5 @@
 package com.github.doomsdayrs.jikan4java.data.base.endpoint
 
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import java.util.concurrent.CompletableFuture
-
 
 /*
  * This file is part of Jikan4java.
@@ -27,15 +23,12 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-interface MyAnimeListSelfType<SELF>  {
+interface MyAnimeListSelfType<SELF> {
 
 	/**
 	 * Gets [SELF] by it's ID
 	 *
 	 * Used in companion objects of certain data classes to retrieve itself
 	 */
-	fun getByID(
-		retriever: Retriever,
-		id: Int
-	): CompletableFuture<JikanResult<SELF>>
+	fun getUrlById(id: Int): String
 }

@@ -1,11 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.base.endpoint
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
-import com.github.doomsdayrs.jikan4java.data.model.support.forum.Forum
-import java.util.concurrent.CompletableFuture
 
 
 /*
@@ -32,12 +28,6 @@ import java.util.concurrent.CompletableFuture
  */
 interface MyAnimeListForumEndPoint : MyAnimeListID, MyAnimeListEntityPoint {
 
-	/**
-	 * Gets pictures related to Manga
-	 *
-	 * @return Pictures object
-	 */
-	fun getForum(retrieve: Retriever): CompletableFuture<JikanResult<Forum>> =
-		retrieve("$JIKAN_URL/$urlPoint/$malID/forum")
-
+	val forumUrl: String
+		get() = "$JIKAN_URL/$urlPoint/$malID/forum"
 }

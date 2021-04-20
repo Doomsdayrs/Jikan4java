@@ -1,11 +1,8 @@
 package com.github.doomsdayrs.jikan4java.data.base.endpoint
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.model.support.news.News
-import java.util.concurrent.CompletableFuture
 
 
 /*
@@ -30,14 +27,14 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-interface MyAnimeListNewsEndPoint : MyAnimeListID, MyAnimeListEntityPoint{
+interface MyAnimeListNewsEndPoint : MyAnimeListID, MyAnimeListEntityPoint {
 
 	/**
 	 * Gets news about this entity
 	 *
 	 * @return [News]
 	 */
-	fun getNews(retrieve: Retriever): CompletableFuture<JikanResult<News>> =
-		retrieve("$JIKAN_URL/$urlPoint/$malID/news")
+	val newsUrl
+		get() = "$JIKAN_URL/$urlPoint/$malID/news"
 
 }
