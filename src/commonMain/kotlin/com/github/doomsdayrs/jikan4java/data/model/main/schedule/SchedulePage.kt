@@ -4,7 +4,6 @@ import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -45,28 +44,20 @@ data class SchedulePage(
 	@SerialName("unknown") val unknown: List<SubAnime> = listOf()
 ) : RequestHashing {
 	companion object {
-		@JvmStatic
 		const val scheduleUrl = "$JIKAN_URL/schedule"
 
-		@JvmStatic
 		const val sundayScheduleUrl = "$JIKAN_URL/schedule/sunday"
 
-		@JvmStatic
 		const val mondayScheduleUrl = "$JIKAN_URL/schedule/monday"
 
-		@JvmStatic
 		const val tuesdayScheduleUrl = "$JIKAN_URL/schedule/tuesday"
 
-		@JvmStatic
 		const val wednesdayScheduleUrl = "$JIKAN_URL/schedule/wednesday"
 
-		@JvmStatic
 		const val thursdayScheduleUrl = "$JIKAN_URL/schedule/thursday"
 
-		@JvmStatic
 		const val fridayScheduleUrl = "$JIKAN_URL/schedule/friday"
 
-		@JvmStatic
 		const val saturdayScheduleUrl = "$JIKAN_URL/schedule/saturday"
 	}
 }
