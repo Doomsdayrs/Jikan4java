@@ -1,7 +1,5 @@
 package com.github.doomsdayrs.jikan4java.data.enums.top
 
-import com.github.doomsdayrs.jikan4java.data.model.main.top.base.Top
-
 /*
  * This file is part of Jikan4java.
  *
@@ -23,7 +21,6 @@ import com.github.doomsdayrs.jikan4java.data.model.main.top.base.Top
  *
  * @author github.com/doomsdayrs
  */
-interface TopSubType {
-	override fun toString(): String
-	fun compatible(tops: Top<*>): Boolean
+interface TopSubType<TOP> {
+	val urlKey: String
 }

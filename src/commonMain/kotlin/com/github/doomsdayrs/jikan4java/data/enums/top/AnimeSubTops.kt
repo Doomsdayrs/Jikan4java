@@ -1,6 +1,5 @@
 package com.github.doomsdayrs.jikan4java.data.enums.top
 
-import com.github.doomsdayrs.jikan4java.data.model.main.top.base.Top
 import com.github.doomsdayrs.jikan4java.data.model.main.top.model.anime.AnimeTop
 
 /*
@@ -24,15 +23,13 @@ import com.github.doomsdayrs.jikan4java.data.model.main.top.model.anime.AnimeTop
  *
  * @author github.com/doomsdayrs
  */
-enum class AnimeSubTops(private val type: String) : TopSubType {
+enum class AnimeSubTops(override val urlKey: String) : TopSubType<AnimeTop> {
 	AIRING("airing"),
 	UPCOMING("upcoming"),
 	TV("tv"),
 	MOVIE("movie"),
 	OVA("ova"),
-	SPECIAL("special");
-
-	override fun toString(): String = type
-
-	override fun compatible(tops: Top<*>): Boolean = tops is AnimeTop
+	SPECIAL("special"),
+	BY_POPULARITY("bypopularity"),
+	FAVORITE("favorite");
 }
