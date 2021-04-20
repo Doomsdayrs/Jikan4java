@@ -38,5 +38,5 @@ data class ClubMember(
 	 * @return [User]
 	 */
 	val userUrl
-		get() = User.getByName(username)
+		get() = User.getUrlByName(username)
 }
