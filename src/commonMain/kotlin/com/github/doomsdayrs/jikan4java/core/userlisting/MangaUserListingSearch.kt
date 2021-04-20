@@ -1,13 +1,9 @@
 package com.github.doomsdayrs.jikan4java.core.userlisting
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters.MangaListFilters
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.status.MangaListingStati
 import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.mangalist.MangaList
-import java.security.InvalidParameterException
-import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -32,16 +28,17 @@ import java.util.concurrent.CompletableFuture
  */
 class MangaUserListingSearch(
 	username: String = "",
-	retriever: Retriever
 ) : UserListingSearch<MangaList, MangaListingStati, MangaUserListingSearch>(
 	username = username,
-	retriever = retriever,
 ) {
 
 	private var magazine = 0
-	val list: CompletableFuture<JikanResult<MangaList>>
-		@Throws(InvalidParameterException::class)
-		get() = retriever("$JIKAN_URL/user/$username${createURL()}")
+
+	/**
+	 * @see MangaList
+	 */
+	val list
+		get() = "$JIKAN_URL/user/$username${createURL()}"
 
 	init {
 		setUserListFilters(MangaListFilters.ALL)
@@ -52,7 +49,6 @@ class MangaUserListingSearch(
 		return this
 	}
 
-	@Throws(InvalidParameterException::class)
 	override fun createURL(): StringBuilder {
 		val stringBuilder = super.createURL()
 		if (magazine != 0) stringBuilder.append("&magazine=").append(magazine)

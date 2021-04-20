@@ -1,11 +1,9 @@
 package com.github.doomsdayrs.jikan4java.core.userlisting
 
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.SortBy
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters.UserListFilters
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.orderby.ListOrderBy
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.status.ListingStati
-import java.security.InvalidParameterException
 
 /*
  * This file is part of Jikan4java.
@@ -30,7 +28,6 @@ import java.security.InvalidParameterException
  */
 open class UserListingSearch<T, LS : ListingStati, out O>(
 	var username: String = "",
-	val retriever: Retriever
 ) where O : UserListingSearch<T, LS, O> {
 
 	@Suppress("MemberVisibilityCanBePrivate")
@@ -60,13 +57,12 @@ open class UserListingSearch<T, LS : ListingStati, out O>(
 	@Suppress("MemberVisibilityCanBePrivate")
 	var userListFilters: UserListFilters? = null
 
-	@Throws(InvalidParameterException::class)
 	protected open fun createURL(): StringBuilder {
 		val options = StringBuilder()
 		if (userListFilters != null)
 			options.append("/").append(userListFilters!!.form).append("/")
 				.append(userListFilters)
-		else throw InvalidParameterException("Expected userListingFilters")
+		else throw IllegalStateException("Expected userListingFilters")
 		if (page != 0) options.append("/").append(page)
 		if (query != null) options.append("?q=").append(query)
 		var ordering = false

@@ -1,14 +1,10 @@
 package com.github.doomsdayrs.jikan4java.core.userlisting
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.Season
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.filters.AnimeListFilters
 import com.github.doomsdayrs.jikan4java.data.enums.userlistings.status.AnimeListingStati
 import com.github.doomsdayrs.jikan4java.data.model.main.user.listing.animelist.AnimeList
-import java.security.InvalidParameterException
-import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -33,18 +29,19 @@ import java.util.concurrent.CompletableFuture
  */
 class AnimeUserListingSearch(
 	username: String = "",
-	retriever: Retriever
 ) : UserListingSearch<AnimeList, AnimeListingStati, AnimeUserListingSearch>(
 	username = username,
-	retriever = retriever
 ) {
 
 	private var producer = 0
 	private var year = 0
 	private var season: Season? = null
-	val list: CompletableFuture<JikanResult<AnimeList>>
-		@Throws(InvalidParameterException::class)
-		get() = retriever("$JIKAN_URL/user/$username${createURL()}")
+
+	/**
+	 * @see AnimeList
+	 */
+	val list
+		get() = "$JIKAN_URL/user/$username${createURL()}"
 
 	init {
 		setUserListFilters(AnimeListFilters.ALL)
@@ -65,7 +62,6 @@ class AnimeUserListingSearch(
 		return this
 	}
 
-	@Throws(InvalidParameterException::class)
 	override fun createURL(): StringBuilder {
 		val stringBuilder = super.createURL()
 		if (producer != 0) stringBuilder.append("&producer=").append(producer)
