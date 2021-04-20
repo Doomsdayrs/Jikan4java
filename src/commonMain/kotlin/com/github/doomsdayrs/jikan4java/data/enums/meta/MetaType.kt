@@ -21,7 +21,7 @@ package com.github.doomsdayrs.jikan4java.data.enums.meta
  *
  * @author github.com/doomsdayrs
  */
-enum class MetaType(private val type: String) {
+enum class MetaType(val type: String) {
 	ANIME("anime"),
 	MANGA("manga"),
 	CHARACTER("character"),
@@ -30,6 +30,4 @@ enum class MetaType(private val type: String) {
 	TOP("top"),
 	SCHEDULE("schedule"),
 	SEASON("season");
-
-	override fun toString(): String = type
 }

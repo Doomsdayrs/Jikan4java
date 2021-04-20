@@ -21,10 +21,8 @@ package com.github.doomsdayrs.jikan4java.data.enums.meta
  *
  * @author github.com/doomsdayrs
  */
-enum class MetaPeriod(private val type: String) {
+enum class MetaPeriod(val type: String) {
 	TODAY("type"),
 	WEEKLY("weekly"),
 	MONTHLY("monthly");
-
-	override fun toString(): String = type
 }
