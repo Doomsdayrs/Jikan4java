@@ -1,10 +1,5 @@
 package com.github.doomsdayrs.jikan4java
 
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch
-import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
-import kotlinx.coroutines.future.await
-
 /*
  * This file is part of Jikan4java.
  *
@@ -31,15 +26,15 @@ internal object ExampleClass {
 	 *
 	 * @param args Args
 	 */
-	@JvmStatic
 	suspend fun main(args: Array<String>) {
-		//37765 = Hathaway's Flash
+		/*37765 = Hathaway's Flash
 		AnimeSearch(Retriever()).getByID<Anime>(37765).await()
 			.handle { anime ->
 				println("Title: ${anime.title}")
 				println("Release date: ${anime.aired?.string}")
 				println("Status: ${anime.status}")
 			}
+		*/
 	}
 
 }

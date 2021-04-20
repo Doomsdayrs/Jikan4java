@@ -1,37 +1,6 @@
 package com.github.doomsdayrs.jikan4java
 
-import com.github.doomsdayrs.jikan4java.common.JCompletableFuture
-import com.github.doomsdayrs.jikan4java.common.debugMode
-import com.github.doomsdayrs.jikan4java.core.Connector
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
-import com.github.doomsdayrs.jikan4java.core.search.TopSearch
-import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch
-import com.github.doomsdayrs.jikan4java.core.search.animemanga.MangaSearch
-import com.github.doomsdayrs.jikan4java.data.enums.HistoryTypes
-import com.github.doomsdayrs.jikan4java.data.enums.genres.AnimeGenres
-import com.github.doomsdayrs.jikan4java.data.enums.genres.MangaGenres
-import com.github.doomsdayrs.jikan4java.data.exceptions.IncompatibleEnumException
-import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
-import com.github.doomsdayrs.jikan4java.data.model.main.character.Character
-import com.github.doomsdayrs.jikan4java.data.model.main.club.Club
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
-import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
-import com.github.doomsdayrs.jikan4java.data.model.main.producer.ProducerPage
-import com.github.doomsdayrs.jikan4java.data.model.main.schedule.Day
-import com.github.doomsdayrs.jikan4java.data.model.main.schedule.SchedulePage
-import com.github.doomsdayrs.jikan4java.data.model.main.user.User
-import com.github.doomsdayrs.jikan4java.data.model.support.pictures.Pictures
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.future.await
-import kotlinx.coroutines.launch
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Test
-import org.junit.platform.commons.annotation.Testable
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.ExecutionException
-import kotlin.reflect.KFunction1
+import com.github.doomsdayrs.jikan4java.data.enums.TopType
 
 /*
  * This file is part of Jikan4java.
@@ -55,7 +24,6 @@ import kotlin.reflect.KFunction1
  *
  * @author github.com/doomsdayrs
  */
-@Testable
 internal object KotlinTester {
 	private val animes = arrayOf(
 		"Boku no Hero Academia 4th Season",
@@ -66,7 +34,7 @@ internal object KotlinTester {
 	private val mangaTitles =
 		arrayOf("Berserk", "Boku no" /*,"One punch", "Shield"*/)
 	private val tops =
-		arrayOf(TopSearch.ANIME, TopSearch.MANGA, TopSearch.CHARACTER)
+		arrayOf(TopType.ANIME, TopType.MANGA, TopType.CHARACTER)
 
 	private const val CONNECTOR_SIZE = 8
 	private const val GENRES_SIZE = 2
@@ -76,9 +44,6 @@ internal object KotlinTester {
 
 	@Suppress("SpellCheckingInspection")
 	private const val USER_NAME = "Parisbelle"
-
-	private val retriever: Retriever = Retriever()
-
 
 	/** Types: Anime, Manga, Top, Connector, Days, Genres, User, Club */
 	private val types = booleanArrayOf(
@@ -93,22 +58,8 @@ internal object KotlinTester {
 	)
 	private var max =
 		1 + animes.size * 12 + mangaTitles.size * 5 + tops.size + CONNECTOR_SIZE + 10 + GENRES_SIZE + USER_SIZE + CLUB_SIZE
-	private var currentProgress = 0
 
-	private inline fun <reified T> p(jikanResult: JikanResult<T>) {
-		val line = Throwable().stackTrace[0].lineNumber
-		jikanResult.handle(
-			onError = {
-				exceptions.add(line to it.exception)
-				it.exception.printStackTrace()
-			},
-			onEmpty = {
-				println("No results found")
-			}
-		) {
-			println(it)
-		}
-	}
+	private var currentProgress = 0
 
 	private fun progressUpdate() {
 		currentProgress++
@@ -121,6 +72,7 @@ internal object KotlinTester {
 		println("Progress: $stringBuilder")
 	}
 
+	/*
 	/**
 	 * Tester method
 	 *
@@ -130,8 +82,6 @@ internal object KotlinTester {
 	 * @throws IncompatibleEnumException ignored
 	 */
 	@Throws(
-		ExecutionException::class,
-		InterruptedException::class,
 		IncompatibleEnumException::class
 	)
 	@JvmStatic
@@ -157,18 +107,15 @@ internal object KotlinTester {
 		}
 	}
 
-	@Test
 	private suspend fun testProducer() {
 		ProducerPage.search(retriever, 1).awaitAndPrint()
 
 	}
 
-	@BeforeAll
 	fun setupTest() {
 		debugMode = true
 	}
 
-	@Test
 	suspend fun testAnime() {
 		if (types[0]) {
 			var animeSearch: AnimeSearch
@@ -282,7 +229,6 @@ internal object KotlinTester {
 		}
 	}
 
-	@Test
 	suspend fun testManga() {
 		if (types[1]) {
 			var mangaSearch: MangaSearch
@@ -328,7 +274,6 @@ internal object KotlinTester {
 		}
 	}
 
-	@Test
 	suspend fun testSearch() {
 		if (types[2]) {
 			var topSearch: TopSearch
@@ -351,16 +296,20 @@ internal object KotlinTester {
 				topSearch = TopSearch(retriever)
 				progressUpdate()
 				topSearch.searchTop(TopSearch.PERSON).awaitAndPrint()
+
+				topSearch.searchTop(TopSearch.ANIME)
 			}
+
+			topSearch.searchTop(TopType.ANIME, subtype = AnimeSubTops.AIRING)
+
 		}
 	}
 
-	@Test
 	suspend fun testGeneralConnector() {
 		val connector = Connector(retriever)
 		if (types[3]) {
 			progressUpdate()
-			Person.getByID(connector.retriever, 1).awaitAndPrint()
+			Person.getUrlById(1).awaitAndPrint()
 				.handle { person ->
 					progressUpdate()
 					var picturesCompletableFuture: CompletableFuture<JikanResult<Pictures>> =
@@ -370,7 +319,7 @@ internal object KotlinTester {
 
 					progressUpdate()
 					val characterCompletableFuture =
-						Character.getByID(connector.retriever, 1)
+						Character.getUrlById(1)
 					characterCompletableFuture.thenAccept { obj -> p(obj) }
 					characterCompletableFuture.await().handle { character ->
 						progressUpdate()
@@ -423,12 +372,7 @@ internal object KotlinTester {
 		}
 	}
 
-	suspend inline fun <reified T> JCompletableFuture<T>.awaitAndPrint(): JikanResult<T> {
-		thenAccept { p(it) }
-		return await()
-	}
 
-	@Test
 	suspend fun testSchedule() {
 		if (types[4]) {
 			progressUpdate()
@@ -451,13 +395,12 @@ internal object KotlinTester {
 		}
 	}
 
-	@Test
 	suspend fun testGenre() {
 		Connector(retriever)
 		if (types[5]) {
 			progressUpdate()
 			val animePageCompletableFuture =
-				AnimeGenres.ACTION.search(retriever, 1)
+				AnimeGenres.ACTION.getSearchUrl(1)
 			animePageCompletableFuture.thenAccept { obj ->
 				p(
 					obj
@@ -467,7 +410,7 @@ internal object KotlinTester {
 
 			progressUpdate()
 			val mangaPageCompletableFuture =
-				MangaGenres.ACTION.search(retriever, 1)
+				MangaGenres.ACTION.getSearchUrl(1)
 			mangaPageCompletableFuture.thenAccept { obj ->
 				p(
 					obj
@@ -478,7 +421,6 @@ internal object KotlinTester {
 		}
 	}
 
-	@Test
 	suspend fun testUser() {
 		val connector = Connector(retriever)
 		if (types[6]) {
@@ -527,11 +469,10 @@ internal object KotlinTester {
 		}
 	}
 
-	@Test
 	suspend fun testClub() {
 		if (types[7]) {
 			progressUpdate()
-			val clubCompletableFuture = Club.getByID(retriever, 1)
+			val clubCompletableFuture = Club.getUrlById(1)
 			clubCompletableFuture.thenAccept { obj -> p(obj) }
 			clubCompletableFuture.await().handle { club ->
 				progressUpdate()
@@ -547,7 +488,7 @@ internal object KotlinTester {
 		}
 	}
 
-	@AfterAll
+	*/
 	fun finally() {
 		// Gets any and all errors from code
 		exceptions.forEach { (line, exception) ->
