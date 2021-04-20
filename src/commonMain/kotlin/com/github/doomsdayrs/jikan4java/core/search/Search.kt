@@ -1,16 +1,7 @@
 package com.github.doomsdayrs.jikan4java.core.search
 
-import com.github.doomsdayrs.jikan4java.common.*
-import com.github.doomsdayrs.jikan4java.core.*
+import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
 import com.github.doomsdayrs.jikan4java.data.enums.search.Types
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.future.future
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonObject
-import okhttp3.Request
-import okio.IOException
-import java.util.concurrent.CompletableFuture
 
 /*
  * This file is part of Jikan4java.
@@ -27,16 +18,16 @@ import java.util.concurrent.CompletableFuture
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
+ */
+/**
  * Jikan4java
  * 13 / May / 2019
  *
  * @author github.com/doomsdayrs
  */
-open class Search<PAGE, SINGLE, SET>(
-	val type: Types,
-	val retriever: Retriever
-) where SET : Search<PAGE, SINGLE, SET> {
+open class Search<SET>(
+	val type: Types
+) where SET : Search<SET> {
 	@Suppress("MemberVisibilityCanBePrivate")
 	var query = ""
 
@@ -50,7 +41,7 @@ open class Search<PAGE, SINGLE, SET>(
 	 */
 	open fun createURL(): String {
 
-		return "$JIKAN_URL/search/$type?q=${
+		return "$JIKAN_URL/search/${type.urlKey}?q=${
 			query.replace(
 				" ".toRegex(),
 				"%20"
@@ -71,9 +62,7 @@ open class Search<PAGE, SINGLE, SET>(
 	 */
 	@Throws(IndexOutOfBoundsException::class)
 	open fun setLimit(limit: Int): SET {
-		if (limit != 0) this.limit = limit else throw IndexOutOfBoundsException(
-			"This program does not accept 0s"
-		)
+		this.limit = limit
 		return this as SET
 	}
 
@@ -88,63 +77,9 @@ open class Search<PAGE, SINGLE, SET>(
 		return this as SET
 	}
 
-	/**
-	 * Gets the first result in list provided as its own object:
-	 * AnimePage = anime,
-	 * MangaPage = manga,
-	 * CharacterPage = character,
-	 * PersonPage = person.
-	 *
-	 * @return Completable future of the process
-	 */
-	inline fun <reified S> getFirst(): CompletableFuture<JikanResult<SINGLE>> where S : SINGLE =
-		GlobalScope.future {
-			return@future try {
-				retriever.request(createURL()).use { responseBody ->
-					val jsonElement =
-						retriever.format.parseToJsonElement(responseBody!!.string())
+	fun get(): String =
+		createURL()
 
-					val jsonObject =
-						jsonElement.jsonObject
-
-					val jsonArray = jsonObject["results"]!!.jsonArray
-					if (debugMode)
-						println(jsonArray)
-					// Gets first entities ID
-					jsonArray[0].jsonObject["mal_id"].toString()
-				}.let { malID ->
-					val request = Request.Builder()
-						.url("$JIKAN_URL/${type}/$malID")
-						.build()
-					val response = retriever.client.newCall(request).execute()
-					val responseBody = response.body
-						?: return@future emptyResult() as JikanResult<SINGLE>
-
-					responseBody.use {
-						val responseContent = responseBody.string()
-						successResult(
-							retriever.format.decodeFromString<S>(
-								responseContent
-							)
-						)
-					}
-				}
-
-			} catch (e: IOException) {
-				errorResult(e) as JikanResult<SINGLE>
-			} catch (e: Exception) {
-				errorResult(e) as JikanResult<SINGLE>
-			}
-		}
-
-	/**
-	 * Gets the page
-	 *
-	 * @return Completable future of the process
-	 */
-	inline fun <reified P> get(): CompletableFuture<JikanResult<P>> where P : PAGE =
-		retriever(createURL())
-
-	inline fun <reified S> getByID(id: Int): CompletableFuture<JikanResult<S>> where S : SINGLE =
-		retriever("$JIKAN_URL/$type/$id")
+	fun getByID(id: Int): String =
+		"$JIKAN_URL/${type.urlKey}/$id"
 }
