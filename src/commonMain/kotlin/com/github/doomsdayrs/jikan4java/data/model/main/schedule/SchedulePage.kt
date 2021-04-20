@@ -1,10 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.schedule
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -46,44 +46,27 @@ data class SchedulePage(
 ) : RequestHashing {
 	companion object {
 		@JvmStatic
-		fun getSchedule(retriever: Retriever) =
-			retriever<SchedulePage>("$JIKAN_URL/schedule")
+		const val scheduleUrl = "$JIKAN_URL/schedule"
 
 		@JvmStatic
-		fun getSundaySchedule(retriever: Retriever) =
-			retriever<Day.Sunday>("$JIKAN_URL/schedule/sunday")
+		const val sundayScheduleUrl = "$JIKAN_URL/schedule/sunday"
 
 		@JvmStatic
-		fun getMondaySchedule(retriever: Retriever) =
-			retriever<Day.Monday>("$JIKAN_URL/schedule/monday")
+		const val mondayScheduleUrl = "$JIKAN_URL/schedule/monday"
 
 		@JvmStatic
-		fun getTuesdaySchedule(retriever: Retriever) =
-			retriever<Day.Tuesday>("$JIKAN_URL/schedule/tuesday")
+		const val tuesdayScheduleUrl = "$JIKAN_URL/schedule/tuesday"
 
 		@JvmStatic
-		fun getWednesdaySchedule(retriever: Retriever) =
-			retriever<Day.Wednesday>("$JIKAN_URL/schedule/wednesday")
+		const val wednesdayScheduleUrl = "$JIKAN_URL/schedule/wednesday"
 
 		@JvmStatic
-		fun getThursdaySchedule(retriever: Retriever) =
-			retriever<Day.Thursday>("$JIKAN_URL/schedule/thursday")
+		const val thursdayScheduleUrl = "$JIKAN_URL/schedule/thursday"
 
 		@JvmStatic
-		fun getFridaySchedule(retriever: Retriever) =
-			retriever<Day.Friday>("$JIKAN_URL/schedule/friday")
+		const val fridayScheduleUrl = "$JIKAN_URL/schedule/friday"
 
 		@JvmStatic
-		fun getSaturdaySchedule(retriever: Retriever) =
-			retriever<Day.Saturday>("$JIKAN_URL/schedule/saturday")
-
-		@JvmStatic
-		fun getOtherSchedule(retriever: Retriever) =
-			retriever<Day.Other>("$JIKAN_URL/schedule/other")
-
-		@JvmStatic
-		fun getUnknownSchedule(retriever: Retriever) =
-			retriever<Day.Unknown>("$JIKAN_URL/schedule/unknown")
-
+		const val saturdayScheduleUrl = "$JIKAN_URL/schedule/saturday"
 	}
 }

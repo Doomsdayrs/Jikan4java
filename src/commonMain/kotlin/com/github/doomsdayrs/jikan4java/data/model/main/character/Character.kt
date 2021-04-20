@@ -1,8 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.character
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListPicturesEndPoint
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListSelfType
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
@@ -14,7 +12,7 @@ import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import com.github.doomsdayrs.jikan4java.data.model.support.VoiceActors
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.concurrent.CompletableFuture
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -62,10 +60,9 @@ data class Character(
 		override val urlPoint: String by lazy { "character" }
 
 		@JvmStatic
-		override fun getByID(
-			retriever: Retriever,
+		override fun getUrlById(
 			id: Int
-		): CompletableFuture<JikanResult<Character>> =
-			retriever("$JIKAN_URL/$urlPoint/$id")
+		): String =
+			"$JIKAN_URL/$urlPoint/$id"
 	}
 }

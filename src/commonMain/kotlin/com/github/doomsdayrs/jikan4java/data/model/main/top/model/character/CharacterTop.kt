@@ -32,7 +32,4 @@ data class CharacterTop(
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = -1,
 	@SerialName("top") override val topListings: List<TopCharacter> = arrayListOf()
-) : Top<TopCharacter>(){
-	override val name: String
-		get() = "characters"
-}
+) : Top<TopCharacter>()

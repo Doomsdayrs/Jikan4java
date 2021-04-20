@@ -1,19 +1,16 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.club
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListSelfType
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListID
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListTitle
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListType
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
-import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.BasicMeta
 import com.github.doomsdayrs.jikan4java.data.model.support.basic.meta.GenericMeta
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.concurrent.CompletableFuture
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -73,37 +70,17 @@ data class Club(
 ) : RequestHashing, MyAnimeListID, MyAnimeListImageURL, MyAnimeListTitle,
 	MyAnimeListType {
 
-
-	@Deprecated("Migrated naming scheme", ReplaceWith("animeRelations"))
-	@Suppress("PropertyName", "unused")
-	val anime_relations: List<BasicMeta>
-		get() = animeRelations
-
-	@Deprecated("Migrated naming scheme", ReplaceWith("mangaRelations"))
-	@Suppress("PropertyName", "unused")
-	val manga_relations: List<BasicMeta>
-		get() = mangaRelations
-
-	@Deprecated("Migrated naming scheme", ReplaceWith("characterRelations"))
-	@Suppress("PropertyName", "unused")
-	val character_relations: List<BasicMeta>
-		get() = characterRelations
-
 	/**
 	 * 35 per page
 	 * @param page page
-	 * @return Members
+	 * @return [ClubMemberPage]
 	 */
 	fun getMembers(
-		retriever: Retriever,
 		page: Int
-	): CompletableFuture<JikanResult<ClubMemberPage>> {
-		return retriever("$JIKAN_URL/club/$malID/members/$page")
-	}
+	) = "$JIKAN_URL/club/$malID/members/$page"
 
 	companion object : MyAnimeListSelfType<Club> {
 		@JvmStatic
-		override fun getByID(retriever: Retriever, id: Int) =
-			retriever<Club>("$JIKAN_URL/club/$id")
+		override fun getUrlById(id: Int): String = "$JIKAN_URL/club/$id"
 	}
 }

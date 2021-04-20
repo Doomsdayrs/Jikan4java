@@ -1,10 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.season.seasonarchive
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -27,16 +27,6 @@ import kotlinx.serialization.Serializable
  *
  * @author github.com/doomsdayrs
  */
-
-@Deprecated(
-	"Renamed",
-	ReplaceWith(
-		"SeasonArchivePage",
-		"com.github.doomsdayrs.jikan4java.data.model.main.season.seasonarchive.SeasonArchivePage"
-	)
-)
-typealias SeasonArchive = SeasonArchivePage
-
 @Serializable
 data class SeasonArchivePage(
 	@SerialName("request_hash") override val requestHash: String,
@@ -46,8 +36,11 @@ data class SeasonArchivePage(
 ) : RequestHashing {
 
 	companion object {
+
+		/**
+		 * @see [SeasonArchivePage]
+		 */
 		@JvmStatic
-		fun get(retriever: Retriever) =
-			retriever<SeasonArchivePage>("$JIKAN_URL/season/archive")
+		val seasonArchivePageUrl by lazy { "$JIKAN_URL/season/archive" }
 	}
 }

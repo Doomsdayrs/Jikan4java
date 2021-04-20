@@ -1,8 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.manga
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.*
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
 import com.github.doomsdayrs.jikan4java.data.base.values.*
@@ -15,7 +13,7 @@ import com.github.doomsdayrs.jikan4java.data.model.support.stats.MangaStats
 import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.manga.MangaUserUpdatesPage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.concurrent.CompletableFuture
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -82,51 +80,49 @@ data class Manga(
 	MyAnimeListPicturesEndPoint,
 	MyAnimeListMoreInfoEndPoint {
 
-	override val urlPoint: String
-		get() = "manga"
+	override val urlPoint: String by lazy { "manga" }
 
 	/**
 	 * Returns MangaCharacters object
 	 *
 	 * @return [MangaCharacters]
 	 */
-	fun getCharacters(retriever: Retriever): CompletableFuture<JikanResult<MangaCharacters>> =
-		retriever("$JIKAN_URL/manga/$malID/characters")
+	val characters by lazy { "$JIKAN_URL/manga/$malID/characters" }
 
 	/**
 	 * Gets manga reviews
 	 *
 	 * @return [MangaReviewPage]
 	 */
-	fun getReviewPage(retrieve: Retriever): CompletableFuture<JikanResult<MangaReviewPage>> =
-		retrieve("$JIKAN_URL/manga/$malID/reviews")
+	val reviewPage by lazy { "$JIKAN_URL/manga/$malID/reviews" }
+
 
 	/**
 	 * Gets stats about Manga object
 	 *
 	 * @return [MangaStats]
 	 */
-	fun getStats(retrieve: Retriever): CompletableFuture<JikanResult<MangaStats>> =
-		retrieve("$JIKAN_URL/manga/$malID/stats")
+	val stats by lazy { "$JIKAN_URL/manga/$malID/stats" }
 
 	/**
 	 * Gets a page of userUpdates
 	 *
 	 * @param page which page to get, default is 1
-	 * @return MangaUserUpdatesPage
+	 * @return [MangaUserUpdatesPage]
 	 */
 	fun getUserUpdatesPage(
-		retriever: Retriever,
 		page: Int
-	): CompletableFuture<JikanResult<MangaUserUpdatesPage>> =
-		retriever("$JIKAN_URL/manga/$malID/userupdates/$page")
+	) =
+		@Suppress("SpellCheckingInspection")
+		"$JIKAN_URL/manga/$malID/userupdates/$page"
 
 
 	companion object : MyAnimeListSelfType<Manga>,
 		MyAnimeListDirectPicturesEndPoint {
+
 		@JvmStatic
-		override fun getByID(retriever: Retriever, id: Int) =
-			retriever<Manga>("$JIKAN_URL/manga/$id")
+		override fun getUrlById(id: Int): String =
+			"$JIKAN_URL/manga/$id"
 
 		override val urlPoint: String by lazy { "manga" }
 	}

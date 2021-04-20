@@ -1,7 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.person
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListPicturesEndPoint
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.MyAnimeListSelfType
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
@@ -11,6 +10,7 @@ import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -60,8 +60,8 @@ data class Person(
 	companion object : MyAnimeListSelfType<Person>,
 		MyAnimeListDirectPicturesEndPoint {
 		@JvmStatic
-		override fun getByID(retriever: Retriever, id: Int) =
-			retriever<Person>("$JIKAN_URL/person/$id")
+		override fun getUrlById(id: Int): String =
+			"$JIKAN_URL/person/$id"
 
 		override val urlPoint: String by lazy { "person" }
 	}

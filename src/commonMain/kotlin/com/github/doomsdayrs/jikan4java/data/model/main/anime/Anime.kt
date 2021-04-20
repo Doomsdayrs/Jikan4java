@@ -1,8 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.anime
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.*
 import com.github.doomsdayrs.jikan4java.data.base.endpoint.direct.MyAnimeListDirectPicturesEndPoint
 import com.github.doomsdayrs.jikan4java.data.base.values.*
@@ -19,7 +17,7 @@ import com.github.doomsdayrs.jikan4java.data.model.support.stats.AnimeStats
 import com.github.doomsdayrs.jikan4java.data.model.support.userupdate.anime.AnimeUserUpdatesPage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.concurrent.CompletableFuture
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -36,7 +34,6 @@ import java.util.concurrent.CompletableFuture
  *
  * You should have received a copy of the GNU General Public License
  * along with Jikan4java.  If not, see <https://www.gnu.org/licenses/>.
- * ====================================================================
  */
 /**
  * Jikan4java
@@ -44,7 +41,6 @@ import java.util.concurrent.CompletableFuture
  *
  * @author github.com/doomsdayrs
  */
-
 @Serializable
 data class Anime(
 	@SerialName("request_hash") override val requestHash: String,
@@ -102,16 +98,16 @@ data class Anime(
 	MyAnimeListMoreInfoEndPoint,
 	MyAnimeListForumEndPoint {
 
-	override val urlPoint: String
-		get() = "anime"
+	override val urlPoint: String by lazy { "anime" }
 
 	/**
 	 * Gets character and staff object
 	 *
 	 * @return [AnimeCharacterStaffPage]
 	 */
-	fun getCharacterStaffs(retriever: Retriever): CompletableFuture<JikanResult<AnimeCharacterStaffPage>> =
-		retriever("$JIKAN_URL/anime/$malID/characters_staff")
+	val characterStaffsUrl by lazy {
+		"$JIKAN_URL/anime/$malID/characters_staff"
+	}
 
 	/**
 	 * Gets episodes, Please be aware that if the amount
@@ -120,12 +116,11 @@ data class Anime(
 	 *
 	 * @return [EpisodesPage]
 	 */
-	fun getEpisodesPage(
-		retriever: Retriever,
+	fun getEpisodesPageUrl(
 		pageNumber: Int
-	): CompletableFuture<JikanResult<EpisodesPage>> {
+	): String {
 		val pagesEndpoint = if (pageNumber != 0) "/$pageNumber" else ""
-		return retriever("$JIKAN_URL/anime/$malID/episodes$pagesEndpoint")
+		return "$JIKAN_URL/anime/$malID/episodes$pagesEndpoint"
 	}
 
 	/**
@@ -133,51 +128,41 @@ data class Anime(
 	 *
 	 * @return [AnimeVideos]
 	 */
-	fun getVideos(retriever: Retriever): CompletableFuture<JikanResult<AnimeVideos>> =
-		retriever("$JIKAN_URL/anime/$malID/videos")
+	val videosUrl by lazy { "$JIKAN_URL/anime/$malID/videos" }
 
 	/**
 	 * Gets stats about anime object
 	 *
 	 * @return [AnimeStats]
 	 */
-	fun getStats(retriever: Retriever): CompletableFuture<JikanResult<AnimeStats>> =
-		retriever("$JIKAN_URL/anime/$malID/stats")
+	val statsUrl by lazy { "$JIKAN_URL/anime/$malID/stats" }
 
 
 	/**
-	 *
 	 * @return [AnimeReviewPage]
 	 */
-	fun getReviewPage(retriever: Retriever): CompletableFuture<JikanResult<AnimeReviewPage>> =
-		retriever("$JIKAN_URL/anime/$malID/reviews")
-
+	val reviewPageUrl by lazy { "$JIKAN_URL/anime/$malID/reviews" }
 
 	/**
-	 *
 	 * @return [AnimeRecommendationPage]
 	 */
-	fun getRecommendationPage(retriever: Retriever): CompletableFuture<JikanResult<AnimeRecommendationPage>> =
-		retriever("$JIKAN_URL/anime/$malID/recommendations")
+	val recommendationPageUrl: String by lazy { "$JIKAN_URL/anime/$malID/recommendations" }
 
 
 	/**
-	 *
 	 * @return [AnimeUserUpdatesPage]
 	 */
 	fun getUserUpdatesPage(
-		retriever: Retriever,
 		page: Int
-	): CompletableFuture<JikanResult<AnimeUserUpdatesPage>> =
-		retriever("$JIKAN_URL/anime/$malID/userupdates/$page")
+	) =
+		@Suppress("SpellCheckingInspection")
+		"$JIKAN_URL/anime/$malID/userupdates/$page"
 
 	companion object : MyAnimeListSelfType<Anime>,
 		MyAnimeListDirectPicturesEndPoint {
 		@JvmStatic
-		override fun getByID(retriever: Retriever, id: Int) =
-			retriever<Anime>("$JIKAN_URL/$urlPoint/$id")
+		override fun getUrlById(id: Int): String = "$JIKAN_URL/$urlPoint/$id"
 
 		override val urlPoint: String by lazy { "anime" }
-
 	}
 }

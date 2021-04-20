@@ -27,11 +27,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MangaTop(
-	@SerialName("request_hash") override val requestHash: String= "",
+	@SerialName("request_hash") override val requestHash: String = "",
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = -1,
 	@SerialName("top") override val topListings: List<TopManga> = arrayListOf()
-) : Top<TopManga>(){
-	override val name: String
-		get() = "manga"
-}
+) : Top<TopManga>()

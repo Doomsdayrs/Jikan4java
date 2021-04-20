@@ -32,7 +32,4 @@ data class PersonTop(
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = -1,
 	@SerialName("top") override val topListings: List<TopPerson> = arrayListOf()
-) : Top<TopPerson>() {
-	override val name: String
-		get() = "people"
-}
+) : Top<TopPerson>()

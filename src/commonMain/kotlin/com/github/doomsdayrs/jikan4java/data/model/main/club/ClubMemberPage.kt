@@ -1,12 +1,10 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.club
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.concurrent.CompletableFuture
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -37,13 +35,15 @@ data class ClubMemberPage(
 	@SerialName("members") val clubMembers: List<ClubMember> = listOf()
 ) : RequestHashing {
 	companion object {
+
+		/**
+		 * @see ClubMemberPage
+		 */
 		@JvmStatic
 		fun get(
-			retriever: Retriever,
 			id: Int,
 			page: Int
-		): CompletableFuture<JikanResult<ClubMemberPage>> =
-			retriever("$JIKAN_URL/club/$id/members/$page")
+		) = "$JIKAN_URL/club/$id/members/$page"
 
 	}
 }

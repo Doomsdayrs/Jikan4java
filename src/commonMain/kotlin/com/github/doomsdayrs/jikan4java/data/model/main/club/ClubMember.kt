@@ -1,6 +1,5 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.club
 
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.model.main.user.User
@@ -36,10 +35,8 @@ data class ClubMember(
 ) : MyAnimeListURL, MyAnimeListImageURL {
 
 	/**
-	 * Returns a user object
-	 *
 	 * @return [User]
 	 */
-	fun userRetrieve(retriever: Retriever) =
-		User.getByName(retriever, username)
+	val userUrl
+		get() = User.getByName(username)
 }

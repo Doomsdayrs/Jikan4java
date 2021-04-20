@@ -1,6 +1,5 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.top.base
 
-import com.github.doomsdayrs.jikan4java.data.enums.top.TopSubType
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.Serializable
 
@@ -29,8 +28,4 @@ import kotlinx.serialization.Serializable
 @Serializable
 abstract class Top<T : TopListing>() : RequestHashing {
 	abstract val topListings: List<T>
-
-	fun compatible(topSubType: TopSubType) = topSubType.compatible(this)
-
-	abstract val name: String
 }

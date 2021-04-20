@@ -1,11 +1,11 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.season
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.data.enums.Season
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -28,16 +28,6 @@ import kotlinx.serialization.Serializable
  *
  * @author github.com/doomsdayrs
  */
-
-@Deprecated(
-	"Renamed",
-	ReplaceWith(
-		"SeasonPage",
-		"com.github.doomsdayrs.jikan4java.data.model.main.season.SeasonPage"
-	)
-)
-typealias SeasonSearch = SeasonPage
-
 @Serializable
 data class SeasonPage(
 	@SerialName("request_hash") override val requestHash: String,
@@ -59,14 +49,11 @@ data class SeasonPage(
 		 */
 		@JvmStatic
 		fun get(
-			retriever: Retriever,
 			year: Int,
 			season: Season
-		) = retriever<SeasonPage>("$JIKAN_URL/season/$year/$season")
+		) = "$JIKAN_URL/season/$year/$season"
 
 		@JvmStatic
-		fun getNextSeason(retriever: Retriever) =
-			retriever<SeasonPage>("$JIKAN_URL/season/later")
-
+		val nextSeasonUrl by lazy { "$JIKAN_URL/season/later" }
 	}
 }

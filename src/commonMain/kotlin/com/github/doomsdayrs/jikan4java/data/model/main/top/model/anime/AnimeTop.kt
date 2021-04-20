@@ -31,7 +31,4 @@ data class AnimeTop(
 	@SerialName("request_cached") override val requestCached: Boolean = false,
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = -1,
 	@SerialName("top") override val topListings: List<TopAnime> = arrayListOf()
-) : Top<TopAnime>() {
-	override val name: String
-		get() = "anime"
-}
+) : Top<TopAnime>()

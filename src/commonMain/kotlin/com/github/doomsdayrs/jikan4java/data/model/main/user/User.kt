@@ -1,18 +1,15 @@
 package com.github.doomsdayrs.jikan4java.data.model.main.user
 
 import com.github.doomsdayrs.jikan4java.common.JIKAN_URL
-import com.github.doomsdayrs.jikan4java.core.JikanResult
-import com.github.doomsdayrs.jikan4java.core.Retriever
 import com.github.doomsdayrs.jikan4java.core.userlisting.AnimeUserListingSearch
 import com.github.doomsdayrs.jikan4java.core.userlisting.MangaUserListingSearch
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListImageURL
 import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListURL
 import com.github.doomsdayrs.jikan4java.data.enums.HistoryTypes
-import com.github.doomsdayrs.jikan4java.data.model.main.user.friends.FriendPage
 import com.github.doomsdayrs.jikan4java.data.model.main.user.history.HistoryPage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.concurrent.CompletableFuture
+import kotlin.jvm.JvmStatic
 
 /*
  * This file is part of Jikan4java.
@@ -59,27 +56,19 @@ data class User(
 ) : MyAnimeListURL, MyAnimeListImageURL {
 
 
-	fun getAnimeListSearch(retriever: Retriever) = AnimeUserListingSearch(
-		username,
-		retriever
-	)
+	fun getAnimeListSearch() = AnimeUserListingSearch(username,)
 
-	fun getMangaListSearch(retriever: Retriever) = MangaUserListingSearch(
-		username,
-		retriever
-	)
+	fun getMangaListSearch() = MangaUserListingSearch(username,)
 
 	/**
 	 * Returns history of the person
 	 *
 	 * @param type Anime or Manga
-	 * @return History object
+	 * @return [HistoryPage]
 	 */
 	fun getHistory(
-		retriever: Retriever,
 		type: HistoryTypes
-	): CompletableFuture<JikanResult<HistoryPage>> =
-		retriever("$JIKAN_URL/user/$username/history/$type")
+	) = "$JIKAN_URL/user/$username/history/$type"
 
 
 	/**
@@ -89,14 +78,11 @@ data class User(
 	 * @return Friends object
 	 */
 	fun getFriends(
-		retriever: Retriever,
 		page: Int
-	): CompletableFuture<JikanResult<FriendPage>> =
-		retriever("$JIKAN_URL/user/$username/friends/$page")
+	) = "$JIKAN_URL/user/$username/friends/$page"
 
 	companion object {
 		@JvmStatic
-		fun getByName(retriever: Retriever, name: String) =
-			retriever<User>("$JIKAN_URL/user/$name")
+		fun getUrlByName(name: String) = "$JIKAN_URL/user/$name"
 	}
 }

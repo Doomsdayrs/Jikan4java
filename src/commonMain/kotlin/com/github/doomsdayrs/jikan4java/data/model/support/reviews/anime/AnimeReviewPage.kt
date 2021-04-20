@@ -3,7 +3,6 @@ package com.github.doomsdayrs.jikan4java.data.model.support.reviews.anime
 import com.github.doomsdayrs.jikan4java.data.model.support.reviews.ReviewPage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.

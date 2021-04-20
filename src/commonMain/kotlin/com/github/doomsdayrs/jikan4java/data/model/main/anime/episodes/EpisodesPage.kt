@@ -4,7 +4,6 @@ import com.github.doomsdayrs.jikan4java.data.base.values.MyAnimeListEpisodes
 import com.github.doomsdayrs.jikan4java.data.model.support.RequestHashing
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.util.*
 
 /*
  * This file is part of Jikan4java.
@@ -34,14 +33,4 @@ data class EpisodesPage(
 	@SerialName("request_cache_expiry") override val requestCacheExpiry: Int = 0,
 	@SerialName("episodes_last_page") val episodesLastPage: Int = 0,
 	@SerialName("episodes") override val episodes: List<Episode>
-) : RequestHashing, MyAnimeListEpisodes<Episode> {
-
-	@Deprecated(
-		"Changed to proper naming format",
-		ReplaceWith("episodesLastPage")
-	)
-	@Suppress("PropertyName", "unused")
-	val episodes_last_page
-		get() = episodesLastPage
-}
-
+) : RequestHashing, MyAnimeListEpisodes<Episode>
