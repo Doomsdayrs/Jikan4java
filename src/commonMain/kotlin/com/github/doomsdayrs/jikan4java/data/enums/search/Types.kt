@@ -1,12 +1,6 @@
 package com.github.doomsdayrs.jikan4java.data.enums.search
 
-import com.github.doomsdayrs.jikan4java.data.model.main.anime.Anime
-import com.github.doomsdayrs.jikan4java.data.model.main.anime.animePage.AnimePage
-import com.github.doomsdayrs.jikan4java.data.model.main.character.characterPage.CharacterPage
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.Manga
-import com.github.doomsdayrs.jikan4java.data.model.main.manga.mangapage.MangaPage
-import com.github.doomsdayrs.jikan4java.data.model.main.person.Person
-import com.github.doomsdayrs.jikan4java.data.model.main.person.personPage.PersonPage
+import com.github.doomsdayrs.jikan4java.data.enums.UrlEnum
 
 /*
  * This file is part of Jikan4java.
@@ -29,17 +23,9 @@ import com.github.doomsdayrs.jikan4java.data.model.main.person.personPage.Person
  *
  * @author github.com/doomsdayrs
  */
-enum class Types(
-	private val type: String,
-	@Deprecated("Useless with kotlin")
-	val a: Class<*>,
-	@Deprecated("Useless with kotlin")
-	val b: Class<*>
-) {
-	ANIME("anime", AnimePage::class.java, Anime::class.java),
-	MANGA("manga", MangaPage::class.java, Manga::class.java),
-	PERSON("person", PersonPage::class.java, Person::class.java),
-	CHARACTER("character", CharacterPage::class.java, Char::class.java);
-
-	override fun toString(): String = type
+enum class Types(override val urlKey: String) : UrlEnum {
+	ANIME("anime"),
+	MANGA("manga"),
+	PERSON("person"),
+	CHARACTER("character");
 }
