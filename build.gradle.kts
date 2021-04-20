@@ -26,6 +26,11 @@ kotlin {
 			commonWebpackConfig {
 				cssSupport.enabled = true
 			}
+			testTask{
+				useKarma{
+					useFirefox()
+				}
+			}
 		}
 	}
 	val hostOs = System.getProperty("os.name")
@@ -39,12 +44,16 @@ kotlin {
 
 
 	sourceSets {
-		val commonMain by getting
+		val commonMain by getting {
+			dependencies{
+				implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+			}
+		}
 		val commonTest by getting {
 			dependencies {
 				implementation(kotlin("test-common"))
 				implementation(kotlin("test-annotations-common"))
-				implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+				implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
 			}
 		}
 		val jvmMain by getting
