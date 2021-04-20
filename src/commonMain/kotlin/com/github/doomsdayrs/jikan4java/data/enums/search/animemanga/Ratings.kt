@@ -1,5 +1,7 @@
 package com.github.doomsdayrs.jikan4java.data.enums.search.animemanga
 
+import com.github.doomsdayrs.jikan4java.data.enums.UrlEnum
+
 /*
  * This file is part of Jikan4java.
  *
@@ -21,14 +23,11 @@ package com.github.doomsdayrs.jikan4java.data.enums.search.animemanga
  *
  * @author github.com/doomsdayrs
  */
-enum class Ratings(private val rating: String) {
+enum class Ratings(override val urlKey: String) : UrlEnum {
 	G("g"),
 	PG("pg"),
 	PG13("pg13"),
 	R17("r17"),
 	R("r"),
-	RX("rx");
-
-	override fun toString(): String = rating
-
+	RX("rx")
 }
